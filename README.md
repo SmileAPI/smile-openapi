@@ -1,0 +1,2 @@
+# smile-openapi
+Smile openAPI
