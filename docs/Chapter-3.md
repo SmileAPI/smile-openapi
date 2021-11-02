@@ -1,0 +1,380 @@
+# API Reference
+
+<!-- focus: false -->
+![Authentication](https://img.icons8.com/ios-glyphs/50/000000/key--v1.png)
+
+## Authentication
+
+The Smile API uses HTTP Basic Auth. A set of credentials called API key and API secret, which is associated with your developer account can be used to access the Smile Network. To retrieve your credentials, contact access@getsmileapi.com
+
+To retrieve data from our API, you should include in your Authorization header, the word **Basic**, followed by a space and a base64-encoded (non-encrypted) string **apikey:apisecret** or '**Authorization: Basic {base64 encoded string}**'.
+
+
+---
+<!-- focus: false -->
+![Modes](https://img.icons8.com/material-rounded/50/000000/switch-on.png)
+
+## Modes of Operation
+The API is available in two modes that can be accessed by sending requests to different base URLs. Each API client secret you are granted can only be used with a single mode. For example: an API client ID and secret granted to access the Sandbox can only be used in that mode.
+
+| Mode        | Host                                        | Description |
+|-------------|---------------------------------------------|-------------|
+| Sandbox     | https://sandbox.smileapi.io/v1     |       Use Sandbox mode to build and test your integration. In this mode, you must use test credentials to authenticate with the employment data providers. All API endpoints will return mock data and no actual user data is returned.  |
+| Production  | https://open.smileapi.io/v1  |       Production mode is used to go live with your integration. Your end-users will use their login credentials to authenticate with their employment data providers. API endpoints return real data and in this mode, all API calls are billable.  |
+
+---
+<!-- focus: false -->
+![Versions](https://img.icons8.com/ios-glyphs/50/000000/versions.png)
+
+## Versioning
+The version is included in the URI Path. So for example it will look like: https://open.smileapi.io/v1/
+- The versioning convention we use is the **1.2.3** format, where **1** is the major version, **2** is the minor version, and **3** is the patch update:
+    - **Major version:** The version used in the URI and denotes breaking changes to the API. While we try to keep changes backward compatible, there may be occasions where we will need to introduce changes that might change existing behavior or functionality. These changes will be implemented in versions of the API accessible under a differnet URI (eg https://open.smileapi.io/v2/). You can continue to use the existing URI to avoid breaking existing integrations, but in order to take advantage of new features, you will have to update your application to point to the new version and URI. 
+    - **Minor and Patch versions:** These are transparent to the client and we use this internally for backward-compatible updates. You do not need to update your integration when we release minor updates or patches. We will communicate these via via our change logs and email notifications, so you are updated with  any of these changes.
+
+
+---
+<!-- focus: false -->
+![Alert](https://img.icons8.com/ios-glyphs/50/000000/error--v1.png)
+
+## Error Messages
+
+|HTTP Status Code|Status Description|Smile Code|Message|
+|----------------------|----------------------|----------------------|----------------------|
+|400 - Bad Request         |The request could not be understood by the server due to incorrect syntax. The client SHOULD NOT repeat the request without modifications.       |INVALID_CREDENTIALS   |The credentials you provided are incorrect.                                                                                       |
+|400 - Bad Request         |The request could not be understood by the server due to incorrect syntax. The client SHOULD NOT repeat the request without modifications.       |INVALID_PARAMETERS    |Missing or invalid parameters were sent in your request.                                                                          |
+|401 - Unauthorized        |Indicates that the request requires user authentication information. The client MAY repeat the request with a suitable Authorization header field|INVALID_TOKEN         |The token you provided is invalid or has expired.                                                                                 |
+|403 - Forbidden           |Unauthorized request. The client does not have access rights to the content. Unlike 401, the client’s identity is known to the server.           |UNAUTHORIZED_ACCESS   |You do not have permission to access this resource.                                                                               |
+|404 - Not Found           |The server can not find the requested resource.                                                                                                  |MISSING_RESOURCE      |The resource you provided cannot be found or is unavailable.                                                                      |
+|415 - Unsupported Media Type           |The payload format is either not defined or is in an unsupported format.                                                                                                  |UNSUPPORTED_TYPE      |Please specify a valid content type for your request.                                                                      |
+|429 - Too Many Requests   |Too many requests sent in a given amount of time                                                                                                 |REQUEST_LIMIT_EXCEEDED|You have exceeded your rate limit for this resource. Please try again later or contact support.                                   |
+|500 - Internal Server Error |The server encountered an unexpected condition which prevented it from fulfilling the request.                                                   |SERVER_ERROR          |Our system is currently experiencing issues. Please try again later or contact support.                                           |
+|501 - Not Implemented      |The HTTP method is not supported by the server and cannot be handled.                                                                            |UNSUPPORTED_METHOD    |The HTTP method you used is not supported for this resource.                                                                      |
+|503 - Service Unavailable  |The server is not ready to handle the request.                                                                                                   |SERVER_UNAVAILABLE    |The server is not available to handle the request. It may be down or under maintenance. Please try again later or contact support.|
+|504 - Gateway Timeout      |The server cannot give a response in time.                                                                                                       |TIME_LIMIT_EXCEEDED   |The server was not able to give a response in the allotted time. Please try again or contact support.  
+
+
+---
+<!-- focus: false -->
+![Pagination](https://img.icons8.com/glyph-neue/50/000000/json.png)
+
+## Body of Results
+
+All responses are encoded in JSON and return the following attributes:
+- **code**
+- **message**
+- **requestId**
+- **data**
+
+If the response is a single object, the value of the data attribute is that object. For example, the Get Identity endpoint will return the following, with the attribute 'data' returning a single Identity object:
+
+``` json
+{
+    "code": "OK",
+    "message": "Success!",
+    "requestId": "5f380e89-3762-418a-bc82-449716f4c0b2",
+    "data": {
+        "id": "i-45567e7689be49d5bc052a6e4a3805e6",
+        "fullName": "Christina Tan",
+        "firstName": "Christina",
+        "middleName": null,
+        "lastName": "Tan",
+        "suffix": null,
+        "gender": "Female",
+        "dob": "1997-02-12",
+        "maritalStatus": null,
+        "countryResidence": "PH",
+        "citizenship": null,
+        "photoUrl": null,
+        "emails": [
+            {
+                "address": "christina4321@yahoo.com",
+                "type": "Primary"
+            }
+        ],
+        "phones": [
+            {
+                "number": "+639559996789",
+                "type": "Mobile"
+            },
+            {
+                "number": "+639226789888",
+                "type": "Mobile"
+            }
+        ],
+        "socialProfiles": [],
+        "addresses": [
+            {
+                "fullAddress": null,
+                "line1": null,
+                "line2": null,
+                "city": null,
+                "region": null,
+                "zip": null,
+                "country": "PH",
+                "latitude": null,
+                "longitude": null,
+                "type": "Primary"
+            }
+        ],
+        "metadata": {
+            "createdAt": "2021-10-26T05:37:20Z",
+            "accountId": "7c22448eb8d14bd79c460b16699999ec",
+            "userId": "smilejan-bff28fb7125348c686aa9c5f44224ffe",
+            "providerId": "guru"
+        }
+    }
+}
+```
+
+If the result is related to data retrieved from a user's account, a metadata object is also returned with more information about the response such as:
+
+- **createdAt**
+- **accountId**
+- **userId**
+- **providerId**
+
+If the response is a list or collection, the value of the data attribute is an array of objects.  For example the List Transactions endpoint will return a collection of Transactions:
+
+``` json
+{
+    "code": "OK",
+    "message": "Success!",
+    "requestId": "e17e63a1-e49b-49de-bac6-14327f79a0e7",
+    "data": {
+        "nextCursor": "c-NDE0NTk=",
+        "items": [
+            {
+                "id": "t-11de60721342404daa35f60d2875f37b",
+                "date": "2021-08-21",
+                "description": "",
+                "currency": "PHP",
+                "amount": -200.0000,
+                "referenceId": "HTEEXWUEY2",
+                "metadata": {
+                    "createdAt": "2021-10-26T08:25:05Z",
+                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
+                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
+                    "providerId": "grab"
+                }
+            },
+            {
+                "id": "t-a0c093aafbc940f4a434ec4aa105d205",
+                "date": "2021-08-19",
+                "description": "",
+                "currency": "PHP",
+                "amount": 959.0000,
+                "referenceId": "t5ig-ih3d",
+                "metadata": {
+                    "createdAt": "2021-10-26T08:25:05Z",
+                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
+                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
+                    "providerId": "grab"
+                }
+            },
+            {
+                "id": "t-b5232be29d814c4cb139566d3bb595c0",
+                "date": "2021-07-30",
+                "description": "",
+                "currency": "PHP",
+                "amount": 413.0000,
+                "referenceId": "t5ig-5jgj",
+                "metadata": {
+                    "createdAt": "2021-10-26T08:25:05Z",
+                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
+                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
+                    "providerId": "grab"
+                }
+            },
+            {
+                "id": "t-dbf64adcd5254ebc80007ec9c1369863",
+                "date": "2021-08-02",
+                "description": "",
+                "currency": "PHP",
+                "amount": -1000.0000,
+                "referenceId": "67BFA7QNK9",
+                "metadata": {
+                    "createdAt": "2021-10-26T08:25:05Z",
+                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
+                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
+                    "providerId": "grab"
+                }
+            },
+            {
+                "id": "t-cd34342d7d3a41ca91a196bd1480d748",
+                "date": "2021-08-04",
+                "description": "",
+                "currency": "PHP",
+                "amount": 259.0000,
+                "referenceId": "s6vx-slxp",
+                "metadata": {
+                    "createdAt": "2021-10-26T08:25:05Z",
+                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
+                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
+                    "providerId": "grab"
+                }
+            },
+            {
+                "id": "t-c35121c6c54e4cb187f960441ba24cc0",
+                "date": "2021-08-10",
+                "description": "",
+                "currency": "PHP",
+                "amount": -2000.0000,
+                "referenceId": "U6FCHV94R5",
+                "metadata": {
+                    "createdAt": "2021-10-26T08:25:05Z",
+                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
+                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
+                    "providerId": "grab"
+                }
+            },
+            {
+                "id": "t-6830a78cd49b47938a1cd3c4848286e6",
+                "date": "2021-08-04",
+                "description": "",
+                "currency": "PHP",
+                "amount": 230.0000,
+                "referenceId": "s1rt-xqrn",
+                "metadata": {
+                    "createdAt": "2021-10-26T08:25:05Z",
+                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
+                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
+                    "providerId": "grab"
+                }
+            },
+            {
+                "id": "t-140324b3ee24444baefb15146e2a8ec9",
+                "date": "2021-08-11",
+                "description": "",
+                "currency": "PHP",
+                "amount": -254.5500,
+                "referenceId": "5780080",
+                "metadata": {
+                    "createdAt": "2021-10-26T08:25:05Z",
+                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
+                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
+                    "providerId": "grab"
+                }
+            },
+            {
+                "id": "t-71869bea91794a62a0d90324fe720d75",
+                "date": "2021-08-13",
+                "description": "",
+                "currency": "PHP",
+                "amount": 1149.0000,
+                "referenceId": "s3vb-ivj1",
+                "metadata": {
+                    "createdAt": "2021-10-26T08:25:05Z",
+                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
+                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
+                    "providerId": "grab"
+                }
+            },
+            {
+                "id": "t-4252082cfa664f6bbfdbc6f92d13dbbd",
+                "date": "2021-08-08",
+                "description": "",
+                "currency": "PHP",
+                "amount": 222.0000,
+                "referenceId": "s3vb-8btz",
+                "metadata": {
+                    "createdAt": "2021-10-26T08:25:05Z",
+                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
+                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
+                    "providerId": "grab"
+                }
+            }
+        ]
+    }
+}
+
+```
+
+
+---
+<!-- focus: false -->
+![Parameters](https://img.icons8.com/windows/50/000000/null-symbol.png)
+
+## Null Values
+
+Sometimes you might see **null** as the returned value for a given attribute in the API response. This might happen when:
+
+- The data provider does not have a field for that attribute. For example it has no fields for 'citizenship' or 'country of residence' related to Identity data.
+- In other cases, the field is supported by the data provider but it is an optional field that is not enabled, or is hidden, or only shows up in certain conditions that are not present at the time the user shared their information. For example, details like their mobile phone or address may not be available if they have not gone through account verification or KYC process in their employment platform.
+
+
+---
+<!-- focus: false -->
+![Parameters](https://img.icons8.com/ios/50/000000/iso.png)
+
+## Conventions and Standards
+
+To help in logging and troubleshooting, we apply some conventions when returning data to you. 
+
+| Resource Attribute | Prefix | Example | Description |
+| -------------------| ------ | ------- | ----------- |
+| User ID | **tenantId-** | smile1234-a5b39dfe76174defb353d7e97a88a85e | each user ID has a prefix related to their tenant ID in our system |
+| Identity ID | **i-** | i-45567e7689be49d5bc052a6e4a3805e6 | Identity related information |
+| Transaction ID | **t-** | t-11de60721342404daa35f60d2875f37b | Transaction related information |
+
+To standardize data formats, we use commonly accepted standards to format the data, including:
+
+| Data Types | Format | Example | Standard |
+| -----| ------ | --------| -------- |
+| date | yyyy-MM-dd | 2021-04-21 | ISO 8601 full date | 
+| date-time | yyyy-MM-ddTHH:mm:ssZ | 2021-04-21T08:25:05Z | ISO 8601 full time |
+| phone numbers | + (country code) (local area code) (phone number) | +65281234567 | E.164 |
+| country codes | ISO alpha-2 | 'SG' for Singapore | ISO 3166 |
+| currencies | ISO alpha-3 | 'USD' for US Dollars | ISO 4217 |
+
+
+---
+<!-- focus: false -->
+![Pagination](https://img.icons8.com/windows/50/000000/choose-page.png)
+
+## List results and Pagination
+
+Resources or API endpoints, can return a list or a collection of objects. By default we return 10, with a maximum of 100, at a time. You can limit the results by passing a parameter for **size**. For more information on filterig or limiting results, see below on query parameters.
+
+When Smile returns a collection, we will also return a value called **nextCursor**. See below for an example:
+
+```json
+{
+    "code": "OK",
+    "message": "Success!",
+    "requestId": "17bc5a84-2468-47f6-9d3c-05b5257befa5",
+    "data": {
+        "nextCursor": "20",
+        "items": [...]
+    }
+}
+```
+
+To go to the next page in a collection, simply append the **cursor** parameter when you query an endpoint, using the **nextCursor** value returned from your previous query to go to the next page in the collection. See below for more information on cursor and other query parameters.
+
+
+---
+<!-- focus: false -->
+![Parameters](https://img.icons8.com/ios-glyphs/50/000000/filled-filter.png)
+
+## Query Parameters
+
+API endpoints which return a list or collection of objects can be filtered or limited based on different query parameters. Below are some examples:
+
+|Parameter |Description |
+|----------------------|----------------------|
+| size | The number of objects you want returned in a collection. See more information above on default values. |
+| cursor | Uses the filter values of the previous page to determine the next set of items. See more information above on pagination. |
+| userId | Filter the results by the associated userId |
+| acccountId | For account-related data, filter the results based on the associated accountId |
+
+Some resources however have unique query parameters associated with them. Check out the documentation in each of the endpoints to find out more.
+
+---
+<!-- focus: false -->
+![Rate Limits](https://img.icons8.com/ios-filled/50/000000/traffic-light.png)
+
+
+## Rate Limits
+
+Smile limits the amount of API calls that can be made to each endpoint to ensure the stability and availability of the platform. At the moment we only allow clients a maximum of up to **5 requests per second**. This is across all API endpoints. Clients which make too many requests in succession will be given an error with HTTP Status Code 429 or too many requests. To request a higher limit, please contact access@getsmileapi.com.

@@ -1,0 +1,2411 @@
+openapi: 3.0.0
+info:
+  title: Smile API
+  version: 1.1.2
+  description: 'The Smile API provides employment and income data from a single API. '
+  contact:
+    name: Smile Technology Pte Ltd
+    url: https://www.getsmileapi.com
+    email: info@getsmileapi.com
+  termsOfService: https://www.getsmileapi.com/terms-and-conditions
+servers:
+  - url: https://sandbox.smileapi.io/v1
+    description: Sandbox
+  - url: https://open.smileapi.io/v1
+    description: Production
+paths:
+  /providers:
+    get:
+      summary: List Providers
+      tags:
+        - Providers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: upwork
+                          name: Upwork
+                          longName: Upwork Global Inc.
+                          logoUrl: >-
+                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
+                          type: GIG
+                          typeLabel: Gig Platform
+                          subType: SERVICES
+                          subTypeLabel: Professional Services
+                          active: true
+                          enabled: true
+                          mfa: true
+                          supported:
+                            - IDENTITY
+                        - id: freelancer
+                          name: Freelancer
+                          longName: Freelancer Technology Pty Limited
+                          logoUrl: >-
+                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/freelancer.png
+                          type: GIG
+                          typeLabel: Gig Platform
+                          subType: SERVICES
+                          subTypeLabel: Professional Services
+                          active: true
+                          enabled: true
+                          mfa: true
+                          supported:
+                            - IDENTITY
+                        - id: grab
+                          name: Grab
+                          longName: Grab Holdings Inc
+                          logoUrl: >-
+                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/freelancer.png
+                          type: GIG
+                          typeLabel: Gig Platform
+                          subType: TRANSPORTATION
+                          subTypeLabel: Transport and Delivery
+                          active: true
+                          enabled: true
+                          mfa: true
+                          supported:
+                            - IDENTITY
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          description: Unsupported Media Type
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-providers
+      description: Get a list of the data providers from the Smile Network.
+      parameters:
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/size'
+        - schema:
+            type: string
+          in: query
+          name: type
+          description: Filter results to certain type of providers.
+        - schema:
+            type: string
+          in: query
+          name: subType
+          description: Filter results to certain subset of a certain type providers
+        - schema:
+            type: boolean
+          in: query
+          name: active
+          description: Filter results to active or inactive providers.
+        - schema:
+            type: boolean
+          in: query
+          name: enabled
+          description: Filter results to enabled or disabled providers.
+    parameters: []
+  /providers/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        description: ID of the specific object in the collection.
+        required: true
+    get:
+      summary: Get Provider
+      tags:
+        - Providers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: upwork
+                      name: Upwork
+                      longName: Upwork Global Inc.
+                      logoUrl: >-
+                        https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
+                      type: GIG
+                      typeLabel: Gig Platform
+                      subType: SERVICES
+                      subTypeLabel: Professional Services
+                      active: true
+                      enabled: true
+                      mfa: true
+                      supported:
+                        - IDENTITY
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-provider
+      description: Get a data provider from the Smile Network.
+      parameters: []
+  /users:
+    get:
+      summary: List Users
+      tags:
+        - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                          externalMetadata:
+                            property1: string
+                            property2: string
+                          providers:
+                            - upwork
+                        - id: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                          externalMetadata:
+                            property1: string
+                            property2: string
+                          providers:
+                            - freelancer
+                        - id: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                          externalMetadata:
+                            property1: string
+                            property2: string
+                          providers:
+                            - grab
+                        - id: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                          externalMetadata:
+                            key1: value
+                            key2: value
+                          providers:
+                            - upwork
+                            - freelancer
+                            - grab
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-users
+      description: List users from the Smile Network.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+    parameters: []
+    post:
+      summary: Create User
+      operationId: create-user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPostRequest'
+        description: ''
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPostResponse'
+              examples: {}
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+        default:
+          $ref: '#/components/responses/Standard-Errors'
+      description: Create a user in the Smile Network.
+      tags:
+        - Users
+  /users/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        description: ID of the specific object in the collection.
+        required: true
+    get:
+      summary: Get User
+      tags:
+        - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                      externalMetadata:
+                        property1: string
+                        property2: string
+                      providers:
+                        - upwork
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-user
+      description: Get a particular user profile from the Smile Network.
+      parameters: []
+  /tokens:
+    post:
+      summary: Refresh Token
+      operationId: create-token
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      expiresAt: 2021-04-14T09:30:24Z
+                      mode: SANDBOX
+                      accessToken: string
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      description: Refresh a token for a user
+      tags:
+        - Tokens
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+          required: true
+          description: the user whom to create token for.
+  /accounts:
+    get:
+      summary: List Accounts
+      tags:
+        - Accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: 2021-04-14T09:30:24Z
+                          providerId: grab
+                          connectionStatus: CONNECTED
+                          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                        - id: 7fa7e260ad724f39b61427f6ac2edc69
+                          createdAt: 2021-04-13T09:30:24Z
+                          providerId: freelancer
+                          connectionStatus: CONNECTED
+                          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                        - id: 79da958ecb2143659747deaebca1cfe0
+                          createdAt: 2021-04-12T09:30:24Z
+                          providerId: upwork
+                          connectionStatus: CONNECTED
+                          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-accounts
+      description: Get a list of accounts from the Smile Network.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+    parameters: []
+  /accounts/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Account
+      tags:
+        - Accounts
+      operationId: get-account
+      description: Get a particular account from the Smile Network.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: 2021-04-14T09:30:24Z
+                      providerId: grab
+                      connectionStatus: CONNECTED
+                      userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      parameters: []
+  /identities:
+    get:
+      summary: List Identities
+      tags:
+        - Identities
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: i-17bbf36498de4d68a0d4f86c7b62f69f
+                          fullName: George Cimafranca Palomero, Jr
+                          firstName: George
+                          middleName: Cimafranca
+                          lastName: Palomero
+                          suffix: Jr
+                          gender: Male
+                          dob: 1970-08-24
+                          maritalStatus: Married
+                          countryResidence: PH
+                          citizenship: Citizen
+                          photoUrl: >-
+                            https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
+                          emails:
+                            - address: gpalomero1234@yahoo.com
+                              type: Primary
+                          phones:
+                            - number: '+639175551234'
+                              type: Mobile
+                          socialProfiles:
+                            - socialUrl: https://www.facebook.com/gpalomero
+                              type: Facebook
+                          addresses:
+                            - fullAddress: >-
+                                12 Maybunga St, Barangay Paraiso, Pasig City,
+                                NCR, 1600, PH
+                              line1: 12 Maybunga St
+                              line2: Barangay Paraiso
+                              city: Pasig City
+                              region: NCR
+                              zip: '1600'
+                              country: PH
+                              latitude: '14.573454'
+                              longitude: '121.085042'
+                              type: Primary
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: upwork
+                        - id: i-24bbf36498ac4d26a0d4f86c7b62f83z
+                          fullName: Ryan Joseph Peterson Chua Ng
+                          firstName: Ryan Joseph Peterson
+                          middleName: Chua
+                          lastName: Ng
+                          suffix: null
+                          gender: Male
+                          dob: 1995-06-24
+                          maritalStatus: Single
+                          countryResidence: null
+                          citizenship: Citizen
+                          photoUrl: null
+                          emails:
+                            - address: ryan1234@gmail.com
+                              type: Primary
+                          phones:
+                            - number: '+639559994321'
+                              type: Mobile
+                            - number: '+63289053000'
+                              type: Fixed
+                          socialProfiles:
+                            - socialUrl: https://www.facebook.com/ryanpetersonng
+                              type: Facebook
+                            - socialUrl: https://www.twitter.com/xklxyz
+                              type: Twitter
+                          addresses:
+                            - fullAddress: 24 Eagle St, Binondo, Manila, NCR, 1008, PH
+                              line1: 24 Eagle St
+                              line2: Binondo
+                              city: Manila
+                              region: NCR
+                              zip: '1008'
+                              country: PH
+                              latitude: '14.600454'
+                              longitude: '120.969042'
+                              type: Primary
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: upwork
+                        - id: i-48ace87698bd6e67a0d4f86c7b62h76c
+                          fullName: Christina Tan
+                          firstName: Christina
+                          middleName: dela Cruz
+                          lastName: Tan
+                          suffix: null
+                          gender: Female
+                          dob: 1997-02-12
+                          maritalStatus: Single
+                          countryResidence: null
+                          citizenship: Citizen
+                          photoUrl: null
+                          emails:
+                            - address: christina4321@yahoo.com
+                              type: Primary
+                          phones:
+                            - number: '+639559996789'
+                              type: Mobile
+                            - number: '+639226789888'
+                              type: Mobile
+                          socialProfiles: []
+                          addresses:
+                            - fullAddress: null
+                              line1: null
+                              line2: null
+                              city: null
+                              region: null
+                              zip: null
+                              country: PH
+                              latitude: null
+                              longitude: null
+                              type: Primary
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: upwork
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-identities
+      description: Get the user's identities from provider accounts.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/accountId'
+    parameters: []
+  /identities/{id}:
+    get:
+      summary: Get Identity
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentityGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: i-17bbf36498de4d68a0d4f86c7b62f69f
+                      fullName: George Cimafranca Palomero, Jr
+                      firstName: George
+                      middleName: Cimafranca
+                      lastName: Palomero
+                      suffix: Jr
+                      gender: Male
+                      dob: 1970-08-24
+                      maritalStatus: Married
+                      countryResidence: PH
+                      citizenship: Citizen
+                      photoUrl: >-
+                        https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
+                      emails:
+                        - address: gpalomero1234@yahoo.com
+                          type: Primary
+                      phones:
+                        - number: '+639175551234'
+                          type: Mobile
+                      socialProfiles:
+                        - socialUrl: https://www.facebook.com/gpalomero
+                          type: Facebook
+                      addresses:
+                        - fullAddress: >-
+                            12 Maybunga St, Barangay Paraiso, Pasig City, NCR,
+                            1600, PH
+                          line1: 12 Maybunga St
+                          line2: Barangay Paraiso
+                          city: Pasig City
+                          region: NCR
+                          zip: '1600'
+                          country: PH
+                          latitude: '14.573454'
+                          longitude: '121.085042'
+                          type: Primary
+                      metadata:
+                        createdAt: 2021-04-14T09:30:24Z
+                        accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                        providerId: upwork
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-identity
+      description: Get the user's identity by ID.
+      tags:
+        - Identities
+      parameters: []
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+  /transactions:
+    get:
+      summary: List Transactions
+      tags:
+        - Transactions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: t-17bbf36498de4d68a0d4f86c7b62f69f
+                          date: 2021-04-21
+                          description: Payment for web design project Milestone 2
+                          currency: PHP
+                          amount: 10000
+                          referenceId: string
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                        - id: t-17bbf36498de4d68a0d4f86c7b62f69f
+                          date: 2021-03-21
+                          description: Payment for web design project Milestone 1
+                          currency: PHP
+                          amount: 10000
+                          referenceId: string
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                        - id: t-17bbf36498de4d68a0d4f86c7b62f69f
+                          date: 2021-02-12
+                          description: Payment for Facebook Ad design
+                          currency: PHP
+                          amount: 5000
+                          referenceId: string
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: upwork
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-transactions
+      description: Get the user's transaction from provider accounts.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/accountId'
+        - schema:
+            type: string
+            format: date
+            example: 2021-04-01
+          in: query
+          name: startDate
+          description: Filter by transaction date, start of date range (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+            example: 2021-04-21
+          in: query
+          name: endDate
+          description: Filter by transaction date, end of date range (YYYY-MM-DD)
+  /transactions/{id}:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get Transaction
+      tags:
+        - Transactions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: t-17bbf36498de4d68a0d4f86c7b62f69f
+                      date: 2021-04-21
+                      description: Payment for web design project
+                      currency: PHP
+                      amount: 10000
+                      referenceId: string
+                      metadata:
+                        createdAt: 2021-04-21T09:30:24Z
+                        accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                        providerId: upwork
+      operationId: get-transaction
+      description: Get a user's transaction by ID.
+components:
+  schemas:
+    Provider:
+      title: Provider
+      type: object
+      description: >-
+        An employment data provider. A provider holds employment and income
+        information of the user
+      x-tags:
+        - Providers
+      x-examples:
+        Example:
+          id: upwork
+          name: Upwork
+          longName: Upwork Global Inc.
+          logoUrl: >-
+            https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
+          type: GIG
+          typeLabel: Gig Platform
+          subType: SERVICES
+          subTypeLabel: Professional Services
+          active: true
+          enabled: true
+          mfa: true
+          supported:
+            - IDENTITY
+      properties:
+        id:
+          type: string
+          description: Unique ID of the data provider.
+          example: upwork
+        name:
+          type: string
+          description: Name of the data provider.
+          example: Upwork
+        longName:
+          type: string
+        logoUrl:
+          type: string
+          description: URL to the data provider's logo.
+          example: >-
+            https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
+        type:
+          type: string
+          enum:
+            - GIG
+            - EMPLOYMENT
+            - SCAN
+          description: Type of employment data provider.
+          example: GIG
+        typeLabel:
+          type: string
+          description: Type label of employment data provider, like "Gig Platform".
+          example: Gig Platform
+          enum:
+            - Gig Platform
+            - Formal Employment
+            - Document Scan
+        subType:
+          type: string
+          description: Subset of Type of employment data provider
+          enum:
+            - SERVICES
+            - TRANSPORTATION
+            - SHARING
+            - TRADING
+            - PAYROLL
+            - HR
+            - UPLOADS
+        subTypeLabel:
+          type: string
+          description: Subtype label of employment data provider, like "Services".
+          example: Professional Services
+          enum:
+            - Professional Services
+            - Transport and Delivery
+            - Asset Sharing
+            - Online Selling
+            - Payroll
+            - Human Resources
+            - Uploaded Documents
+        active:
+          type: boolean
+          description: Indicates whether data provider integration is working.
+        enabled:
+          type: boolean
+          description: >-
+            Indicates whether data provider is enabled or access is allowed for
+            the client.
+        mfa:
+          type: boolean
+          description: Whether data provider requires two-factor authentication.
+        supported:
+          type: array
+          items:
+            type: string
+            enum:
+              - IDENTITY
+              - JOB
+              - INCOME
+              - DOCUMENT
+              - TRANSACTION
+            example: IDENTITY
+      required:
+        - id
+        - name
+        - logoUrl
+        - type
+        - subType
+        - active
+        - enabled
+        - mfa
+        - supported
+    ProviderGetResponse:
+      title: Provider Get Response
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Provider'
+      x-internal: true
+      x-examples: {}
+      description: ''
+    ProviderListResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Provider'
+      x-internal: true
+      x-examples: {}
+    User:
+      title: User
+      type: object
+      description: >-
+        A user is someone who is authorizing Smile to retrieve and share their
+        employment and income data on their behalf.
+      x-tags:
+        - Users
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          externalMetadata:
+            property1: string
+            property2: string
+          createdAt: 2021-04-14T09:30:24Z
+          providers:
+            - upwork
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        externalMetadata:
+          $ref: '#/components/schemas/Object-ExternalMetadata'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        providers:
+          description: Array of providers connected to this user (listed by provider ID)
+          type: array
+          items:
+            type: string
+            example: upwork
+      required:
+        - id
+    UserPostRequest:
+      type: object
+      properties:
+        externalMetadata:
+          $ref: '#/components/schemas/Object-ExternalMetadata'
+      x-internal: true
+      x-examples: {}
+    UserPostResponse:
+      title: User Post Response
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+            token:
+              $ref: '#/components/schemas/Token'
+          required:
+            - user
+            - token
+      x-internal: true
+      x-examples: {}
+    UserGetResponse:
+      title: User Get Response
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/User'
+      x-internal: true
+      x-examples: {}
+    UserListResponse:
+      title: User List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/User'
+      x-internal: true
+      x-examples: {}
+    Token:
+      title: Token
+      type: object
+      x-tags:
+        - Tokens
+      description: >-
+        A method for securely transmitting information between Smile and the
+        user.
+      properties:
+        expiresAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        mode:
+          type: string
+          enum:
+            - SANDBOX
+            - PRODUCTION
+          example: SANDBOX
+          description: Valid Smile mode for the Token.
+        accessToken:
+          type: string
+          description: Short-lived token to initiate link flow.
+      required:
+        - expiresAt
+        - mode
+        - accessToken
+      x-examples:
+        Example:
+          expiresAt: 2021-04-14T09:30:24Z
+          mode: SANDBOX
+          accessToken: string
+    TokenPostResponse:
+      title: Token Post Response
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Token'
+      x-internal: true
+      x-examples: {}
+    Account:
+      title: Account
+      type: object
+      description: Account of end-user from a particular employment data provider.
+      x-tags:
+        - Accounts
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          createdAt: 2021-04-14T09:30:24Z
+          providerId: grab
+          connectionStatus: CONNECTED
+          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        providerId:
+          type: string
+          example: grab
+          description: ID of the data provider.
+        connectionStatus:
+          type: string
+          enum:
+            - PENDING
+            - AWAITING_MFA
+            - ERROR
+            - CONNECTED
+            - DISCONNECTED
+          description: Account connection status.
+          example: CONNECTED
+        userId:
+          type: string
+          description: User ID associated with this account
+      required:
+        - id
+        - createdAt
+        - providerId
+        - connectionStatus
+        - userId
+    AccountGetResponse:
+      title: Account Get Response
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Account'
+      x-internal: true
+      x-examples: {}
+    AccountListResponse:
+      title: Account List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Account'
+      x-internal: true
+      x-examples: {}
+    Identity:
+      type: object
+      title: Identity
+      description: >-
+        The stored identity information of the user from an employment data
+        provider.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          fullName: George Cimafranca Palomero, Jr
+          firstName: George
+          middleName: Cimafranca
+          lastName: Palomero
+          suffix: Jr
+          gender: Male
+          dob: 1970-08-24
+          maritalStatus: Married
+          countryResidence: PH
+          citizenship: Citizen
+          photoUrl: >-
+            https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
+          emails:
+            - address: gpalomero1234@yahoo.com
+              type: Primary
+          phones:
+            - number: '+639559991234'
+              type: Mobile
+          socialProfiles:
+            - socialUrl: https://www.facebook.com/gpalomero
+              type: Facebook
+          addresses:
+            - fullAddress: 12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH
+              line1: 12 Maybunga St
+              line2: Barangay Paraiso
+              city: Pasig City
+              region: NCR
+              zip: '1600'
+              country: PH
+              latitude: '14.573454'
+              longitude: '121.085042'
+              type: Primary
+          metadata:
+            createdAt: 2021-04-14T09:30:24Z
+            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: upwork
+      x-tags:
+        - Identities
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        fullName:
+          type: string
+          example: George Cimafranca Palomero, Jr
+          description: Full name
+        firstName:
+          type: string
+          example: George
+          description: First name
+        middleName:
+          type: string
+          example: Cimafranca
+          description: Middle name
+        lastName:
+          type: string
+          example: Palomero
+          description: Last name
+        suffix:
+          type: string
+          example: Jr
+          description: Employee's name suffix
+        gender:
+          type: string
+          enum:
+            - Male
+            - Female
+            - Non-binary
+          example: Male
+          description: Gender
+        dob:
+          type: string
+          format: date
+          description: Date of birth
+        maritalStatus:
+          type: string
+          enum:
+            - Divorced
+            - Married
+            - Separated
+            - Single
+            - Widowed
+            - Lifetime Partner
+          example: Married
+          description: Marital status
+        countryResidence:
+          $ref: '#/components/schemas/Ref-Country'
+        citizenship:
+          type: string
+          enum:
+            - Citizen
+            - Resident Alien
+            - Non-resident Alien
+            - Undocumented
+            - Others
+          description: Citizenship
+        photoUrl:
+          type: string
+          example: >-
+            https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
+          description: URL to photo or avatar
+        emails:
+          type: array
+          description: A collection of email addresses.
+          items:
+            type: object
+            title: email
+            properties:
+              address:
+                type: string
+                format: email
+                example: gpalomero@yahoo.com
+                description: Email address
+              type:
+                $ref: '#/components/schemas/Ref-Contact-Type'
+            required:
+              - type
+        phones:
+          type: array
+          description: A collection of phone numbers
+          items:
+            type: object
+            title: phone
+            properties:
+              number:
+                $ref: '#/components/schemas/Ref-Phone-Number'
+              type:
+                $ref: '#/components/schemas/Ref-Phone-Type'
+            required:
+              - type
+        socialProfiles:
+          type: array
+          description: A collection of social media URLs
+          items:
+            type: object
+            title: socialProfile
+            properties:
+              socialUrl:
+                type: string
+                example: https://www.facebook.com/gpalomero
+                description: URL to social media page.
+              type:
+                type: string
+                enum:
+                  - Twitter
+                  - Facebook
+                  - LinkedIn
+                  - Others
+                example: Facebook
+                description: Social media type
+            required:
+              - type
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ref-Address'
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - fullName
+        - metadata
+    IdentityGetResponse:
+      title: Identity Get Response
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Identity'
+      x-internal: true
+      x-examples: {}
+    IdentityListResponse:
+      title: Identity List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Identity'
+      x-internal: true
+      x-examples: {}
+    Transaction:
+      title: Transaction
+      type: object
+      description: >-
+        The stored financial transaction data of the user from an employment
+        data provider.
+      x-tags:
+        - Transactions
+      x-examples:
+        Example:
+          id: t-17bbf36498de4d68a0d4f86c7b62f69f
+          date: 2021-04-21
+          description: Payment for web design project
+          currency: PHP
+          amount: 10000
+          referenceId: string
+          metadata:
+            createdAt: 2021-04-21T09:30:24Z
+            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: upwork
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        date:
+          type: string
+          format: date
+          example: 2021-04-21
+        description:
+          type: string
+          description: Description of the transaction
+          example: Payment for web design project
+        currency:
+          $ref: '#/components/schemas/Ref-Currency'
+        amount:
+          type: number
+          example: 10000
+        referenceId:
+          type: string
+          description: Reference transaction ID from data provider
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - date
+        - currency
+        - amount
+        - metadata
+    TransactionGetResponse:
+      title: TransactionGetResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Transaction'
+      x-internal: true
+      x-examples: {}
+    TransactionListResponse:
+      title: TransactionListResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Transaction'
+      x-internal: true
+      x-examples: {}
+    Income:
+      title: Income
+      type: object
+      description: >-
+        The stored income information of the user from an employment data
+        provider.
+      x-examples: {}
+      x-tags:
+        - Incomes
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        workItem:
+          type: string
+          description: Work performed (specially in the case of contract or freelance jobs)
+        employer:
+          $ref: '#/components/schemas/Ref-Employer'
+        payDate:
+          $ref: '#/components/schemas/Ref-DateTime'
+        payPeriod:
+          $ref: '#/components/schemas/Ref-Pay-Period'
+        channel:
+          type: string
+          description: Channel of payment
+          enum:
+            - Cash
+            - Check
+            - Bank
+            - Ewallet
+            - Crypto
+        grossPay:
+          type: object
+          properties:
+            currency:
+              $ref: '#/components/schemas/Ref-Currency'
+            base:
+              type: number
+              description: Base amount
+              example: 70000
+            bonus:
+              type: number
+              description: Bonus amount
+              example: 20000
+            allowance:
+              type: number
+              description: Allowance amount
+              example: 10000
+            grossAmount:
+              type: number
+              description: Gross amount (base + bonus + allowance)
+              example: 100000
+        netPay:
+          type: object
+          properties:
+            currency:
+              $ref: '#/components/schemas/Ref-Currency'
+            tax:
+              type: number
+              example: -30000
+            deduction:
+              type: number
+              example: -10000
+            adjustment:
+              type: number
+              example: -10000
+            netAmount:
+              type: number
+              example: 50000
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - payDate
+        - metadata
+      x-internal: true
+    Job:
+      title: Job
+      type: object
+      x-internal: true
+      description: The stored job information of the user from an employment data provider.
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        status:
+          type: string
+          description: Status of employment
+          enum:
+            - Probationary
+            - Employee
+            - Contractor
+            - Self-employed
+            - Casual
+            - Terminated
+            - Resigned
+            - Deceased
+            - Freelancer
+            - Intern
+        workItem:
+          type: string
+        jobTitle:
+          type: string
+          description: Job title
+        department:
+          type: string
+          description: Department or organization in place of employment
+        employeeNumber:
+          description: Employee number in the employment data provider
+          type: string
+        employer:
+          $ref: '#/components/schemas/Ref-Employer'
+        startDate:
+          $ref: '#/components/schemas/Ref-DateTime'
+        endDate:
+          $ref: '#/components/schemas/Ref-DateTime'
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - status
+        - employer
+        - startDate
+        - metadata
+      x-examples: {}
+    Document:
+      title: Documents
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        type:
+          type: string
+          description: Document type
+          enum:
+            - Certificate
+            - Diploma
+            - Drivers License
+            - Health Insurance ID
+            - OFW ID
+            - PWD ID
+            - Passport
+            - Postal ID
+            - Prof License ID
+            - Senior Citizen ID
+            - Social Security ID
+            - Tax ID
+            - Universal ID
+            - Voters ID
+        docNumber:
+          type: string
+          description: Document number
+        issueDate:
+          $ref: '#/components/schemas/Ref-DateTime'
+        expiryDate:
+          $ref: '#/components/schemas/Ref-DateTime'
+        imageUrl:
+          type: string
+          description: Image URL
+          format: uri
+        country:
+          $ref: '#/components/schemas/Ref-Country'
+      required:
+        - id
+        - type
+      x-internal: true
+      description: >-
+        The stored documentary information of the user from an employment data
+        provider.
+    Object-Metadata-Ref-Code:
+      type: string
+      title: Object-Metadata-Ref-API-Code
+      description: Request status code
+      enum:
+        - OK
+        - CREATED
+        - INVALID_CREDENTIALS
+        - INVALID_PARAMETERS
+        - INVALID_TOKEN
+        - UNAUTHORIZED_ACCESS
+        - MISSING_RESOURCE
+        - REQUEST_LIMIT_EXCEEDED
+        - SERVER_ERROR
+        - UNSUPPORTED_METHOD
+        - SERVER_UNAVAILABLE
+        - TIME_LIMIT_EXCEEDED
+      example: OK
+      x-internal: true
+    Object-Metadata-Ref-Message:
+      type: string
+      title: Object-Metadata-Ref-Message
+      description: Message response to the request
+      example: Success
+      x-internal: true
+    Object-Metadata-Ref-RequestID:
+      type: string
+      title: Object-Metadata-Ref-RequestID
+      description: >-
+        Unique ID that is added to the body of every response for easy
+        traceability of the request in our logs.
+      x-internal: true
+      example: 5b79399a-6852-4234-bb0e-ad472648282d
+    Object-Next-Cursor:
+      title: Object-Next-Cursor
+      type: string
+      example: '1259723474'
+      description: The next cursor value that can be used in the following query.
+      x-internal: true
+    Ref-Object-ID:
+      type: string
+      title: Object ID
+      description: Unique ID of this object
+      x-internal: true
+      example: 17bbf36498de4d68a0d4f86c7b62f69f
+    Object-ExternalMetadata:
+      title: Object-ExternalMetadata
+      type: object
+      additionalProperties:
+        type: string
+      maxProperties: 5
+      description: >-
+        The Metadata object is a mapping of client-provided string fields to any
+        string value. The following limitations apply:
+
+        - The JSON values must be Strings (no nested JSON objects allowed)
+
+        - Only ASCII characters can be used
+
+        - Maximum of 5 key/value pairs
+
+        - Maximum key length of 50 characters
+
+        - Maximum value length of 500 characters
+      x-internal: true
+    Ref-DateTime:
+      type: string
+      title: Date and Time string
+      format: date-time
+      example: 2021-04-14T09:30:24Z
+      description: Date and time
+      x-internal: true
+    Ref-Country:
+      type: string
+      title: Country ISO Codes
+      enum:
+        - AF
+        - AX
+        - AL
+        - DZ
+        - AS
+        - AD
+        - AO
+        - AI
+        - AQ
+        - AG
+        - AR
+        - AM
+        - AW
+        - AU
+        - AT
+        - AZ
+        - BS
+        - BH
+        - BD
+        - BB
+        - BY
+        - BE
+        - BZ
+        - BJ
+        - BM
+        - BT
+        - BO
+        - BQ
+        - BA
+        - BW
+        - BV
+        - BR
+        - IO
+        - BN
+        - BG
+        - BF
+        - BI
+        - KH
+        - CM
+        - CA
+        - CV
+        - KY
+        - CF
+        - TD
+        - CL
+        - CN
+        - CX
+        - CC
+        - CO
+        - KM
+        - CG
+        - CD
+        - CK
+        - CR
+        - CI
+        - HR
+        - CU
+        - CW
+        - CY
+        - CZ
+        - DK
+        - DJ
+        - DM
+        - DO
+        - EC
+        - EG
+        - SV
+        - GQ
+        - ER
+        - EE
+        - ET
+        - FK
+        - FO
+        - FJ
+        - FI
+        - FR
+        - GF
+        - PF
+        - TF
+        - GA
+        - GM
+        - GE
+        - DE
+        - GH
+        - GI
+        - GR
+        - GL
+        - GD
+        - GP
+        - GU
+        - GT
+        - GG
+        - GN
+        - GW
+        - GY
+        - HT
+        - HM
+        - VA
+        - HN
+        - HK
+        - HU
+        - IS
+        - IN
+        - ID
+        - IR
+        - IQ
+        - IE
+        - IM
+        - IL
+        - IT
+        - JM
+        - JP
+        - JE
+        - JO
+        - KZ
+        - KE
+        - KI
+        - KP
+        - KR
+        - XK
+        - KW
+        - KG
+        - LA
+        - LV
+        - LB
+        - LS
+        - LR
+        - LY
+        - LI
+        - LT
+        - LU
+        - MO
+        - MK
+        - MG
+        - MW
+        - MY
+        - MV
+        - ML
+        - MT
+        - MH
+        - MQ
+        - MR
+        - MU
+        - YT
+        - MX
+        - FM
+        - MD
+        - MC
+        - MN
+        - ME
+        - MS
+        - MA
+        - MZ
+        - MM
+        - NA
+        - NR
+        - NP
+        - NL
+        - AN
+        - NC
+        - NZ
+        - NI
+        - NE
+        - NG
+        - NU
+        - NF
+        - MP
+        - 'NO'
+        - OM
+        - PK
+        - PW
+        - PS
+        - PA
+        - PG
+        - PY
+        - PE
+        - PH
+        - PN
+        - PL
+        - PT
+        - PR
+        - QA
+        - RS
+        - RE
+        - RO
+        - RU
+        - RW
+        - BL
+        - SH
+        - KN
+        - LC
+        - MF
+        - PM
+        - VC
+        - WS
+        - SM
+        - ST
+        - SA
+        - SN
+        - CS
+        - SC
+        - SL
+        - SG
+        - SX
+        - SK
+        - SI
+        - SB
+        - SO
+        - ZA
+        - GS
+        - SS
+        - ES
+        - LK
+        - SD
+        - SR
+        - SJ
+        - SZ
+        - SE
+        - CH
+        - SY
+        - TW
+        - TJ
+        - TZ
+        - TH
+        - TL
+        - TG
+        - TK
+        - TO
+        - TT
+        - TN
+        - TR
+        - XT
+        - TM
+        - TC
+        - TV
+        - UG
+        - UA
+        - AE
+        - GB
+        - US
+        - UM
+        - UY
+        - UZ
+        - VU
+        - VE
+        - VN
+        - VG
+        - VI
+        - WF
+        - EH
+        - YE
+        - ZM
+        - ZW
+      description: 2 character alpha ISO-3166 codes
+      example: PH
+      x-internal: true
+    Ref-Contact-Type:
+      type: string
+      title: Contact Types
+      enum:
+        - Primary
+        - Secondary
+        - Work
+        - Personal
+      description: Primary contact, with secondary marked as either 'Work' or 'Personal'
+      example: Primary
+      x-internal: true
+    Ref-Phone-Number:
+      type: string
+      title: International Phone Number
+      pattern: ^\+[1-9]\d{1,14}$
+      description: Phone numbers in international E.164 format
+      x-internal: true
+      example: '+639175551234'
+    Ref-Phone-Type:
+      type: string
+      title: Ref-Phone-Type
+      example: Mobile
+      enum:
+        - Mobile
+        - Fixed
+        - Unspecified
+      description: Phone type
+      x-internal: true
+    Ref-Address:
+      title: Address Object
+      type: object
+      description: Address object
+      x-internal: true
+      properties:
+        fullAddress:
+          type: string
+          description: Full address
+        line1:
+          type: string
+          description: Line 1 of street address
+        line2:
+          type: string
+          description: Line 2 of street address
+        city:
+          type: string
+          description: City
+        region:
+          type: string
+          description: Geographic region such as state or province
+        zip:
+          type: string
+          description: Post code
+        country:
+          $ref: '#/components/schemas/Ref-Country'
+        latitude:
+          type: string
+          pattern: >-
+            ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
+          description: Latitude coordinates
+        longitude:
+          type: string
+          pattern: >-
+            ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
+          description: Longitude coordinates
+        type:
+          type: string
+          enum:
+            - Primary
+            - Secondary
+          description: Whether address is primary or secondary
+      required:
+        - type
+    Object-AccountsMetadata:
+      title: Accounts Metadata
+      type: object
+      description: Metadata related to account-specific data
+      x-internal: true
+      properties:
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        accountId:
+          type: string
+          description: The account ID associated with this object
+        userId:
+          type: string
+          description: The user ID associated with this object
+        providerId:
+          type: string
+          description: The provider ID associated with this object
+      required:
+        - createdAt
+        - accountId
+        - userId
+    Ref-Currency:
+      type: string
+      title: Currency ISO Codes
+      description: Currency in 3 character alpha ISO 4217
+      enum:
+        - AFN
+        - DZD
+        - ARS
+        - AMD
+        - AWG
+        - AUD
+        - AZN
+        - BSD
+        - BHD
+        - THB
+        - PAB
+        - BBD
+        - BYN
+        - BZD
+        - BMD
+        - VES
+        - BOB
+        - BRL
+        - BND
+        - BGN
+        - BIF
+        - CAD
+        - CVE
+        - KYD
+        - GHS
+        - XOF
+        - XAF
+        - XPF
+        - CLP
+        - COP
+        - KMF
+        - CDF
+        - BAM
+        - NIO
+        - CRC
+        - HRK
+        - CZK
+        - GMD
+        - DKK
+        - MKD
+        - DJF
+        - STD
+        - DOP
+        - VND
+        - XCD
+        - EGP
+        - SVC
+        - ETB
+        - EUR
+        - FKP
+        - FJD
+        - HUF
+        - GIP
+        - HTG
+        - PYG
+        - GNF
+        - GYD
+        - HKD
+        - UAH
+        - ISK
+        - INR
+        - IRR
+        - IQD
+        - JMD
+        - JOD
+        - KES
+        - PGK
+        - LAK
+        - EEK
+        - KWD
+        - MWK
+        - AOA
+        - MMK
+        - GEL
+        - LVL
+        - LBP
+        - ALL
+        - HNL
+        - SLL
+        - LRD
+        - LYD
+        - SZL
+        - LTL
+        - LSL
+        - MGA
+        - MYR
+        - TMT
+        - MUR
+        - MZN
+        - MXN
+        - MDL
+        - MAD
+        - NGN
+        - ERN
+        - NAD
+        - NPR
+        - ANG
+        - ILS
+        - RON
+        - TWD
+        - NZD
+        - BTN
+        - KPW
+        - NOK
+        - PEN
+        - MRO
+        - TOP
+        - PKR
+        - MOP
+        - UYU
+        - PHP
+        - GBP
+        - BWP
+        - QAR
+        - GTQ
+        - ZAR
+        - OMR
+        - KHR
+        - MVR
+        - IDR
+        - RUB
+        - RWF
+        - SHP
+        - SAR
+        - RSD
+        - SCR
+        - SGD
+        - SBD
+        - KGS
+        - SOS
+        - TJS
+        - LKR
+        - SDG
+        - SRD
+        - SEK
+        - CHF
+        - SYP
+        - BDT
+        - WST
+        - TZS
+        - KZT
+        - TTD
+        - MNT
+        - TND
+        - TRY
+        - AED
+        - UGX
+        - CLF
+        - USD
+        - UZS
+        - VUV
+        - KRW
+        - YER
+        - JPY
+        - CNY
+        - ZMW
+        - ZWL
+        - PLN
+      x-internal: true
+      example: PHP
+    Ref-Employer:
+      type: string
+      title: Object Employer
+      x-internal: true
+      description: Employer name
+      example: ABC Corporation
+    Ref-Pay-Period:
+      type: string
+      title: Pay Period
+      description: Pay period
+      enum:
+        - Hourly
+        - Daily
+        - Weekly
+        - Biweekly
+        - Monthly
+        - Bimonthly
+        - Quarterly
+        - Annually
+        - Fixed
+        - Cumulative
+      example: Monthly
+      x-internal: true
+  responses:
+    Standard-Errors:
+      description: Standard error response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+              message:
+                $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+              requestId:
+                $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+              data:
+                type: object
+          examples:
+            Invalid Credentials:
+              value:
+                code: INVALID_CREDENTIALS
+                message: The credentials you provided are incorrect.
+                requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
+                data: {}
+  parameters:
+    id:
+      name: id
+      in: path
+      schema:
+        type: string
+      description: ID of the specific object in the collection.
+      required: true
+    size:
+      name: size
+      in: query
+      schema:
+        type: integer
+        example: 50
+        minimum: 1
+        maximum: 100
+        default: 10
+      description: The number of objects you want returned in a collection.
+    cursor:
+      name: cursor
+      in: query
+      required: false
+      schema:
+        type: string
+      description: >-
+        Uses the filter values of the previous page to determine the next set of
+        items.
+    userId:
+      name: userId
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filter to those associated with a particular user ID.
+    accountId:
+      name: accountId
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filter to those associated with a particular account ID.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+security:
+  - basicAuth: []
+tags:
+  - name: Accounts
+  - name: Identities
+  - name: Incomes
+  - name: Models
+  - name: Providers
+  - name: Tokens
+  - name: Transactions
+  - name: Users
