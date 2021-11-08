@@ -84,7 +84,7 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 ```
 ---
 <!-- focus: false -->
-![Token](https://img.icons8.com/material-outlined/60/000000/settings-3--v1.png)
+![Settings](https://img.icons8.com/material-outlined/60/000000/settings-3--v1.png)
 
 ## Configuration parameters
 

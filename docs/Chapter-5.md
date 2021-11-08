@@ -1,5 +1,43 @@
-# Quickstart Sample Implementation
-> We provide sample code in [Github](https://github.com/SmileAPI/quickstart) which you can download and modify according to your own requirements. 
+# Developer Resources
+
+We have included below some **Open Source** resources to help get you started right away using Smile API!
+
+
+---
+<!-- focus: false -->
+![API](https://img.icons8.com/ios/50/000000/api-settings.png)
+
+## Copy of API Specifications
+> You can download a copy of Smile API's [specifications](https://github.com/SmileAPI/smile-openapi/blob/main/openapi-v1.yaml) in [Github](https://github.com/SmileAPI). 
+
+The specification document is in **YAML format**, following  [Open API Specification version 3.0.0](https://swagger.io/specification/). You can also download offline copies of our Developer Documentation in **markdown format**, under the /docs subdirectory.
+
+
+---
+<!-- focus: false -->
+![Postman](https://img.icons8.com/wired/50/000000/postman-api.png)
+
+## Postman Collection
+> Download Smile API's [Postman Collection](https://github.com/SmileAPI/smile-openapi/blob/main/postman-collection-v1.json) in [Github](https://github.com/SmileAPI).
+
+You can start reviewing and testing our APIs easily by downloading our Postman collection in **JSON format** and importing it into Postman.
+
+**Using the Postman Collection**
+
+1. Download the postman-collection-(v#).json document from our [Github repository](https://github.com/SmileAPI/smile-openapi).
+2. If you haven't done so, visit [Postman](https://www.postman.com/) and create an account, or download their free desktop client.
+3. Open Postman and select a Workspace.
+4. Import the Postman collection.
+5. Make sure you are able to authenticate by entering your API key and API secret.
+6. That's it! You can now start testing Smile's APIs!
+
+
+---
+<!-- focus: false -->
+![Quickstart](https://img.icons8.com/ios/50/000000/speed.png)
+
+## Quickstart 
+> We provide [Quickstart sample code](https://github.com/SmileAPI/quickstart) in [Github](https://github.com/SmileAPI) which you can download and modify according to your own requirements. 
 
 The example code installs a small server running on Node.js that automatically retrieves a token from our API, so you can instantiate the Wink widget. 
 
@@ -7,12 +45,8 @@ The example implementation is composed of two parts:
 * Under /frontend, you will find example code in HTML that already has the Wink Javascript SDK embedded already.
 * Under /node, you will find server-side Javascript code that will retrieve the token. You will need to download and run Node.js to run the code.
 
+**Implementation Steps**
 
----
-<!-- focus: false -->
-![Example](https://img.icons8.com/ios/50/000000/speed.png)
-
-## Implementation Steps
 Below steps are also included in the README.md document included in the the Quickstart [repository](https://github.com/SmileAPI/quickstart).
 1. Download the Quickstart files onto your machine.
 

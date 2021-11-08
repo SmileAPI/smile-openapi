@@ -56,7 +56,7 @@ The version is included in the URI Path. So for example it will look like: http
 
 ---
 <!-- focus: false -->
-![Pagination](https://img.icons8.com/glyph-neue/50/000000/json.png)
+![JSON](https://img.icons8.com/glyph-neue/50/000000/json.png)
 
 ## Body of Results
 
@@ -305,7 +305,7 @@ Sometimes you might see **null** as the returned value for a given attribute in 
 
 ---
 <!-- focus: false -->
-![Parameters](https://img.icons8.com/ios/50/000000/iso.png)
+![ISO](https://img.icons8.com/ios/50/000000/iso.png)
 
 ## Conventions and Standards
 
