@@ -86,7 +86,7 @@ paths:
         '404':
           $ref: '#/components/responses/Standard-Errors'
         '415':
-          description: Unsupported Media Type
+          $ref: '#/components/responses/Standard-Errors'
         '429':
           $ref: '#/components/responses/Standard-Errors'
         '500':
@@ -551,6 +551,9 @@ paths:
                           citizenship: Citizen
                           photoUrl: >-
                             https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
+                          referenceId: ~02c0bf6ae6a581ee2b
+                          profileUrl: >-
+                            https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
                           emails:
                             - address: gpalomero1234@yahoo.com
                               type: Primary
@@ -590,6 +593,8 @@ paths:
                           countryResidence: null
                           citizenship: Citizen
                           photoUrl: null
+                          referenceId: null
+                          profileUrl: null
                           emails:
                             - address: ryan1234@gmail.com
                               type: Primary
@@ -631,6 +636,8 @@ paths:
                           countryResidence: null
                           citizenship: Citizen
                           photoUrl: null
+                          referenceId: null
+                          profileUrl: null
                           emails:
                             - address: christina4321@yahoo.com
                               type: Primary
@@ -714,6 +721,8 @@ paths:
                       citizenship: Citizen
                       photoUrl: >-
                         https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
+                      referenceId: ~02c0bf6ae6a581ee2b
+                      profileUrl: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
                       emails:
                         - address: gpalomero1234@yahoo.com
                           type: Primary
@@ -1283,6 +1292,8 @@ components:
           citizenship: Citizen
           photoUrl: >-
             https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
+          referenceId: ~02c0bf6ae6a581ee2b
+          profileUrl: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
           emails:
             - address: gpalomero1234@yahoo.com
               type: Primary
@@ -1332,7 +1343,7 @@ components:
         suffix:
           type: string
           example: Jr
-          description: Employee's name suffix
+          description: Suffix
         gender:
           type: string
           enum:
@@ -1372,6 +1383,13 @@ components:
           example: >-
             https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
           description: URL to photo or avatar
+        referenceId:
+          type: string
+          description: Reference profile ID from the data provider
+        profileUrl:
+          type: string
+          format: uri
+          description: Public profile URL
         emails:
           type: array
           description: A collection of email addresses.
@@ -1495,6 +1513,7 @@ components:
           type: string
           format: date
           example: 2021-04-21
+          description: Date of transaction
         description:
           type: string
           description: Description of the transaction
@@ -1628,25 +1647,16 @@ components:
       type: object
       x-internal: true
       description: The stored job information of the user from an employment data provider.
+      x-examples: {}
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
-        status:
+        name:
           type: string
-          description: Status of employment
-          enum:
-            - Probationary
-            - Employee
-            - Contractor
-            - Self-employed
-            - Casual
-            - Terminated
-            - Resigned
-            - Deceased
-            - Freelancer
-            - Intern
-        workItem:
+          description: Work performed
+        description:
           type: string
+          description: Description of work performed
         jobTitle:
           type: string
           description: Job title
@@ -1659,62 +1669,114 @@ components:
         employer:
           $ref: '#/components/schemas/Ref-Employer'
         startDate:
-          $ref: '#/components/schemas/Ref-DateTime'
+          type: string
+          description: Start date
+          format: date
         endDate:
-          $ref: '#/components/schemas/Ref-DateTime'
+          type: string
+          description: End date
+          format: date
         metadata:
           $ref: '#/components/schemas/Object-AccountsMetadata'
       required:
         - id
-        - status
+        - name
         - employer
         - startDate
         - metadata
-      x-examples: {}
     Document:
-      title: Documents
+      title: Document
       type: object
+      x-internal: true
+      description: >-
+        The stored document-related information of the user from an employment
+        data provider.
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
-        type:
+        name:
           type: string
-          description: Document type
-          enum:
-            - Certificate
-            - Diploma
-            - Drivers License
-            - Health Insurance ID
-            - OFW ID
-            - PWD ID
-            - Passport
-            - Postal ID
-            - Prof License ID
-            - Senior Citizen ID
-            - Social Security ID
-            - Tax ID
-            - Universal ID
-            - Voters ID
-        docNumber:
+          description: Document name
+        docId:
           type: string
           description: Document number
         issueDate:
-          $ref: '#/components/schemas/Ref-DateTime'
-        expiryDate:
-          $ref: '#/components/schemas/Ref-DateTime'
-        imageUrl:
           type: string
-          description: Image URL
+          description: Issue date
+          format: date
+        expiryDate:
+          type: string
+          description: Expiry date
+          format: date
+        fileUrl:
+          type: string
+          description: Publicly available URL reference for the document
           format: uri
-        country:
-          $ref: '#/components/schemas/Ref-Country'
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
       required:
         - id
-        - type
-      x-internal: true
+        - name
+        - metadata
+    Asset:
+      title: Asset
+      type: object
       description: >-
-        The stored documentary information of the user from an employment data
+        The stored asset-related information of the user from an employment data
         provider.
+      x-internal: true
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        name:
+          type: string
+          description: Asset name
+        description:
+          type: string
+          description: Asset description
+        assetId:
+          type: string
+          description: Asset Identifier
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - name
+        - metadata
+    Rating:
+      title: Rating
+      type: object
+      description: >-
+        The stored performance ratings of the user in the employment data
+        provider.
+      x-internal: true
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        currentRating:
+          type: number
+          description: Current rating
+        maxRating:
+          type: number
+          description: Maximum possible rating
+        calculatedPercentage:
+          type: number
+          description: >-
+            Current rating expressed as percentage, calculated by
+            currentRating/maxRating x 100
+        reviewsReceived:
+          type: number
+          description: >-
+            Number of reviews the employee received, which is the basis for the
+            current rating
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - currentRating
+        - maxRating
+        - calculatedPercentage
+        - metadata
     Object-Metadata-Ref-Code:
       type: string
       title: Object-Metadata-Ref-API-Code
