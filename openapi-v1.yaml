@@ -550,10 +550,9 @@ paths:
                           countryResidence: PH
                           citizenship: Citizen
                           photoUrl: >-
-                            https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
-                          referenceId: ~02c0bf6ae6a581ee2b
-                          profileUrl: >-
-                            https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
+                            https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
+                          referenceId: null
+                          profileUrl: null
                           emails:
                             - address: gpalomero1234@yahoo.com
                               type: Primary
@@ -592,9 +591,11 @@ paths:
                           maritalStatus: Single
                           countryResidence: null
                           citizenship: Citizen
-                          photoUrl: null
-                          referenceId: null
-                          profileUrl: null
+                          photoUrl: >-
+                            https://cdn.smileapi.io/image/avatar/v20211115191600/ryan.jpg
+                          referenceId: ~02c0bf6ae6a581ee2b
+                          profileUrl: >-
+                            https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
                           emails:
                             - address: ryan1234@gmail.com
                               type: Primary
@@ -635,7 +636,8 @@ paths:
                           maritalStatus: Single
                           countryResidence: null
                           citizenship: Citizen
-                          photoUrl: null
+                          photoUrl: >-
+                            https://cdn.smileapi.io/image/avatar/v20211115191600/christina.jpg
                           referenceId: null
                           profileUrl: null
                           emails:
@@ -720,9 +722,9 @@ paths:
                       countryResidence: PH
                       citizenship: Citizen
                       photoUrl: >-
-                        https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
-                      referenceId: ~02c0bf6ae6a581ee2b
-                      profileUrl: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
+                        https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
+                      referenceId: null
+                      profileUrl: null
                       emails:
                         - address: gpalomero1234@yahoo.com
                           type: Primary
@@ -1292,8 +1294,8 @@ components:
           citizenship: Citizen
           photoUrl: >-
             https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
-          referenceId: ~02c0bf6ae6a581ee2b
-          profileUrl: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
+          referenceId: null
+          profileUrl: null
           emails:
             - address: gpalomero1234@yahoo.com
               type: Primary
@@ -1380,16 +1382,16 @@ components:
           description: Citizenship
         photoUrl:
           type: string
-          example: >-
-            https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
+          example: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
           description: URL to photo or avatar
         referenceId:
           type: string
           description: Reference profile ID from the data provider
+          example: ~02c0bf6ae6a581ee2b
         profileUrl:
           type: string
-          format: uri
           description: Public profile URL
+          example: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
         emails:
           type: array
           description: A collection of email addresses.
