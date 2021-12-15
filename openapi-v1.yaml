@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 1.1.3
+  version: 1.3.0
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
@@ -551,8 +551,8 @@ paths:
                           citizenship: Citizen
                           photoUrl: >-
                             https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
-                          referenceId: null
-                          profileUrl: null
+                          referenceId: george
+                          profileUrl: https://upwork.com/profiles/george.jpg
                           emails:
                             - address: gpalomero1234@yahoo.com
                               type: Primary
@@ -580,6 +580,7 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
+                            platformId: upwork-website
                         - id: i-24bbf36498ac4d26a0d4f86c7b62f83z
                           fullName: Ryan Joseph Peterson Chua Ng
                           firstName: Ryan Joseph Peterson
@@ -625,6 +626,7 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
+                            platformId: upwork-website
                         - id: i-48ace87698bd6e67a0d4f86c7b62h76c
                           fullName: Christina Tan
                           firstName: Christina
@@ -665,6 +667,7 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
+                            platformId: upwork-website
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -723,8 +726,8 @@ paths:
                       citizenship: Citizen
                       photoUrl: >-
                         https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
-                      referenceId: null
-                      profileUrl: null
+                      referenceId: george
+                      profileUrl: https://upwork.com/profiles/george.jpg
                       emails:
                         - address: gpalomero1234@yahoo.com
                           type: Primary
@@ -752,6 +755,7 @@ paths:
                         accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: upwork
+                        platformId: upwork-website
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -814,6 +818,8 @@ paths:
                             createdAt: 2021-04-14T09:30:24Z
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: upwork
+                            platformId: upwork-website
                         - id: t-17bbf36498de4d68a0d4f86c7b62f69f
                           date: 2021-03-21
                           description: Payment for web design project Milestone 1
@@ -824,6 +830,8 @@ paths:
                             createdAt: 2021-04-14T09:30:24Z
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: upwork
+                            platformId: upwork-website
                         - id: t-17bbf36498de4d68a0d4f86c7b62f69f
                           date: 2021-02-12
                           description: Payment for Facebook Ad design
@@ -835,6 +843,7 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
+                            platformId: upwork-website
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -912,8 +921,330 @@ paths:
                         accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: upwork
+                        platformId: upwork-website
       operationId: get-transaction
       description: Get a user's transaction by ID.
+  /uploads:
+    get:
+      summary: List Uploads
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: upload-17bbf36498de4d68a0d4f86c7b62f69f
+                          rawFiles:
+                            - SOCIAL_SECURITY:
+                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                                  name: SSS.jpeg
+                                  format: JPEG
+                                  size: 512
+                                  url: >-
+                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                                  name: SSS2.jpeg
+                                  format: JPEG
+                                  size: 512
+                                  url: >-
+                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                            - PAYSLIP:
+                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                                  name: Payslip.jpeg
+                                  format: JPEG
+                                  size: 512
+                                  url: >-
+                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                                  name: Payslip2.jpeg
+                                  format: JPEG
+                                  size: 512
+                                  url: >-
+                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: user-provided
+                            platformId: smile-scanner
+                        - id: upload-17bbf36498de4d68a0d4f86c7b62f69f
+                          rawFiles:
+                            - SOCIAL_SECURITY:
+                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                                  name: SSS.jpeg
+                                  format: JPEG
+                                  size: 512
+                                  url: >-
+                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                                  name: SSS2.jpeg
+                                  format: JPEG
+                                  size: 512
+                                  url: >-
+                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                            - PAYSLIP:
+                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                                  name: Payslip.jpeg
+                                  format: JPEG
+                                  size: 512
+                                  url: >-
+                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                                  name: Payslip2.jpeg
+                                  format: JPEG
+                                  size: 512
+                                  url: >-
+                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: user-provided
+                            platformId: smile-scanner
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-uploads
+      description: Get the user's uploads.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/accountId'
+        - schema:
+            type: string
+            format: date
+            example: 2021-04-01
+          in: query
+          name: startDate
+          description: Filter by upload date, start of date range (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+            example: 2021-04-21
+          in: query
+          name: endDate
+          description: Filter by upload date, end of date range (YYYY-MM-DD)
+      tags:
+        - Uploads
+  /uploads/{id}:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get Upload
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: upload-17bbf36498de4d68a0d4f86c7b62f69f
+                      rawFiles:
+                        - SOCIAL_SECURITY:
+                            - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                              name: SSS.jpeg
+                              format: JPEG
+                              url: >-
+                                https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                            - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                              name: SSS2.jpeg
+                              format: JPEG
+                              url: >-
+                                https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                        - PAYSLIP:
+                            - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                              name: Payslip.jpeg
+                              format: JPEG
+                              url: >-
+                                https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                            - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                              name: Payslip2.jpeg
+                              format: JPEG
+                              url: >-
+                                https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                      metadata:
+                        createdAt: 2021-04-14T09:30:24Z
+                        accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                        providerId: user-provided
+                        platformId: smile-scanner
+      operationId: get-upload
+      description: Get a user's upload by ID.
+      tags:
+        - Uploads
+  /ratings:
+    get:
+      summary: List Ratings
+      tags:
+        - Ratings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatingListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
+                          currentRating: 90
+                          maxRating: 100
+                          calculatedPercentage: 90
+                          reviewsReceived: 12
+                          likesReceived: 8
+                          jobsCompleted: 12
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: upwork
+                            platformId: upwork-website
+                        - id: 23cdf39032ga4d98f0d4f92d4b52f45f
+                          currentRating: 3.4
+                          maxRating: 5
+                          calculatedPercentage: 68
+                          reviewsReceived: 34
+                          likesReceived: null
+                          jobsCompleted: null
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: upwork
+                            platformId: upwork-website
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-ratings
+      description: Get the user's ratings.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/accountId'
+  /ratings/{id}:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get Rating
+      tags:
+        - Ratings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatingGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
+                      currentRating: 90
+                      maxRating: 100
+                      calculatedPercentage: 90
+                      reviewsReceived: 12
+                      likesReceived: 8
+                      jobsCompleted: 12
+                      metadata:
+                        createdAt: 2021-04-14T09:30:24Z
+                        accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                        providerId: upwork
+                        platformId: upwork-website
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-rating
+      description: Get a user's ratings by ID.
 components:
   schemas:
     Provider:
@@ -1061,6 +1392,8 @@ components:
                 $ref: '#/components/schemas/Provider'
       x-internal: true
       x-examples: {}
+      title: Provider List Response
+      description: ''
     User:
       title: User
       type: object
@@ -1100,6 +1433,8 @@ components:
           $ref: '#/components/schemas/Object-ExternalMetadata'
       x-internal: true
       x-examples: {}
+      title: User Post Request
+      description: ''
     UserPostResponse:
       title: User Post Response
       properties:
@@ -1292,8 +1627,7 @@ components:
           maritalStatus: Married
           countryResidence: PH
           citizenship: Citizen
-          photoUrl: >-
-            https://scontent.fmnl3-4.fna.fbcdn.net/v/t1.6435-9/13454812_10156014535344453_6972260500268646400_n.jpg
+          photoUrl: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
           referenceId: null
           profileUrl: null
           emails:
@@ -1321,6 +1655,7 @@ components:
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
+            platformId: upwork-website
       x-tags:
         - Identities
       properties:
@@ -1346,6 +1681,7 @@ components:
           type: string
           example: Jr
           description: Suffix
+          nullable: true
         gender:
           type: string
           enum:
@@ -1497,17 +1833,46 @@ components:
         - Transactions
       x-examples:
         Example:
-          id: t-17bbf36498de4d68a0d4f86c7b62f69f
-          date: 2021-04-21
-          description: Payment for web design project
-          currency: PHP
-          amount: 10000
-          referenceId: string
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          fullName: George Cimafranca Palomero, Jr
+          firstName: George
+          middleName: Cimafranca
+          lastName: Palomero
+          suffix: Jr
+          gender: Male
+          dob: 1970-08-24
+          maritalStatus: Married
+          countryResidence: PH
+          citizenship: Citizen
+          photoUrl: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
+          referenceId: null
+          profileUrl: null
+          emails:
+            - address: gpalomero1234@yahoo.com
+              type: Primary
+          phones:
+            - number: '+639559991234'
+              type: Mobile
+          socialProfiles:
+            - socialUrl: https://www.facebook.com/gpalomero
+              type: Facebook
+          addresses:
+            - fullAddress: 12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH
+              line1: 12 Maybunga St
+              line2: Barangay Paraiso
+              city: Pasig City
+              region: NCR
+              zip: '1600'
+              country: PH
+              latitude: '14.573454'
+              longitude: '121.085042'
+              type: Primary
           metadata:
-            createdAt: 2021-04-21T09:30:24Z
+            createdAt: 2021-04-14T09:30:24Z
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
+            platformId: upwork-website
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -1537,7 +1902,7 @@ components:
         - amount
         - metadata
     TransactionGetResponse:
-      title: TransactionGetResponse
+      title: Transaction Get Response
       type: object
       properties:
         code:
@@ -1551,7 +1916,7 @@ components:
       x-internal: true
       x-examples: {}
     TransactionListResponse:
-      title: TransactionListResponse
+      title: Transaction List Response
       type: object
       properties:
         code:
@@ -1571,13 +1936,462 @@ components:
                 $ref: '#/components/schemas/Transaction'
       x-internal: true
       x-examples: {}
+    Job:
+      title: Job
+      type: object
+      x-internal: true
+      description: The stored job information of the user from an employment data provider.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          name: Digital Marketing
+          description: >-
+            Gathering and reporting relevant data, maintaining specific reports
+            and dashboards, using platforms and programs to address marketing
+            requirements, and updating specific marketing materials.
+          jobTitle: Digital Marketing Assistant
+          department: Marketing
+          employeeNumber: EMP-123456
+          employer: ABC Corporation
+          startDate: 2016-02-24
+          endDate: 2019-08-24
+          metadata:
+            createdAt: 2021-04-14T09:30:24Z
+            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: upwork
+            platformId: upwork-website
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        name:
+          type: string
+          description: Work performed
+        description:
+          type: string
+          description: Description of work performed
+        jobTitle:
+          type: string
+          description: Job title
+        department:
+          type: string
+          description: Department or organization in place of employment
+        employeeNumber:
+          description: Employee number in the employment data provider
+          type: string
+        employer:
+          $ref: '#/components/schemas/Ref-Employer'
+        startDate:
+          type: string
+          description: Start date
+          format: date
+        endDate:
+          type: string
+          description: End date
+          format: date
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - name
+        - employer
+        - startDate
+        - metadata
+    JobGetResponse:
+      title: Job Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Job'
+    JobListResponse:
+      title: Job List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Job'
+    Rating:
+      title: Rating
+      type: object
+      description: >-
+        The stored performance ratings of the user in the employment data
+        provider.
+      x-internal: false
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          currentRating: 90
+          maxRating: 100
+          calculatedPercentage: 90
+          reviewsReceived: 12
+          likesReceived: 8
+          jobsCompleted: 12
+          metadata:
+            createdAt: 2021-04-14T09:30:24Z
+            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: upwork
+            platformId: upwork-website
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        currentRating:
+          type: number
+          description: Current rating
+          example: 90
+        maxRating:
+          type: number
+          description: Maximum possible rating
+          example: 100
+        calculatedPercentage:
+          type: number
+          description: >-
+            Current rating expressed as percentage, calculated by
+            currentRating/maxRating x 100
+          example: 90
+        reviewsReceived:
+          type: number
+          description: >-
+            Number of reviews the employee received, which is the basis for the
+            current rating
+          example: 12
+        likesReceived:
+          type: number
+          description: Recommendations or kudos received
+          example: 8
+        jobsCompleted:
+          type: number
+          description: Jobs actually completed in the employment platform
+          example: 12
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - metadata
+      x-tags:
+        - Ratings
+    RatingGetResponse:
+      title: Rating Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Rating'
+    RatingListResponse:
+      title: Rating List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Rating'
+    Document:
+      title: Document
+      type: object
+      x-internal: true
+      description: >-
+        The stored document-related information of the user from an employment
+        data provider.
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        name:
+          type: string
+          description: Document name
+        docId:
+          type: string
+          description: Document number
+        issueDate:
+          type: string
+          description: Issue date
+          format: date
+        expiryDate:
+          type: string
+          description: Expiry date
+          format: date
+        fileUrl:
+          type: string
+          description: Publicly available URL reference for the document
+          format: uri
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - name
+        - metadata
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          name: Facebook Social Media Marketing Professional Certificate
+          docId: ABCD123456
+          issueDate: 2007-08-24
+          expiryDate: 2010-08-24
+          fileUrl: >-
+            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+          metadata:
+            createdAt: 2021-04-14T09:30:24Z
+            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: upwork
+            platformId: upwork-website
+    DocumentGetResponse:
+      title: Document Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Document'
+    DocumentListResponse:
+      title: Document List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Document'
+    Asset:
+      title: Asset
+      type: object
+      description: >-
+        The stored asset-related information of the user from an employment data
+        provider.
+      x-internal: true
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        name:
+          type: string
+          description: Asset name
+        description:
+          type: string
+          description: Asset description
+        assetId:
+          type: string
+          description: Asset Identifier
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - name
+        - metadata
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          name: Facebook Social Media Marketing Professional Certificate
+          docId: ABCD123456
+          issueDate: 2007-08-24
+          expiryDate: 2010-08-24
+          fileUrl: >-
+            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+          metadata:
+            createdAt: 2021-04-14T09:30:24Z
+            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: grab
+            platformId: grab-app
+    AssetGetResponse:
+      title: Asset Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Asset'
+      description: ''
+    AssetListResponse:
+      title: Asset List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Asset'
+      x-internal: true
+    School:
+      title: School
+      type: object
+      x-internal: true
+      description: >-
+        The stored education-related information of the user from an employment
+        data provider.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          name: University of Mindanao
+          degree: Bachelor of Science
+          field: Business Administration
+          startDate: 2012-06-24
+          endDate: 2016-03-24
+          metadata:
+            createdAt: 2021-04-14T09:30:24Z
+            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: upwork
+            platformId: upwork-website
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        name:
+          type: string
+          description: Name of school/college/university
+        degree:
+          type: string
+          description: Degree (eg Bachelors, Masters, Doctorate)
+        field:
+          type: string
+          description: Field of study (eg Business, Engineering, Medicine)
+        startDate:
+          type: string
+          format: date
+          description: Start date
+        endDate:
+          type: string
+          description: End date
+          format: date
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - name
+        - startDate
+        - metadata
+    SchoolGetResponse:
+      title: School Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/School'
+    SchoolListResponse:
+      title: School List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/School'
     Income:
       title: Income
       type: object
       description: >-
         The stored income information of the user from an employment data
         provider.
-      x-examples: {}
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          workItem: Salary for the first half of April
+          employer: ABC Corporation
+          payDate: 2021-04-14
+          payPeriod: Biweekly
+          channel: Bank
+          grossPay:
+            currency: PHP
+            base: 70000
+            bonus: 20000
+            allowance: 10000
+            grossAmount: 100000
+          netPay:
+            currency: PHP
+            tax: -30000
+            deduction: -10000
+            adjustment: -10000
+            netAmount: 50000
+          metadata:
+            createdAt: 2021-04-14T09:30:24Z
+            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: user-provided
+            platformId: zohopeople
+      x-internal: true
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -1587,7 +2401,9 @@ components:
         employer:
           $ref: '#/components/schemas/Ref-Employer'
         payDate:
-          $ref: '#/components/schemas/Ref-DateTime'
+          type: string
+          description: Payment date
+          format: date
         payPeriod:
           $ref: '#/components/schemas/Ref-Pay-Period'
         channel:
@@ -1643,142 +2459,191 @@ components:
         - id
         - payDate
         - metadata
-      x-internal: true
-    Job:
-      title: Job
+    IncomeGetResponse:
+      title: Income Get Response
       type: object
       x-internal: true
-      description: The stored job information of the user from an employment data provider.
-      x-examples: {}
       properties:
-        id:
-          $ref: '#/components/schemas/Ref-Object-ID'
-        name:
-          type: string
-          description: Work performed
-        description:
-          type: string
-          description: Description of work performed
-        jobTitle:
-          type: string
-          description: Job title
-        department:
-          type: string
-          description: Department or organization in place of employment
-        employeeNumber:
-          description: Employee number in the employment data provider
-          type: string
-        employer:
-          $ref: '#/components/schemas/Ref-Employer'
-        startDate:
-          type: string
-          description: Start date
-          format: date
-        endDate:
-          type: string
-          description: End date
-          format: date
-        metadata:
-          $ref: '#/components/schemas/Object-AccountsMetadata'
-      required:
-        - id
-        - name
-        - employer
-        - startDate
-        - metadata
-    Document:
-      title: Document
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Income'
+    IncomeListResponse:
+      title: Income List Response
       type: object
       x-internal: true
-      description: >-
-        The stored document-related information of the user from an employment
-        data provider.
       properties:
-        id:
-          $ref: '#/components/schemas/Ref-Object-ID'
-        name:
-          type: string
-          description: Document name
-        docId:
-          type: string
-          description: Document number
-        issueDate:
-          type: string
-          description: Issue date
-          format: date
-        expiryDate:
-          type: string
-          description: Expiry date
-          format: date
-        fileUrl:
-          type: string
-          description: Publicly available URL reference for the document
-          format: uri
-        metadata:
-          $ref: '#/components/schemas/Object-AccountsMetadata'
-      required:
-        - id
-        - name
-        - metadata
-    Asset:
-      title: Asset
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Income'
+    RawFile:
+      title: RawFile
       type: object
       description: >-
-        The stored asset-related information of the user from an employment data
-        provider.
+        Scanned or photographed document or form uploaded by the user to be able
+        to share hardcopy employment and income information
+      x-examples:
+        Example:
+          id: file-17bbf36498de4d68a0d4f86c7b62f69f
+          name: Screen Shot 2021-04-14 at 5.30.24 PM
+          type: SOCIAL_SECURITY
+          createdAt: 2021-04-14T09:30:24Z
+          size: 3048
+          format: PDF
+          url: string
       x-internal: true
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
         name:
           type: string
-          description: Asset name
-        description:
+          example: Screen Shot 2021-04-14 at 5.30.24 PM
+          description: File name
+        type:
           type: string
-          description: Asset description
-        assetId:
+          example: SOCIAL_SECURITY
+          enum:
+            - PAYSLIP
+            - TAX_RETURN
+            - COMPANY_ID
+            - SOCIAL_SECURITY
+          description: Type of document uploaded
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        size:
+          type: integer
+          description: File size in kilobytes
+          example: 3048
+        format:
           type: string
-          description: Asset Identifier
-        metadata:
-          $ref: '#/components/schemas/Object-AccountsMetadata'
+          enum:
+            - PDF
+            - PNG
+            - TIFF
+            - JPEG
+          example: PNG
+          description: File type (only JPEG, PNG, PDF, or TIFF formats are supported)
+        url:
+          type: string
+          description: URL to access the file. URL will expire after 1 day.
+          example: >-
+            https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
       required:
-        - id
         - name
-        - metadata
-    Rating:
-      title: Rating
+        - type
+        - status
+        - createdAt
+        - size
+        - format
+        - url
+    Upload:
+      title: Upload
       type: object
-      description: >-
-        The stored performance ratings of the user in the employment data
-        provider.
-      x-internal: true
+      description: Collection of files.
+      x-internal: false
+      x-examples:
+        Example:
+          code: OK
+          message: Success
+          requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+          data:
+            id: upload-17bbf36498de4d68a0d4f86c7b62f69f
+            rawFiles:
+              - SOCIAL_SECURITY:
+                  - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                    name: SSS.jpeg
+                    format: JPEG
+                    url: >-
+                      https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                  - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                    name: SSS2.jpeg
+                    format: JPEG
+                    url: >-
+                      https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+              - PAYSLIP:
+                  - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                    name: Payslip.jpeg
+                    format: JPEG
+                    url: >-
+                      https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                  - id: file-17bbf36498de4d68a0d4f86c7b62f69f
+                    name: Payslip2.jpeg
+                    format: JPEG
+                    url: >-
+                      https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+          metadata:
+            createdAt: 2021-04-14T09:30:24Z
+            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: jollibee
+            platformId: smile-scanner
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
-        currentRating:
-          type: number
-          description: Current rating
-        maxRating:
-          type: number
-          description: Maximum possible rating
-        calculatedPercentage:
-          type: number
-          description: >-
-            Current rating expressed as percentage, calculated by
-            currentRating/maxRating x 100
-        reviewsReceived:
-          type: number
-          description: >-
-            Number of reviews the employee received, which is the basis for the
-            current rating
+        rawFiles:
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/RawFile'
+          description: Collection of files
         metadata:
           $ref: '#/components/schemas/Object-AccountsMetadata'
       required:
         - id
-        - currentRating
-        - maxRating
-        - calculatedPercentage
+        - rawFiles
         - metadata
+      x-tags:
+        - Uploads
+    UploadGetResponse:
+      title: Upload Get Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Upload'
+      description: ''
+      x-internal: true
+    UploadListResponse:
+      title: Upload List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Upload'
+      x-internal: true
     Object-Metadata-Ref-Code:
       type: string
       title: Object-Metadata-Ref-API-Code
@@ -2200,10 +3065,16 @@ components:
         providerId:
           type: string
           description: The provider ID associated with this object
+          nullable: true
+        platformId:
+          type: string
+          description: The platform ID associated with this object
       required:
         - createdAt
         - accountId
         - userId
+        - providerId
+        - platformId
     Ref-Currency:
       type: string
       title: Currency ISO Codes
@@ -2466,6 +3337,8 @@ tags:
   - name: Accounts
   - name: Identities
   - name: Providers
+  - name: Ratings
   - name: Tokens
   - name: Transactions
+  - name: Uploads
   - name: Users

@@ -7,8 +7,8 @@ We have included below some **Open Source** resources to help get you started ri
 <!-- focus: false -->
 ![API](https://img.icons8.com/ios/50/000000/api-settings.png)
 
-## Copy of API Specifications
-> You can download a copy of Smile API's [specifications](https://github.com/SmileAPI/smile-openapi/blob/main/openapi-v1.yaml) in [Github](https://github.com/SmileAPI). If you have github, you can clone the repository or run the following command:
+## API Specifications
+> You can download a copy of Smile API's [specifications](https://github.com/SmileAPI/smile-openapi/blob/main/openapi-v1.yaml) in [Github](https://github.com/SmileAPI). If you have git installed, you can clone the repository or run the following command:
 
 ```
 git clone https://github.com/SmileAPI/smile-openapi
@@ -22,7 +22,7 @@ The specification document is in **YAML format**, following  [Open API Specifica
 ![Postman](https://img.icons8.com/wired/50/000000/postman-api.png)
 
 ## Postman Collection
-> Download Smile API's [Postman Collection](https://github.com/SmileAPI/smile-openapi/blob/main/postman-collection-v1.json) in [Github](https://github.com/SmileAPI). If you have github, you can clone the repository or run the following command:
+> Download Smile API's [Postman Collection](https://github.com/SmileAPI/smile-openapi/blob/main/postman-collection-v1.json) in [Github](https://github.com/SmileAPI). If you have git installed, you can clone the repository or run the following command:
 
 ```
 git clone https://github.com/SmileAPI/smile-openapi
@@ -58,7 +58,7 @@ The example implementation is composed of two parts:
 Below steps are also included in the README.md document included in the the Quickstart [repository](https://github.com/SmileAPI/quickstart).
 1. Download the Quickstart files onto your machine. 
 
-> If you have github, you can clone the repository or run the following command:
+> If you have git, you can clone the repository or run the following command:
 
 ```
 git clone https://github.com/SmileAPI/quickstart

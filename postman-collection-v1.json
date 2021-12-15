@@ -1,7 +1,7 @@
 {
     "item": [
         {
-            "id": "86c6a681-bc28-4999-b98f-1552a51cad2b",
+            "id": "0ea1d89b-f1e0-459f-83c4-beaf82bd4ad2",
             "name": "Accounts",
             "description": {
                 "content": "",
@@ -9,7 +9,7 @@
             },
             "item": [
                 {
-                    "id": "c4438bcc-dd9e-4ec5-beaf-34b8e2cd8ef1",
+                    "id": "cb79ca3f-0700-4a01-a2c5-46e47098a1e2",
                     "name": "List Accounts",
                     "request": {
                         "name": "List Accounts",
@@ -51,7 +51,7 @@
                     },
                     "response": [
                         {
-                            "id": "1d2c394f-6013-42b0-b840-fb657c2f660a",
+                            "id": "04c8bd5d-3307-4b4a-bc20-e4e3f9f561bb",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -93,7 +93,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "5b946e7b-bf7b-419f-9f29-0cefe136a1a7",
+                            "id": "98f7300f-f386-4500-9c70-1b305f7f9775",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -135,7 +135,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "2f046b9b-67dd-4589-b2bc-09a2feb80ccd",
+                            "id": "e34fc632-9aef-4b06-bcff-f90743567dfe",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -177,7 +177,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "c504581d-11c0-4543-8a73-882942111d81",
+                            "id": "92bfbbea-0952-47e2-8522-8e7c5ec7c037",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -219,7 +219,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "78aeecd6-db04-4e0f-9df3-8dd2ee95fe53",
+                            "id": "f846cc2b-1344-4cb5-a2b3-698ccb342405",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -261,7 +261,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "abc13e97-663a-44d0-b4fa-cc0bb3316916",
+                            "id": "8d51cd2a-fe4e-409c-9330-56f6e9f3573c",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -303,7 +303,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "663c751d-8e48-4abb-8261-2d735f18e72b",
+                            "id": "330ed59b-82f7-4074-8061-3274c3648ff0",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -345,7 +345,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "6d9a7bac-13e4-4acc-b5d9-380ba49d568f",
+                            "id": "127d438c-8d6c-4f87-aa79-108f875efd27",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -387,7 +387,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "8bed4734-3c2e-45e8-b59a-0c77e87892f6",
+                            "id": "d13a9047-d86b-4834-ba23-1ecfbdf0482c",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -429,7 +429,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "108a52c0-0935-410d-a6b6-b7114f32afc7",
+                            "id": "f1425f7c-9380-4cd3-8960-75403aac0792",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -471,7 +471,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "b7f05d3d-129f-4a29-b0f0-8780dacef5ff",
+                            "id": "cc406636-3b8a-428e-a187-1d1f2b5bb0e8",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -516,7 +516,7 @@
                     "event": []
                 },
                 {
-                    "id": "82bd6176-1eb6-4e3b-8649-8f2a7a6f2cee",
+                    "id": "d5c86549-5778-484f-85c7-45e10a6fd25e",
                     "name": "Get Account",
                     "request": {
                         "name": "Get Account",
@@ -548,7 +548,7 @@
                     },
                     "response": [
                         {
-                            "id": "7ab2e33d-cc02-450d-a0d0-ac472c6efb8f",
+                            "id": "2531b635-ffac-44bb-b8ef-87f9c5a283bd",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -586,7 +586,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "c3b9e185-a9d4-4a7c-8583-6c8ebd681dee",
+                            "id": "b48d07f5-d79f-4cc0-a6a0-ed489645fce6",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -624,7 +624,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "f727ccc2-8043-4f2b-9fdf-dad7a762eccb",
+                            "id": "d6056519-6d0e-4da0-9c61-77efea8bca8a",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -662,7 +662,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "5e404c3a-a668-40d8-b3d7-f0c993ea4943",
+                            "id": "a17cb9ca-fc99-4d9b-a1c2-7501d348c419",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -700,7 +700,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "3098175c-31d2-475c-af46-a94f16a9c821",
+                            "id": "ab256042-03a9-4b7c-b942-ecc31c1124aa",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -738,7 +738,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "803f2b30-2801-4a97-b047-6cc058ee082c",
+                            "id": "a783bc58-dea0-4ba3-b04b-ead3495e9ea6",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -776,7 +776,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "06d46350-4940-4a05-9e38-458fc1dbd25d",
+                            "id": "f7017d2d-b8cf-4836-b504-49357a0fd6e1",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -814,7 +814,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "48a2a1a9-7bdc-4dc3-9f8b-8b45da7721eb",
+                            "id": "534b359b-e219-42c1-98ae-833826b4383a",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -852,7 +852,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "86775100-10da-4ed2-af34-9cc89c722f69",
+                            "id": "665823cc-de49-4aa0-b27f-3a752271a7ba",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -890,7 +890,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "17d8ec4a-ba02-41ec-b426-03c58645b71c",
+                            "id": "82694196-74a8-476b-9ab8-9b494a95b934",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -928,7 +928,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "2a77016d-60d5-4105-bba2-36b4de6ae4cf",
+                            "id": "3597057a-7952-418c-ac34-abea85ae3b58",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -972,7 +972,7 @@
             "event": []
         },
         {
-            "id": "caa34b1b-aa68-4f3f-bab6-8dc9350a6b26",
+            "id": "43e011c6-29a6-46b3-a7ba-f6f203fc5dee",
             "name": "Identities",
             "description": {
                 "content": "",
@@ -980,7 +980,7 @@
             },
             "item": [
                 {
-                    "id": "8da9f78d-e3bc-4845-8ea4-055d982cbd9f",
+                    "id": "db23aeca-062f-4a7b-ba1f-6e540492151b",
                     "name": "List Identities",
                     "request": {
                         "name": "List Identities",
@@ -1028,7 +1028,7 @@
                     },
                     "response": [
                         {
-                            "id": "2352577f-c85b-4516-b9d7-37f66a676f4b",
+                            "id": "c1891e49-cffc-4e47-9b3a-585cf9070f9d",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -1069,12 +1069,12 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"nextCursor\": \"1259723474\",\n  \"items\": [\n   {\n    \"id\": \"i-17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"fullName\": \"George Cimafranca Palomero, Jr\",\n    \"firstName\": \"George\",\n    \"middleName\": \"Cimafranca\",\n    \"lastName\": \"Palomero\",\n    \"suffix\": \"Jr\",\n    \"gender\": \"Male\",\n    \"dob\": \"1970-08-24T00:00:00.000Z\",\n    \"maritalStatus\": \"Married\",\n    \"countryResidence\": \"PH\",\n    \"citizenship\": \"Citizen\",\n    \"photoUrl\": \"https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg\",\n    \"referenceId\": null,\n    \"profileUrl\": null,\n    \"emails\": [\n     {\n      \"address\": \"gpalomero1234@yahoo.com\",\n      \"type\": \"Primary\"\n     }\n    ],\n    \"phones\": [\n     {\n      \"number\": \"+639175551234\",\n      \"type\": \"Mobile\"\n     }\n    ],\n    \"socialProfiles\": [\n     {\n      \"socialUrl\": \"https://www.facebook.com/gpalomero\",\n      \"type\": \"Facebook\"\n     }\n    ],\n    \"addresses\": [\n     {\n      \"fullAddress\": \"12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH\",\n      \"line1\": \"12 Maybunga St\",\n      \"line2\": \"Barangay Paraiso\",\n      \"city\": \"Pasig City\",\n      \"region\": \"NCR\",\n      \"zip\": \"1600\",\n      \"country\": \"PH\",\n      \"latitude\": \"14.573454\",\n      \"longitude\": \"121.085042\",\n      \"type\": \"Primary\"\n     }\n    ],\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\"\n    }\n   },\n   {\n    \"id\": \"i-24bbf36498ac4d26a0d4f86c7b62f83z\",\n    \"fullName\": \"Ryan Joseph Peterson Chua Ng\",\n    \"firstName\": \"Ryan Joseph Peterson\",\n    \"middleName\": \"Chua\",\n    \"lastName\": \"Ng\",\n    \"suffix\": null,\n    \"gender\": \"Male\",\n    \"dob\": \"1995-06-24T00:00:00.000Z\",\n    \"maritalStatus\": \"Single\",\n    \"countryResidence\": null,\n    \"citizenship\": \"Citizen\",\n    \"photoUrl\": \"https://cdn.smileapi.io/image/avatar/v20211115191600/ryan.jpg\",\n    \"referenceId\": \"~02c0bf6ae6a581ee2b\",\n    \"profileUrl\": \"https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b\",\n    \"emails\": [\n     {\n      \"address\": \"ryan1234@gmail.com\",\n      \"type\": \"Primary\"\n     }\n    ],\n    \"phones\": [\n     {\n      \"number\": \"+639559994321\",\n      \"type\": \"Mobile\"\n     },\n     {\n      \"number\": \"+63289053000\",\n      \"type\": \"Fixed\"\n     }\n    ],\n    \"socialProfiles\": [\n     {\n      \"socialUrl\": \"https://www.facebook.com/ryanpetersonng\",\n      \"type\": \"Facebook\"\n     },\n     {\n      \"socialUrl\": \"https://www.twitter.com/xklxyz\",\n      \"type\": \"Twitter\"\n     }\n    ],\n    \"addresses\": [\n     {\n      \"fullAddress\": \"24 Eagle St, Binondo, Manila, NCR, 1008, PH\",\n      \"line1\": \"24 Eagle St\",\n      \"line2\": \"Binondo\",\n      \"city\": \"Manila\",\n      \"region\": \"NCR\",\n      \"zip\": \"1008\",\n      \"country\": \"PH\",\n      \"latitude\": \"14.600454\",\n      \"longitude\": \"120.969042\",\n      \"type\": \"Primary\"\n     }\n    ],\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\"\n    }\n   },\n   {\n    \"id\": \"i-48ace87698bd6e67a0d4f86c7b62h76c\",\n    \"fullName\": \"Christina Tan\",\n    \"firstName\": \"Christina\",\n    \"middleName\": \"dela Cruz\",\n    \"lastName\": \"Tan\",\n    \"suffix\": null,\n    \"gender\": \"Female\",\n    \"dob\": \"1997-02-12T00:00:00.000Z\",\n    \"maritalStatus\": \"Single\",\n    \"countryResidence\": null,\n    \"citizenship\": \"Citizen\",\n    \"photoUrl\": \"https://cdn.smileapi.io/image/avatar/v20211115191600/christina.jpg\",\n    \"referenceId\": null,\n    \"profileUrl\": null,\n    \"emails\": [\n     {\n      \"address\": \"christina4321@yahoo.com\",\n      \"type\": \"Primary\"\n     }\n    ],\n    \"phones\": [\n     {\n      \"number\": \"+639559996789\",\n      \"type\": \"Mobile\"\n     },\n     {\n      \"number\": \"+639226789888\",\n      \"type\": \"Mobile\"\n     }\n    ],\n    \"socialProfiles\": [],\n    \"addresses\": [\n     {\n      \"fullAddress\": null,\n      \"line1\": null,\n      \"line2\": null,\n      \"city\": null,\n      \"region\": null,\n      \"zip\": null,\n      \"country\": \"PH\",\n      \"latitude\": null,\n      \"longitude\": null,\n      \"type\": \"Primary\"\n     }\n    ],\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\"\n    }\n   }\n  ]\n }\n}",
+                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"nextCursor\": \"1259723474\",\n  \"items\": [\n   {\n    \"id\": \"i-17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"fullName\": \"George Cimafranca Palomero, Jr\",\n    \"firstName\": \"George\",\n    \"middleName\": \"Cimafranca\",\n    \"lastName\": \"Palomero\",\n    \"suffix\": \"Jr\",\n    \"gender\": \"Male\",\n    \"dob\": \"1970-08-24T00:00:00.000Z\",\n    \"maritalStatus\": \"Married\",\n    \"countryResidence\": \"PH\",\n    \"citizenship\": \"Citizen\",\n    \"photoUrl\": \"https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg\",\n    \"referenceId\": \"george\",\n    \"profileUrl\": \"https://upwork.com/profiles/george.jpg\",\n    \"emails\": [\n     {\n      \"address\": \"gpalomero1234@yahoo.com\",\n      \"type\": \"Primary\"\n     }\n    ],\n    \"phones\": [\n     {\n      \"number\": \"+639175551234\",\n      \"type\": \"Mobile\"\n     }\n    ],\n    \"socialProfiles\": [\n     {\n      \"socialUrl\": \"https://www.facebook.com/gpalomero\",\n      \"type\": \"Facebook\"\n     }\n    ],\n    \"addresses\": [\n     {\n      \"fullAddress\": \"12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH\",\n      \"line1\": \"12 Maybunga St\",\n      \"line2\": \"Barangay Paraiso\",\n      \"city\": \"Pasig City\",\n      \"region\": \"NCR\",\n      \"zip\": \"1600\",\n      \"country\": \"PH\",\n      \"latitude\": \"14.573454\",\n      \"longitude\": \"121.085042\",\n      \"type\": \"Primary\"\n     }\n    ],\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\",\n     \"platformId\": \"upwork-website\"\n    }\n   },\n   {\n    \"id\": \"i-24bbf36498ac4d26a0d4f86c7b62f83z\",\n    \"fullName\": \"Ryan Joseph Peterson Chua Ng\",\n    \"firstName\": \"Ryan Joseph Peterson\",\n    \"middleName\": \"Chua\",\n    \"lastName\": \"Ng\",\n    \"suffix\": null,\n    \"gender\": \"Male\",\n    \"dob\": \"1995-06-24T00:00:00.000Z\",\n    \"maritalStatus\": \"Single\",\n    \"countryResidence\": null,\n    \"citizenship\": \"Citizen\",\n    \"photoUrl\": \"https://cdn.smileapi.io/image/avatar/v20211115191600/ryan.jpg\",\n    \"referenceId\": \"~02c0bf6ae6a581ee2b\",\n    \"profileUrl\": \"https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b\",\n    \"emails\": [\n     {\n      \"address\": \"ryan1234@gmail.com\",\n      \"type\": \"Primary\"\n     }\n    ],\n    \"phones\": [\n     {\n      \"number\": \"+639559994321\",\n      \"type\": \"Mobile\"\n     },\n     {\n      \"number\": \"+63289053000\",\n      \"type\": \"Fixed\"\n     }\n    ],\n    \"socialProfiles\": [\n     {\n      \"socialUrl\": \"https://www.facebook.com/ryanpetersonng\",\n      \"type\": \"Facebook\"\n     },\n     {\n      \"socialUrl\": \"https://www.twitter.com/xklxyz\",\n      \"type\": \"Twitter\"\n     }\n    ],\n    \"addresses\": [\n     {\n      \"fullAddress\": \"24 Eagle St, Binondo, Manila, NCR, 1008, PH\",\n      \"line1\": \"24 Eagle St\",\n      \"line2\": \"Binondo\",\n      \"city\": \"Manila\",\n      \"region\": \"NCR\",\n      \"zip\": \"1008\",\n      \"country\": \"PH\",\n      \"latitude\": \"14.600454\",\n      \"longitude\": \"120.969042\",\n      \"type\": \"Primary\"\n     }\n    ],\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\",\n     \"platformId\": \"upwork-website\"\n    }\n   },\n   {\n    \"id\": \"i-48ace87698bd6e67a0d4f86c7b62h76c\",\n    \"fullName\": \"Christina Tan\",\n    \"firstName\": \"Christina\",\n    \"middleName\": \"dela Cruz\",\n    \"lastName\": \"Tan\",\n    \"suffix\": null,\n    \"gender\": \"Female\",\n    \"dob\": \"1997-02-12T00:00:00.000Z\",\n    \"maritalStatus\": \"Single\",\n    \"countryResidence\": null,\n    \"citizenship\": \"Citizen\",\n    \"photoUrl\": \"https://cdn.smileapi.io/image/avatar/v20211115191600/christina.jpg\",\n    \"referenceId\": null,\n    \"profileUrl\": null,\n    \"emails\": [\n     {\n      \"address\": \"christina4321@yahoo.com\",\n      \"type\": \"Primary\"\n     }\n    ],\n    \"phones\": [\n     {\n      \"number\": \"+639559996789\",\n      \"type\": \"Mobile\"\n     },\n     {\n      \"number\": \"+639226789888\",\n      \"type\": \"Mobile\"\n     }\n    ],\n    \"socialProfiles\": [],\n    \"addresses\": [\n     {\n      \"fullAddress\": null,\n      \"line1\": null,\n      \"line2\": null,\n      \"city\": null,\n      \"region\": null,\n      \"zip\": null,\n      \"country\": \"PH\",\n      \"latitude\": null,\n      \"longitude\": null,\n      \"type\": \"Primary\"\n     }\n    ],\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\",\n     \"platformId\": \"upwork-website\"\n    }\n   }\n  ]\n }\n}",
                             "cookie": [],
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "5a7b54d1-672a-4124-bcdd-788e1dad70b5",
+                            "id": "ae1dae22-d141-4233-981f-0c7d59bb506f",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1120,7 +1120,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "9ae32045-51c0-444f-b4cf-ad1599e64c69",
+                            "id": "e87663ba-dbfc-4b3d-b098-44db21526e4b",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1166,7 +1166,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "00ec1611-6132-4c39-99a0-2652008ab408",
+                            "id": "3576fec1-a0c6-46c6-b81e-2c895f72674e",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1212,7 +1212,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "cd30184c-e82a-4e49-acfc-af29f1629420",
+                            "id": "f072efae-5258-4ef1-9127-1aeb7dea8bb6",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1258,7 +1258,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "2df33dc6-6259-461f-94e4-c562cf2c2403",
+                            "id": "955abbf9-f65f-424e-a6d6-9c3933730c32",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1304,7 +1304,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "ae1b265d-3dc5-420a-8a79-fd7ff337c7fb",
+                            "id": "0cc42a0c-96c7-4c3b-a39b-6523a4acbf15",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1350,7 +1350,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "d2d4351a-5c6c-498d-bb9c-cfc4e33acb0f",
+                            "id": "e95995d4-6d78-4a85-8239-a25d41f90bf1",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1396,7 +1396,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "b8459b03-0032-4ca5-9090-520dce7fb1a7",
+                            "id": "b5d5103a-1c6e-4072-a4d8-732afda7bdfc",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1442,7 +1442,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "3c124e50-1a83-4e20-a4f0-b72346c00f71",
+                            "id": "a79ccd29-f2f0-4054-b1da-a4a781624ba3",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1488,7 +1488,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "859f7bed-2761-4393-b3da-1b651c30bb33",
+                            "id": "321c028a-7054-4f59-972d-3380590521b0",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1537,7 +1537,7 @@
                     "event": []
                 },
                 {
-                    "id": "2057a231-f83c-43e5-bf92-d2514b19aaac",
+                    "id": "49df95f6-f7c3-41a6-b224-b82a31023b32",
                     "name": "Get Identity",
                     "request": {
                         "name": "Get Identity",
@@ -1569,7 +1569,7 @@
                     },
                     "response": [
                         {
-                            "id": "605fc4e8-b24d-4eee-9455-69f310f58294",
+                            "id": "8d1bb6d4-674f-4674-b4af-bae0b6d0c1ca",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -1602,12 +1602,12 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"id\": \"i-17bbf36498de4d68a0d4f86c7b62f69f\",\n  \"fullName\": \"George Cimafranca Palomero, Jr\",\n  \"firstName\": \"George\",\n  \"middleName\": \"Cimafranca\",\n  \"lastName\": \"Palomero\",\n  \"suffix\": \"Jr\",\n  \"gender\": \"Male\",\n  \"dob\": \"1970-08-24T00:00:00.000Z\",\n  \"maritalStatus\": \"Married\",\n  \"countryResidence\": \"PH\",\n  \"citizenship\": \"Citizen\",\n  \"photoUrl\": \"https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg\",\n  \"referenceId\": null,\n  \"profileUrl\": null,\n  \"emails\": [\n   {\n    \"address\": \"gpalomero1234@yahoo.com\",\n    \"type\": \"Primary\"\n   }\n  ],\n  \"phones\": [\n   {\n    \"number\": \"+639175551234\",\n    \"type\": \"Mobile\"\n   }\n  ],\n  \"socialProfiles\": [\n   {\n    \"socialUrl\": \"https://www.facebook.com/gpalomero\",\n    \"type\": \"Facebook\"\n   }\n  ],\n  \"addresses\": [\n   {\n    \"fullAddress\": \"12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH\",\n    \"line1\": \"12 Maybunga St\",\n    \"line2\": \"Barangay Paraiso\",\n    \"city\": \"Pasig City\",\n    \"region\": \"NCR\",\n    \"zip\": \"1600\",\n    \"country\": \"PH\",\n    \"latitude\": \"14.573454\",\n    \"longitude\": \"121.085042\",\n    \"type\": \"Primary\"\n   }\n  ],\n  \"metadata\": {\n   \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n   \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n   \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n   \"providerId\": \"upwork\"\n  }\n }\n}",
+                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"id\": \"i-17bbf36498de4d68a0d4f86c7b62f69f\",\n  \"fullName\": \"George Cimafranca Palomero, Jr\",\n  \"firstName\": \"George\",\n  \"middleName\": \"Cimafranca\",\n  \"lastName\": \"Palomero\",\n  \"suffix\": \"Jr\",\n  \"gender\": \"Male\",\n  \"dob\": \"1970-08-24T00:00:00.000Z\",\n  \"maritalStatus\": \"Married\",\n  \"countryResidence\": \"PH\",\n  \"citizenship\": \"Citizen\",\n  \"photoUrl\": \"https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg\",\n  \"referenceId\": \"george\",\n  \"profileUrl\": \"https://upwork.com/profiles/george.jpg\",\n  \"emails\": [\n   {\n    \"address\": \"gpalomero1234@yahoo.com\",\n    \"type\": \"Primary\"\n   }\n  ],\n  \"phones\": [\n   {\n    \"number\": \"+639175551234\",\n    \"type\": \"Mobile\"\n   }\n  ],\n  \"socialProfiles\": [\n   {\n    \"socialUrl\": \"https://www.facebook.com/gpalomero\",\n    \"type\": \"Facebook\"\n   }\n  ],\n  \"addresses\": [\n   {\n    \"fullAddress\": \"12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH\",\n    \"line1\": \"12 Maybunga St\",\n    \"line2\": \"Barangay Paraiso\",\n    \"city\": \"Pasig City\",\n    \"region\": \"NCR\",\n    \"zip\": \"1600\",\n    \"country\": \"PH\",\n    \"latitude\": \"14.573454\",\n    \"longitude\": \"121.085042\",\n    \"type\": \"Primary\"\n   }\n  ],\n  \"metadata\": {\n   \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n   \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n   \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n   \"providerId\": \"upwork\",\n   \"platformId\": \"upwork-website\"\n  }\n }\n}",
                             "cookie": [],
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "408adc10-a95e-49c7-8e40-5024fa5241a5",
+                            "id": "fc283748-4af5-442f-b3cd-65fe517ca36c",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1645,7 +1645,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "d6d06861-4d11-4177-8125-0a31dff50440",
+                            "id": "1650a72f-6b10-46af-a668-67c93f6e2688",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1683,7 +1683,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "c4688609-aeeb-4b07-9155-597869a614bf",
+                            "id": "f4859b90-f884-4382-a52f-ba220181a584",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1721,7 +1721,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "db36cddd-b66f-40ff-8009-2c40f899ceff",
+                            "id": "0c8893cf-0950-4efa-85a9-b15a5cf4f6bb",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1759,7 +1759,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "820fd252-33ea-45e4-8d30-840a69760d4b",
+                            "id": "c12a11ed-67d0-4f79-8cfa-f56a20e62d3b",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1797,7 +1797,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "29853b5d-3e80-4c5a-b56e-52cd15c0eb3c",
+                            "id": "df943257-8751-41bd-8b70-f14d0e4a2b0b",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1835,7 +1835,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "911027d3-741a-4879-9884-b0234def762d",
+                            "id": "8e7385d4-1c24-4a3c-93df-532674309dcc",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1873,7 +1873,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "2088155a-4495-47ed-b2b2-e15c45565640",
+                            "id": "82a3b57b-9b66-4b24-b2df-abec2342070d",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1911,7 +1911,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "e1cf073a-f528-475a-a81d-56ff44a71ea3",
+                            "id": "71fab820-f2e6-4e33-b891-047bf6b63d4d",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1949,7 +1949,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "6d13e40c-2983-40fd-a1a9-20cae1a9bfb5",
+                            "id": "7015249c-d89d-4507-8a01-5322a40423b6",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -1993,7 +1993,7 @@
             "event": []
         },
         {
-            "id": "503ef07c-eed9-4c7f-9898-767e1fb4d6c5",
+            "id": "ad4c7e57-f1d1-43e8-84ff-60bc5e16f6db",
             "name": "Providers",
             "description": {
                 "content": "",
@@ -2001,7 +2001,7 @@
             },
             "item": [
                 {
-                    "id": "0fa0296a-9f63-447b-b9f6-7e13991e6384",
+                    "id": "6bf5dced-7eb8-49d0-bcb8-0b57175c62d5",
                     "name": "List Providers",
                     "request": {
                         "name": "List Providers",
@@ -2061,7 +2061,7 @@
                     },
                     "response": [
                         {
-                            "id": "d145f154-f935-406d-9eb9-19b944417bdb",
+                            "id": "cff5af23-2bb1-4747-ae31-28a7753129bd",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -2115,7 +2115,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "235746ab-b5dc-4f52-ab43-636936d480c7",
+                            "id": "18dea9ec-1ab1-4b0d-af19-8cd048bad668",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2169,7 +2169,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "06fb3d32-39d1-4ec8-9387-49c83f312940",
+                            "id": "44a8d866-a9dd-44b4-a82c-3dd2ce732a39",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2223,7 +2223,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "93c50c1f-2782-4869-9469-ed0b51eb7582",
+                            "id": "90bf7325-dd47-4f1d-9629-19538e0a34db",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2277,7 +2277,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "89005510-b93c-4c54-8891-9fec4a0c779c",
+                            "id": "e98f53d2-f890-464f-8fad-142e5def056e",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2331,7 +2331,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "bbd682ea-6e3c-4feb-8d0a-588c15312291",
+                            "id": "711ea6a2-dce1-4f06-b77f-527217813345",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2385,7 +2385,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "b290704d-7965-4af1-b197-eb6baf09d4f9",
+                            "id": "efa05791-554c-49a8-8d27-eb67737e7b61",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2439,7 +2439,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "18f65117-3e73-4904-bbd7-ab0ccbb66f5f",
+                            "id": "236d5b53-0976-4545-b587-9623e934362f",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2493,7 +2493,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "d2b0a0fb-8c90-4709-aa4a-e35d4fccc8c3",
+                            "id": "c741c12a-4a42-4b70-aaff-62b84de4b2f0",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2547,7 +2547,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "dea2daed-de82-44bc-b2aa-d976d4a2b060",
+                            "id": "3e1ad15e-5a37-4e02-b860-0e1b482c7e86",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2601,7 +2601,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "570d4c99-f643-4dc8-903c-5d63e25351d8",
+                            "id": "4a19a24e-49e8-4f15-a451-63e7bed8b8a5",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2658,7 +2658,7 @@
                     "event": []
                 },
                 {
-                    "id": "39a3ec77-3e38-41fd-9138-ab50a3009b6a",
+                    "id": "97f13b13-eab5-4b08-b90a-13c9ffdb1090",
                     "name": "Get Provider",
                     "request": {
                         "name": "Get Provider",
@@ -2690,7 +2690,7 @@
                     },
                     "response": [
                         {
-                            "id": "7227b2d4-548c-461a-a476-4e2f09defdff",
+                            "id": "26ca6369-31ed-470f-a8ea-39d6039dde58",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -2728,7 +2728,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "48541fda-ce8b-446c-a041-92db1281e572",
+                            "id": "b548f36c-1889-4e65-bad2-e5ed397e71ee",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2766,7 +2766,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "03057d3b-884a-41ec-b884-48ba138518e8",
+                            "id": "07d62b84-4ee7-4b66-a543-a712c9470251",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2804,7 +2804,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "3af22a54-2025-42dc-b8e8-0ad4ce49f2c1",
+                            "id": "bcf70316-a562-4237-8d20-eb50e10e4ee1",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2842,7 +2842,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "abb5f208-4d60-4963-aa06-ff71daf99d42",
+                            "id": "08342c0d-2311-4846-a023-9dc774deea14",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2880,7 +2880,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "d0ee0ffd-f85e-4c2d-af68-2345c89cbd68",
+                            "id": "822a8a5e-4698-4177-ba4d-1f3d1e44f9d7",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2918,7 +2918,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "b9b6b7ba-925e-4113-9661-d39985bb17e9",
+                            "id": "9fb839ad-382f-4d8e-98d4-ede22f75721c",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2956,7 +2956,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "1906b5a1-4964-48b2-8cbe-a77e20d5c7e8",
+                            "id": "06be62e3-61cd-4f51-a90b-f9062de2bba6",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -2994,7 +2994,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "7a9885d9-6461-46d0-81de-88cfeb1cb4eb",
+                            "id": "04f9b606-e69a-4cd8-bbc1-8a0dda1ba464",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3032,7 +3032,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "9189043f-9a08-480a-bd04-08277519d641",
+                            "id": "9fb37489-f37a-421a-9a0c-71739e5b0bdb",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3070,7 +3070,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "c69241b2-1ad7-490a-b64b-6b2298eee31a",
+                            "id": "ef7abb8f-4130-4483-9cb2-34bc6c92c7ae",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3114,7 +3114,1028 @@
             "event": []
         },
         {
-            "id": "2c07fdc5-7e63-41b8-9514-d2404ace60b6",
+            "id": "93443994-22c2-4168-80c8-2d7ceef3f194",
+            "name": "Ratings",
+            "description": {
+                "content": "",
+                "type": "text/plain"
+            },
+            "item": [
+                {
+                    "id": "2ef40670-8360-4d42-b9c9-28215bb3113d",
+                    "name": "List Ratings",
+                    "request": {
+                        "name": "List Ratings",
+                        "description": {
+                            "content": "Get the user's ratings.",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "ratings"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "disabled": false,
+                                    "key": "size",
+                                    "value": "10",
+                                    "description": "The number of objects you want returned in a collection."
+                                },
+                                {
+                                    "disabled": false,
+                                    "key": "cursor",
+                                    "value": "<string>",
+                                    "description": "Uses the filter values of the previous page to determine the next set of items."
+                                },
+                                {
+                                    "disabled": false,
+                                    "key": "userId",
+                                    "value": "<string>",
+                                    "description": "Filter to those associated with a particular user ID."
+                                },
+                                {
+                                    "disabled": false,
+                                    "key": "accountId",
+                                    "value": "<string>",
+                                    "description": "Filter to those associated with a particular account ID."
+                                }
+                            ],
+                            "variable": []
+                        },
+                        "method": "GET",
+                        "auth": null
+                    },
+                    "response": [
+                        {
+                            "id": "205a25ad-0c0d-4c8f-a0d6-2122d9a210ac",
+                            "name": "OK",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"nextCursor\": \"1259723474\",\n  \"items\": [\n   {\n    \"id\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"currentRating\": 90,\n    \"maxRating\": 100,\n    \"calculatedPercentage\": 90,\n    \"reviewsReceived\": 12,\n    \"likesReceived\": 8,\n    \"jobsCompleted\": 12,\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\",\n     \"platformId\": \"upwork-website\"\n    }\n   },\n   {\n    \"id\": \"23cdf39032ga4d98f0d4f92d4b52f45f\",\n    \"currentRating\": 3.4,\n    \"maxRating\": 5,\n    \"calculatedPercentage\": 68,\n    \"reviewsReceived\": 34,\n    \"likesReceived\": null,\n    \"jobsCompleted\": null,\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\",\n     \"platformId\": \"upwork-website\"\n    }\n   }\n  ]\n }\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "9312f85c-99b9-4275-b939-1b317e37397a",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "3c510b74-e1e5-4a4b-9095-2b9c3ae405bb",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "9be15f4b-0c6c-4ecd-a400-97991f1f60e1",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Forbidden",
+                            "code": 403,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "41bc4870-6a04-4b0b-a855-4426f1bdfc5f",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "3e08a8da-8113-4ab5-b37e-c222eef4a490",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Unsupported Media Type",
+                            "code": 415,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "c3952930-86f4-4a0f-adbf-7b5a24ca9051",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Too Many Requests",
+                            "code": 429,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "8f06c33e-a605-419e-892b-2ee8ebac6abe",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "3c5e4fec-dd77-4558-9394-20cfdc8b70ba",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Not Implemented",
+                            "code": 501,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "06151deb-c725-4730-939c-66958749ccec",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Service Unavailable",
+                            "code": 503,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "277d61ba-73d5-460c-a603-f615aad7bef9",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Gateway Timeout",
+                            "code": 504,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        }
+                    ],
+                    "event": []
+                },
+                {
+                    "id": "af2e42fd-b193-46e7-807b-08380f2e1c39",
+                    "name": "Get Rating",
+                    "request": {
+                        "name": "Get Rating",
+                        "description": {
+                            "content": "Get a user's ratings by ID.",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "ratings",
+                                ":id"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "disabled": false,
+                                    "type": "any",
+                                    "value": "<string>",
+                                    "key": "id",
+                                    "description": "(Required) "
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "auth": null
+                    },
+                    "response": [
+                        {
+                            "id": "0cb0d862-0bec-4931-9546-106bafa3fdbd",
+                            "name": "OK",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"id\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n  \"currentRating\": 90,\n  \"maxRating\": 100,\n  \"calculatedPercentage\": 90,\n  \"reviewsReceived\": 12,\n  \"likesReceived\": 8,\n  \"jobsCompleted\": 12,\n  \"metadata\": {\n   \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n   \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n   \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n   \"providerId\": \"upwork\",\n   \"platformId\": \"upwork-website\"\n  }\n }\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "2ea6071e-0222-4416-9deb-d72fd913d056",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "0dd0fb0b-d8a3-4a9b-8a0a-740a4b88f4b5",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "85022e6c-1470-4f1b-a0da-a94c15637448",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Forbidden",
+                            "code": 403,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "6896d00e-69b9-49e1-83a9-333f8ecf4f28",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "fa33e72d-7f3a-4c36-9bce-142a7e2f7ce4",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Unsupported Media Type",
+                            "code": 415,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "f2e16ff9-0bc3-4843-8d24-ad16e8924cbe",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Too Many Requests",
+                            "code": 429,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "0f04f15e-8364-4ae4-8c25-a9bb149a3ced",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "a6309c47-65d0-4770-a01f-d6759f2e9c80",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Not Implemented",
+                            "code": 501,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "f78ef536-016e-4eda-a146-b6ce65d271a1",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Service Unavailable",
+                            "code": 503,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "b6108cbc-4edb-473a-8db1-086d95a7f141",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "ratings",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Gateway Timeout",
+                            "code": 504,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        }
+                    ],
+                    "event": []
+                }
+            ],
+            "event": []
+        },
+        {
+            "id": "14507ead-b11d-4692-a007-cb5f2269d274",
             "name": "Tokens",
             "description": {
                 "content": "",
@@ -3122,7 +4143,7 @@
             },
             "item": [
                 {
-                    "id": "6d8b9362-05a5-4e57-9607-55b35518e7d9",
+                    "id": "4e3cd86b-2061-45a1-8562-048771850a9f",
                     "name": "Refresh Token",
                     "request": {
                         "name": "Refresh Token",
@@ -3152,7 +4173,7 @@
                     },
                     "response": [
                         {
-                            "id": "3d3d6095-75fe-4ce2-9fe3-4deee1acf7f2",
+                            "id": "3128e913-e8fe-4e46-88c9-181f8db4a4a2",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -3186,7 +4207,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "f56eab0d-4833-4942-8cb0-4be9a9024b2b",
+                            "id": "09151d10-b186-4757-bebc-ecb0f7b7b040",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3220,7 +4241,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "d5cc8b6d-22da-49d1-854a-ace49499e77b",
+                            "id": "46fab03f-811e-4e2b-a2bd-c913b7d11278",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3254,7 +4275,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "16fd1669-5af3-4109-ab79-f9d36a58c2a0",
+                            "id": "43e9ad72-d10b-47dc-9069-d5089bc3cace",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3288,7 +4309,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "6337388f-fac2-4593-9ec1-0ac17a4c84c0",
+                            "id": "bb757aad-4187-4ce2-a900-6e1ff8493ceb",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3322,7 +4343,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "c9be28c2-6fc9-48d2-a690-c364333d3310",
+                            "id": "0704a793-fcb0-4acc-953a-f8bcb2f21e4e",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3356,7 +4377,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "17652f3c-e533-4154-899e-2bf8ebf8b3df",
+                            "id": "29a62e14-abbd-423e-9a82-2c200c3a215e",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3390,7 +4411,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "c7a77cee-3502-47df-a6ee-d6f2f05254c1",
+                            "id": "353ecdee-39e1-4540-aff0-6a667e6eceae",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3424,7 +4445,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "f1efa1db-daa1-4b69-bc6a-beca110667d3",
+                            "id": "88726c62-b099-43a7-b281-71217bbce904",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3458,7 +4479,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "06744385-0ecf-4e31-b15f-e36f623442ec",
+                            "id": "09d27977-3714-402d-a6f7-ac27f4373284",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3492,7 +4513,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "c67dd37e-5384-40a9-b1f9-cb10f69dcb16",
+                            "id": "a12e788d-f512-4c0b-9180-2cd742e9e202",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3532,7 +4553,7 @@
             "event": []
         },
         {
-            "id": "c677d054-e946-457e-a1c3-74693c6ff73f",
+            "id": "e9143643-3b8a-4284-94db-097203a70340",
             "name": "Transactions",
             "description": {
                 "content": "",
@@ -3540,7 +4561,7 @@
             },
             "item": [
                 {
-                    "id": "7fe85d8d-3e55-471c-aa99-736a058d65b4",
+                    "id": "60fdce1c-a2b8-476e-a3c4-83f15e7725ee",
                     "name": "List Transactions",
                     "request": {
                         "name": "List Transactions",
@@ -3600,7 +4621,7 @@
                     },
                     "response": [
                         {
-                            "id": "fc2c0104-ac51-4816-93ba-2e174b901933",
+                            "id": "7521c87b-8b07-4a04-8b96-1fb73f3d4278",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -3649,12 +4670,12 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"nextCursor\": \"1259723474\",\n  \"items\": [\n   {\n    \"id\": \"t-17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"date\": \"2021-04-21T00:00:00.000Z\",\n    \"description\": \"Payment for web design project Milestone 2\",\n    \"currency\": \"PHP\",\n    \"amount\": 10000,\n    \"referenceId\": \"string\",\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\"\n    }\n   },\n   {\n    \"id\": \"t-17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"date\": \"2021-03-21T00:00:00.000Z\",\n    \"description\": \"Payment for web design project Milestone 1\",\n    \"currency\": \"PHP\",\n    \"amount\": 10000,\n    \"referenceId\": \"string\",\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\"\n    }\n   },\n   {\n    \"id\": \"t-17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"date\": \"2021-02-12T00:00:00.000Z\",\n    \"description\": \"Payment for Facebook Ad design\",\n    \"currency\": \"PHP\",\n    \"amount\": 5000,\n    \"referenceId\": \"string\",\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\"\n    }\n   }\n  ]\n }\n}",
+                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"nextCursor\": \"1259723474\",\n  \"items\": [\n   {\n    \"id\": \"t-17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"date\": \"2021-04-21T00:00:00.000Z\",\n    \"description\": \"Payment for web design project Milestone 2\",\n    \"currency\": \"PHP\",\n    \"amount\": 10000,\n    \"referenceId\": \"string\",\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\",\n     \"platformId\": \"upwork-website\"\n    }\n   },\n   {\n    \"id\": \"t-17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"date\": \"2021-03-21T00:00:00.000Z\",\n    \"description\": \"Payment for web design project Milestone 1\",\n    \"currency\": \"PHP\",\n    \"amount\": 10000,\n    \"referenceId\": \"string\",\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\",\n     \"platformId\": \"upwork-website\"\n    }\n   },\n   {\n    \"id\": \"t-17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"date\": \"2021-02-12T00:00:00.000Z\",\n    \"description\": \"Payment for Facebook Ad design\",\n    \"currency\": \"PHP\",\n    \"amount\": 5000,\n    \"referenceId\": \"string\",\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"upwork\",\n     \"platformId\": \"upwork-website\"\n    }\n   }\n  ]\n }\n}",
                             "cookie": [],
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "25202ff4-190e-4a70-b3ad-e0cb386b02f0",
+                            "id": "a2bbef2c-8ef6-4593-b63a-d85e8cd2490c",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3708,7 +4729,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "9e651d4f-49c7-4420-ae30-15e68b6e5307",
+                            "id": "969f8ad3-162b-48fb-89d3-1dc35583efcf",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3762,7 +4783,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "d2dd90eb-1f51-4b1a-8e7d-983dfa05f759",
+                            "id": "a2e22ab9-e8a4-4844-be44-af9a64be5bf5",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3816,7 +4837,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "e05312f8-9a55-4f1b-965f-e5399698f4bf",
+                            "id": "faecd5f8-e543-4c47-8984-40f8d1c6b950",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3870,7 +4891,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "57b529c5-d454-4200-833a-e1c539c0db0c",
+                            "id": "87d3d229-e537-4fae-a56a-b034148a8c68",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3924,7 +4945,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "35056a6f-684c-4ec0-b9da-6a8c8538d2e7",
+                            "id": "26538718-f6a5-466c-b5bd-71f27fc01c0e",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -3978,7 +4999,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "3e36aa41-68a8-4a3a-926c-a98918e562f2",
+                            "id": "79cda99e-3573-481b-9686-6422de61f94a",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4032,7 +5053,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "f5fbf5c6-760a-4962-9e48-fbc927820112",
+                            "id": "6cad9229-09bc-4513-8f0d-fb3ca0a8a606",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4086,7 +5107,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "9b3c6d92-6393-45a4-ad3e-f1d6361bd24d",
+                            "id": "0425b243-50de-45c0-8096-bb20d137f0c5",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4140,7 +5161,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "70baa85f-6592-4f6b-a6e7-976e1f9ee9d4",
+                            "id": "bcab9c19-4a1d-4c10-93a2-52b54f3267e9",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4197,7 +5218,7 @@
                     "event": []
                 },
                 {
-                    "id": "3ca7d63e-6c05-4d0a-8e3c-b1139f0cc52b",
+                    "id": "b93a190c-0ffe-47b7-bfbe-61269e03e1c6",
                     "name": "Get Transaction",
                     "request": {
                         "name": "Get Transaction",
@@ -4229,7 +5250,7 @@
                     },
                     "response": [
                         {
-                            "id": "186b4fb8-cb15-45eb-a245-4787ab45041f",
+                            "id": "bdb29c59-51bd-4752-b2e5-798ea0b3b2b1",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -4262,7 +5283,7 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"id\": \"t-17bbf36498de4d68a0d4f86c7b62f69f\",\n  \"date\": \"2021-04-21T00:00:00.000Z\",\n  \"description\": \"Payment for web design project\",\n  \"currency\": \"PHP\",\n  \"amount\": 10000,\n  \"referenceId\": \"string\",\n  \"metadata\": {\n   \"createdAt\": \"2021-04-21T09:30:24.000Z\",\n   \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n   \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n   \"providerId\": \"upwork\"\n  }\n }\n}",
+                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"id\": \"t-17bbf36498de4d68a0d4f86c7b62f69f\",\n  \"date\": \"2021-04-21T00:00:00.000Z\",\n  \"description\": \"Payment for web design project\",\n  \"currency\": \"PHP\",\n  \"amount\": 10000,\n  \"referenceId\": \"string\",\n  \"metadata\": {\n   \"createdAt\": \"2021-04-21T09:30:24.000Z\",\n   \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n   \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n   \"providerId\": \"upwork\",\n   \"platformId\": \"upwork-website\"\n  }\n }\n}",
                             "cookie": [],
                             "_postman_previewlanguage": "json"
                         }
@@ -4273,7 +5294,748 @@
             "event": []
         },
         {
-            "id": "f3c4210c-dd33-40fe-92fb-db6d727fc97d",
+            "id": "ea142f86-e04b-4783-aeae-783ee7788cff",
+            "name": "Uploads",
+            "description": {
+                "content": "",
+                "type": "text/plain"
+            },
+            "item": [
+                {
+                    "id": "5092ff92-027d-440c-9dc8-1b028f6a09eb",
+                    "name": "List Uploads",
+                    "request": {
+                        "name": "List Uploads",
+                        "description": {
+                            "content": "Get the user's uploads.",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "uploads"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "disabled": false,
+                                    "key": "size",
+                                    "value": "10",
+                                    "description": "The number of objects you want returned in a collection."
+                                },
+                                {
+                                    "disabled": false,
+                                    "key": "cursor",
+                                    "value": "<string>",
+                                    "description": "Uses the filter values of the previous page to determine the next set of items."
+                                },
+                                {
+                                    "disabled": false,
+                                    "key": "userId",
+                                    "value": "<string>",
+                                    "description": "Filter to those associated with a particular user ID."
+                                },
+                                {
+                                    "disabled": false,
+                                    "key": "accountId",
+                                    "value": "<string>",
+                                    "description": "Filter to those associated with a particular account ID."
+                                },
+                                {
+                                    "disabled": false,
+                                    "key": "startDate",
+                                    "value": "<date>",
+                                    "description": "Filter by upload date, start of date range (YYYY-MM-DD)"
+                                },
+                                {
+                                    "disabled": false,
+                                    "key": "endDate",
+                                    "value": "<date>",
+                                    "description": "Filter by upload date, end of date range (YYYY-MM-DD)"
+                                }
+                            ],
+                            "variable": []
+                        },
+                        "method": "GET",
+                        "auth": null
+                    },
+                    "response": [
+                        {
+                            "id": "2529b4b8-20ce-4c82-9482-63be62c5174a",
+                            "name": "OK",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"nextCursor\": \"1259723474\",\n  \"items\": [\n   {\n    \"id\": \"upload-17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"rawFiles\": [\n     {\n      \"SOCIAL_SECURITY\": [\n       {\n        \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n        \"name\": \"SSS.jpeg\",\n        \"format\": \"JPEG\",\n        \"size\": 512,\n        \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n       },\n       {\n        \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n        \"name\": \"SSS2.jpeg\",\n        \"format\": \"JPEG\",\n        \"size\": 512,\n        \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n       }\n      ]\n     },\n     {\n      \"PAYSLIP\": [\n       {\n        \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n        \"name\": \"Payslip.jpeg\",\n        \"format\": \"JPEG\",\n        \"size\": 512,\n        \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n       },\n       {\n        \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n        \"name\": \"Payslip2.jpeg\",\n        \"format\": \"JPEG\",\n        \"size\": 512,\n        \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n       }\n      ]\n     }\n    ],\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"user-provided\",\n     \"platformId\": \"smile-scanner\"\n    }\n   },\n   {\n    \"id\": \"upload-17bbf36498de4d68a0d4f86c7b62f69f\",\n    \"rawFiles\": [\n     {\n      \"SOCIAL_SECURITY\": [\n       {\n        \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n        \"name\": \"SSS.jpeg\",\n        \"format\": \"JPEG\",\n        \"size\": 512,\n        \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n       },\n       {\n        \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n        \"name\": \"SSS2.jpeg\",\n        \"format\": \"JPEG\",\n        \"size\": 512,\n        \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n       }\n      ]\n     },\n     {\n      \"PAYSLIP\": [\n       {\n        \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n        \"name\": \"Payslip.jpeg\",\n        \"format\": \"JPEG\",\n        \"size\": 512,\n        \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n       },\n       {\n        \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n        \"name\": \"Payslip2.jpeg\",\n        \"format\": \"JPEG\",\n        \"size\": 512,\n        \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n       }\n      ]\n     }\n    ],\n    \"metadata\": {\n     \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n     \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n     \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n     \"providerId\": \"user-provided\",\n     \"platformId\": \"smile-scanner\"\n    }\n   }\n  ]\n }\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "c9660130-2e3d-423d-9bb0-9fce4e14272b",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Bad Request",
+                            "code": 400,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "985894df-9e3a-4bfb-9016-df162bce0172",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Unauthorized",
+                            "code": 401,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "b0fd0c78-b177-4859-aec2-3ff49b274b5f",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Forbidden",
+                            "code": 403,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "b11d4697-8fa7-4c11-975a-c716dbd43be1",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Not Found",
+                            "code": 404,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "ee965377-ede8-4679-8e43-265668bfc145",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Unsupported Media Type",
+                            "code": 415,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "6bdf3951-3753-45ea-8987-36ed6f87d016",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Too Many Requests",
+                            "code": 429,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "52f71e0b-0651-42bc-bc4f-9f3061de7958",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "3f6d2fda-eb83-4be5-baba-e513cdb566c9",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Not Implemented",
+                            "code": 501,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "4730ed11-2b72-4a98-8cff-8f37b22da00b",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Service Unavailable",
+                            "code": 503,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        },
+                        {
+                            "id": "f56032c1-c588-4d10-86c6-aab624160e60",
+                            "name": "Standard error response",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "size",
+                                            "value": "50"
+                                        },
+                                        {
+                                            "key": "cursor",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "userId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "accountId",
+                                            "value": "<string>"
+                                        },
+                                        {
+                                            "key": "startDate",
+                                            "value": "<date>"
+                                        },
+                                        {
+                                            "key": "endDate",
+                                            "value": "<date>"
+                                        }
+                                    ],
+                                    "variable": []
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "Gateway Timeout",
+                            "code": 504,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"INVALID_CREDENTIALS\",\n \"message\": \"The credentials you provided are incorrect.\",\n \"requestId\": \"d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6\",\n \"data\": {}\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        }
+                    ],
+                    "event": []
+                },
+                {
+                    "id": "30c375d8-23a9-4d66-aaa1-09daa1b0fab5",
+                    "name": "Get Upload",
+                    "request": {
+                        "name": "Get Upload",
+                        "description": {
+                            "content": "Get a user's upload by ID.",
+                            "type": "text/plain"
+                        },
+                        "url": {
+                            "path": [
+                                "uploads",
+                                ":id"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "disabled": false,
+                                    "type": "any",
+                                    "value": "<string>",
+                                    "key": "id",
+                                    "description": "(Required) "
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "auth": null
+                    },
+                    "response": [
+                        {
+                            "id": "7d9af8b2-27da-403b-8c44-845f10073afe",
+                            "name": "OK",
+                            "originalRequest": {
+                                "url": {
+                                    "path": [
+                                        "uploads",
+                                        ":id"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": [
+                                        {
+                                            "disabled": false,
+                                            "type": "any",
+                                            "value": "<string>",
+                                            "key": "id",
+                                            "description": "(Required) "
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {}
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"id\": \"upload-17bbf36498de4d68a0d4f86c7b62f69f\",\n  \"rawFiles\": [\n   {\n    \"SOCIAL_SECURITY\": [\n     {\n      \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n      \"name\": \"SSS.jpeg\",\n      \"format\": \"JPEG\",\n      \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n     },\n     {\n      \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n      \"name\": \"SSS2.jpeg\",\n      \"format\": \"JPEG\",\n      \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n     }\n    ]\n   },\n   {\n    \"PAYSLIP\": [\n     {\n      \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n      \"name\": \"Payslip.jpeg\",\n      \"format\": \"JPEG\",\n      \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n     },\n     {\n      \"id\": \"file-17bbf36498de4d68a0d4f86c7b62f69f\",\n      \"name\": \"Payslip2.jpeg\",\n      \"format\": \"JPEG\",\n      \"url\": \"https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg\"\n     }\n    ]\n   }\n  ],\n  \"metadata\": {\n   \"createdAt\": \"2021-04-14T09:30:24.000Z\",\n   \"accountId\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n   \"userId\": \"tenant-5c1a2e8678e3494eba303ad1afa54ee8\",\n   \"providerId\": \"user-provided\",\n   \"platformId\": \"smile-scanner\"\n  }\n }\n}",
+                            "cookie": [],
+                            "_postman_previewlanguage": "json"
+                        }
+                    ],
+                    "event": []
+                }
+            ],
+            "event": []
+        },
+        {
+            "id": "4113bb66-da29-40a9-a235-f0eaa670f86f",
             "name": "Users",
             "description": {
                 "content": "",
@@ -4281,7 +6043,7 @@
             },
             "item": [
                 {
-                    "id": "b03d1ae5-1848-40e1-9b32-5d9ab3d3125c",
+                    "id": "461e8dcb-ca78-46b2-bd7c-5b66231815fa",
                     "name": "List Users",
                     "request": {
                         "name": "List Users",
@@ -4317,7 +6079,7 @@
                     },
                     "response": [
                         {
-                            "id": "4083b37c-78d5-4fef-b181-bf2d1663b90f",
+                            "id": "37d89d62-b4de-469b-900e-dd92f61504a9",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -4355,7 +6117,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "c0c14999-e0e5-4f47-b253-ec6bb2a1c90c",
+                            "id": "620ebe10-16ce-4265-929f-817a1af8b9bd",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4393,7 +6155,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "4b802d9c-f56f-40a2-a9ba-a59d6afbc311",
+                            "id": "da63055c-b56e-4927-8371-c8cff041a683",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4431,7 +6193,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "6af61ded-cb8d-41d1-b7a1-555ea4c54bcd",
+                            "id": "ea624b10-f53b-4167-82c4-11f0c2091c91",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4469,7 +6231,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "33ce156e-2357-495b-98d9-9faeced09771",
+                            "id": "e7be65ea-0e4b-4058-adef-5da1163b32c7",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4507,7 +6269,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "0013866c-43c6-4828-a1f6-04e37d762c2d",
+                            "id": "a257743f-56c6-486c-8465-c1db08095fd5",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4545,7 +6307,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "953b4a81-506e-4463-853d-435b724e2934",
+                            "id": "21a2728d-fc25-40ce-b3fb-3651ba804e37",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4583,7 +6345,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "59914cd2-ac63-45b6-8726-4f4be1fa9ebf",
+                            "id": "99873363-e8b3-4771-8ebb-12f2c3225d8c",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4621,7 +6383,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "aec2f8a8-cdbb-4220-828e-696818d7d243",
+                            "id": "56233e02-0409-47a4-8144-3003ba0fa41d",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4659,7 +6421,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "6abbcf1d-e27d-400d-ba06-b0fa1f174955",
+                            "id": "481f375f-bcd8-4b72-87b2-643440af9b37",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4697,7 +6459,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "bd8c8665-f025-45d3-89aa-67d1456894dd",
+                            "id": "0ac021ea-bb74-45f1-98c7-4088180c4873",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4738,7 +6500,7 @@
                     "event": []
                 },
                 {
-                    "id": "2928c587-f21f-4075-ab59-02ed5806f5ab",
+                    "id": "558f6dde-8716-4479-832e-d712ae55b0c9",
                     "name": "Create User",
                     "request": {
                         "name": "Create User",
@@ -4776,7 +6538,7 @@
                     },
                     "response": [
                         {
-                            "id": "a30fad37-aa8e-40b0-a2ed-c9bac14bfd59",
+                            "id": "48a0a474-db03-4701-b230-681b16938c19",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -4808,12 +6570,12 @@
                                     "value": "application/json"
                                 }
                             ],
-                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"user\": {\n   \"id\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n   \"externalMetadata\": \"<object>\",\n   \"createdAt\": \"1969-10-27T23:29:40.346Z\",\n   \"providers\": [\n    \"upwork\",\n    \"upwork\"\n   ]\n  },\n  \"token\": {\n   \"expiresAt\": \"1990-04-28T12:10:08.310Z\",\n   \"mode\": \"SANDBOX\",\n   \"accessToken\": \"dolo\"\n  }\n }\n}",
+                            "body": "{\n \"code\": \"OK\",\n \"message\": \"Success\",\n \"requestId\": \"5b79399a-6852-4234-bb0e-ad472648282d\",\n \"data\": {\n  \"user\": {\n   \"id\": \"17bbf36498de4d68a0d4f86c7b62f69f\",\n   \"externalMetadata\": \"<object>\",\n   \"createdAt\": \"1987-12-29T22:37:02.850Z\",\n   \"providers\": [\n    \"upwork\",\n    \"upwork\"\n   ]\n  },\n  \"token\": {\n   \"expiresAt\": \"1980-06-20T03:37:26.649Z\",\n   \"mode\": \"SANDBOX\",\n   \"accessToken\": \"ea nostrud exercitation\"\n  }\n }\n}",
                             "cookie": [],
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "8ae8145d-c2d3-48a5-988b-6332759931e9",
+                            "id": "8f5ac117-a2e0-4414-b9a0-66b52794c15d",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4850,7 +6612,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "08727968-7689-4512-944d-14487bcaac41",
+                            "id": "43e465f9-7f39-4f9f-a5da-003d99b9d496",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4887,7 +6649,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "3ee74fda-af0a-4f5f-8e38-deb7320afbf3",
+                            "id": "affc38e1-a8a5-469c-bcc7-bcf29ee6283c",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4924,7 +6686,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "15cb74e8-50a5-4f33-959e-9bd54284cda7",
+                            "id": "5e33465f-1855-4470-8e99-aae0d3926066",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4961,7 +6723,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "241a2dd6-3743-4769-8e97-1544bd50b056",
+                            "id": "6ca86c85-1097-45f6-98e2-5f7738068b79",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -4998,7 +6760,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "dba040c6-470b-4d75-b655-b394ccff03eb",
+                            "id": "4c5c5ab0-27c8-4a23-9aae-5c3060706050",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5035,7 +6797,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "7acb0f3e-65da-4fb8-b362-d20bed89af3c",
+                            "id": "4141266b-9689-4726-bc3e-96554cd31b27",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5072,7 +6834,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "4990d3b9-8369-4f71-92cc-a3f09fa926cd",
+                            "id": "b7b16fdf-2486-4730-b4fe-ce06eb4ac8be",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5109,7 +6871,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "8b2c8978-921c-4714-9b44-669034a0dd6d",
+                            "id": "98d7b282-f1d4-4d6c-8b67-45e4c3dfdd17",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5146,7 +6908,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "55a334be-a5d7-4ff2-b915-c5975c990577",
+                            "id": "c31add64-4c51-4081-ba47-90792b49bc86",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5186,7 +6948,7 @@
                     "event": []
                 },
                 {
-                    "id": "86a9dc93-7b7f-4d10-a573-f475e94ffaab",
+                    "id": "9961bfbb-90c8-4e87-a326-24cec06bd979",
                     "name": "Get User",
                     "request": {
                         "name": "Get User",
@@ -5218,7 +6980,7 @@
                     },
                     "response": [
                         {
-                            "id": "14c55b52-0802-42f9-b464-597067843838",
+                            "id": "b5370ff7-5a7e-4b9c-b99e-c21476f39849",
                             "name": "OK",
                             "originalRequest": {
                                 "url": {
@@ -5256,7 +7018,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "9f5074cf-4938-48f9-af25-e6a48abb0396",
+                            "id": "f3ba679d-489e-456b-bbe0-631d93d0bd63",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5294,7 +7056,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "599384d6-e592-4c08-ad55-cb7c7501431c",
+                            "id": "7a6b35b7-1f52-4e40-9c2d-ccf102c4b114",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5332,7 +7094,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "67b3e4cb-906c-4774-9b82-3af42fe92c7a",
+                            "id": "060b875f-1021-4716-a3b5-07b6c9dd8646",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5370,7 +7132,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "9f65ebd3-2527-44df-bcc1-599e12a2ef39",
+                            "id": "fc4cbc60-7ce1-4339-8452-7a36a258b18b",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5408,7 +7170,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "d15670ab-f19c-4066-8467-1cb62b60a6d9",
+                            "id": "995a8db1-16a0-453f-be68-5f60ac5d17e2",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5446,7 +7208,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "8ebf0e3d-2a93-4362-afaa-8d27425243b3",
+                            "id": "3fb25f49-15a1-49f0-b42a-c508c42d3e0b",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5484,7 +7246,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "551a1710-f98d-4bcd-a31a-c8d04c586bc7",
+                            "id": "6e4e4da4-7347-4cc4-9787-f07c7ca8def9",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5522,7 +7284,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "8d3df25b-980e-4b27-86e5-b8d84671b1ee",
+                            "id": "f5fe9410-88ab-402e-af55-d6de67e676c7",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5560,7 +7322,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "9d9723ed-3186-4b79-b419-a75df44b100b",
+                            "id": "9bfc6a5c-4b1a-4f40-8ff6-10a52ab48495",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5598,7 +7360,7 @@
                             "_postman_previewlanguage": "json"
                         },
                         {
-                            "id": "80338259-74e4-45b6-b5ce-468a2fb9a736",
+                            "id": "944c0b73-68ff-41e5-8874-8ee66bc73ce4",
                             "name": "Standard error response",
                             "originalRequest": {
                                 "url": {
@@ -5664,7 +7426,7 @@
         ]
     },
     "info": {
-        "_postman_id": "0e32ddce-30ca-48dd-ad1b-ce59a4f477bf",
+        "_postman_id": "059f38f0-366a-41c6-9884-6c8d9342d21e",
         "name": "Smile API",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": {
