@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 1.3.0
+  version: 1.3.1
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
@@ -48,7 +48,7 @@ paths:
                           enabled: true
                           mfa: true
                           supported:
-                            - IDENTITY
+                            - IDENTITIES
                         - id: freelancer
                           name: Freelancer
                           longName: Freelancer Technology Pty Limited
@@ -62,7 +62,7 @@ paths:
                           enabled: true
                           mfa: true
                           supported:
-                            - IDENTITY
+                            - IDENTITIES
                         - id: grab
                           name: Grab
                           longName: Grab Holdings Inc
@@ -76,7 +76,7 @@ paths:
                           enabled: true
                           mfa: true
                           supported:
-                            - IDENTITY
+                            - IDENTITIES
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -125,12 +125,7 @@ paths:
     parameters: []
   /providers/{id}:
     parameters:
-      - name: id
-        in: path
-        schema:
-          type: string
-        description: ID of the specific object in the collection.
-        required: true
+      - $ref: '#/components/parameters/id'
     get:
       summary: Get Provider
       tags:
@@ -162,7 +157,8 @@ paths:
                       enabled: true
                       mfa: true
                       supported:
-                        - IDENTITY
+                        - IDENTITIES
+                        - TRANSACTIONS
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -301,12 +297,7 @@ paths:
         - Users
   /users/{id}:
     parameters:
-      - name: id
-        in: path
-        schema:
-          type: string
-        description: ID of the specific object in the collection.
-        required: true
+      - $ref: '#/components/parameters/id'
     get:
       summary: Get User
       tags:
@@ -429,18 +420,33 @@ paths:
                         - id: 17bbf36498de4d68a0d4f86c7b62f69f
                           createdAt: 2021-04-14T09:30:24Z
                           providerId: grab
-                          connectionStatus: CONNECTED
                           userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                          connectionStatus: ERROR
+                          connection:
+                            status: ERROR
+                            errorCode: ACCOUNT_DISABLED
+                            errorMessage: Account is disabled
+                            updatedAt: 2021-04-14T09:30:24Z
                         - id: 7fa7e260ad724f39b61427f6ac2edc69
-                          createdAt: 2021-04-13T09:30:24Z
+                          createdAt: 2021-04-15T09:30:24Z
                           providerId: freelancer
-                          connectionStatus: CONNECTED
                           userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                          connectionStatus: CONNECTED
+                          connection:
+                            status: CONNECTED
+                            errorCode: null
+                            errorMessage: null
+                            updatedAt: 2021-04-18T09:30:24Z
                         - id: 79da958ecb2143659747deaebca1cfe0
-                          createdAt: 2021-04-12T09:30:24Z
+                          createdAt: 2021-04-17T09:30:24Z
                           providerId: upwork
-                          connectionStatus: CONNECTED
                           userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                          connectionStatus: CONNECTED
+                          connection:
+                            status: CONNECTED
+                            errorCode: null
+                            errorMessage: null
+                            updatedAt: 2021-04-19T09:30:24Z
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -494,8 +500,13 @@ paths:
                       id: 17bbf36498de4d68a0d4f86c7b62f69f
                       createdAt: 2021-04-14T09:30:24Z
                       providerId: grab
-                      connectionStatus: CONNECTED
                       userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                      connectionStatus: ERROR
+                      connection:
+                        status: ERROR
+                        errorCode: ACCOUNT_DISABLED
+                        errorMessage: Account is disabled
+                        updatedAt: 2021-04-14T09:30:24Z
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -580,7 +591,6 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
-                            platformId: upwork-website
                         - id: i-24bbf36498ac4d26a0d4f86c7b62f83z
                           fullName: Ryan Joseph Peterson Chua Ng
                           firstName: Ryan Joseph Peterson
@@ -626,7 +636,6 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
-                            platformId: upwork-website
                         - id: i-48ace87698bd6e67a0d4f86c7b62h76c
                           fullName: Christina Tan
                           firstName: Christina
@@ -667,7 +676,6 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
-                            platformId: upwork-website
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -755,7 +763,6 @@ paths:
                         accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: upwork
-                        platformId: upwork-website
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -782,11 +789,7 @@ paths:
         - Identities
       parameters: []
     parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
+      - $ref: '#/components/parameters/id'
   /transactions:
     get:
       summary: List Transactions
@@ -819,7 +822,6 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
-                            platformId: upwork-website
                         - id: t-17bbf36498de4d68a0d4f86c7b62f69f
                           date: 2021-03-21
                           description: Payment for web design project Milestone 1
@@ -831,7 +833,6 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
-                            platformId: upwork-website
                         - id: t-17bbf36498de4d68a0d4f86c7b62f69f
                           date: 2021-02-12
                           description: Payment for Facebook Ad design
@@ -843,7 +844,6 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
-                            platformId: upwork-website
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -887,11 +887,7 @@ paths:
           description: Filter by transaction date, end of date range (YYYY-MM-DD)
   /transactions/{id}:
     parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
+      - $ref: '#/components/parameters/id'
     get:
       summary: Get Transaction
       tags:
@@ -921,7 +917,6 @@ paths:
                         accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: upwork
-                        platformId: upwork-website
       operationId: get-transaction
       description: Get a user's transaction by ID.
   /uploads:
@@ -976,7 +971,6 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: user-provided
-                            platformId: smile-scanner
                         - id: upload-17bbf36498de4d68a0d4f86c7b62f69f
                           rawFiles:
                             - SOCIAL_SECURITY:
@@ -1010,7 +1004,6 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: user-provided
-                            platformId: smile-scanner
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -1056,11 +1049,7 @@ paths:
         - Uploads
   /uploads/{id}:
     parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
+      - $ref: '#/components/parameters/id'
     get:
       summary: Get Upload
       responses:
@@ -1106,7 +1095,6 @@ paths:
                         accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: user-provided
-                        platformId: smile-scanner
       operationId: get-upload
       description: Get a user's upload by ID.
       tags:
@@ -1144,7 +1132,6 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
-                            platformId: upwork-website
                         - id: 23cdf39032ga4d98f0d4f92d4b52f45f
                           currentRating: 3.4
                           maxRating: 5
@@ -1157,7 +1144,6 @@ paths:
                             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
-                            platformId: upwork-website
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -1179,7 +1165,7 @@ paths:
         '504':
           $ref: '#/components/responses/Standard-Errors'
       operationId: list-ratings
-      description: Get the user's ratings.
+      description: Get the user's ratings from provider accounts.
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
@@ -1187,11 +1173,7 @@ paths:
         - $ref: '#/components/parameters/accountId'
   /ratings/{id}:
     parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
+      - $ref: '#/components/parameters/id'
     get:
       summary: Get Rating
       tags:
@@ -1222,7 +1204,6 @@ paths:
                         accountId: 17bbf36498de4d68a0d4f86c7b62f69f
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: upwork
-                        platformId: upwork-website
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -1245,6 +1226,236 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-rating
       description: Get a user's ratings by ID.
+  /employments:
+    get:
+      summary: List Employments
+      tags:
+        - Employments
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmploymentListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
+                          name: Digital Marketing
+                          description: >-
+                            Gathering and reporting relevant data, maintaining
+                            specific reports and dashboards, using platforms and
+                            programs to address marketing requirements, and
+                            updating specific marketing materials.
+                          jobTitle: Digital Marketing Assistant
+                          department: Marketing
+                          employeeNumber: EMP-123456
+                          employer: ABC Corporation
+                          startDate: 2016-02-24
+                          endDate: 2019-08-24
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: abccorp
+                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
+                          name: Executive Assistant
+                          description: >-
+                            Contribute to the efficiency of the business by
+                            providing personalized and timely support to
+                            executive members particularly the CEO.
+                            Responsibilities include managing calendars, making
+                            travel arrangements and preparing expense reports.
+                          jobTitle: EA to the CEO
+                          department: Administation
+                          employeeNumber: CDE-98765
+                          employer: CDE Corporation
+                          startDate: 2015-06-14
+                          endDate: 2016-01-30
+                          metadata:
+                            createdAt: 2021-04-14T09:30:24Z
+                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: abccorp
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-employments
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/accountId'
+        - schema:
+            type: string
+            format: date
+          in: query
+          description: Filter by employment date, start of date range (YYYY-MM-DD)
+          name: startDate
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter by employment date, end of date range (YYYY-MM-DD)
+      description: Get the user's previous employments.
+    parameters: []
+  /employments/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Employment
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmploymentGetResponse'
+              examples:
+                Example:
+                  value:
+                    id: 17bbf36498de4d68a0d4f86c7b62f69f
+                    name: Digital Marketing
+                    description: >-
+                      Gathering and reporting relevant data, maintaining
+                      specific reports and dashboards, using platforms and
+                      programs to address marketing requirements, and updating
+                      specific marketing materials.
+                    jobTitle: Digital Marketing Assistant
+                    department: Marketing
+                    employeeNumber: EMP-123456
+                    employer: ABC Corporation
+                    startDate: 2016-02-24
+                    endDate: 2019-08-24
+                    metadata:
+                      createdAt: 2021-04-14T09:30:24Z
+                      accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+                      userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                      providerId: abccorp
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-employment
+      tags:
+        - Employments
+      description: Get a user's employment by ID.
+  /documents:
+    get:
+      summary: List Documents
+      tags:
+        - Documents
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListResponse'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-documents
+      description: Get the user's documents from provider accounts.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/accountId'
+  /documents/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Document
+      tags:
+        - Documents
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentGetResponse'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-document
+      description: Get a user's document by ID.
 components:
   schemas:
     Provider:
@@ -1270,7 +1481,8 @@ components:
           enabled: true
           mfa: true
           supported:
-            - IDENTITY
+            - IDENTITIES
+            - TRANSACTIONS
       properties:
         id:
           type: string
@@ -1341,13 +1553,13 @@ components:
           type: array
           items:
             type: string
+            example: IDENTITIES
             enum:
-              - IDENTITY
-              - JOB
-              - INCOME
-              - DOCUMENT
-              - TRANSACTION
-            example: IDENTITY
+              - IDENTITIES
+              - TRANSACTIONS
+              - RATINGS
+              - EMPLOYMENTS
+              - DOCUMENTS
       required:
         - id
         - name
@@ -1544,8 +1756,13 @@ components:
           id: 17bbf36498de4d68a0d4f86c7b62f69f
           createdAt: 2021-04-14T09:30:24Z
           providerId: grab
-          connectionStatus: CONNECTED
           userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+          connectionStatus: ERROR
+          connection:
+            status: ERROR
+            errorCode: ACCOUNT_DISABLED
+            errorMessage: Account is disabled
+            updatedAt: 2021-04-14T09:30:24Z
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -1555,6 +1772,10 @@ components:
           type: string
           example: grab
           description: ID of the data provider.
+        userId:
+          type: string
+          description: User ID associated with this account
+          example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
         connectionStatus:
           type: string
           enum:
@@ -1564,15 +1785,56 @@ components:
             - CONNECTED
             - DISCONNECTED
           description: Account connection status.
-          example: CONNECTED
-        userId:
-          type: string
-          description: User ID associated with this account
+          example: ERROR
+          deprecated: true
+        connection:
+          type: object
+          properties:
+            status:
+              type: string
+              enum:
+                - PENDING
+                - AWAITING_MFA
+                - ERROR
+                - CONNECTED
+                - DISCONNECTED
+              description: Account connection status.
+              example: ERROR
+            errorCode:
+              type: string
+              enum:
+                - ACCOUNT_DISABLED
+                - ACCOUNT_INACCESSIBLE
+                - ACCOUNT_INCOMPLETE
+                - AUTH_REQUIRED
+                - EXPIRED_CREDENTIALS
+                - INVALID_ACCOUNT_TYPE
+                - INVALID_AUTH
+                - INVALID_CREDENTIALS
+                - INVALID_MFA
+                - MFA_TIMEOUT
+                - SERVICE_UNAVAILABLE
+                - SYSTEM_ERROR
+                - TOS_REQUIRED
+                - UNSUPPORTED_AUTH_TYPE
+                - UNSUPPORTED_MFA_METHOD
+                - null
+              description: Error code
+              example: ACCOUNT_DISABLED
+              nullable: true
+            errorMessage:
+              type: string
+              description: Error message
+              example: Account is disabled
+              nullable: true
+            updatedAt:
+              $ref: '#/components/schemas/Ref-DateTime'
+          required:
+            - status
       required:
         - id
         - createdAt
         - providerId
-        - connectionStatus
         - userId
     AccountGetResponse:
       title: Account Get Response
@@ -1655,7 +1917,6 @@ components:
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
-            platformId: upwork-website
       x-tags:
         - Identities
       properties:
@@ -1669,14 +1930,17 @@ components:
           type: string
           example: George
           description: First name
+          nullable: true
         middleName:
           type: string
           example: Cimafranca
           description: Middle name
+          nullable: true
         lastName:
           type: string
           example: Palomero
           description: Last name
+          nullable: true
         suffix:
           type: string
           example: Jr
@@ -1690,10 +1954,12 @@ components:
             - Non-binary
           example: Male
           description: Gender
+          nullable: true
         dob:
           type: string
           format: date
           description: Date of birth
+          nullable: true
         maritalStatus:
           type: string
           enum:
@@ -1705,6 +1971,7 @@ components:
             - Lifetime Partner
           example: Married
           description: Marital status
+          nullable: true
         countryResidence:
           $ref: '#/components/schemas/Ref-Country'
         citizenship:
@@ -1716,21 +1983,25 @@ components:
             - Undocumented
             - Others
           description: Citizenship
+          nullable: true
         photoUrl:
           type: string
           example: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
           description: URL to photo or avatar
+          nullable: true
         referenceId:
           type: string
           description: Reference profile ID from the data provider
           example: ~02c0bf6ae6a581ee2b
+          nullable: true
         profileUrl:
           type: string
           description: Public profile URL
           example: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
+          nullable: true
         emails:
           type: array
-          description: A collection of email addresses.
+          description: A collection of email addresses
           items:
             type: object
             title: email
@@ -1740,6 +2011,7 @@ components:
                 format: email
                 example: gpalomero@yahoo.com
                 description: Email address
+                nullable: true
               type:
                 $ref: '#/components/schemas/Ref-Contact-Type'
             required:
@@ -1767,7 +2039,8 @@ components:
               socialUrl:
                 type: string
                 example: https://www.facebook.com/gpalomero
-                description: URL to social media page.
+                description: URL to social media page
+                nullable: true
               type:
                 type: string
                 enum:
@@ -1777,6 +2050,7 @@ components:
                   - Others
                 example: Facebook
                 description: Social media type
+                nullable: true
             required:
               - type
         addresses:
@@ -1833,46 +2107,21 @@ components:
         - Transactions
       x-examples:
         Example:
-          id: 17bbf36498de4d68a0d4f86c7b62f69f
-          fullName: George Cimafranca Palomero, Jr
-          firstName: George
-          middleName: Cimafranca
-          lastName: Palomero
-          suffix: Jr
-          gender: Male
-          dob: 1970-08-24
-          maritalStatus: Married
-          countryResidence: PH
-          citizenship: Citizen
-          photoUrl: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
-          referenceId: null
-          profileUrl: null
-          emails:
-            - address: gpalomero1234@yahoo.com
-              type: Primary
-          phones:
-            - number: '+639559991234'
-              type: Mobile
-          socialProfiles:
-            - socialUrl: https://www.facebook.com/gpalomero
-              type: Facebook
-          addresses:
-            - fullAddress: 12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH
-              line1: 12 Maybunga St
-              line2: Barangay Paraiso
-              city: Pasig City
-              region: NCR
-              zip: '1600'
-              country: PH
-              latitude: '14.573454'
-              longitude: '121.085042'
-              type: Primary
-          metadata:
-            createdAt: 2021-04-14T09:30:24Z
-            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
-            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: upwork
-            platformId: upwork-website
+          code: OK
+          message: Success
+          requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+          data:
+            id: t-17bbf36498de4d68a0d4f86c7b62f69f
+            date: 2021-04-21
+            description: Payment for web design project
+            currency: PHP
+            amount: 10000
+            referenceId: string
+            metadata:
+              createdAt: 2021-04-21T09:30:24Z
+              accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+              userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+              providerId: upwork
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -1885,6 +2134,7 @@ components:
           type: string
           description: Description of the transaction
           example: Payment for web design project
+          nullable: true
         currency:
           $ref: '#/components/schemas/Ref-Currency'
         amount:
@@ -1893,6 +2143,7 @@ components:
         referenceId:
           type: string
           description: Reference transaction ID from data provider
+          nullable: true
         metadata:
           $ref: '#/components/schemas/Object-AccountsMetadata'
       required:
@@ -1936,11 +2187,13 @@ components:
                 $ref: '#/components/schemas/Transaction'
       x-internal: true
       x-examples: {}
-    Job:
-      title: Job
+    Employment:
+      title: Employment
       type: object
-      x-internal: true
-      description: The stored job information of the user from an employment data provider.
+      x-internal: false
+      description: >-
+        The stored employment information of the user from an employment data
+        provider.
       x-examples:
         Example:
           id: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -1959,46 +2212,62 @@ components:
             createdAt: 2021-04-14T09:30:24Z
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: upwork
-            platformId: upwork-website
+            providerId: abccorp
+      x-tags:
+        - Employments
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
         name:
           type: string
           description: Work performed
+          example: Digital Marketing
+          nullable: true
         description:
           type: string
           description: Description of work performed
+          example: >-
+            Gathering and reporting relevant data, maintaining specific reports
+            and dashboards, using platforms and programs to address marketing
+            requirements, and updating specific marketing materials.
+          nullable: true
         jobTitle:
           type: string
           description: Job title
+          example: Digital Marketing Assistant
+          nullable: true
         department:
           type: string
           description: Department or organization in place of employment
+          example: Marketing
+          nullable: true
         employeeNumber:
-          description: Employee number in the employment data provider
           type: string
+          description: Employee number in the employment data provider
+          example: EMP-123456
+          nullable: true
         employer:
           $ref: '#/components/schemas/Ref-Employer'
         startDate:
           type: string
           description: Start date
           format: date
+          example: 2016-02-24
         endDate:
           type: string
           description: End date
           format: date
+          example: 2019-08-24
+          nullable: true
         metadata:
           $ref: '#/components/schemas/Object-AccountsMetadata'
       required:
         - id
-        - name
         - employer
         - startDate
         - metadata
-    JobGetResponse:
-      title: Job Get Response
+    EmploymentGetResponse:
+      title: Employment Get Response
       type: object
       x-internal: true
       properties:
@@ -2009,9 +2278,9 @@ components:
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
         data:
-          $ref: '#/components/schemas/Job'
-    JobListResponse:
-      title: Job List Response
+          $ref: '#/components/schemas/Employment'
+    EmploymentListResponse:
+      title: Employment List Response
       type: object
       x-internal: true
       properties:
@@ -2029,7 +2298,7 @@ components:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Job'
+                $ref: '#/components/schemas/Employment'
     Rating:
       title: Rating
       type: object
@@ -2051,7 +2320,8 @@ components:
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
-            platformId: upwork-website
+      x-tags:
+        - Ratings
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -2059,37 +2329,41 @@ components:
           type: number
           description: Current rating
           example: 90
+          nullable: true
         maxRating:
           type: number
           description: Maximum possible rating
           example: 100
+          nullable: true
         calculatedPercentage:
           type: number
           description: >-
             Current rating expressed as percentage, calculated by
             currentRating/maxRating x 100
           example: 90
+          nullable: true
         reviewsReceived:
           type: number
           description: >-
             Number of reviews the employee received, which is the basis for the
             current rating
           example: 12
+          nullable: true
         likesReceived:
           type: number
           description: Recommendations or kudos received
           example: 8
+          nullable: true
         jobsCompleted:
           type: number
           description: Jobs actually completed in the employment platform
           example: 12
+          nullable: true
         metadata:
           $ref: '#/components/schemas/Object-AccountsMetadata'
       required:
         - id
         - metadata
-      x-tags:
-        - Ratings
     RatingGetResponse:
       title: Rating Get Response
       type: object
@@ -2126,37 +2400,10 @@ components:
     Document:
       title: Document
       type: object
-      x-internal: true
+      x-internal: false
       description: >-
         The stored document-related information of the user from an employment
         data provider.
-      properties:
-        id:
-          $ref: '#/components/schemas/Ref-Object-ID'
-        name:
-          type: string
-          description: Document name
-        docId:
-          type: string
-          description: Document number
-        issueDate:
-          type: string
-          description: Issue date
-          format: date
-        expiryDate:
-          type: string
-          description: Expiry date
-          format: date
-        fileUrl:
-          type: string
-          description: Publicly available URL reference for the document
-          format: uri
-        metadata:
-          $ref: '#/components/schemas/Object-AccountsMetadata'
-      required:
-        - id
-        - name
-        - metadata
       x-examples:
         Example:
           id: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -2171,7 +2418,44 @@ components:
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
-            platformId: upwork-website
+      x-tags:
+        - Documents
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        name:
+          type: string
+          description: Document name
+          example: Facebook Social Media Marketing Professional Certificate
+        docId:
+          type: string
+          description: Document number
+          example: ABCD123456
+          nullable: true
+        issueDate:
+          type: string
+          description: Issue date
+          format: date
+          example: 2007-08-24
+          nullable: true
+        expiryDate:
+          type: string
+          description: Expiry date
+          format: date
+          example: 2010-08-24
+          nullable: true
+        fileUrl:
+          type: string
+          description: Publicly available URL reference for the document
+          example: >-
+            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+          nullable: true
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - name
+        - metadata
     DocumentGetResponse:
       title: Document Get Response
       type: object
@@ -2212,24 +2496,6 @@ components:
         The stored asset-related information of the user from an employment data
         provider.
       x-internal: true
-      properties:
-        id:
-          $ref: '#/components/schemas/Ref-Object-ID'
-        name:
-          type: string
-          description: Asset name
-        description:
-          type: string
-          description: Asset description
-        assetId:
-          type: string
-          description: Asset Identifier
-        metadata:
-          $ref: '#/components/schemas/Object-AccountsMetadata'
-      required:
-        - id
-        - name
-        - metadata
       x-examples:
         Example:
           id: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -2244,7 +2510,27 @@ components:
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: grab
-            platformId: grab-app
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        name:
+          type: string
+          description: Asset name
+          nullable: true
+        description:
+          type: string
+          description: Asset description
+          nullable: true
+        assetId:
+          type: string
+          description: Asset Identifier
+          nullable: true
+        metadata:
+          $ref: '#/components/schemas/Object-AccountsMetadata'
+      required:
+        - id
+        - name
+        - metadata
     AssetGetResponse:
       title: Asset Get Response
       type: object
@@ -2299,7 +2585,6 @@ components:
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
-            platformId: upwork-website
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -2309,9 +2594,11 @@ components:
         degree:
           type: string
           description: Degree (eg Bachelors, Masters, Doctorate)
+          nullable: true
         field:
           type: string
           description: Field of study (eg Business, Engineering, Medicine)
+          nullable: true
         startDate:
           type: string
           format: date
@@ -2320,6 +2607,7 @@ components:
           type: string
           description: End date
           format: date
+          nullable: true
         metadata:
           $ref: '#/components/schemas/Object-AccountsMetadata'
       required:
@@ -2390,7 +2678,6 @@ components:
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: user-provided
-            platformId: zohopeople
       x-internal: true
       properties:
         id:
@@ -2398,6 +2685,7 @@ components:
         workItem:
           type: string
           description: Work performed (specially in the case of contract or freelance jobs)
+          nullable: true
         employer:
           $ref: '#/components/schemas/Ref-Employer'
         payDate:
@@ -2415,6 +2703,7 @@ components:
             - Bank
             - Ewallet
             - Crypto
+          nullable: true
         grossPay:
           type: object
           properties:
@@ -2424,18 +2713,22 @@ components:
               type: number
               description: Base amount
               example: 70000
+              nullable: true
             bonus:
               type: number
               description: Bonus amount
               example: 20000
+              nullable: true
             allowance:
               type: number
               description: Allowance amount
               example: 10000
+              nullable: true
             grossAmount:
               type: number
               description: Gross amount (base + bonus + allowance)
               example: 100000
+              nullable: true
         netPay:
           type: object
           properties:
@@ -2444,15 +2737,19 @@ components:
             tax:
               type: number
               example: -30000
+              nullable: true
             deduction:
               type: number
               example: -10000
+              nullable: true
             adjustment:
               type: number
               example: -10000
+              nullable: true
             netAmount:
               type: number
               example: 50000
+              nullable: true
         metadata:
           $ref: '#/components/schemas/Object-AccountsMetadata'
       required:
@@ -2591,8 +2888,7 @@ components:
             createdAt: 2021-04-14T09:30:24Z
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: jollibee
-            platformId: smile-scanner
+            providerId: user-provided
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -2718,6 +3014,7 @@ components:
       x-internal: true
     Ref-Country:
       type: string
+      nullable: true
       title: Country ISO Codes
       enum:
         - AF
@@ -2973,22 +3270,26 @@ components:
         - YE
         - ZM
         - ZW
+        - null
       description: 2 character alpha ISO-3166 codes
       example: PH
       x-internal: true
     Ref-Contact-Type:
       type: string
+      nullable: true
       title: Contact Types
       enum:
         - Primary
         - Secondary
         - Work
         - Personal
+        - null
       description: Primary contact, with secondary marked as either 'Work' or 'Personal'
       example: Primary
       x-internal: true
     Ref-Phone-Number:
       type: string
+      nullable: true
       title: International Phone Number
       pattern: ^\+[1-9]\d{1,14}$
       description: Phone numbers in international E.164 format
@@ -2996,12 +3297,14 @@ components:
       example: '+639175551234'
     Ref-Phone-Type:
       type: string
+      nullable: true
       title: Ref-Phone-Type
       example: Mobile
       enum:
         - Mobile
         - Fixed
         - Unspecified
+        - null
       description: Phone type
       x-internal: true
     Ref-Address:
@@ -3012,39 +3315,49 @@ components:
       properties:
         fullAddress:
           type: string
+          nullable: true
           description: Full address
         line1:
           type: string
+          nullable: true
           description: Line 1 of street address
         line2:
           type: string
+          nullable: true
           description: Line 2 of street address
         city:
           type: string
+          nullable: true
           description: City
         region:
           type: string
+          nullable: true
           description: Geographic region such as state or province
         zip:
           type: string
+          nullable: true
           description: Post code
         country:
           $ref: '#/components/schemas/Ref-Country'
         latitude:
           type: string
+          nullable: true
           pattern: >-
             ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
           description: Latitude coordinates
         longitude:
           type: string
+          nullable: true
           pattern: >-
             ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
           description: Longitude coordinates
         type:
           type: string
+          nullable: true
           enum:
             - Primary
             - Secondary
+            - null
           description: Whether address is primary or secondary
       required:
         - type
@@ -3065,16 +3378,11 @@ components:
         providerId:
           type: string
           description: The provider ID associated with this object
-          nullable: true
-        platformId:
-          type: string
-          description: The platform ID associated with this object
       required:
         - createdAt
         - accountId
         - userId
         - providerId
-        - platformId
     Ref-Currency:
       type: string
       title: Currency ISO Codes
@@ -3242,12 +3550,14 @@ components:
       example: PHP
     Ref-Employer:
       type: string
+      nullable: true
       title: Object Employer
       x-internal: true
       description: Employer name
       example: ABC Corporation
     Ref-Pay-Period:
       type: string
+      nullable: true
       title: Pay Period
       description: Pay period
       enum:
@@ -3261,6 +3571,7 @@ components:
         - Annually
         - Fixed
         - Cumulative
+        - null
       example: Monthly
       x-internal: true
   responses:
@@ -3335,6 +3646,8 @@ security:
   - basicAuth: []
 tags:
   - name: Accounts
+  - name: Documents
+  - name: Employments
   - name: Identities
   - name: Providers
   - name: Ratings
