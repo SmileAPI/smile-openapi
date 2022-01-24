@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 1.3.1
+  version: 1.4.0
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
@@ -938,72 +938,25 @@ paths:
                     data:
                       nextCursor: '1259723474'
                       items:
-                        - id: upload-17bbf36498de4d68a0d4f86c7b62f69f
+                        - id: u-17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: 2021-04-14T09:30:24Z
+                          providerId: user-provided
+                          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                          type: SOCIAL_SECURITY
+                          state:
+                            status: STARTED
+                            errorCode: null
+                            errorMessage: null
+                            updatedAt: 2021-04-14T09:30:24Z
                           rawFiles:
-                            - SOCIAL_SECURITY:
-                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                                  name: SSS.jpeg
-                                  format: JPEG
-                                  size: 512
-                                  url: >-
-                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                                  name: SSS2.jpeg
-                                  format: JPEG
-                                  size: 512
-                                  url: >-
-                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                            - PAYSLIP:
-                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                                  name: Payslip.jpeg
-                                  format: JPEG
-                                  size: 512
-                                  url: >-
-                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                                  name: Payslip2.jpeg
-                                  format: JPEG
-                                  size: 512
-                                  url: >-
-                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                          metadata:
-                            createdAt: 2021-04-14T09:30:24Z
-                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
-                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-                            providerId: user-provided
-                        - id: upload-17bbf36498de4d68a0d4f86c7b62f69f
-                          rawFiles:
-                            - SOCIAL_SECURITY:
-                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                                  name: SSS.jpeg
-                                  format: JPEG
-                                  size: 512
-                                  url: >-
-                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                                  name: SSS2.jpeg
-                                  format: JPEG
-                                  size: 512
-                                  url: >-
-                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                            - PAYSLIP:
-                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                                  name: Payslip.jpeg
-                                  format: JPEG
-                                  size: 512
-                                  url: >-
-                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                                - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                                  name: Payslip2.jpeg
-                                  format: JPEG
-                                  size: 512
-                                  url: >-
-                                    https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                          metadata:
-                            createdAt: 2021-04-14T09:30:24Z
-                            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
-                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-                            providerId: user-provided
+                            - id: f-17bbf36498de4d68a0d4f86c7b62f69f
+                              createdAt: 2021-04-14T09:30:24Z
+                              name: Screen Shot 2021-04-14 at 5.30.24 PM
+                              subType: PERSONAL_INFORMATION
+                              size: 3048
+                              format: PNG
+                              url: >-
+                                https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -1030,7 +983,6 @@ paths:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
         - $ref: '#/components/parameters/userId'
-        - $ref: '#/components/parameters/accountId'
         - schema:
             type: string
             format: date
@@ -1066,35 +1018,25 @@ paths:
                     message: Success
                     requestId: 5b79399a-6852-4234-bb0e-ad472648282d
                     data:
-                      id: upload-17bbf36498de4d68a0d4f86c7b62f69f
+                      id: u-17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: 2021-04-14T09:30:24Z
+                      providerId: user-provided
+                      userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                      type: SOCIAL_SECURITY
+                      state:
+                        status: STARTED
+                        errorCode: null
+                        errorMessage: null
+                        updatedAt: 2021-04-14T09:30:24Z
                       rawFiles:
-                        - SOCIAL_SECURITY:
-                            - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                              name: SSS.jpeg
-                              format: JPEG
-                              url: >-
-                                https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                            - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                              name: SSS2.jpeg
-                              format: JPEG
-                              url: >-
-                                https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                        - PAYSLIP:
-                            - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                              name: Payslip.jpeg
-                              format: JPEG
-                              url: >-
-                                https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                            - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                              name: Payslip2.jpeg
-                              format: JPEG
-                              url: >-
-                                https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                      metadata:
-                        createdAt: 2021-04-14T09:30:24Z
-                        accountId: 17bbf36498de4d68a0d4f86c7b62f69f
-                        userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-                        providerId: user-provided
+                        - id: f-17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: 2021-04-14T09:30:24Z
+                          name: Screen Shot 2021-04-14 at 5.30.24 PM
+                          subType: PERSONAL_INFORMATION
+                          size: 3048
+                          format: PNG
+                          url: >-
+                            https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
       operationId: get-upload
       description: Get a user's upload by ID.
       tags:
@@ -1524,8 +1466,8 @@ components:
             - SHARING
             - TRADING
             - PAYROLL
-            - HR
-            - UPLOADS
+            - HRIS
+            - EMPLOYER
         subTypeLabel:
           type: string
           description: Subtype label of employment data provider, like "Services".
@@ -1536,8 +1478,8 @@ components:
             - Asset Sharing
             - Online Selling
             - Payroll
-            - Human Resources
-            - Uploaded Documents
+            - HRIS
+            - Employer
         active:
           type: boolean
           description: Indicates whether data provider integration is working.
@@ -1789,6 +1731,9 @@ components:
           deprecated: true
         connection:
           type: object
+          required:
+            - status
+            - updatedAt
           properties:
             status:
               type: string
@@ -1829,13 +1774,12 @@ components:
               nullable: true
             updatedAt:
               $ref: '#/components/schemas/Ref-DateTime'
-          required:
-            - status
       required:
         - id
         - createdAt
         - providerId
         - userId
+        - connection
     AccountGetResponse:
       title: Account Get Response
       properties:
@@ -2795,34 +2739,21 @@ components:
       description: >-
         Scanned or photographed document or form uploaded by the user to be able
         to share hardcopy employment and income information
-      x-examples:
-        Example:
-          id: file-17bbf36498de4d68a0d4f86c7b62f69f
-          name: Screen Shot 2021-04-14 at 5.30.24 PM
-          type: SOCIAL_SECURITY
-          createdAt: 2021-04-14T09:30:24Z
-          size: 3048
-          format: PDF
-          url: string
+      x-examples: {}
       x-internal: true
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
         name:
           type: string
           example: Screen Shot 2021-04-14 at 5.30.24 PM
           description: File name
-        type:
+        subType:
           type: string
-          example: SOCIAL_SECURITY
-          enum:
-            - PAYSLIP
-            - TAX_RETURN
-            - COMPANY_ID
-            - SOCIAL_SECURITY
+          example: PERSONAL_INFORMATION
           description: Type of document uploaded
-        createdAt:
-          $ref: '#/components/schemas/Ref-DateTime'
         size:
           type: integer
           description: File size in kilobytes
@@ -2838,14 +2769,13 @@ components:
           description: File type (only JPEG, PNG, PDF, or TIFF formats are supported)
         url:
           type: string
-          description: URL to access the file. URL will expire after 1 day.
+          description: URL to access the file. URL will expire after 7 days.
           example: >-
             https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
       required:
-        - name
-        - type
-        - status
         - createdAt
+        - name
+        - subType
         - size
         - format
         - url
@@ -2856,56 +2786,88 @@ components:
       x-internal: false
       x-examples:
         Example:
-          code: OK
-          message: Success
-          requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-          data:
-            id: upload-17bbf36498de4d68a0d4f86c7b62f69f
-            rawFiles:
-              - SOCIAL_SECURITY:
-                  - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                    name: SSS.jpeg
-                    format: JPEG
-                    url: >-
-                      https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                  - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                    name: SSS2.jpeg
-                    format: JPEG
-                    url: >-
-                      https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-              - PAYSLIP:
-                  - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                    name: Payslip.jpeg
-                    format: JPEG
-                    url: >-
-                      https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-                  - id: file-17bbf36498de4d68a0d4f86c7b62f69f
-                    name: Payslip2.jpeg
-                    format: JPEG
-                    url: >-
-                      https://file.smileapi.io/tenants/smileapi/users/17bbf36498de4d68a0d4f86c7b62f69f/files/17bbf36498de4d68a0d4f86c7b62f69f.jpeg
-          metadata:
-            createdAt: 2021-04-14T09:30:24Z
-            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
-            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: user-provided
+          id: u-17bbf36498de4d68a0d4f86c7b62f69f
+          createdAt: 2021-04-14T09:30:24Z
+          providerId: user-provided
+          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+          type: PAYSLIP
+          state:
+            status: STARTED
+            errorCode: null
+            errorMessage: null
+            updatedAt: 2021-04-14T09:30:24Z
+          rawFiles:
+            - id: f-17bbf36498de4d68a0d4f86c7b62f69f
+              createdAt: 2021-04-14T09:30:24Z
+              name: Screen Shot 2021-04-14 at 5.30.24 PM
+              subType: PERSONAL_INFORMATION
+              size: 3048
+              format: PNG
+              url: >-
+                https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+      x-tags:
+        - Uploads
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        providerId:
+          type: string
+          example: user-provided
+          description: ID of the data provider.
+        userId:
+          type: string
+          description: User ID associated with this account
+          example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+        type:
+          type: string
+          example: SOCIAL_SECURITY
+          enum:
+            - PAYSLIP
+            - TAX_DOCUMENT
+            - COMPANY_ID
+            - SOCIAL_SECURITY
+          description: Type of document uploaded
+        state:
+          type: object
+          required:
+            - status
+            - updatedAt
+          properties:
+            status:
+              type: string
+              example: STARTED
+              enum:
+                - STARTED
+                - ANALYZED
+                - UNSUPPORTED
+                - ERROR
+                - REVOKED
+              description: Upload status
+            errorCode:
+              type: string
+              description: Error code
+              nullable: true
+            errorMessage:
+              type: string
+              description: Error message
+              nullable: true
+            updatedAt:
+              $ref: '#/components/schemas/Ref-DateTime'
         rawFiles:
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/RawFile'
           description: Collection of files
-        metadata:
-          $ref: '#/components/schemas/Object-AccountsMetadata'
+          type: array
+          items:
+            $ref: '#/components/schemas/RawFile'
       required:
         - id
+        - createdAt
+        - providerId
+        - userId
+        - type
+        - state
         - rawFiles
-        - metadata
-      x-tags:
-        - Uploads
     UploadGetResponse:
       title: Upload Get Response
       type: object
