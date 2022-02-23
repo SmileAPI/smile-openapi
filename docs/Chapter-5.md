@@ -121,7 +121,7 @@ curl "https://nodejs.org/dist/latest/node-${VERSION:-$(wget -qO- https://nodejs.
 
 > In Mac or Linux, you will need to open up the Terminal. If you are using Windows, you can go to the command line. Make sure you are still in the /node directory of the Quickstart files you just downloaded onto your machine.
 
-```bash
+```
 npm install --global yarn
 yarn install
 ```
@@ -129,7 +129,7 @@ yarn install
 > You may need to run as a Super User if you don't have enough permissions. On a Mac or Linux machine, you can run the commands as a superuser by using 'sudo'. On Windows, you can run the command with an administrator trust-level, or by right-clicking the program in the UI and choosing "run as administrator."
 
 8. Run the server:
-```bash
+```
 node index.js
 ```
 

@@ -13,7 +13,7 @@ Getting user data into your application involves two things:
 ## Example Code
 Below is sample HTML code which embeds the Wink Javascript SDK:
 
-```html
+```
 <!DOCTYPE html>
 <html>
 
