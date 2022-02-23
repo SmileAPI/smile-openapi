@@ -1,7 +1,4 @@
-
-
 # API Reference
-
 
 <!-- focus: false -->
 ![Authentication](https://img.icons8.com/ios-glyphs/50/000000/key--v1.png)
