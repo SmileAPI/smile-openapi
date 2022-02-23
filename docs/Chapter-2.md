@@ -1,5 +1,4 @@
 # Getting Started
-# Adobe
  
 <!-- focus: false -->
 ![Checklist](https://img.icons8.com/ios/50/000000/checklist--v1.png)
