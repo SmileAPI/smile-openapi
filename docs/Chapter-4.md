@@ -1,5 +1,6 @@
 # Getting User Data 
 
+
 Getting user data into your application involves two things:
 
  - **Embedding a Javascript SDK for your web application client**. At the moment, Smile only provides a Javascript SDK, but native verions of the SDK for mobile applications such as iOS or Android are coming soon. The Javascript SDK launches a modal window called a "Wink" web widget where users can provide permission for Smile to access their data. Users will first find their employer or employment data provider, then submit their login credentials over a secure and encrypted connection. By using the SDK, you will not have to worry about the different authentication and verification implementations of the different employment platforms, making the integration simple for your developers, and the experience smooth for your users. 
@@ -131,7 +132,7 @@ To use the Sandbox, you can use the following example credentials:
 
 | Name | Email | Mobile Phone | Password | Verification Code |
 |---|---|---|---|---|
-| George Palomero Jr. | gpalomero1234@yahoo.com | (+63) 9559991234 | 123456 | 1234|
-| Ryan Ng | ryan1234@gmail.com |  (+63) 9559994321 | 654321 | 1234 |
-| Christina Tan | christina4321@yahoo.com |  (+63) 9559996789 | YGUS1 | 1234 |
-
+| George Palomero Jr. | gpalomero1234@smileapi.io | (+63) 9559991234 | 123456 | 1234|
+| Ryan Ng | ryan1234@smileapi.io |  (+62) 8119994321 | 654321 | 1234 |
+| Christina Tan | christina4321@smileapi.io |  (+65) 99996789 | YGUS1 | 1234 |
+| Anisha Bhatia | anisha98765@smileapi.io |  (+91) 9511198765 | 123456 | 1234 |
