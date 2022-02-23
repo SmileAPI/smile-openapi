@@ -1,6 +1,5 @@
 # Introduction
 
-
 <!-- focus: false -->
 ![Smile](https://img.icons8.com/material-outlined/50/000000/smiling.png)
 

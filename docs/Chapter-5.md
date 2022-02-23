@@ -1,6 +1,5 @@
 # Developer Resources
 
-
 We have included below some **Open Source** resources to help get you started right away using Smile API!
 
 ---
