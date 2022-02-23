@@ -1,6 +1,5 @@
 # API Reference
 
-
 <!-- focus: false -->
 ![Authentication](https://img.icons8.com/ios-glyphs/50/000000/key--v1.png)
 
@@ -69,7 +68,7 @@ All responses are encoded in JSON and return the following attributes:
 
 If the response is a single object, the value of the data attribute is that object. For example, the Get Identity endpoint will return the following, with the attribute 'data' returning a single Identity object:
 
-``` json
+```
 {
     "code": "OK",
     "message": "Success!",
@@ -137,7 +136,7 @@ If the result is related to data retrieved from a user's account, a metadata obj
 
 If the response is a list or collection, the value of the data attribute is an array of objects.  For example the List Transactions endpoint will return a collection of Transactions:
 
-``` json
+```
 {
     "code": "OK",
     "message": "Success!",
