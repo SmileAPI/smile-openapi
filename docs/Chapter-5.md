@@ -88,7 +88,7 @@ sudo touch .env
 
 5. Open up the ".env" file that you just created in your favorite editor, and enter the following:
 
-```bash
+```
 # The port you want the example server to listen to
 APP_PORT=<portnumber>
 
@@ -109,7 +109,7 @@ API_HOST=<apiURL>
 
 > For example on the Mac you can open up the Terminal and run:
 
-```bash
+```
 curl "https://nodejs.org/dist/latest/node-${VERSION:-$(wget -qO- https://nodejs.org/dist/latest/ | sed -nE 's|.*>node-(.*)\.pkg</a>.*|\1|p')}.pkg" > "$HOME/Downloads/node-latest.pkg" && sudo installer -store -pkg "$HOME/Downloads/node-latest.pkg" -target "/"
 ```
 
