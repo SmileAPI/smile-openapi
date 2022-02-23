@@ -73,7 +73,7 @@ git clone https://github.com/SmileAPI/quickstart
 
 > For example, in Mac or Linux machines open up the Terminal, you can use vi and enter the following commands as a Super User:
 
-```bash
+```
 sudo touch .env
 ```
 
