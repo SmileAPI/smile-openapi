@@ -1,4 +1,3 @@
-
 # Getting User Data 
 
 Getting user data into your application involves two things:
