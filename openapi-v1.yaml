@@ -5,13 +5,13 @@ info:
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
-    url: https://www.getsmileapi.com
+    url: 'https://www.getsmileapi.com'
     email: info@getsmileapi.com
-  termsOfService: https://www.getsmileapi.com/terms-and-conditions
+  termsOfService: 'https://www.getsmileapi.com/terms-and-conditions'
 servers:
-  - url: https://sandbox.smileapi.io/v1
+  - url: 'https://sandbox.smileapi.io/v1'
     description: Sandbox
-  - url: https://open.smileapi.io/v1
+  - url: 'https://open.smileapi.io/v1'
     description: Production
 paths:
   /providers:
@@ -38,8 +38,7 @@ paths:
                         - id: upwork
                           name: Upwork
                           longName: Upwork Global Inc.
-                          logoUrl: >-
-                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
+                          logoUrl: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png'
                           type: GIG
                           typeLabel: Gig Platform
                           subType: SERVICES
@@ -52,8 +51,7 @@ paths:
                         - id: freelancer
                           name: Freelancer
                           longName: Freelancer Technology Pty Limited
-                          logoUrl: >-
-                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/freelancer.png
+                          logoUrl: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/freelancer.png'
                           type: GIG
                           typeLabel: Gig Platform
                           subType: SERVICES
@@ -66,8 +64,7 @@ paths:
                         - id: grab
                           name: Grab
                           longName: Grab Holdings Inc
-                          logoUrl: >-
-                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/freelancer.png
+                          logoUrl: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/freelancer.png'
                           type: GIG
                           typeLabel: Gig Platform
                           subType: TRANSPORTATION
@@ -123,7 +120,7 @@ paths:
           name: enabled
           description: Filter results to enabled or disabled providers.
     parameters: []
-  /providers/{id}:
+  '/providers/{id}':
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -147,8 +144,7 @@ paths:
                       id: upwork
                       name: Upwork
                       longName: Upwork Global Inc.
-                      logoUrl: >-
-                        https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
+                      logoUrl: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png'
                       type: GIG
                       typeLabel: Gig Platform
                       subType: SERVICES
@@ -299,7 +295,7 @@ paths:
       description: Create a user in the Smile Network.
       tags:
         - Users
-  /users/{id}:
+  '/users/{id}':
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -479,7 +475,7 @@ paths:
         - $ref: '#/components/parameters/cursor'
         - $ref: '#/components/parameters/userId'
     parameters: []
-  /accounts/{id}:
+  '/accounts/{id}':
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -555,7 +551,7 @@ paths:
                       nextCursor: '1259723474'
                       items:
                         - id: i-17bbf36498de4d68a0d4f86c7b62f69f
-                          fullName: George Cimafranca Palomero, Jr
+                          fullName: 'George Cimafranca Palomero, Jr'
                           firstName: George
                           middleName: Cimafranca
                           lastName: Palomero
@@ -565,10 +561,9 @@ paths:
                           maritalStatus: Married
                           countryResidence: PH
                           citizenship: Citizen
-                          photoUrl: >-
-                            https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
+                          photoUrl: 'https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg'
                           referenceId: george
-                          profileUrl: https://upwork.com/profiles/george.jpg
+                          profileUrl: 'https://upwork.com/profiles/george.jpg'
                           emails:
                             - address: gpalomero1234@yahoo.com
                               type: Primary
@@ -576,12 +571,10 @@ paths:
                             - number: '+639175551234'
                               type: Mobile
                           socialProfiles:
-                            - socialUrl: https://www.facebook.com/gpalomero
+                            - socialUrl: 'https://www.facebook.com/gpalomero'
                               type: Facebook
                           addresses:
-                            - fullAddress: >-
-                                12 Maybunga St, Barangay Paraiso, Pasig City,
-                                NCR, 1600, PH
+                            - fullAddress: '12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH'
                               line1: 12 Maybunga St
                               line2: Barangay Paraiso
                               city: Pasig City
@@ -608,11 +601,9 @@ paths:
                           maritalStatus: Single
                           countryResidence: null
                           citizenship: Citizen
-                          photoUrl: >-
-                            https://cdn.smileapi.io/image/avatar/v20211115191600/ryan.jpg
+                          photoUrl: 'https://cdn.smileapi.io/image/avatar/v20211115191600/ryan.jpg'
                           referenceId: ~02c0bf6ae6a581ee2b
-                          profileUrl: >-
-                            https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
+                          profileUrl: 'https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b'
                           emails:
                             - address: ryan1234@gmail.com
                               type: Primary
@@ -622,12 +613,12 @@ paths:
                             - number: '+63289053000'
                               type: Fixed
                           socialProfiles:
-                            - socialUrl: https://www.facebook.com/ryanpetersonng
+                            - socialUrl: 'https://www.facebook.com/ryanpetersonng'
                               type: Facebook
-                            - socialUrl: https://www.twitter.com/xklxyz
+                            - socialUrl: 'https://www.twitter.com/xklxyz'
                               type: Twitter
                           addresses:
-                            - fullAddress: 24 Eagle St, Binondo, Manila, NCR, 1008, PH
+                            - fullAddress: '24 Eagle St, Binondo, Manila, NCR, 1008, PH'
                               line1: 24 Eagle St
                               line2: Binondo
                               city: Manila
@@ -654,8 +645,7 @@ paths:
                           maritalStatus: Single
                           countryResidence: null
                           citizenship: Citizen
-                          photoUrl: >-
-                            https://cdn.smileapi.io/image/avatar/v20211115191600/christina.jpg
+                          photoUrl: 'https://cdn.smileapi.io/image/avatar/v20211115191600/christina.jpg'
                           referenceId: null
                           profileUrl: null
                           emails:
@@ -712,7 +702,7 @@ paths:
         - $ref: '#/components/parameters/userId'
         - $ref: '#/components/parameters/accountId'
     parameters: []
-  /identities/{id}:
+  '/identities/{id}':
     get:
       summary: Get Identity
       responses:
@@ -730,7 +720,7 @@ paths:
                     requestId: 5b79399a-6852-4234-bb0e-ad472648282d
                     data:
                       id: i-17bbf36498de4d68a0d4f86c7b62f69f
-                      fullName: George Cimafranca Palomero, Jr
+                      fullName: 'George Cimafranca Palomero, Jr'
                       firstName: George
                       middleName: Cimafranca
                       lastName: Palomero
@@ -740,10 +730,9 @@ paths:
                       maritalStatus: Married
                       countryResidence: PH
                       citizenship: Citizen
-                      photoUrl: >-
-                        https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
+                      photoUrl: 'https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg'
                       referenceId: george
-                      profileUrl: https://upwork.com/profiles/george.jpg
+                      profileUrl: 'https://upwork.com/profiles/george.jpg'
                       emails:
                         - address: gpalomero1234@yahoo.com
                           type: Primary
@@ -751,12 +740,10 @@ paths:
                         - number: '+639175551234'
                           type: Mobile
                       socialProfiles:
-                        - socialUrl: https://www.facebook.com/gpalomero
+                        - socialUrl: 'https://www.facebook.com/gpalomero'
                           type: Facebook
                       addresses:
-                        - fullAddress: >-
-                            12 Maybunga St, Barangay Paraiso, Pasig City, NCR,
-                            1600, PH
+                        - fullAddress: '12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH'
                           line1: 12 Maybunga St
                           line2: Barangay Paraiso
                           city: Pasig City
@@ -889,15 +876,15 @@ paths:
             example: '2021-04-01'
           in: query
           name: startDate
-          description: Filter by transaction date, start of date range (YYYY-MM-DD)
+          description: 'Filter by transaction date, start of date range (YYYY-MM-DD)'
         - schema:
             type: string
             format: date
             example: '2021-04-21'
           in: query
           name: endDate
-          description: Filter by transaction date, end of date range (YYYY-MM-DD)
-  /transactions/{id}:
+          description: 'Filter by transaction date, end of date range (YYYY-MM-DD)'
+  '/transactions/{id}':
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -968,8 +955,7 @@ paths:
                               subType: PERSONAL_INFORMATION
                               size: 3048
                               format: PNG
-                              url: >-
-                                https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                              url: 'https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg'
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -1002,17 +988,17 @@ paths:
             example: '2021-04-01'
           in: query
           name: startDate
-          description: Filter by upload date, start of date range (YYYY-MM-DD)
+          description: 'Filter by upload date, start of date range (YYYY-MM-DD)'
         - schema:
             type: string
             format: date
             example: '2021-04-21'
           in: query
           name: endDate
-          description: Filter by upload date, end of date range (YYYY-MM-DD)
+          description: 'Filter by upload date, end of date range (YYYY-MM-DD)'
       tags:
         - Uploads
-  /uploads/{id}:
+  '/uploads/{id}':
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -1048,8 +1034,7 @@ paths:
                           subType: PERSONAL_INFORMATION
                           size: 3048
                           format: PNG
-                          url: >-
-                            https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                          url: 'https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg'
       operationId: get-upload
       description: Get a user's upload by ID.
       tags:
@@ -1115,7 +1100,7 @@ paths:
         - $ref: '#/components/parameters/cursor'
         - $ref: '#/components/parameters/userId'
         - $ref: '#/components/parameters/accountId'
-  /ratings/{id}:
+  '/ratings/{id}':
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -1194,11 +1179,7 @@ paths:
                       items:
                         - id: e-17bbf36498de4d68a0d4f86c7b62f69f
                           name: Digital Marketing
-                          description: >-
-                            Gathering and reporting relevant data, maintaining
-                            specific reports and dashboards, using platforms and
-                            programs to address marketing requirements, and
-                            updating specific marketing materials.
+                          description: 'Gathering and reporting relevant data, maintaining specific reports and dashboards, using platforms and programs to address marketing requirements, and updating specific marketing materials.'
                           jobTitle: Digital Marketing Assistant
                           department: Marketing
                           employeeNumber: EMP-123456
@@ -1213,12 +1194,7 @@ paths:
                             providerId: abccorp
                         - id: 17bbf36498de4d68a0d4f86c7b62f69f
                           name: Executive Assistant
-                          description: >-
-                            Contribute to the efficiency of the business by
-                            providing personalized and timely support to
-                            executive members particularly the CEO.
-                            Responsibilities include managing calendars, making
-                            travel arrangements and preparing expense reports.
+                          description: 'Contribute to the efficiency of the business by providing personalized and timely support to executive members particularly the CEO. Responsibilities include managing calendars, making travel arrangements and preparing expense reports.'
                           jobTitle: EA to the CEO
                           department: Administation
                           employeeNumber: CDE-98765
@@ -1261,17 +1237,17 @@ paths:
             type: string
             format: date
           in: query
-          description: Filter by employment date, start of date range (YYYY-MM-DD)
+          description: 'Filter by employment date, start of date range (YYYY-MM-DD)'
           name: startDate
         - schema:
             type: string
             format: date
           in: query
           name: endDate
-          description: Filter by employment date, end of date range (YYYY-MM-DD)
+          description: 'Filter by employment date, end of date range (YYYY-MM-DD)'
       description: Get the user's previous employments.
     parameters: []
-  /employments/{id}:
+  '/employments/{id}':
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -1292,11 +1268,7 @@ paths:
                     data:
                       id: e-17bbf36498de4d68a0d4f86c7b62f69f
                       name: Digital Marketing
-                      description: >-
-                        Gathering and reporting relevant data, maintaining
-                        specific reports and dashboards, using platforms and
-                        programs to address marketing requirements, and updating
-                        specific marketing materials.
+                      description: 'Gathering and reporting relevant data, maintaining specific reports and dashboards, using platforms and programs to address marketing requirements, and updating specific marketing materials.'
                       jobTitle: Digital Marketing Assistant
                       department: Marketing
                       employeeNumber: EMP-123456
@@ -1355,14 +1327,11 @@ paths:
                       nextCursor: '1259723474'
                       items:
                         - id: d-17bbf36498de4d68a0d4f86c7b62f69f
-                          name: >-
-                            Facebook Social Media Marketing Professional
-                            Certificate
+                          name: Facebook Social Media Marketing Professional Certificate
                           docId: ABCD123456
                           issueDate: '2007-08-24'
                           expiryDate: '2010-08-24'
-                          fileUrl: >-
-                            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+                          fileUrl: 'https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png'
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
                             sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -1396,7 +1365,7 @@ paths:
         - $ref: '#/components/parameters/cursor'
         - $ref: '#/components/parameters/userId'
         - $ref: '#/components/parameters/accountId'
-  /documents/{id}:
+  '/documents/{id}':
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -1422,8 +1391,7 @@ paths:
                       docId: ABCD123456
                       issueDate: '2007-08-24'
                       expiryDate: '2010-08-24'
-                      fileUrl: >-
-                        https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+                      fileUrl: 'https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png'
                       metadata:
                         createdAt: '2021-04-14T09:30:24Z'
                         sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -1537,14 +1505,14 @@ paths:
             format: date
           in: query
           name: startDate
-          description: Filter by income date, start of date range (YYYY-MM-DD)
+          description: 'Filter by income date, start of date range (YYYY-MM-DD)'
         - schema:
             type: string
             format: date
           in: query
           name: endDate
-          description: Filter by income date, end of date range (YYYY-MM-DD)
-  /incomes/{id}:
+          description: 'Filter by income date, end of date range (YYYY-MM-DD)'
+  '/incomes/{id}':
     get:
       summary: Get Income
       tags:
@@ -1609,9 +1577,7 @@ components:
     Provider:
       title: Provider
       type: object
-      description: >-
-        An employment data provider. A provider holds employment and income
-        information of the user
+      description: An employment data provider. A provider holds employment and income information of the user
       x-tags:
         - Providers
       x-examples:
@@ -1619,8 +1585,7 @@ components:
           id: upwork
           name: Upwork
           longName: Upwork Global Inc.
-          logoUrl: >-
-            https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
+          logoUrl: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png'
           type: GIG
           typeLabel: Gig Platform
           subType: SERVICES
@@ -1645,8 +1610,7 @@ components:
         logoUrl:
           type: string
           description: URL to the data provider's logo.
-          example: >-
-            https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
+          example: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png'
         type:
           type: string
           enum:
@@ -1657,7 +1621,7 @@ components:
           example: GIG
         typeLabel:
           type: string
-          description: Type label of employment data provider, like "Gig Platform".
+          description: 'Type label of employment data provider, like "Gig Platform".'
           example: Gig Platform
           enum:
             - Gig Platform
@@ -1676,7 +1640,7 @@ components:
             - EMPLOYER
         subTypeLabel:
           type: string
-          description: Subtype label of employment data provider, like "Services".
+          description: 'Subtype label of employment data provider, like "Services".'
           example: Professional Services
           enum:
             - Professional Services
@@ -1691,9 +1655,7 @@ components:
           description: Indicates whether data provider integration is working.
         enabled:
           type: boolean
-          description: >-
-            Indicates whether data provider is enabled or access is allowed for
-            the client.
+          description: Indicates whether data provider is enabled or access is allowed for the client.
         mfa:
           type: boolean
           description: Whether data provider requires two-factor authentication.
@@ -1760,9 +1722,7 @@ components:
     User:
       title: User
       type: object
-      description: >-
-        A user is someone who is authorizing Smile to retrieve and share their
-        employment and income data on their behalf.
+      description: A user is someone who is authorizing Smile to retrieve and share their employment and income data on their behalf.
       x-tags:
         - Users
       x-examples:
@@ -1861,9 +1821,7 @@ components:
       type: object
       x-tags:
         - Tokens
-      description: >-
-        A method for securely transmitting information between Smile and the
-        user.
+      description: A method for securely transmitting information between Smile and the user.
       properties:
         expiresAt:
           $ref: '#/components/schemas/Ref-DateTime'
@@ -2032,13 +1990,11 @@ components:
     Identity:
       type: object
       title: Identity
-      description: >-
-        The stored identity information of the user from an employment data
-        provider.
+      description: The stored identity information of the user from an employment data provider.
       x-examples:
         Example:
           id: i-17bbf36498de4d68a0d4f86c7b62f69f
-          fullName: George Cimafranca Palomero, Jr
+          fullName: 'George Cimafranca Palomero, Jr'
           firstName: George
           middleName: Cimafranca
           lastName: Palomero
@@ -2048,7 +2004,7 @@ components:
           maritalStatus: Married
           countryResidence: PH
           citizenship: Citizen
-          photoUrl: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
+          photoUrl: 'https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg'
           referenceId: null
           profileUrl: null
           emails:
@@ -2058,10 +2014,10 @@ components:
             - number: '+639559991234'
               type: Mobile
           socialProfiles:
-            - socialUrl: https://www.facebook.com/gpalomero
+            - socialUrl: 'https://www.facebook.com/gpalomero'
               type: Facebook
           addresses:
-            - fullAddress: 12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH
+            - fullAddress: '12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH'
               line1: 12 Maybunga St
               line2: Barangay Paraiso
               city: Pasig City
@@ -2083,7 +2039,7 @@ components:
           $ref: '#/components/schemas/Ref-Object-ID'
         fullName:
           type: string
-          example: George Cimafranca Palomero, Jr
+          example: 'George Cimafranca Palomero, Jr'
           description: Full name
         firstName:
           type: string
@@ -2145,7 +2101,7 @@ components:
           nullable: true
         photoUrl:
           type: string
-          example: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
+          example: 'https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg'
           description: URL to photo or avatar
           nullable: true
         referenceId:
@@ -2156,7 +2112,7 @@ components:
         profileUrl:
           type: string
           description: Public profile URL
-          example: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
+          example: 'https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b'
           nullable: true
         emails:
           type: array
@@ -2199,7 +2155,7 @@ components:
             properties:
               socialUrl:
                 type: string
-                example: https://www.facebook.com/gpalomero
+                example: 'https://www.facebook.com/gpalomero'
                 description: URL to social media page
                 nullable: true
               type:
@@ -2278,9 +2234,7 @@ components:
     Transaction:
       title: Transaction
       type: object
-      description: >-
-        The stored financial transaction data of the user from an employment
-        data provider.
+      description: The stored financial transaction data of the user from an employment data provider.
       x-tags:
         - Transactions
       x-examples:
@@ -2371,17 +2325,12 @@ components:
       title: Employment
       type: object
       x-internal: false
-      description: >-
-        The stored employment information of the user from an employment data
-        provider.
+      description: The stored employment information of the user from an employment data provider.
       x-examples:
         Example:
           id: e-17bbf36498de4d68a0d4f86c7b62f69f
           name: Digital Marketing
-          description: >-
-            Gathering and reporting relevant data, maintaining specific reports
-            and dashboards, using platforms and programs to address marketing
-            requirements, and updating specific marketing materials.
+          description: 'Gathering and reporting relevant data, maintaining specific reports and dashboards, using platforms and programs to address marketing requirements, and updating specific marketing materials.'
           jobTitle: Digital Marketing Assistant
           department: Marketing
           employeeNumber: EMP-123456
@@ -2406,10 +2355,7 @@ components:
         description:
           type: string
           description: Description of work performed
-          example: >-
-            Gathering and reporting relevant data, maintaining specific reports
-            and dashboards, using platforms and programs to address marketing
-            requirements, and updating specific marketing materials.
+          example: 'Gathering and reporting relevant data, maintaining specific reports and dashboards, using platforms and programs to address marketing requirements, and updating specific marketing materials.'
           nullable: true
         jobTitle:
           type: string
@@ -2488,9 +2434,7 @@ components:
     Rating:
       title: Rating
       type: object
-      description: >-
-        The stored performance ratings of the user in the employment data
-        provider.
+      description: The stored performance ratings of the user in the employment data provider.
       x-internal: false
       x-examples:
         Example:
@@ -2523,16 +2467,12 @@ components:
           nullable: true
         calculatedPercentage:
           type: number
-          description: >-
-            Current rating expressed as percentage, calculated by
-            currentRating/maxRating x 100
+          description: 'Current rating expressed as percentage, calculated by currentRating/maxRating x 100'
           example: 90
           nullable: true
         reviewsReceived:
           type: number
-          description: >-
-            Number of reviews the employee received, which is the basis for the
-            current rating
+          description: 'Number of reviews the employee received, which is the basis for the current rating'
           example: 12
           nullable: true
         likesReceived:
@@ -2593,9 +2533,7 @@ components:
       title: Document
       type: object
       x-internal: false
-      description: >-
-        The stored document-related information of the user from an employment
-        data provider.
+      description: The stored document-related information of the user from an employment data provider.
       x-examples:
         Example:
           id: d-17bbf36498de4d68a0d4f86c7b62f69f
@@ -2603,8 +2541,7 @@ components:
           docId: ABCD123456
           issueDate: '2007-08-24'
           expiryDate: '2010-08-24'
-          fileUrl: >-
-            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+          fileUrl: 'https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png'
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -2639,8 +2576,7 @@ components:
         fileUrl:
           type: string
           description: Publicly available URL reference for the document
-          example: >-
-            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+          example: 'https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png'
           nullable: true
         metadata:
           $ref: '#/components/schemas/Object-Reference-Metadata'
@@ -2688,9 +2624,7 @@ components:
     Asset:
       title: Asset
       type: object
-      description: >-
-        The stored asset-related information of the user from an employment data
-        provider.
+      description: The stored asset-related information of the user from an employment data provider.
       x-internal: true
       x-examples:
         Example:
@@ -2699,8 +2633,7 @@ components:
           docId: ABCD123456
           issueDate: '2007-08-24'
           expiryDate: '2010-08-24'
-          fileUrl: >-
-            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+          fileUrl: 'https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png'
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -2766,9 +2699,7 @@ components:
       title: School
       type: object
       x-internal: true
-      description: >-
-        The stored education-related information of the user from an employment
-        data provider.
+      description: The stored education-related information of the user from an employment data provider.
       x-examples:
         Example:
           id: s-17bbf36498de4d68a0d4f86c7b62f69f
@@ -2793,11 +2724,11 @@ components:
           description: Description of school attended
         degree:
           type: string
-          description: Degree (eg Bachelors, Masters, Doctorate)
+          description: 'Degree (eg Bachelors, Masters, Doctorate)'
           nullable: true
         field:
           type: string
-          description: Field of study (eg Business, Engineering, Medicine)
+          description: 'Field of study (eg Business, Engineering, Medicine)'
           nullable: true
         startDate:
           type: string
@@ -2854,9 +2785,7 @@ components:
     Income:
       title: Income
       type: object
-      description: >-
-        The stored income information of the user from an employment data
-        provider.
+      description: The stored income information of the user from an employment data provider.
       x-examples:
         Example:
           id: inc-17bbf36498de4d68a0d4f86c7b62f69f
@@ -2956,10 +2885,7 @@ components:
     RawFile:
       title: RawFile
       type: object
-      description: >-
-        Scanned or photographed document or form uploaded by the user to be able
-        to share hardcopy employment and income information. File size limit is
-        15 MB.
+      description: Scanned or photographed document or form uploaded by the user to be able to share hardcopy employment and income information. File size limit is 15 MB.
       x-examples: {}
       x-internal: false
       properties:
@@ -2988,12 +2914,11 @@ components:
             - TIFF
             - JPEG
           example: PNG
-          description: File type (only JPEG, PNG, PDF, or TIFF formats are supported)
+          description: 'File type (only JPEG, PNG, PDF, or TIFF formats are supported)'
         url:
           type: string
           description: URL to access the file. URL will expire after 7 days.
-          example: >-
-            https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+          example: 'https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg'
       required:
         - createdAt
         - name
@@ -3027,8 +2952,7 @@ components:
               subType: PERSONAL_INFORMATION
               size: 3048
               format: PNG
-              url: >-
-                https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+              url: 'https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg'
       x-tags:
         - Uploads
       properties:
@@ -3133,6 +3057,12 @@ components:
               items:
                 $ref: '#/components/schemas/Upload'
       x-internal: true
+    Object-Metadata-Ref-Message:
+      type: string
+      title: Object-Metadata-Ref-Message
+      description: Message response to the request
+      example: Success
+      x-internal: false
     Object-Metadata-Ref-Code:
       type: string
       title: Object-Metadata-Ref-API-Code
@@ -3151,27 +3081,19 @@ components:
         - SERVER_UNAVAILABLE
         - TIME_LIMIT_EXCEEDED
       example: OK
-      x-internal: true
-    Object-Metadata-Ref-Message:
-      type: string
-      title: Object-Metadata-Ref-Message
-      description: Message response to the request
-      example: Success
-      x-internal: true
+      x-internal: false
     Object-Metadata-Ref-RequestID:
       type: string
       title: Object-Metadata-Ref-RequestID
-      description: >-
-        Unique ID that is added to the body of every response for easy
-        traceability of the request in our logs.
-      x-internal: true
+      description: Unique ID that is added to the body of every response for easy traceability of the request in our logs.
+      x-internal: false
       example: 5b79399a-6852-4234-bb0e-ad472648282d
     Object-Next-Cursor:
       title: Object-Next-Cursor
       type: string
       example: '1259723474'
       description: The next cursor value that can be used in the following query.
-      x-internal: true
+      x-internal: false
     Ref-Object-ID:
       type: string
       title: Object ID
@@ -3184,18 +3106,12 @@ components:
       additionalProperties:
         type: string
       maxProperties: 5
-      description: >-
-        The Metadata object is a mapping of client-provided string fields to any
-        string value. The following limitations apply:
-
+      description: |-
+        The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
         - The JSON values must be Strings (no nested JSON objects allowed)
-
         - Only ASCII characters can be used
-
         - Maximum of 5 key/value pairs
-
         - Maximum key length of 50 characters
-
         - Maximum value length of 500 characters
       x-internal: true
     Ref-DateTime:
@@ -3477,14 +3393,14 @@ components:
         - Work
         - Personal
         - null
-      description: Primary contact, with secondary marked as either 'Work' or 'Personal'
+      description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
       example: Primary
       x-internal: true
     Ref-Phone-Number:
       type: string
       nullable: true
       title: International Phone Number
-      pattern: ^\+[1-9]\d{1,14}$
+      pattern: '^\+[1-9]\d{1,14}$'
       description: Phone numbers in international E.164 format
       x-internal: true
       example: '+639175551234'
@@ -3535,14 +3451,12 @@ components:
         latitude:
           type: string
           nullable: true
-          pattern: >-
-            ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
+          pattern: '^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$'
           description: Latitude coordinates
         longitude:
           type: string
           nullable: true
-          pattern: >-
-            ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
+          pattern: '^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$'
           description: Longitude coordinates
         type:
           type: string
@@ -3574,9 +3488,7 @@ components:
           enum:
             - ACCOUNT
             - UPLOAD
-          description: >-
-            Indicates whether the source associated with this object is either
-            ACCOUNT or UPLOAD type
+          description: Indicates whether the source associated with this object is either ACCOUNT or UPLOAD type
         userId:
           type: string
           description: The user ID associated with this object
@@ -3808,9 +3720,7 @@ components:
       required: false
       schema:
         type: string
-      description: >-
-        Uses the filter values of the previous page to determine the next set of
-        items.
+      description: Uses the filter values of the previous page to determine the next set of items.
     userId:
       name: userId
       in: query
