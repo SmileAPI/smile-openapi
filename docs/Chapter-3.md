@@ -68,7 +68,7 @@ All responses are encoded in JSON and return the following attributes:
 
 If the response is a single object, the value of the data attribute is that object. For example, the Get Identity endpoint will return the following, with the attribute 'data' returning a single Identity object:
 
-```
+``` json
 {
     "code": "OK",
     "message": "Success!",
@@ -136,7 +136,7 @@ If the result is related to data retrieved from a user's account, a metadata obj
 
 If the response is a list or collection, the value of the data attribute is an array of objects.  For example the List Transactions endpoint will return a collection of Transactions:
 
-```
+``` json
 {
     "code": "OK",
     "message": "Success!",
@@ -338,7 +338,7 @@ Resources or API endpoints, can return a list or a collection of objects. By def
 
 When Smile returns a collection, we will also return a value called **nextCursor**. See below for an example:
 
-```json
+``` json
 {
     "code": "OK",
     "message": "Success!",
