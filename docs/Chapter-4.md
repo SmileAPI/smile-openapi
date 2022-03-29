@@ -1,10 +1,12 @@
 # Getting User Data 
 
+
 Getting user data into your application involves two things:
 
  - **Embedding a Javascript SDK for your web application client**. At the moment, Smile only provides a Javascript SDK, but native verions of the SDK for mobile applications such as iOS or Android are coming soon. The Javascript SDK launches a modal window called a "Wink" web widget where users can provide permission for Smile to access their data. Users will first find their employer or employment data provider, then submit their login credentials over a secure and encrypted connection. By using the SDK, you will not have to worry about the different authentication and verification implementations of the different employment platforms, making the integration simple for your developers, and the experience smooth for your users. 
 
  - **Obtaining a user token from the Smile Open API**. Your back-end server should obtain a "Link" token  from the /users endpoint. This is a single use, short-lived token which is used to initialize the Wink widget. Your server should generate a new Link token each time you wish to launch the widget.
+
 
 ---
 <!-- focus: false -->
@@ -13,7 +15,7 @@ Getting user data into your application involves two things:
 ## Example Code
 Below is sample HTML code which embeds the Wink Javascript SDK:
 
-``` html
+```
 <!DOCTYPE html>
 <html>
 
@@ -42,6 +44,10 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
             * Use provider id to filter provider list. Example ['upwork', 'freelancer']
             */
             providers: [],
+            /**
+            * Enable or disable file uploads.
+            */
+            enableUpload: true,           
 
             onAccountCreated: ({
                 accountId,
@@ -80,9 +86,11 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 </body>
 
 </html>
-
 ```
+
 ---
+
+
 <!-- focus: false -->
 ![Settings](https://img.icons8.com/material-outlined/60/000000/settings-3--v1.png)
 
@@ -107,9 +115,10 @@ You can refresh a user's token by calling the /tokens endpoint. Simply pass the 
 ![Event](https://img.icons8.com/ios/50/000000/important-event.png)
 
 ## Link events 
-As the user moves through the Wink widget screen, any activities performed by the user are captured and are etiher used to update the messsages and presentation of the modal window, or are sent to Smile so that any account-related data can be updated. 
+As the user moves through the Wink widget screen, any activities performed by the user are captured and are either used to update the messsages and presentation of the modal window, or are sent to Smile so that any source-related data can be retrieved. 
 
-In the case of the latter, if the the user was able to successfully authenticate with an employment data provider, the Account status is changed to "CONNECTED". The account status of the user can be queried at any time via the /accounts endpoint. Examples of the events captured include:
+### Linked Accounts
+If the the user was able to successfully authenticate with a digital employment data provider, the Link status is changed to "CONNECTED". The account status of the user can be queried at any time via the /accounts endpoint. Examples of the events captured include:
 
 | Event |Description |
 |----------|---------|
@@ -117,6 +126,18 @@ In the case of the latter, if the the user was able to successfully authenticate
 | AWAITING_MFA | The user was able to successfully authenticate however the data provider is waiting for the user to enter their verification code in a 2-factor authentication scenario. |
 | ERROR | The data provider returned an error. The user may not have entered the wrong credentials or there was a problem on the side of the provider. |
 | CONNECTED | The user was able to successfully authenticate with an employment data provider. |
+| DISCONNECTED | The user disconnected the link with the employment data provider. |
+
+### Successful Uploads
+If the the user was able to successfully upload employment and income data via scanned or photographed documents, the Link status is changed to "STARTED". The upload status of the user can be queried at any time via the /uploads endpoint. Examples of the events captured include:
+
+| Event |Description |
+|----------|---------|
+| STARTED | The upload was successful, and analysis on whether data can be extracted has started. |
+| ANALYZED | The analysis has completed and data was successfully extracted (via OCR) and converted to JSON format. |
+| UNSUPPORTED | The type of file uploaded cannot be analyzed. Data cannot be automatically extracted. |
+| ERROR | Something went wrong with the analysis of the uploaded file. |
+| REVOKED | The user revoked permission to share data from the uploaded files. |
 
 
 ---

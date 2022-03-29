@@ -1,17 +1,17 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 1.6.0
+  version: 1.7.3
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
-    url: 'https://www.getsmileapi.com'
+    url: https://www.getsmileapi.com
     email: info@getsmileapi.com
-  termsOfService: 'https://www.getsmileapi.com/terms-and-conditions'
+  termsOfService: https://www.getsmileapi.com/terms-and-conditions
 servers:
-  - url: 'https://sandbox.smileapi.io/v1'
+  - url: https://sandbox.smileapi.io/v1
     description: Sandbox
-  - url: 'https://open.smileapi.io/v1'
+  - url: https://open.smileapi.io/v1
     description: Production
 paths:
   /providers:
@@ -38,7 +38,8 @@ paths:
                         - id: upwork
                           name: Upwork
                           longName: Upwork Global Inc.
-                          logoUrl: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png'
+                          logoUrl: >-
+                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
                           type: GIG
                           typeLabel: Gig Platform
                           subType: SERVICES
@@ -46,12 +47,14 @@ paths:
                           active: true
                           enabled: true
                           mfa: true
+                          accountConnection: true
                           supported:
                             - IDENTITIES
                         - id: freelancer
                           name: Freelancer
                           longName: Freelancer Technology Pty Limited
-                          logoUrl: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/freelancer.png'
+                          logoUrl: >-
+                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/freelancer.png
                           type: GIG
                           typeLabel: Gig Platform
                           subType: SERVICES
@@ -59,12 +62,14 @@ paths:
                           active: true
                           enabled: true
                           mfa: true
+                          accountConnection: true
                           supported:
                             - IDENTITIES
                         - id: grab
                           name: Grab
                           longName: Grab Holdings Inc
-                          logoUrl: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/freelancer.png'
+                          logoUrl: >-
+                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/freelancer.png
                           type: GIG
                           typeLabel: Gig Platform
                           subType: TRANSPORTATION
@@ -72,6 +77,7 @@ paths:
                           active: true
                           enabled: true
                           mfa: true
+                          accountConnection: true
                           supported:
                             - IDENTITIES
         '400':
@@ -108,7 +114,7 @@ paths:
             type: string
           in: query
           name: subType
-          description: Filter results to certain subset of a certain type providers
+          description: Filter results to certain subset of a certain subtype of providers
         - schema:
             type: boolean
           in: query
@@ -119,8 +125,17 @@ paths:
           in: query
           name: enabled
           description: Filter results to enabled or disabled providers.
+        - schema:
+            type: boolean
+          in: query
+          name: accountConnection
+          description: Filter results to providers with real-time account connections.
+        - schema:
+            type: string
+          in: query
+          name: name
     parameters: []
-  '/providers/{id}':
+  /providers/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -144,7 +159,8 @@ paths:
                       id: upwork
                       name: Upwork
                       longName: Upwork Global Inc.
-                      logoUrl: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png'
+                      logoUrl: >-
+                        https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
                       type: GIG
                       typeLabel: Gig Platform
                       subType: SERVICES
@@ -152,6 +168,7 @@ paths:
                       active: true
                       enabled: true
                       mfa: true
+                      accountConnection: true
                       supported:
                         - IDENTITIES
                         - TRANSACTIONS
@@ -295,7 +312,7 @@ paths:
       description: Create a user in the Smile Network.
       tags:
         - Users
-  '/users/{id}':
+  /users/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -474,8 +491,22 @@ paths:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
         - $ref: '#/components/parameters/userId'
+        - schema:
+            type: string
+            format: date
+            example: '2021-04-01'
+          in: query
+          name: startDate
+          description: Filter by account linking date, start of date range (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+            example: '2021-04-21'
+          in: query
+          name: endDate
+          description: Filter by account linking date, end of date range (YYYY-MM-DD)
     parameters: []
-  '/accounts/{id}':
+  /accounts/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -551,7 +582,7 @@ paths:
                       nextCursor: '1259723474'
                       items:
                         - id: i-17bbf36498de4d68a0d4f86c7b62f69f
-                          fullName: 'George Cimafranca Palomero, Jr'
+                          fullName: George Cimafranca Palomero, Jr
                           firstName: George
                           middleName: Cimafranca
                           lastName: Palomero
@@ -561,9 +592,10 @@ paths:
                           maritalStatus: Married
                           countryResidence: PH
                           citizenship: Citizen
-                          photoUrl: 'https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg'
+                          photoUrl: >-
+                            https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
                           referenceId: george
-                          profileUrl: 'https://upwork.com/profiles/george.jpg'
+                          profileUrl: https://upwork.com/profiles/george.jpg
                           emails:
                             - address: gpalomero1234@yahoo.com
                               type: Primary
@@ -571,10 +603,12 @@ paths:
                             - number: '+639175551234'
                               type: Mobile
                           socialProfiles:
-                            - socialUrl: 'https://www.facebook.com/gpalomero'
+                            - socialUrl: https://www.facebook.com/gpalomero
                               type: Facebook
                           addresses:
-                            - fullAddress: '12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH'
+                            - fullAddress: >-
+                                12 Maybunga St, Barangay Paraiso, Pasig City,
+                                NCR, 1600, PH
                               line1: 12 Maybunga St
                               line2: Barangay Paraiso
                               city: Pasig City
@@ -601,9 +635,11 @@ paths:
                           maritalStatus: Single
                           countryResidence: null
                           citizenship: Citizen
-                          photoUrl: 'https://cdn.smileapi.io/image/avatar/v20211115191600/ryan.jpg'
+                          photoUrl: >-
+                            https://cdn.smileapi.io/image/avatar/v20211115191600/ryan.jpg
                           referenceId: ~02c0bf6ae6a581ee2b
-                          profileUrl: 'https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b'
+                          profileUrl: >-
+                            https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
                           emails:
                             - address: ryan1234@gmail.com
                               type: Primary
@@ -613,12 +649,12 @@ paths:
                             - number: '+63289053000'
                               type: Fixed
                           socialProfiles:
-                            - socialUrl: 'https://www.facebook.com/ryanpetersonng'
+                            - socialUrl: https://www.facebook.com/ryanpetersonng
                               type: Facebook
-                            - socialUrl: 'https://www.twitter.com/xklxyz'
+                            - socialUrl: https://www.twitter.com/xklxyz
                               type: Twitter
                           addresses:
-                            - fullAddress: '24 Eagle St, Binondo, Manila, NCR, 1008, PH'
+                            - fullAddress: 24 Eagle St, Binondo, Manila, NCR, 1008, PH
                               line1: 24 Eagle St
                               line2: Binondo
                               city: Manila
@@ -645,7 +681,8 @@ paths:
                           maritalStatus: Single
                           countryResidence: null
                           citizenship: Citizen
-                          photoUrl: 'https://cdn.smileapi.io/image/avatar/v20211115191600/christina.jpg'
+                          photoUrl: >-
+                            https://cdn.smileapi.io/image/avatar/v20211115191600/christina.jpg
                           referenceId: null
                           profileUrl: null
                           emails:
@@ -701,8 +738,9 @@ paths:
         - $ref: '#/components/parameters/cursor'
         - $ref: '#/components/parameters/userId'
         - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/sourceId'
     parameters: []
-  '/identities/{id}':
+  /identities/{id}:
     get:
       summary: Get Identity
       responses:
@@ -720,7 +758,7 @@ paths:
                     requestId: 5b79399a-6852-4234-bb0e-ad472648282d
                     data:
                       id: i-17bbf36498de4d68a0d4f86c7b62f69f
-                      fullName: 'George Cimafranca Palomero, Jr'
+                      fullName: George Cimafranca Palomero, Jr
                       firstName: George
                       middleName: Cimafranca
                       lastName: Palomero
@@ -730,9 +768,10 @@ paths:
                       maritalStatus: Married
                       countryResidence: PH
                       citizenship: Citizen
-                      photoUrl: 'https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg'
+                      photoUrl: >-
+                        https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
                       referenceId: george
-                      profileUrl: 'https://upwork.com/profiles/george.jpg'
+                      profileUrl: https://upwork.com/profiles/george.jpg
                       emails:
                         - address: gpalomero1234@yahoo.com
                           type: Primary
@@ -740,10 +779,12 @@ paths:
                         - number: '+639175551234'
                           type: Mobile
                       socialProfiles:
-                        - socialUrl: 'https://www.facebook.com/gpalomero'
+                        - socialUrl: https://www.facebook.com/gpalomero
                           type: Facebook
                       addresses:
-                        - fullAddress: '12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH'
+                        - fullAddress: >-
+                            12 Maybunga St, Barangay Paraiso, Pasig City, NCR,
+                            1600, PH
                           line1: 12 Maybunga St
                           line2: Barangay Paraiso
                           city: Pasig City
@@ -876,15 +917,16 @@ paths:
             example: '2021-04-01'
           in: query
           name: startDate
-          description: 'Filter by transaction date, start of date range (YYYY-MM-DD)'
+          description: Filter by transaction date, start of date range (YYYY-MM-DD)
         - schema:
             type: string
             format: date
             example: '2021-04-21'
           in: query
           name: endDate
-          description: 'Filter by transaction date, end of date range (YYYY-MM-DD)'
-  '/transactions/{id}':
+          description: Filter by transaction date, end of date range (YYYY-MM-DD)
+        - $ref: '#/components/parameters/sourceId'
+  /transactions/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -955,7 +997,8 @@ paths:
                               subType: PERSONAL_INFORMATION
                               size: 3048
                               format: PNG
-                              url: 'https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg'
+                              url: >-
+                                https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -988,17 +1031,17 @@ paths:
             example: '2021-04-01'
           in: query
           name: startDate
-          description: 'Filter by upload date, start of date range (YYYY-MM-DD)'
+          description: Filter by upload date, start of date range (YYYY-MM-DD)
         - schema:
             type: string
             format: date
             example: '2021-04-21'
           in: query
           name: endDate
-          description: 'Filter by upload date, end of date range (YYYY-MM-DD)'
+          description: Filter by upload date, end of date range (YYYY-MM-DD)
       tags:
         - Uploads
-  '/uploads/{id}':
+  /uploads/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -1034,7 +1077,8 @@ paths:
                           subType: PERSONAL_INFORMATION
                           size: 3048
                           format: PNG
-                          url: 'https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg'
+                          url: >-
+                            https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
       operationId: get-upload
       description: Get a user's upload by ID.
       tags:
@@ -1100,7 +1144,8 @@ paths:
         - $ref: '#/components/parameters/cursor'
         - $ref: '#/components/parameters/userId'
         - $ref: '#/components/parameters/accountId'
-  '/ratings/{id}':
+        - $ref: '#/components/parameters/sourceId'
+  /ratings/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -1179,7 +1224,11 @@ paths:
                       items:
                         - id: e-17bbf36498de4d68a0d4f86c7b62f69f
                           name: Digital Marketing
-                          description: 'Gathering and reporting relevant data, maintaining specific reports and dashboards, using platforms and programs to address marketing requirements, and updating specific marketing materials.'
+                          description: >-
+                            Gathering and reporting relevant data, maintaining
+                            specific reports and dashboards, using platforms and
+                            programs to address marketing requirements, and
+                            updating specific marketing materials.
                           jobTitle: Digital Marketing Assistant
                           department: Marketing
                           employeeNumber: EMP-123456
@@ -1194,7 +1243,12 @@ paths:
                             providerId: abccorp
                         - id: 17bbf36498de4d68a0d4f86c7b62f69f
                           name: Executive Assistant
-                          description: 'Contribute to the efficiency of the business by providing personalized and timely support to executive members particularly the CEO. Responsibilities include managing calendars, making travel arrangements and preparing expense reports.'
+                          description: >-
+                            Contribute to the efficiency of the business by
+                            providing personalized and timely support to
+                            executive members particularly the CEO.
+                            Responsibilities include managing calendars, making
+                            travel arrangements and preparing expense reports.
                           jobTitle: EA to the CEO
                           department: Administation
                           employeeNumber: CDE-98765
@@ -1237,17 +1291,18 @@ paths:
             type: string
             format: date
           in: query
-          description: 'Filter by employment date, start of date range (YYYY-MM-DD)'
+          description: Filter by employment date, start of date range (YYYY-MM-DD)
           name: startDate
         - schema:
             type: string
             format: date
           in: query
           name: endDate
-          description: 'Filter by employment date, end of date range (YYYY-MM-DD)'
+          description: Filter by employment date, end of date range (YYYY-MM-DD)
+        - $ref: '#/components/parameters/sourceId'
       description: Get the user's previous employments.
     parameters: []
-  '/employments/{id}':
+  /employments/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -1268,7 +1323,11 @@ paths:
                     data:
                       id: e-17bbf36498de4d68a0d4f86c7b62f69f
                       name: Digital Marketing
-                      description: 'Gathering and reporting relevant data, maintaining specific reports and dashboards, using platforms and programs to address marketing requirements, and updating specific marketing materials.'
+                      description: >-
+                        Gathering and reporting relevant data, maintaining
+                        specific reports and dashboards, using platforms and
+                        programs to address marketing requirements, and updating
+                        specific marketing materials.
                       jobTitle: Digital Marketing Assistant
                       department: Marketing
                       employeeNumber: EMP-123456
@@ -1327,11 +1386,14 @@ paths:
                       nextCursor: '1259723474'
                       items:
                         - id: d-17bbf36498de4d68a0d4f86c7b62f69f
-                          name: Facebook Social Media Marketing Professional Certificate
+                          name: >-
+                            Facebook Social Media Marketing Professional
+                            Certificate
                           docId: ABCD123456
                           issueDate: '2007-08-24'
                           expiryDate: '2010-08-24'
-                          fileUrl: 'https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png'
+                          fileUrl: >-
+                            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
                             sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -1365,7 +1427,8 @@ paths:
         - $ref: '#/components/parameters/cursor'
         - $ref: '#/components/parameters/userId'
         - $ref: '#/components/parameters/accountId'
-  '/documents/{id}':
+        - $ref: '#/components/parameters/sourceId'
+  /documents/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
@@ -1391,7 +1454,8 @@ paths:
                       docId: ABCD123456
                       issueDate: '2007-08-24'
                       expiryDate: '2010-08-24'
-                      fileUrl: 'https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png'
+                      fileUrl: >-
+                        https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
                       metadata:
                         createdAt: '2021-04-14T09:30:24Z'
                         sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -1505,14 +1569,15 @@ paths:
             format: date
           in: query
           name: startDate
-          description: 'Filter by income date, start of date range (YYYY-MM-DD)'
+          description: Filter by income date, start of date range (YYYY-MM-DD)
         - schema:
             type: string
             format: date
           in: query
           name: endDate
-          description: 'Filter by income date, end of date range (YYYY-MM-DD)'
-  '/incomes/{id}':
+          description: Filter by income date, end of date range (YYYY-MM-DD)
+        - $ref: '#/components/parameters/sourceId'
+  /incomes/{id}:
     get:
       summary: Get Income
       tags:
@@ -1572,12 +1637,340 @@ paths:
       parameters: []
     parameters:
       - $ref: '#/components/parameters/id'
+  /inviteTemplates:
+    get:
+      summary: List Invite Templates
+      tags:
+        - Invite Templates
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTemplateListResponse'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-invite-template
+      description: Get the list of invite templates.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+    post:
+      summary: Create Invite template
+      operationId: create-invite-template
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTemplatePostResponse'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      description: Create an invite template
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteTemplatePostRequest'
+      tags:
+        - Invite Templates
+  /inviteTemplates/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Invite Template
+      tags:
+        - Invite Templates
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTemplateGetResponse'
+      operationId: get-invite-template
+      description: Get invite template
+  /invites:
+    get:
+      summary: List Invites
+      tags:
+        - Invites
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: inv-69a540bc8b7e4d998852c1d970b7b88a
+                          createdAt: '2021-04-14T09:30:24Z'
+                          fullName: George Cimafranca Palomero, Jr
+                          firstName: George
+                          lastName: Palomero
+                          email: gpalomero1234@smileapi.io
+                          templateId: tpl-b2c5e81665ad4130819ddb89acc5869a
+                          userId: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                          status: INVITED
+                          updatedAt: '2021-04-14T09:30:24Z'
+                          linkedAt: '2021-04-14T09:30:24Z'
+                          invitedAt: '2021-04-14T09:30:24Z'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-invites
+      description: Get the list of invites sent out to users.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+    post:
+      summary: Create Invite
+      operationId: create-invite
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvitePostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: inv-69a540bc8b7e4d998852c1d970b7b88a
+                      createdAt: '2021-04-14T09:30:24Z'
+                      fullName: George Cimafranca Palomero, Jr
+                      firstName: George
+                      lastName: Palomero
+                      email: gpalomero1234@smileapi.io
+                      templateId: tpl-b2c5e81665ad4130819ddb89acc5869a
+                      userId: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                      status: INVITED
+                      updatedAt: '2021-04-14T09:30:24Z'
+                      linkedAt: '2021-04-14T09:30:24Z'
+                      invitedAt: '2021-04-14T09:30:24Z'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      description: Create and send an invite to a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvitePostRequest'
+            examples:
+              Example:
+                value:
+                  fullName: Ryan Joseph Peterson Chua Ng
+                  firstName: Ryan
+                  lastName: Ng
+                  email: ryan1234@smileapi.io
+                  templateId: tpl-b2c5e81665ad4130819ddb89acc5869a
+      tags:
+        - Invites
+  /invites/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Invite
+      tags:
+        - Invites
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: inv-69a540bc8b7e4d998852c1d970b7b88a
+                      createdAt: '2021-04-14T09:30:24Z'
+                      fullName: George Cimafranca Palomero, Jr
+                      firstName: George
+                      lastName: Palomero
+                      email: gpalomero1234@smileapi.io
+                      templateId: tpl-b2c5e81665ad4130819ddb89acc5869a
+                      userId: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                      status: INVITED
+                      updatedAt: '2021-04-14T09:30:24Z'
+                      linkedAt: '2021-04-14T09:30:24Z'
+                      invitedAt: '2021-04-14T09:30:24Z'
+      operationId: get-invite
+      description: Get invite sent to users by ID.
+  /fileTypes:
+    get:
+      summary: List File Types
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileTypeListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - logoUrl: >-
+                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/sss.png
+                          type: SOCIAL_SECURITY
+                          typeLabel: SSS Records
+                          active: true
+                          enabled: true
+                          ocr: true
+                          supported:
+                            - IDENTITIES
+                            - DOCUMENTS
+                            - EMPLOYMENTS
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-file-types
+      description: Get the available file types for uploads.
+      tags:
+        - File Types
+      parameters:
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/size'
+        - schema:
+            type: string
+          in: query
+          name: type
+          description: Filter results to certain type of file types.
+        - schema:
+            type: boolean
+          in: query
+          name: active
+          description: Filter results to active or inactive file types.
+        - schema:
+            type: boolean
+          in: query
+          name: enabled
+          description: Filter results to enabled or disabled file types.
+        - schema:
+            type: boolean
+          in: query
+          name: ocr
+          description: Filter results to file types that support OCR.
 components:
   schemas:
     Provider:
       title: Provider
       type: object
-      description: An employment data provider. A provider holds employment and income information of the user
+      description: >-
+        An employment data provider. A provider holds employment and income
+        information of the user
       x-tags:
         - Providers
       x-examples:
@@ -1585,7 +1978,8 @@ components:
           id: upwork
           name: Upwork
           longName: Upwork Global Inc.
-          logoUrl: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png'
+          logoUrl: >-
+            https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
           type: GIG
           typeLabel: Gig Platform
           subType: SERVICES
@@ -1610,23 +2004,26 @@ components:
         logoUrl:
           type: string
           description: URL to the data provider's logo.
-          example: 'https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png'
+          example: >-
+            https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
         type:
           type: string
           enum:
             - GIG
-            - EMPLOYMENT
-            - SCAN
+            - GOVERNMENT
+            - SYSTEM
+            - EMPLOYER
           description: Type of employment data provider.
           example: GIG
         typeLabel:
           type: string
-          description: 'Type label of employment data provider, like "Gig Platform".'
+          description: Type label of employment data provider, like "Gig Platform".
           example: Gig Platform
           enum:
             - Gig Platform
-            - Formal Employment
-            - Document Scan
+            - Govt Service
+            - System
+            - Employer
         subType:
           type: string
           description: Subset of Type of employment data provider
@@ -1635,32 +2032,89 @@ components:
             - TRANSPORTATION
             - SHARING
             - TRADING
-            - PAYROLL
+            - INSURANCE
             - HRIS
-            - EMPLOYER
+            - PAYROLL
+            - ISIC-A
+            - ISIC-B
+            - ISIC-C
+            - ISIC-D
+            - ISIC-E
+            - ISIC-F
+            - ISIC-G
+            - ISIC-H
+            - ISIC-I
+            - ISIC-J
+            - ISIC-K
+            - ISIC-L
+            - ISIC-M
+            - ISIC-N
+            - ISIC-O
+            - ISIC-P
+            - ISIC-Q
+            - ISIC-R
+            - ISIC-S
+            - ISIC-T
+            - ISIC-U
         subTypeLabel:
           type: string
-          description: 'Subtype label of employment data provider, like "Services".'
+          description: Subtype label of employment data provider, like "Services".
           example: Professional Services
           enum:
             - Professional Services
             - Transport and Delivery
             - Asset Sharing
             - Online Selling
-            - Payroll
-            - HRIS
-            - Employer
+            - Social Insurance
+            - Payroll System
+            - Human Resource Information System
+            - Agriculture, forestry and fishing
+            - Mining and quarrying
+            - Manufacturing
+            - Electricity, gas, steam and air conditioning supply
+            - >-
+              Water supply; sewerage, waste management and remediation
+              activities
+            - Construction
+            - >-
+              Wholesale and retail trade; repair of motor vehicles and
+              motorcycles
+            - Transportation and storage
+            - Accommodation and food service activities
+            - Information and communication
+            - Financial and insurance activities
+            - Real estate activities
+            - Professional, scientific and technical activities
+            - Administrative and support service activities
+            - Public administration and defense; compulsory social security
+            - Education
+            - Human health and social work activities
+            - Arts, entertainment and recreation
+            - Other service activities
+            - >-
+              Activities of households as employers; undifferentiated goods; and
+              services-producing activities of households for own use
+            - Activities of extraterritorial organization and bodies
         active:
           type: boolean
           description: Indicates whether data provider integration is working.
         enabled:
           type: boolean
-          description: Indicates whether data provider is enabled or access is allowed for the client.
+          description: >-
+            Indicates whether data provider is enabled or access is allowed for
+            the client.
         mfa:
           type: boolean
           description: Whether data provider requires two-factor authentication.
+        accountConnection:
+          type: boolean
+          description: >-
+            Whether a real-time account connection is available for this data
+            provider.
+          default: true
         supported:
           type: array
+          description: Supported data points for this employment data provider.
           items:
             type: string
             example: IDENTITIES
@@ -1670,6 +2124,7 @@ components:
               - RATINGS
               - EMPLOYMENTS
               - DOCUMENTS
+              - INCOMES
       required:
         - id
         - name
@@ -1682,6 +2137,7 @@ components:
         - active
         - enabled
         - mfa
+        - accountConnection
         - supported
     ProviderGetResponse:
       title: Provider Get Response
@@ -1722,7 +2178,9 @@ components:
     User:
       title: User
       type: object
-      description: A user is someone who is authorizing Smile to retrieve and share their employment and income data on their behalf.
+      description: >-
+        A user is someone who is authorizing Smile to retrieve and share their
+        employment and income data on their behalf.
       x-tags:
         - Users
       x-examples:
@@ -1821,7 +2279,9 @@ components:
       type: object
       x-tags:
         - Tokens
-      description: A method for securely transmitting information between Smile and the user.
+      description: >-
+        A method for securely transmitting information between Smile and the
+        user.
       properties:
         expiresAt:
           $ref: '#/components/schemas/Ref-DateTime'
@@ -1990,11 +2450,13 @@ components:
     Identity:
       type: object
       title: Identity
-      description: The stored identity information of the user from an employment data provider.
+      description: >-
+        The stored identity information of the user from an employment data
+        provider.
       x-examples:
         Example:
           id: i-17bbf36498de4d68a0d4f86c7b62f69f
-          fullName: 'George Cimafranca Palomero, Jr'
+          fullName: George Cimafranca Palomero, Jr
           firstName: George
           middleName: Cimafranca
           lastName: Palomero
@@ -2004,7 +2466,7 @@ components:
           maritalStatus: Married
           countryResidence: PH
           citizenship: Citizen
-          photoUrl: 'https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg'
+          photoUrl: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
           referenceId: null
           profileUrl: null
           emails:
@@ -2014,10 +2476,10 @@ components:
             - number: '+639559991234'
               type: Mobile
           socialProfiles:
-            - socialUrl: 'https://www.facebook.com/gpalomero'
+            - socialUrl: https://www.facebook.com/gpalomero
               type: Facebook
           addresses:
-            - fullAddress: '12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH'
+            - fullAddress: 12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH
               line1: 12 Maybunga St
               line2: Barangay Paraiso
               city: Pasig City
@@ -2039,7 +2501,7 @@ components:
           $ref: '#/components/schemas/Ref-Object-ID'
         fullName:
           type: string
-          example: 'George Cimafranca Palomero, Jr'
+          example: George Cimafranca Palomero, Jr
           description: Full name
         firstName:
           type: string
@@ -2101,7 +2563,7 @@ components:
           nullable: true
         photoUrl:
           type: string
-          example: 'https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg'
+          example: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
           description: URL to photo or avatar
           nullable: true
         referenceId:
@@ -2112,7 +2574,7 @@ components:
         profileUrl:
           type: string
           description: Public profile URL
-          example: 'https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b'
+          example: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
           nullable: true
         emails:
           type: array
@@ -2155,7 +2617,7 @@ components:
             properties:
               socialUrl:
                 type: string
-                example: 'https://www.facebook.com/gpalomero'
+                example: https://www.facebook.com/gpalomero
                 description: URL to social media page
                 nullable: true
               type:
@@ -2234,7 +2696,9 @@ components:
     Transaction:
       title: Transaction
       type: object
-      description: The stored financial transaction data of the user from an employment data provider.
+      description: >-
+        The stored financial transaction data of the user from an employment
+        data provider.
       x-tags:
         - Transactions
       x-examples:
@@ -2325,12 +2789,17 @@ components:
       title: Employment
       type: object
       x-internal: false
-      description: The stored employment information of the user from an employment data provider.
+      description: >-
+        The stored employment information of the user from an employment data
+        provider.
       x-examples:
         Example:
           id: e-17bbf36498de4d68a0d4f86c7b62f69f
           name: Digital Marketing
-          description: 'Gathering and reporting relevant data, maintaining specific reports and dashboards, using platforms and programs to address marketing requirements, and updating specific marketing materials.'
+          description: >-
+            Gathering and reporting relevant data, maintaining specific reports
+            and dashboards, using platforms and programs to address marketing
+            requirements, and updating specific marketing materials.
           jobTitle: Digital Marketing Assistant
           department: Marketing
           employeeNumber: EMP-123456
@@ -2355,7 +2824,10 @@ components:
         description:
           type: string
           description: Description of work performed
-          example: 'Gathering and reporting relevant data, maintaining specific reports and dashboards, using platforms and programs to address marketing requirements, and updating specific marketing materials.'
+          example: >-
+            Gathering and reporting relevant data, maintaining specific reports
+            and dashboards, using platforms and programs to address marketing
+            requirements, and updating specific marketing materials.
           nullable: true
         jobTitle:
           type: string
@@ -2434,7 +2906,9 @@ components:
     Rating:
       title: Rating
       type: object
-      description: The stored performance ratings of the user in the employment data provider.
+      description: >-
+        The stored performance ratings of the user in the employment data
+        provider.
       x-internal: false
       x-examples:
         Example:
@@ -2467,12 +2941,16 @@ components:
           nullable: true
         calculatedPercentage:
           type: number
-          description: 'Current rating expressed as percentage, calculated by currentRating/maxRating x 100'
+          description: >-
+            Current rating expressed as percentage, calculated by
+            currentRating/maxRating x 100
           example: 90
           nullable: true
         reviewsReceived:
           type: number
-          description: 'Number of reviews the employee received, which is the basis for the current rating'
+          description: >-
+            Number of reviews the employee received, which is the basis for the
+            current rating
           example: 12
           nullable: true
         likesReceived:
@@ -2533,7 +3011,9 @@ components:
       title: Document
       type: object
       x-internal: false
-      description: The stored document-related information of the user from an employment data provider.
+      description: >-
+        The stored document-related information of the user from an employment
+        data provider.
       x-examples:
         Example:
           id: d-17bbf36498de4d68a0d4f86c7b62f69f
@@ -2541,7 +3021,8 @@ components:
           docId: ABCD123456
           issueDate: '2007-08-24'
           expiryDate: '2010-08-24'
-          fileUrl: 'https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png'
+          fileUrl: >-
+            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -2576,7 +3057,8 @@ components:
         fileUrl:
           type: string
           description: Publicly available URL reference for the document
-          example: 'https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png'
+          example: >-
+            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
           nullable: true
         metadata:
           $ref: '#/components/schemas/Object-Reference-Metadata'
@@ -2624,7 +3106,9 @@ components:
     Asset:
       title: Asset
       type: object
-      description: The stored asset-related information of the user from an employment data provider.
+      description: >-
+        The stored asset-related information of the user from an employment data
+        provider.
       x-internal: true
       x-examples:
         Example:
@@ -2633,7 +3117,8 @@ components:
           docId: ABCD123456
           issueDate: '2007-08-24'
           expiryDate: '2010-08-24'
-          fileUrl: 'https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png'
+          fileUrl: >-
+            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
             accountId: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -2699,7 +3184,9 @@ components:
       title: School
       type: object
       x-internal: true
-      description: The stored education-related information of the user from an employment data provider.
+      description: >-
+        The stored education-related information of the user from an employment
+        data provider.
       x-examples:
         Example:
           id: s-17bbf36498de4d68a0d4f86c7b62f69f
@@ -2724,11 +3211,11 @@ components:
           description: Description of school attended
         degree:
           type: string
-          description: 'Degree (eg Bachelors, Masters, Doctorate)'
+          description: Degree (eg Bachelors, Masters, Doctorate)
           nullable: true
         field:
           type: string
-          description: 'Field of study (eg Business, Engineering, Medicine)'
+          description: Field of study (eg Business, Engineering, Medicine)
           nullable: true
         startDate:
           type: string
@@ -2785,7 +3272,9 @@ components:
     Income:
       title: Income
       type: object
-      description: The stored income information of the user from an employment data provider.
+      description: >-
+        The stored income information of the user from an employment data
+        provider.
       x-examples:
         Example:
           id: inc-17bbf36498de4d68a0d4f86c7b62f69f
@@ -2885,7 +3374,10 @@ components:
     RawFile:
       title: RawFile
       type: object
-      description: Scanned or photographed document or form uploaded by the user to be able to share hardcopy employment and income information. File size limit is 15 MB.
+      description: >-
+        Scanned or photographed document or form uploaded by the user to be able
+        to share hardcopy employment and income information. File size limit is
+        15 MB.
       x-examples: {}
       x-internal: false
       properties:
@@ -2914,11 +3406,12 @@ components:
             - TIFF
             - JPEG
           example: PNG
-          description: 'File type (only JPEG, PNG, PDF, or TIFF formats are supported)'
+          description: File type (only JPEG, PNG, PDF, or TIFF formats are supported)
         url:
           type: string
           description: URL to access the file. URL will expire after 7 days.
-          example: 'https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg'
+          example: >-
+            https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
       required:
         - createdAt
         - name
@@ -2952,7 +3445,8 @@ components:
               subType: PERSONAL_INFORMATION
               size: 3048
               format: PNG
-              url: 'https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg'
+              url: >-
+                https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
       x-tags:
         - Uploads
       properties:
@@ -3057,12 +3551,564 @@ components:
               items:
                 $ref: '#/components/schemas/Upload'
       x-internal: true
-    Object-Metadata-Ref-Message:
-      type: string
-      title: Object-Metadata-Ref-Message
-      description: Message response to the request
-      example: Success
-      x-internal: false
+    Invite:
+      title: Invite
+      type: object
+      description: Invitation for a user to share their data.
+      x-tags:
+        - Invites
+      x-examples:
+        Example:
+          id: inv-b2c5e816-65ad-4130-819d-db89acc5869a
+          createdAt: '2021-04-14T09:30:24Z'
+          fullName: George Cimafranca Palomero, Jr
+          firstName: George
+          lastName: Palomero
+          email: gpalomero1234@smileapi.io
+          templateId: tpl-b2c5e816-65ad-4130-819d-db89acc5869a
+          userId: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+          status: INVITED
+          updatedAt: '2021-04-14T09:30:24Z'
+          invitedAt: '2021-04-14T09:30:24Z'
+          linkedAt: '2021-04-14T09:30:24Z'
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        fullName:
+          type: string
+          example: George Cimafranca Palomero, Jr
+          description: The full name of the invited user
+        firstName:
+          type: string
+          example: George
+          description: The first name of the invited user
+        lastName:
+          type: string
+          example: Palomero
+          description: The last name of the invited user
+        email:
+          example: gpalomero1234@smileapi.io
+          description: The email address of the invited user
+          format: email
+          type: string
+        templateId:
+          type: string
+          description: The template ID used in the invitation
+          example: tpl-b2c5e816-65ad-4130-819d-db89acc5869a
+        userId:
+          type: string
+          description: The user ID for this invitation
+          example: tenantId-b2c5e816-65ad-4130-819d-db89acc5869a
+        status:
+          type: string
+          enum:
+            - INVITED
+            - LINKED
+          description: Status of the invite
+        updatedAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        invitedAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        linkedAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+      required:
+        - id
+        - createdAt
+        - fullName
+        - firstName
+        - lastName
+        - email
+        - templateId
+        - updatedAt
+        - status
+        - invitedAt
+        - linkedAt
+    InvitePostRequest:
+      title: InvitePostRequest
+      type: object
+      description: ''
+      x-internal: true
+      properties:
+        fullName:
+          type: string
+          example: George Cimafranca Palomero, Jr
+          description: The full name of the person to be invited
+        firstName:
+          type: string
+          description: The first name of the person to be invited
+          example: George
+        lastName:
+          type: string
+          description: The last name of the person to be invited
+          example: Palomero
+        email:
+          type: string
+          example: gpalomero1234@smileapi.io
+          description: Email of the person to be invited
+          format: email
+        templateId:
+          type: string
+          description: The template ID to be used in the invite
+          example: tpl-b2c5e816-65ad-4130-819d-db89acc5869a
+    InvitePostResponse:
+      title: InvitePostResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Invite'
+      x-examples: {}
+      x-internal: true
+    InviteGetResponse:
+      title: InviteGetResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Invite'
+      x-internal: true
+    InviteListResponse:
+      title: InviteListResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Invite'
+      x-examples: {}
+      x-internal: true
+    InviteTemplate:
+      title: InviteTemplate
+      x-tags:
+        - Invite Templates
+      type: object
+      description: Template to be used for sending invites.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          template:
+            name: Email Template v1
+            company:
+              name: XYZ Bank
+              logoUrl: http://xyzbank.co/logo.png
+            email:
+              sendEmail: true
+              senderName: XYZ Bank
+              replyAddress: replies@xyz.co
+              subject: Please connect your work account to share your data with us
+              body: >-
+                Hello {{firstName}}, We are working with our partner, Smile API,
+                so you can easily share your employment and income data to us as
+                a requirement for granting you a loan. It will be a quick
+                process and should take no more than a few minutes of your time.
+            landingPage:
+              header: >-
+                Share your employment and income data with us at
+                {{company.name}}
+              description: >-
+                We are working with our partner, Smile API, so you can easily
+                share your employment and income data to us as a requirement for
+                granting you a loan. It will be a quick process and should take
+                no more than a few minutes of your time.
+              button: START NOW
+            successPage:
+              header: >-
+                <p>The process was successful! Please wait for us to get in
+                touch!</p>
+              description: >-
+                Thank you for sharing your employment and income data with us at
+                {{company.name}}
+              button: Connect another account
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        name:
+          type: string
+          description: Template name
+          example: Email Template v1
+        company:
+          type: object
+          required:
+            - name
+            - logoUrl
+          properties:
+            name:
+              type: string
+              example: XYZ Bank
+              description: >-
+                Company name that it will appear in the invite landing page and
+                email or sms message
+            logoUrl:
+              type: string
+              example: http://xyzbank.co/logo.png
+              description: >-
+                Company logo that will appear in the invite email and landing
+                page
+        email:
+          type: object
+          required:
+            - sendEmail
+            - senderName
+            - replyAddress
+            - subject
+            - body
+          properties:
+            sendEmail:
+              type: boolean
+              description: 'Send email using this template (boolean value: true/false)'
+            senderName:
+              type: string
+              description: Sender name that it will appear in the email message
+              example: XYZ Bank
+            replyAddress:
+              type: string
+              description: >-
+                Reply-to address that will be shown when replying to an invite
+                email
+              example: replies@xyz.co
+              format: email
+            subject:
+              type: string
+              description: Subject that it will appear in the email message
+              example: Please connect your work account to share your data with us
+            body:
+              type: string
+              description: Text that it will appear in email message
+              example: >-
+                Hello {{firstName}}, We are working with our partner, Smile API,
+                so you can easily share your employment and income data to us as
+                a requirement for granting you a loan. It will be a quick
+                process and should take no more than a few minutes of your time.
+        landingPage:
+          type: object
+          required:
+            - header
+            - description
+            - button
+          properties:
+            header:
+              type: string
+              description: Header text that will appear in the landing page
+              example: >-
+                We are working with our partner, Smile API, so you can easily
+                share your employment and income data to us as a requirement for
+                granting you a loan. It will be a quick process and should take
+                no more than a few minutes of your time.
+            description:
+              type: string
+              description: Description of the landing page
+              example: >-
+                Share your employment and income data with us at
+                {{company.name}}
+            button:
+              type: string
+              description: Text that it will appear in the landing page
+              example: START NOW
+        successPage:
+          type: object
+          required:
+            - header
+            - description
+            - button
+          properties:
+            header:
+              type: string
+              description: Header text that will appear in the success page
+              example: The process was successful! Please wait for us to get in touch!
+            description:
+              type: string
+              description: >-
+                Description of the success page after an account has been linked
+                or data has been uploaded
+              example: >-
+                Thank you for sharing your employment and income data with us at
+                {{company.name}}
+            button:
+              type: string
+              description: Text that it will appear in the landing page
+              example: Connect another account
+      required:
+        - id
+        - name
+        - company
+        - sms
+        - email
+        - landingPage
+        - successPage
+    InviteTemplatePostRequest:
+      type: object
+      x-internal: true
+      properties:
+        name:
+          type: string
+          description: Template name
+          example: Email Template v1
+        company:
+          type: object
+          required:
+            - name
+            - logoUrl
+          properties:
+            name:
+              type: string
+              example: XYZ Bank
+              description: >-
+                Company name that it will appear in the invite landing page and
+                email or sms message
+            logoUrl:
+              type: string
+              example: http://xyzbank.co/logo.png
+              description: >-
+                Company logo that will appear in the invite email and landing
+                page
+        email:
+          type: object
+          required:
+            - sendEmail
+            - senderName
+            - replyAddress
+            - subject
+            - body
+          properties:
+            sendEmail:
+              type: boolean
+              description: 'Send email using this template (boolean value: true/false)'
+            senderName:
+              type: string
+              description: Sender name that it will appear in the email message
+              example: XYZ Bank
+            replyAddress:
+              type: string
+              description: >-
+                Reply-to address that will be shown when replying to an invite
+                email
+              example: replies@xyz.co
+              format: email
+            subject:
+              type: string
+              description: Subject that it will appear in the email message
+              example: Please connect your work account to share your data with us
+            body:
+              type: string
+              description: Text that it will appear in email message
+              example: >-
+                Hello {{firstName}}, We are working with our partner, Smile API,
+                so you can easily share your employment and income data to us as
+                a requirement for granting you a loan. It will be a quick
+                process and should take no more than a few minutes of your time.
+        landingPage:
+          type: object
+          required:
+            - header
+            - description
+            - button
+          properties:
+            header:
+              type: string
+              description: Header text that will appear in the landing page
+              example: >-
+                We are working with our partner, Smile API, so you can easily
+                share your employment and income data to us as a requirement for
+                granting you a loan. It will be a quick process and should take
+                no more than a few minutes of your time.
+            description:
+              type: string
+              description: Description of the landing page
+              example: >-
+                Share your employment and income data with us at
+                {{company.name}}
+            button:
+              type: string
+              description: Text that it will appear in the landing page
+              example: START NOW
+        successPage:
+          type: object
+          required:
+            - header
+            - description
+            - button
+          properties:
+            header:
+              type: string
+              description: Header text that will appear in the success page
+              example: The process was successful! Please wait for us to get in touch!
+            description:
+              type: string
+              description: >-
+                Description of the success page after an account has been linked
+                or data has been uploaded
+              example: >-
+                Thank you for sharing your employment and income data with us at
+                {{company.name}}
+            button:
+              type: string
+              description: Text that it will appear in the landing page
+              example: Connect another account
+      required:
+        - name
+        - company
+        - sms
+        - email
+        - landingPage
+        - successPage
+      title: InviteTemplatePostRequest
+      description: ''
+    InviteTemplatePostResponse:
+      title: InviteTemplatePostResponse
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/InviteTemplate'
+    InviteTemplateGetResponse:
+      title: InviteTemplateGetResponse
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/InviteTemplate'
+    InviteTemplateListResponse:
+      title: InviteTemplateListResponse
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/InviteTemplate'
+    FileType:
+      title: FileType
+      type: object
+      description: File types that are available for upload
+      x-examples:
+        Example:
+          logoUrl: https://cdn.smileapi.io/image/provider-logo/v20210813064500/sss.png
+          type: SOCIAL_SECURITY
+          typeLabel: SSS Records
+          active: true
+          enabled: true
+          ocr: true
+          supported:
+            - IDENTITIES
+            - DOCUMENTS
+            - EMPLOYMENTS
+      x-tags:
+        - File Types
+      properties:
+        logoUrl:
+          type: string
+          description: URL to the file type image
+          example: https://cdn.smileapi.io/image/provider-logo/v20210813064500/sss.png
+        type:
+          type: string
+          description: Upload file type
+          example: SOCIAL_SECURITY
+          enum:
+            - SOCIAL_SECURITY
+            - TAX_DOCUMENT
+            - PAYSLIP
+            - COMPANY_ID
+        typeLabel:
+          type: string
+          description: Upload file type label
+          example: SSS Records
+        active:
+          type: boolean
+          description: Indicates whether upload for file type is working.
+        enabled:
+          type: boolean
+          description: >-
+            Indicates whether whether upload of file type is enabled or access
+            is allowed for the client.
+        ocr:
+          type: boolean
+          description: Whether OCR for file type is supported
+        supported:
+          type: array
+          items:
+            type: string
+            enum:
+              - IDENTITIES
+              - TRANSACTIONS
+              - RATINGS
+              - EMPLOYMENTS
+              - DOCUMENTS
+              - INCOMES
+              - NONE
+      required:
+        - logoUrl
+        - type
+        - typeLabel
+        - active
+        - enabled
+        - ocr
+        - supported
+    FileTypeListResponse:
+      title: FileType List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/FileType'
     Object-Metadata-Ref-Code:
       type: string
       title: Object-Metadata-Ref-API-Code
@@ -3081,19 +4127,27 @@ components:
         - SERVER_UNAVAILABLE
         - TIME_LIMIT_EXCEEDED
       example: OK
-      x-internal: false
+      x-internal: true
+    Object-Metadata-Ref-Message:
+      type: string
+      title: Object-Metadata-Ref-Message
+      description: Message response to the request
+      example: Success
+      x-internal: true
     Object-Metadata-Ref-RequestID:
       type: string
       title: Object-Metadata-Ref-RequestID
-      description: Unique ID that is added to the body of every response for easy traceability of the request in our logs.
-      x-internal: false
+      description: >-
+        Unique ID that is added to the body of every response for easy
+        traceability of the request in our logs.
+      x-internal: true
       example: 5b79399a-6852-4234-bb0e-ad472648282d
     Object-Next-Cursor:
       title: Object-Next-Cursor
       type: string
       example: '1259723474'
       description: The next cursor value that can be used in the following query.
-      x-internal: false
+      x-internal: true
     Ref-Object-ID:
       type: string
       title: Object ID
@@ -3106,12 +4160,18 @@ components:
       additionalProperties:
         type: string
       maxProperties: 5
-      description: |-
-        The Metadata object is a mapping of client-provided string fields to any string value. The following limitations apply:
+      description: >-
+        The Metadata object is a mapping of client-provided string fields to any
+        string value. The following limitations apply:
+
         - The JSON values must be Strings (no nested JSON objects allowed)
+
         - Only ASCII characters can be used
+
         - Maximum of 5 key/value pairs
+
         - Maximum key length of 50 characters
+
         - Maximum value length of 500 characters
       x-internal: true
     Ref-DateTime:
@@ -3393,14 +4453,14 @@ components:
         - Work
         - Personal
         - null
-      description: 'Primary contact, with secondary marked as either ''Work'' or ''Personal'''
+      description: Primary contact, with secondary marked as either 'Work' or 'Personal'
       example: Primary
       x-internal: true
     Ref-Phone-Number:
       type: string
       nullable: true
       title: International Phone Number
-      pattern: '^\+[1-9]\d{1,14}$'
+      pattern: ^\+[1-9]\d{1,14}$
       description: Phone numbers in international E.164 format
       x-internal: true
       example: '+639175551234'
@@ -3451,12 +4511,14 @@ components:
         latitude:
           type: string
           nullable: true
-          pattern: '^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$'
+          pattern: >-
+            ^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$
           description: Latitude coordinates
         longitude:
           type: string
           nullable: true
-          pattern: '^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$'
+          pattern: >-
+            ^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$
           description: Longitude coordinates
         type:
           type: string
@@ -3488,7 +4550,9 @@ components:
           enum:
             - ACCOUNT
             - UPLOAD
-          description: Indicates whether the source associated with this object is either ACCOUNT or UPLOAD type
+          description: >-
+            Indicates whether the source associated with this object is either
+            ACCOUNT or UPLOAD type
         userId:
           type: string
           description: The user ID associated with this object
@@ -3689,13 +4753,6 @@ components:
                 $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
               data:
                 type: object
-          examples:
-            Invalid Credentials:
-              value:
-                code: INVALID_CREDENTIALS
-                message: The credentials you provided are incorrect.
-                requestId: d385ab22-0f51-4b97-9ecd-b8ff3fd4fcb6
-                data: {}
   parameters:
     id:
       name: id
@@ -3711,7 +4768,7 @@ components:
         type: integer
         example: 50
         minimum: 1
-        maximum: 100
+        maximum: 150
         default: 10
       description: The number of objects you want returned in a collection.
     cursor:
@@ -3720,7 +4777,9 @@ components:
       required: false
       schema:
         type: string
-      description: Uses the filter values of the previous page to determine the next set of items.
+      description: >-
+        Uses the filter values of the previous page to determine the next set of
+        items.
     userId:
       name: userId
       in: query
@@ -3735,6 +4794,14 @@ components:
       schema:
         type: string
       description: Filter to those associated with a particular account ID.
+      deprecated: true
+    sourceId:
+      name: sourceId
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filter to those associated with a particular source ID.
   securitySchemes:
     basicAuth:
       type: http
@@ -3745,8 +4812,11 @@ tags:
   - name: Accounts
   - name: Documents
   - name: Employments
+  - name: File Types
   - name: Identities
   - name: Incomes
+  - name: Invite Templates
+  - name: Invites
   - name: Providers
   - name: Ratings
   - name: Tokens

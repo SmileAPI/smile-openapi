@@ -1,5 +1,6 @@
 # API Reference
 
+
 <!-- focus: false -->
 ![Authentication](https://img.icons8.com/ios-glyphs/50/000000/key--v1.png)
 
@@ -68,60 +69,72 @@ All responses are encoded in JSON and return the following attributes:
 
 If the response is a single object, the value of the data attribute is that object. For example, the Get Identity endpoint will return the following, with the attribute 'data' returning a single Identity object:
 
-``` json
+```
 {
     "code": "OK",
     "message": "Success!",
-    "requestId": "5f380e89-3762-418a-bc82-449716f4c0b2",
+    "requestId": "58be58d8-fdc9-4834-a5d2-711fb7386a0c",
     "data": {
-        "id": "i-45567e7689be49d5bc052a6e4a3805e6",
-        "fullName": "Christina Tan",
-        "firstName": "Christina",
-        "middleName": null,
-        "lastName": "Tan",
+        "id": "i-94683880ab98435582773936c361defd",
+        "fullName": "Ryan Joseph Peterson Chua Ng",
+        "firstName": "Ryan Joseph Peterson",
+        "middleName": "Chua",
+        "lastName": "Ng",
         "suffix": null,
-        "gender": "Female",
-        "dob": "1997-02-12",
-        "maritalStatus": null,
+        "gender": "Male",
+        "dob": "1995-06-24",
+        "maritalStatus": "Single",
         "countryResidence": "PH",
         "citizenship": null,
-        "photoUrl": null,
+        "photoUrl": "https://cdn.smileapi.io/image/avatar/v20211115191600/ryan.jpg",
+        "referenceId": "Ryan",
+        "profileUrl": null,
         "emails": [
             {
-                "address": "christina4321@yahoo.com",
+                "address": "ryan1234@gmail.com",
                 "type": "Primary"
             }
         ],
         "phones": [
             {
-                "number": "+639559996789",
-                "type": "Mobile"
+                "number": "+63289053000",
+                "type": "Fixed"
             },
             {
-                "number": "+639226789888",
+                "number": "+639559994321",
                 "type": "Mobile"
             }
         ],
-        "socialProfiles": [],
+        "socialProfiles": [
+            {
+                "socialUrl": "https://www.twitter.com/xklxyz",
+                "type": "Twitter"
+            },
+            {
+                "socialUrl": "https://www.facebook.com/ryanpetersonng",
+                "type": "Facebook"
+            }
+        ],
         "addresses": [
             {
-                "fullAddress": null,
-                "line1": null,
-                "line2": null,
-                "city": null,
-                "region": null,
-                "zip": null,
+                "fullAddress": "24 Eagle St, Binondo, Manila, NCR, 1008, PH",
+                "line1": "24 Eagle St",
+                "line2": "Binondo",
+                "city": "Manila",
+                "region": "NCR",
+                "zip": "1008",
                 "country": "PH",
-                "latitude": null,
-                "longitude": null,
+                "latitude": "14.600454",
+                "longitude": "120.969042",
                 "type": "Primary"
             }
         ],
         "metadata": {
-            "createdAt": "2021-10-26T05:37:20Z",
-            "accountId": "7c22448eb8d14bd79c460b16699999ec",
-            "userId": "smilejan-bff28fb7125348c686aa9c5f44224ffe",
-            "providerId": "guru"
+            "createdAt": "2022-01-06T00:21:58Z",
+            "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
+            "sourceType": "ACCOUNTS",
+            "userId": "smilejan-54a668d15cf34568b5a861ff35bb2f51",
+            "providerId": "199jobs"
         }
     }
 }
@@ -130,164 +143,165 @@ If the response is a single object, the value of the data attribute is that obje
 If the result is related to data retrieved from a user's account, a metadata object is also returned with more information about the response such as:
 
 - **createdAt**
-- **accountId**
+- **sourceId**
+- **sourceType**
 - **userId**
 - **providerId**
 
 If the response is a list or collection, the value of the data attribute is an array of objects.  For example the List Transactions endpoint will return a collection of Transactions:
 
-``` json
+```
 {
     "code": "OK",
     "message": "Success!",
-    "requestId": "e17e63a1-e49b-49de-bac6-14327f79a0e7",
+    "requestId": "508a2074-9229-4d59-b716-bb6b4221e196",
     "data": {
-        "nextCursor": "c-NDE0NTk=",
+        "nextCursor": null,
         "items": [
             {
-                "id": "t-11de60721342404daa35f60d2875f37b",
-                "date": "2021-08-21",
-                "description": "",
+                "id": "t-f4b8293631c84e759d30afebb7d98678",
+                "date": "2021-08-06",
+                "description": "Order revenue",
                 "currency": "PHP",
-                "amount": -200.0000,
-                "referenceId": "HTEEXWUEY2",
+                "amount": 222.0000,
+                "referenceId": "Order ID-945485798532",
                 "metadata": {
-                    "createdAt": "2021-10-26T08:25:05Z",
-                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
-                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
-                    "providerId": "grab"
+                    "createdAt": "2022-02-22T05:26:09Z",
+                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
+                    "providerId": "upwork"
                 }
             },
             {
-                "id": "t-a0c093aafbc940f4a434ec4aa105d205",
-                "date": "2021-08-19",
-                "description": "",
+                "id": "t-281ad47efdc043e796e128ee5bdf50c3",
+                "date": "2021-08-07",
+                "description": "Order revenue",
                 "currency": "PHP",
-                "amount": 959.0000,
-                "referenceId": "t5ig-ih3d",
+                "amount": 114.0000,
+                "referenceId": "Order ID-023485780332",
                 "metadata": {
-                    "createdAt": "2021-10-26T08:25:05Z",
-                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
-                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
-                    "providerId": "grab"
+                    "createdAt": "2022-02-22T05:26:09Z",
+                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
+                    "providerId": "upwork"
                 }
             },
             {
-                "id": "t-b5232be29d814c4cb139566d3bb595c0",
-                "date": "2021-07-30",
-                "description": "",
+                "id": "t-6853edd863514eae98b18abf56764fc3",
+                "date": "2021-08-08",
+                "description": "Platform fee",
                 "currency": "PHP",
-                "amount": 413.0000,
-                "referenceId": "t5ig-5jgj",
+                "amount": -25.5000,
+                "referenceId": "Order ID-934585780080",
                 "metadata": {
-                    "createdAt": "2021-10-26T08:25:05Z",
-                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
-                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
-                    "providerId": "grab"
+                    "createdAt": "2022-02-22T05:26:09Z",
+                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
+                    "providerId": "upwork"
                 }
             },
             {
-                "id": "t-dbf64adcd5254ebc80007ec9c1369863",
-                "date": "2021-08-02",
-                "description": "",
+                "id": "t-9409019eb2f141f898e73775be4c6600",
+                "date": "2021-04-04",
+                "description": "Order revenue",
                 "currency": "PHP",
-                "amount": -1000.0000,
-                "referenceId": "67BFA7QNK9",
+                "amount": 220.0000,
+                "referenceId": "Order ID-934587514002",
                 "metadata": {
-                    "createdAt": "2021-10-26T08:25:05Z",
-                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
-                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
-                    "providerId": "grab"
+                    "createdAt": "2022-02-22T05:26:09Z",
+                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
+                    "providerId": "upwork"
                 }
             },
             {
-                "id": "t-cd34342d7d3a41ca91a196bd1480d748",
-                "date": "2021-08-04",
-                "description": "",
+                "id": "t-a402ac196f404ab5bf1d148c5685624f",
+                "date": "2021-08-09",
+                "description": "Platform fee",
                 "currency": "PHP",
-                "amount": 259.0000,
-                "referenceId": "s6vx-slxp",
+                "amount": -20.0000,
+                "referenceId": "Order ID-156987512999",
                 "metadata": {
-                    "createdAt": "2021-10-26T08:25:05Z",
-                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
-                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
-                    "providerId": "grab"
+                    "createdAt": "2022-02-22T05:26:09Z",
+                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
+                    "providerId": "upwork"
                 }
             },
             {
-                "id": "t-c35121c6c54e4cb187f960441ba24cc0",
+                "id": "t-d318e3b6ad7845fda960a5d5add60bcb",
                 "date": "2021-08-10",
                 "description": "",
                 "currency": "PHP",
-                "amount": -2000.0000,
-                "referenceId": "U6FCHV94R5",
+                "amount": 59.0000,
+                "referenceId": "Order ID-664426992012",
                 "metadata": {
-                    "createdAt": "2021-10-26T08:25:05Z",
-                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
-                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
-                    "providerId": "grab"
+                    "createdAt": "2022-02-22T05:26:09Z",
+                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
+                    "providerId": "upwork"
                 }
             },
             {
-                "id": "t-6830a78cd49b47938a1cd3c4848286e6",
-                "date": "2021-08-04",
-                "description": "",
+                "id": "t-b1b8412a02e5482da260c7dbb045f455",
+                "date": "2021-08-12",
+                "description": "Platform fee",
                 "currency": "PHP",
-                "amount": 230.0000,
-                "referenceId": "s1rt-xqrn",
+                "amount": -20.0000,
+                "referenceId": "Order ID-234728692099",
                 "metadata": {
-                    "createdAt": "2021-10-26T08:25:05Z",
-                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
-                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
-                    "providerId": "grab"
+                    "createdAt": "2022-02-22T05:26:09Z",
+                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
+                    "providerId": "upwork"
                 }
             },
             {
-                "id": "t-140324b3ee24444baefb15146e2a8ec9",
-                "date": "2021-08-11",
-                "description": "",
+                "id": "t-20f74540926a4e71b17a93bf9932bbe7",
+                "date": "2021-08-16",
+                "description": "Order revenue",
                 "currency": "PHP",
-                "amount": -254.5500,
-                "referenceId": "5780080",
+                "amount": 20.0000,
+                "referenceId": "Order ID-994728692055",
                 "metadata": {
-                    "createdAt": "2021-10-26T08:25:05Z",
-                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
-                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
-                    "providerId": "grab"
+                    "createdAt": "2022-02-22T05:26:09Z",
+                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
+                    "providerId": "upwork"
                 }
             },
             {
-                "id": "t-71869bea91794a62a0d90324fe720d75",
-                "date": "2021-08-13",
-                "description": "",
+                "id": "t-e392935c34a040e181fb4b38a0b9e827",
+                "date": "2021-08-19",
+                "description": "Platform fee",
                 "currency": "PHP",
-                "amount": 1149.0000,
-                "referenceId": "s3vb-ivj1",
+                "amount": -19.6000,
+                "referenceId": "Order ID-993128902044",
                 "metadata": {
-                    "createdAt": "2021-10-26T08:25:05Z",
-                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
-                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
-                    "providerId": "grab"
+                    "createdAt": "2022-02-22T05:26:09Z",
+                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
+                    "providerId": "upwork"
                 }
             },
             {
-                "id": "t-4252082cfa664f6bbfdbc6f92d13dbbd",
-                "date": "2021-08-08",
-                "description": "",
+                "id": "t-67635c20c6164094b3f2fdaa9f0e0eb0",
+                "date": "2021-08-21",
+                "description": "Platform fee",
                 "currency": "PHP",
-                "amount": 222.0000,
-                "referenceId": "s3vb-8btz",
+                "amount": -16.9000,
+                "referenceId": "Order ID-996438805066",
                 "metadata": {
-                    "createdAt": "2021-10-26T08:25:05Z",
-                    "accountId": "fa7b016747164cea9a6efab67e6a1e25",
-                    "userId": "smilejan-a5b39dfe76174defb353d7e97a88a85e",
-                    "providerId": "grab"
+                    "createdAt": "2022-02-22T05:26:09Z",
+                    "sourceId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceType": "ACCOUNTS",
+                    "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
+                    "providerId": "upwork"
                 }
             }
         ]
     }
 }
-
 ```
 
 
@@ -316,6 +330,13 @@ To help in logging and troubleshooting, we apply some conventions when returning
 | User ID | **tenantId-** | smile1234-a5b39dfe76174defb353d7e97a88a85e | each user ID has a prefix related to their tenant ID in our system |
 | Identity ID | **i-** | i-45567e7689be49d5bc052a6e4a3805e6 | Identity related information |
 | Transaction ID | **t-** | t-11de60721342404daa35f60d2875f37b | Transaction related information |
+| Ratings ID | **r-** | r-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Ratings related information |
+
+<!--
+| Documents ID | **d-** | d-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Documents-related information |
+| Documents ID | **e-** | e-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Employments-related information |
+| Income ID | **inc-** | inc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Incomes-related information |
+-->
 
 To standardize data formats, we use commonly accepted standards to format the data, including:
 
@@ -338,7 +359,7 @@ Resources or API endpoints, can return a list or a collection of objects. By def
 
 When Smile returns a collection, we will also return a value called **nextCursor**. See below for an example:
 
-``` json
+```json
 {
     "code": "OK",
     "message": "Success!",
@@ -366,7 +387,9 @@ API endpoints which return a list or collection of objects can be filtered or li
 | size | The number of objects you want returned in a collection. See more information above on default values. |
 | cursor | Uses the filter values of the previous page to determine the next set of items. See more information above on pagination. |
 | userId | Filter the results by the associated userId |
-| acccountId | For account-related data, filter the results based on the associated accountId |
+| sourceId | For source-related data, filter the results based on the associated sourceId |
+| startDate | For data that has a date attribute, to be able to filter results by date range |
+| endDate | For data that has a date attribute, to be able to filter results by date range |
 
 Some resources however have unique query parameters associated with them. Check out the documentation in each of the endpoints to find out more.
 
