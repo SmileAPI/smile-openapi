@@ -1993,6 +1993,7 @@ components:
           active: true
           enabled: true
           mfa: true
+          accountConnection: true
           supported:
             - IDENTITIES
             - TRANSACTIONS
@@ -2111,7 +2112,7 @@ components:
             the client.
         mfa:
           type: boolean
-          description: Whether data provider requires two-factor authentication.
+          description: Whether data provider requires multi-factor authentication.
         accountConnection:
           type: boolean
           description: >-
@@ -2497,7 +2498,8 @@ components:
               type: Primary
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
       x-tags:
@@ -2535,6 +2537,7 @@ components:
             - Male
             - Female
             - Non-binary
+            - null
           example: Male
           description: Gender
           nullable: true
@@ -2552,6 +2555,7 @@ components:
             - Single
             - Widowed
             - Lifetime Partner
+            - null
           example: Married
           description: Marital status
           nullable: true
@@ -2721,7 +2725,8 @@ components:
             referenceId: string
             metadata:
               createdAt: '2021-04-21T09:30:24Z'
-              accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+              sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+              sourceType: ACCOUNT
               userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
               providerId: upwork
       properties:
@@ -2815,7 +2820,8 @@ components:
           endDate: '2019-08-24'
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: UPLOAD
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: abccorp
       x-tags:
@@ -2934,7 +2940,8 @@ components:
           jobsCompleted: 12
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
       x-tags:
@@ -3038,7 +3045,8 @@ components:
             https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
       x-tags:
@@ -3134,7 +3142,8 @@ components:
             https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: grab
       properties:
@@ -3210,7 +3219,8 @@ components:
           endDate: '2016-03-24'
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
       properties:
@@ -3295,7 +3305,6 @@ components:
           employer: ABC Corporation
           startDate: '2021-06-01'
           endDate: '2021-06-15'
-          paymentMethod: Bank
           currency: PHP
           frequency: Monthly
           baseAmount: 8500
@@ -3303,7 +3312,8 @@ components:
           netAmount: 7820.25
           metadata:
             createdAt: '2021-06-14T09:30:24Z'
-            accountId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: UPLOAD
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: user-provided
       x-internal: false
@@ -3331,18 +3341,7 @@ components:
         currency:
           $ref: '#/components/schemas/Ref-Currency'
         frequency:
-          type: string
-          description: Frequency or covered time period of this income
-          example: Annual
-          enum:
-            - Annual
-            - Monthly
-            - Semimonthly
-            - Weekly
-            - Daily
-            - Hourly
-            - Variable
-          nullable: true
+          $ref: '#/components/schemas/Ref-Pay-Period'
         baseAmount:
           type: number
           nullable: true
@@ -4765,6 +4764,25 @@ components:
       x-internal: true
       description: Employer name
       example: ABC Corporation
+    Ref-Pay-Period:
+      type: string
+      nullable: true
+      title: Pay Period
+      description: Pay period
+      enum:
+        - Hourly
+        - Daily
+        - Weekly
+        - Semimonthly
+        - Monthly
+        - Bimonthly
+        - Quarterly
+        - Annually
+        - Variable
+        - Unspecified
+        - null
+      example: Annually
+      x-internal: true
   responses:
     Standard-Errors:
       description: Standard error response
