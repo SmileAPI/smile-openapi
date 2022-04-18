@@ -1655,6 +1655,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InviteTemplateListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
+                          name: Email Template v1
+                          company:
+                            name: XYZ Bank
+                            logoUrl: http://xyzbank.co/logo.png
+                          email:
+                            sendEmail: true
+                            senderName: XYZ Bank
+                            replyAddress: replies@xyz.co
+                            subject: >-
+                              Please connect your work account to share your
+                              data with us
+                            body: >-
+                              Hello {{firstName}}, We are working with our
+                              partner, Smile API, so you can easily share your
+                              employment and income data to us as a requirement
+                              for granting you a loan. It will be a quick
+                              process and should take no more than a few minutes
+                              of your time.
+                          landingPage:
+                            header: >-
+                              We are working with our partner, Smile API, so you
+                              can easily share your employment and income data
+                              to us as a requirement for granting you a loan. It
+                              will be a quick process and should take no more
+                              than a few minutes of your time.
+                            description: >-
+                              Share your employment and income data with us at
+                              {{company.name}}
+                            button: START NOW
+                          successPage:
+                            header: >-
+                              The process was successful! Please wait for us to
+                              get in touch!
+                            description: >-
+                              Thank you for sharing your employment and income
+                              data with us at {{company.name}}
+                            button: Connect another account
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -1675,13 +1722,13 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
         '504':
           $ref: '#/components/responses/Standard-Errors'
-      operationId: list-invite-template
+      operationId: list-invite-templates
       description: Get the list of invite templates.
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
     post:
-      summary: Create Invite template
+      summary: Create Invite Template
       operationId: create-invite-template
       responses:
         '201':
@@ -1690,6 +1737,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InviteTemplatePostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
+                      name: Email Template v1
+                      company:
+                        name: XYZ Bank
+                        logoUrl: http://xyzbank.co/logo.png
+                      email:
+                        sendEmail: true
+                        senderName: XYZ Bank
+                        replyAddress: replies@xyz.co
+                        subject: >-
+                          Please connect your work account to share your data
+                          with us
+                        body: >-
+                          Hello {{firstName}}, We are working with our partner,
+                          Smile API, so you can easily share your employment and
+                          income data to us as a requirement for granting you a
+                          loan. It will be a quick process and should take no
+                          more than a few minutes of your time.
+                      landingPage:
+                        header: >-
+                          We are working with our partner, Smile API, so you can
+                          easily share your employment and income data to us as
+                          a requirement for granting you a loan. It will be a
+                          quick process and should take no more than a few
+                          minutes of your time.
+                        description: >-
+                          Share your employment and income data with us at
+                          {{company.name}}
+                        button: START NOW
+                      successPage:
+                        header: >-
+                          The process was successful! Please wait for us to get
+                          in touch!
+                        description: >-
+                          Thank you for sharing your employment and income data
+                          with us at {{company.name}}
+                        button: Connect another account
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -1710,12 +1801,52 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
         '504':
           $ref: '#/components/responses/Standard-Errors'
-      description: Create an invite template
+      description: Create an invite template.
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/InviteTemplatePostRequest'
+            examples:
+              Example:
+                value:
+                  name: Email Template v1
+                  company:
+                    name: XYZ Bank
+                    logoUrl: http://xyzbank.co/logo.png
+                  email:
+                    sendEmail: true
+                    senderName: XYZ Bank
+                    replyAddress: replies@xyz.co
+                    subject: >-
+                      Please connect your work account to share your data with
+                      us
+                    body: >-
+                      Hello {{firstName}}, We are working with our partner,
+                      Smile API, so you can easily share your employment and
+                      income data to us as a requirement for granting you a
+                      loan. It will be a quick process and should take no more
+                      than a few minutes of your time.
+                  landingPage:
+                    header: >-
+                      We are working with our partner, Smile API, so you can
+                      easily share your employment and income data to us as a
+                      requirement for granting you a loan. It will be a quick
+                      process and should take no more than a few minutes of your
+                      time.
+                    description: >-
+                      Share your employment and income data with us at
+                      {{company.name}}
+                    button: START NOW
+                  successPage:
+                    header: >-
+                      The process was successful! Please wait for us to get in
+                      touch!
+                    description: >-
+                      Thank you for sharing your employment and income data with
+                      us at {{company.name}}
+                    button: Connect another account
+        description: ''
       tags:
         - Invite Templates
   /inviteTemplates/{id}:
@@ -1732,8 +1863,233 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InviteTemplateGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
+                      name: Email Template v1
+                      company:
+                        name: XYZ Bank
+                        logoUrl: http://xyzbank.co/logo.png
+                      email:
+                        sendEmail: true
+                        senderName: XYZ Bank
+                        replyAddress: replies@xyz.co
+                        subject: >-
+                          Please connect your work account to share your data
+                          with us
+                        body: >-
+                          Hello {{firstName}}, We are working with our partner,
+                          Smile API, so you can easily share your employment and
+                          income data to us as a requirement for granting you a
+                          loan. It will be a quick process and should take no
+                          more than a few minutes of your time.
+                      landingPage:
+                        header: >-
+                          We are working with our partner, Smile API, so you can
+                          easily share your employment and income data to us as
+                          a requirement for granting you a loan. It will be a
+                          quick process and should take no more than a few
+                          minutes of your time.
+                        description: >-
+                          Share your employment and income data with us at
+                          {{company.name}}
+                        button: START NOW
+                      successPage:
+                        header: >-
+                          The process was successful! Please wait for us to get
+                          in touch!
+                        description: >-
+                          Thank you for sharing your employment and income data
+                          with us at {{company.name}}
+                        button: Connect another account
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
       operationId: get-invite-template
-      description: Get invite template
+      description: Get invite template.
+    put:
+      summary: Update Invite Template
+      operationId: update-invite-template
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTemplateUpdateResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
+                      name: Email Template v1
+                      company:
+                        name: XYZ Bank
+                        logoUrl: http://xyzbank.co/logo.png
+                      email:
+                        sendEmail: true
+                        senderName: XYZ Bank
+                        replyAddress: replies@xyz.co
+                        subject: >-
+                          Please connect your work account to share your data
+                          with us
+                        body: >-
+                          Hello {{firstName}}, We are working with our partner,
+                          Smile API, so you can easily share your employment and
+                          income data to us as a requirement for granting you a
+                          loan. It will be a quick process and should take no
+                          more than a few minutes of your time.
+                      landingPage:
+                        header: >-
+                          We are working with our partner, Smile API, so you can
+                          easily share your employment and income data to us as
+                          a requirement for granting you a loan. It will be a
+                          quick process and should take no more than a few
+                          minutes of your time.
+                        description: >-
+                          Share your employment and income data with us at
+                          {{company.name}}
+                        button: START NOW
+                      successPage:
+                        header: >-
+                          The process was successful! Please wait for us to get
+                          in touch!
+                        description: >-
+                          Thank you for sharing your employment and income data
+                          with us at {{company.name}}
+                        button: Connect another account
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      tags:
+        - Invite Templates
+      description: Update invite template.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InviteTemplateUpdateRequest'
+            examples:
+              Example:
+                value:
+                  name: Email Template v1
+                  company:
+                    name: XYZ Bank
+                    logoUrl: http://xyzbank.co/logo.png
+                  email:
+                    sendEmail: true
+                    senderName: XYZ Bank
+                    replyAddress: replies@xyz.co
+                    subject: >-
+                      Please connect your work account to share your data with
+                      us
+                    body: >-
+                      Hello {{firstName}}, We are working with our partner,
+                      Smile API, so you can easily share your employment and
+                      income data to us as a requirement for granting you a
+                      loan. It will be a quick process and should take no more
+                      than a few minutes of your time.
+                  landingPage:
+                    header: >-
+                      We are working with our partner, Smile API, so you can
+                      easily share your employment and income data to us as a
+                      requirement for granting you a loan. It will be a quick
+                      process and should take no more than a few minutes of your
+                      time.
+                    description: >-
+                      Share your employment and income data with us at
+                      {{company.name}}
+                    button: START NOW
+                  successPage:
+                    header: >-
+                      The process was successful! Please wait for us to get in
+                      touch!
+                    description: >-
+                      Thank you for sharing your employment and income data with
+                      us at {{company.name}}
+                    button: Connect another account
+        description: ''
+    delete:
+      summary: ''
+      operationId: delete-invite-template
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InviteTemplateDeleteResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      tags:
+        - Invite Templates
+      description: Delete invite template.
   /invites:
     get:
       summary: List Invites
@@ -1890,6 +2246,26 @@ paths:
                       updatedAt: '2021-04-14T09:30:24Z'
                       linkedAt: '2021-04-14T09:30:24Z'
                       invitedAt: '2021-04-14T09:30:24Z'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
       operationId: get-invite
       description: Get invite sent to users by ID.
   /fileTypes:
@@ -1976,7 +2352,7 @@ components:
       type: object
       description: >-
         An employment data provider. A provider holds employment and income
-        information of the user
+        information of the user.
       x-tags:
         - Providers
       x-examples:
@@ -2000,17 +2376,18 @@ components:
       properties:
         id:
           type: string
-          description: Unique ID of the data provider.
+          description: Unique ID of the data provider
           example: upwork
         name:
           type: string
-          description: Name of the data provider.
+          description: Name of the data provider
           example: Upwork
         longName:
           type: string
+          description: Full name or legal name of the data provider
         logoUrl:
           type: string
-          description: URL to the data provider's logo.
+          description: URL to the data provider's logo
           example: >-
             https://cdn.smileapi.io/image/provider-logo/v20210813064500/upwork.png
         type:
@@ -2020,11 +2397,11 @@ components:
             - GOVERNMENT
             - SYSTEM
             - EMPLOYER
-          description: Type of employment data provider.
+          description: Type of employment data provider
           example: GIG
         typeLabel:
           type: string
-          description: Type label of employment data provider, like "Gig Platform".
+          description: Type label of employment data provider, like "Gig Platform"
           example: Gig Platform
           enum:
             - Gig Platform
@@ -2065,7 +2442,7 @@ components:
             - ISIC-U
         subTypeLabel:
           type: string
-          description: Subtype label of employment data provider, like "Services".
+          description: Subtype label of employment data provider, like "Services"
           example: Professional Services
           enum:
             - Professional Services
@@ -2104,12 +2481,12 @@ components:
             - Activities of extraterritorial organization and bodies
         active:
           type: boolean
-          description: Indicates whether data provider integration is working.
+          description: Indicates whether data provider integration is working
         enabled:
           type: boolean
           description: >-
             Indicates whether data provider is enabled or access is allowed for
-            the client.
+            the client
         mfa:
           type: boolean
           description: Whether data provider requires multi-factor authentication.
@@ -2117,11 +2494,11 @@ components:
           type: boolean
           description: >-
             Whether a real-time account connection is available for this data
-            provider.
+            provider
           default: true
         supported:
           type: array
-          description: Supported data points for this employment data provider.
+          description: Supported data points for this employment data provider
           items:
             type: string
             example: IDENTITIES
@@ -2289,6 +2666,11 @@ components:
       description: >-
         A method for securely transmitting information between Smile and the
         user.
+      x-examples:
+        Example:
+          expiresAt: '2021-04-14T09:30:24Z'
+          mode: SANDBOX
+          accessToken: string
       properties:
         expiresAt:
           $ref: '#/components/schemas/Ref-DateTime'
@@ -2298,19 +2680,14 @@ components:
             - SANDBOX
             - PRODUCTION
           example: SANDBOX
-          description: Valid Smile mode for the Token.
+          description: Valid Smile mode for the Token
         accessToken:
           type: string
-          description: Short-lived token to initiate link flow.
+          description: Short-lived token to initiate link flow
       required:
         - expiresAt
         - mode
         - accessToken
-      x-examples:
-        Example:
-          expiresAt: '2021-04-14T09:30:24Z'
-          mode: SANDBOX
-          accessToken: string
     TokenPostResponse:
       title: Token Post Response
       properties:
@@ -2350,7 +2727,7 @@ components:
         providerId:
           type: string
           example: grab
-          description: ID of the data provider.
+          description: ID of the data provider
         userId:
           type: string
           description: User ID associated with this account
@@ -2363,7 +2740,7 @@ components:
             - ERROR
             - CONNECTED
             - DISCONNECTED
-          description: Account connection status.
+          description: Account connection status
           example: ERROR
           deprecated: true
         connection:
@@ -2382,7 +2759,7 @@ components:
                 - ERROR
                 - CONNECTED
                 - DISCONNECTED
-              description: Account connection status.
+              description: Account connection status
               example: ERROR
             errorCode:
               type: string
@@ -3330,13 +3707,14 @@ components:
           $ref: '#/components/schemas/Ref-Employer'
         startDate:
           type: string
-          description: Payment date
+          description: Start date
           format: date
           example: '2021-06-01'
         endDate:
           type: string
           example: '2021-06-15'
           format: date
+          description: End date
           nullable: true
         currency:
           $ref: '#/components/schemas/Ref-Currency'
@@ -3344,12 +3722,15 @@ components:
           $ref: '#/components/schemas/Ref-Pay-Period'
         baseAmount:
           type: number
+          description: Base amount
           nullable: true
         grossAmount:
           type: number
+          description: Gross amount
           nullable: true
         netAmount:
           type: number
+          description: Net amount
           nullable: true
         metadata:
           $ref: '#/components/schemas/Object-Reference-Metadata'
@@ -3407,6 +3788,8 @@ components:
         15 MB.
       x-examples: {}
       x-internal: false
+      x-tags:
+        - Uploads
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -3436,7 +3819,7 @@ components:
           description: File type (only JPEG, PNG, PDF, or TIFF formats are supported)
         url:
           type: string
-          description: URL to access the file. URL will expire after 7 days.
+          description: URL to access the file. URL will expire after 7 days
           example: >-
             https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
       required:
@@ -3446,8 +3829,6 @@ components:
         - size
         - format
         - url
-      x-tags:
-        - Uploads
     Upload:
       title: Upload
       type: object
@@ -3484,7 +3865,7 @@ components:
         providerId:
           type: string
           example: user-provided
-          description: ID of the data provider.
+          description: ID of the data provider
         userId:
           type: string
           description: User ID associated with this account
@@ -3762,9 +4143,7 @@ components:
                 no more than a few minutes of your time.
               button: START NOW
             successPage:
-              header: >-
-                <p>The process was successful! Please wait for us to get in
-                touch!</p>
+              header: The process was successful! Please wait for us to get in touch!
               description: >-
                 Thank you for sharing your employment and income data with us at
                 {{company.name}}
@@ -3787,7 +4166,7 @@ components:
               example: XYZ Bank
               description: >-
                 Company name that it will appear in the invite landing page and
-                email or sms message
+                any invitation message
             logoUrl:
               type: string
               example: http://xyzbank.co/logo.png
@@ -3881,7 +4260,6 @@ components:
         - id
         - name
         - company
-        - sms
         - email
         - landingPage
         - successPage
@@ -3997,13 +4375,143 @@ components:
       required:
         - name
         - company
-        - sms
         - email
         - landingPage
         - successPage
       title: InviteTemplatePostRequest
       description: ''
     InviteTemplatePostResponse:
+      title: InviteTemplatePostResponse
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/InviteTemplate'
+    InviteTemplateUpdateRequest:
+      type: object
+      x-internal: true
+      properties:
+        name:
+          type: string
+          description: Template name
+          example: Email Template v1
+        company:
+          type: object
+          required:
+            - name
+            - logoUrl
+          properties:
+            name:
+              type: string
+              example: XYZ Bank
+              description: >-
+                Company name that it will appear in the invite landing page and
+                email or sms message
+            logoUrl:
+              type: string
+              format: uri
+              example: http://xyzbank.co/logo.png
+              description: >-
+                Company logo that will appear in the invite email and landing
+                page
+        email:
+          type: object
+          required:
+            - sendEmail
+            - senderName
+            - replyAddress
+            - subject
+            - body
+          properties:
+            sendEmail:
+              type: boolean
+              description: 'Send email using this template (boolean value: true/false)'
+            senderName:
+              type: string
+              description: Sender name that it will appear in the email message
+              example: XYZ Bank
+            replyAddress:
+              type: string
+              description: >-
+                Reply-to address that will be shown when replying to an invite
+                email
+              example: replies@xyz.co
+              format: email
+            subject:
+              type: string
+              description: Subject that it will appear in the email message
+              example: Please connect your work account to share your data with us
+            body:
+              type: string
+              description: Text that it will appear in email message
+              example: >-
+                Hello {{firstName}}, We are working with our partner, Smile API,
+                so you can easily share your employment and income data to us as
+                a requirement for granting you a loan. It will be a quick
+                process and should take no more than a few minutes of your time.
+        landingPage:
+          type: object
+          required:
+            - header
+            - description
+            - button
+          properties:
+            header:
+              type: string
+              description: Header text that will appear in the landing page
+              example: >-
+                We are working with our partner, Smile API, so you can easily
+                share your employment and income data to us as a requirement for
+                granting you a loan. It will be a quick process and should take
+                no more than a few minutes of your time.
+            description:
+              type: string
+              description: Description of the landing page
+              example: >-
+                Share your employment and income data with us at
+                {{company.name}}
+            button:
+              type: string
+              description: Text that it will appear in the landing page
+              example: START NOW
+        successPage:
+          type: object
+          required:
+            - header
+            - description
+            - button
+          properties:
+            header:
+              type: string
+              description: Header text that will appear in the success page
+              example: The process was successful! Please wait for us to get in touch!
+            description:
+              type: string
+              description: >-
+                Description of the success page after an account has been linked
+                or data has been uploaded
+              example: >-
+                Thank you for sharing your employment and income data with us at
+                {{company.name}}
+            button:
+              type: string
+              description: Text that it will appear in the landing page
+              example: Connect another account
+      required:
+        - name
+        - company
+        - email
+        - landingPage
+        - successPage
+      title: InviteTemplatePostRequest
+      description: ''
+    InviteTemplateUpdateResponse:
       title: InviteTemplatePostResponse
       type: object
       x-internal: true
@@ -4049,10 +4557,21 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/InviteTemplate'
+    InviteTemplateDeleteResponse:
+      title: InviteTemplateGetResponse
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
     FileType:
       title: FileType
       type: object
-      description: File types that are available for upload
+      description: File types that are available for upload.
       x-examples:
         Example:
           logoUrl: https://cdn.smileapi.io/image/provider-logo/v20210813064500/sss.png
@@ -4087,12 +4606,12 @@ components:
           example: SSS Records
         active:
           type: boolean
-          description: Indicates whether upload for file type is working.
+          description: Indicates whether upload for file type is working
         enabled:
           type: boolean
           description: >-
             Indicates whether whether upload of file type is enabled or access
-            is allowed for the client.
+            is allowed for the client
         ocr:
           type: boolean
           description: Whether OCR for file type is supported

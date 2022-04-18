@@ -3,7 +3,7 @@ title: Understanding the API
 excerpt: ""  
 category: 6215975992e4610014e7b757
 ---
-# API Reference
+
 
 
 <!-- focus: false -->
@@ -11,7 +11,7 @@ category: 6215975992e4610014e7b757
 
 ## Authentication
 
-The Smile API uses HTTP Basic Auth. A set of credentials called API key and API secret, which is associated with your developer account can be used to access the Smile Network. To retrieve your credentials, contact access@getsmileapi.com
+The Smile API uses HTTP Basic Auth. A set of credentials called API key and API secret, which is associated with your developer account can be used to access the Smile Network. To retrieve your credentials, simply register and access the API Keys section of the [developer portal](https://portal.getsmileapi.com).
 
 To retrieve data from our API, you should include in your Authorization header, the word **Basic**, followed by a space and a base64-encoded (non-encrypted) string **apikey:apisecret** or '**Authorization: Basic {base64 encoded string}**'.
 
@@ -74,7 +74,7 @@ All responses are encoded in JSON and return the following attributes:
 
 If the response is a single object, the value of the data attribute is that object. For example, the Get Identity endpoint will return the following, with the attribute 'data' returning a single Identity object:
 
-```
+```json
 {
     "code": "OK",
     "message": "Success!",
@@ -155,7 +155,7 @@ If the result is related to data retrieved from a user's account, a metadata obj
 
 If the response is a list or collection, the value of the data attribute is an array of objects.  For example the List Transactions endpoint will return a collection of Transactions:
 
-```
+```json
 {
     "code": "OK",
     "message": "Success!",
@@ -336,12 +336,9 @@ To help in logging and troubleshooting, we apply some conventions when returning
 | Identity ID | **i-** | i-45567e7689be49d5bc052a6e4a3805e6 | Identity related information |
 | Transaction ID | **t-** | t-11de60721342404daa35f60d2875f37b | Transaction related information |
 | Ratings ID | **r-** | r-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Ratings related information |
-
-<!--
 | Documents ID | **d-** | d-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Documents-related information |
-| Documents ID | **e-** | e-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Employments-related information |
-| Income ID | **inc-** | inc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Incomes-related information |
--->
+| Employments ID | **e-** | e-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Employments-related information |
+| Incomes ID | **inc-** | inc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Incomes-related information |
 
 To standardize data formats, we use commonly accepted standards to format the data, including:
 

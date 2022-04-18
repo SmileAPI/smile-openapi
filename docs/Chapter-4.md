@@ -3,12 +3,12 @@ title: Getting User Data
 excerpt: ""  
 category: 6215975992e4610014e7b757
 ---
-# Getting User Data 
+
 
 
 Getting user data into your application involves two things:
 
- - **Embedding a Javascript SDK for your web application client**. At the moment, Smile only provides a Javascript SDK, but native verions of the SDK for mobile applications such as iOS or Android are coming soon. The Javascript SDK launches a modal window called a "Wink" web widget where users can provide permission for Smile to access their data. Users will first find their employer or employment data provider, then submit their login credentials over a secure and encrypted connection. By using the SDK, you will not have to worry about the different authentication and verification implementations of the different employment platforms, making the integration simple for your developers, and the experience smooth for your users. 
+ - **Embedding a Javascript SDK for your web application client**. At the moment, Smile only provides a Javascript SDK, but native verions of the SDK for mobile applications such as iOS or Android are coming soon. The Javascript SDK launches a modal window called a "Wink" web widget where users can provide permission for Smile to access their data. Users will first find their employer or employment data provider, then submit their login credentials over a secure and encrypted connection and/or upload some files. By using the SDK, you will not have to worry about the different authentication and verification implementations of the different employment platforms, or provide a file upload mechanism and manage data analysis or OCR. We make the process of getting data and using that data simple for your developers, and the experience smooth for your users. 
 
  - **Obtaining a user token from the Smile Open API**. Your back-end server should obtain a "Link" token  from the /users endpoint. This is a single use, short-lived token which is used to initialize the Wink widget. Your server should generate a new Link token each time you wish to launch the widget.
 
@@ -107,6 +107,7 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 |         | https://link.smileapi.io/v1 for Production |
 | userToken | The user token returned from Smile using the /users endpoint (see documentation on Users endpoint) |
 | providers | Pass a list of providers using their provider id (see documentation on Providers endpoint) to pre-filter the list of providers in the Wink widget. Passing just one provider id will skip the selection list and take the user immediately to the authentication screen. |
+| enableUpload | Enable or disable showing upload option in the list of providers (true or false). By default we disable uploads when this is not set. |
 
 ---
 <!-- focus: false -->
