@@ -959,6 +959,26 @@ paths:
                         sourceType: ACCOUNT
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: upwork
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
       operationId: get-transaction
       description: Get a user's transaction by ID.
   /uploads:
@@ -1079,6 +1099,26 @@ paths:
                           format: PNG
                           url: >-
                             https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
       operationId: get-upload
       description: Get a user's upload by ID.
       tags:
@@ -1677,7 +1717,7 @@ paths:
                               Please connect your work account to share your
                               data with us
                             body: >-
-                              Hello {{firstName}}, We are working with our
+                              Hello ${firstName}! We are working with our
                               partner, Smile API, so you can easily share your
                               employment and income data to us as a requirement
                               for granting you a loan. It will be a quick
@@ -1685,22 +1725,22 @@ paths:
                               of your time.
                           landingPage:
                             header: >-
+                              Share your employment and income data with us at
+                              ${companyName}
+                            description: >-
                               We are working with our partner, Smile API, so you
                               can easily share your employment and income data
                               to us as a requirement for granting you a loan. It
                               will be a quick process and should take no more
                               than a few minutes of your time.
-                            description: >-
-                              Share your employment and income data with us at
-                              {{company.name}}
                             button: START NOW
                           successPage:
                             header: >-
+                              Thank you for sharing your employment and income
+                              data with us at ${companyName}
+                            description: >-
                               The process was successful! Please wait for us to
                               get in touch!
-                            description: >-
-                              Thank you for sharing your employment and income
-                              data with us at {{company.name}}
                             button: Connect another account
         '400':
           $ref: '#/components/responses/Standard-Errors'
@@ -1757,29 +1797,29 @@ paths:
                           Please connect your work account to share your data
                           with us
                         body: >-
-                          Hello {{firstName}}, We are working with our partner,
+                          Hello ${firstName}! We are working with our partner,
                           Smile API, so you can easily share your employment and
                           income data to us as a requirement for granting you a
                           loan. It will be a quick process and should take no
                           more than a few minutes of your time.
                       landingPage:
                         header: >-
+                          Share your employment and income data with us at
+                          {$companyName}
+                        description: >-
                           We are working with our partner, Smile API, so you can
                           easily share your employment and income data to us as
                           a requirement for granting you a loan. It will be a
                           quick process and should take no more than a few
                           minutes of your time.
-                        description: >-
-                          Share your employment and income data with us at
-                          {{company.name}}
                         button: START NOW
                       successPage:
                         header: >-
+                          Thank you for sharing your employment and income data
+                          with us at ${companyName}
+                        description: >-
                           The process was successful! Please wait for us to get
                           in touch!
-                        description: >-
-                          Thank you for sharing your employment and income data
-                          with us at {{company.name}}
                         button: Connect another account
         '400':
           $ref: '#/components/responses/Standard-Errors'
@@ -1883,29 +1923,29 @@ paths:
                           Please connect your work account to share your data
                           with us
                         body: >-
-                          Hello {{firstName}}, We are working with our partner,
+                          Hello ${firstName}! We are working with our partner,
                           Smile API, so you can easily share your employment and
                           income data to us as a requirement for granting you a
                           loan. It will be a quick process and should take no
                           more than a few minutes of your time.
                       landingPage:
                         header: >-
+                          Share your employment and income data with us at
+                          ${companyName}
+                        description: >-
                           We are working with our partner, Smile API, so you can
                           easily share your employment and income data to us as
                           a requirement for granting you a loan. It will be a
                           quick process and should take no more than a few
                           minutes of your time.
-                        description: >-
-                          Share your employment and income data with us at
-                          {{company.name}}
                         button: START NOW
                       successPage:
                         header: >-
+                          Thank you for sharing your employment and income data
+                          with us at ${companyName}
+                        description: >-
                           The process was successful! Please wait for us to get
                           in touch!
-                        description: >-
-                          Thank you for sharing your employment and income data
-                          with us at {{company.name}}
                         button: Connect another account
         '400':
           $ref: '#/components/responses/Standard-Errors'
@@ -1959,29 +1999,29 @@ paths:
                           Please connect your work account to share your data
                           with us
                         body: >-
-                          Hello {{firstName}}, We are working with our partner,
+                          Hello {$firstName}! We are working with our partner,
                           Smile API, so you can easily share your employment and
                           income data to us as a requirement for granting you a
                           loan. It will be a quick process and should take no
                           more than a few minutes of your time.
                       landingPage:
                         header: >-
+                          Share your employment and income data with us at
+                          {$companyName}
+                        description: >-
                           We are working with our partner, Smile API, so you can
                           easily share your employment and income data to us as
                           a requirement for granting you a loan. It will be a
                           quick process and should take no more than a few
                           minutes of your time.
-                        description: >-
-                          Share your employment and income data with us at
-                          {{company.name}}
                         button: START NOW
                       successPage:
                         header: >-
+                          Thank you for sharing your employment and income data
+                          with us at {$companyName}
+                        description: >-
                           The process was successful! Please wait for us to get
                           in touch!
-                        description: >-
-                          Thank you for sharing your employment and income data
-                          with us at {{company.name}}
                         button: Connect another account
         '400':
           $ref: '#/components/responses/Standard-Errors'
@@ -2111,18 +2151,19 @@ paths:
                     data:
                       nextCursor: '1259723474'
                       items:
-                        - id: inv-69a540bc8b7e4d998852c1d970b7b88a
+                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
                           createdAt: '2021-04-14T09:30:24Z'
                           fullName: George Cimafranca Palomero, Jr
                           firstName: George
                           lastName: Palomero
                           email: gpalomero1234@smileapi.io
-                          templateId: tpl-b2c5e81665ad4130819ddb89acc5869a
-                          userId: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                          templateId: tpl-b2c5e816-65ad-4130-819d-db89acc5869a
+                          winkTemplateId: wtpl-db89acc5869a-b2c5e816-65ad-4130-819d
+                          userId: tenantId-b2c5e816-65ad-4130-819d-db89acc5869a
                           status: INVITED
                           updatedAt: '2021-04-14T09:30:24Z'
-                          linkedAt: '2021-04-14T09:30:24Z'
                           invitedAt: '2021-04-14T09:30:24Z'
+                          linkedAt: '2021-04-14T09:30:24Z'
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -2165,18 +2206,19 @@ paths:
                     message: Success
                     requestId: 5b79399a-6852-4234-bb0e-ad472648282d
                     data:
-                      id: inv-69a540bc8b7e4d998852c1d970b7b88a
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
                       createdAt: '2021-04-14T09:30:24Z'
                       fullName: George Cimafranca Palomero, Jr
                       firstName: George
                       lastName: Palomero
                       email: gpalomero1234@smileapi.io
-                      templateId: tpl-b2c5e81665ad4130819ddb89acc5869a
-                      userId: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                      templateId: tpl-b2c5e816-65ad-4130-819d-db89acc5869a
+                      winkTemplateId: wtpl-db89acc5869a-b2c5e816-65ad-4130-819d
+                      userId: tenantId-b2c5e816-65ad-4130-819d-db89acc5869a
                       status: INVITED
                       updatedAt: '2021-04-14T09:30:24Z'
-                      linkedAt: '2021-04-14T09:30:24Z'
                       invitedAt: '2021-04-14T09:30:24Z'
+                      linkedAt: '2021-04-14T09:30:24Z'
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -2234,18 +2276,19 @@ paths:
                     message: Success
                     requestId: 5b79399a-6852-4234-bb0e-ad472648282d
                     data:
-                      id: inv-69a540bc8b7e4d998852c1d970b7b88a
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
                       createdAt: '2021-04-14T09:30:24Z'
                       fullName: George Cimafranca Palomero, Jr
                       firstName: George
                       lastName: Palomero
                       email: gpalomero1234@smileapi.io
-                      templateId: tpl-b2c5e81665ad4130819ddb89acc5869a
-                      userId: tenant-17bbf36498de4d68a0d4f86c7b62f69f
+                      templateId: tpl-b2c5e816-65ad-4130-819d-db89acc5869a
+                      winkTemplateId: wtpl-db89acc5869a-b2c5e816-65ad-4130-819d
+                      userId: tenantId-b2c5e816-65ad-4130-819d-db89acc5869a
                       status: INVITED
                       updatedAt: '2021-04-14T09:30:24Z'
-                      linkedAt: '2021-04-14T09:30:24Z'
                       invitedAt: '2021-04-14T09:30:24Z'
+                      linkedAt: '2021-04-14T09:30:24Z'
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -2345,6 +2388,280 @@ paths:
           in: query
           name: ocr
           description: Filter results to file types that support OCR.
+  /webhooks:
+    get:
+      summary: List Webhooks
+      tags:
+        - Webhooks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: '2021-04-14T09:30:24Z'
+                          name: Event Notification Postback
+                          url: https://webhook.clienturl.xyz
+                          events:
+                            - ACCOUNT_CONNECTED
+                          payload: true
+                          status: ACTIVE
+                          updatedAt: '2021-04-14T09:30:24Z'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-webhooks
+      description: List all webhook endpoints.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+    parameters: []
+    post:
+      summary: Create Webhook
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      name: Event Notification Postback
+                      url: https://webhook.clienturl.xyz
+                      events:
+                        - ACCOUNT_CONNECTED
+                      payload: true
+                      status: ACTIVE
+                      updatedAt: '2021-04-14T09:30:24Z'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: create-webhook
+      description: Create a webhook endpoint.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookPostRequest'
+            examples:
+              Example:
+                value:
+                  name: Event Notification Postback
+                  url: https://webhook.clienturl.xyz
+                  events:
+                    - ACCOUNT_CONNECTED
+                    - IDENTITY_ADDED
+                  payload: true
+      tags:
+        - Webhooks
+  /webhooks/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Delete Webhook
+      tags:
+        - Webhooks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      name: Event Notification Postback
+                      url: https://webhook.clienturl.xyz
+                      events:
+                        - ACCOUNT_CONNECTED
+                      payload: true
+                      status: ACTIVE
+                      updatedAt: '2021-04-14T09:30:24Z'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-webhook
+      description: Get a webhook endpoint.
+    put:
+      summary: Update Webhook
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookUpdateResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      name: Event Notification Postback
+                      url: https://webhook.clienturl.xyz
+                      events:
+                        - ACCOUNT_CONNECTED
+                      payload: true
+                      status: ACTIVE
+                      updatedAt: '2021-04-14T09:30:24Z'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: update-webhook
+      description: Update a webhook endpoint.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookUpdateRequest'
+            examples:
+              Example:
+                value:
+                  name: Event Notification Postback
+                  url: https://webhook.clienturl.xyz
+                  events:
+                    - ACCOUNT_CONNECTED
+                    - IDENTITY_ADDED
+                  payload: true
+        description: ''
+      tags:
+        - Webhooks
+    delete:
+      summary: Delete Webhook
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookDeleteResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: delete-webhook
+      description: Delete a webhook endpoint.
+      tags:
+        - Webhooks
 components:
   schemas:
     Provider:
@@ -3974,6 +4291,7 @@ components:
           lastName: Palomero
           email: gpalomero1234@smileapi.io
           templateId: tpl-b2c5e816-65ad-4130-819d-db89acc5869a
+          winkTemplateId: wtpl-db89acc5869a-b2c5e816-65ad-4130-819d
           userId: tenant-17bbf36498de4d68a0d4f86c7b62f69f
           status: INVITED
           updatedAt: '2021-04-14T09:30:24Z'
@@ -4005,6 +4323,10 @@ components:
           type: string
           description: The template ID used in the invitation
           example: tpl-b2c5e816-65ad-4130-819d-db89acc5869a
+        winkTemplateId:
+          type: string
+          description: The Wink template ID used in the invitation
+          example: wtpl-db89acc5869a-b2c5e816-65ad-4130-819d
         userId:
           type: string
           description: The user ID for this invitation
@@ -4029,8 +4351,9 @@ components:
         - lastName
         - email
         - templateId
-        - updatedAt
+        - userId
         - status
+        - updatedAt
         - invitedAt
         - linkedAt
     InvitePostRequest:
@@ -4117,37 +4440,34 @@ components:
       x-examples:
         Example:
           id: 17bbf36498de4d68a0d4f86c7b62f69f
-          template:
-            name: Email Template v1
-            company:
-              name: XYZ Bank
-              logoUrl: http://xyzbank.co/logo.png
-            email:
-              sendEmail: true
-              senderName: XYZ Bank
-              replyAddress: replies@xyz.co
-              subject: Please connect your work account to share your data with us
-              body: >-
-                Hello {{firstName}}, We are working with our partner, Smile API,
-                so you can easily share your employment and income data to us as
-                a requirement for granting you a loan. It will be a quick
-                process and should take no more than a few minutes of your time.
-            landingPage:
-              header: >-
-                Share your employment and income data with us at
-                {{company.name}}
-              description: >-
-                We are working with our partner, Smile API, so you can easily
-                share your employment and income data to us as a requirement for
-                granting you a loan. It will be a quick process and should take
-                no more than a few minutes of your time.
-              button: START NOW
-            successPage:
-              header: The process was successful! Please wait for us to get in touch!
-              description: >-
-                Thank you for sharing your employment and income data with us at
-                {{company.name}}
-              button: Connect another account
+          name: Email Template v1
+          company:
+            name: XYZ Bank
+            logoUrl: http://xyzbank.co/logo.png
+          email:
+            sendEmail: true
+            senderName: XYZ Bank
+            replyAddress: replies@xyz.co
+            subject: Please connect your work account to share your data with us
+            body: >-
+              Hello ${firstName}! We are working with our partner, Smile API, so
+              you can easily share your employment and income data to us as a
+              requirement for granting you a loan. It will be a quick process
+              and should take no more than a few minutes of your time.
+          landingPage:
+            header: Share your employment and income data with us at ${companyName}
+            description: >-
+              We are working with our partner, Smile API, so you can easily
+              share your employment and income data to us as a requirement for
+              granting you a loan. It will be a quick process and should take no
+              more than a few minutes of your time.
+            button: START NOW
+          successPage:
+            header: >-
+              Thank you for sharing your employment and income data with us at
+              ${companyName}
+            description: The process was successful! Please wait for us to get in touch!
+            button: Connect another account
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -4204,7 +4524,7 @@ components:
               type: string
               description: Text that it will appear in email message
               example: >-
-                Hello {{firstName}}, We are working with our partner, Smile API,
+                Hello ${firstName}! We are working with our partner, Smile API,
                 so you can easily share your employment and income data to us as
                 a requirement for granting you a loan. It will be a quick
                 process and should take no more than a few minutes of your time.
@@ -4218,17 +4538,15 @@ components:
             header:
               type: string
               description: Header text that will appear in the landing page
+              example: Share your employment and income data with us at ${companyName}
+            description:
+              type: string
+              description: Description of the landing page
               example: >-
                 We are working with our partner, Smile API, so you can easily
                 share your employment and income data to us as a requirement for
                 granting you a loan. It will be a quick process and should take
                 no more than a few minutes of your time.
-            description:
-              type: string
-              description: Description of the landing page
-              example: >-
-                Share your employment and income data with us at
-                {{company.name}}
             button:
               type: string
               description: Text that it will appear in the landing page
@@ -4243,15 +4561,15 @@ components:
             header:
               type: string
               description: Header text that will appear in the success page
-              example: The process was successful! Please wait for us to get in touch!
+              example: >-
+                Thank you for sharing your employment and income data with us at
+                ${companyName}
             description:
               type: string
               description: >-
                 Description of the success page after an account has been linked
                 or data has been uploaded
-              example: >-
-                Thank you for sharing your employment and income data with us at
-                {{company.name}}
+              example: The process was successful! Please wait for us to get in touch!
             button:
               type: string
               description: Text that it will appear in the landing page
@@ -4320,7 +4638,7 @@ components:
               type: string
               description: Text that it will appear in email message
               example: >-
-                Hello {{firstName}}, We are working with our partner, Smile API,
+                Hello ${firstName}, We are working with our partner, Smile API,
                 so you can easily share your employment and income data to us as
                 a requirement for granting you a loan. It will be a quick
                 process and should take no more than a few minutes of your time.
@@ -4342,9 +4660,7 @@ components:
             description:
               type: string
               description: Description of the landing page
-              example: >-
-                Share your employment and income data with us at
-                {{company.name}}
+              example: Share your employment and income data with us at ${companyName}
             button:
               type: string
               description: Text that it will appear in the landing page
@@ -4367,7 +4683,7 @@ components:
                 or data has been uploaded
               example: >-
                 Thank you for sharing your employment and income data with us at
-                {{company.name}}
+                ${companyName}
             button:
               type: string
               description: Text that it will appear in the landing page
@@ -4451,7 +4767,7 @@ components:
               type: string
               description: Text that it will appear in email message
               example: >-
-                Hello {{firstName}}, We are working with our partner, Smile API,
+                Hello ${firstName}, We are working with our partner, Smile API,
                 so you can easily share your employment and income data to us as
                 a requirement for granting you a loan. It will be a quick
                 process and should take no more than a few minutes of your time.
@@ -4473,9 +4789,7 @@ components:
             description:
               type: string
               description: Description of the landing page
-              example: >-
-                Share your employment and income data with us at
-                {{company.name}}
+              example: Share your employment and income data with us at ${companyName}
             button:
               type: string
               description: Text that it will appear in the landing page
@@ -4498,7 +4812,7 @@ components:
                 or data has been uploaded
               example: >-
                 Thank you for sharing your employment and income data with us at
-                {{company.name}}
+                ${companyName}
             button:
               type: string
               description: Text that it will appear in the landing page
@@ -4509,10 +4823,10 @@ components:
         - email
         - landingPage
         - successPage
-      title: InviteTemplatePostRequest
+      title: InviteTemplateUpdateRequest
       description: ''
     InviteTemplateUpdateResponse:
-      title: InviteTemplatePostResponse
+      title: InviteTemplateUpdateResponse
       type: object
       x-internal: true
       properties:
@@ -4524,6 +4838,7 @@ components:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
         data:
           $ref: '#/components/schemas/InviteTemplate'
+      description: ''
     InviteTemplateGetResponse:
       title: InviteTemplateGetResponse
       type: object
@@ -4558,7 +4873,7 @@ components:
               items:
                 $ref: '#/components/schemas/InviteTemplate'
     InviteTemplateDeleteResponse:
-      title: InviteTemplateGetResponse
+      title: InviteTemplateDeleteResponse
       type: object
       x-internal: true
       properties:
@@ -4568,6 +4883,7 @@ components:
           $ref: '#/components/schemas/Object-Metadata-Ref-Message'
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+      description: ''
     FileType:
       title: FileType
       type: object
@@ -4655,6 +4971,266 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/FileType'
+    Webhook:
+      title: Webhook
+      type: object
+      description: Receive event notifications via Webhooks.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          createdAt: '2021-04-14T09:30:24Z'
+          name: Event Notification Postback
+          url: https://webhook.clienturl.xyz
+          events:
+            - USER_CREATED
+          payload: true
+          status: ACTIVE
+          updatedAt: '2021-04-14T09:30:24Z'
+      x-internal: false
+      x-tags:
+        - Webhooks
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        name:
+          type: string
+          description: Name of the webhook endpoint
+          example: Event Notification Postback
+        url:
+          type: string
+          description: URL of webhook, must begin with https://
+          example: https://webhook.clienturl.xyz
+        events:
+          $ref: '#/components/schemas/Ref-Webhook-Events'
+        payload:
+          type: boolean
+          description: Whether to include data payload in the event notification
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+          example: ACTIVE
+        updatedAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+      required:
+        - id
+        - createdAt
+        - name
+        - url
+        - events
+        - payload
+        - status
+        - updatedAt
+    WebhookPostRequest:
+      title: WebhookPostRequest
+      type: object
+      x-internal: true
+      properties:
+        name:
+          type: string
+          description: Name of the webhook endpoint
+          example: Event Notification Postback
+        url:
+          type: string
+          description: URL of webhook, must begin with https://
+          example: https://webhook.clienturl.xyz
+        events:
+          $ref: '#/components/schemas/Ref-Webhook-Events'
+        payload:
+          type: boolean
+          description: Whether to include data payload in the event notification
+    WebhookPostResponse:
+      title: WebhookPostResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Webhook'
+      x-internal: true
+    WebhookUpdateRequest:
+      title: WebhookUpdateRequest
+      type: object
+      x-internal: true
+      properties:
+        name:
+          type: string
+          description: Name of the webhook endpoint
+          example: Event Notification Postback
+        url:
+          type: string
+          description: URL of webhook, must begin with https://
+          example: https://webhook.clienturl.xyz
+        events:
+          $ref: '#/components/schemas/Ref-Webhook-Events'
+        payload:
+          type: boolean
+          description: Whether to include data payload in the event notification
+    WebhookUpdateResponse:
+      title: WebhookUpdateResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Webhook'
+      x-internal: true
+    WebhookGetResponse:
+      title: WebhookGetResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Webhook'
+      x-internal: true
+    WebhookListResponse:
+      title: WebhookListResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Webhook'
+      x-internal: true
+    WebhookDeleteResponse:
+      title: WebhookDeleteResponse
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+      x-examples: {}
+    WebhookNotification:
+      title: Webhook Example Notification
+      type: object
+      x-internal: false
+      x-examples:
+        'Example: payload = true':
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          event: IDENTITY_ADDED
+          signature: 4ad51e260ef60e9bd7a77ab779f5b587970c70a0
+          payload: true
+          data:
+            - id: i-24bbf36498ac4d26a0d4f86c7b62f83z
+              fullName: Ryan Joseph Peterson Chua Ng
+              firstName: Ryan Joseph Peterson
+              middleName: Chua
+              lastName: Ng
+              suffix: null
+              gender: Male
+              dob: '1995-06-24'
+              maritalStatus: Single
+              countryResidence: null
+              citizenship: Citizen
+              photoUrl: https://cdn.smileapi.io/image/avatar/v20211115191600/ryan.jpg
+              referenceId: ~02c0bf6ae6a581ee2b
+              profileUrl: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
+              emails:
+                - address: ryan1234@gmail.com
+                  type: Primary
+              phones:
+                - number: '+639559994321'
+                  type: Mobile
+                - number: '+63289053000'
+                  type: Fixed
+              socialProfiles:
+                - socialUrl: https://www.facebook.com/ryanpetersonng
+                  type: Facebook
+                - socialUrl: https://www.twitter.com/xklxyz
+                  type: Twitter
+              addresses:
+                - fullAddress: 24 Eagle St, Binondo, Manila, NCR, 1008, PH
+                  line1: 24 Eagle St
+                  line2: Binondo
+                  city: Manila
+                  region: NCR
+                  zip: '1008'
+                  country: PH
+                  latitude: '14.600454'
+                  longitude: '120.969042'
+                  type: Primary
+              metadata:
+                createdAt: '2021-04-14T09:30:24Z'
+                sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                sourceType: ACCOUNT
+                userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                providerId: upwork
+        'Example: payload = false (user data)':
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          event: IDENTITY_ADDED
+          signature: 4ad51e260ef60e9bd7a77ab779f5b587970c70a0
+          payload: false
+          data:
+            - id: i-24bbf36498ac4d26a0d4f86c7b62f83z
+              metadata:
+                createdAt: '2021-04-14T09:30:24Z'
+                sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                sourceType: ACCOUNT
+                userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                providerId: upwork
+        'Example: payload = false (non-user data)':
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          event: UPLOAD_STARTED
+          signature: 4ad51e260ef60e9bd7a77ab779f5b587970c70a0
+          payload: false
+          data:
+            - id: u-24bbf36498ac4d26a0d4f86c7b62f83z
+        Example-alternate:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          event: UPLOAD_STARTED
+          signature: 4ad51e260ef60e9bd7a77ab779f5b587970c70a0
+          payload: false
+          data:
+            - id: u-24bbf36498ac4d26a0d4f86c7b62f83z
+              URI: >-
+                https://sandbox.smileapi.net/uploads/u-24bbf36498ac4d26a0d4f86c7b62f83z
+      description: Example webhook notification
+      x-tags:
+        - Webhooks
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        event:
+          type: string
+        signature:
+          type: string
+          example: 4ad51e260ef60e9bd7a77ab779f5b587970c70a0
+        payload:
+          type: boolean
+        data:
+          type: array
+          items: {}
     Object-Metadata-Ref-Code:
       type: string
       title: Object-Metadata-Ref-API-Code
@@ -5302,6 +5878,29 @@ components:
         - null
       example: Annually
       x-internal: true
+    Ref-Webhook-Events:
+      type: array
+      title: Ref-WebhookEvents
+      description: Events which will be sent as a notification via webhook
+      items:
+        type: string
+        enum:
+          - USER_CREATED
+          - ACCOUNT_CONNECTED
+          - ACCOUNT_DISCONNECTED
+          - UPLOAD_STARTED
+          - UPLOAD_ANALYZED
+          - UPLOAD_REVOKED
+          - INVITE_INVITED
+          - INVITE_LINKED
+          - IDENTITY_ADDED
+          - TRANSACTIONS_ADDED
+          - RATINGS_ADDED
+          - DOCUMENTS_ADDED
+          - EMPLOYMENTS_ADDED
+          - INCOMES_ADDED
+          - ALL_EVENTS
+        example: ACCOUNT_CONNECTED
   responses:
     Standard-Errors:
       description: Standard error response
@@ -5388,3 +5987,4 @@ tags:
   - name: Transactions
   - name: Uploads
   - name: Users
+  - name: Webhooks
