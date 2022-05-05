@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 1.7.3
+  version: 1.7.5
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
@@ -1708,7 +1708,7 @@ paths:
                           name: Email Template v1
                           company:
                             name: XYZ Bank
-                            logoUrl: http://xyzbank.co/logo.png
+                            logoUrl: https://xyzbank.co/logo.png
                           email:
                             sendEmail: true
                             senderName: XYZ Bank
@@ -1788,7 +1788,7 @@ paths:
                       name: Email Template v1
                       company:
                         name: XYZ Bank
-                        logoUrl: http://xyzbank.co/logo.png
+                        logoUrl: https://xyzbank.co/logo.png
                       email:
                         sendEmail: true
                         senderName: XYZ Bank
@@ -1853,7 +1853,7 @@ paths:
                   name: Email Template v1
                   company:
                     name: XYZ Bank
-                    logoUrl: http://xyzbank.co/logo.png
+                    logoUrl: https://xyzbank.co/logo.png
                   email:
                     sendEmail: true
                     senderName: XYZ Bank
@@ -1914,7 +1914,7 @@ paths:
                       name: Email Template v1
                       company:
                         name: XYZ Bank
-                        logoUrl: http://xyzbank.co/logo.png
+                        logoUrl: https://xyzbank.co/logo.png
                       email:
                         sendEmail: true
                         senderName: XYZ Bank
@@ -1990,7 +1990,7 @@ paths:
                       name: Email Template v1
                       company:
                         name: XYZ Bank
-                        logoUrl: http://xyzbank.co/logo.png
+                        logoUrl: https://xyzbank.co/logo.png
                       email:
                         sendEmail: true
                         senderName: XYZ Bank
@@ -2057,7 +2057,7 @@ paths:
                   name: Email Template v1
                   company:
                     name: XYZ Bank
-                    logoUrl: http://xyzbank.co/logo.png
+                    logoUrl: https://xyzbank.co/logo.png
                   email:
                     sendEmail: true
                     senderName: XYZ Bank
@@ -2393,6 +2393,7 @@ paths:
       summary: List Webhooks
       tags:
         - Webhooks
+      x-internal: true
       responses:
         '200':
           description: OK
@@ -2413,10 +2414,10 @@ paths:
                           createdAt: '2021-04-14T09:30:24Z'
                           name: Event Notification Postback
                           url: https://webhook.clienturl.xyz
-                          events:
+                          eventTypes:
                             - ACCOUNT_CONNECTED
-                          payload: true
-                          status: ACTIVE
+                          active: true
+                          secret: a little secret
                           updatedAt: '2021-04-14T09:30:24Z'
         '400':
           $ref: '#/components/responses/Standard-Errors'
@@ -2446,6 +2447,7 @@ paths:
     parameters: []
     post:
       summary: Create Webhook
+      x-internal: true
       responses:
         '200':
           description: OK
@@ -2464,10 +2466,10 @@ paths:
                       createdAt: '2021-04-14T09:30:24Z'
                       name: Event Notification Postback
                       url: https://webhook.clienturl.xyz
-                      events:
+                      eventTypes:
                         - ACCOUNT_CONNECTED
-                      payload: true
-                      status: ACTIVE
+                      secret: a little secret
+                      active: true
                       updatedAt: '2021-04-14T09:30:24Z'
         '400':
           $ref: '#/components/responses/Standard-Errors'
@@ -2501,10 +2503,11 @@ paths:
                 value:
                   name: Event Notification Postback
                   url: https://webhook.clienturl.xyz
-                  events:
+                  eventTypes:
                     - ACCOUNT_CONNECTED
                     - IDENTITY_ADDED
-                  payload: true
+                  active: true
+                  secret: a little secret
       tags:
         - Webhooks
   /webhooks/{id}:
@@ -2512,6 +2515,7 @@ paths:
       - $ref: '#/components/parameters/id'
     get:
       summary: Delete Webhook
+      x-internal: true
       tags:
         - Webhooks
       responses:
@@ -2532,10 +2536,10 @@ paths:
                       createdAt: '2021-04-14T09:30:24Z'
                       name: Event Notification Postback
                       url: https://webhook.clienturl.xyz
-                      events:
+                      eventTypes:
                         - ACCOUNT_CONNECTED
-                      payload: true
-                      status: ACTIVE
+                      active: true
+                      secret: a little secret
                       updatedAt: '2021-04-14T09:30:24Z'
         '400':
           $ref: '#/components/responses/Standard-Errors'
@@ -2559,72 +2563,9 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-webhook
       description: Get a webhook endpoint.
-    put:
-      summary: Update Webhook
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WebhookUpdateResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: 17bbf36498de4d68a0d4f86c7b62f69f
-                      createdAt: '2021-04-14T09:30:24Z'
-                      name: Event Notification Postback
-                      url: https://webhook.clienturl.xyz
-                      events:
-                        - ACCOUNT_CONNECTED
-                      payload: true
-                      status: ACTIVE
-                      updatedAt: '2021-04-14T09:30:24Z'
-        '400':
-          $ref: '#/components/responses/Standard-Errors'
-        '401':
-          $ref: '#/components/responses/Standard-Errors'
-        '403':
-          $ref: '#/components/responses/Standard-Errors'
-        '404':
-          $ref: '#/components/responses/Standard-Errors'
-        '415':
-          $ref: '#/components/responses/Standard-Errors'
-        '429':
-          $ref: '#/components/responses/Standard-Errors'
-        '500':
-          $ref: '#/components/responses/Standard-Errors'
-        '501':
-          $ref: '#/components/responses/Standard-Errors'
-        '503':
-          $ref: '#/components/responses/Standard-Errors'
-        '504':
-          $ref: '#/components/responses/Standard-Errors'
-      operationId: update-webhook
-      description: Update a webhook endpoint.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/WebhookUpdateRequest'
-            examples:
-              Example:
-                value:
-                  name: Event Notification Postback
-                  url: https://webhook.clienturl.xyz
-                  events:
-                    - ACCOUNT_CONNECTED
-                    - IDENTITY_ADDED
-                  payload: true
-        description: ''
-      tags:
-        - Webhooks
     delete:
       summary: Delete Webhook
+      x-internal: true
       responses:
         '200':
           description: OK
@@ -4443,7 +4384,7 @@ components:
           name: Email Template v1
           company:
             name: XYZ Bank
-            logoUrl: http://xyzbank.co/logo.png
+            logoUrl: https://xyzbank.co/logo.png
           email:
             sendEmail: true
             senderName: XYZ Bank
@@ -4489,7 +4430,7 @@ components:
                 any invitation message
             logoUrl:
               type: string
-              example: http://xyzbank.co/logo.png
+              example: https://xyzbank.co/logo.png
               description: >-
                 Company logo that will appear in the invite email and landing
                 page
@@ -4603,7 +4544,7 @@ components:
                 email or sms message
             logoUrl:
               type: string
-              example: http://xyzbank.co/logo.png
+              example: https://xyzbank.co/logo.png
               description: >-
                 Company logo that will appear in the invite email and landing
                 page
@@ -4732,7 +4673,7 @@ components:
             logoUrl:
               type: string
               format: uri
-              example: http://xyzbank.co/logo.png
+              example: https://xyzbank.co/logo.png
               description: >-
                 Company logo that will appear in the invite email and landing
                 page
@@ -4981,12 +4922,12 @@ components:
           createdAt: '2021-04-14T09:30:24Z'
           name: Event Notification Postback
           url: https://webhook.clienturl.xyz
-          events:
+          eventTypes:
             - USER_CREATED
-          payload: true
-          status: ACTIVE
+          active: true
+          secret: a little secret
           updatedAt: '2021-04-14T09:30:24Z'
-      x-internal: false
+      x-internal: true
       x-tags:
         - Webhooks
       properties:
@@ -5002,17 +4943,19 @@ components:
           type: string
           description: URL of webhook, must begin with https://
           example: https://webhook.clienturl.xyz
-        events:
-          $ref: '#/components/schemas/Ref-Webhook-Events'
-        payload:
-          type: boolean
-          description: Whether to include data payload in the event notification
-        status:
+        secret:
           type: string
-          enum:
-            - ACTIVE
-            - INACTIVE
-          example: ACTIVE
+          description: >-
+            The key that will be used to generate HMAC-SHA512 hex digest value
+            in the SmileAPI-Signature header.
+          example: a little secret
+        eventTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        active:
+          type: boolean
+          default: true
         updatedAt:
           $ref: '#/components/schemas/Ref-DateTime'
       required:
@@ -5020,9 +4963,8 @@ components:
         - createdAt
         - name
         - url
-        - events
-        - payload
-        - status
+        - eventTypes
+        - active
         - updatedAt
     WebhookPostRequest:
       title: WebhookPostRequest
@@ -5037,44 +4979,27 @@ components:
           type: string
           description: URL of webhook, must begin with https://
           example: https://webhook.clienturl.xyz
-        events:
-          $ref: '#/components/schemas/Ref-Webhook-Events'
-        payload:
+        eventTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        active:
           type: boolean
-          description: Whether to include data payload in the event notification
+          description: Whether to set this webhook active to received events
+        secret:
+          type: string
+          description: >-
+            The key that will be used to generate HMAC-SHA512 hex digest value
+            in the SmileAPI-Signature header.
+          example: a little secret
+      required:
+        - name
+        - url
+        - eventTypes
+        - active
+        - secret
     WebhookPostResponse:
       title: WebhookPostResponse
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
-        message:
-          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
-        requestId:
-          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
-        data:
-          $ref: '#/components/schemas/Webhook'
-      x-internal: true
-    WebhookUpdateRequest:
-      title: WebhookUpdateRequest
-      type: object
-      x-internal: true
-      properties:
-        name:
-          type: string
-          description: Name of the webhook endpoint
-          example: Event Notification Postback
-        url:
-          type: string
-          description: URL of webhook, must begin with https://
-          example: https://webhook.clienturl.xyz
-        events:
-          $ref: '#/components/schemas/Ref-Webhook-Events'
-        payload:
-          type: boolean
-          description: Whether to include data payload in the event notification
-    WebhookUpdateResponse:
-      title: WebhookUpdateResponse
       type: object
       properties:
         code:
@@ -5131,106 +5056,567 @@ components:
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
       x-examples: {}
-    WebhookNotification:
-      title: Webhook Example Notification
-      type: object
-      x-internal: false
-      x-examples:
-        'Example: payload = true':
-          id: 17bbf36498de4d68a0d4f86c7b62f69f
-          event: IDENTITY_ADDED
-          signature: 4ad51e260ef60e9bd7a77ab779f5b587970c70a0
-          payload: true
-          data:
-            - id: i-24bbf36498ac4d26a0d4f86c7b62f83z
-              fullName: Ryan Joseph Peterson Chua Ng
-              firstName: Ryan Joseph Peterson
-              middleName: Chua
-              lastName: Ng
-              suffix: null
-              gender: Male
-              dob: '1995-06-24'
-              maritalStatus: Single
-              countryResidence: null
-              citizenship: Citizen
-              photoUrl: https://cdn.smileapi.io/image/avatar/v20211115191600/ryan.jpg
-              referenceId: ~02c0bf6ae6a581ee2b
-              profileUrl: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
-              emails:
-                - address: ryan1234@gmail.com
-                  type: Primary
-              phones:
-                - number: '+639559994321'
-                  type: Mobile
-                - number: '+63289053000'
-                  type: Fixed
-              socialProfiles:
-                - socialUrl: https://www.facebook.com/ryanpetersonng
-                  type: Facebook
-                - socialUrl: https://www.twitter.com/xklxyz
-                  type: Twitter
-              addresses:
-                - fullAddress: 24 Eagle St, Binondo, Manila, NCR, 1008, PH
-                  line1: 24 Eagle St
-                  line2: Binondo
-                  city: Manila
-                  region: NCR
-                  zip: '1008'
-                  country: PH
-                  latitude: '14.600454'
-                  longitude: '120.969042'
-                  type: Primary
-              metadata:
-                createdAt: '2021-04-14T09:30:24Z'
-                sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
-                sourceType: ACCOUNT
-                userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-                providerId: upwork
-        'Example: payload = false (user data)':
-          id: 17bbf36498de4d68a0d4f86c7b62f69f
-          event: IDENTITY_ADDED
-          signature: 4ad51e260ef60e9bd7a77ab779f5b587970c70a0
-          payload: false
-          data:
-            - id: i-24bbf36498ac4d26a0d4f86c7b62f83z
-              metadata:
-                createdAt: '2021-04-14T09:30:24Z'
-                sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
-                sourceType: ACCOUNT
-                userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-                providerId: upwork
-        'Example: payload = false (non-user data)':
-          id: 17bbf36498de4d68a0d4f86c7b62f69f
-          event: UPLOAD_STARTED
-          signature: 4ad51e260ef60e9bd7a77ab779f5b587970c70a0
-          payload: false
-          data:
-            - id: u-24bbf36498ac4d26a0d4f86c7b62f83z
-        Example-alternate:
-          id: 17bbf36498de4d68a0d4f86c7b62f69f
-          event: UPLOAD_STARTED
-          signature: 4ad51e260ef60e9bd7a77ab779f5b587970c70a0
-          payload: false
-          data:
-            - id: u-24bbf36498ac4d26a0d4f86c7b62f83z
-              URI: >-
-                https://sandbox.smileapi.net/uploads/u-24bbf36498ac4d26a0d4f86c7b62f83z
-      description: Example webhook notification
+    UserCreatedEvent:
+      title: 'Webhook: User Created Event'
       x-tags:
-        - Webhooks
+        - Users
+      type: object
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
-        event:
-          type: string
-        signature:
-          type: string
-          example: 4ad51e260ef60e9bd7a77ab779f5b587970c70a0
-        payload:
-          type: boolean
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
         data:
-          type: array
-          items: {}
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+          required:
+            - userId
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    AccountConnectedEvent:
+      title: 'Webhook: Account Connected Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            loginName:
+              type: string
+              description: the login name user used.
+          required:
+            - userId
+            - accountId
+            - loginName
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    AccountDisconnectedEvent:
+      title: 'Webhook: Account Disconnected Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+          required:
+            - userId
+            - accountId
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    AccountFailedEvent:
+      title: 'Webhook: Account Failed Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            loginName:
+              type: string
+              description: the login name user used.
+            errorCode:
+              type: string
+              description: Account connection error code.
+            errorMessage:
+              type: string
+              description: Account connection error message.
+            providers:
+              type: array
+              items:
+                type: string
+          required:
+            - userId
+            - accountId
+            - loginName
+            - errorCode
+            - errorMessage
+            - providers
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    ArchiveStartedEvent:
+      title: 'Webhook: Archive Started Event'
+      x-tags:
+        - Archives
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            archiveId:
+              type: string
+              description: The uploaded archive ID.
+          required:
+            - userId
+            - archiveId
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    ArchiveAnalyzedEvent:
+      title: 'Webhook: Archive Analyzed Event'
+      x-tags:
+        - Archives
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            archiveId:
+              type: string
+              description: The uploaded archive ID.
+          required:
+            - userId
+            - archiveId
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    ArchiveRevokedEvent:
+      title: 'Webhook: Archive Revoked Event'
+      x-tags:
+        - Archives
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            archiveId:
+              type: string
+              description: The uploaded archive ID.
+          required:
+            - userId
+            - archiveId
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    ArchiveFailedEvent:
+      title: 'Webhook: Archive Failed Event'
+      x-tags:
+        - Archives
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            archiveId:
+              type: string
+              description: The uploaded archive ID.
+            errorCode:
+              type: string
+              description: Archive error code.
+            errorMessage:
+              type: string
+              description: Archive error message.
+          required:
+            - userId
+            - archiveId
+            - errorCode
+            - errorMessage
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    InviteInvitedEvent:
+      title: 'Webhook: Invite Invited Event'
+      x-tags:
+        - Invites
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The invite user ID.
+            inviteId:
+              type: string
+              description: The invite ID.
+          required:
+            - userId
+            - inviteId
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    InviteLinkedEvent:
+      title: 'Webhook: Invite Linked Event'
+      x-tags:
+        - Invites
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The invite user ID.
+            inviteId:
+              type: string
+              description: The invite ID.
+          required:
+            - userId
+            - inviteId
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    IdentityAddedEvent:
+      title: 'Webhook: Identity Added Event'
+      x-tags:
+        - Identities
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            identityId:
+              type: string
+              description: the new identity ID.
+          required:
+            - userId
+            - accountId
+            - identityId
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    TransactionsAddEvent:
+      title: 'Webhook: Transactions Add Event'
+      x-tags:
+        - Transactions
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            counts:
+              type: number
+              description: The number of transactions added.
+          required:
+            - userId
+            - accountId
+            - counts
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    RatingAddeddEvent:
+      title: 'Webhook: Rating Added Event'
+      x-tags:
+        - Ratings
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            ratingId:
+              type: string
+              description: The added rating ID.
+          required:
+            - userId
+            - accountId
+            - ratingId
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    EmploymentsAddedEvent:
+      title: 'Webhook: Employments Added Event'
+      x-tags:
+        - Employments
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            count:
+              type: number
+              description: The number of employments added.
+          required:
+            - userId
+            - accountId
+            - count
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    DocumentsAddedEvent:
+      title: 'Webhook: Documents Added Event'
+      x-tags:
+        - Documents
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            count:
+              type: number
+              description: The number of documents added.
+          required:
+            - userId
+            - accountId
+            - count
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+    IncomesAddedEvent:
+      title: 'Webhook: Incomes Added Event'
+      x-tags:
+        - Incomes
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            count:
+              type: number
+              description: the number of incomes added.
+          required:
+            - userId
+            - accountId
+            - count
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
     Object-Metadata-Ref-Code:
       type: string
       title: Object-Metadata-Ref-API-Code
@@ -5878,29 +6264,34 @@ components:
         - null
       example: Annually
       x-internal: true
-    Ref-Webhook-Events:
-      type: array
-      title: Ref-WebhookEvents
-      description: Events which will be sent as a notification via webhook
-      items:
-        type: string
-        enum:
-          - USER_CREATED
-          - ACCOUNT_CONNECTED
-          - ACCOUNT_DISCONNECTED
-          - UPLOAD_STARTED
-          - UPLOAD_ANALYZED
-          - UPLOAD_REVOKED
-          - INVITE_INVITED
-          - INVITE_LINKED
-          - IDENTITY_ADDED
-          - TRANSACTIONS_ADDED
-          - RATINGS_ADDED
-          - DOCUMENTS_ADDED
-          - EMPLOYMENTS_ADDED
-          - INCOMES_ADDED
-          - ALL_EVENTS
-        example: ACCOUNT_CONNECTED
+    Ref-Webhook-Event-Type:
+      title: Ref-WebhookEventType
+      description: Event Type which will be sent as a notification via webhook
+      type: string
+      enum:
+        - USER_CREATED
+        - ACCOUNT_CONNECTED
+        - ACCOUNT_DISCONNECTED
+        - ACCOUNT_FAILED
+        - ARCHIVE_STARTED
+        - ARCHIVE_ANALYZED
+        - ARCHIVE_REVOKED
+        - ARCHIVE_FAILED
+        - INVITE_INVITED
+        - INVITE_LINKED
+        - IDENTITY_ADDED
+        - RATING_ADDED
+        - TRANSACTIONS_ADDED
+        - DOCUMENTS_ADDED
+        - EMPLOYMENTS_ADDED
+        - INCOMES_ADDED
+        - ALL_EVENTS
+      example: ACCOUNT_CONNECTED
+    Ref-Webhook-Event-Version:
+      title: Ref-WebhookEventVersion
+      description: Event schema's major version
+      type: number
+      example: 1
   responses:
     Standard-Errors:
       description: Standard error response
