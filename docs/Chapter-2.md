@@ -14,7 +14,7 @@ Its easy to get started with the Smile API! Implementing the Smile API involves 
 
 1. **Link token:** Your application server sends a request to our REST API to generate a short-lived "Link" token.
 
-2. **Wink Widget:** Using the Link token, your application client initializes the client SDK to launch the Smile "Wink" widget. Your end-users interact with this widget to submit their login credentials to authenticate with their employment data provider over a secure and encrypted connection.
+2. **Wink Widget:** Using the Link token, your application client initializes the Client SDK to launch the Smile Wink Widget. Your end-users interact with this widget to submit their login credentials to authenticate with their employment data provider over a secure and encrypted connection.
 
 3. **Connecting to Source Data:** Once in the widget, a user can then either connect their employment account or upload a photo or scanned copy of their employment data. This will be used as the source for any user data your application will be requesting.
 
@@ -29,15 +29,40 @@ Its easy to get started with the Smile API! Implementing the Smile API involves 
 ![Signup](https://img.icons8.com/ios-filled/50/000000/sign-up.png)
 
 ## Using the Developer Portal
-To get started, simply register to the [developer portal](https://portal.getsmileapi.com).
+To get started, simply register to the [Developer Portal](https://portal.getsmileapi.com). After registering, you will be asked to verify your email and then you can log in. 
 
-After registration, you will be given an API key and an API secret. The API secret must be kept safe and used only in exchanges between your application's server and Smile API's server.
+By default, when you register and log in, you will be in "Sandbox" mode. You can access "Production" mode by booking a call or emailing access@getsmileapi.com, and submitting the necessary information to go live. 
+
+> 📘 Note
+> 
+> To learn more about the different modes, check out the next section on **"Understanding the API"**
+
+Inside the Developer Portal, you will see the following:
+
+1. **Wink Widget:** Use this to preview how the Wink Widget works. The behavior of the widget changes depending on the mode you are in. In Sandbox mode, you can use the provided test accounts on the page to simulate the process of logging into different data providers such as a gig platform or payroll system.  In Production mode, you will be able to actually link a live account or upload an actual file. 
+
+2. **Users:** View the users created in the back-end, as well as the data captured from that user, during the account linking process or after uploading the user uploads a file. In this section, you can also preview how the returned data from Smile looks like for each resource such as Employments and Incomes.
+
+3. **Data Source:** The Data Source section is where you can find all the Data providers as well as File Types that can be uploaded. Data providers include different types such as the names of different employers, gig platforms, government services, or HR and payroll systems. File types on the other hand are those that can be uploaded by the user such as copies of payslips, tax documents and others.
+
+4. **API Keys:** After registration, you will be given a Sandbox API key and an API secret. The API secret must be kept safe and used only in exchanges between your application's server and Smile API's server. Upon request, you can also be given the API key and API secret to use the Smile API in production. This will also allow you to switch the Developer Portal to "Production Mode" for live testing.
+
+5. **Organizations:** This is where you can enter details about your organization.
+
+6. **Team:** This is where you can invite additional members from your organization to join the Portal and share a common tenant or workspace.
+
+7. **Documentation:** This is a link to the API documentation which you are reading now!
+
+
 
 ---
 <!-- focus: false -->
 ![Quickstart](https://img.icons8.com/ios/50/000000/speed.png)
 
 ## Quickstart 
+
+To actually test the Smile API in your own environment, we have provided example code to instantiate the Wink Widget or SDK.
+
 > 📘 Note
 > 
 > We provide [Quickstart sample code](https://github.com/SmileAPI/quickstart) in [Github](https://github.com/SmileAPI) which you can download and modify according to your own requirements. 

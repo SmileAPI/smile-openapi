@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 1.7.5
+  version: 1.9.0
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
@@ -134,6 +134,7 @@ paths:
             type: string
           in: query
           name: name
+          description: Filter results by provider name
     parameters: []
   /providers/{id}:
     parameters:
@@ -1040,7 +1041,7 @@ paths:
         '504':
           $ref: '#/components/responses/Standard-Errors'
       operationId: list-uploads
-      description: Get the user's uploads.
+      description: Get the user's uploads (deprecated).
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
@@ -1061,6 +1062,8 @@ paths:
           description: Filter by upload date, end of date range (YYYY-MM-DD)
       tags:
         - Uploads
+      deprecated: true
+      x-internal: false
   /uploads/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
@@ -1120,9 +1123,155 @@ paths:
         '504':
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-upload
-      description: Get a user's upload by ID.
+      description: Get a user's upload by ID (deprecated).
       tags:
         - Uploads
+      deprecated: true
+      x-internal: false
+  /archives:
+    get:
+      summary: List Archives
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: u-17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: '2021-04-14T09:30:24Z'
+                          providerId: user-provided
+                          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                          type: SOCIAL_SECURITY
+                          state:
+                            status: STARTED
+                            errorCode: null
+                            errorMessage: null
+                            updatedAt: '2021-04-14T09:30:24Z'
+                          rawFiles:
+                            - id: f-17bbf36498de4d68a0d4f86c7b62f69f
+                              createdAt: '2021-04-14T09:30:24Z'
+                              name: Screen Shot 2021-04-14 at 5.30.24 PM
+                              subType: PERSONAL_INFORMATION
+                              size: 3048
+                              format: PNG
+                              url: >-
+                                https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-archives
+      description: Get the user's archives.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - schema:
+            type: string
+            format: date
+            example: '2021-04-01'
+          in: query
+          name: startDate
+          description: Filter by archive date, start of date range (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+            example: '2021-04-21'
+          in: query
+          name: endDate
+          description: Filter by archive date, end of date range (YYYY-MM-DD)
+      tags:
+        - Archives
+      x-internal: true
+  /archives/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Archive
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: u-17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      providerId: user-provided
+                      userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                      type: SOCIAL_SECURITY
+                      state:
+                        status: STARTED
+                        errorCode: null
+                        errorMessage: null
+                        updatedAt: '2021-04-14T09:30:24Z'
+                      rawFiles:
+                        - id: f-17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: '2021-04-14T09:30:24Z'
+                          name: Screen Shot 2021-04-14 at 5.30.24 PM
+                          subType: PERSONAL_INFORMATION
+                          size: 3048
+                          format: PNG
+                          url: >-
+                            https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-archive
+      description: Get a user's archive by ID.
+      tags:
+        - Archives
+      x-internal: true
   /ratings:
     get:
       summary: List Ratings
@@ -1683,6 +1832,136 @@ paths:
       parameters: []
     parameters:
       - $ref: '#/components/parameters/id'
+  /contributions:
+    get:
+      summary: List Contributions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContributionListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: 24fef36498de4d68a0d4f86c7b62f75e
+                          date: '2021-04-30'
+                          currency: PHP
+                          amount: 1375
+                          metadata:
+                            createdAt: '2021-04-14T09:30:24Z'
+                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceType: ACCOUNT
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: sss-ph
+                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
+                          date: '2021-03-30'
+                          currency: PHP
+                          amount: 1375
+                          metadata:
+                            createdAt: '2021-04-14T09:30:24Z'
+                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceType: ACCOUNT
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: sss-ph
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-contributions
+      description: >-
+        Get the user's social security contributions from employment data
+        sources.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/accountId'
+        - $ref: '#/components/parameters/sourceId'
+        - schema:
+            type: string
+          in: query
+          name: startDate
+          description: Filter by contribution date, start of date range (YYYY-MM-DD)
+        - schema:
+            type: string
+          in: query
+          name: endDate
+          description: Filter by contribution date, end of date range (YYYY-MM-DD)
+  /contributions/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Contribution
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContributionGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 17bbf36498de4d68a0d4f86c7b62f69f
+                      date: '2021-04-30'
+                      currency: PHP
+                      amount: 1375
+                      metadata:
+                        createdAt: '2021-06-14T09:30:24Z'
+                        sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        sourceType: ACCOUNT
+                        userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                        providerId: sss-ph
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-contribution
+      description: Get the user's contribution by ID.
   /inviteTemplates:
     get:
       summary: List Invite Templates
@@ -1720,9 +1999,9 @@ paths:
                               Hello ${firstName}! We are working with our
                               partner, Smile API, so you can easily share your
                               employment and income data to us as a requirement
-                              for granting you a loan. It will be a quick
-                              process and should take no more than a few minutes
-                              of your time.
+                              for giving you service. It will be a quick process
+                              and should take no more than a few seconds of your
+                              time.
                           landingPage:
                             header: >-
                               Share your employment and income data with us at
@@ -1730,9 +2009,9 @@ paths:
                             description: >-
                               We are working with our partner, Smile API, so you
                               can easily share your employment and income data
-                              to us as a requirement for granting you a loan. It
+                              to us as a requirement for giving you service. It
                               will be a quick process and should take no more
-                              than a few minutes of your time.
+                              than a few seconds of your time.
                             button: START NOW
                           successPage:
                             header: >-
@@ -1799,9 +2078,9 @@ paths:
                         body: >-
                           Hello ${firstName}! We are working with our partner,
                           Smile API, so you can easily share your employment and
-                          income data to us as a requirement for granting you a
-                          loan. It will be a quick process and should take no
-                          more than a few minutes of your time.
+                          income data to us as a requirement for giving you
+                          service. It will be a quick process and should take no
+                          more than a few seconds of your time.
                       landingPage:
                         header: >-
                           Share your employment and income data with us at
@@ -1809,9 +2088,9 @@ paths:
                         description: >-
                           We are working with our partner, Smile API, so you can
                           easily share your employment and income data to us as
-                          a requirement for granting you a loan. It will be a
+                          a requirement for giving you service. It will be a
                           quick process and should take no more than a few
-                          minutes of your time.
+                          seconds of your time.
                         button: START NOW
                       successPage:
                         header: >-
@@ -1864,15 +2143,15 @@ paths:
                     body: >-
                       Hello {{firstName}}, We are working with our partner,
                       Smile API, so you can easily share your employment and
-                      income data to us as a requirement for granting you a
-                      loan. It will be a quick process and should take no more
-                      than a few minutes of your time.
+                      income data to us as a requirement for giving you service.
+                      It will be a quick process and should take no more than a
+                      few seconds of your time.
                   landingPage:
                     header: >-
                       We are working with our partner, Smile API, so you can
                       easily share your employment and income data to us as a
-                      requirement for granting you a loan. It will be a quick
-                      process and should take no more than a few minutes of your
+                      requirement for giving you service. It will be a quick
+                      process and should take no more than a few seconds of your
                       time.
                     description: >-
                       Share your employment and income data with us at
@@ -1925,9 +2204,9 @@ paths:
                         body: >-
                           Hello ${firstName}! We are working with our partner,
                           Smile API, so you can easily share your employment and
-                          income data to us as a requirement for granting you a
-                          loan. It will be a quick process and should take no
-                          more than a few minutes of your time.
+                          income data to us as a requirement for giving you
+                          service. It will be a quick process and should take no
+                          more than a few seconds of your time.
                       landingPage:
                         header: >-
                           Share your employment and income data with us at
@@ -1935,9 +2214,9 @@ paths:
                         description: >-
                           We are working with our partner, Smile API, so you can
                           easily share your employment and income data to us as
-                          a requirement for granting you a loan. It will be a
+                          a requirement for giving you service. It will be a
                           quick process and should take no more than a few
-                          minutes of your time.
+                          seconds of your time.
                         button: START NOW
                       successPage:
                         header: >-
@@ -2001,9 +2280,9 @@ paths:
                         body: >-
                           Hello {$firstName}! We are working with our partner,
                           Smile API, so you can easily share your employment and
-                          income data to us as a requirement for granting you a
-                          loan. It will be a quick process and should take no
-                          more than a few minutes of your time.
+                          income data to us as a requirement for giving you
+                          service. It will be a quick process and should take no
+                          more than a few seconds of your time.
                       landingPage:
                         header: >-
                           Share your employment and income data with us at
@@ -2011,9 +2290,9 @@ paths:
                         description: >-
                           We are working with our partner, Smile API, so you can
                           easily share your employment and income data to us as
-                          a requirement for granting you a loan. It will be a
+                          a requirement for giving you service. It will be a
                           quick process and should take no more than a few
-                          minutes of your time.
+                          seconds of your time.
                         button: START NOW
                       successPage:
                         header: >-
@@ -2092,7 +2371,7 @@ paths:
                     button: Connect another account
         description: ''
     delete:
-      summary: ''
+      summary: Delete Invite Template
       operationId: delete-invite-template
       responses:
         '200':
@@ -2253,6 +2532,7 @@ paths:
                   lastName: Ng
                   email: ryan1234@smileapi.io
                   templateId: tpl-b2c5e81665ad4130819ddb89acc5869a
+                  winkTemplateId: wtpl-db89acc5869a-b2c5e816-65ad-4130-819d
       tags:
         - Invites
   /invites/{id}:
@@ -4037,6 +4317,81 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Income'
+    Contribution:
+      title: Contribution
+      x-stoplight:
+        id: ymth27j2l09a4
+      type: object
+      description: >-
+        The social security insurance contribution made by, or in behalf, of a
+        user as recorded by the employment data provider.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          date: '2022-04-30'
+          currency: PHP
+          amount: 1375
+          metadata:
+            createdAt: '2021-06-14T09:30:24Z'
+            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: sss-ph
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        date:
+          type: string
+          format: date
+          description: Date of the contribution
+          example: '2021-04-30'
+        currency:
+          $ref: '#/components/schemas/Ref-Currency'
+        amount:
+          type: number
+          description: Amount of the contribution
+          example: 1375
+        metadata:
+          $ref: '#/components/schemas/Object-Reference-Metadata'
+      x-tags:
+        - Contributions
+    ContributionGetResponse:
+      title: Contribution Get Response
+      x-stoplight:
+        id: 9r9jv3d46jvrw
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Contribution'
+      x-internal: true
+    ContributionListResponse:
+      title: Contribution List Response
+      x-stoplight:
+        id: xqq606vnqa1nk
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Contribution'
     RawFile:
       title: RawFile
       type: object
@@ -4217,6 +4572,136 @@ components:
               items:
                 $ref: '#/components/schemas/Upload'
       x-internal: true
+    Archive:
+      title: Archive
+      type: object
+      description: Collection of files.
+      x-internal: true
+      x-examples:
+        Example:
+          id: u-17bbf36498de4d68a0d4f86c7b62f69f
+          createdAt: '2021-04-14T09:30:24Z'
+          providerId: user-provided
+          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+          type: PAYSLIP
+          state:
+            status: STARTED
+            errorCode: null
+            errorMessage: null
+            updatedAt: '2021-04-14T09:30:24Z'
+          rawFiles:
+            - id: f-17bbf36498de4d68a0d4f86c7b62f69f
+              createdAt: '2021-04-14T09:30:24Z'
+              name: Screen Shot 2021-04-14 at 5.30.24 PM
+              subType: PERSONAL_INFORMATION
+              size: 3048
+              format: PNG
+              url: >-
+                https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+      x-tags:
+        - Archives
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        providerId:
+          type: string
+          example: user-provided
+          description: ID of the data provider
+        userId:
+          type: string
+          description: User ID associated with this account
+          example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+        type:
+          type: string
+          example: SOCIAL_SECURITY
+          enum:
+            - PAYSLIP
+            - TAX_DOCUMENT
+            - COMPANY_ID
+            - SOCIAL_SECURITY
+          description: Type of document uploaded
+        state:
+          type: object
+          required:
+            - status
+            - errorCode
+            - errorMessage
+            - updatedAt
+          properties:
+            status:
+              type: string
+              example: STARTED
+              enum:
+                - STARTED
+                - ANALYZED
+                - UNSUPPORTED
+                - ERROR
+                - REVOKED
+              description: Archive status
+            errorCode:
+              type: string
+              description: Error code
+              enum:
+                - MISSING_MANDATARY_FIELD
+                - INVALID_FIELD_FORMAT
+                - SYSTEM_ERROR
+                - null
+              nullable: true
+            errorMessage:
+              type: string
+              description: Error message
+              nullable: true
+            updatedAt:
+              $ref: '#/components/schemas/Ref-DateTime'
+        rawFiles:
+          description: Collection of files
+          type: array
+          items:
+            $ref: '#/components/schemas/RawFile'
+      required:
+        - id
+        - createdAt
+        - providerId
+        - userId
+        - type
+        - state
+        - rawFiles
+    ArchiveGetResponse:
+      title: Archive Get Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Archive'
+      description: ''
+      x-internal: true
+    ArchiveListResponse:
+      title: Archive List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Archive'
+      x-internal: true
     Invite:
       title: Invite
       type: object
@@ -4302,6 +4787,10 @@ components:
       type: object
       description: ''
       x-internal: true
+      required:
+        - email
+        - fullName
+        - templateId
       properties:
         fullName:
           type: string
@@ -4324,6 +4813,10 @@ components:
           type: string
           description: The template ID to be used in the invite
           example: tpl-b2c5e816-65ad-4130-819d-db89acc5869a
+        winkTemplateId:
+          type: string
+          description: The Wink template ID used in the invitation
+          example: wtpl-db89acc5869a-b2c5e816-65ad-4130-819d
     InvitePostResponse:
       title: InvitePostResponse
       type: object
@@ -4393,15 +4886,15 @@ components:
             body: >-
               Hello ${firstName}! We are working with our partner, Smile API, so
               you can easily share your employment and income data to us as a
-              requirement for granting you a loan. It will be a quick process
-              and should take no more than a few minutes of your time.
+              requirement for providing you service. It will be a quick process
+              and should take no more than a few seconds of your time.
           landingPage:
             header: Share your employment and income data with us at ${companyName}
             description: >-
               We are working with our partner, Smile API, so you can easily
               share your employment and income data to us as a requirement for
-              granting you a loan. It will be a quick process and should take no
-              more than a few minutes of your time.
+              providing you service. It will be a quick process and should take
+              no more than a few seconds of your time.
             button: START NOW
           successPage:
             header: >-
@@ -4467,8 +4960,8 @@ components:
               example: >-
                 Hello ${firstName}! We are working with our partner, Smile API,
                 so you can easily share your employment and income data to us as
-                a requirement for granting you a loan. It will be a quick
-                process and should take no more than a few minutes of your time.
+                a requirement for giving you service. It will be a quick process
+                and should take no more than a few seconds of your time.
         landingPage:
           type: object
           required:
@@ -4486,8 +4979,8 @@ components:
               example: >-
                 We are working with our partner, Smile API, so you can easily
                 share your employment and income data to us as a requirement for
-                granting you a loan. It will be a quick process and should take
-                no more than a few minutes of your time.
+                giving you service. It will be a quick process and should take
+                no more than a few seconds of your time.
             button:
               type: string
               description: Text that it will appear in the landing page
@@ -4581,8 +5074,8 @@ components:
               example: >-
                 Hello ${firstName}, We are working with our partner, Smile API,
                 so you can easily share your employment and income data to us as
-                a requirement for granting you a loan. It will be a quick
-                process and should take no more than a few minutes of your time.
+                a requirement for giving you service. It will be a quick process
+                and should take no more than a few seconds of your time.
         landingPage:
           type: object
           required:
@@ -4596,8 +5089,8 @@ components:
               example: >-
                 We are working with our partner, Smile API, so you can easily
                 share your employment and income data to us as a requirement for
-                granting you a loan. It will be a quick process and should take
-                no more than a few minutes of your time.
+                giving you service. It will be a quick process and should take
+                no more than a few seconds of your time.
             description:
               type: string
               description: Description of the landing page
@@ -5437,7 +5930,7 @@ components:
         - type
         - createdAt
         - data
-    TransactionsAddEvent:
+    TransactionsAddedEvent:
       title: 'Webhook: Transactions Add Event'
       x-tags:
         - Transactions
@@ -5460,20 +5953,20 @@ components:
             accountId:
               type: string
               description: The connected account ID.
-            counts:
+            count:
               type: number
               description: The number of transactions added.
           required:
             - userId
             - accountId
-            - counts
+            - count
       required:
         - id
         - version
         - type
         - createdAt
         - data
-    RatingAddeddEvent:
+    RatingAddedEvent:
       title: 'Webhook: Rating Added Event'
       x-tags:
         - Ratings
@@ -6365,6 +6858,8 @@ security:
   - basicAuth: []
 tags:
   - name: Accounts
+  - name: Archives
+  - name: Contributions
   - name: Documents
   - name: Employments
   - name: File Types

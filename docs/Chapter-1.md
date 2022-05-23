@@ -23,7 +23,7 @@ Access to the data is provided by the employees themselves, which is part of the
 
 
 ##  Our API
-The Smile API is built on RESTful principles. All request and response payloads are encoded in JSON format. For security purposes, all requests must be sent through HTTPS. To get access to the API, you will need to contact us at access@getsmileapi.com. Soon we will also provide a Developer portal so that you can get access to the API yourselves just by registering.
+The Smile API is built on RESTful principles. All request and response payloads are encoded in JSON format. For security purposes, all requests must be sent through HTTPS. To get access to the API, you will need to [sign up to our developer portal](https://portal.getsmileapi.com).
 
 ---
 <!-- focus: false -->
@@ -43,18 +43,27 @@ These are data resources available to be able to use and integrate with the Smil
 | Users | Smile network | These are your users who have initiated the account linking process and have given their consent to share their employment data with you and Smile. When a new user is created, a token is issued at the same time. |
 | Tokens | Smile network | The tokens to be able to access account-related data of a user. You can use this resource to either retrieve existing tokens, or refresh a token for an existing user. |
 | Accounts | Smile network | The accounts which your users have successfully logged into, and from which account-related data will be retrieved from. For more information, see below on "Source data". |
-| Uploads | Smile network | This refers to uploads that contain files of scanned or photographed documents that the users have uploaded. |
-
+| Archives | Smile network | This refers to archives that contain files of scanned or photographed documents that the users have uploaded. |
+| File Types | Smile network | Refers to the types of files that are accepted for upload, and which will be available as an archive once it has been uploaded. | 
+| Invites | Smile network | You can use this to invite users to link their work account via their preferred communication channel such as email. |
+| Invite Templates | Smile network | If you will invite users to connect their work account via an invitation, use this to define and retrieve what the invite looks like.  |
 
 ### Source data
-Source data can either be account-related or upload-related data. To be able to retrieve income and employment data and use it in your application, you will need to embed our Wink widget into your application. You will need to issue a token to the user, for the user to be able to launch the widget. When the widget is instantiated, your users will first need to provide their consent for Smile to retrieve that data on their behalf. After that, we will display a list of employment and income data providers that your users can choose from. They will then need to either:
+Source data can either be account-related or upload-related data. To be able to retrieve income and employment data and use it in your application, you will need to use our Client SDK and embed our Wink Widget into your application. 
+
+> 📘 Note
+> 
+> To learn more about the Wink Widget, check out the section on **"Getting User Data"**
+
+
+You will need to issue a token to the user, for the user to be able to launch the widget. When the widget is instantiated, your users will first need to provide their consent for Smile to retrieve that data on their behalf. After that, we will display a list of employment and income data providers that your users can choose from. They will then need to either:
 
 1. **Authenticate with a digital data provider.** If we have a direct connection to that data provider, we wil display it in a list from which the user can choose from. If they have an account with any of the displayed providers, they can select that provider, then afterwards enter their credentials with that selected data provider. After giving permission, an account is created in the Smile network from which data will be retrieved, aggregated, and normalized into a standard schema and sent to you in a developer-friendly JSON format. 
-2. **Upload a scanned or photographed document containing their employment or income information.** Not all source employment and income information is in digital form. Typically the source for this type of information still comes in the form of paper documents. Users can scan  or photograph these documents, upload it, and we can then digitize and retrieve the pertinent data from it, in most cases also extracting the data (via Optical Character Recognition or OCR) into a developer-friendly JSON format. In cases where we cannot automatically extract the information, we will always provide a URL to the uploaded file. 
+2. **Upload a scanned or photographed document containing their employment or income information.** Not all source employment and income information is in digital form. Typically the source for this type of information still comes in the form of paper documents. Users can scan  or photograph these documents, upload it, and we can then digitize and retrieve the pertinent data from it, in most cases also extracting the data (via Optical Character Recognition or OCR) into a developer-friendly JSON format. In cases where we cannot automatically extract the information, we will always provide a URL to the uploaded file available via the /archives endpoint. 
 
 > 🚧 Warning
 > 
-> **We will keep a copy of the uploaded file/s for a period of only 7 days!** If you need to retain a copy, please make sure to download and archive the files.
+> **We will keep a copy of the uploaded file/s, for a period of only 7 days!** If you need to retain a copy, please make sure to download and archive these files for yourselves as well.
 
 
 
@@ -70,5 +79,6 @@ Source data can either be account-related or upload-related data. To be able to 
 
 <!--
 | Assets | Source data | Get information on assets owned or used for their employment such as motor vehicles, motorcycles and others.|  
+| Schools | Source data | Get previous educational history such as school, degree, years attended and so on.|  
 
 ->

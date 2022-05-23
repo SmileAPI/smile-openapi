@@ -6,7 +6,35 @@ category: 6215975992e4610014e7b757
 
 
 
-Getting user data into your application involves two things:
+You can obtain data from your users via two ways:
+ - Inviting your user via the /invitations endpoint in the API or using the invitation functionality in the Developer Portal, under the Users section.
+ - Embedding the Client SDK and instantiating the Wink Widget.
+
+---
+<!-- focus: false -->
+![Invitations](https://img.icons8.com/ios/50/000000/email-open.png)
+
+## Invitations
+
+Invitations allow you to invite your users to connect their work accounts or upload copies of their employment-related documents via communication channels such as email. Using the Invitation endpoint in the API, you can send a message to a user, or send multiple invitations by looping through the contact information such as email address of several users. To make it easier for you to try it out, we provide an example implementation of Invitations in the Developer Portal. 
+
+If you want to customize the content of the messages, you can define an Invitation Template. You can do so via the API or use the example implementation in the the Developer Portal. The template accepts dynamic variables such as the following:
+
+
+|Party|Variable Name|Description|
+|--|---|---|
+|Sender|${companyName}|Company Name|
+|Recipient|${fullName}|Full Name|
+
+
+---
+<!-- focus: false -->
+![Code](https://img.icons8.com/ios/50/000000/open-in-popup.png)
+
+
+## Client SDK
+
+Getting user data via the Client SDK into your application involves two things:
 
  - **Embedding a Javascript SDK for your web application client**. At the moment, Smile only provides a Javascript SDK, but native verions of the SDK for mobile applications such as iOS or Android are coming soon. The Javascript SDK launches a modal window called a "Wink" web widget where users can provide permission for Smile to access their data. Users will first find their employer or employment data provider, then submit their login credentials over a secure and encrypted connection and/or upload some files. By using the SDK, you will not have to worry about the different authentication and verification implementations of the different employment platforms, or provide a file upload mechanism and manage data analysis or OCR. We make the process of getting data and using that data simple for your developers, and the experience smooth for your users. 
 
@@ -107,7 +135,11 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 |         | https://link.smileapi.io/v1 for Production |
 | userToken | The user token returned from Smile using the /users endpoint (see documentation on Users endpoint) |
 | providers | Pass a list of providers using their provider id (see documentation on Providers endpoint) to pre-filter the list of providers in the Wink widget. Passing just one provider id will skip the selection list and take the user immediately to the authentication screen. |
-| enableUpload | Enable or disable showing upload option in the list of providers (true or false). By default we disable uploads when this is not set. |
+| enableUpload | Enable or disable showing upload option in the list of providers (true or false). By default we disable uploads when this is not set. Disabling uploads will also hide data sources where a direct account connection or link is not possible. |
+
+> 🚧 Warning
+> 
+> **Uploads are disabled in Sandbox mode.** If you need to preview how uploads work, you will need access to Production mode. Contact us at access@getsmileapi.com or book a call through the Developer Portal to get access.
 
 ---
 <!-- focus: false -->
@@ -135,7 +167,7 @@ If the the user was able to successfully authenticate with a digital employment 
 | DISCONNECTED | The user disconnected the link with the employment data provider. |
 
 ### Successful Uploads
-If the the user was able to successfully upload employment and income data via scanned or photographed documents, the Link status is changed to "STARTED". The upload status of the user can be queried at any time via the /uploads endpoint. Examples of the events captured include:
+If the the user was able to successfully upload employment and income data via scanned or photographed documents, the Link status is changed to "STARTED". The upload status of the user can be queried at any time via the /archives endpoint. Examples of the events captured include:
 
 | Event |Description |
 |----------|---------|
