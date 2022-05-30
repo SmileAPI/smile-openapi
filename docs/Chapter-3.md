@@ -339,6 +339,7 @@ To help in logging and troubleshooting, we apply some conventions when returning
 | Documents ID | **d-** | d-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Documents-related information |
 | Employments ID | **e-** | e-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Employments-related information |
 | Incomes ID | **inc-** | inc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Incomes-related information |
+| Contributions ID | **con-** | con-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Incomes-related information |
 | Archives ID | **u-** | u-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Uploaded files available as archives |
 | Invites ID | **iv-** | iv-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Invitations sent out |
 | Invite Templates ID | **ivt-** | ivt-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | Invite Templates created |

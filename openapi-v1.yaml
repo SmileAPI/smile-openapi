@@ -1911,6 +1911,8 @@ paths:
           in: query
           name: endDate
           description: Filter by contribution date, end of date range (YYYY-MM-DD)
+      tags:
+        - Contributions
   /contributions/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
@@ -1962,6 +1964,8 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-contribution
       description: Get the user's contribution by ID.
+      tags:
+        - Contributions
   /inviteTemplates:
     get:
       summary: List Invite Templates
@@ -3047,6 +3051,7 @@ components:
               - EMPLOYMENTS
               - DOCUMENTS
               - INCOMES
+              - CONTRIBUTIONS
       required:
         - id
         - name
@@ -5554,6 +5559,14 @@ components:
       x-tags:
         - Users
       type: object
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: USER_CREATED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -5565,18 +5578,19 @@ components:
           $ref: '#/components/schemas/Ref-DateTime'
         data:
           type: object
+          required:
+            - userId
           properties:
             userId:
               type: string
               description: The connected user ID.
-          required:
-            - userId
       required:
         - id
         - version
         - type
         - createdAt
         - data
+      description: Payload when a new user and link token is created
     AccountConnectedEvent:
       title: 'Webhook: Account Connected Event'
       x-tags:
@@ -5613,6 +5627,17 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: ACCOUNT_CONNECTED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            loginName: string
+      description: Payload when a user successfully connects his/her work account.
     AccountDisconnectedEvent:
       title: 'Webhook: Account Disconnected Event'
       x-tags:
@@ -5645,6 +5670,18 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        example-1:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: ACCOUNT_DISCONNECTED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+      description: >-
+        Payload when a user disconnects or revokes the link to his/her work
+        account.
     AccountFailedEvent:
       title: 'Webhook: Account Failed Event'
       x-tags:
@@ -5694,6 +5731,21 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: ACCOUNT_FAILED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            loginName: string
+            errorCode: string
+            errorMessage: string
+            providers:
+              - string
+      description: Payload when the account linking process is unsuccessful.
     ArchiveStartedEvent:
       title: 'Webhook: Archive Started Event'
       x-tags:
@@ -5726,6 +5778,18 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: ARCHIVE_STARTED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            archiveId: string
+      description: >-
+        Payload when a user has uploaded one or several files which becomes an
+        "archive" in Smile.
     ArchiveAnalyzedEvent:
       title: 'Webhook: Archive Analyzed Event'
       x-tags:
@@ -5758,6 +5822,18 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: ARCHIVE_ANALYZED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            archiveId: string
+      description: >-
+        Payload when an archive has been analyzed and converted into JSON data
+        automatically via OCR.
     ArchiveRevokedEvent:
       title: 'Webhook: Archive Revoked Event'
       x-tags:
@@ -5790,6 +5866,16 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: ARCHIVE_REVOKED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            archiveId: string
+      description: Payload when user removes permission to access or use an archive.
     ArchiveFailedEvent:
       title: 'Webhook: Archive Failed Event'
       x-tags:
@@ -5830,6 +5916,20 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: ARCHIVE_FAILED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            archiveId: string
+            errorCode: string
+            errorMessage: string
+      description: >-
+        Payload when the the archive creation or analysis process is
+        unsuccessful.
     InviteInvitedEvent:
       title: 'Webhook: Invite Invited Event'
       x-tags:
@@ -5862,6 +5962,16 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: INVITE_INVITED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            inviteId: string
+      description: Payload when an invitation is sent out to a user successfully.
     InviteLinkedEvent:
       title: 'Webhook: Invite Linked Event'
       x-tags:
@@ -5894,6 +6004,18 @@ components:
         - type
         - createdAt
         - data
+      description: >-
+        Payload when the a user that has been sent an invitation is able to link
+        his or her work account successfully.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: INVITE_LINKED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            inviteId: string
     IdentityAddedEvent:
       title: 'Webhook: Identity Added Event'
       x-tags:
@@ -5930,42 +6052,17 @@ components:
         - type
         - createdAt
         - data
-    TransactionsAddedEvent:
-      title: 'Webhook: Transactions Add Event'
-      x-tags:
-        - Transactions
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/Ref-Object-ID'
-        version:
-          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
-        type:
-          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
-        createdAt:
-          $ref: '#/components/schemas/Ref-DateTime'
-        data:
-          type: object
-          properties:
-            userId:
-              type: string
-              description: The connected user ID.
-            accountId:
-              type: string
-              description: The connected account ID.
-            count:
-              type: number
-              description: The number of transactions added.
-          required:
-            - userId
-            - accountId
-            - count
-      required:
-        - id
-        - version
-        - type
-        - createdAt
-        - data
+      description: Payload when identity data about a user is added.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: IDENTITY_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            identityId: string
     RatingAddedEvent:
       title: 'Webhook: Rating Added Event'
       x-tags:
@@ -6002,10 +6099,21 @@ components:
         - type
         - createdAt
         - data
-    EmploymentsAddedEvent:
-      title: 'Webhook: Employments Added Event'
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: RATING_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            ratingId: string
+      description: Payload when rating data about a user is added.
+    TransactionsAddedEvent:
+      title: 'Webhook: Transactions Add Event'
       x-tags:
-        - Employments
+        - Transactions
       type: object
       properties:
         id:
@@ -6027,7 +6135,7 @@ components:
               description: The connected account ID.
             count:
               type: number
-              description: The number of employments added.
+              description: The number of transactions added.
           required:
             - userId
             - accountId
@@ -6038,6 +6146,17 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: TRANSACTIONS_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            count: 0
+      description: Payload when transactions data shared by a user are added.
     DocumentsAddedEvent:
       title: 'Webhook: Documents Added Event'
       x-tags:
@@ -6074,6 +6193,64 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: DOCUMENTS_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            count: 0
+      description: Payload when documents data shared by a user are added.
+    EmploymentsAddedEvent:
+      title: 'Webhook: Employments Added Event'
+      x-tags:
+        - Employments
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            count:
+              type: number
+              description: The number of employments added.
+          required:
+            - userId
+            - accountId
+            - count
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: EMPLOYMENTS_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            count: 0
+      description: Payload when employment data shared by a user are added.
     IncomesAddedEvent:
       title: 'Webhook: Incomes Added Event'
       x-tags:
@@ -6110,6 +6287,64 @@ components:
         - type
         - createdAt
         - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: INCOMES_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            count: 0
+      description: Payload when income data shared by a user are added.
+    ContributionsAddedEvent:
+      title: 'Webhook: Contributions Added Event'
+      x-tags:
+        - Contributions
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            count:
+              type: number
+              description: the number of contributions added.
+          required:
+            - userId
+            - accountId
+            - count
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      description: Payload when contributions data shared by a user are added.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: CONTRIBUTIONS_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            count: 0
     Object-Metadata-Ref-Code:
       type: string
       title: Object-Metadata-Ref-API-Code
@@ -6778,6 +7013,7 @@ components:
         - DOCUMENTS_ADDED
         - EMPLOYMENTS_ADDED
         - INCOMES_ADDED
+        - CONTRIBUTIONS_ADDED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
     Ref-Webhook-Event-Version:
