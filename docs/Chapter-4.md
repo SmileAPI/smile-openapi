@@ -74,6 +74,10 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
              */
             userToken: '<usertoken>',
             /**
+            * Use provider id to promote certain providers to the top of the list. Example ['upwork', 'freelancer']
+            */
+            topProviders: [],
+            /**
             * Use provider id to filter provider list. Example ['upwork', 'freelancer']
             */
             providers: [],
@@ -134,6 +138,7 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 | apiHost | https://link-sandbox.smileapi.io/v1 for Sandbox |
 |         | https://link.smileapi.io/v1 for Production |
 | userToken | The user token returned from Smile using the /users endpoint (see documentation on Users endpoint) |
+| topProviders | Pass a list of providers using their provider id (see documentation on Providers endpoint) to have them appear on the top of the list of providers in the Wink widget. Use this parameter to highlight certain providers and to make sure that they can easily be seen by the user when the list is first loaded. |
 | providers | Pass a list of providers using their provider id (see documentation on Providers endpoint) to pre-filter the list of providers in the Wink widget. Passing just one provider id will skip the selection list and take the user immediately to the authentication screen. |
 | enableUpload | Enable or disable showing upload option in the list of providers (true or false). By default we disable uploads when this is not set. Disabling uploads will also hide data sources where a direct account connection or link is not possible. |
 

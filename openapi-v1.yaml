@@ -6780,15 +6780,16 @@ components:
           description: The accountId of this object
         sourceId:
           type: string
-          description: The ACCOUNT or UPLOAD ID associated with this object
+          description: The ACCOUNT or ARCHIVE ID associated with this object
         sourceType:
           type: string
           enum:
             - ACCOUNT
             - UPLOAD
+            - ARCHIVE
           description: >-
             Indicates whether the source associated with this object is either
-            ACCOUNT or UPLOAD type
+            ACCOUNT or ARCHIVE type
         userId:
           type: string
           description: The user ID associated with this object

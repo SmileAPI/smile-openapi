@@ -6,7 +6,6 @@ category: 6215975992e4610014e7b757
 
 
 
----
 <!-- focus: false -->
 ![Webhooks](https://img.icons8.com/ios-filled/50/000000/webhook.png)
 
@@ -391,7 +390,7 @@ const crypto = require('crypto');
 const serverPort = 80
 const requestListener = function (req, res) {
   // the client secret is being configured when a webhook is created
-  const client_secret = 'my secret...';
+  const client_secret = 'a little secret';
   var requestBody = '';
   req.on('readable', () => {
     var read = req.read()
