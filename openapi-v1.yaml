@@ -2798,7 +2798,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
-      summary: Delete Webhook
+      summary: Get Webhook
       x-internal: true
       tags:
         - Webhooks
