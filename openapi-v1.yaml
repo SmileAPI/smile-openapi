@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 1.10.0
+  version: 1.11.0
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
@@ -567,7 +567,7 @@ paths:
         - Accounts
       operationId: delete-account
       description: >-
-        Delete a user's particular account information include the datapoints
+        Delete a user's particular account information including the related
         data.
       responses:
         '200':
@@ -1893,20 +1893,11 @@ paths:
                     data:
                       nextCursor: '1259723474'
                       items:
-                        - id: 24fef36498de4d68a0d4f86c7b62f75e
+                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
                           date: '2021-04-30'
                           currency: PHP
                           amount: 1375
-                          metadata:
-                            createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
-                            sourceType: ACCOUNT
-                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-                            providerId: sss-ph
-                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
-                          date: '2021-03-30'
-                          currency: PHP
-                          amount: 1375
+                          referenceId: PA9634415
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
                             sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
@@ -1980,8 +1971,9 @@ paths:
                       date: '2021-04-30'
                       currency: PHP
                       amount: 1375
+                      referenceId: PA9634415
                       metadata:
-                        createdAt: '2021-06-14T09:30:24Z'
+                        createdAt: '2021-04-14T09:30:24Z'
                         sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
                         sourceType: ACCOUNT
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
@@ -4377,15 +4369,18 @@ components:
       x-examples:
         Example:
           id: 17bbf36498de4d68a0d4f86c7b62f69f
-          date: '2022-04-30'
+          date: '2021-04-30'
           currency: PHP
           amount: 1375
+          referenceId: PA9634415
           metadata:
-            createdAt: '2021-06-14T09:30:24Z'
+            createdAt: '2021-04-14T09:30:24Z'
             sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: sss-ph
+      x-tags:
+        - Contributions
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -4400,10 +4395,12 @@ components:
           type: number
           description: Amount of the contribution
           example: 1375
+        referenceId:
+          type: string
+          description: Reference contribution ID from the data provider
+          example: PA9634415
         metadata:
           $ref: '#/components/schemas/Object-Reference-Metadata'
-      x-tags:
-        - Contributions
     ContributionGetResponse:
       title: Contribution Get Response
       x-stoplight:
