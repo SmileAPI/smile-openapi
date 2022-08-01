@@ -24,17 +24,17 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 
 | 模式        | 主页                                        | 详情 |
 |-------------|---------------------------------------------|-------------|
-| Sandbox     | https://sandbox.smileapi.io/v1     |     使用Sandbox模式来构建和测试您的集成。在这种模式下，您必须使用测试凭据向就业数据提供商进行身份验证。 所有 API 端点都将返回模拟数据，并且不返回实际的用户数据。 |
-| Production  | https://open.smileapi.io/v1  |      Production模式用于与您的集成一起上线。您的最终用户将使用他们的登录凭据向他们的就业数据提供商进行身份验证。 API 端点返回真实数据，在这种模式下，所有 API 调用都是计费的。  |
+| Sandbox     | https://sandbox.smileapi.io/v1     |     使用Sandbox模式来构建和测试您的集成。在这种模式下，您必须使用测试凭据向就业数据提供商进行身份验证。 所有 API 都将返回模拟数据，并且不返回实际的用户数据。 |
+| Production  | https://open.smileapi.io/v1  |      Production模式用于与您的集成一起上线。您的最终用户将使用他们的登录凭据向他们的就业数据提供商进行身份验证。 API 返回真实数据，在这种模式下，所有 API 调用都是计费的。  |
 
 ---
 <!-- focus: false -->
 ![Versions](https://img.icons8.com/ios-glyphs/50/000000/versions.png)
 
 ## 版本控制
-该版本包含在 URI 路径中。 例如，它看起来像：https://open.smileapi.io/v1/
+该版本包含在 URI 路径中。 例如：https://open.smileapi.io/v1/
 - 我们使用的版本约定是 **1.2.3** 格式，其中**1** 是主要版本，**2** 是次要版本，**3**是补丁更新：
-    - **主要版本：** URI 中使用的版本，表示对 API 的重大更改。虽然我们试图保持更改向后兼容，但在某些情况下，我们需要引入可能会改变现有行为或功能的更改。这些更改将在不同 URI 下可访问的 API 版本中实现（例如 https://open.smileapi.io/v2/）  。您可以继续使用现有 URI 以避免破坏现有集成，但为了利用新功能，您必须更新应用程序以指向新版本和 URI。
+    - **主要版本：** URI 中使用的版本，表示对 API 的重大更改。虽然我们试图保持更改向后兼容，但在某些情况下，我们需要引入可能会改变现有行为或功能的更改。这些更改将在不同 URI 下可访问的 API 版本中实现（例如 https://open.smileapi.io/v2/）  。您可以继续使用现有 URI 以避免破坏现有集成，但为了使用新功能，您必须更新应用程序以指向新版本和 URI。
     - **次要版本和补丁版本：** 这些对客户端是透明的，我们在内部使用它来进行向后兼容的更新。当我们发布次要更新或补丁时，您不需要更新您的集成。我们将通过我们的变更日志和电子邮件传达这些信息，以便您了解这些变更中的任何一项。
 
 
@@ -71,7 +71,7 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 - **requestId**
 - **data**
 
-如果响应是单个对象，则数据属性的值就是该对象。 例如，获取Identity端点将返回以下内容，属性“data”返回单个身份对象：
+如果响应是单个对象，则数据属性的值就是该对象。 例如，获取Identity API将返回以下内容，属性“data”返回单个身份对象：
 ```json
 {
     "code": "OK",
@@ -150,7 +150,7 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 - **userId**
 - **providerId**
 
-如果响应是列表或集合，则 data 属性的值是对象数组。 例如，List Transactions 端点将返回一个 Transactions 集合：
+如果响应是列表或集合，则 data 属性的值是对象数组。 例如，List Transactions API将返回一个 Transactions 集合：
 ```json
 {
     "code": "OK",
@@ -168,7 +168,8 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
                 "referenceId": "Order ID-945485798532",
                 "metadata": {
                     "createdAt": "2022-02-22T05:26:09Z",
-                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
+                    "sourceType": "ACCOUNTS",
                     "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
                     "providerId": "upwork"
                 }
@@ -182,7 +183,8 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
                 "referenceId": "Order ID-023485780332",
                 "metadata": {
                     "createdAt": "2022-02-22T05:26:09Z",
-                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
+                    "sourceType": "ACCOUNTS",
                     "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
                     "providerId": "upwork"
                 }
@@ -196,7 +198,8 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
                 "referenceId": "Order ID-934585780080",
                 "metadata": {
                     "createdAt": "2022-02-22T05:26:09Z",
-                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
+                    "sourceType": "ACCOUNTS",
                     "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
                     "providerId": "upwork"
                 }
@@ -210,7 +213,8 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
                 "referenceId": "Order ID-934587514002",
                 "metadata": {
                     "createdAt": "2022-02-22T05:26:09Z",
-                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
+                    "sourceType": "ACCOUNTS",
                     "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
                     "providerId": "upwork"
                 }
@@ -224,7 +228,8 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
                 "referenceId": "Order ID-156987512999",
                 "metadata": {
                     "createdAt": "2022-02-22T05:26:09Z",
-                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
+                    "sourceType": "ACCOUNTS",
                     "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
                     "providerId": "upwork"
                 }
@@ -238,7 +243,8 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
                 "referenceId": "Order ID-664426992012",
                 "metadata": {
                     "createdAt": "2022-02-22T05:26:09Z",
-                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
+                    "sourceType": "ACCOUNTS",
                     "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
                     "providerId": "upwork"
                 }
@@ -252,7 +258,8 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
                 "referenceId": "Order ID-234728692099",
                 "metadata": {
                     "createdAt": "2022-02-22T05:26:09Z",
-                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
+                    "sourceType": "ACCOUNTS",
                     "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
                     "providerId": "upwork"
                 }
@@ -266,7 +273,8 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
                 "referenceId": "Order ID-994728692055",
                 "metadata": {
                     "createdAt": "2022-02-22T05:26:09Z",
-                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
+                    "sourceType": "ACCOUNTS",
                     "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
                     "providerId": "upwork"
                 }
@@ -280,7 +288,8 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
                 "referenceId": "Order ID-993128902044",
                 "metadata": {
                     "createdAt": "2022-02-22T05:26:09Z",
-                    "accountId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
+                    "sourceType": "ACCOUNTS",
                     "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
                     "providerId": "upwork"
                 }
@@ -294,7 +303,7 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
                 "referenceId": "Order ID-996438805066",
                 "metadata": {
                     "createdAt": "2022-02-22T05:26:09Z",
-                    "sourceId": "a1dd2b68d1264ac6bd780e6de624c5bf",
+                    "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
                     "sourceType": "ACCOUNTS",
                     "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
                     "providerId": "upwork"
@@ -358,7 +367,7 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 
 ## 列出结果和分页
 
-资源或 API 端点可以返回一个列表或对象集合。 默认情况下，我们一次返回 10 个，最多返回 100 个。 您可以通过传递大小参数来限制结果。 有关过滤或限制结果的更多信息，请参阅下面的查询参数。
+资源或 API 可以返回一个列表或对象集合。 默认情况下，我们一次返回 10 个，最多返回 100 个。 您可以通过传递大小参数来限制结果。 有关过滤或限制结果的更多信息，请参阅下面的查询参数。
 
 当 Smile 返回一个集合时，我们也会返回一个名为 **nextCursor** 的值。 请参阅下面的示例：
 ```json
@@ -373,7 +382,7 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 }
 ```
 
-要转到集合中的下一页，只需在查询端点时附加 **cursor** 参数，使用从上一个查询返回的 **nextCursor** 值转到集合中的下一页。 有关游标和其他查询参数的更多信息，请参见下文。
+要转到集合中的下一页，只需在查询API时附加 **cursor** 参数，使用从上一个查询返回的 **nextCursor** 值转到集合中的下一页。 有关游标和其他查询参数的更多信息，请参见下文。
 
 ---
 <!-- focus: false -->
@@ -381,7 +390,7 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 
 ## 查询参数
 
-可以根据不同的查询参数过滤或限制返回对象列表或对象集合的 API 端点。下面是一些例子：
+可以根据不同的查询参数过滤或限制返回对象列表或对象集合的 API API。下面是一些例子：
 
 |参数 |详情 |
 |----------------------|----------------------|
@@ -392,7 +401,7 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 | startDate |对于具有日期属性的数据，能够按日期范围过滤结果。 |
 | endDate | 对于具有日期属性的数据，能够按日期范围过滤结果。 |
 
-然而，一些资源具有与之关联的唯一查询参数。 查看每个端点中的文档以了解更多信息。
+然而，一些资源具有与之关联的唯一查询参数。 查看每个API中的文档以了解更多信息。
 
 <!-- focus: false -->
 ![Rate Limits](https://img.icons8.com/ios-filled/50/000000/traffic-light.png)
@@ -400,4 +409,4 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 
 ## 速率限制
 
-Smile 限制了可以对每个端点进行的 API 调用量，以确保平台的稳定性和可用性。 目前我们只允许客户端每秒最多 5 个请求。 这适用于所有 API 端点。 连续发出过多请求的客户端将收到 HTTP 状态码 429 或请求过多的错误。 要请求更高的限制，请联系access@getsmileapi.com。
+Smile 限制了对每个API的调用量，以确保平台的稳定性和可用性。目前，我们的客户端对**每个 IP 地址最多只允许每秒 20 个请求**。这适用于所有 API。连续发出过多请求的客户端将收到 HTTP 状态码 429 或请求过多的错误。如要请求更高的限制，请联系 access@getsmileapi.com。

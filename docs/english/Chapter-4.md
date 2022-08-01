@@ -66,24 +66,28 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
     <script type="text/javascript">
         const smileLinkModal = new SmileLinkModal({
             /**
-             * The Link API URI. Note: Sandbox and Production modes are using different API URIs.
+             * The Link API URI. Note: Sandbox and Production modes use different API URIs.
              */
             apiHost: 'https://link-sandbox.smileapi.io/v1',
+
             /**
              * User token passed from your backend service which is obtained from the Smile API.
              */
             userToken: '<usertoken>',
+
             /**
-            * Use provider id to promote certain providers to the top of the list. Example ['upwork', 'freelancer']
-            */
+             * Use provider id to promote certain providers to the top of the list. Example ['upwork', 'freelancer']
+             */
             topProviders: [],
+
             /**
-            * Use provider id to filter provider list. Example ['upwork', 'freelancer']
-            */
+             * Use provider id to show only select providers in the widget. Example ['upwork', 'freelancer']
+             */
             providers: [],
+
             /**
-            * Enable or disable file uploads.
-            */
+             * Enable or disable file uploads.
+             */
             enableUpload: true,           
 
             onAccountCreated: ({
