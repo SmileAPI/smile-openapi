@@ -2,6 +2,7 @@
 title: 获取用户数据  
 excerpt: ""  
 category: 62ce2a159aafea009af30da7
+slug: chapter-4-cn
 ---
 
 
@@ -85,6 +86,18 @@ Invite允许您邀请您的用户通过电子邮件等通信渠道连接他们�
             providers: [],
 
             /**
+             * 如果您希望隐藏Provider搜索栏，请将 enableSearchBar 设置为 false。
+             * 默认值：true
+             */
+            enableSearchBar: true,
+
+            /**
+             * 如果您希望隐藏Provider类型过滤栏，请将 enableTypeBar 设置为 false。
+             * 默认值：true
+             */
+            enableTypeBar: true,
+
+            /**
              * 启用或禁用文件上传。
              */
             enableUpload: true,           
@@ -143,6 +156,8 @@ Invite允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 | userToken | 使用 /users API 从 Smile 返回的用户令牌（请参阅有关User API的文档）|
 | topProviders | 使用Provider ID 传递提供者列表（请参阅Provider API上的文档），以使它们出现在 Wink Widget中提供者列表的顶部。使用此参数突出显示某些Provider，并确保在首次加载列表时用户可以轻松看到它们。|
 | providers| 使用Provider ID 传递提供者列表（请参阅Provider API上的文档）以预过滤 Wink Widget中的提供者列表。只传递一个Provider ID 将跳过选择列表并立即将用户带到身份验证界面。|
+| enableSearchBar | 如果您希望隐藏Provider搜索栏，请将此变量设置为 false。 默认情况下，会显示Provider搜索栏。 |
+| enableTypeBar | 如果您希望隐藏Provider类型过滤栏，请将此变量设置为 false。 默认情况下，显示Provider类型过滤栏。 |
 | enableUpload | 启用或禁用在提供者列表中显示Upload选项（true 或 false）。默认情况下，如果未设置，我们会禁用Upload。禁用Upload还会隐藏无法直接连接帐户或链接的数据源。|
 
 > 🚧 警告

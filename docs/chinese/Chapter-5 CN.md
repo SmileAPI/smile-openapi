@@ -2,6 +2,7 @@
 title: 事件通知
 excerpt: ""
 category: 62ce2a159aafea009af30da7
+slug: chapter-5-cn
 ---
 
 

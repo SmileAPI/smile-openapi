@@ -2,6 +2,7 @@
 title: 更多的资源
 excerpt: ""
 category: 62ce2a159aafea009af30da7
+slug: chapter-6-cn
 ---
 
 

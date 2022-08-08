@@ -2,6 +2,7 @@
 title: Event Notifications
 excerpt: ''
 category: 6215975992e4610014e7b757
+slug: chapter-5
 ---
 
 

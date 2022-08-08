@@ -2,6 +2,7 @@
 title: Getting User Data  
 excerpt: ""  
 category: 6215975992e4610014e7b757
+slug: chapter-4
 ---
 
 
@@ -86,6 +87,18 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
             providers: [],
 
             /**
+             * Set enableSearchBar to false if you wish to hide the providers search bar.
+             * Default: true
+             */
+            enableSearchBar: true,
+
+            /**
+             * Set enableTypeBar to false if you wish to hide the provider types filter.
+             * Default: true
+             */
+            enableTypeBar: true,
+
+            /**
              * Enable or disable file uploads.
              */
             enableUpload: true,           
@@ -144,6 +157,8 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 | userToken | The user token returned from Smile using the /users endpoint (see documentation on Users endpoint) |
 | topProviders | Pass a list of providers using their provider id (see documentation on Providers endpoint) to have them appear on the top of the list of providers in the Wink widget. Use this parameter to highlight certain providers and to make sure that they can easily be seen by the user when the list is first loaded. |
 | providers | Pass a list of providers using their provider id (see documentation on Providers endpoint) to pre-filter the list of providers in the Wink widget. Passing just one provider id will skip the selection list and take the user immediately to the authentication screen. |
+| enableSearchBar | Set this variable to false if you wish to hide the provider search bar. Be default, provider search is displayed. |
+| enableTypeBar | Set this variable to false if you wish to hide the provider type filter bar. Be default, provider types filter is displayed. |
 | enableUpload | Enable or disable showing upload option in the list of providers (true or false). By default we disable uploads when this is not set. Disabling uploads will also hide data sources where a direct account connection or link is not possible. |
 
 > 🚧 Warning
