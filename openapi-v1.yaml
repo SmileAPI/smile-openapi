@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 1.12.0
+  version: 1.13.0
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
@@ -42,7 +42,7 @@ paths:
                     data:
                       nextCursor: '1259723474'
                       items:
-                        - id: eincome-17bbf36498de4d68a0d4f86c7b62f69f
+                        - id: einc-17bbf36498de4d68a0d4f86c7b62f69f
                           month: 2021-06
                           currency: PHP
                           baseAmount: 1000
@@ -88,7 +88,7 @@ paths:
                     message: Success
                     requestId: 5b79399a-6852-4234-bb0e-ad472648282d
                     data:
-                      id: eincome-17bbf36498de4d68a0d4f86c7b62f69f
+                      id: einc-17bbf36498de4d68a0d4f86c7b62f69f
                       month: 2021-06
                       currency: PHP
                       baseAmount: 1000
@@ -3190,6 +3190,7 @@ components:
               - DOCUMENTS
               - INCOMES
               - CONTRIBUTIONS
+              - EINCOMES
       required:
         - id
         - name
@@ -4456,7 +4457,7 @@ components:
         provider.
       x-examples:
         Example:
-          id: eincome-17bbf36498de4d68a0d4f86c7b62f69f
+          id: einc-17bbf36498de4d68a0d4f86c7b62f69f
           month: 2021-06
           currency: PHP
           baseAmount: 8500
@@ -5626,6 +5627,8 @@ components:
               - EMPLOYMENTS
               - DOCUMENTS
               - INCOMES
+              - CONTRIBUTIONS
+              - EINCOMES
               - NONE
       required:
         - logoUrl
@@ -6587,7 +6590,7 @@ components:
         - data
       x-examples:
         Example:
-          id: eincome-17bbf36498de4d68a0d4f86c7b62f69f
+          id: einc-17bbf36498de4d68a0d4f86c7b62f69f
           version: 1
           type: EINCOMES_ADDED
           createdAt: '2021-04-14T09:30:24Z'
