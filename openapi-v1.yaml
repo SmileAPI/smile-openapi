@@ -14,6 +14,92 @@ servers:
   - url: https://open.smileapi.io/v1
     description: Production
 paths:
+  /eincomes:
+    parameters: []
+    get:
+      operationId: list-eincomes
+      description: >-
+        List users' eincomes from employment data sources. This enhanced data
+        set contains derived income amounts from a variety of sources such as
+        social security contributions, annual salary calculations, and computed
+        earnings from various platforms.
+      summary: List Eincomes
+      tags:
+        - Eincomes
+      responses:
+        '200':
+          description: Enhanced Incomes Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EincomeListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: eincome-17bbf36498de4d68a0d4f86c7b62f69f
+                          month: 2021-06
+                          currency: PHP
+                          baseAmount: 1000
+                          metadata:
+                            createdAt: '2021-04-14T09:30:24Z'
+                            sourceId: string
+                            sourceType: ACCOUNT
+                            userId: string
+                            providerId: string
+      parameters:
+        - $ref: ./smile-api.yaml#/components/parameters/size
+        - $ref: ./smile-api.yaml#/components/parameters/cursor
+        - $ref: ./smile-api.yaml#/components/parameters/userId
+        - schema:
+            type: string
+          in: query
+          name: startMonth
+          description: Filter by eincome date, start of date range (YYYY-MM)
+        - schema:
+            type: string
+          in: query
+          name: endMonth
+          description: Filter by eincome date, end of date range (YYYY-MM)
+        - $ref: ./smile-api.yaml#/components/parameters/sourceId
+  /eincomes/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Enhanced Income
+      tags:
+        - Eincomes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EincomeGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: eincome-17bbf36498de4d68a0d4f86c7b62f69f
+                      month: 2021-06
+                      currency: PHP
+                      baseAmount: 1000
+                      metadata:
+                        createdAt: '2021-04-14T09:30:24Z'
+                        sourceId: string
+                        sourceType: ACCOUNT
+                        userId: string
+                        providerId: string
+      operationId: get-eincomes
+      description: Get the user's eincome by ID.
   /providers:
     get:
       summary: List Providers
@@ -3360,6 +3446,7 @@ components:
                 - ACCOUNT_DISABLED
                 - ACCOUNT_INACCESSIBLE
                 - ACCOUNT_INCOMPLETE
+                - ACCOUNT_LOCKED
                 - AUTH_REQUIRED
                 - EXPIRED_CREDENTIALS
                 - INVALID_ACCOUNT_TYPE
@@ -4328,6 +4415,81 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Income'
+    EincomeGetResponse:
+      title: Enhanced Income Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Eincome'
+    EincomeListResponse:
+      title: Enhanced Income List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Eincome'
+    Eincome:
+      title: Eincome
+      type: object
+      description: >-
+        The stored eincome information of the user from an employment data
+        provider.
+      x-examples:
+        Example:
+          id: eincome-17bbf36498de4d68a0d4f86c7b62f69f
+          month: 2021-06
+          currency: PHP
+          baseAmount: 8500
+          metadata:
+            createdAt: '2021-06-14T09:30:24Z'
+            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: user-provided
+      x-internal: false
+      x-tags:
+        - Eincomes
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        month:
+          type: string
+          description: the month
+          example: 2021-06
+        currency:
+          $ref: '#/components/schemas/Ref-Currency'
+        baseAmount:
+          type: number
+          description: income amount
+          nullable: true
+        metadata:
+          $ref: '#/components/schemas/Object-Reference-Metadata'
+      required:
+        - id
+        - month
+        - currency
+        - baseAmount
+        - metadata
     Contribution:
       title: Contribution
       x-stoplight:
@@ -6387,6 +6549,53 @@ components:
             accountId: string
             count: 0
       description: Payload when income data shared by a user are added.
+    EincomeAddedEvent:
+      title: 'Webhook: enhanced income Added Event'
+      x-tags:
+        - Eincomes
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            count:
+              type: number
+              description: the number of eincomes added.
+          required:
+            - userId
+            - accountId
+            - count
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: eincome-17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: EINCOMES_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            count: 0
+      description: Payload when eincomes data shared by a user are added.
     ContributionsAddedEvent:
       title: 'Webhook: Contributions Added Event'
       x-tags:
@@ -6479,6 +6688,214 @@ components:
       description: Unique ID of this object
       x-internal: true
       example: 17bbf36498de4d68a0d4f86c7b62f69f
+    Ref-Currency:
+      type: string
+      title: Currency ISO Codes
+      description: Currency in 3 character alpha ISO 4217
+      enum:
+        - AFN
+        - DZD
+        - ARS
+        - AMD
+        - AWG
+        - AUD
+        - AZN
+        - BSD
+        - BHD
+        - THB
+        - PAB
+        - BBD
+        - BYN
+        - BZD
+        - BMD
+        - VES
+        - BOB
+        - BRL
+        - BND
+        - BGN
+        - BIF
+        - CAD
+        - CVE
+        - KYD
+        - GHS
+        - XOF
+        - XAF
+        - XPF
+        - CLP
+        - COP
+        - KMF
+        - CDF
+        - BAM
+        - NIO
+        - CRC
+        - HRK
+        - CZK
+        - GMD
+        - DKK
+        - MKD
+        - DJF
+        - STD
+        - DOP
+        - VND
+        - XCD
+        - EGP
+        - SVC
+        - ETB
+        - EUR
+        - FKP
+        - FJD
+        - HUF
+        - GIP
+        - HTG
+        - PYG
+        - GNF
+        - GYD
+        - HKD
+        - UAH
+        - ISK
+        - INR
+        - IRR
+        - IQD
+        - JMD
+        - JOD
+        - KES
+        - PGK
+        - LAK
+        - EEK
+        - KWD
+        - MWK
+        - AOA
+        - MMK
+        - GEL
+        - LVL
+        - LBP
+        - ALL
+        - HNL
+        - SLL
+        - LRD
+        - LYD
+        - SZL
+        - LTL
+        - LSL
+        - MGA
+        - MYR
+        - TMT
+        - MUR
+        - MZN
+        - MXN
+        - MDL
+        - MAD
+        - NGN
+        - ERN
+        - NAD
+        - NPR
+        - ANG
+        - ILS
+        - RON
+        - TWD
+        - NZD
+        - BTN
+        - KPW
+        - NOK
+        - PEN
+        - MRO
+        - TOP
+        - PKR
+        - MOP
+        - UYU
+        - PHP
+        - GBP
+        - BWP
+        - QAR
+        - GTQ
+        - ZAR
+        - OMR
+        - KHR
+        - MVR
+        - IDR
+        - RUB
+        - RWF
+        - SHP
+        - SAR
+        - RSD
+        - SCR
+        - SGD
+        - SBD
+        - KGS
+        - SOS
+        - TJS
+        - LKR
+        - SDG
+        - SRD
+        - SEK
+        - CHF
+        - SYP
+        - BDT
+        - WST
+        - TZS
+        - KZT
+        - TTD
+        - MNT
+        - TND
+        - TRY
+        - AED
+        - UGX
+        - CLF
+        - USD
+        - UZS
+        - VUV
+        - KRW
+        - YER
+        - JPY
+        - CNY
+        - ZMW
+        - ZWL
+        - PLN
+      x-internal: true
+      example: PHP
+    Ref-DateTime:
+      type: string
+      title: Date and Time string
+      format: date-time
+      example: '2021-04-14T09:30:24Z'
+      description: Date and time
+      x-internal: true
+    Object-Reference-Metadata:
+      title: Reference Metadata
+      type: object
+      description: Metadata related to account-specific data
+      x-internal: true
+      properties:
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        accountId:
+          type: string
+          deprecated: true
+          description: The accountId of this object
+        sourceId:
+          type: string
+          description: The ACCOUNT or ARCHIVE ID associated with this object
+        sourceType:
+          type: string
+          enum:
+            - ACCOUNT
+            - UPLOAD
+            - ARCHIVE
+          description: >-
+            Indicates whether the source associated with this object is either
+            ACCOUNT or ARCHIVE type
+        userId:
+          type: string
+          description: The user ID associated with this object
+        providerId:
+          type: string
+          description: The provider ID associated with this object
+      required:
+        - createdAt
+        - sourceId
+        - sourceType
+        - userId
+        - providerId
     Object-ExternalMetadata:
       title: Object-ExternalMetadata
       type: object
@@ -6498,13 +6915,6 @@ components:
         - Maximum key length of 50 characters
 
         - Maximum value length of 500 characters
-      x-internal: true
-    Ref-DateTime:
-      type: string
-      title: Date and Time string
-      format: date-time
-      example: '2021-04-14T09:30:24Z'
-      description: Date and time
       x-internal: true
     Ref-Country:
       type: string
@@ -6855,207 +7265,6 @@ components:
           description: Whether address is primary or secondary
       required:
         - type
-    Object-Reference-Metadata:
-      title: Reference Metadata
-      type: object
-      description: Metadata related to account-specific data
-      x-internal: true
-      properties:
-        createdAt:
-          $ref: '#/components/schemas/Ref-DateTime'
-        accountId:
-          type: string
-          deprecated: true
-          description: The accountId of this object
-        sourceId:
-          type: string
-          description: The ACCOUNT or ARCHIVE ID associated with this object
-        sourceType:
-          type: string
-          enum:
-            - ACCOUNT
-            - UPLOAD
-            - ARCHIVE
-          description: >-
-            Indicates whether the source associated with this object is either
-            ACCOUNT or ARCHIVE type
-        userId:
-          type: string
-          description: The user ID associated with this object
-        providerId:
-          type: string
-          description: The provider ID associated with this object
-      required:
-        - createdAt
-        - sourceId
-        - sourceType
-        - userId
-        - providerId
-    Ref-Currency:
-      type: string
-      title: Currency ISO Codes
-      description: Currency in 3 character alpha ISO 4217
-      enum:
-        - AFN
-        - DZD
-        - ARS
-        - AMD
-        - AWG
-        - AUD
-        - AZN
-        - BSD
-        - BHD
-        - THB
-        - PAB
-        - BBD
-        - BYN
-        - BZD
-        - BMD
-        - VES
-        - BOB
-        - BRL
-        - BND
-        - BGN
-        - BIF
-        - CAD
-        - CVE
-        - KYD
-        - GHS
-        - XOF
-        - XAF
-        - XPF
-        - CLP
-        - COP
-        - KMF
-        - CDF
-        - BAM
-        - NIO
-        - CRC
-        - HRK
-        - CZK
-        - GMD
-        - DKK
-        - MKD
-        - DJF
-        - STD
-        - DOP
-        - VND
-        - XCD
-        - EGP
-        - SVC
-        - ETB
-        - EUR
-        - FKP
-        - FJD
-        - HUF
-        - GIP
-        - HTG
-        - PYG
-        - GNF
-        - GYD
-        - HKD
-        - UAH
-        - ISK
-        - INR
-        - IRR
-        - IQD
-        - JMD
-        - JOD
-        - KES
-        - PGK
-        - LAK
-        - EEK
-        - KWD
-        - MWK
-        - AOA
-        - MMK
-        - GEL
-        - LVL
-        - LBP
-        - ALL
-        - HNL
-        - SLL
-        - LRD
-        - LYD
-        - SZL
-        - LTL
-        - LSL
-        - MGA
-        - MYR
-        - TMT
-        - MUR
-        - MZN
-        - MXN
-        - MDL
-        - MAD
-        - NGN
-        - ERN
-        - NAD
-        - NPR
-        - ANG
-        - ILS
-        - RON
-        - TWD
-        - NZD
-        - BTN
-        - KPW
-        - NOK
-        - PEN
-        - MRO
-        - TOP
-        - PKR
-        - MOP
-        - UYU
-        - PHP
-        - GBP
-        - BWP
-        - QAR
-        - GTQ
-        - ZAR
-        - OMR
-        - KHR
-        - MVR
-        - IDR
-        - RUB
-        - RWF
-        - SHP
-        - SAR
-        - RSD
-        - SCR
-        - SGD
-        - SBD
-        - KGS
-        - SOS
-        - TJS
-        - LKR
-        - SDG
-        - SRD
-        - SEK
-        - CHF
-        - SYP
-        - BDT
-        - WST
-        - TZS
-        - KZT
-        - TTD
-        - MNT
-        - TND
-        - TRY
-        - AED
-        - UGX
-        - CLF
-        - USD
-        - UZS
-        - VUV
-        - KRW
-        - YER
-        - JPY
-        - CNY
-        - ZMW
-        - ZWL
-        - PLN
-      x-internal: true
-      example: PHP
     Ref-Employer:
       type: string
       title: Employer
@@ -7104,6 +7313,7 @@ components:
         - EMPLOYMENTS_ADDED
         - INCOMES_ADDED
         - CONTRIBUTIONS_ADDED
+        - EINCOMES_ADDED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
     Ref-Webhook-Event-Version:
@@ -7202,3 +7412,4 @@ tags:
   - name: Uploads
   - name: Users
   - name: Webhooks
+  - name: Eincomes

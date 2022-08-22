@@ -435,7 +435,7 @@ public class VerifySignatureUtil {
         return result;
     }
 
-    public static String getRequestBody(HttpServletRequest request) throws IOException {
+    private static String getRequestBody(HttpServletRequest request) throws IOException {
         if (request.getMethod().equals("POST")) {
             StringBuilder sb = new StringBuilder();
 
@@ -452,7 +452,7 @@ public class VerifySignatureUtil {
         return "";
     }
 
-    public static String generateSignature(String secret, String requestBody) {
+    private static String generateSignature(String secret, String requestBody) {
         byte[] key= secret.getBytes();
         byte[] content= requestBody.getBytes();
         String signature = null;
