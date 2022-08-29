@@ -53,9 +53,10 @@ paths:
                             userId: string
                             providerId: string
       parameters:
-        - $ref: ./smile-api.yaml#/components/parameters/size
-        - $ref: ./smile-api.yaml#/components/parameters/cursor
-        - $ref: ./smile-api.yaml#/components/parameters/userId
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/sourceId'
         - schema:
             type: string
           in: query
@@ -66,7 +67,6 @@ paths:
           in: query
           name: endMonth
           description: Filter by eincome date, end of date range (YYYY-MM)
-        - $ref: ./smile-api.yaml#/components/parameters/sourceId
   /eincomes/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
