@@ -96,8 +96,8 @@ SmileAPI 很容易上手！ 使用 SmileAPI 涉及简单的客户端和服务器
    APP_PORT=<portnumber>
     
    # Smile Link API 密钥（您可以通过向 access@getsmileapi.com 请求访问来获取此密钥）
-   API_KEY_ID=<apikeyid>
-   API_KEY_SECRET=<apisecret>
+   API_KEY=<apikey>
+   API_SECRET=<apisecret>
     
    # API Host (决定这将在Sandbox还是Production模式下运行)
    OPEN_API_HOST=<openapihost>

@@ -97,8 +97,8 @@ Below steps are also included in the README.md document found in the the Quickst
    APP_PORT=<portnumber>
    
    # Smile Link API keys (you can get this by requesting access from access@getsmileapi.com)
-   API_KEY_ID=<apikeyid>
-   API_KEY_SECRET=<apisecret>
+   API_KEY=<apikey>
+   API_SECRET=<apisecret>
    
    # API Host (whether this will run in Sandbox or Production)
    OPEN_API_HOST=<openapihost>
