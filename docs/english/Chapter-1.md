@@ -76,7 +76,7 @@ If you will be embedding the Client SDK yourself into your own application, you 
 | Ratings | User Data | Get information on user's job performance ratings. |  
 | Documents | User Data | Get documentary information such as their driver's license, national identity card ID, and others.|  
 | Employments | User Data | Get previous employment information such as the company the user has worked for, job title, tenure and others.|  
-| Incomes | User Data | Get previous income information such as gross pay and net pay, as well as other components that make up income.|  
+| Incomes | User Data | Get previous income information such as gross pay and net pay, as well as other components that make up income.<br> **Estimated Income** *(early access)* data from Contributions and Transactions is also freely available for a limited time. |  
 | Contributions | User Data | Get previous social security contribution information to get an indication of income level.|  
 
 <!--

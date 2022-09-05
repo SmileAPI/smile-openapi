@@ -68,22 +68,23 @@ Below are the example events you can subscribe to via webhooks:
 |Event|Event Type|Description|
 |---|---|---|
 |User Creation Successful|USER_CREATED|Sent when a new user and link token is created.|
-|Account Connection Successful|ACCOUNT_CONNECTED|Sent when a user successfully connects his/her work account.|
-|Account Disconnection Successful|ACCOUNT_DISCONNECTED|Sent when a user disconnects or revokes the link to his/her work account.|
+|Account Connection Successful|ACCOUNT_CONNECTED|Sent when a user successfully connects their work account.|
+|Account Disconnection Successful|ACCOUNT_DISCONNECTED|Sent when a user disconnects or revokes the link to their work account.|
 |Account Connection Failed|ACCOUNT_FAILED|Sent when the account linking process is is unsuccessful.|
 |Archive Creation Successful|ARCHIVE_STARTED|Sent when a user has uploaded one or several files which becomes an "archive" in Smile.|
 |Archive Analysis Successful|ACCOUNT_ANALYZED|Sent when an archive has been analyzed and converted into JSON data automatically via OCR.|
-|Archive Revocation Successful|ARCHIVE_REVOKED|Sent when user removes permission to access or use an archive.|
+|Archive Revocation Successful|ARCHIVE_REVOKED|Sent when a user removes permission to access or use an archive.|
 |Archive Creation or Analysis Failed|ARCHIVE_FAILED|Sent when the the archive creation or analysis process is unsuccessful.|
 |Invitation Sending Successful|INVITE_INVITED|Sent when an invitation is sent out to a user successfully.|
-|Account Link by Invitation Successful|INVITE_LINKED|Sent when the a user that has been sent an invitation is able to link his or her work account successfully.|
+|Account Link by Invitation Successful|INVITE_LINKED|Sent when a user that has been sent an invitation is able to link their work account successfully.|
 |Identity Data Added|IDENTITY_ADDED|Sent when identity data about a user is added.|
-|Rating Data Added|RATING_ADDED|Sent when rating data about a user is added.|
-|Transactions Data Added|TRANSACTIONS_ADDED|Sent when transactions data shared by a user are added.|
-|Documents Data Added|DOCUMENTS_ADDED|Sent when documents data shared by a user are added.|
-|Employments Data Added|EMPLOYMENTS_ADDED|Sent when employment data shared by a user are added.|
-|Incomes Data Added|INCOMES_ADDED|Sent when income data shared by a user are added.|
-|Contributions Data Added|CONTRIBUTIONS_ADDED|Sent when social security contributions data shared by a user are added.|
+|Rating Data Added|RATING_ADDED|Sent when ratings data about a user is added.|
+|Transactions Data Added|TRANSACTIONS_ADDED|Sent when transactions data shared by a user is added.|
+|Documents Data Added|DOCUMENTS_ADDED|Sent when documents data shared by a user is added.|
+|Employments Data Added|EMPLOYMENTS_ADDED|Sent when employment data shared by a user is added.|
+|Incomes Data Added|INCOMES_ADDED|Sent when income data shared by a user is added.|
+|Estimated Incomes Data Added <br>*(early access)*|EINCOMES_ADDED|Sent when estimated income data shared by a user is added.|
+|Contributions Data Added|CONTRIBUTIONS_ADDED|Sent when social security contributions data shared by a user is added.|
 
 
 <!-- focus: false -->
@@ -345,6 +346,22 @@ Payload when income data shared by a user are added.
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
   "version": 1,
   "type": "INCOMES_ADDED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "string",
+    "accountId": "string",
+    "count": 0
+  }
+}
+```
+
+#### Estimated Incomes Added (early access)
+Payload when estimated income data has been derived from data shared by a user
+``` json
+{
+  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "version": 1,
+  "type": "EINCOMES_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "string",

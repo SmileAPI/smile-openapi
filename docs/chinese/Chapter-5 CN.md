@@ -66,34 +66,35 @@ curl --request POST \
 
 |事件|事件类型|详情|
 |---|---|---|
-|User Creation Successful|USER_CREATED|一个新用户创建成功|
-|Account Connection Successful|ACCOUNT_CONNECTED|用户成功连接一个 Provider |
-|Account Disconnection Successful|ACCOUNT_DISCONNECTED|用户 revoke 了一个 account 连接|
-|Account Connection Failed|ACCOUNT_FAILED|用户连接 Provider 失败了|
-|Archive Creation Successful|ARCHIVE_STARTED|用户成功上传了 Archive |
-|Archive Analysis Successful|ACCOUNT_ANALYZED|Archive 被 OCR 引擎成功识别出来|
-|Archive Revocation Successful|ARCHIVE_REVOKED|用户 revoke 了 Archive |
-|Archive Creation or Analysis Failed|ARCHIVE_FAILED|用户上传失败，或者 OCR 引擎分析失败。|
-|Invitation Sending Successful|INVITE_INVITED|邀请成功发出|
-|Account Link by Invitation Successful|INVITE_LINKED|被邀用户连接了一个账号|
-|Identity Data Added|IDENTITY_ADDED|添加了新的 Identity 数据|
-|Rating Data Added|RATING_ADDED|添加了新的 Ratings 数据|
-|Transactions Data Added|TRANSACTIONS_ADDED|添加了新的 Transactions 数据|
-|Documents Data Added|DOCUMENTS_ADDED|添加了新的 Documents 数据|
-|Employments Data Added|EMPLOYMENTS_ADDED|添加了新的 Employments 数据|
-|Incomes Data Added|INCOMES_ADDED|添加了新的 Incomes 数据|
-|Contributions Data Added|CONTRIBUTIONS_ADDED|添加了新的 Contributions 数据|
+|User Creation Successful|USER_CREATED|当创建新用户和链接 token 时发送|
+|Account Connection Successful|ACCOUNT_CONNECTED|当用户成功连接其工作帐户时发送。|
+|Account Disconnection Successful|ACCOUNT_DISCONNECTED|当用户断开或撤销与其帐户的链接时发送。|
+|Account Connection Failed|ACCOUNT_FAILED|当帐户关联过程失败时发送。|
+|Archive Creation Successful|ARCHIVE_STARTED|当用户成功上传一个或多个文件时发送，这些文件将作为 Smile 中的 “archive” 。 |
+|Archive Analysis Successful|ACCOUNT_ANALYZED|当 archive 已通过 OCR 自动分析并转换为 JSON 数据时发送。|
+|Archive Revocation Successful|ARCHIVE_REVOKED|当用户删除访问或使用 archive 的权限时发送。|
+|Archive Creation or Analysis Failed|ARCHIVE_FAILED|当 archive 创建或分析过程失败时发送。|
+|Invitation Sending Successful|INVITE_INVITED|当邀请成功发送给用户时发送。|
+|Account Link by Invitation Successful|INVITE_LINKED|当已收到邀请的用户能够成功关联其帐户时发送。|
+|Identity Data Added|IDENTITY_ADDED|当添加有关用户的身份数据时发送。|
+|Rating Data Added|RATING_ADDED|当添加有关用户的评级数据时发送。|
+|Transactions Data Added|TRANSACTIONS_ADDED|当添加用户共享的交易数据时发送。|
+|Documents Data Added|DOCUMENTS_ADDED|当添加用户共享的文档数据时发送。|
+|Employments Data Added|EMPLOYMENTS_ADDED|当添加用户共享的就业数据时发送。|
+|Incomes Data Added|INCOMES_ADDED|当添加用户共享的收入数据时发送。|
+|Estimated Incomes Data Added <br>*(抢先试用版)*|EINCOMES_ADDED|当添加用户共享的估计收入数据时发送。|
+|Contributions Data Added|CONTRIBUTIONS_ADDED|当添加用户共享的社会保障缴款数据时发送。|
 
 
 <!-- focus: false -->
 ![Payload](https://img.icons8.com/ios/50/000000/json-download.png)
 
-## 事件 payload
+## 事件内容
 
 ### Users
 
 #### 创建 User 成功
-一个新用户创建成功.
+创建新用户和链接 token 时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -109,7 +110,7 @@ curl --request POST \
 ### Accounts
 
 #### Account 连接成功
-用户成功连接一个 Provider
+用户成功连接其帐户时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -124,7 +125,7 @@ curl --request POST \
 }
 ```
 #### Account Revoke 连接
-用户 revoke 了一个 account 连接
+用户断开或撤销与其帐户的链接时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -138,7 +139,7 @@ curl --request POST \
 }
 ```
 #### Account 连接失败
-用户连接一个 Provider 失败了
+帐户关联过程失败时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -161,7 +162,7 @@ curl --request POST \
 ### Archives
 
 #### Archive 上传成功
-用户成功上传了 Archive
+用户上传一个或多个文件时，事件发送格式如下，这些文件在 Smile 中作为 “archive” ：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -176,7 +177,7 @@ curl --request POST \
 ```
 
 #### Archive 分析成功
-Archive 被 OCR 引擎成功识别出来
+archive 被分析并通过 OCR 自动转换为 JSON 数据时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -192,7 +193,7 @@ Archive 被 OCR 引擎成功识别出来
 
 
 #### Archive 删除成功
-用户 revoke 了 archive
+用户删除访问或使用 archive 的权限时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -207,7 +208,7 @@ Archive 被 OCR 引擎成功识别出来
 ```
 
 #### Archive 上传或者分析失败
-用户上传失败，或者 OCR 引擎分析失败
+archive 创建或分析过程不成功时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -226,7 +227,7 @@ Archive 被 OCR 引擎成功识别出来
 ### Invitations
 
 #### 邀请发送成功
-邀请成功发出
+成功向用户发送邀请时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -241,7 +242,7 @@ Archive 被 OCR 引擎成功识别出来
 ```
 
 #### 邀请的用户账号连接成功
-被邀用户连接了一个账号
+已被邀请的用户成功链接其帐户时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -257,8 +258,8 @@ Archive 被 OCR 引擎成功识别出来
 
 ### User Data
 
-#### 新加 Identity
-添加了新的 Identity 数据
+#### 新加 Identity 
+添加有关用户的身份数据时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -273,8 +274,8 @@ Archive 被 OCR 引擎成功识别出来
 }
 ```
 
-#### 新加 Rating 数据
-添加了新的 Ratings 数据
+#### 新加 Rating 
+添加有关用户的评级数据时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -289,8 +290,8 @@ Archive 被 OCR 引擎成功识别出来
 }
 ```
 
-#### 新加 Transactions 数据
-添加了新的 Transactions 数据
+#### 新加 Transactions 
+添加用户共享的交易数据时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -305,8 +306,8 @@ Archive 被 OCR 引擎成功识别出来
 }
 ```
 
-#### 新加 Documents 数据
-添加了新的 Documents 数据
+#### 新加 Documents 
+添加用户共享的文档数据时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -322,7 +323,7 @@ Archive 被 OCR 引擎成功识别出来
 ```
 
 #### 新加 Employments
-添加了新的 Employments 数据
+添加用户共享的就业数据时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -337,8 +338,8 @@ Archive 被 OCR 引擎成功识别出来
 }
 ```
 
-#### 新加 Incomes 数据
-添加了新的 Incomes 数据
+#### 新加 Incomes 
+添加用户共享的收入数据时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",
@@ -353,8 +354,24 @@ Archive 被 OCR 引擎成功识别出来
 }
 ```
 
+#### 新加 Estimated Incomes (抢先试用版)
+添加用户共享的预估收入数据时，事件发送格式如下：
+``` json
+{
+  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "version": 1,
+  "type": "EINCOMES_ADDED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "string",
+    "accountId": "string",
+    "count": 0
+  }
+}
+```
+
 #### 新加 Contributions
-添加了新的 Contributions 数据
+添加用户共享的社会保障缴款数据时，事件发送格式如下：
 ``` json
 {
   "id": "17bbf36498de4d68a0d4f86c7b62f69f",

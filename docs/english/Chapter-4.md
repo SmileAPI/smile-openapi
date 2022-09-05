@@ -103,6 +103,9 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
              */
             enableUpload: true,           
 
+            /**
+             * Account login callback.
+             */
             onAccountCreated: ({
                 accountId,
                 userId,
@@ -111,6 +114,9 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
                 console.log('Account created: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
+            /**
+             * Account login success callback.
+             */
             onAccountConnected: ({
                 accountId,
                 userId,
@@ -119,6 +125,9 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
                 console.log('Account connected: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
+            /**
+             * Account revoke callback.
+             */
             onAccountRemoved: ({
                 accountId,
                 userId,
@@ -127,13 +136,49 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
                 console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
+            /**
+             * Token expired callback.
+             */
+            onTokenExpired: () => {
+                console.log('Token expired');
+            },
+
+            /**
+             * Smile link SDK close callback.
+             */
             onClose: () => {
                 console.log('Widget closed')
             },
 
-            onTokenExpired: updateToken => {
-                console.log('Token expired');
-            }
+            /**
+             * Account connection error callback.
+               Where errorCode is from the account connection errorCode in https://docs.getsmileapi.com/reference/get-account-1.
+               Example.
+                    ACCOUNT_DISABLED 
+                    ACCOUNT_INACCESSIBLE 
+                    ACCOUNT_INCOMPLETE 
+                    ACCOUNT_LOCKED 
+                    AUTH_REQUIRED 
+                    EXPIRED_CREDENTIALS 
+                    INVALID_ACCOUNT_TYPE 
+                    INVALID_AUTH 
+                    INVALID_CREDENTIALS 
+                    INVALID_MFA MFA_TIMEOUT 
+                    SERVICE_UNAVAILABLE SYSTEM_ERROR 
+                    TOS_REQUIRED 
+                    UNSUPPORTED_AUTH_TYPE 
+                    UNSUPPORTED_MFA_METHOD
+             */
+            onAccountError: ({ accountId, userId, providerId, errorCode }) => {
+                console.log('Account error: ', accountId, ' User ID:', userId, ' Provider ID:', providerId, 'Error Code:', errorCode)
+            },
+
+            /**
+             * Uploads submit callback.
+             */
+            onUploadsCreated: ({ uploads, userId }) => {
+                console.log('Uploads: ', uploads, ' User ID:', userId);
+            },
         });
         smileLinkModal.open()
     </script>

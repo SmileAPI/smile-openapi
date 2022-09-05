@@ -73,7 +73,7 @@ User Data 可以来自关联的帐户，也可以来自上传的数据。为了�
 | Ratings | User Data | 获取用户的工作业绩评级信息。 |  
 | Documents | User Data | 获取文件信息，如他们的驾驶执照、国民身份证，以及其他。|  
 | Employments | User Data | 获得以前的就业信息，如用户曾工作过的公司、工作职位、任期和其他。|  
-| Incomes | User Data | 获得以前的收入信息，如毛收入和净收入，以及构成收入的其他部分。|  
+| Incomes | User Data | 获得以前的收入信息，如毛收入和净收入，以及构成收入的其他部分。<br> 来自 Contributions 和 Transactions 的 **Estimated Income** *（抢先试用版）* 数据也可在期限内免费获得。|  
 | Contributions | User Data | 获取以前的社会保障缴款信息，以了解收入水平。|  
 <!--
 | Assets | Source Data | Get information on assets owned or used for their employment such as motor vehicles, motorcycles and others.|  

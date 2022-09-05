@@ -350,6 +350,7 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 | Documents ID | ``d-`` | d-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 文件相关信息 |
 | Employments ID | ``e-`` | e-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 就业相关信息 |
 | Incomes ID | ``inc-`` | inc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 收入相关信息 |
+| Estimated Incomes ID <br>*(抢先试用版)* | ``einc-`` | einc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 预计收入相关信息 |
 | Contributions ID | ``con-`` | con-ff4723f9af5f4dc5b6a22ea27fb3c8a1 |缴费相关信息 |
 | Archives ID | ``u-`` | u-ff4723f9af5f4dc5b6a22ea27fb3c8a1 |上传的文件可用作存档|
 | Invites ID | ``iv-`` | iv-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 发出的邀请 |
@@ -361,6 +362,7 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 | -----| ------ | --------| -------- |
 | date | yyyy-MM-dd | 2021-04-21 | ISO 8601 full date | 
 | date-time | yyyy-MM-ddTHH:mm:ssZ | 2021-04-21T08:25:05Z | ISO 8601 full time |
+| month | yyyy-MM | 2021-04 | ISO 8601 month |
 | phone numbers | + (country code) (local area code) (phone number) | +65281234567 | E.164 |
 | country codes | ISO alpha-2 | 'SG' for Singapore | ISO 3166 |
 | currencies | ISO alpha-3 | 'USD' for US Dollars | ISO 4217 |

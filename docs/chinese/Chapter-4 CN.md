@@ -100,8 +100,11 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
             /**
              * 启用或禁用文件上传。
              */
-            enableUpload: true,           
-
+            enableUpload: true,       
+    
+            /**
+             * 帐户登录回调。
+             */
             onAccountCreated: ({
                 accountId,
                 userId,
@@ -110,6 +113,9 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
                 console.log('Account created: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
+            /**
+             * 账户登陆成功回调。
+             */
             onAccountConnected: ({
                 accountId,
                 userId,
@@ -118,6 +124,9 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
                 console.log('Account connected: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
+            /**
+             * 帐户撤销回调。
+             */
             onAccountRemoved: ({
                 accountId,
                 userId,
@@ -125,14 +134,49 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
             }) => {
                 console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
+            /**
+             * Token 过期回调。
+             */
+            onTokenExpired: () => {
+                console.log('Token expired');
+            },
 
+            /**
+             * Smile link SDK 关闭回调。
+             */
             onClose: () => {
                 console.log('Widget closed')
             },
 
-            onTokenExpired: updateToken => {
-                console.log('Token expired');
-            }
+            /**
+             * 账户连接错误回调。
+               其中 errorCode 来自 https://docs.getsmileapi.com/reference/get-account-1 中的 account connection errorCode。
+               例如：
+                    ACCOUNT_DISABLED 
+                    ACCOUNT_INACCESSIBLE 
+                    ACCOUNT_INCOMPLETE 
+                    ACCOUNT_LOCKED 
+                    AUTH_REQUIRED 
+                    EXPIRED_CREDENTIALS 
+                    INVALID_ACCOUNT_TYPE 
+                    INVALID_AUTH 
+                    INVALID_CREDENTIALS 
+                    INVALID_MFA MFA_TIMEOUT 
+                    SERVICE_UNAVAILABLE SYSTEM_ERROR 
+                    TOS_REQUIRED 
+                    UNSUPPORTED_AUTH_TYPE 
+                    UNSUPPORTED_MFA_METHOD
+             */
+            onAccountError: ({ accountId, userId, providerId, errorCode }) => {
+                console.log('Account error: ', accountId, ' User ID:', userId, ' Provider ID:', providerId, 'Error Code:', errorCode)
+            },
+
+            /**
+             * 上传提交回调。
+             */
+            onUploadsCreated: ({ uploads, userId }) => {
+                console.log('Uploads: ', uploads, ' User ID:', userId);
+            },
         });
         smileLinkModal.open()
     </script>
