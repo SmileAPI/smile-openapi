@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 1.13.0
+  version: 1.14.0
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
@@ -14,25 +14,21 @@ servers:
   - url: https://open.smileapi.io/v1
     description: Production
 paths:
-  /eincomes:
+  /liabilities:
     parameters: []
     get:
-      operationId: list-eincomes
-      description: >-
-        List users' eincomes from employment data sources. This enhanced data
-        set contains derived income amounts from a variety of sources such as
-        social security contributions, annual salary calculations, and computed
-        earnings from various platforms.
-      summary: List Eincomes
+      operationId: list-liabilities
+      description: List user liabilities from employment data sources.
+      summary: List Liabilities
       tags:
-        - Eincomes
+        - Liabilities
       responses:
         '200':
-          description: Enhanced Incomes Response
+          description: Liabilities Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EincomeListResponse'
+                $ref: '#/components/schemas/LiabilityListResponse'
               examples:
                 Example:
                   value:
@@ -42,16 +38,45 @@ paths:
                     data:
                       nextCursor: '1259723474'
                       items:
-                        - id: einc-17bbf36498de4d68a0d4f86c7b62f69f
-                          month: 2021-06
+                        - id: lia-123abc456def789abc123def456abc78
+                          type: Salary Loan
+                          referenceId: SL201601011234567
+                          startDate: '2016-07-05'
+                          firstAmortizationDate: '2016-09-01'
+                          endDate: '2017-08-01'
+                          amortizationFrequency: Monthly
                           currency: PHP
-                          baseAmount: 1000
+                          loanAmount: 16000
+                          amortizationAmount: 738.32
+                          outstandingBalance: 25599.76
+                          nextPaymentAmount: 732.38
+                          overduePaymentAmount: 0
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: string
+                            sourceId: a-123abc456def789abc123def456abc78
                             sourceType: ACCOUNT
-                            userId: string
-                            providerId: string
+                            userId: tenantId-123abc456def789abc123def456abc78
+                            providerId: abccorp
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
@@ -59,28 +84,32 @@ paths:
         - $ref: '#/components/parameters/sourceId'
         - schema:
             type: string
+            format: date
+            example: '2021-04-01'
           in: query
-          name: startMonth
-          description: Filter by eincome date, start of date range (YYYY-MM)
+          name: startDate
+          description: Filter by startDate, start of date range (YYYY-MM-DD)
         - schema:
             type: string
+            format: date
+            example: '2021-04-21'
           in: query
-          name: endMonth
-          description: Filter by eincome date, end of date range (YYYY-MM)
-  /eincomes/{id}:
+          name: endDate
+          description: Filter by startDate, end of date range (YYYY-MM-DD)
+  /liabilities/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
-      summary: Get Enhanced Income
+      summary: Get Liability
       tags:
-        - Eincomes
+        - Liabilities
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EincomeGetResponse'
+                $ref: '#/components/schemas/LiabilityGetResponse'
               examples:
                 Example:
                   value:
@@ -88,18 +117,47 @@ paths:
                     message: Success
                     requestId: 5b79399a-6852-4234-bb0e-ad472648282d
                     data:
-                      id: einc-17bbf36498de4d68a0d4f86c7b62f69f
-                      month: 2021-06
+                      id: lia-123abc456def789abc123def456abc78
+                      type: Salary Loan
+                      referenceId: SL201601011234567
+                      startDate: '2016-07-05'
+                      firstAmortizationDate: '2016-09-01'
+                      endDate: '2017-08-01'
+                      amortizationFrequency: Monthly
                       currency: PHP
-                      baseAmount: 1000
+                      loanAmount: 16000
+                      amortizationAmount: 738.32
+                      outstandingBalance: 25599.76
+                      nextPaymentAmount: 732.38
+                      overduePaymentAmount: 0
                       metadata:
                         createdAt: '2021-04-14T09:30:24Z'
-                        sourceId: string
+                        sourceId: a-123abc456def789abc123def456abc78
                         sourceType: ACCOUNT
-                        userId: string
-                        providerId: string
-      operationId: get-eincomes
-      description: Get the user's eincome by ID.
+                        userId: tenantId-123abc456def789abc123def456abc78
+                        providerId: abccorp
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-liabilities
+      description: Get the user's liabilities by ID.
   /providers:
     get:
       summary: List Providers
@@ -765,7 +823,7 @@ paths:
                               type: Primary
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: ACCOUNT
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
@@ -811,7 +869,7 @@ paths:
                               type: Primary
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: ACCOUNT
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
@@ -852,7 +910,7 @@ paths:
                               type: Primary
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: ACCOUNT
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
@@ -941,7 +999,7 @@ paths:
                           type: Primary
                       metadata:
                         createdAt: '2021-04-14T09:30:24Z'
-                        sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                         sourceType: ACCOUNT
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: upwork
@@ -1001,7 +1059,7 @@ paths:
                           referenceId: string
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: ACCOUNT
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
@@ -1013,7 +1071,7 @@ paths:
                           referenceId: string
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: ACCOUNT
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
@@ -1025,7 +1083,7 @@ paths:
                           referenceId: string
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: ACCOUNT
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
@@ -1100,7 +1158,7 @@ paths:
                       referenceId: string
                       metadata:
                         createdAt: '2021-04-21T09:30:24Z'
-                        sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                         sourceType: ACCOUNT
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: upwork
@@ -1446,7 +1504,7 @@ paths:
                           jobsCompleted: 12
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: ACCOUNT
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: upwork
@@ -1508,7 +1566,7 @@ paths:
                       jobsCompleted: 12
                       metadata:
                         createdAt: '2021-04-14T09:30:24Z'
-                        sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                         sourceType: ACCOUNT
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: upwork
@@ -1571,7 +1629,7 @@ paths:
                           endDate: '2019-08-24'
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: UPLOAD
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: abccorp
@@ -1592,7 +1650,7 @@ paths:
                           endDate: '2016-01-30'
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: UPLOAD
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: abccorp
@@ -1672,7 +1730,7 @@ paths:
                       endDate: '2019-08-24'
                       metadata:
                         createdAt: '2021-04-14T09:30:24Z'
-                        sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                         sourceType: UPLOAD
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: abccorp
@@ -1732,7 +1790,7 @@ paths:
                             https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: ACCOUNT
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: grab
@@ -1794,7 +1852,7 @@ paths:
                         https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
                       metadata:
                         createdAt: '2021-04-14T09:30:24Z'
-                        sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                         sourceType: ACCOUNT
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: grab
@@ -1854,7 +1912,7 @@ paths:
                           netAmount: 7820.25
                           metadata:
                             createdAt: '2021-06-30T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: UPLOAD
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: abccorp
@@ -1871,7 +1929,7 @@ paths:
                           netAmount: 7820.25
                           metadata:
                             createdAt: '2021-06-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: UPLOAD
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: abccorp
@@ -1947,7 +2005,7 @@ paths:
                       netAmount: 7820.25
                       metadata:
                         createdAt: '2021-06-14T09:30:24Z'
-                        sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                         sourceType: UPLOAD
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: abccorp
@@ -1976,6 +2034,136 @@ paths:
       parameters: []
     parameters:
       - $ref: '#/components/parameters/id'
+  /eincomes:
+    parameters: []
+    get:
+      operationId: list-eincomes
+      description: >-
+        List users' estimated income from contribution- and transaction-based
+        data sources. This data set contains derived income amounts from a
+        variety of sources such as social security contributions, annual salary
+        calculations, and computed earnings from transactions in various
+        platforms.
+
+
+        *Estimated Incomes is currently in alpha.*
+      summary: List Estimated Incomes (early access)
+      tags:
+        - Estimated Incomes
+      responses:
+        '200':
+          description: Enhanced Incomes Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EincomeListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: einc-a-123abc456def789abc123def456abc78
+                          month: 2021-06
+                          currency: PHP
+                          baseAmount: 1000
+                          metadata:
+                            createdAt: '2021-04-14T09:30:24Z'
+                            sourceId: a-123abc456def789abc123def456abc78
+                            sourceType: ACCOUNT
+                            userId: tenantId-123abc456def789abc123def456abc78
+                            providerId: abccorp
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/sourceId'
+        - schema:
+            type: string
+          in: query
+          name: startMonth
+          description: Filter by eincome date, start of date range (YYYY-MM)
+        - schema:
+            type: string
+          in: query
+          name: endMonth
+          description: Filter by eincome date, end of date range (YYYY-MM)
+  /eincomes/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Enhanced Income
+      tags:
+        - Estimated Incomes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EincomeGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: einc-17bbf36498de4d68a0d4f86c7b62f69f
+                      month: 2021-06
+                      currency: PHP
+                      baseAmount: 1000
+                      metadata:
+                        createdAt: '2021-04-14T09:30:24Z'
+                        sourceId: a-123abc456def789abc123def456abc78
+                        sourceType: ACCOUNT
+                        userId: tenantId-123abc456def789abc123def456abc78
+                        providerId: abccorp
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-eincomes
+      description: Get the user's estimated incomes by ID.
   /contributions:
     get:
       summary: List Contributions
@@ -2002,7 +2190,7 @@ paths:
                           referenceId: PA9634415
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: ACCOUNT
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                             providerId: sss-ph
@@ -2076,7 +2264,7 @@ paths:
                       referenceId: PA9634415
                       metadata:
                         createdAt: '2021-04-14T09:30:24Z'
-                        sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+                        sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                         sourceType: ACCOUNT
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
                         providerId: sss-ph
@@ -3191,6 +3379,7 @@ components:
               - INCOMES
               - CONTRIBUTIONS
               - EINCOMES
+              - LIABILITIES
       required:
         - id
         - name
@@ -3556,7 +3745,7 @@ components:
               type: Primary
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
@@ -3771,7 +3960,7 @@ components:
             referenceId: string
             metadata:
               createdAt: '2021-04-21T09:30:24Z'
-              sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+              sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
               sourceType: ACCOUNT
               userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
               providerId: upwork
@@ -3864,7 +4053,7 @@ components:
           endDate: '2019-08-24'
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: UPLOAD
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: abccorp
@@ -3976,7 +4165,7 @@ components:
           jobsCompleted: 12
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
@@ -4075,7 +4264,7 @@ components:
             https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
@@ -4168,7 +4357,7 @@ components:
             https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: grab
@@ -4243,7 +4432,7 @@ components:
           endDate: '2016-03-24'
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: upwork
@@ -4333,7 +4522,7 @@ components:
           netAmount: 7820.25
           metadata:
             createdAt: '2021-06-14T09:30:24Z'
-            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: UPLOAD
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: user-provided
@@ -4463,13 +4652,13 @@ components:
           baseAmount: 8500
           metadata:
             createdAt: '2021-06-14T09:30:24Z'
-            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: user-provided
+            providerId: sss_ph
       x-internal: false
       x-tags:
-        - Eincomes
+        - Estimated Incomes
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -4491,6 +4680,123 @@ components:
         - currency
         - baseAmount
         - metadata
+    LiabilityGetResponse:
+      title: Liability Get Response
+      type: object
+      x-internal: true
+      required:
+        - code
+        - requestId
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Liability'
+    LiabilityListResponse:
+      title: Liability List Response
+      type: object
+      x-internal: true
+      required:
+        - code
+        - requestId
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Liability'
+    Liability:
+      title: Liability
+      type: object
+      description: The liabilities of the user from an employment data provider.
+      x-examples:
+        Example:
+          id: lia-123abc456def789abc123def456abc78
+          type: Salary Loan
+          referenceId: SL201601011234567
+          startDate: '2016-07-05'
+          firstAmortizationDate: '2016-09-01'
+          endDate: '2017-08-01'
+          amortizationFrequency: Monthly
+          currency: PHP
+          loanAmount: 16000
+          amortizationAmount: 738.32
+          outstandingBalance: 25599.76
+          nextPaymentAmount: 732.38
+          overduePaymentAmount: 0
+          metadata:
+            createdAt: '2021-06-14T09:30:24Z'
+            sourceId: a-123abc456def789abc123def456abc78
+            sourceType: ACCOUNT
+            userId: tenantId-123abc456def789abc123def456abc78
+            providerId: abccorp
+      x-internal: false
+      x-tags:
+        - Liabilities
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        type:
+          type: string
+          description: the loan type
+          example: Salary Loan
+        referenceId:
+          type: string
+          description: the loan referenceId
+        startDate:
+          type: string
+          format: date
+          description: the loan start date
+        endDate:
+          type: string
+          format: date
+          description: the loan start date
+        firstAmortizationDate:
+          type: string
+          format: date
+          description: the loan first amortization date
+        amortizationFrequency:
+          $ref: '#/components/schemas/Ref-Pay-Period'
+        currency:
+          $ref: '#/components/schemas/Ref-Currency'
+        loanAmount:
+          type: number
+          description: loan amount
+        amortizationAmount:
+          type: number
+          description: loan amortization amount
+        outstandingBalance:
+          type: number
+          description: loan outstanding balance
+        nextPaymentAmount:
+          type: number
+          description: loan next payment amount
+        overduePaymentAmount:
+          type: number
+          description: loan total overdue amount
+        metadata:
+          $ref: '#/components/schemas/Object-Reference-Metadata'
+      required:
+        - id
+        - type
+        - startDate
+        - loanAmount
+        - currency
+        - amortizationFrequency
     Contribution:
       title: Contribution
       x-stoplight:
@@ -4508,7 +4814,7 @@ components:
           referenceId: PA9634415
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
-            sourceId: 17bbf36498de4d68a0d4f86c7b62f69f
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
             providerId: sss-ph
@@ -4804,8 +5110,6 @@ components:
           type: object
           required:
             - status
-            - errorCode
-            - errorMessage
             - updatedAt
           properties:
             status:
@@ -5629,6 +5933,7 @@ components:
               - INCOMES
               - CONTRIBUTIONS
               - EINCOMES
+              - LIABILITIES
               - NONE
       required:
         - logoUrl
@@ -6553,9 +6858,57 @@ components:
             count: 0
       description: Payload when income data shared by a user are added.
     EincomeAddedEvent:
-      title: 'Webhook: enhanced income Added Event'
+      title: 'Webhook: Estimated Income Added Event'
       x-tags:
-        - Eincomes
+        - Estimated Incomes
+      type: object
+      deprecated: true
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            count:
+              type: number
+              description: the number of eincomes added.
+          required:
+            - userId
+            - accountId
+            - count
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: einc-17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: EINCOMES_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            count: 0
+      description: Payload when estimated incomes data shared by a user are added.
+    EincomesAddedEvent:
+      title: 'Webhook: Estimated Income Added Event'
+      x-tags:
+        - Estimated Incomes
       type: object
       properties:
         id:
@@ -6598,7 +6951,54 @@ components:
             userId: string
             accountId: string
             count: 0
-      description: Payload when eincomes data shared by a user are added.
+      description: Payload when estimated incomes data shared by a user are added.
+    LiabilitiesAddedEvent:
+      title: 'Webhook: Liability Added Event'
+      x-tags:
+        - Liabilities
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            count:
+              type: number
+              description: the number of eincomes added.
+          required:
+            - userId
+            - accountId
+            - count
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: lia-17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: LIABILITIES_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            count: 0
+      description: Payload when liabilities data shared by a user are added.
     ContributionsAddedEvent:
       title: 'Webhook: Contributions Added Event'
       x-tags:
@@ -6691,6 +7091,25 @@ components:
       description: Unique ID of this object
       x-internal: true
       example: 17bbf36498de4d68a0d4f86c7b62f69f
+    Ref-Pay-Period:
+      type: string
+      nullable: true
+      title: Pay Period
+      description: Pay period
+      enum:
+        - Hourly
+        - Daily
+        - Weekly
+        - Semimonthly
+        - Monthly
+        - Bimonthly
+        - Quarterly
+        - Annually
+        - Variable
+        - Unspecified
+        - null
+      example: Annually
+      x-internal: true
     Ref-Currency:
       type: string
       title: Currency ISO Codes
@@ -7275,25 +7694,6 @@ components:
       x-internal: true
       description: Employer name
       example: ABC Corporation
-    Ref-Pay-Period:
-      type: string
-      nullable: true
-      title: Pay Period
-      description: Pay period
-      enum:
-        - Hourly
-        - Daily
-        - Weekly
-        - Semimonthly
-        - Monthly
-        - Bimonthly
-        - Quarterly
-        - Annually
-        - Variable
-        - Unspecified
-        - null
-      example: Annually
-      x-internal: true
     Ref-Webhook-Event-Type:
       title: Ref-WebhookEventType
       description: Event Type which will be sent as a notification via webhook
@@ -7317,6 +7717,7 @@ components:
         - INCOMES_ADDED
         - CONTRIBUTIONS_ADDED
         - EINCOMES_ADDED
+        - LIABILITIES_ADDED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
     Ref-Webhook-Event-Version:
@@ -7415,4 +7816,5 @@ tags:
   - name: Uploads
   - name: Users
   - name: Webhooks
-  - name: Eincomes
+  - name: Estimated Incomes
+  - name: Liabilities

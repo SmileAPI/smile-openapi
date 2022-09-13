@@ -66,15 +66,17 @@ User Data 可以来自关联的帐户，也可以来自上传的数据。为了�
 > **我们将保留上传文件的副本，仅限 7 天！** 如果您需要保留副本，请务必自行下载并保存这些文件。
 
 
-| 资源 | 类型    | 详情 |
-|----------|---------|-------------|
-| Identity | User Data | 从现任和前任雇主那里获得经过审核的身份信息，如姓名、联系信息、居住地址等。|
-| Transactions |User Data | 从源数据提供商那里获得用户的详细交易数据。这包括在源提供商那里记录的增加项（或信贷）和扣除项（或借贷）。|
-| Ratings | User Data | 获取用户的工作业绩评级信息。 |  
-| Documents | User Data | 获取文件信息，如他们的驾驶执照、国民身份证，以及其他。|  
-| Employments | User Data | 获得以前的就业信息，如用户曾工作过的公司、工作职位、任期和其他。|  
-| Incomes | User Data | 获得以前的收入信息，如毛收入和净收入，以及构成收入的其他部分。<br> 来自 Contributions 和 Transactions 的 **Estimated Income** *（抢先试用版）* 数据也可在期限内免费获得。|  
-| Contributions | User Data | 获取以前的社会保障缴款信息，以了解收入水平。|  
+| 资源 | 类型    | 详情                                                                                                                 |
+|----------|---------|--------------------------------------------------------------------------------------------------------------------|
+| Identity | User Data | 从现任和前任雇主那里获得经过审核的身份信息，如姓名、联系信息、居住地址等。                                                                              |
+| Transactions |User Data | 从源数据提供商那里获得用户的详细交易数据。这包括在源提供商那里记录的增加项（或信贷）和扣除项（或借贷）。                                                               |
+| Ratings | User Data | 获取用户的工作业绩评级信息。                                                                                                     |  
+| Documents | User Data | 获取文件信息，如他们的驾驶执照、国民身份证，以及其他。                                                                                        |  
+| Employments | User Data | 获得以前的就业信息，如用户曾工作过的公司、工作职位、任期和其他。                                                                                   |  
+| Incomes | User Data | 获得以前的收入信息，如毛收入和净收入，以及构成收入的其他部分。<br> 来自 Contributions 和 Transactions 的 **Estimated Income** *（抢先试用版）* 数据也可在期限内免费获得。 |  
+| Contributions | User Data | 获取以前的社会保障缴款信息，以了解收入水平。                                                                                             |  
+| Liabilities | User Data | 获取从与就业相关的数据源和社会保障服务得到的当前和以前的贷款信息。                                                                                  |  
+
 <!--
 | Assets | Source Data | Get information on assets owned or used for their employment such as motor vehicles, motorcycles and others.|  
 | Schools | Source Data | Get previous educational history such as school, degree, years attended and so on.|  

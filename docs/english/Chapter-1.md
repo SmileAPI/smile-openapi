@@ -78,6 +78,7 @@ If you will be embedding the Client SDK yourself into your own application, you 
 | Employments | User Data | Get previous employment information such as the company the user has worked for, job title, tenure and others.|  
 | Incomes | User Data | Get previous income information such as gross pay and net pay, as well as other components that make up income.<br> **Estimated Income** *(early access)* data from Contributions and Transactions is also freely available for a limited time. |  
 | Contributions | User Data | Get previous social security contribution information to get an indication of income level.|  
+| Liabilities | User Data | Get information on current and previous loans obtained from employment-related data sources and social security services.|  
 
 <!--
 | Assets | Source Data | Get information on assets owned or used for their employment such as motor vehicles, motorcycles and others.|  

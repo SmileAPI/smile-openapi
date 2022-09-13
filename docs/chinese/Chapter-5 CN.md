@@ -13,77 +13,92 @@ slug: chapter-5-cn
 ## Webhooks
 
 
-当有有事件发生时，Smile 使用 webhook 实时通知您的系统。使用 HTTPS 协议，数据以 JSON 格式发送。这些请求是通过静态 IP 地址发出来的，并且还带有一个签名，供您验证请求的真实性。
+当您的环境中发生事件时，Smile 使用 webhook 实时通知您的应用程序。
+
+这些通知将以安全的方式，使用来自静态 IP 地址的 HTTPS 协议，以 JSON 格式来发送数据。并且还带有一个签名，供您验证请求的真实性。
 
 > 📘 Note
 > 
 > Smile 静态IP地址 **18.142.61.230**， 您可以加入 IP 白名单，这样确保能收到 Smile 的 webhook 的请求。
 
-Webhook 被用来做异步通知是非常有用的，当有特定事件发生的时候，这些事件会被通知到您的系统，然后可以对相应的事件做对应的处理，无论是拉取最新的用户数据，还是更新前端 App 。
+Webhook 对于获取有关异步事件的通知非常有用，当这些事件发生时，它可以在你的后台系统中执行行动，或者知道何时刷新你的前端系统以显示新数据。
 
-**实现步骤**
+当创建一个用户，成功连接一个账号，上传一个就业文件，发送一个邀请时，或者当任何新类型的数据，如用户的身份，收入，就业等被添加时，事件通知将被发送。在下面的*事件清单*中，您可查看订阅的可用事件清单。
+
+
+### 实现步骤
 
 您可以按照如下步骤使用 Webhook
 
-1. 确定您需要监听的事件。
-2. 创建一个 Webhook HTTPS Endpoint(URL)。
-3. 测试您的 Webhook Endpoint 是否正常工作。能解析每个事件对象并返回 2xx 状态码。
-4. 部署您的 Webhook Endpoint，使其成为可公开访问的 HTTPS URL 。
-5. 通过调用/webhook 接口，来注册Webhook Endpoint 。
-   - URL: Webhook endpoint or URL.
-   - Event types: 需要监听的事件类型，或者 ALL_EVENTS 来监听所有事件。
-   - Active: 是否激活这个 webhook , 只有激活的 webhook 才能收到回调通知。
-   - Secret: 密钥，用 HMAC-SHA512 来加密整个回调请求。
+1. 使用我们的文档和可用资源**识别您要监控的事件**和要解析的事件内容。
+2. **在您的服务器或应用程序上创建一个 Webhook 端点**作为 HTTPS 端点 (URL)。
+3. **测试您的 webhook 端点是否正常工作。** 通过解析每个事件对象并返回 “2xx” 响应状态代码，确保您的服务器或应用程序能够处理来自 Smile 的请求。
+4. **部署您的 webhook 端点**，使其成为可公开访问的 HTTPS URL。
+5. **通过向 ``/webhooks`` 端点发出请求来注册您的可公开访问的 webhook 端点**。您将需要指定以下内容：
+   - **URL**：webhook 端点或 URL。
+   - **事件类型**：您要监控的事件类型，用逗号分隔（不同的事件类型见下文），或者简单地使用 ``ALL_EVENTS`` 来获取所有事件类型的通知。
+   - **活动**：您希望此端点定义处于活动状态还是非活动状态（您可以稍后通过更新请求进行更新）
+   - **Secret**：一个短语或值，可用于通过使用 HMAC-SHA512 消化接收到的内容正文来验证其真实性，其中 Secret 作为密钥。 请参阅下面的*验证内容*。
 
 > 📘 Note
 > 
-> 下面是一个用 curl 来展示以 "https://webhook.clienturl.xyz" 作为 Webhook Endpoint 的例子
+> 下面的示例显示了一个使用 Shell 脚本/cURL 的请求，其中 webhook 接收端点设置为``https://webhook.clienturl.xyz``
+>
+> ``` curl
+> curl --request POST \
+>   --url https://sandbox.smileapi.io/v1/webhooks \
+>   --header 'Authorization: Basic amFuLnBhYmVsbG9uQHNtaWxlZmluYW5jaWFsLmFwcDpOZXRTdWl0ZTIwMTgh' \
+>   --header 'Content-Type: application/json' \
+>   --data '{
+>   "name": "Event Notification Postback",
+>   "url": "https://webhook.clienturl.xyz",
+>   "eventTypes": [
+>     "ACCOUNT_CONNECTED",
+>     "IDENTITY_ADDED"
+>   ],
+>   "active": true,
+>   "secret": "a little secret"
+> }'
+> ```
 
-``` curl
-curl --request POST \
-  --url https://sandbox.smileapi.io/v1/webhooks \
-  --header 'Authorization: Basic amFuLnBhYmVsbG9uQHNtaWxlZmluYW5jaWFsLmFwcDpOZXRTdWl0ZTIwMTgh' \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "name": "Event Notification Postback",
-  "url": "https://webhook.clienturl.xyz",
-  "eventTypes": [
-    "ACCOUNT_CONNECTED",
-    "IDENTITY_ADDED"
-  ],
-  "active": true,
-  "secret": "a little secret"
-}'
-```
+### Webhook 重试
+
+为确保您能收到通知，当我们发送 webhook 时，Smile 将检查来自您的端点的200-299的 Http Status 。
+
+如果我们在20秒内没有收到 Http Status 在200-299之间的 HTTP 响应，Smile 将尝试最多两次重新发送 webhook ，每次重试间隔几十秒。
+
+请确保您可以在端点或应用程序中处理这些可能重复的通知。
 
 
 <!-- focus: false -->
 ![Events](https://img.icons8.com/dotty/50/000000/notification-center.png)
 
 
-## 事件类型 
-下面是支持的事件类型:
+## 事件列表
+以下是您可以通过 webhook 订阅的事件:
 
-|事件|事件类型|详情|
-|---|---|---|
-|User Creation Successful|USER_CREATED|当创建新用户和链接 token 时发送|
-|Account Connection Successful|ACCOUNT_CONNECTED|当用户成功连接其工作帐户时发送。|
-|Account Disconnection Successful|ACCOUNT_DISCONNECTED|当用户断开或撤销与其帐户的链接时发送。|
-|Account Connection Failed|ACCOUNT_FAILED|当帐户关联过程失败时发送。|
-|Archive Creation Successful|ARCHIVE_STARTED|当用户成功上传一个或多个文件时发送，这些文件将作为 Smile 中的 “archive” 。 |
-|Archive Analysis Successful|ACCOUNT_ANALYZED|当 archive 已通过 OCR 自动分析并转换为 JSON 数据时发送。|
-|Archive Revocation Successful|ARCHIVE_REVOKED|当用户删除访问或使用 archive 的权限时发送。|
-|Archive Creation or Analysis Failed|ARCHIVE_FAILED|当 archive 创建或分析过程失败时发送。|
-|Invitation Sending Successful|INVITE_INVITED|当邀请成功发送给用户时发送。|
-|Account Link by Invitation Successful|INVITE_LINKED|当已收到邀请的用户能够成功关联其帐户时发送。|
-|Identity Data Added|IDENTITY_ADDED|当添加有关用户的身份数据时发送。|
-|Rating Data Added|RATING_ADDED|当添加有关用户的评级数据时发送。|
-|Transactions Data Added|TRANSACTIONS_ADDED|当添加用户共享的交易数据时发送。|
-|Documents Data Added|DOCUMENTS_ADDED|当添加用户共享的文档数据时发送。|
-|Employments Data Added|EMPLOYMENTS_ADDED|当添加用户共享的就业数据时发送。|
-|Incomes Data Added|INCOMES_ADDED|当添加用户共享的收入数据时发送。|
-|Estimated Incomes Data Added <br>*(抢先试用版)*|EINCOMES_ADDED|当添加用户共享的估计收入数据时发送。|
-|Contributions Data Added|CONTRIBUTIONS_ADDED|当添加用户共享的社会保障缴款数据时发送。|
+|事件|事件类型| 详情                                             |
+|---|---|------------------------------------------------|
+|User Creation Successful|USER_CREATED| 当创建新用户和链接 token 时发送                            |
+|Account Connection Successful|ACCOUNT_CONNECTED| 当用户成功连接其工作帐户时发送。                               |
+|Account Disconnection Successful|ACCOUNT_DISCONNECTED| 当用户断开或撤销与其帐户的链接时发送。                            |
+|Account Connection Failed|ACCOUNT_FAILED| 当帐户关联过程失败时发送。                                  |
+|Archive Creation Successful|ARCHIVE_STARTED| 当用户成功上传一个或多个文件时发送，这些文件将作为 Smile 中的 “archive” 。 |
+|Archive Analysis Successful|ACCOUNT_ANALYZED| 当 archive 已通过 OCR 自动分析并转换为 JSON 数据时发送。         |
+|Archive Revocation Successful|ARCHIVE_REVOKED| 当用户删除访问或使用 archive 的权限时发送。                     |
+|Archive Creation or Analysis Failed|ARCHIVE_FAILED| 当 archive 创建或分析过程失败时发送。                        |
+|Invitation Sending Successful|INVITE_INVITED| 当邀请成功发送给用户时发送。                                 |
+|Account Link by Invitation Successful|INVITE_LINKED| 当已收到邀请的用户能够成功关联其帐户时发送。                         |
+|Identity Data Added|IDENTITY_ADDED| 当添加有关用户的身份数据时发送。                               |
+|Rating Data Added|RATING_ADDED| 当添加有关用户的评级数据时发送。                               |
+|Transactions Data Added|TRANSACTIONS_ADDED| 当添加用户共享的交易数据时发送。                               |
+|Documents Data Added|DOCUMENTS_ADDED| 当添加用户共享的文档数据时发送。                               |
+|Employments Data Added|EMPLOYMENTS_ADDED| 当添加用户共享的就业数据时发送。                               |
+|Incomes Data Added|INCOMES_ADDED| 当添加用户共享的收入数据时发送。                               |
+|Estimated Incomes Data Added <br>*(抢先试用版)*|EINCOMES_ADDED| 当添加用户共享的估计收入数据时发送。                             |
+|Contributions Data Added|CONTRIBUTIONS_ADDED| 当添加用户共享的社会保障缴款数据时发送。                           |
+|Liabilities Data Added|LIABILITIES_ADDED| 添加用户共享的负债数据时发送。                                |
+
 
 
 <!-- focus: false -->
@@ -97,12 +112,12 @@ curl --request POST \
 创建新用户和链接 token 时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "USER_CREATED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -113,14 +128,14 @@ curl --request POST \
 用户成功连接其帐户时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_CONNECTED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "accountId": "string",
-    "loginName": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "loginName": "userLoginName"
   }
 }
 ```
@@ -128,13 +143,13 @@ curl --request POST \
 用户断开或撤销与其帐户的链接时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_DISCONNECTED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "accountId": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -142,18 +157,18 @@ curl --request POST \
 帐户关联过程失败时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_FAILED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "accountId": "string",
-    "loginName": "string",
-    "errorCode": "string",
-    "errorMessage": "string",
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "loginName": "userLoginName",
+    "errorCode": "500",
+    "errorMessage": "Error message",
     "providers": [
-      "string"
+      "abccorp"
     ]
   }
 }
@@ -165,13 +180,13 @@ curl --request POST \
 用户上传一个或多个文件时，事件发送格式如下，这些文件在 Smile 中作为 “archive” ：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ARCHIVE_STARTED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "archiveId": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "archiveId": "u-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -180,13 +195,13 @@ curl --request POST \
 archive 被分析并通过 OCR 自动转换为 JSON 数据时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ARCHIVE_ANALYZED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "archiveId": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "archiveId": "u-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -196,13 +211,13 @@ archive 被分析并通过 OCR 自动转换为 JSON 数据时，事件发送格�
 用户删除访问或使用 archive 的权限时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ARCHIVE_REVOKED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "archiveId": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "archiveId": "u-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -211,15 +226,15 @@ archive 被分析并通过 OCR 自动转换为 JSON 数据时，事件发送格�
 archive 创建或分析过程不成功时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ARCHIVE_FAILED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "archiveId": "string",
-    "errorCode": "string",
-    "errorMessage": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "archiveId": "u-123abc456def789abc123def456abc78",
+    "errorCode": "500",
+    "errorMessage": "Error Message"
   }
 }
 ```
@@ -230,13 +245,13 @@ archive 创建或分析过程不成功时，事件发送格式如下：
 成功向用户发送邀请时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "INVITE_INVITED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "inviteId": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "inviteId": "iv-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -245,13 +260,13 @@ archive 创建或分析过程不成功时，事件发送格式如下：
 已被邀请的用户成功链接其帐户时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "INVITE_LINKED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "inviteId": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "inviteId": "iv-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -262,14 +277,14 @@ archive 创建或分析过程不成功时，事件发送格式如下：
 添加有关用户的身份数据时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "IDENTITY_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "accountId": "string",
-    "identityId": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "identityId": "i-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -278,14 +293,14 @@ archive 创建或分析过程不成功时，事件发送格式如下：
 添加有关用户的评级数据时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "RATING_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "accountId": "string",
-    "ratingId": "string"
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "ratingId": "r-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -294,13 +309,13 @@ archive 创建或分析过程不成功时，事件发送格式如下：
 添加用户共享的交易数据时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "TRANSACTIONS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "accountId": "string",
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
     "count": 0
   }
 }
@@ -310,13 +325,13 @@ archive 创建或分析过程不成功时，事件发送格式如下：
 添加用户共享的文档数据时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "DOCUMENTS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "accountId": "string",
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
     "count": 0
   }
 }
@@ -326,13 +341,13 @@ archive 创建或分析过程不成功时，事件发送格式如下：
 添加用户共享的就业数据时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "EMPLOYMENTS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "accountId": "string",
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
     "count": 0
   }
 }
@@ -342,29 +357,13 @@ archive 创建或分析过程不成功时，事件发送格式如下：
 添加用户共享的收入数据时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "INCOMES_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "accountId": "string",
-    "count": 0
-  }
-}
-```
-
-#### 新加 Estimated Incomes (抢先试用版)
-添加用户共享的预估收入数据时，事件发送格式如下：
-``` json
-{
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
-  "version": 1,
-  "type": "EINCOMES_ADDED",
-  "createdAt": "2021-04-14T09:30:24Z",
-  "data": {
-    "userId": "string",
-    "accountId": "string",
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
     "count": 0
   }
 }
@@ -374,124 +373,158 @@ archive 创建或分析过程不成功时，事件发送格式如下：
 添加用户共享的社会保障缴款数据时，事件发送格式如下：
 ``` json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "CONTRIBUTIONS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
-    "userId": "string",
-    "accountId": "string",
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "count": 0
+  }
+}
+```
+
+#### 新加 Liabilities 
+添加用户共享的负债数据时，事件发送格式如下：
+``` json
+{
+  "id": "123abc456def789abc123def456abc78",
+  "version": 1,
+  "type": "LIABILITIES_ADDED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "count": 0
+  }
+}
+```
+
+### 用户洞察数据
+
+#### 新加 Estimated Incomes (抢先试用版)
+
+添加用户共享的预估收入数据时，事件发送格式如下：
+``` json
+{
+  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "version": 1,
+  "type": "EINCOMES_ADDED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
     "count": 0
   }
 }
 ```
 
 
-
 <!-- focus: false -->
 ![Signatures](https://img.icons8.com/ios/50/000000/signature.png)
 
 
-## 校验签名
-当收到请求后，可以对请求进行校验，来验证是否来自 Smile 。
+## 验证内容
 
-> 📘 Note
+当事件从 Smile 发送时，您可能想要验证 webhook 内容的真实性，以确保它来自 Smile。您可以通过使用签名来做到这一点，该签名包含在每个内容的标头中。
+
+> 📘 注意
 > 
-> 需要对整个请求的 payload 进行签名，然后把签名和 Smile 请求 Header 里面 Smile-Signature 进行对比，来确定回调请求是否合法。
+> 要验证内容的真实性，您需要获取整个内容主体并使用 HMAC-SHA512 对其进行分析，并使用您在注册端点时定义的 “Secret” 作为密钥。
 
-下面的例子展示如何通过 HMAC-SHA512 计算签名：
-- Nodejs
-``` javascript
-const http = require('http');
-const crypto = require('crypto');
-const serverPort = 80
-const requestListener = function (req, res) {
-  // the client secret is being configured when a webhook is created
-  const client_secret = 'a little secret';
-  var requestBody = '';
-  req.on('readable', () => {
-    var read = req.read()
-    if(read != null) {
-    requestBody += read;
+下面是使用 HMAC-SHA512 检查内容有效性的示例：
+
+- NodeJs
+    ``` javascript
+    const http = require('http');
+    const crypto = require('crypto');
+    const serverPort = 80
+    const requestListener = function (req, res) {
+      // the client secret is being configured when a webhook is created
+      const client_secret = 'a little secret';
+      var requestBody = '';
+      req.on('readable', () => {
+        var read = req.read()
+        if(read != null) {
+        requestBody += read;
+        }
+      });
+      req.on('end', () => {
+        jsonBody = JSON.stringify(requestBody);
+        // do whatever you need with jsonBody, however use requestBody in the signature payload
+        signature = crypto.createHmac('sha512',client_secret).update(requestBody).digest('hex');
+      console.log('Signature:' + signature);
+      res.writeHead(200);
+      res.end(signature);
+      })
     }
-  });
-  req.on('end', () => {
-    jsonBody = JSON.stringify(requestBody);
-    // do whatever you need with jsonBody, however use requestBody in the signature payload
-    signature = crypto.createHmac('sha512',client_secret).update(requestBody).digest('hex');
-  console.log('Signature:' + signature);
-  res.writeHead(200);
-  res.end(signature);
-  })
-}
-const server = http.createServer(requestListener);
-server.listen(serverPort);
-```
-
+    const server = http.createServer(requestListener);
+    server.listen(serverPort);
+    ```
 - JAVA
-``` Java
-package com.smile.webhook;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.util.Objects;
-import javax.crypto.Mac;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.codec.binary.Hex;
-
-public class VerifySignatureUtil {
-
-    public static boolean verifySignature(HttpServletRequest request) throws IOException {
-        String data = getRequestBody(request);
-        String secret = "<your secret>";
-        String signature = request.getHeader("Smile-Signature");
-        boolean result = Objects.equals(signature, generateSignature(secret, data));
-        System.out.println("verify result:" + result);
-        return result;
-    }
-
-    private static String getRequestBody(HttpServletRequest request) throws IOException {
-        if (request.getMethod().equals("POST")) {
-            StringBuilder sb = new StringBuilder();
-
-            try (BufferedReader bufferedReader = request.getReader()) {
-                char[] charBuffer = new char[128];
-                int bytesRead;
-                while ((bytesRead = bufferedReader.read(charBuffer)) != -1) {
-                    sb.append(charBuffer, 0, bytesRead);
+    ``` Java
+    package com.smile.webhook;
+    
+    import java.io.BufferedReader;
+    import java.io.IOException;
+    import java.util.Objects;
+    import javax.crypto.Mac;
+    import javax.crypto.SecretKey;
+    import javax.crypto.spec.SecretKeySpec;
+    import javax.servlet.http.HttpServletRequest;
+    import org.apache.commons.codec.binary.Hex;
+    
+    public class VerifySignatureUtil {
+    
+        public static boolean verifySignature(HttpServletRequest request) throws IOException {
+            String data = getRequestBody(request);
+            String secret = "<your secret>";
+            String signature = request.getHeader("Smile-Signature");
+            boolean result = Objects.equals(signature, generateSignature(secret, data));
+            System.out.println("verify result:" + result);
+            return result;
+        }
+    
+        private static String getRequestBody(HttpServletRequest request) throws IOException {
+            if (request.getMethod().equals("POST")) {
+                StringBuilder sb = new StringBuilder();
+    
+                try (BufferedReader bufferedReader = request.getReader()) {
+                    char[] charBuffer = new char[128];
+                    int bytesRead;
+                    while ((bytesRead = bufferedReader.read(charBuffer)) != -1) {
+                        sb.append(charBuffer, 0, bytesRead);
+                    }
                 }
+    
+                return sb.toString();
             }
-
-            return sb.toString();
+            return "";
         }
-        return "";
-    }
-
-    private static String generateSignature(String secret, String requestBody) {
-        byte[] key= secret.getBytes();
-        byte[] content= requestBody.getBytes();
-        String signature = null;
-        try {
-            SecretKey secretKey = new SecretKeySpec(key, "HmacSHA512");
-            Mac mac = Mac.getInstance("HmacSHA512");
-            mac.init(secretKey);
-            byte[] bytes = mac.doFinal(content);
-            signature = Hex.encodeHexString(bytes);
-        } catch (Exception var6) {
-            throw new RuntimeException(var6);
+    
+        private static String generateSignature(String secret, String requestBody) {
+            byte[] key= secret.getBytes();
+            byte[] content= requestBody.getBytes();
+            String signature = null;
+            try {
+                SecretKey secretKey = new SecretKeySpec(key, "HmacSHA512");
+                Mac mac = Mac.getInstance("HmacSHA512");
+                mac.init(secretKey);
+                byte[] bytes = mac.doFinal(content);
+                signature = Hex.encodeHexString(bytes);
+            } catch (Exception var6) {
+                throw new RuntimeException(var6);
+            }
+            System.out.println("signature=" + signature);
+            return signature;
         }
-        System.out.println("signature=" + signature);
-        return signature;
+    
     }
+    ```
 
-}
-
-```
-
+如果您的摘要与您在标头中作为内容签名收到的摘要匹配，则该内容是有效且真实的。
 
 > 🚧 注意
 > 
->在验证签名的时候，请把原始的、未经过转换的整个的请求的 request body 作为加密的对象。
-
+> 验证内容时，请确保验证整个内容。不要在它之前或之后包含额外的空格。在进行验证检查之前不要预先解析或重新格式化它。
