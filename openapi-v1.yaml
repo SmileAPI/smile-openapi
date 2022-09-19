@@ -2052,7 +2052,7 @@ paths:
         - Estimated Incomes
       responses:
         '200':
-          description: Enhanced Incomes Response
+          description: Estimated Incomes Response
           content:
             application/json:
               schema:
@@ -2115,7 +2115,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
-      summary: Get Enhanced Income
+      summary: Get Estimated Income
       tags:
         - Estimated Incomes
       responses:
