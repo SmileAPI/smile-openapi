@@ -62,11 +62,11 @@ You can start receiving event notifications in your application using the follow
 
 ### Webhook Retries
 
-To ensure you receive the notification, Smile will check for a HTTP response with status code between 200 and 299 from your endpoint when we send the webhook.
+To ensure you receive the notification, Smile operates on an "at least once" delivery guarantee.
 
-In the event that we receive a response not between 200 and 299, Smile will attempt to resend the webhook up to two times with a couple of seconds between each retry.
+Smile checks for an HTTP response with status code between 200 and 299 from your endpoint when we send the webhook. In the event that we receive a response outside of 200 - 299, Smile will attempt to resend the webhook up to two times with a few dozen seconds between each retry.
 
-Please ensure you process these possible duplicate notifications in your endpoint or application.
+This means that you may receive the same webhook event more than once. Please ensure you process these possible duplicate notifications in your endpoint or application. You can detect duplicate webhook events by comparing the ``id`` value to previous events (see *Example Payloads*, below).
 
 
 <!-- focus: false -->
