@@ -7,7 +7,7 @@ slug: chapter-4-cn
 
 
 您可以通过两种方式从用户那里获取数据：
-- 通过 API 中的 /invitations API 邀请您的用户，或使用 Developer Portal 中 “Users” 部分下的邀请功能。
+- 通过 API 中的 `/invitations` 端点邀请您的用户，或使用 Developer Portal 中 Users 页面内的邀请功能。
 - 嵌入客户端 SDK 并实例化 Wink Widget 。
 
 ---
@@ -46,7 +46,7 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 ![代码](https://img.icons8.com/ios/50/000000/code.png)
 
 ## 示例代码
-下面是嵌入 Wink Javascript SDK 的示例 HTML 代码：
+以下是嵌入 Wink Javascript SDK 的 HTML 示例代码。
 
 ```html
 <!DOCTYPE html>
@@ -62,7 +62,7 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 </head>
 
 <body>
-    <script src="https://web.smileapi.io/v1/smile.v1.js"></script>
+    <script src="https://web.smileapi.io/v2/smile.v2.js"></script>
     <script type="text/javascript">
         const smileLinkModal = new SmileLinkModal({
             /**
@@ -184,6 +184,17 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 
 </html>
 ```
+
+> 📘 Note
+>
+> 目前有两个版本的 SDK 可用。版本 2 （最新版本）的代码如上所示。如要在版本 1 和版本 2 之间进行切换，只需将 SDK 源代码切换到版本 1 ，如下所示。
+> | Version | SDK JavaScript Embed |
+> | --- | --- |
+> | Version 1 | ``<script src="https://web.smileapi.io/v1/smile.v1.js"></script>`` |
+> | Version 2 | ``<script src="https://web.smileapi.io/v2/smile.v2.js"></script>`` |
+>
+> 不需要做其他改变。
+
 
 ---
 

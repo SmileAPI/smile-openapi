@@ -8,7 +8,7 @@ slug: chapter-4
 
 
 You can obtain data from your users via two ways:
- - Inviting your user via the /invitations endpoint in the API or using the invitation functionality in the Developer Portal, under the Users section.
+ - Inviting your user via the ``/invitations`` endpoint in the API or using the invitation functionality in the Developer Portal, under the Users section.
  - Embedding the Client SDK and instantiating the Wink Widget.
 
 ---
@@ -47,7 +47,7 @@ Getting user data via the Client SDK into your application involves two things:
 ![Code](https://img.icons8.com/ios/50/000000/code.png)
 
 ## Example Code
-Below is sample HTML code which embeds the Wink Javascript SDK:
+Below is sample HTML code which embeds the Wink Javascript SDK.
 
 ```html
 <!DOCTYPE html>
@@ -63,7 +63,7 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 </head>
 
 <body>
-    <script src="https://web.smileapi.io/v1/smile.v1.js"></script>
+    <script src="https://web.smileapi.io/v2/smile.v2.js"></script>
     <script type="text/javascript">
         const smileLinkModal = new SmileLinkModal({
             /**
@@ -186,6 +186,17 @@ Below is sample HTML code which embeds the Wink Javascript SDK:
 
 </html>
 ```
+
+> 📘 Note
+> 
+> There are currently two versions of the SDK available. Code for Version 2 (the latest version) is shown above. To switch from version 1 and version 2, simply switch the SDK source code to Version 1, as seen below:
+> | Version | SDK JavaScript Embed |
+> | --- | --- |
+> | Version 1 | ``<script src="https://web.smileapi.io/v1/smile.v1.js"></script>`` |
+> | Version 2 | ``<script src="https://web.smileapi.io/v2/smile.v2.js"></script>`` |
+>
+> No other changes are needed.
+
 
 ---
 

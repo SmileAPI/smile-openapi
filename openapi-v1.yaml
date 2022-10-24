@@ -4681,21 +4681,14 @@ components:
         - baseAmount
         - metadata
     LiabilityGetResponse:
-      title: Liability Get Response
-      type: object
-      x-internal: true
-      required:
-        - code
-        - requestId
-      properties:
-        code:
-          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
-        message:
-          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
-        requestId:
-          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
-        data:
-          $ref: '#/components/schemas/Liability'
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - title: Liability Get Response
+          type: object
+          x-internal: true
+          properties:
+            data:
+              $ref: '#/components/schemas/Liability'
     LiabilityListResponse:
       title: Liability List Response
       type: object
@@ -5865,6 +5858,9 @@ components:
       title: CommonResponse
       type: object
       x-internal: true
+      required:
+        - code
+        - requestId
       properties:
         code:
           $ref: '#/components/schemas/Object-Metadata-Ref-Code'
