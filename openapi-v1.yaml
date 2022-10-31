@@ -6172,10 +6172,15 @@ components:
             loginName:
               type: string
               description: the login name user used.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - loginName
+            - providers
       required:
         - id
         - version
@@ -6192,6 +6197,8 @@ components:
             userId: string
             accountId: string
             loginName: string
+            providers:
+              - string
       description: Payload when a user successfully connects his/her work account.
     AccountDisconnectedEvent:
       title: 'Webhook: Account Disconnected Event'
@@ -6216,9 +6223,14 @@ components:
             accountId:
               type: string
               description: The connected account ID.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
+            - providers
       required:
         - id
         - version
@@ -6234,6 +6246,8 @@ components:
           data:
             userId: string
             accountId: string
+            providers:
+              - string
       description: >-
         Payload when a user disconnects or revokes the link to his/her work
         account.
@@ -6597,10 +6611,15 @@ components:
             identityId:
               type: string
               description: the new identity ID.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - identityId
+            - providers
       required:
         - id
         - version
@@ -6618,6 +6637,8 @@ components:
             userId: string
             accountId: string
             identityId: string
+            providers:
+              - string
     RatingAddedEvent:
       title: 'Webhook: Rating Added Event'
       x-tags:
@@ -6644,10 +6665,15 @@ components:
             ratingId:
               type: string
               description: The added rating ID.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - ratingId
+            - providers
       required:
         - id
         - version
@@ -6664,6 +6690,8 @@ components:
             userId: string
             accountId: string
             ratingId: string
+            providers:
+              - string
       description: Payload when rating data about a user is added.
     TransactionsAddedEvent:
       title: 'Webhook: Transactions Add Event'
@@ -6691,10 +6719,15 @@ components:
             count:
               type: number
               description: The number of transactions added.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - count
+            - providers
       required:
         - id
         - version
@@ -6711,6 +6744,8 @@ components:
             userId: string
             accountId: string
             count: 0
+            providers:
+              - string
       description: Payload when transactions data shared by a user are added.
     DocumentsAddedEvent:
       title: 'Webhook: Documents Added Event'
@@ -6738,10 +6773,15 @@ components:
             count:
               type: number
               description: The number of documents added.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - count
+            - providers
       required:
         - id
         - version
@@ -6758,6 +6798,8 @@ components:
             userId: string
             accountId: string
             count: 0
+            providers:
+              - string
       description: Payload when documents data shared by a user are added.
     EmploymentsAddedEvent:
       title: 'Webhook: Employments Added Event'
@@ -6785,10 +6827,15 @@ components:
             count:
               type: number
               description: The number of employments added.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - count
+            - providers
       required:
         - id
         - version
@@ -6805,6 +6852,8 @@ components:
             userId: string
             accountId: string
             count: 0
+            providers:
+              - string
       description: Payload when employment data shared by a user are added.
     IncomesAddedEvent:
       title: 'Webhook: Incomes Added Event'
@@ -6832,10 +6881,15 @@ components:
             count:
               type: number
               description: the number of incomes added.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - count
+            - providers
       required:
         - id
         - version
@@ -6852,6 +6906,8 @@ components:
             userId: string
             accountId: string
             count: 0
+            providers:
+              - string
       description: Payload when income data shared by a user are added.
     EincomeAddedEvent:
       title: 'Webhook: Estimated Income Added Event'
@@ -6880,10 +6936,15 @@ components:
             count:
               type: number
               description: the number of eincomes added.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - count
+            - providers
       required:
         - id
         - version
@@ -6900,6 +6961,8 @@ components:
             userId: string
             accountId: string
             count: 0
+            providers:
+              - string
       description: Payload when estimated incomes data shared by a user are added.
     EincomesAddedEvent:
       title: 'Webhook: Estimated Income Added Event'
@@ -6927,10 +6990,15 @@ components:
             count:
               type: number
               description: the number of eincomes added.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - count
+            - providers
       required:
         - id
         - version
@@ -6947,6 +7015,8 @@ components:
             userId: string
             accountId: string
             count: 0
+            providers:
+              - string
       description: Payload when estimated incomes data shared by a user are added.
     LiabilitiesAddedEvent:
       title: 'Webhook: Liability Added Event'
@@ -6974,10 +7044,15 @@ components:
             count:
               type: number
               description: the number of eincomes added.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - count
+            - providers
       required:
         - id
         - version
@@ -6994,6 +7069,8 @@ components:
             userId: string
             accountId: string
             count: 0
+            providers:
+              - string
       description: Payload when liabilities data shared by a user are added.
     ContributionsAddedEvent:
       title: 'Webhook: Contributions Added Event'
@@ -7021,10 +7098,15 @@ components:
             count:
               type: number
               description: the number of contributions added.
+            providers:
+              type: array
+              items:
+                type: string
           required:
             - userId
             - accountId
             - count
+            - providers
       required:
         - id
         - version
@@ -7042,6 +7124,8 @@ components:
             userId: string
             accountId: string
             count: 0
+            providers:
+              - string
     Object-Metadata-Ref-Code:
       type: string
       title: Object-Metadata-Ref-API-Code

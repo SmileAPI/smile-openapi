@@ -134,6 +134,9 @@ Payload when a user successfully connects his/her work account.
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
     "loginName": "userLoginName"
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -148,6 +151,9 @@ Payload when a user disconnects or revokes the link to his/her work account.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78"
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -282,7 +288,10 @@ Payload when identity data about a user is added.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "identityId": "i-123abc456def789abc123def456abc78"
+    "identityId": "i-123abc456def789abc123def456abc78",
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -298,7 +307,10 @@ Payload when rating data about a user is added.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "ratingId": "r-123abc456def789abc123def456abc78"
+    "ratingId": "r-123abc456def789abc123def456abc78",
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -314,7 +326,10 @@ Payload when transactions data shared by a user are added.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -330,7 +345,10 @@ Payload when documents data shared by a user are added.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -346,7 +364,10 @@ Payload when employment data shared by a user are added.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -362,7 +383,10 @@ Payload when income data shared by a user are added.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -378,7 +402,10 @@ Payload when contributions data shared by a user are added.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -394,7 +421,10 @@ Payload when liabilities data shared by a user are added.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -413,7 +443,10 @@ Payload when estimated income data has been derived from data shared by a user.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```

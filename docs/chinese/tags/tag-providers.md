@@ -4,32 +4,32 @@ excerpt: ""
 category: 62ce2a159aafea009af30daa  
 slug: providers-1
 ---
-Smile maintains a long list of providers that can be retrieved if you require this information in your implementation. These providers are a combination of:
+如果您需要就业数据提供商的信息，您可以从 Smile 维护着的一个长名单中检索到。这些提供商包含以下分类：
 
-1. data providers that your customers can connect to, in order to share their data with you, and
-2. employers that may or may not be mapped to a specific payroll system so your customers can share their data with you.
+1. 用户直接连接的提供商数据
+2. 用户的雇主使用的薪资系统数据
 
-Where there is no payroll system mapped to a specific employer, Smile recommends a fallback mechanism of allowing the user to connect and share their social security records in order to provider identity and limited income information.
+如果没有匹配到特定雇主的薪资系统，Smile 建议采用一种后备机制，允许用户连接并分享他们的社会保障记录，以便提供身份和有限的收入信息。
 
-## The Provider object
+## 数据提供商对象
 
-| Attribute         | Type             | Description                                                                                   |
-| :---------------- | :--------------- | :-------------------------------------------------------------------------------------------- |
-| id                | string           | Unique ID of the provider                                                                     |
-| name              | string           | Name of the data provider                                                                     |
-| longName          | string           | Full name or legal business entity name of the provider                                       |
-| logoUrl           | string           | URL to the provider's logo                                                                    |
-| type              | string           | Type of provider, can be one of the following: `GIG`, `GOVERNMENT`, `SYSTEM`, `EMPLOYER`      |
-| typeLabel         | string           | Type label of provider, such as "Gig Platform" for type `GIG`                                 |
-| subType           | string           | Where applicable, the subset type of the provider, such as `SERVICES`, `TRANSPORTATION`, etc. |
-| subTypeLabel      | string           | Subtype label of provider                                                                     |
-| active            | boolean          | Indicates whether data provider integration is working                                        |
-| enabled           | boolean          | Indicates whether data provider is enabled or access is allowed                               |
-| mfa               | boolean          | Indicates whether data provider requires multi-factor authentication                          |
-| accountConnection | boolean          | Indicates whether a real-time account connection is available for this data provider          |
-| supported         | array of strings | List of supported data points for this employment data provider                               |
+| 属性         | 类型               | 详情                                                    |
+| :---------------- |:-----------------|:------------------------------------------------------|
+| id                | string           | 提供商唯一的 ID                                             |
+| name              | string           | 数据提供商的名称                                              |
+| longName          | string           | 提供商的全名或合法商业实体名称                                       |
+| logoUrl           | string           | 链接到提供商商标的 URL                                         |
+| type              | string           | 提供商的类型，可以是以下之一：`GIG`、`GOVERNMENT`、`SYSTEM`、`EMPLOYER` |
+| typeLabel         | string           | 提供商的类型标签，如 "Gig Platform" 代表 `GIG` 类型                 |
+| subType           | string           | 提供商的子集类型（如适用），如 `SERVICES`、`TRANSPORTATION` 等。        |
+| subTypeLabel      | string           | 提供商的子类型标签                                             |
+| active            | boolean          | 表示数据提供商的集成是否在工作                                       |
+| enabled           | boolean          | 表明数据提供商是否被启用或允许访问                                     |
+| mfa               | boolean          | 表示数据提供商是否需要多因素认证                                      |
+| accountConnection | boolean          | 表示该数据提供商的实时账户连接是否可用                                   |
+| supported         | array of strings | 该就业数据提供商支持的数据点列表                                      |
 
-## Sample Provider data
+## 提供商数据样本
 
 ```
 [{
@@ -69,9 +69,9 @@ Where there is no payroll system mapped to a specific employer, Smile recommends
 
 
 
-## Endpoints
+## 端点
 
-| Endpoint                                                  |                       |
-| :-------------------------------------------------------- | :-------------------- |
-| [Retrieve all providers](/reference/list-providers)       | `GET /providers`      |
-| [Retrieve one provider record](/reference/get-provider-1) | `GET /providers/{id}` |
+| 端点                                      |                       |
+|:----------------------------------------| :-------------------- |
+| [检索所有提供商](/reference/list-providers)    | `GET /providers`      |
+| [检索一个提供商的记录](/reference/get-provider-1) | `GET /providers/{id}` |

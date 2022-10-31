@@ -135,7 +135,10 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "loginName": "userLoginName"
+    "loginName": "userLoginName",
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -149,7 +152,10 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
-    "accountId": "a-123abc456def789abc123def456abc78"
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -284,7 +290,10 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "identityId": "i-123abc456def789abc123def456abc78"
+    "identityId": "i-123abc456def789abc123def456abc78",
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -300,7 +309,10 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "ratingId": "r-123abc456def789abc123def456abc78"
+    "ratingId": "r-123abc456def789abc123def456abc78",
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -316,7 +328,10 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -332,7 +347,10 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -348,7 +366,10 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -364,7 +385,10 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -380,7 +404,10 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -396,7 +423,10 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
@@ -415,7 +445,10 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "count": 0
+    "count": 0,
+    "providers": [
+      "abccorp"
+    ]
   }
 }
 ```
