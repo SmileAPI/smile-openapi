@@ -185,16 +185,20 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 </html>
 ```
 
-> 📘 Note
+> 📘 注意
 >
-> 目前有两个版本的 SDK 可用。版本 2 （最新版本）的代码如上所示。如要在版本 1 和版本 2 之间进行切换，只需将 SDK 源代码切换到版本 1 ，如下所示。
-> | Version | SDK JavaScript Embed |
-> | --- | --- |
-> | Version 1 | ``<script src="https://web.smileapi.io/v1/smile.v1.js"></script>`` |
-> | Version 2 | ``<script src="https://web.smileapi.io/v2/smile.v2.js"></script>`` |
->
-> 不需要做其他改变。
+> 目前有两个版本的SDK可用。版本2（最新版本）的代码如上所示。要在版本1和版本2之间进行切换，只需将SDK的源代码从版本2切换到版本1，不需要做其他改动。
 
+## Wink Widget 的版本管理
+
+**Wink Widget 版本 2 包含许多用户体验和功能的改进，是我们推荐使用的版本**。
+
+版本 1 我们将仍然保留，安全监测、更新和补丁将继续进行。
+
+| 版本            | 嵌入 SDK 的 JavaScript                                              |
+|---------------|------------------------------------------------------------------|
+| 版本 2 **(推荐)** | `<script src="https://web.smileapi.io/v2/smile.v2.js"></script>` |
+| 版本 1          | `<script src="https://web.smileapi.io/v1/smile.v1.js"></script>` |
 
 ---
 

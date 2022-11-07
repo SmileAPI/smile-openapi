@@ -3368,18 +3368,7 @@ components:
           type: array
           description: Supported data points for this employment data provider
           items:
-            type: string
-            example: IDENTITIES
-            enum:
-              - IDENTITIES
-              - TRANSACTIONS
-              - RATINGS
-              - EMPLOYMENTS
-              - DOCUMENTS
-              - INCOMES
-              - CONTRIBUTIONS
-              - EINCOMES
-              - LIABILITIES
+            $ref: '#/components/schemas/Ref-Datapoint'
       required:
         - id
         - name
@@ -4681,37 +4670,30 @@ components:
         - baseAmount
         - metadata
     LiabilityGetResponse:
+      title: Liability Get Response
+      type: object
+      x-internal: true
       allOf:
         - $ref: '#/components/schemas/CommonResponse'
-        - title: Liability Get Response
-          type: object
-          x-internal: true
-          properties:
+        - properties:
             data:
               $ref: '#/components/schemas/Liability'
     LiabilityListResponse:
       title: Liability List Response
       type: object
       x-internal: true
-      required:
-        - code
-        - requestId
-      properties:
-        code:
-          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
-        message:
-          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
-        requestId:
-          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
-        data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/Object-Next-Cursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Liability'
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              type: object
+              properties:
+                nextCursor:
+                  $ref: '#/components/schemas/Object-Next-Cursor'
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Liability'
     Liability:
       title: Liability
       type: object
@@ -6251,6 +6233,117 @@ components:
       description: >-
         Payload when a user disconnects or revokes the link to his/her work
         account.
+    TaskStartedEvent:
+      title: 'Webhook: Task Started Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The user ID.
+            sourceId:
+              type: string
+              description: The source ID .
+            sourceType:
+              $ref: '#/components/schemas/Ref-Source-Type'
+            providers:
+              type: array
+              items:
+                type: string
+          required:
+            - userId
+            - sourceId
+            - sourceType
+            - providers
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        example-1:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: TASK_STARTED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            sourceId: string
+            sourceType: ACCOUNT
+            providers:
+              - string
+      description: Event indicates data sync of an account is started.
+    TaskFinishedEvent:
+      title: 'Webhook: Task Finished Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The user ID.
+            sourceId:
+              type: string
+              description: The source ID .
+            sourceType:
+              $ref: '#/components/schemas/Ref-Source-Type'
+            providers:
+              type: array
+              items:
+                type: string
+            datapoints:
+              type: array
+              items:
+                $ref: '#/components/schemas/Ref-Datapoint'
+          required:
+            - userId
+            - sourceId
+            - sourceType
+            - providers
+            - datapoints
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        example-1:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: TASK_FINISHED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            sourceId: string
+            sourceType: ACCOUNT
+            providers:
+              - string
+      description: Event indicates data sync of an account is finished.
     AccountFailedEvent:
       title: 'Webhook: Account Failed Event'
       x-tags:
@@ -7398,6 +7491,22 @@ components:
         - sourceType
         - userId
         - providerId
+    Ref-Datapoint:
+      type: string
+      title: Datapoint
+      enum:
+        - IDENTITIES
+        - TRANSACTIONS
+        - RATINGS
+        - EMPLOYMENTS
+        - DOCUMENTS
+        - INCOMES
+        - CONTRIBUTIONS
+        - EINCOMES
+        - LIABILITIES
+      description: Supported data points for this employment data provider
+      example: IDENTITIES
+      x-internal: true
     Object-ExternalMetadata:
       title: Object-ExternalMetadata
       type: object
@@ -7783,6 +7892,8 @@ components:
         - ACCOUNT_CONNECTED
         - ACCOUNT_DISCONNECTED
         - ACCOUNT_FAILED
+        - TASK_STARTED
+        - TASK_FINISHED
         - ARCHIVE_STARTED
         - ARCHIVE_ANALYZED
         - ARCHIVE_REVOKED
@@ -7805,6 +7916,16 @@ components:
       description: Event schema's major version
       type: number
       example: 1
+    Ref-Source-Type:
+      type: string
+      nullable: true
+      title: Ref-Source-Type
+      example: Account
+      enum:
+        - ACCOUNT
+        - ARCHIVE
+      description: Source Type
+      x-internal: true
   responses:
     Standard-Errors:
       description: Standard error response

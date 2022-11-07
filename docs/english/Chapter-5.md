@@ -76,27 +76,29 @@ This means that you may receive the same webhook event more than once. Please en
 ## List of Events 
 Below are the events you can subscribe to via webhooks:
 
-|Event|Event Type|Description|
-|---|---|---|
-|User Creation Successful|USER_CREATED|Sent when a new user and link token is created.|
-|Account Connection Successful|ACCOUNT_CONNECTED|Sent when a user successfully connects their work account.|
-|Account Disconnection Successful|ACCOUNT_DISCONNECTED|Sent when a user disconnects or revokes the link to their work account.|
-|Account Connection Failed|ACCOUNT_FAILED|Sent when the account linking process is is unsuccessful.|
-|Archive Creation Successful|ARCHIVE_STARTED|Sent when a user has uploaded one or several files which becomes an "archive" in Smile.|
-|Archive Analysis Successful|ACCOUNT_ANALYZED|Sent when an archive has been analyzed and converted into JSON data automatically via OCR.|
-|Archive Revocation Successful|ARCHIVE_REVOKED|Sent when a user removes permission to access or use an archive.|
-|Archive Creation or Analysis Failed|ARCHIVE_FAILED|Sent when the the archive creation or analysis process is unsuccessful.|
-|Invitation Sending Successful|INVITE_INVITED|Sent when an invitation is sent out to a user successfully.|
-|Account Link by Invitation Successful|INVITE_LINKED|Sent when a user that has been sent an invitation is able to link their work account successfully.|
-|Identity Data Added|IDENTITY_ADDED|Sent when identity data about a user is added.|
-|Rating Data Added|RATING_ADDED|Sent when ratings data about a user is added.|
-|Transactions Data Added|TRANSACTIONS_ADDED|Sent when transactions data shared by a user is added.|
-|Documents Data Added|DOCUMENTS_ADDED|Sent when documents data shared by a user is added.|
-|Employments Data Added|EMPLOYMENTS_ADDED|Sent when employment data shared by a user is added.|
-|Incomes Data Added|INCOMES_ADDED|Sent when income data shared by a user is added.|
-|Estimated Incomes Data Added <br>*(early access)*|EINCOMES_ADDED|Payload when estimated income data has been derived from data shared by a user.|
-|Contributions Data Added|CONTRIBUTIONS_ADDED|Sent when social security contributions data shared by a user is added.|
-|Liabilities Data Added|LIABILITIES_ADDED|Sent when liabilities data shared by a user is added.|
+| Event                                             | Event Type           | Description                                                                                        |
+|---------------------------------------------------|----------------------|----------------------------------------------------------------------------------------------------|
+| User Creation Successful                          | USER_CREATED         | Sent when a new user and link token is created.                                                    |
+| Account Connection Successful                     | ACCOUNT_CONNECTED    | Sent when a user successfully connects their work account.                                         |
+| Account Disconnection Successful                  | ACCOUNT_DISCONNECTED | Sent when a user disconnects or revokes the link to their work account.                            |
+| Account Connection Failed                         | ACCOUNT_FAILED       | Sent when the account linking process is is unsuccessful.                                          |
+| Task Started                                      | TASK_STARTED         | Sent when the account connect or user upload archive successfully.                                 |
+| Task Finished                                     | TASK_FINISHED        | Sent when the account sync task finished or archive has been analyzed.                             |
+| Archive Creation Successful                       | ARCHIVE_STARTED      | Sent when a user has uploaded one or several files which becomes an "archive" in Smile.            |
+| Archive Analysis Successful                       | ACCOUNT_ANALYZED     | Sent when an archive has been analyzed and converted into JSON data automatically via OCR.         |
+| Archive Revocation Successful                     | ARCHIVE_REVOKED      | Sent when a user removes permission to access or use an archive.                                   |
+| Archive Creation or Analysis Failed               | ARCHIVE_FAILED       | Sent when the the archive creation or analysis process is unsuccessful.                            |
+| Invitation Sending Successful                     | INVITE_INVITED       | Sent when an invitation is sent out to a user successfully.                                        |
+| Account Link by Invitation Successful             | INVITE_LINKED        | Sent when a user that has been sent an invitation is able to link their work account successfully. |
+| Identity Data Added                               | IDENTITY_ADDED       | Sent when identity data about a user is added.                                                     |
+| Rating Data Added                                 | RATING_ADDED         | Sent when ratings data about a user is added.                                                      |
+| Transactions Data Added                           | TRANSACTIONS_ADDED   | Sent when transactions data shared by a user is added.                                             |
+| Documents Data Added                              | DOCUMENTS_ADDED      | Sent when documents data shared by a user is added.                                                |
+| Employments Data Added                            | EMPLOYMENTS_ADDED    | Sent when employment data shared by a user is added.                                               |
+| Incomes Data Added                                | INCOMES_ADDED        | Sent when income data shared by a user is added.                                                   |
+| Estimated Incomes Data Added <br>*(early access)* | EINCOMES_ADDED       | Payload when estimated income data has been derived from data shared by a user.                    |
+| Contributions Data Added                          | CONTRIBUTIONS_ADDED  | Sent when social security contributions data shared by a user is added.                            |
+| Liabilities Data Added                            | LIABILITIES_ADDED    | Sent when liabilities data shared by a user is added.                                              |
 
 
 <!-- focus: false -->
@@ -173,6 +175,47 @@ Payload when the account linking process is unsuccessful.
     "errorMessage": "Error message",
     "providers": [
       "abccorp"
+    ]
+  }
+}
+```
+
+#### Task Started
+Payload when data sync of an account is started.
+``` json
+{
+  "id": "123abc456def789abc123def456abc78",
+  "version": 1,
+  "type": "TASK_STARTED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "sourceId": "a-123abc456def789abc123def456abc78",
+    "sourceType": "ACCOUNT",
+    "providers": [
+      "abccorp"
+    ]
+  }
+}
+```
+#### Task Finished
+Payload when data sync of an account is finished..
+``` json
+{
+  "id": "123abc456def789abc123def456abc78",
+  "version": 1,
+  "type": "TASK_FINISHED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "sourceId": "a-123abc456def789abc123def456abc78",
+    "sourceType": "ACCOUNT",
+    "providers": [
+      "abccorp"
+    ],
+    "datapoints": [
+      "IDENTITIES",
+      "INCOMES"
     ]
   }
 }

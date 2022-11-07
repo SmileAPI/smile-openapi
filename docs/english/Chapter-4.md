@@ -189,14 +189,18 @@ Below is sample HTML code which embeds the Wink Javascript SDK.
 
 > 📘 Note
 > 
-> There are currently two versions of the SDK available. Code for Version 2 (the latest version) is shown above. To switch from version 1 and version 2, simply switch the SDK source code to Version 1, as seen below:
-> | Version | SDK JavaScript Embed |
-> | --- | --- |
-> | Version 1 | ``<script src="https://web.smileapi.io/v1/smile.v1.js"></script>`` |
-> | Version 2 | ``<script src="https://web.smileapi.io/v2/smile.v2.js"></script>`` |
->
-> No other changes are needed.
+> There are currently two versions of the SDK available. Code for Version 2 (the latest version) is shown above. To switch from version 1 and version 2, simply switch the SDK source code to Version 1. No other changes are needed.
 
+## Wink Widget Versioning
+
+**Wink Widget Version 2 contains many user experience and functionality improvements and is the recommended version**.
+
+Version 1 is still maintained and security monitoring, updates, and patches will continue to be done.
+
+| Version | SDK JavaScript Embed |
+| --- | --- |
+| Version 2 **(recommended)** | `<script src="https://web.smileapi.io/v2/smile.v2.js"></script>` |
+| Version 1 | `<script src="https://web.smileapi.io/v1/smile.v1.js"></script>` |
 
 ---
 
