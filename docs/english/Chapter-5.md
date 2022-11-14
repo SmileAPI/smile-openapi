@@ -135,7 +135,7 @@ Payload when a user successfully connects his/her work account.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "loginName": "userLoginName"
+    "loginName": "userLoginName",
     "providers": [
       "abccorp"
     ]
@@ -152,7 +152,7 @@ Payload when a user disconnects or revokes the link to his/her work account.
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
-    "accountId": "a-123abc456def789abc123def456abc78"
+    "accountId": "a-123abc456def789abc123def456abc78",
     "providers": [
       "abccorp"
     ]

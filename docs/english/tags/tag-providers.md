@@ -2,7 +2,7 @@
 title: Providers  
 excerpt: ""  
 category: 6294c0fd9494580032b22740  
-slug: providers-1
+slug: providers
 ---
 Smile maintains a long list of providers that can be retrieved if you require this information in your implementation. These providers are a combination of:
 

@@ -341,20 +341,20 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 
 为了帮助进行日志记录和故障排除，我们在向您返回数据时应用了一些约定。
 
-| 资源属性 | 前缀 | 样例 | 详情 |
-| -------------------| ------ | ------- | ----------- |
-| User ID | ``tenantId-`` | smile1234-a5b39dfe76174defb353d7e97a88a85e |在我们的系统中，每个用户 ID 都有一个与其租户 ID 相关的前缀 |
-| Identity ID | ``i-`` | i-45567e7689be49d5bc052a6e4a3805e6 |身份相关信息 |
-| Transaction ID | ``t-`` | t-11de60721342404daa35f60d2875f37b | 交易相关信息 |
-| Ratings ID | ``r-`` | r-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 评级相关信息 |
-| Documents ID | ``d-`` | d-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 文件相关信息 |
-| Employments ID | ``e-`` | e-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 就业相关信息 |
-| Incomes ID | ``inc-`` | inc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 收入相关信息 |
-| Estimated Incomes ID <br>*(抢先试用版)* | ``einc-`` | einc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 预计收入相关信息 |
-| Contributions ID | ``con-`` | con-ff4723f9af5f4dc5b6a22ea27fb3c8a1 |缴费相关信息 |
-| Archives ID | ``u-`` | u-ff4723f9af5f4dc5b6a22ea27fb3c8a1 |上传的文件可用作存档|
-| Invites ID | ``iv-`` | iv-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 发出的邀请 |
-| Invite Templates ID | ``ivt-`` | ivt-ff4723f9af5f4dc5b6a22ea27fb3c8a1 |已创建的邀请模板 |
+| 资源属性 | 前缀 | 样例 | 详情                                |
+| -------------------| ------ | ------- |-----------------------------------|
+| User ID | ``tenantId-`` | smile1234-a5b39dfe76174defb353d7e97a88a85e | 在我们的系统中，每个用户 ID 都有一个与其租户 ID 相关的前缀 |
+| Identity ID | ``i-`` | i-45567e7689be49d5bc052a6e4a3805e6 | 身份相关信息                            |
+| Transaction ID | ``t-`` | t-11de60721342404daa35f60d2875f37b | 交易相关信息                            |
+| Ratings ID | ``r-`` | r-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 评级相关信息                            |
+| Documents ID | ``d-`` | d-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 文件相关信息                            |
+| Employments ID | ``e-`` | e-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 就业相关信息                            |
+| Incomes ID | ``inc-`` | inc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 收入相关信息                            |
+| Estimated Incomes ID <br>*(抢先试用版)* | ``einc-`` | einc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 预估收入相关信息                          |
+| Contributions ID | ``con-`` | con-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 缴费相关信息                            |
+| Archives ID | ``u-`` | u-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 上传的文件可用作存档                        |
+| Invites ID | ``iv-`` | iv-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 发出的邀请                             |
+| Invite Templates ID | ``ivt-`` | ivt-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 已创建的邀请模板                          |
 
 为了标准化数据格式，我们使用普遍接受的标准来格式化数据，包括：
 

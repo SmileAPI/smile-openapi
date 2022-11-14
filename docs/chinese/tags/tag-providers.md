@@ -2,7 +2,7 @@
 title: Providers  
 excerpt: ""  
 category: 62ce2a159aafea009af30daa  
-slug: providers-1
+slug: providers
 ---
 如果您需要就业数据提供商的信息，您可以从 Smile 维护着的一个长名单中检索到。这些提供商包含以下分类：
 
@@ -73,5 +73,5 @@ slug: providers-1
 
 | 端点                                      |                       |
 |:----------------------------------------| :-------------------- |
-| [检索所有提供商](/reference/list-providers)    | `GET /providers`      |
-| [检索一个提供商的记录](/reference/get-provider-1) | `GET /providers/{id}` |
+| [获取提供商列表](/reference/list-providers)    | `GET /providers`      |
+| [获取一个提供商的记录](/reference/get-provider-1) | `GET /providers/{id}` |

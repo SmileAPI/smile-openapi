@@ -4247,6 +4247,7 @@ components:
           id: d-17bbf36498de4d68a0d4f86c7b62f69f
           name: Facebook Social Media Marketing Professional Certificate
           docId: ABCD123456
+          documentType: IDENTIFICATION
           issueDate: '2007-08-24'
           expiryDate: '2010-08-24'
           fileUrl: >-
@@ -4271,6 +4272,13 @@ components:
           description: Document number
           example: ABCD123456
           nullable: true
+        documentType:
+          type: string
+          description: Document Type
+          example: IDENTIFICATION
+          enum:
+            - IDENTIFICATION
+            - PAYSLIP
         issueDate:
           type: string
           description: Issue date
