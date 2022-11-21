@@ -82,8 +82,8 @@ Below are the events you can subscribe to via webhooks:
 | Account Connection Successful                     | ACCOUNT_CONNECTED    | Sent when a user successfully connects their work account.                                         |
 | Account Disconnection Successful                  | ACCOUNT_DISCONNECTED | Sent when a user disconnects or revokes the link to their work account.                            |
 | Account Connection Failed                         | ACCOUNT_FAILED       | Sent when the account linking process is is unsuccessful.                                          |
-| Task Started                                      | TASK_STARTED         | Sent when the account connect or user upload archive successfully.                                 |
-| Task Finished                                     | TASK_FINISHED        | Sent when the account sync task finished or archive has been analyzed.                             |
+| Task Started                                      | TASK_STARTED         | Sent when the data sync process for a user's account is started.                                 |
+| Task Finished                                     | TASK_FINISHED        | Sent when the data sync task process for a user's account is finished.                             |
 | Archive Creation Successful                       | ARCHIVE_STARTED      | Sent when a user has uploaded one or several files which becomes an "archive" in Smile.            |
 | Archive Analysis Successful                       | ACCOUNT_ANALYZED     | Sent when an archive has been analyzed and converted into JSON data automatically via OCR.         |
 | Archive Revocation Successful                     | ARCHIVE_REVOKED      | Sent when a user removes permission to access or use an archive.                                   |
@@ -181,7 +181,7 @@ Payload when the account linking process is unsuccessful.
 ```
 
 #### Task Started
-Payload when data sync of an account is started.
+Sent when the data sync process for a user's account is started.
 ``` json
 {
   "id": "123abc456def789abc123def456abc78",
@@ -199,7 +199,7 @@ Payload when data sync of an account is started.
 }
 ```
 #### Task Finished
-Payload when data sync of an account is finished..
+Sent when the data sync task process for a user's account is finished.
 ``` json
 {
   "id": "123abc456def789abc123def456abc78",
@@ -340,7 +340,7 @@ Payload when identity data about a user is added.
 ```
 
 #### Rating Added
-Payload when rating data about a user is added.
+Payload when ratings data about a user is added.
 ``` json
 {
   "id": "123abc456def789abc123def456abc78",
@@ -397,7 +397,7 @@ Payload when documents data shared by a user are added.
 ```
 
 #### Employments Added
-Payload when employment data shared by a user are added.
+Payload when employments data shared by a user are added.
 ``` json
 {
   "id": "123abc456def789abc123def456abc78",

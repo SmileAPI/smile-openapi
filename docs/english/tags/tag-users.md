@@ -9,7 +9,7 @@ All users who have initiated the account linking process with at least one data 
 
 A token for the user is issued at the same time, and may be renewed through the ``GET /tokens`` endpoint.
 
-Users may have one or multiple Accounts connected to their user record.
+Users may have one or multiple [Accounts](/reference/accounts) connected to their user record.
 
 We retain user records for up to 60 days. Additionally, if users revoke their consent to sharing their data any time before this period is up, their record is also removed from Smile. _This is irreversible._
 
