@@ -86,7 +86,7 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
 | Task Started                                      | TASK_STARTED         | 当用户账户的数据同步进程开始时发送。                             |
 | Task Finished                                     | TASK_FINISHED        | 当用户账户的数据同步进程结束时发送。                             |
 | Archive Creation Successful                | ARCHIVE_STARTED            | 当用户成功上传一个或多个文件时发送，这些文件将作为 Smile 中的 “archive” 。 |
-| Archive Analysis Successful                | ACCOUNT_ANALYZED           | 当 archive 已通过 OCR 自动分析并转换为 JSON 数据时发送。         |
+| Archive Analysis Successful                | ARCHIVE_ANALYZED           | 当 archive 已通过 OCR 自动分析并转换为 JSON 数据时发送。         |
 | Archive Revocation Successful              | ARCHIVE_REVOKED            | 当用户删除访问或使用 archive 的权限时发送。                     |
 | Archive Creation or Analysis Failed        | ARCHIVE_FAILED             | 当 archive 创建或分析过程失败时发送。                        |
 | Invitation Sending Successful              | INVITE_INVITED             | 当邀请成功发送给用户时发送。                                 |

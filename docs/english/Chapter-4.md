@@ -104,6 +104,12 @@ Below is sample HTML code which embeds the Wink Javascript SDK.
             enableUpload: true,           
 
             /**
+             * Set to your company name if you wish your company name to be reflected on the Consent and Login screens.
+             * Default: empty
+             */
+            companyName: "",
+
+            /**
              * Account login callback.
              */
             onAccountCreated: ({
@@ -220,6 +226,7 @@ Version 1 is still maintained and security monitoring, updates, and patches will
 | enableSearchBar | Set this variable to false if you wish to hide the provider search bar. Be default, provider search is displayed. |
 | enableTypeBar | Set this variable to false if you wish to hide the provider type filter bar. Be default, provider types filter is displayed. |
 | enableUpload | Enable or disable showing upload option in the list of providers (true or false). By default we disable uploads when this is not set. Disabling uploads will also hide data sources where a direct account connection or link is not possible. |
+| companyName | Set this variable if you wish your company name to be reflected on the Consent and Login screens on the widget. |
 
 > 🚧 Warning
 > 

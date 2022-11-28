@@ -85,7 +85,7 @@ Below are the events you can subscribe to via webhooks:
 | Task Started                                      | TASK_STARTED         | Sent when the data sync process for a user's account is started.                                 |
 | Task Finished                                     | TASK_FINISHED        | Sent when the data sync task process for a user's account is finished.                             |
 | Archive Creation Successful                       | ARCHIVE_STARTED      | Sent when a user has uploaded one or several files which becomes an "archive" in Smile.            |
-| Archive Analysis Successful                       | ACCOUNT_ANALYZED     | Sent when an archive has been analyzed and converted into JSON data automatically via OCR.         |
+| Archive Analysis Successful                       | ARCHIVE_ANALYZED     | Sent when an archive has been analyzed and converted into JSON data automatically via OCR.         |
 | Archive Revocation Successful                     | ARCHIVE_REVOKED      | Sent when a user removes permission to access or use an archive.                                   |
 | Archive Creation or Analysis Failed               | ARCHIVE_FAILED       | Sent when the the archive creation or analysis process is unsuccessful.                            |
 | Invitation Sending Successful                     | INVITE_INVITED       | Sent when an invitation is sent out to a user successfully.                                        |

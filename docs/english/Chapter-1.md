@@ -64,7 +64,7 @@ If you will be embedding the Client SDK yourself into your own application, you 
 
 > 🚧 Warning
 > 
-> **We will keep a copy of the uploaded file/s, for a period of only 7 days!** If you need to retain a copy, please make sure to download and archive these files for yourselves as well.
+> **We will keep a copy of the uploaded file/s, for a period of only 60 days!** If you need to retain a copy, please make sure to download and archive these files for yourselves as well.
 
 
 

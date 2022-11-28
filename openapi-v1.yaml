@@ -4900,7 +4900,7 @@ components:
           description: File type (only JPEG, PNG, PDF, or TIFF formats are supported)
         url:
           type: string
-          description: URL to access the file. URL will expire after 7 days
+          description: URL to access the file. URL will expire after 60 days
           example: >-
             https://file.smileapi.io/tenants/smileapi/user/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
       required:
