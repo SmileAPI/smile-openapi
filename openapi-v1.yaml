@@ -4982,6 +4982,7 @@ components:
               description: Error code
               enum:
                 - MISSING_MANDATARY_FIELD
+                - MISSING_MANDATORY_FIELD
                 - INVALID_FIELD_FORMAT
                 - SYSTEM_ERROR
                 - null
@@ -5110,6 +5111,7 @@ components:
               description: Error code
               enum:
                 - MISSING_MANDATARY_FIELD
+                - MISSING_MANDATORY_FIELD
                 - INVALID_FIELD_FORMAT
                 - SYSTEM_ERROR
                 - null

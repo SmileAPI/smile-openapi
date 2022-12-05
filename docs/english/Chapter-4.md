@@ -227,6 +227,7 @@ Version 1 is still maintained and security monitoring, updates, and patches will
 | enableTypeBar | Set this variable to false if you wish to hide the provider type filter bar. Be default, provider types filter is displayed. |
 | enableUpload | Enable or disable showing upload option in the list of providers (true or false). By default we disable uploads when this is not set. Disabling uploads will also hide data sources where a direct account connection or link is not possible. |
 | companyName | Set this variable if you wish your company name to be reflected on the Consent and Login screens on the widget. |
+| enableConsentPage | When only one provider is passed to the ``providers`` parameter above, setting this value to false will direct the end user to the provider login screen directly without a standalone consent page displayed in the user flow. Defaults to true. |
 
 > 🚧 Warning
 > 
