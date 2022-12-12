@@ -78,6 +78,7 @@ Below is sample HTML code which embeds the Wink Javascript SDK.
 
             /**
              * Use provider id to promote certain providers to the top of the list. Example ['upwork', 'freelancer']
+             * Maximum highlighted providers: 10
              */
             topProviders: [],
 
@@ -221,7 +222,7 @@ Version 1 is still maintained and security monitoring, updates, and patches will
 | apiHost | https://link-sandbox.smileapi.io/v1 for Sandbox |
 |         | https://link.smileapi.io/v1 for Production |
 | userToken | The user token returned from Smile using the /users endpoint (see documentation on Users endpoint) |
-| topProviders | Pass a list of providers using their provider id (see documentation on Providers endpoint) to have them appear on the top of the list of providers in the Wink widget. Use this parameter to highlight certain providers and to make sure that they can easily be seen by the user when the list is first loaded. |
+| topProviders | Pass a list of providers using their provider id (see documentation on Providers endpoint) to have them appear on the top of the list of providers in the Wink widget. Use this parameter to highlight certain providers and to make sure that they can easily be seen by the user when the list is first loaded. Maximum number of providers to highlight is 10. |
 | providers | Pass a list of providers using their provider id (see documentation on Providers endpoint) to pre-filter the list of providers in the Wink widget. Passing just one provider id will skip the selection list and take the user immediately to the authentication screen. |
 | enableSearchBar | Set this variable to false if you wish to hide the provider search bar. Be default, provider search is displayed. |
 | enableTypeBar | Set this variable to false if you wish to hide the provider type filter bar. Be default, provider types filter is displayed. |

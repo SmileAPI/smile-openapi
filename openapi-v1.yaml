@@ -4248,6 +4248,7 @@ components:
           name: Facebook Social Media Marketing Professional Certificate
           docId: ABCD123456
           documentType: IDENTIFICATION
+          status: VALID
           issueDate: '2007-08-24'
           expiryDate: '2010-08-24'
           fileUrl: >-
@@ -4271,6 +4272,13 @@ components:
           type: string
           description: Document number
           example: ABCD123456
+          nullable: true
+        status:
+          type: string
+          description: >-
+            Document status，only for NBI verification, It's VALID if the NBI
+            verification status is valid.
+          example: VALID
           nullable: true
         documentType:
           type: string

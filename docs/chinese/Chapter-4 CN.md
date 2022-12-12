@@ -36,7 +36,7 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 
 通过客户端 SDK 将用户数据获取到您的应用程序中涉及两件事：
 
-- **为您的 Web 应用程序客户端嵌入 Javascript SDK**。目前， Smile 仅提供 Javascript SDK，但即将推出适用于 iOS 或 Android 等移动应用程序的原生 SDK 版本。Javascript SDK 会启动一个名为 “Wink Widget" 的模式窗口，用户可以在其中为 Smile 提供访问其数据的权限。首先用户将找到他们的雇主或就业数据提供者，然后通过安全和加密的连接登陆他们的账号和/或上传一些文件。使用 SDK 时，您无需担心不同就业平台的不同认证和验证实现，提供文件上传机制和管理数据分析或 OCR 。我们为您的开发人员简化了获取数据和使用该数据的过程。
+- **为您的 Web 应用程序客户端嵌入 Javascript SDK**。目前， Smile 仅提供 Javascript SDK，但即将推出适用于 iOS 或 Android 等移动应用程序的原生 SDK 版本。Javascript SDK 会启动一个名为 “Wink Widget" 的模式窗口，用户可以在其中为 Smile 提供访问其数据的权限。首先用户将找到他们的雇主或就业数据提供商，然后通过安全和加密的连接登陆他们的账号和/或上传一些文件。使用 SDK 时，您无需担心不同就业平台的不同认证和验证实现，提供文件上传机制和管理数据分析或 OCR 。我们为您的开发人员简化了获取数据和使用该数据的过程。
 
 - **从 Smile Open API 获取用户 token**。您的后端服务器应该从 /users API 获取 “Link” token 。这是一个一次性使用的短期 token ，用于初始化 Wink Widget。每次您希望启动 Wink Widget 时，您的服务器都应生成一个新的Link token。
 
@@ -76,7 +76,8 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
             userToken: '<usertoken>',
 
             /**
-             * 用来置顶部分 provider ，在 Wink Widget 的 Provider List 页面里面会显示在顶部， 比如： ['upwork', 'freelancer']
+             * 使用 provider id 来置顶部分 provider ，在 Wink Widget 的 Provider List 页面里面会显示在顶部， 比如： ['upwork', 'freelancer']
+             * 突出显示的提供商的最大数量: 10
              */
             topProviders: [],
 
@@ -214,18 +215,18 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 
 ## 配置参数
 
-| 参数 | 值|
-|---------|-------------------------------------------------------------------------------------------------------------|
-| apiHost | https://link-sandbox.smileapi.io/v1 用于 Sandbox 模式|
-| | https://link.smileapi.io/v1 用于 Production 模式|
-| userToken | 使用 /users API 从 Smile 返回的用户 token （请参阅有关 User API 的文档|
-| topProviders | 使用 Provider ID 传递提供者列表（请参阅 Provider API 上的文档），以使它们出现在 Wink Widget 中提供者列表的顶部。使用此参数突出显示某些 Provider ，并确保在首次加载列表时用户可以轻松看到它们|
-| providers| 使用 Provider ID 传递提供者列表（请参阅 Provider API 上的文档）以预过滤 Wink Widget 中的提供者列表。只传递一个 Provider ID 将跳过选择列表并立即将用户带到身份验证界面|
-| enableSearchBar | 如果您希望隐藏 Provider 搜索栏，请将此变量设置为 false 。 默认情况下，会显示 Provider 搜索栏|
-| enableTypeBar | 如果您希望隐藏 Provider 类型过滤栏，请将此变量设置为 false 。 默认情况下，显示 Provider 类型过滤栏|
-| enableUpload | 启用或禁用在提供者列表中显示 Upload 选项（true 或 false）。默认情况下，如果未设置，我们会禁用 Upload 。禁用 Upload 还会隐藏无法直接连接帐户或链接的数据源|
-| companyName | 如果您希望公司名称反映在 Wink Widget 的同意和登录页面上，请设置此变量|
-| enableConsentPage | 当上述的``providers`` 参数只输入一个提供商时，将此值设置为 false 将直接引导最终用户到该提供商的登录页面，而不在用户流中显示独立的同意页面。默认值为true|
+| 参数 | 值                                                                                                                                        |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------|
+| apiHost | https://link-sandbox.smileapi.io/v1 用于 Sandbox 模式                                                                                        |
+| | https://link.smileapi.io/v1 用于 Production 模式                                                                                             |
+| userToken | 使用 /users API 从 Smile 返回的用户 token （请参阅有关 User API 的文档                                                                                    |
+| topProviders | 使用 Provider ID 传递提供商列表（请参阅 Provider API 上的文档），以使它们出现在 Wink Widget 中提供商列表的顶部。使用此参数突出显示某些 Provider ，并确保在首次加载列表时用户可以轻松看到它们，突出显示的提供商的最大数量是10个|
+| providers| 使用 Provider ID 传递提供商列表（请参阅 Provider API 上的文档）以预过滤 Wink Widget 中的提供商列表。只传递一个 Provider ID 将跳过选择列表并立即将用户带到身份验证界面                            |
+| enableSearchBar | 如果您希望隐藏 Provider 搜索栏，请将此变量设置为 false 。 默认情况下，会显示 Provider 搜索栏                                                                             |
+| enableTypeBar | 如果您希望隐藏 Provider 类型过滤栏，请将此变量设置为 false 。 默认情况下，显示 Provider 类型过滤栏                                                                          |
+| enableUpload | 启用或禁用在提供商列表中显示 Upload 选项（true 或 false）。默认情况下，如果未设置，我们会禁用 Upload 。禁用 Upload 还会隐藏无法直接连接帐户或链接的数据源                                           |
+| companyName | 如果您希望公司名称反映在 Wink Widget 的同意和登录页面上，请设置此变量                                                                                                |
+| enableConsentPage | 当上述的``providers`` 参数只输入一个提供商时，将此值设置为 false 将直接引导最终用户到该提供商的登录页面，而不在用户流中显示独立的同意页面。默认值为true                                                 |
 
 > 🚧 警告
 >
@@ -246,15 +247,15 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 当用户在 Wink Widget 界面上移动时，用户执行的任何活动都会被捕获并用于更新消息和模式窗口的呈现，或者发送到 Smile 以便可以检索任何与源相关的数据。
 
 ### 关联账户
-如果用户能够成功地通过数字就业数据提供者进行身份验证，则链接状态将更改为 “CONNECTED” 。可以通过 /accounts API 随时查询用户的账户状态。捕获的事件示例包括：
+如果用户能够成功地通过数字就业数据提供商进行身份验证，则链接状态将更改为 “CONNECTED” 。可以通过 /accounts API 随时查询用户的账户状态。捕获的事件示例包括：
 
-| 活动 |描述 |
-|---------|---------|
-| PENDING | 帐户已创建，但正在等待成功的身份验证 |
-| AWAITING_MFA| 用户能够成功进行身份验证，但是数据提供者正在等待用户在 2 因素身份验证场景中输入他们的验证码。|
-| ERROR | 数据提供者返回错误。用户可能没有输入错误的凭据，或者提供商方面存在问题。|
-| CONNECTED | 用户能够成功地通过就业数据提供者进行身份验证。|
-| DISCONNECTED | 用户断开了与就业数据提供者的链接。|
+| 活动 | 描述                                               |
+|---------|--------------------------------------------------|
+| PENDING | 帐户已创建，但正在等待成功的身份验证                               |
+| AWAITING_MFA| 用户能够成功进行身份验证，但是数据提供商正在等待用户在 2 因素身份验证场景中输入他们的验证码。 |
+| ERROR | 数据提供商返回错误。用户可能没有输入错误的凭据，或者提供商方面存在问题。             |
+| CONNECTED | 用户能够成功地通过就业数据提供商进行身份验证。                          |
+| DISCONNECTED | 用户断开了与就业数据提供商的链接。                                |
 
 您也可以允许用户使用 /accounts API 撤销对其帐户数据的访问权限。与被撤销帐户相关的所有数据将从系统中删除。
 
