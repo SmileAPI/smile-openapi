@@ -14,150 +14,6 @@ servers:
   - url: https://open.smileapi.io/v1
     description: Production
 paths:
-  /liabilities:
-    parameters: []
-    get:
-      operationId: list-liabilities
-      description: List user liabilities from employment data sources.
-      summary: List Liabilities
-      tags:
-        - Liabilities
-      responses:
-        '200':
-          description: Liabilities Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LiabilityListResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      nextCursor: '1259723474'
-                      items:
-                        - id: lia-123abc456def789abc123def456abc78
-                          type: Salary Loan
-                          referenceId: SL201601011234567
-                          startDate: '2016-07-05'
-                          firstAmortizationDate: '2016-09-01'
-                          endDate: '2017-08-01'
-                          amortizationFrequency: Monthly
-                          currency: PHP
-                          loanAmount: 16000
-                          amortizationAmount: 738.32
-                          outstandingBalance: 25599.76
-                          nextPaymentAmount: 732.38
-                          overduePaymentAmount: 0
-                          metadata:
-                            createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: a-123abc456def789abc123def456abc78
-                            sourceType: ACCOUNT
-                            userId: tenantId-123abc456def789abc123def456abc78
-                            providerId: abccorp
-        '400':
-          $ref: '#/components/responses/Standard-Errors'
-        '401':
-          $ref: '#/components/responses/Standard-Errors'
-        '403':
-          $ref: '#/components/responses/Standard-Errors'
-        '404':
-          $ref: '#/components/responses/Standard-Errors'
-        '415':
-          $ref: '#/components/responses/Standard-Errors'
-        '429':
-          $ref: '#/components/responses/Standard-Errors'
-        '500':
-          $ref: '#/components/responses/Standard-Errors'
-        '501':
-          $ref: '#/components/responses/Standard-Errors'
-        '503':
-          $ref: '#/components/responses/Standard-Errors'
-        '504':
-          $ref: '#/components/responses/Standard-Errors'
-      parameters:
-        - $ref: '#/components/parameters/size'
-        - $ref: '#/components/parameters/cursor'
-        - $ref: '#/components/parameters/userId'
-        - $ref: '#/components/parameters/sourceId'
-        - schema:
-            type: string
-            format: date
-            example: '2021-04-01'
-          in: query
-          name: startDate
-          description: Filter by startDate, start of date range (YYYY-MM-DD)
-        - schema:
-            type: string
-            format: date
-            example: '2021-04-21'
-          in: query
-          name: endDate
-          description: Filter by startDate, end of date range (YYYY-MM-DD)
-  /liabilities/{id}:
-    parameters:
-      - $ref: '#/components/parameters/id'
-    get:
-      summary: Get Liability
-      tags:
-        - Liabilities
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LiabilityGetResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: lia-123abc456def789abc123def456abc78
-                      type: Salary Loan
-                      referenceId: SL201601011234567
-                      startDate: '2016-07-05'
-                      firstAmortizationDate: '2016-09-01'
-                      endDate: '2017-08-01'
-                      amortizationFrequency: Monthly
-                      currency: PHP
-                      loanAmount: 16000
-                      amortizationAmount: 738.32
-                      outstandingBalance: 25599.76
-                      nextPaymentAmount: 732.38
-                      overduePaymentAmount: 0
-                      metadata:
-                        createdAt: '2021-04-14T09:30:24Z'
-                        sourceId: a-123abc456def789abc123def456abc78
-                        sourceType: ACCOUNT
-                        userId: tenantId-123abc456def789abc123def456abc78
-                        providerId: abccorp
-        '400':
-          $ref: '#/components/responses/Standard-Errors'
-        '401':
-          $ref: '#/components/responses/Standard-Errors'
-        '403':
-          $ref: '#/components/responses/Standard-Errors'
-        '404':
-          $ref: '#/components/responses/Standard-Errors'
-        '415':
-          $ref: '#/components/responses/Standard-Errors'
-        '429':
-          $ref: '#/components/responses/Standard-Errors'
-        '500':
-          $ref: '#/components/responses/Standard-Errors'
-        '501':
-          $ref: '#/components/responses/Standard-Errors'
-        '503':
-          $ref: '#/components/responses/Standard-Errors'
-        '504':
-          $ref: '#/components/responses/Standard-Errors'
-      operationId: get-liabilities
-      description: Get the user's liabilities by ID.
   /providers:
     get:
       summary: List Providers
@@ -2292,6 +2148,150 @@ paths:
       description: Get the user's contribution by ID.
       tags:
         - Contributions
+  /liabilities:
+    parameters: []
+    get:
+      operationId: list-liabilities
+      description: List user liabilities from employment data sources.
+      summary: List Liabilities
+      tags:
+        - Liabilities
+      responses:
+        '200':
+          description: Liabilities Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiabilityListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: lia-123abc456def789abc123def456abc78
+                          type: Salary Loan
+                          referenceId: SL201601011234567
+                          startDate: '2016-07-05'
+                          firstAmortizationDate: '2016-09-01'
+                          endDate: '2017-08-01'
+                          amortizationFrequency: Monthly
+                          currency: PHP
+                          loanAmount: 16000
+                          amortizationAmount: 738.32
+                          outstandingBalance: 25599.76
+                          nextPaymentAmount: 732.38
+                          overduePaymentAmount: 0
+                          metadata:
+                            createdAt: '2021-04-14T09:30:24Z'
+                            sourceId: a-123abc456def789abc123def456abc78
+                            sourceType: ACCOUNT
+                            userId: tenantId-123abc456def789abc123def456abc78
+                            providerId: abccorp
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/sourceId'
+        - schema:
+            type: string
+            format: date
+            example: '2021-04-01'
+          in: query
+          name: startDate
+          description: Filter by startDate, start of date range (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+            example: '2021-04-21'
+          in: query
+          name: endDate
+          description: Filter by startDate, end of date range (YYYY-MM-DD)
+  /liabilities/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Liability
+      tags:
+        - Liabilities
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiabilityGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: lia-123abc456def789abc123def456abc78
+                      type: Salary Loan
+                      referenceId: SL201601011234567
+                      startDate: '2016-07-05'
+                      firstAmortizationDate: '2016-09-01'
+                      endDate: '2017-08-01'
+                      amortizationFrequency: Monthly
+                      currency: PHP
+                      loanAmount: 16000
+                      amortizationAmount: 738.32
+                      outstandingBalance: 25599.76
+                      nextPaymentAmount: 732.38
+                      overduePaymentAmount: 0
+                      metadata:
+                        createdAt: '2021-04-14T09:30:24Z'
+                        sourceId: a-123abc456def789abc123def456abc78
+                        sourceType: ACCOUNT
+                        userId: tenantId-123abc456def789abc123def456abc78
+                        providerId: abccorp
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-liabilities
+      description: Get the user's liabilities by ID.
   /inviteTemplates:
     get:
       summary: List Invite Templates
@@ -7276,239 +7276,6 @@ components:
       example: '1259723474'
       description: The next cursor value that can be used in the following query.
       x-internal: false
-    Ref-Object-ID:
-      type: string
-      title: Object ID
-      description: Unique ID of this object
-      x-internal: true
-      example: 17bbf36498de4d68a0d4f86c7b62f69f
-    Ref-Pay-Period:
-      type: string
-      nullable: true
-      title: Pay Period
-      description: Pay period
-      enum:
-        - Hourly
-        - Daily
-        - Weekly
-        - Semimonthly
-        - Monthly
-        - Bimonthly
-        - Quarterly
-        - Annually
-        - Variable
-        - Unspecified
-        - null
-      example: Annually
-      x-internal: true
-    Ref-Currency:
-      type: string
-      title: Currency ISO Codes
-      description: Currency in 3 character alpha ISO 4217
-      enum:
-        - AFN
-        - DZD
-        - ARS
-        - AMD
-        - AWG
-        - AUD
-        - AZN
-        - BSD
-        - BHD
-        - THB
-        - PAB
-        - BBD
-        - BYN
-        - BZD
-        - BMD
-        - VES
-        - BOB
-        - BRL
-        - BND
-        - BGN
-        - BIF
-        - CAD
-        - CVE
-        - KYD
-        - GHS
-        - XOF
-        - XAF
-        - XPF
-        - CLP
-        - COP
-        - KMF
-        - CDF
-        - BAM
-        - NIO
-        - CRC
-        - HRK
-        - CZK
-        - GMD
-        - DKK
-        - MKD
-        - DJF
-        - STD
-        - DOP
-        - VND
-        - XCD
-        - EGP
-        - SVC
-        - ETB
-        - EUR
-        - FKP
-        - FJD
-        - HUF
-        - GIP
-        - HTG
-        - PYG
-        - GNF
-        - GYD
-        - HKD
-        - UAH
-        - ISK
-        - INR
-        - IRR
-        - IQD
-        - JMD
-        - JOD
-        - KES
-        - PGK
-        - LAK
-        - EEK
-        - KWD
-        - MWK
-        - AOA
-        - MMK
-        - GEL
-        - LVL
-        - LBP
-        - ALL
-        - HNL
-        - SLL
-        - LRD
-        - LYD
-        - SZL
-        - LTL
-        - LSL
-        - MGA
-        - MYR
-        - TMT
-        - MUR
-        - MZN
-        - MXN
-        - MDL
-        - MAD
-        - NGN
-        - ERN
-        - NAD
-        - NPR
-        - ANG
-        - ILS
-        - RON
-        - TWD
-        - NZD
-        - BTN
-        - KPW
-        - NOK
-        - PEN
-        - MRO
-        - TOP
-        - PKR
-        - MOP
-        - UYU
-        - PHP
-        - GBP
-        - BWP
-        - QAR
-        - GTQ
-        - ZAR
-        - OMR
-        - KHR
-        - MVR
-        - IDR
-        - RUB
-        - RWF
-        - SHP
-        - SAR
-        - RSD
-        - SCR
-        - SGD
-        - SBD
-        - KGS
-        - SOS
-        - TJS
-        - LKR
-        - SDG
-        - SRD
-        - SEK
-        - CHF
-        - SYP
-        - BDT
-        - WST
-        - TZS
-        - KZT
-        - TTD
-        - MNT
-        - TND
-        - TRY
-        - AED
-        - UGX
-        - CLF
-        - USD
-        - UZS
-        - VUV
-        - KRW
-        - YER
-        - JPY
-        - CNY
-        - ZMW
-        - ZWL
-        - PLN
-      x-internal: true
-      example: PHP
-    Ref-DateTime:
-      type: string
-      title: Date and Time string
-      format: date-time
-      example: '2021-04-14T09:30:24Z'
-      description: Date and time
-      x-internal: true
-    Object-Reference-Metadata:
-      title: Reference Metadata
-      type: object
-      description: Metadata related to account-specific data
-      x-internal: true
-      properties:
-        createdAt:
-          $ref: '#/components/schemas/Ref-DateTime'
-        accountId:
-          type: string
-          deprecated: true
-          description: The accountId of this object
-        sourceId:
-          type: string
-          description: The ACCOUNT or ARCHIVE ID associated with this object
-        sourceType:
-          type: string
-          enum:
-            - ACCOUNT
-            - UPLOAD
-            - ARCHIVE
-          description: >-
-            Indicates whether the source associated with this object is either
-            ACCOUNT or ARCHIVE type
-        userId:
-          type: string
-          description: The user ID associated with this object
-        providerId:
-          type: string
-          description: The provider ID associated with this object
-      required:
-        - createdAt
-        - sourceId
-        - sourceType
-        - userId
-        - providerId
     Ref-Datapoint:
       type: string
       title: Datapoint
@@ -7525,6 +7292,12 @@ components:
       description: Supported data points for this employment data provider
       example: IDENTITIES
       x-internal: true
+    Ref-Object-ID:
+      type: string
+      title: Object ID
+      description: Unique ID of this object
+      x-internal: true
+      example: 17bbf36498de4d68a0d4f86c7b62f69f
     Object-ExternalMetadata:
       title: Object-ExternalMetadata
       type: object
@@ -7544,6 +7317,13 @@ components:
         - Maximum key length of 50 characters
 
         - Maximum value length of 500 characters
+      x-internal: true
+    Ref-DateTime:
+      type: string
+      title: Date and Time string
+      format: date-time
+      example: '2021-04-14T09:30:24Z'
+      description: Date and time
       x-internal: true
     Ref-Country:
       type: string
@@ -7894,6 +7674,207 @@ components:
           description: Whether address is primary or secondary
       required:
         - type
+    Object-Reference-Metadata:
+      title: Reference Metadata
+      type: object
+      description: Metadata related to account-specific data
+      x-internal: true
+      properties:
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        accountId:
+          type: string
+          deprecated: true
+          description: The accountId of this object
+        sourceId:
+          type: string
+          description: The ACCOUNT or ARCHIVE ID associated with this object
+        sourceType:
+          type: string
+          enum:
+            - ACCOUNT
+            - UPLOAD
+            - ARCHIVE
+          description: >-
+            Indicates whether the source associated with this object is either
+            ACCOUNT or ARCHIVE type
+        userId:
+          type: string
+          description: The user ID associated with this object
+        providerId:
+          type: string
+          description: The provider ID associated with this object
+      required:
+        - createdAt
+        - sourceId
+        - sourceType
+        - userId
+        - providerId
+    Ref-Currency:
+      type: string
+      title: Currency ISO Codes
+      description: Currency in 3 character alpha ISO 4217
+      enum:
+        - AFN
+        - DZD
+        - ARS
+        - AMD
+        - AWG
+        - AUD
+        - AZN
+        - BSD
+        - BHD
+        - THB
+        - PAB
+        - BBD
+        - BYN
+        - BZD
+        - BMD
+        - VES
+        - BOB
+        - BRL
+        - BND
+        - BGN
+        - BIF
+        - CAD
+        - CVE
+        - KYD
+        - GHS
+        - XOF
+        - XAF
+        - XPF
+        - CLP
+        - COP
+        - KMF
+        - CDF
+        - BAM
+        - NIO
+        - CRC
+        - HRK
+        - CZK
+        - GMD
+        - DKK
+        - MKD
+        - DJF
+        - STD
+        - DOP
+        - VND
+        - XCD
+        - EGP
+        - SVC
+        - ETB
+        - EUR
+        - FKP
+        - FJD
+        - HUF
+        - GIP
+        - HTG
+        - PYG
+        - GNF
+        - GYD
+        - HKD
+        - UAH
+        - ISK
+        - INR
+        - IRR
+        - IQD
+        - JMD
+        - JOD
+        - KES
+        - PGK
+        - LAK
+        - EEK
+        - KWD
+        - MWK
+        - AOA
+        - MMK
+        - GEL
+        - LVL
+        - LBP
+        - ALL
+        - HNL
+        - SLL
+        - LRD
+        - LYD
+        - SZL
+        - LTL
+        - LSL
+        - MGA
+        - MYR
+        - TMT
+        - MUR
+        - MZN
+        - MXN
+        - MDL
+        - MAD
+        - NGN
+        - ERN
+        - NAD
+        - NPR
+        - ANG
+        - ILS
+        - RON
+        - TWD
+        - NZD
+        - BTN
+        - KPW
+        - NOK
+        - PEN
+        - MRO
+        - TOP
+        - PKR
+        - MOP
+        - UYU
+        - PHP
+        - GBP
+        - BWP
+        - QAR
+        - GTQ
+        - ZAR
+        - OMR
+        - KHR
+        - MVR
+        - IDR
+        - RUB
+        - RWF
+        - SHP
+        - SAR
+        - RSD
+        - SCR
+        - SGD
+        - SBD
+        - KGS
+        - SOS
+        - TJS
+        - LKR
+        - SDG
+        - SRD
+        - SEK
+        - CHF
+        - SYP
+        - BDT
+        - WST
+        - TZS
+        - KZT
+        - TTD
+        - MNT
+        - TND
+        - TRY
+        - AED
+        - UGX
+        - CLF
+        - USD
+        - UZS
+        - VUV
+        - KRW
+        - YER
+        - JPY
+        - CNY
+        - ZMW
+        - ZWL
+        - PLN
+      x-internal: true
+      example: PHP
     Ref-Employer:
       type: string
       title: Employer
@@ -7901,6 +7882,25 @@ components:
       x-internal: true
       description: Employer name
       example: ABC Corporation
+    Ref-Pay-Period:
+      type: string
+      nullable: true
+      title: Pay Period
+      description: Pay period
+      enum:
+        - Hourly
+        - Daily
+        - Weekly
+        - Semimonthly
+        - Monthly
+        - Bimonthly
+        - Quarterly
+        - Annually
+        - Variable
+        - Unspecified
+        - null
+      example: Annually
+      x-internal: true
     Ref-Webhook-Event-Type:
       title: Ref-WebhookEventType
       description: Event Type which will be sent as a notification via webhook
