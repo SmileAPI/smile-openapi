@@ -124,3 +124,27 @@ The SDK also emits events that can be caught by your native application to allow
 | `onAccountCreated` | `accountId`, `userId`, `providerId` | Fired when the account linking process has been initiated |
 | `onAccountConnected` | `accountId`, `userId`, `providerId` | Fired when the account linking process has completed successfully |
 | `onAccountRemoved` | `accountId`, `userId`, `providerId` | Fired when the account access has been revoked by the user |
+| `onAccountError` | `accountId`, `userId`, `providerId`, `errorCode` | Fired when the user account linking results in an error. See below for list of possible errors. |
+
+## Error Codes
+
+As users connect their accounts, your users may come across various errors listed below.
+
+| Error Code | Description |
+| :---- | :---- |
+| ACCOUNT_DISABLED | Account is disabled according to the data source provider. |
+| ACCOUNT_INACCESSIBLE | Account is inaccessible according to the data source provider. |
+| ACCOUNT_INCOMPLETE | Account is marked as incomplete according to the data source provider. |
+| ACCOUNT_LOCKED | Account is locked according to the data source provider. |
+| AUTH_REQUIRED | Credentials were not sent to the data source provider. |
+| EXPIRED_CREDENTIALS | User's credentials have expired according to the data source provider. |
+| INVALID_ACCOUNT_TYPE | The account is not a valid account according to the data source provider. |
+| INVALID_AUTH | Account authentication process failed, contact Smile API for assistance. |
+| INVALID_CREDENTIALS | User's credentials is incorrect according to the data source provider. |
+| INVALID_MFA | User-submitted Multi-factor Authentication Credential is invalid. |
+| MFA_TIMEOUT | Multi-factor Authentication has timed out. |
+| SERVICE_UNAVAILABLE | Data source provider is currently unavailable. |
+| SYSTEM_ERROR | There is a system error on the Smile Network, contact Smile API for assistance. | 
+| TOS_REQUIRED | Account has not consented to the data source provider's terms of service. |
+| UNSUPPORTED_AUTH_TYPE | Authentication type is unsupported, contact Smile API for assistance. |
+| UNSUPPORTED_MFA_METHOD | Multi-factor Authentication method is unsupported, contact Smile API for assistance. |

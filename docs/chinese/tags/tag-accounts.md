@@ -119,8 +119,32 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 SDK 还可以发出特定的事件，该事件可被您的本地应用程序捕获，以便应用程序根据需要作出反应和执行功能。
 
-| 回调                   | 数据                                  | 详情             |
-|:---------------------|:------------------------------------|:---------------|
-| `onAccountCreated`   | `accountId`, `userId`, `providerId` | 当账户连接过程开始时触发   |
-| `onAccountConnected` | `accountId`, `userId`, `providerId` | 当账户连接过程完成时触发   |
-| `onAccountRemoved`   | `accountId`, `userId`, `providerId` | 当账户访问权被用户撤销时触发 |
+| 回调                   | 数据                                  | 详情                      |
+|:---------------------|:------------------------------------|:------------------------|
+| `onAccountCreated`   | `accountId`, `userId`, `providerId` | 当账户连接过程开始时触发            |
+| `onAccountConnected` | `accountId`, `userId`, `providerId` | 当账户连接过程完成时触发            |
+| `onAccountRemoved`   | `accountId`, `userId`, `providerId` | 当账户访问权被用户撤销时触发          |
+| `onAccountError` | `accountId`, `userId`, `providerId`, `errorCode` | 当账户连接错误时触发，可能出现的错误列表见下文 |
+
+## 错误代码
+
+当用户连接账户时，他们可能会遇到下面列出的各种错误。
+
+| 错误代码                   | 详情                                                                                   |
+|:-----------------------|:-------------------------------------------------------------------------------------|
+| ACCOUNT_DISABLED       | 根据数据源提供商，该账户已被禁用                                                                     
+| ACCOUNT_INACCESSIBLE   | 根据数据源提供商，该账户无法访问                                                                     |
+| ACCOUNT_INCOMPLETE     | 根据数据源提供商，该账户被标记为不完整                                                                  |
+| ACCOUNT_LOCKED         | 根据数据源提供商，该账户已被锁定                                                                     |
+| AUTH_REQUIRED          | 没有向数据源提供商发送凭证                                                                        |
+| EXPIRED_CREDENTIALS    | 根据数据源提供商，用户的凭证已经过期                                                                   |
+| INVALID_ACCOUNT_TYPE   | 根据数据源提供商，该账户不是有效账户                                                                   |
+| INVALID_AUTH           | 帐户认证过程失败，请联系 Smile API 寻求帮助                                                          |
+| INVALID_CREDENTIALS    | 根据数据源提供商，用户的凭证错误                                                                     |
+| INVALID_MFA            | 用户提交的多因素认证凭证无效                                                                       |
+| MFA_TIMEOUT            | 多因素认证已超时                                                                             |
+| SERVICE_UNAVAILABLE    | 数据源提供商目前不可用                                                                          |
+| SYSTEM_ERROR           | Smile Network 存在系统错误，请联系 Smile API 寻求帮助                                              | 
+| TOS_REQUIRED           | 用户没有同意数据源提供商的服务条款                                                                    |
+| UNSUPPORTED_AUTH_TYPE  | 认证类型不被支持，请联系 Smile API 寻求帮助               |
+| UNSUPPORTED_MFA_METHOD | 多因素认证方法不被支持，请联系 Smile API 寻求帮助 |
