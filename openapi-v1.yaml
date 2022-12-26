@@ -6146,6 +6146,55 @@ components:
         - createdAt
         - data
       description: Payload when a new user and link token is created
+    AccountCreatedEvent:
+      title: 'Webhook: Account Created Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            providers:
+              type: array
+              items:
+                type: string
+          required:
+            - userId
+            - accountId
+            - providers
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: ACCOUNT_CREATED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            providers:
+              - string
+      description: Payload when a user start to connect his/her work account.
     AccountConnectedEvent:
       title: 'Webhook: Account Connected Event'
       x-tags:
@@ -7907,6 +7956,7 @@ components:
       type: string
       enum:
         - USER_CREATED
+        - ACCOUNT_CREATED
         - ACCOUNT_CONNECTED
         - ACCOUNT_DISCONNECTED
         - ACCOUNT_FAILED
