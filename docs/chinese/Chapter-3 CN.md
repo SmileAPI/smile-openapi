@@ -48,20 +48,19 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
 
 ## 错误信息
 
-|HTTP 状态码|状态描述|Smile 代码|信息|
-|----------------------|----------------------|----------------------|----------------------|
-|400 - Bad Request         |由于语法不正确，服务器无法理解该请求。客户端不应该在没有修改的情况下重复请求。   |INVALID_CREDENTIALS   |由于参数不正确，服务器无法接受该请求。                                                    |
-|400 - Bad Request         |由于语法不正确，服务器无法理解该请求。客户端不应该在没有修改的情况下重复请求。      |INVALID_PARAMETERS    |您的请求中发送了缺失或无效的参数。                           |
-|401 - Unauthorized        |表示请求需要用户认证信息。客户端可以使用合适的 Authorization 头域重复请求|INVALID_TOKEN         |您提供的 token 无效或已过期。                                                                            |
-|403 - Forbidden           |未经授权的请求。客户端没有内容的访问权限。与 401 不同，客户端的身份为服务器所知。        |UNAUTHORIZED_ACCESS   |您无权访问此资源。                                                           |
-|404 - Not Found           |服务器找不到请求的资源。                                                                                             |MISSING_RESOURCE      |您提供的资源找不到或不可用。                                      |
-|415 - Unsupported Media Type           |内容格式未定义或格式不受支持。                                                                                                 |UNSUPPORTED_TYPE      |请为您的请求指定有效的内容类型。              |
-|429 - Too Many Requests   |在给定时间内发送的请求过多。                                                                                  |REQUEST_LIMIT_EXCEEDED|您已超出此资源的速率限制。请稍后再试或联系支持人员。            |
-|500 - Internal Server Error |服务器遇到了一个意外情况，导致它无法完成请求。                                      |SERVER_ERROR          |我们的系统目前遇到问题。请稍后再试或联系支持人员。                                    |
-|501 - Not Implemented      |服务器不支持 HTTP 方式，无法处理。                                                                       |UNSUPPORTED_METHOD    |此资源不支持您使用的 HTTP 方法。                                                                  |
-|503 - Service Unavailable  |服务器尚未准备好处理请求。                                                                                          |SERVER_UNAVAILABLE    |服务器无法处理请求。它可能已关闭或正在维护中。请稍后再试或联系支持人员。|
-|504 - Gateway Timeout      |服务器无法及时响应。                                                                                            |TIME_LIMIT_EXCEEDED   |服务器无法在分配的时间内给出响应。 请稍后再试或联系支持人员。 
-
+| HTTP 状态码                     | 状态描述                                         | Smile 代码               | 信息                                   |
+|------------------------------|----------------------------------------------|------------------------|--------------------------------------|
+| 400 - Bad Request            | 由于语法不正确，服务器无法理解该请求。客户端不应该在没有修改的情况下重复请求。      | INVALID_CREDENTIALS    | 由于参数不正确，服务器无法接受该请求。                  |
+| 400 - Bad Request            | 由于语法不正确，服务器无法理解该请求。客户端不应该在没有修改的情况下重复请求。      | INVALID_PARAMETERS     | 您的请求中发送了缺失或无效的参数。                    |
+| 401 - Unauthorized           | 表示请求需要用户认证信息。客户端可以使用合适的 Authorization 头域重复请求 | INVALID_TOKEN          | 您提供的 token 无效或已过期。                   |
+| 403 - Forbidden              | 未经授权的请求。客户端没有内容的访问权限。与 401 不同，客户端的身份为服务器所知。  | UNAUTHORIZED_ACCESS    | 您无权访问此资源。                            |
+| 404 - Not Found              | 服务器找不到请求的资源。                                 | MISSING_RESOURCE       | 您提供的资源找不到或不可用。                       |
+| 415 - Unsupported Media Type | 内容格式未定义或格式不受支持。                              | UNSUPPORTED_TYPE       | 请为您的请求指定有效的内容类型。                     |
+| 429 - Too Many Requests      | 在给定时间内发送的请求过多。                               | REQUEST_LIMIT_EXCEEDED | 您已超出此资源的速率限制。请稍后再试或联系支持人员。           |
+| 500 - Internal Server Error  | 服务器遇到了一个意外情况，导致它无法完成请求。                      | SERVER_ERROR           | 我们的系统目前遇到问题。请稍后再试或联系支持人员。            |
+| 501 - Not Implemented        | 服务器不支持 HTTP 方式，无法处理。                         | UNSUPPORTED_METHOD     | 此资源不支持您使用的 HTTP 方法。                  |
+| 503 - Service Unavailable    | 服务器尚未准备好处理请求。                                | SERVER_UNAVAILABLE     | 服务器无法处理请求。它可能已关闭或正在维护中。请稍后再试或联系支持人员。 |
+| 504 - Gateway Timeout        | 服务器无法及时响应。                                   | TIME_LIMIT_EXCEEDED    | 服务器无法在分配的时间内给出响应。 请稍后再试或联系支持人员。      |
 
 ---
 <!-- focus: false -->
@@ -383,7 +382,7 @@ API 有两种模式，可以通过向不同的基本 URL 发送请求来访问�
     "requestId": "17bc5a84-2468-47f6-9d3c-05b5257befa5",
     "data": {
         "nextCursor": "20",
-        "items": [...]
+        "items": ["..."]
     }
 }
 ```

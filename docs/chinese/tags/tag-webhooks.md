@@ -5,11 +5,6 @@ category: 62ce2a159aafea009af30daa
 slug: webhooks
 ---
 
-
-
-<!-- focus: false -->
-![Webhooks](https://img.icons8.com/ios-filled/50/000000/webhook.png)
-
 ## Webhooks
 
 当我们的服务器中发生与您的环境相关的事件时，Smile 使用 webhooks 实时通知您的应用程序。
@@ -74,6 +69,7 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
 
 
 ## 事件列表
+
 以下是您可以通过 webhook 订阅的事件:
 
 | 事件                                         | 事件类型                       | 详情                                             |
@@ -253,7 +249,6 @@ archive 被分析并通过 OCR 自动转换为 JSON 数据时，事件发送格�
   }
 }
 ```
-
 
 #### Archive 删除成功
 用户删除访问或使用 archive 的权限时，事件发送格式如下：

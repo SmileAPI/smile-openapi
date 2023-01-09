@@ -1,5 +1,5 @@
 ---
-title: Event Notifications
+title: 事件通知
 excerpt: ''
 category: 62ce2a159aafea009af30da7
 slug: chapter-5-cn
@@ -12,7 +12,7 @@ slug: chapter-5-cn
 
 当我们的服务器中发生与您的环境相关的事件时，Smile 使用 webhooks 实时通知您的应用程序。
 
-当创建一个用户，成功连接一个账号，上传一个就业文件，发送一个邀请时，或者当任何新类型的数据，如用户的身份，收入，就业等被添加时，事件通知将被发送。在下面的*事件清单*中，您可查看订阅的可用事件清单。
+当创建一个用户，成功连接一个账号，上传一个就业文件，发送一个邀请时，或者当任何新类型的数据，如用户的身份，收入，就业等被添加时，事件通知将被发送。在我们的[Webhooks reference page](/reference/webhooks)中查看您可以订阅的可用事件列表。
 
 这些 webhooks 通过安全通道发送，使用来自静态 IP 地址的 HTTPS，数据以 JSON 格式发送。并带有一个签名，供您验证内容的真实性。
 

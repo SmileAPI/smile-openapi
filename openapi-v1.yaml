@@ -3265,6 +3265,7 @@ components:
             - GOVERNMENT
             - SYSTEM
             - EMPLOYER
+            - CREDENTIAL
           description: Type of employment data provider
           example: GIG
         typeLabel:
@@ -3276,6 +3277,7 @@ components:
             - Govt Service
             - System
             - Employer
+            - Credential
         subType:
           type: string
           description: Subset of Type of employment data provider
@@ -3287,6 +3289,7 @@ components:
             - INSURANCE
             - HRIS
             - PAYROLL
+            - WALLET
             - ISIC-A
             - ISIC-B
             - ISIC-C
@@ -3319,6 +3322,7 @@ components:
             - Online Selling
             - Social Insurance
             - Payroll System
+            - Tamper-proof document issuance & verification systems
             - Human Resource Information System
             - Agriculture, forestry and fishing
             - Mining and quarrying
