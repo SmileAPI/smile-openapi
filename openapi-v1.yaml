@@ -135,6 +135,25 @@ paths:
           in: query
           name: name
           description: Filter results by provider name
+        - schema:
+            type: array
+            items:
+              type: string
+          in: query
+          name: ids
+          description: >-
+            Filter results by provider ids, each id will be matched exactly,
+            please following this format 'ids=id1,id2,id3'.
+        - schema:
+            type: array
+            maxItems: 10
+            items:
+              type: string
+          in: query
+          name: topIds
+          description: >-
+            Show these providers on the top of the list, please following this
+            format 'ids=id1,id2,id3'.
     parameters: []
   /providers/{id}:
     parameters:
@@ -1642,6 +1661,8 @@ paths:
                           docId: ABCD123456
                           issueDate: '2007-08-24'
                           expiryDate: '2010-08-24'
+                          documentType: IDENTIFICATION
+                          status: VALID
                           fileUrl: >-
                             https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
                           metadata:
@@ -4291,6 +4312,7 @@ components:
           enum:
             - IDENTIFICATION
             - PAYSLIP
+            - CLEARANCE
         issueDate:
           type: string
           description: Issue date
