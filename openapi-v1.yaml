@@ -638,6 +638,48 @@ paths:
         '504':
           $ref: '#/components/responses/Standard-Errors'
       parameters: []
+  /accounts/{accountId}/disableMonitor:
+    parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: the particular account ID.
+    post:
+      summary: Disable Monitor
+      x-internal: true
+      tags:
+        - Accounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: disable-account-monitor
+      description: disable monitor account data.
   /identities:
     get:
       summary: List Identities
@@ -3311,6 +3353,7 @@ components:
             - HRIS
             - PAYROLL
             - WALLET
+            - IDENTIFICATION
             - ISIC-A
             - ISIC-B
             - ISIC-C
@@ -3345,6 +3388,7 @@ components:
             - Payroll System
             - Tamper-proof document issuance & verification systems
             - Human Resource Information System
+            - Identification
             - Agriculture, forestry and fishing
             - Mining and quarrying
             - Manufacturing
@@ -4313,6 +4357,7 @@ components:
             - IDENTIFICATION
             - PAYSLIP
             - CLEARANCE
+            - CERTIFICATE
         issueDate:
           type: string
           description: Issue date
@@ -6020,7 +6065,7 @@ components:
           type: string
           description: >-
             The key that will be used to generate HMAC-SHA512 hex digest value
-            in the SmileAPI-Signature header.
+            in the Smile-Signature header.
           example: a little secret
         eventTypes:
           type: array
@@ -6221,6 +6266,140 @@ components:
             providers:
               - string
       description: Payload when a user start to connect his/her work account.
+    ContributionsUpdatedEvent:
+      title: 'Webhook: Contributions Updated Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            providers:
+              type: array
+              items:
+                type: string
+            count:
+              type: integer
+              description: the updated count of the records.
+              default: 0
+            updatedFrom:
+              $ref: '#/components/schemas/Ref-DateTime'
+            updatedTo:
+              $ref: '#/components/schemas/Ref-DateTime'
+            updatedAt:
+              $ref: '#/components/schemas/Ref-DateTime'
+          required:
+            - userId
+            - accountId
+            - providers
+            - count
+            - updatedFrom
+            - updatedTo
+            - updatedAt
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: CONTRIBUTIONS_UPDATED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            providers:
+              - string
+            count: 10
+            updatedFrom: '2021-04-14T09:30:24Z'
+            updatedTo: '2023-04-14T09:30:24Z'
+            updatedAt: '2021-04-14T09:30:24Z'
+      description: Payload when contributions udpated.
+    EincomesUpdatedEvent:
+      title: 'Webhook: Estimated Incomes Updated Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            providers:
+              type: array
+              items:
+                type: string
+            count:
+              type: integer
+              description: the updated count of the records.
+              default: 0
+            updatedFrom:
+              $ref: '#/components/schemas/Ref-DateTime'
+            updatedTo:
+              $ref: '#/components/schemas/Ref-DateTime'
+            updatedAt:
+              $ref: '#/components/schemas/Ref-DateTime'
+          required:
+            - userId
+            - accountId
+            - providers
+            - count
+            - updatedFrom
+            - updatedTo
+            - updatedAt
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: EINCOMES_UPDATED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            providers:
+              - string
+            count: 10
+            updatedFrom: '2021-04-14T09:30:24Z'
+            updatedTo: '2023-04-14T09:30:24Z'
+            updatedAt: '2021-04-14T09:30:24Z'
+      description: Payload when account update estimated incomes.
     AccountConnectedEvent:
       title: 'Webhook: Account Connected Event'
       x-tags:
@@ -8001,7 +8180,9 @@ components:
         - EMPLOYMENTS_ADDED
         - INCOMES_ADDED
         - CONTRIBUTIONS_ADDED
+        - CONTRIBUTIONS_UPDATED
         - EINCOMES_ADDED
+        - EINCOMES_UPDATED
         - LIABILITIES_ADDED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED

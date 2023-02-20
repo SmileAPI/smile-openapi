@@ -1,4 +1,3 @@
-
 ---
 title: Event Notifications
 excerpt: ''
@@ -42,6 +41,7 @@ Via callbacks, you can react or perform other actions once your user performs a 
 | `onClose` | - | Fired when the Wink Widget has been closed by the user |
 | `onAccountError` | `accountId`, `userId`, `providerId`, `errorCode` | Fired when the user account linking results in an error. |
 | `onUploadsCreated` | `uploads`, `userId` | Fired when the user has submitted documents to be uploaded via the Wink Widget. |
+| `onUIEvent` | `eventName`, `eventTime`, `mode`, `userId`, `account`, `archive` | Fired whenever a new widget screen is shown to the user. See list of screens below. |
 
 ### Example Events
 
@@ -59,6 +59,12 @@ onAccountCreated: ({
 },
 ```
 
+| Property | Type | Description |
+| :------- | :---- | :---- |
+| accountId | string | Account Id that the user is attempting to connect to |
+| userId | string | User Id of the end user on the Smile Network |
+| providerId | string | Provider Id that the user is attempting to connect to |
+
 #### onAccountConnected
 
 Fired when the account linking process has completed successfully, and the user is shown the success connection screen.
@@ -73,6 +79,12 @@ onAccountConnected: ({
 },
 ```
 
+| Property | Type | Description |
+| :------- | :---- | :---- |
+| accountId | string | Account Id that the user has connected to |
+| userId | string | User Id of the end user on the Smile Network |
+| providerId | string | Provider Id that the user has connected to |
+
 #### onAccountRemoved
 
 Fired when the account access has been revoked by the user.
@@ -86,6 +98,12 @@ onAccountRemoved: ({
     console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
 },
 ```
+
+| Property | Type | Description |
+| :------- | :---- | :---- |
+| accountId | string | Account Id that the user has removed |
+| userId | string | User Id of the end user on the Smile Network |
+| providerId | string | Provider Id of the account that the user has removed |
 
 #### onTokenExpired
 
@@ -122,6 +140,13 @@ onAccountError: ({
 },
 ```
 
+| Property | Type | Description |
+| :------- | :---- | :---- |
+| accountId | string | Account Id that the user is attempting to connect to |
+| userId | string | User Id of the end user on the Smile Network |
+| providerId | string | Provider Id that the user is attempting to connect to |
+| errorCode | string | Error code for the error |
+
 #### onUploadsCreated
 
 Fired when the user has submitted documents to be uploaded via the Wink Widget.
@@ -131,3 +156,44 @@ onUploadsCreated: ({ uploads, userId }) => {
     console.log('Uploads: ', uploads, ' User ID:', userId);
 },
 ```
+
+| Property | Type | Description |
+| :------- | :---- | :---- |
+| uploads | object | Contains specific information about the upload |
+| userId | string | User Id of the end user on the Smile Network |
+
+#### onUIEvent
+
+Fired whenever a new widget screen is shown to the user.
+
+```
+onUploadsCreated: ({ eventName, eventTime, mode, userId, account, archive }) => {
+    console.log('Event Name: ', eventName, ', Event Time: ', eventTime, ', mode: ', mode, ', User ID: ', userId, ', Account: ', account, ', Archive: ', archive);
+},
+```
+
+| Property | Type | Description |
+| :------- | :---- | :---- |
+| eventName | string | Name of the event, i.e. `LoginPageOpened` |
+| eventTime | string | Time of the event |
+| mode | string | Mode of the Wink Widget currently running, i.e. `SANDBOX` or `PRODUCTION` |
+| userId | string | User Id of the end user on the Smile Network |
+| account | object | Contains specific account-related information relevant to the event, i.e. `providerId` or `accountId`. Note that these are Ids specific to Smile Network |
+| archive | object | Contains specific archive-related information relevant to the event, i.e. `fileType` |
+
+For the list of event names, see the table below:
+
+| Event Name | Description | Event-specific Properties |
+| :------- | :---- | :---- |
+| ConsentPageOpened | The user opened the consent screen | |
+| ProviderListPageOpened | The user opened the provider list screen | |
+| LoginPageOpened | The user opened the login screen | providerId |
+| MfaPageOpened | The user opened the Multi-Factor Authentication screen | providerId |
+| ConnectSuccessPageOpened | The user opened the account connected success screen | providerId, accountId |
+| AccountRevokePageOpened | The user opened the account connection status screen / revoke screen | providerId, accountId |
+| LoginOptionsPageOpened | The user opened the alternative login options screen | |
+| EmployerSurveyPageOpened | The user opened the employer survey screen | |
+| FileTypeListPageOpened | The user opened the document type selection screen (i.e. to select what type of document they wish to upload, such as SSS records, Income Tax Records, etc.) | |
+| FileTypePageOpened | The user opened the document upload screen | |
+| ArchiveSuccessPageOpened | The user has successfully uploaded a file and has opened the success screen | |
+| RevokeArchivePageOpened | The user opened the archive status screen / delete screen | |
