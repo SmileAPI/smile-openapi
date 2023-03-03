@@ -25,7 +25,7 @@ Once connected by the user, their data is kept for 60 days unless they revoke ac
 
 ## Sample Account data
 
-```
+``` json
 {
     "id": "a-123abc456def789abc123def456abc78",
     "createdAt": "2022-10-01T00:00:00Z",
@@ -51,11 +51,31 @@ Once connected by the user, their data is kept for 60 days unless they revoke ac
 
 ## Webhooks
 
+### `ACCOUNT_CREATED`
+
+Fired when the account linking process has been initiated by the user. This webhook will be fired even for providers who do not require logins.
+
+``` json
+{
+  "id": "123abc456def789abc123def456abc78",
+  "version": 1,
+  "type": "ACCOUNT_CREATED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "providers": [
+      "abccorp"
+    ]
+  }
+}
+```
+
 ### `ACCOUNT_CONNECTED`
 
-Fired when a user has successfully connected an account to the Smile Network.
+Fired when a user has successfully connected an account to the Smile Network. This will only be fired if the data provider requires a login.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
@@ -76,7 +96,7 @@ Fired when a user has successfully connected an account to the Smile Network.
 
 Fired when a user has successfully disconnected or revoked the link to their account from the Smile Network.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
@@ -96,7 +116,7 @@ Fired when a user has successfully disconnected or revoked the link to their acc
 
 Fired when the account linking process initiated by the user is unsuccessful.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,

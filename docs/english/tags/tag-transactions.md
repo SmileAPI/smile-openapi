@@ -40,7 +40,7 @@ If the sources your user provided are not enough, you can also make use of Smile
 
 ## Sample Transaction data
 
-```
+``` json
 {
     "id": "einc-123abc456def789abc123def456abc78",
     "month": "2022-06",
@@ -70,7 +70,7 @@ If the sources your user provided are not enough, you can also make use of Smile
 
 Sent when transaction data from a user is added from the provider.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
@@ -91,7 +91,7 @@ Sent when transaction data from a user is added from the provider.
 
 Sent when the full data sync task process for a user's account is finished.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,

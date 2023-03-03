@@ -3643,6 +3643,7 @@ components:
           providerId: grab
           userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
           connectionStatus: ERROR
+          monitorStatus: ACTIVE
           connection:
             status: ERROR
             errorCode: ACCOUNT_DISABLED
@@ -3672,6 +3673,14 @@ components:
           description: Account connection status
           example: ERROR
           deprecated: true
+        monitorStatus:
+          type: string
+          enum:
+            - ACTIVE
+            - USER_ACTION_REQUIRED
+            - UNSUPPORTED
+            - CUSTOMER_DISABLED
+          description: Account update status
         connection:
           type: object
           required:

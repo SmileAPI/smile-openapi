@@ -108,6 +108,11 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
              * 默认值：空
              */
             companyName: "",
+
+            /**
+             * The wink template ID, 可以从WinkTemplate的页面获取到这个值
+             */
+            templateId: 'wtpl-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             
             /**
              * 帐户登录回调。
@@ -183,6 +188,24 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
              */
             onUploadsCreated: ({ uploads, userId }) => {
                 console.log('Uploads: ', uploads, ' User ID:', userId);
+            },
+
+            /**
+             * 当页面UI发生改变时推送的事件
+             * @param eventName 事件名称
+             * @param eventTime 发生时间
+             * @param mode 沙箱|生产环境
+             * @param userId 用户ID
+             * @param account Account对象
+             * @param archive Archive对象
+             */
+            onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
+                console.log('eventName:', eventName,
+                    "eventTime:", eventTime,
+                    "mode:", mode,
+                    "userId:", userId,
+                    "account:", account,
+                    "archive:", archive);
             },
         });
         smileLinkModal.open()

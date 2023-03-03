@@ -63,7 +63,7 @@ Documents and files that are automatically retrieved from verifiable sources suc
 ## Sample Archive data
 
 
-```
+``` json
 {
    "id": "u-123abc456def789abc123def456abc78",
    "createdAt": "2022-11-01T10:00:00Z",
@@ -129,7 +129,7 @@ Documents and files that are automatically retrieved from verifiable sources suc
 
 Fired when a user has uploaded one or several files ("archive") to Smile.
 
-```
+``` json
 {
    "id": "123abc456def789abc123def456abc78",
    "version": 1,
@@ -146,7 +146,7 @@ Fired when a user has uploaded one or several files ("archive") to Smile.
 
 Fired when an archive has been analyzed and converted into JSON data automatically via OCR.
 
-```
+``` json
 {
    "id": "123abc456def789abc123def456abc78",
    "version": 1,
@@ -163,7 +163,7 @@ Fired when an archive has been analyzed and converted into JSON data automatical
 
 Fired when a user removes permission to access or use an archive.
 
-```
+``` json
 {
    "id": "123abc456def789abc123def456abc78",
    "version": 1,
@@ -180,7 +180,7 @@ Fired when a user removes permission to access or use an archive.
 
 Fired when the archive creation or analysis process is unsuccessful.
 
-```
+``` json
 {
    "id": "123abc456def789abc123def456abc78",
    "version": 1,

@@ -75,6 +75,7 @@ Below are the events you can subscribe to via webhooks.
 | Event                                             | Event Type           | Description                                                                                        |
 |---------------------------------------------------|----------------------|----------------------------------------------------------------------------------------------------|
 | User Creation Successful                          | USER_CREATED         | Sent when a new user and link token is created.                                                    |
+| Account Creation Initiated                     | ACCOUNT_CREATED    | Sent when the account linking process has been initiated by the user. |
 | Account Connection Successful                     | ACCOUNT_CONNECTED    | Sent when a user successfully connects their work account.                                         |
 | Account Disconnection Successful                  | ACCOUNT_DISCONNECTED | Sent when a user disconnects or revokes the link to their work account.                            |
 | Account Connection Failed                         | ACCOUNT_FAILED       | Sent when the account linking process is is unsuccessful.                                          |
@@ -119,6 +120,26 @@ Payload when a new user and link token is created
 ```
 
 ### Accounts
+
+#### Account Created
+
+Payload when the account linking process has been initiated by the user. This webhook will be fired even for providers who do not require logins.
+
+``` json
+{
+  "id": "123abc456def789abc123def456abc78",
+  "version": 1,
+  "type": "ACCOUNT_CREATED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "providers": [
+      "abccorp"
+    ]
+  }
+}
+```
 
 #### Account Connected
 Payload when a user successfully connects his/her work account.

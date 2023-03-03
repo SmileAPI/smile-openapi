@@ -29,7 +29,7 @@ _Estimated Incomes is currently in alpha._
 
 Estimated income is always returned as a monthly amount.
 
-```
+``` json
 [{  
     "id": "einc-123abc456def789abc123def456abc78",  
     "month": "2022-07",  
@@ -74,7 +74,7 @@ Estimated income is always returned as a monthly amount.
 
 Fired when estimated income data has been derived from data shared by a user, either from transactions, contributions, or other data from the provider.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,

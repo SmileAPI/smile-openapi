@@ -31,7 +31,7 @@ slug: providers
 
 ## 提供商数据样本
 
-```
+``` json
 [{
     "id": "abccorp",
     "name": "ABC Corporation",

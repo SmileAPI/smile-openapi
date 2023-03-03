@@ -24,7 +24,7 @@ We retain user records for up to 60 days. Additionally, if users revoke their co
 
 ## Sample User object
 
-```
+``` json
 [{
     "id": "tenantid-f482de95b2154985b65551c85095f886",
     "externalMetadata": null,
@@ -51,7 +51,7 @@ We retain user records for up to 60 days. Additionally, if users revoke their co
 
 Fired when a new user has been created in the Smile Network and their link token is available.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,

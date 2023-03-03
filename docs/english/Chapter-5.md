@@ -49,7 +49,7 @@ Via callbacks, you can react or perform other actions once your user performs a 
 
 Fired when the account linking process has been initiated by the user such as through sending their login credentials. This does not surface the user's login credentials.
 
-```
+``` json
 onAccountCreated: ({
     accountId,
     userId,
@@ -69,7 +69,7 @@ onAccountCreated: ({
 
 Fired when the account linking process has completed successfully, and the user is shown the success connection screen.
 
-```
+``` json
 onAccountConnected: ({
     accountId,
     userId,
@@ -89,7 +89,7 @@ onAccountConnected: ({
 
 Fired when the account access has been revoked by the user.
 
-```
+``` json
 onAccountRemoved: ({
     accountId,
     userId,
@@ -109,7 +109,7 @@ onAccountRemoved: ({
 
 Fired when the Link token has expired. You may then call the [Refresh Token API](/reference/create-token-1) to refresh the user's token.
 
-```
+``` json
 onTokenExpired: () => {
     console.log('Token expired');
 },
@@ -119,7 +119,7 @@ onTokenExpired: () => {
 
 Fired when the Wink Widget has been closed by the user via the close icon or exit buttons.
 
-```
+``` json
 onClose: () => {
     console.log('Widget closed')
 },
@@ -129,7 +129,7 @@ onClose: () => {
 
 Fired when the user account linking results in an error. The full list of errors can be seen at the [Get Account API reference](/reference/get-account-1).
 
-```
+``` json
 onAccountError: ({
     accountId,
     userId,
@@ -151,7 +151,7 @@ onAccountError: ({
 
 Fired when the user has submitted documents to be uploaded via the Wink Widget.
 
-```
+``` json
 onUploadsCreated: ({ uploads, userId }) => {
     console.log('Uploads: ', uploads, ' User ID:', userId);
 },
@@ -166,8 +166,8 @@ onUploadsCreated: ({ uploads, userId }) => {
 
 Fired whenever a new widget screen is shown to the user.
 
-```
-onUploadsCreated: ({ eventName, eventTime, mode, userId, account, archive }) => {
+``` json
+onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
     console.log('Event Name: ', eventName, ', Event Time: ', eventTime, ', mode: ', mode, ', User ID: ', userId, ', Account: ', account, ', Archive: ', archive);
 },
 ```

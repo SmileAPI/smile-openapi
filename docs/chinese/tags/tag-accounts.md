@@ -25,7 +25,7 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 ## 账户数据样例
 
-```
+``` json
 {
     "id": "a-123abc456def789abc123def456abc78",
     "createdAt": "2022-10-01T00:00:00Z",
@@ -51,11 +51,31 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 ## Webhooks
 
+### `ACCOUNT_CREATED`
+
+当用户启动账户链接过程时，就会发布此事件。即使对于不需要登录的提供商，也会启动这个 webhook。
+
+``` json
+{
+  "id": "123abc456def789abc123def456abc78",
+  "version": 1,
+  "type": "ACCOUNT_CREATED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "providers": [
+      "abccorp"
+    ]
+  }
+}
+```
+
 ### `ACCOUNT_CONNECTED`
 
-当用户成功连接一个账户到 Smile Network，就会发布此事件。
+当用户成功地将一个账户连接到 Smile Network 时，就会发布此事件。只有在数据提供商需要登录时才会触发。
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
@@ -76,7 +96,7 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 当用户成功断开或撤销他们在 Smile Network 中账户的连接，就会发布此事件。
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
@@ -96,7 +116,7 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 当用户发起的账户连接过程失败，就会发布此事件。
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,

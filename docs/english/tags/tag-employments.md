@@ -52,7 +52,7 @@ If the sources provided by your user are not enough, you can also make use of Sm
 
 ## Sample Employment data
 
-```
+``` json
 {
     "id": "e-123abc456def789abc123def456abc78",
     "startDate": "2022-07-01",
@@ -88,7 +88,7 @@ If the sources provided by your user are not enough, you can also make use of Sm
 
 Sent when employment data shared by a user is added from the provider.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
@@ -109,7 +109,7 @@ Sent when employment data shared by a user is added from the provider.
 
 Sent when the full data sync task process for a user's account is finished.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,

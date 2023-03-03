@@ -63,7 +63,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 ## Archive 数据样本
 
 
-```
+``` json
 {
    "id": "u-123abc456def789abc123def456abc78",
    "createdAt": "2022-11-01T10:00:00Z",
@@ -129,7 +129,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 当用户上传一个或几个文件（"Archive"）到 Smile 时，此 Webhook 事件会被触发。
 
-```
+``` json
 {
    "id": "123abc456def789abc123def456abc78",
    "version": 1,
@@ -146,7 +146,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 当 Archive 已通过 OCR 解析为 JSON 数据时，此 Webhook 事件会被触发。
 
-```
+``` json
 {
    "id": "123abc456def789abc123def456abc78",
    "version": 1,
@@ -163,7 +163,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 当用户取消访问 Archive 的权限时，此 Webhook 事件会被触发。
 
-```
+``` json
 {
    "id": "123abc456def789abc123def456abc78",
    "version": 1,
@@ -180,7 +180,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 当 Archive 创建或分析过程失败时，此 Webhook 事件会被触发。
 
-```
+``` json
 {
    "id": "123abc456def789abc123def456abc78",
    "version": 1,

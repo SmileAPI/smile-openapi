@@ -39,7 +39,7 @@ After the user connects an [Account](/reference/accounts) via Smile, Smile retri
 
 ## Sample Rating data
 
-```
+``` json
 [{
     "id": "r-123abc456def789abc123def456abc78",
     "currentRating": 4,
@@ -71,7 +71,7 @@ After the user connects an [Account](/reference/accounts) via Smile, Smile retri
 
 Sent when ratings data about a user is added from the provider.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
@@ -92,7 +92,7 @@ Sent when ratings data about a user is added from the provider.
 
 Sent when the full data sync task process for a user's account is finished.
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,

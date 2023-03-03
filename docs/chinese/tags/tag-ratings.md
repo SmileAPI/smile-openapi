@@ -39,7 +39,7 @@ Ratings 数据端点提供用户在[ Provider ](/reference/providers)平台上�
 
 ## 评级数据样例
 
-```
+``` json
 [{
     "id": "r-123abc456def789abc123def456abc78",
     "currentRating": 4,
@@ -71,7 +71,7 @@ Ratings 数据端点提供用户在[ Provider ](/reference/providers)平台上�
 
 添加有关用户的评级数据时，事件发送格式如下：
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
@@ -92,7 +92,7 @@ Ratings 数据端点提供用户在[ Provider ](/reference/providers)平台上�
 
 用户账户的数据同步进程结束时，事件发送格式如下：
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,

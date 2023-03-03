@@ -24,7 +24,7 @@ slug: users
 
 ## 用户对象样例
 
-```
+``` json
 [{
     "id": "tenantid-f482de95b2154985b65551c85095f886",
     "externalMetadata": null,
@@ -51,7 +51,7 @@ slug: users
 
 当一个新的用户在 Smile Network 中被创建，并且他们的链接 token 是可用的，就会发布此事件。
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,

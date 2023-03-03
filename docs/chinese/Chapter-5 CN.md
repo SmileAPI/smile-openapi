@@ -49,7 +49,7 @@ Smile 还使用回调来实时通知您的应用程序在您的环境中发生�
 
 当账户连接过程由用户启动时触发，例如通过发送他们的登录凭证。这不会显示用户的登录凭证。
 
-```
+``` json
 onAccountCreated: ({
     accountId,
     userId,
@@ -69,7 +69,7 @@ onAccountCreated: ({
 
 当账户连接过程成功完成，并向用户显示成功连接屏幕时触发。
 
-```
+``` json
 onAccountConnected: ({
     accountId,
     userId,
@@ -89,7 +89,7 @@ onAccountConnected: ({
 
 当账户访问权被用户撤销时触发。
 
-```
+``` json
 onAccountRemoved: ({
     accountId,
     userId,
@@ -109,7 +109,7 @@ onAccountRemoved: ({
 
 当链接令牌已过期时触发。您可以通过调用[Refresh Token API](/reference/creat-token-1)来更新用户的 token 。
 
-```
+``` json
 onTokenExpired: () => {
     console.log('Token expired');
 },
@@ -119,7 +119,7 @@ onTokenExpired: () => {
 
 当 Wink Widget 被用户通过关闭图标或退出按钮关闭时触发。
 
-```
+``` json
 onClose: () => {
     console.log('Widget closed')
 },
@@ -129,7 +129,7 @@ onClose: () => {
 
 当用户账户链接出现错误时触发。完整的错误列表可以在[Get Account API reference](/reference/get-account-1)中看到。
 
-```
+``` json
 onAccountError: ({
     accountId,
     userId,
@@ -151,7 +151,7 @@ onAccountError: ({
 
 当用户通过 Wink Widget 提交要上传的文件时触发。
 
-```
+``` json
 onUploadsCreated: ({ uploads, userId }) => {
     console.log('Uploads: ', uploads, ' User ID:', userId);
 },
@@ -165,8 +165,8 @@ onUploadsCreated: ({ uploads, userId }) => {
 #### onUIEvent
 
 当向用户显示一个新的 widget 页面时触发。
-```
-onUploadsCreated: ({ eventName, eventTime, mode, userId, account, archive }) => {
+``` json
+onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
     console.log('Event Name: ', eventName, ', Event Time: ', eventTime, ', mode: ', mode, ', User ID: ', userId, ', Account: ', account, ', Archive: ', archive);
 },
 ```

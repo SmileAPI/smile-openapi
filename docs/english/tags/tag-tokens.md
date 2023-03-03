@@ -25,7 +25,7 @@ You can refresh a user's token by calling the `/tokens` endpoint. Simply pass th
 
 ## Sample Token data
 
-```
+``` json
 {
     "expiresAt": "2022-11-01T09:00:00Z",
     "mode": "SANDBOX",
@@ -46,7 +46,7 @@ You can refresh a user's token by calling the `/tokens` endpoint. Simply pass th
 
 Fired when a new user has been created in the Smile Network and their link token is available.
 
-```
+``` json
 {
     "id": "123abc456def789abc123def456abc78",
     "version": 1,

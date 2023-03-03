@@ -111,6 +111,11 @@ Below is sample HTML code which embeds the Wink Javascript SDK.
             companyName: "",
 
             /**
+             * The wink template ID, you can get it from developer portal wink templates page
+             */
+            templateId: 'wtpl-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+
+            /**
              * Account login callback.
              */
             onAccountCreated: ({
@@ -186,6 +191,25 @@ Below is sample HTML code which embeds the Wink Javascript SDK.
             onUploadsCreated: ({ uploads, userId }) => {
                 console.log('Uploads: ', uploads, ' User ID:', userId);
             },
+
+            /**
+             * Fired whenever a new widget screen is shown to the user.
+             * @param eventName event name
+             * @param eventTime happen time
+             * @param mode SANDBOX|PRODUCTION
+             * @param userId user ID
+             * @param account Account Object
+             * @param archive Archive Object
+             */
+            onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
+                console.log('eventName:', eventName,
+                    "eventTime:", eventTime,
+                    "mode:", mode,
+                    "userId:", userId,
+                    "account:", account,
+                    "archive:", archive);
+            },
+
         });
         smileLinkModal.open()
     </script>

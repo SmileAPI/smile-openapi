@@ -95,7 +95,7 @@ slug: identities
 
 ## 身份数据样例
 
-```
+``` json
 {
   "id": "i-123abc456def789abc123def456abc78",
   "fullName": "George Cimafranca Palomero, Jr",
@@ -166,7 +166,7 @@ slug: identities
 
 添加有关用户的身份数据时，事件发送格式如下：
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
@@ -187,7 +187,7 @@ slug: identities
 
 用户账户的数据同步进程结束时，事件发送格式如下：
 
-```
+``` json
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,

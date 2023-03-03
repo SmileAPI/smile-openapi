@@ -72,29 +72,30 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
 
 以下是您可以通过 webhook 订阅的事件:
 
-| 事件                                         | 事件类型                       | 详情                                             |
-|--------------------------------------------|----------------------------|------------------------------------------------|
-| User Creation Successful                   | USER_CREATED               | 当创建新用户和链接 token 时发送                            |
-| Account Connection Successful              | ACCOUNT_CONNECTED          | 当用户成功连接其工作账户时发送。                               |
-| Account Disconnection Successful           | ACCOUNT_DISCONNECTED       | 当用户断开或撤销与其账户的链接时发送。                            |
-| Account Connection Failed                  | ACCOUNT_FAILED             | 当账户关联过程失败时发送。                                  |
-| Task Started                                      | TASK_STARTED         | 当用户账户的数据同步进程开始时发送。                             |
-| Task Finished                                     | TASK_FINISHED        | 当用户账户的数据同步进程结束时发送。                             |
+| 事件                                         | 事件类型                       | 详情                                            |
+|--------------------------------------------|----------------------------|-----------------------------------------------|
+| User Creation Successful                   | USER_CREATED               | 当创建新用户和链接 token 时发送                           |
+| Account Creation Initiated                     | ACCOUNT_CREATED    | 当用户启动账户连接程序时发送。|
+| Account Connection Successful              | ACCOUNT_CONNECTED          | 当用户成功连接其工作账户时发送。                              |
+| Account Disconnection Successful           | ACCOUNT_DISCONNECTED       | 当用户断开或撤销与其账户的链接时发送。                           |
+| Account Connection Failed                  | ACCOUNT_FAILED             | 当账户关联过程失败时发送。                                 |
+| Task Started                                      | TASK_STARTED         | 当用户账户的数据同步进程开始时发送。                            |
+| Task Finished                                     | TASK_FINISHED        | 当用户账户的数据同步进程结束时发送。                            |
 | Archive Creation Successful                | ARCHIVE_STARTED            | 当用户成功上传一个或多个文件时发送，这些文件将作为 Smile 中的 “archive” 。 |
-| Archive Analysis Successful                | ARCHIVE_ANALYZED           | 当 archive 已通过 OCR 自动分析并转换为 JSON 数据时发送。         |
-| Archive Revocation Successful              | ARCHIVE_REVOKED            | 当用户删除访问或使用 archive 的权限时发送。                     |
-| Archive Creation or Analysis Failed        | ARCHIVE_FAILED             | 当 archive 创建或分析过程失败时发送。                        |
-| Invitation Sending Successful              | INVITE_INVITED             | 当邀请成功发送给用户时发送。                                 |
-| Account Link by Invitation Successful      | INVITE_LINKED              | 当已收到邀请的用户能够成功关联其账户时发送。                         |
-| Identity Data Added                        | IDENTITY_ADDED             | 当添加有关用户的身份数据时发送。                               |
-| Rating Data Added                          | RATING_ADDED               | 当添加有关用户的评级数据时发送。                               |
-| Transactions Data Added                    | TRANSACTIONS_ADDED         | 当添加用户共享的交易数据时发送。                               |
-| Documents Data Added                       | DOCUMENTS_ADDED            | 当添加用户共享的文档数据时发送。                               |
-| Employments Data Added                     | EMPLOYMENTS_ADDED          | 当添加用户共享的就业数据时发送。                               |
-| Incomes Data Added                         | INCOMES_ADDED              | 当添加用户共享的收入数据时发送。                               |
-| Estimated Incomes Data Added <br>*(抢先试用版)* | EINCOMES_ADDED             | 当添加用户共享的估计收入数据时发送。                             |
-| Contributions Data Added                   | CONTRIBUTIONS_ADDED        | 当添加用户共享的社会保障缴款数据时发送。                           |
-| Liabilities Data Added                     | LIABILITIES_ADDED          | 添加用户共享的负债数据时发送。                                |
+| Archive Analysis Successful                | ARCHIVE_ANALYZED           | 当 archive 已通过 OCR 自动分析并转换为 JSON 数据时发送。        |
+| Archive Revocation Successful              | ARCHIVE_REVOKED            | 当用户删除访问或使用 archive 的权限时发送。                    |
+| Archive Creation or Analysis Failed        | ARCHIVE_FAILED             | 当 archive 创建或分析过程失败时发送。                       |
+| Invitation Sending Successful              | INVITE_INVITED             | 当邀请成功发送给用户时发送。                                |
+| Account Link by Invitation Successful      | INVITE_LINKED              | 当已收到邀请的用户能够成功关联其账户时发送。                        |
+| Identity Data Added                        | IDENTITY_ADDED             | 当添加有关用户的身份数据时发送。                              |
+| Rating Data Added                          | RATING_ADDED               | 当添加有关用户的评级数据时发送。                              |
+| Transactions Data Added                    | TRANSACTIONS_ADDED         | 当添加用户共享的交易数据时发送。                              |
+| Documents Data Added                       | DOCUMENTS_ADDED            | 当添加用户共享的文档数据时发送。                              |
+| Employments Data Added                     | EMPLOYMENTS_ADDED          | 当添加用户共享的就业数据时发送。                              |
+| Incomes Data Added                         | INCOMES_ADDED              | 当添加用户共享的收入数据时发送。                              |
+| Estimated Incomes Data Added <br>*(抢先试用版)* | EINCOMES_ADDED             | 当添加用户共享的估计收入数据时发送。                            |
+| Contributions Data Added                   | CONTRIBUTIONS_ADDED        | 当添加用户共享的社会保障缴款数据时发送。                          |
+| Liabilities Data Added                     | LIABILITIES_ADDED          | 添加用户共享的负债数据时发送。                               |
 
 
 
@@ -120,6 +121,26 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
 ```
 
 ### Accounts
+
+#### Account 创建成功
+
+当用户启动账户连接过程时，事件发送格式如下。即使对于不需要登录的数据提供商，这个webhook也会被触发：
+
+``` json
+{
+  "id": "123abc456def789abc123def456abc78",
+  "version": 1,
+  "type": "ACCOUNT_CREATED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "providers": [
+      "abccorp"
+    ]
+  }
+}
+```
 
 #### Account 连接成功
 用户成功连接其账户时，事件发送格式如下：

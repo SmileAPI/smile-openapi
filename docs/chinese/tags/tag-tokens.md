@@ -25,7 +25,7 @@ slug: tokens
 
 ## Token 数据样本
 
-```
+``` json
 {
     "expiresAt": "2022-11-01T09:00:00Z",
     "mode": "SANDBOX",
@@ -46,7 +46,7 @@ slug: tokens
 
 当一个新的用户在 Smile Network 中被创建，并且他们的链接 token 可用时，此 Webhook 事件会被触发。
 
-```
+``` json
 {
     "id": "123abc456def789abc123def456abc78",
     "version": 1,

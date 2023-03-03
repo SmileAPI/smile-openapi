@@ -31,7 +31,7 @@ Where there is no payroll system mapped to a specific employer, Smile recommends
 
 ## Sample Provider data
 
-```
+``` json
 [{
     "id": "abccorp",
     "name": "ABC Corporation",
