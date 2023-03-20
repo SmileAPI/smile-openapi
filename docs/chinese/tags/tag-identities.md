@@ -13,9 +13,9 @@ slug: identities
 
 大多数平台至少包含名字和姓氏，中间名和后缀因平台而异。您可以使用这些信息将客户提供的信息与来自可验证来源(如政府记录和社会保障机构)的数据进行匹配。
 
-## 回退方法
+## 补充数据方式
 
-如果用户提供的资源不够，您也可以使用 Smile 的 [Archive API](/reference/archives) 鼓励用户上传他们自己的文件。这可以是驾照，护照，甚至银行账单或工资文件。
+如果用户提供的数据不够，您也可以使用 Smile 的 [Archive API](/reference/archives) 鼓励用户上传他们自己的文件。这可以是驾照，护照，甚至银行账单或工资文件。
 
 ## 身份对象
 
@@ -158,7 +158,7 @@ slug: identities
 | 端点                                       | |
 |:-----------------------------------------| :---- |
 | [获取身份数据列表](/reference/list-identities-1) | `GET /identities` |
-| [检索一条身份数据](/reference/get-identity-1)    | `GET /identities/{id}` |
+| [获取一条身份记录](/reference/get-identity-1)    | `GET /identities/{id}` |
 
 ## Webhooks
 

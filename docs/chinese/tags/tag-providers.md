@@ -71,7 +71,7 @@ slug: providers
 
 ## 端点
 
-| 端点                                      |                       |
-|:----------------------------------------| :-------------------- |
-| [获取提供商列表](/reference/list-providers)    | `GET /providers`      |
-| [获取一个提供商的记录](/reference/get-provider-1) | `GET /providers/{id}` |
+| 端点                                     |                       |
+|:---------------------------------------| :-------------------- |
+| [获取提供商列表](/reference/list-providers)   | `GET /providers`      |
+| [获取一条提供商记录](/reference/get-provider-1) | `GET /providers/{id}` |

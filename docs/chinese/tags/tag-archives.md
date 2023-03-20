@@ -121,7 +121,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 | 端点                                         | |
 |:-------------------------------------------| :---- |
 | [获取 Archives 列表](/reference/list-archives) | `GET /archives` |
-| [获取一个 Archive 记录](/reference/get-archive)  | `GET /archives/{id}` |
+| [获取一条 Archive 记录](/reference/get-archive)  | `GET /archives/{id}` |
 
 ## Webhooks
 

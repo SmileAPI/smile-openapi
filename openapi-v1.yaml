@@ -7943,6 +7943,8 @@ components:
       description: Metadata related to account-specific data
       x-internal: true
       properties:
+        itemCreatedAt:
+          $ref: '#/components/schemas/Ref-DateTime'
         createdAt:
           $ref: '#/components/schemas/Ref-DateTime'
         accountId:
@@ -7969,6 +7971,7 @@ components:
           description: The provider ID associated with this object
       required:
         - createdAt
+        - itemCreatedAt
         - sourceId
         - sourceType
         - userId

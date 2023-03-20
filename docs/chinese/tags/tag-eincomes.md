@@ -25,7 +25,7 @@ _预估收入目前在公测阶段。_
 | baseAmount | number | 收入金额                        |
 | metadata   | object | 有关该资源的其他信息，如创建日期、数据来源、用户ID等 |
 
-## 预估收入数据样本
+## 预估收入数据样例
 
 预估收入总是返回每月的总额。
 
@@ -63,10 +63,10 @@ _预估收入目前在公测阶段。_
 
 ## 端点
 
-| 端点                                     |                      |
-|:---------------------------------------| :------------------- |
-| [获取预估收入列表](/reference/list-eincomes)   | `GET /eincomes`      |
-| [获取一个预估收入的记录](/reference/get-eincomes) | `GET /eincomes/{id}` |
+| 端点                                    |                      |
+|:--------------------------------------| :------------------- |
+| [获取预估收入列表](/reference/list-eincomes)  | `GET /eincomes`      |
+| [获取一条预估收入记录](/reference/get-eincomes) | `GET /eincomes/{id}` |
 
 ## Webhooks
 

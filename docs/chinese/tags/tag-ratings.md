@@ -63,7 +63,7 @@ Ratings 数据端点提供用户在[ Provider ](/reference/providers)平台上�
 | 端点                                    | |
 |:--------------------------------------| :---- |
 | [获取评级数据列表](/reference/list-ratings-1) | `GET /ratings` |
-| [检索一条评级数据](/reference/get-rating-1)   | `GET /ratings/{id}` |
+| [获取一条评级记录](/reference/get-rating-1)   | `GET /ratings/{id}` |
 
 ## Webhooks
 

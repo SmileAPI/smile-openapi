@@ -17,9 +17,10 @@ Smile 从平台上原封不动地返回就业信息，如开始和结束日期�
 
 大多数平台至少会包含一个开始日期和雇主名称。如果从社会保障账户中评估就业状况，您可以将这些与社保缴费进行比对，以核实就业时间和当前状况。
 
-## 回退方法
+## 补充数据方式
 
-如果用户提供的来源不够， 您也可以利用 Smile 的[ Archive API ](/reference/archives)来鼓励用户上传工资单或公司 ID。
+如果用户提供的数据不够， 您也可以利用 Smile 的[ Archive API ](/reference/archives)来鼓励用户上传工资单或公司 ID。
+
 ## 就业数据对象
 
 | 属性             | 类型     | 详情                                                                      |
@@ -79,7 +80,7 @@ Smile 从平台上原封不动地返回就业信息，如开始和结束日期�
 | 端点                                        | |
 |:------------------------------------------| :---- |
 | [获取就业数据列表](/reference/list-employments-1) | `GET /employments` |
-| [检索一条就业数据](/reference/get-employment-1)   | `GET /employments/{id}` |
+| [获取一条就业记录](/reference/get-employment-1)   | `GET /employments/{id}` |
 
 ## Webhooks
 
