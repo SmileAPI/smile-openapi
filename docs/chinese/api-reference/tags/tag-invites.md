@@ -2,7 +2,7 @@
 title: Invites
 excerpt: ""
 category: 62ce2a159aafea009af30daa
-slug: invite
+slug: invites
 ---
 
 无需手动访问 Smile Developer Portal，Invites API 就可以让您直接通过您的网站或应用程序来管理以及发送邀请给终端用户。这有利于为终端用户提供一个自动化的过程和体验。

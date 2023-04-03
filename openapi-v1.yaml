@@ -3812,6 +3812,7 @@ components:
               type: Primary
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
+            itemCreatedAt: '2021-04-14T09:30:26Z'
             sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
@@ -3900,6 +3901,10 @@ components:
           description: Public profile URL
           example: https://www.upwork.com/freelancers/~02c0bf6ae6a581ee2b
           nullable: true
+        latestEmployerName:
+          type: string
+          deprecated: true
+          description: The lastest employer name at now, it will be removed in the future.
         emails:
           type: array
           description: A collection of email addresses

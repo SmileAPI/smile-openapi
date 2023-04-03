@@ -2,7 +2,7 @@
 title: Invites
 excerpt: ""
 category: 6294c0fd9494580032b22740
-slug: invite
+slug: invites
 ---
 
 The Invites APIs allow you to manage and send invitations to your end-users directly from your website or application, without the need to access the Smile Developer Portal manual functionality. This facilitates an automated process and experience for your end users.
