@@ -1,0 +1,22 @@
+---
+title: Case Study  
+excerpt: ""  
+category: 621596fd02cd9f004704ba75  
+slug: security-practices
+---
+
+Smile takes security seriously by using the highest security standards to protect users' information and privacy.
+
+## Credential security
+
+Smile does not store end-user credentials at any point: we pass these directly to the data source's servers via TLS to initiate the process of information sharing. All data is encrypted at RSA 4096 with SHA-256 signing for maximum security.
+
+## Personal data privacy
+
+Users' personal data is provided on a revocation-based model: users can, at any point, revoke access to their data, making sure they are in full control when and to whom they share their own data. All information is deleted once they revoke access through our available Revoke API.
+
+Otherwise, we retain data for 60 days, after which all personal data is anonymized.
+
+## Privacy Policy
+
+We also maintain a [Privacy Policy ](https://www.getsmileapi.com/privacy-policy)so you can be sure how your data is being used

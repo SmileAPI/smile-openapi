@@ -9,13 +9,13 @@ slug: onboarding-faqs
 
 ## What are the typical concerns I need to consider during requirements gathering ?
 
-1. **What are the main problems you want to solve with Smile data ? ** Typically, there are two use cases:
+1. **What are the main problems you want to solve with Smile data ?** Typically, there are two use cases:
     1. [Customer verification](/docs/customer-verification-design) - automate your eKYC process with the latest employment data.
     2. [Credit decisioning](/docs/credit-decisioning-design) - automate your underwriting process with the latest employment and income data.
 2. **What does your user base look like, and what kind of data do you want to obtain about them?** You may categorize your user base across different segments such as:
     1. Employment status - do they have a job? Are they employed or unemployed?
     2. Employment type - are they gig workers or contractors? Do they have full-time employment, part-time, or are they business owners?
-    - Identifying and categorizing your user base may help you narrow down the data attributes you need, such as home address, employer name, employment tenure, income stability, and others.
+    3. Identifying and categorizing your user base may help you narrow down the data attributes you need, such as home address, employer name, employment tenure, income stability, and others.
 3. **Do you have any business goals/gains you want to achieve using Smile data?** These can normally be
     1. Reduce non-performing loans
     2. (Further) Automate the registration/credit decisioning process
@@ -51,7 +51,7 @@ DELETE https://open.smileapi.io/v1/accounts/{id}
 
 ## What is the validity period of the user (Link) token?
 
-The user token is used to initialize Smile Wink Widget,  and is valid for 5 hours (240 minutes) before expiry. You may call the [Refresh Token endpoint](https://docs.getsmileapi.com/reference/create-token-1) to get a new user token anytime to obtain a new token.
+The user token is used to initialize Smile Wink Widget,  and is valid for 5 hours (300 minutes) before expiry. You may call the [Refresh Token endpoint](https://docs.getsmileapi.com/reference/create-token-1) to get a new user token anytime to obtain a new token.
 
 ## What is the validity period of the Invite Link?
 

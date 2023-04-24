@@ -481,6 +481,10 @@ paths:
                             errorCode: ACCOUNT_DISABLED
                             errorMessage: Account is disabled
                             updatedAt: '2021-04-14T09:30:24Z'
+                          monitorStatus: UNSUPPORTED
+                          monitor:
+                            status: UNSUPPORTED
+                            updatedAt: null
                         - id: 7fa7e260ad724f39b61427f6ac2edc69
                           createdAt: '2021-04-15T09:30:24Z'
                           providerId: freelancer
@@ -491,6 +495,10 @@ paths:
                             errorCode: null
                             errorMessage: null
                             updatedAt: '2021-04-18T09:30:24Z'
+                          monitorStatus: ACTIVE
+                          monitor:
+                            stust: ACTIVE
+                            updatedAt: '2023-03-14T09:30:24Z'
                         - id: 79da958ecb2143659747deaebca1cfe0
                           createdAt: '2021-04-17T09:30:24Z'
                           providerId: upwork
@@ -501,6 +509,10 @@ paths:
                             errorCode: null
                             errorMessage: null
                             updatedAt: '2021-04-19T09:30:24Z'
+                          monitorStatus: ACTIVE
+                          monitor:
+                            status: ACTIVE
+                            updatedAt: null
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -574,6 +586,10 @@ paths:
                         status: ERROR
                         errorCode: ACCOUNT_DISABLED
                         errorMessage: Account is disabled
+                        updatedAt: '2021-04-14T09:30:24Z'
+                      monitorStatus: ACTIVE
+                      monitor:
+                        status: ACTIVE
                         updatedAt: '2021-04-14T09:30:24Z'
         '400':
           $ref: '#/components/responses/Standard-Errors'
@@ -3703,11 +3719,14 @@ components:
           providerId: grab
           userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
           connectionStatus: ERROR
-          monitorStatus: ACTIVE
           connection:
             status: ERROR
             errorCode: ACCOUNT_DISABLED
             errorMessage: Account is disabled
+            updatedAt: '2021-04-14T09:30:24Z'
+          monitorStatus: ACTIVE
+          monitor:
+            stust: ACTIVE
             updatedAt: '2021-04-14T09:30:24Z'
       properties:
         id:
@@ -3723,24 +3742,18 @@ components:
           description: User ID associated with this account
           example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
         connectionStatus:
-          type: string
-          enum:
-            - PENDING
-            - AWAITING_MFA
-            - ERROR
-            - CONNECTED
-            - DISCONNECTED
-          description: Account connection status
-          example: ERROR
-          deprecated: true
+          $ref: '#/components/schemas/AccountConnectionStatus'
         monitorStatus:
-          type: string
-          enum:
-            - ACTIVE
-            - USER_ACTION_REQUIRED
-            - UNSUPPORTED
-            - CUSTOMER_DISABLED
-          description: Account update status
+          $ref: '#/components/schemas/AccountMonitorStatus'
+        monitor:
+          type: object
+          required:
+            - status
+          properties:
+            status:
+              $ref: '#/components/schemas/AccountMonitorStatus'
+            updatedAt:
+              $ref: '#/components/schemas/Ref-DateTime'
         connection:
           type: object
           required:
@@ -3748,38 +3761,9 @@ components:
             - updatedAt
           properties:
             status:
-              type: string
-              enum:
-                - PENDING
-                - AWAITING_MFA
-                - ERROR
-                - CONNECTED
-                - DISCONNECTED
-              description: Account connection status
-              example: ERROR
+              $ref: '#/components/schemas/AccountConnectionStatus'
             errorCode:
-              type: string
-              enum:
-                - ACCOUNT_DISABLED
-                - ACCOUNT_INACCESSIBLE
-                - ACCOUNT_INCOMPLETE
-                - ACCOUNT_LOCKED
-                - AUTH_REQUIRED
-                - EXPIRED_CREDENTIALS
-                - INVALID_ACCOUNT_TYPE
-                - INVALID_AUTH
-                - INVALID_CREDENTIALS
-                - INVALID_MFA
-                - MFA_TIMEOUT
-                - SERVICE_UNAVAILABLE
-                - SYSTEM_ERROR
-                - TOS_REQUIRED
-                - UNSUPPORTED_AUTH_TYPE
-                - UNSUPPORTED_MFA_METHOD
-                - null
-              description: Error code
-              example: ACCOUNT_DISABLED
-              nullable: true
+              $ref: '#/components/schemas/AccountErrorCode'
             errorMessage:
               type: string
               description: Error message
@@ -3794,6 +3778,50 @@ components:
         - userId
         - connectionStatus
         - connection
+        - monitorStatus
+        - monitor
+    AccountConnectionStatus:
+      type: string
+      enum:
+        - PENDING
+        - AWAITING_MFA
+        - ERROR
+        - CONNECTED
+        - DISCONNECTED
+      description: Account connection status
+      example: CONNECTED
+    AccountErrorCode:
+      type: string
+      enum:
+        - ACCOUNT_DISABLED
+        - ACCOUNT_INACCESSIBLE
+        - ACCOUNT_INCOMPLETE
+        - ACCOUNT_LOCKED
+        - AUTH_REQUIRED
+        - EXPIRED_CREDENTIALS
+        - INVALID_ACCOUNT_TYPE
+        - INVALID_AUTH
+        - INVALID_CREDENTIALS
+        - INVALID_MFA
+        - MFA_TIMEOUT
+        - SERVICE_UNAVAILABLE
+        - SYSTEM_ERROR
+        - TOS_REQUIRED
+        - UNSUPPORTED_AUTH_TYPE
+        - UNSUPPORTED_MFA_METHOD
+        - null
+      description: Error code
+      example: ACCOUNT_DISABLED
+      nullable: true
+    AccountMonitorStatus:
+      type: string
+      enum:
+        - ACTIVE
+        - USER_ACTION_REQUIRED
+        - UNSUPPORTED
+        - CUSTOMER_DISABLED
+      description: Account monitor status
+      example: ACTIVE
     AccountGetResponse:
       title: Account Get Response
       properties:
@@ -5796,7 +5824,7 @@ components:
             description:
               type: string
               minLength: 1
-              maxLength: 500
+              maxLength: 5000
               description: Description of the landing page
               example: Share your employment and income data with us at ${companyName}
             button:
@@ -5821,7 +5849,7 @@ components:
             description:
               type: string
               minLength: 1
-              maxLength: 500
+              maxLength: 5000
               description: >-
                 Description of the success page after an account has been linked
                 or data has been uploaded
@@ -5923,7 +5951,7 @@ components:
             body:
               type: string
               minLength: 1
-              maxLength: 500
+              maxLength: 5000
               description: Text that it will appear in email message
               example: >-
                 Hello ${firstName}, We are working with our partner, Smile API,
@@ -5950,7 +5978,7 @@ components:
             description:
               type: string
               minLength: 1
-              maxLength: 500
+              maxLength: 5000
               description: Description of the landing page
               example: Share your employment and income data with us at ${companyName}
             button:
@@ -5975,7 +6003,7 @@ components:
             description:
               type: string
               minLength: 1
-              maxLength: 500
+              maxLength: 5000
               description: >-
                 Description of the success page after an account has been linked
                 or data has been uploaded
@@ -6738,6 +6766,74 @@ components:
           id: 17bbf36498de4d68a0d4f86c7b62f69f
           version: 1
           type: TASK_FINISHED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            sourceId: string
+            sourceType: ACCOUNT
+            providers:
+              - string
+      description: Event indicates data sync of an account is finished.
+    AccountSyncTaskFinishedEvent:
+      title: 'Webhook: Account Sync Task Finished Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The user ID.
+            sourceId:
+              type: string
+              description: The source ID .
+            sourceType:
+              $ref: '#/components/schemas/Ref-Source-Type'
+            providers:
+              type: array
+              items:
+                type: string
+            status:
+              type: string
+              description: the status of the task
+              enum:
+                - SUCCEEDED
+                - FAILED
+            monitorStatus:
+              $ref: '#/components/schemas/AccountMonitorStatus'
+            datapoints:
+              type: array
+              items:
+                $ref: '#/components/schemas/Ref-Datapoint'
+          required:
+            - userId
+            - sourceId
+            - sourceType
+            - providers
+            - status
+            - monitorStatus
+            - datapoints
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        example-1:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: ACCOUNT_SYNC_TASK_FINISHED
           createdAt: '2021-04-14T09:30:24Z'
           data:
             userId: string
@@ -8300,6 +8396,7 @@ components:
         - ACCOUNT_FAILED
         - TASK_STARTED
         - TASK_FINISHED
+        - ACCOUNT_SYNC_TASK_FINISHED
         - ARCHIVE_STARTED
         - ARCHIVE_ANALYZED
         - ARCHIVE_REVOKED
