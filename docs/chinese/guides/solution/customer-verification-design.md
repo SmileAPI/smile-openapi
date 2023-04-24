@@ -56,15 +56,15 @@ slug: customer-verification-design
 
 [block:image]
 {
-"图像"： [
+"images": [
 {
-"图像"： [
-"https://files.readme.io/d541b14-image.png"、
-null、
+"image": [
+"https://files.readme.io/d541b14-image.png",
+null,
 ""
 ],
-"对齐"： "居中"、
-"边界": true
+"align": "center",
+"border": true
 }
 ]
 }
