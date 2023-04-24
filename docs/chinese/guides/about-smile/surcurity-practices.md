@@ -1,8 +1,8 @@
 ---
-title:  
+title: 安全实践
 excerpt: ""  
 category: 62ce2a159aafea009af30da6
-slug: 安全与隐私
+slug: security-practices
 ---
 
  Smile 非常重视安全，采用最高安全标准来保护用户的信息和隐私。

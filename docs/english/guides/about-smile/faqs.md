@@ -1,5 +1,5 @@
 ---
-title: Case Study  
+title: FAQs
 excerpt: ""  
 category: 621596fd02cd9f004704ba75  
 slug: faqs

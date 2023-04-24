@@ -1,5 +1,5 @@
 ---
-title: Case Study  
+title: Market Coverage
 excerpt: ""  
 category: 621596fd02cd9f004704ba75  
 slug: market-coverage
