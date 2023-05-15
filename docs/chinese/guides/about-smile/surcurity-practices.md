@@ -18,4 +18,4 @@ slug: security-practices
 
 ## 隐私政策
 
-我们还维护[隐私政策](https://www.getsmileapi.com/privacy-policy)，因此您可以确定您的数据是如何被使用的
+我们还维护 [隐私政策](https://www.getsmileapi.com/privacy-policy) ，因此您可以确定您的数据是如何被使用的

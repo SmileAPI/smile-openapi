@@ -11,7 +11,7 @@ A token for the user is issued at the same time, and may be renewed through the 
 
 Users may have one or multiple [Accounts](/reference/accounts) connected to their user record.
 
-We retain user records for up to 60 days. Additionally, if users revoke their consent to sharing their data any time before this period is up, their record is also removed from Smile. _This is irreversible._
+Once users revoke their accounts (via the SDK, or tenants may initiate this process through the [Revoke Account API](/reference/delete-account)), their data will be removed and will no longer be accessible.
 
 ## The User object
 

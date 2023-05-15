@@ -23,7 +23,7 @@ Files up to a maximum of 15MB are accepted, and can be of the following formats:
 - Joint Photographic Experts Group files (`.jpg` or `.jpeg`)
 - Tag Image File Format files (`.tiff`)
 
-All files are stored for only 60 days from upload, unless removed by the user.
+Files are stored until removed by the user via the SDK.
 
 Documents and files that are automatically retrieved from verifiable sources such as payroll systems will be found under the Documents endpoint.
 

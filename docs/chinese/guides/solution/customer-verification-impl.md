@@ -39,124 +39,99 @@ slug: customer-verification-implementation
     <script type="text/javascript">
         const smileLinkModal = new SmileLinkModal({
             /**
-             * The Link API URI. Note: Sandbox and Production modes use different API URIs.
+             * Link API URI 。注意： Sandbox 和 Production 模式使用不同的 API URI 。
              */
             apiHost: 'https://link-sandbox.smileapi.io/v1',
 
             /**
-             * User token(link token) passed from your backend service which is obtained from the Smile API.
+             * User Token： 从你的后端服务里面获取，你的后端服务需要调用 SmileAPI /tokens 或者 /users 接口来获取。
              */
             userToken: '<usertoken>',
 
             /**
-             * Use provider id to promote certain providers to the top of the list. Example ['upwork', 'freelancer']
+             * 使用模板来控制集成在你APP或者网站上的WinkWidget的页面样式与数据
+             * 你可以在 Smile 的开发者控制台创建并获取 TemplateID
+             * https://developer-portal.smileapi.io/link/template
              */
-            topProviders: [],
+            templateId: "<ID of wink template >",
 
             /**
-             * Use provider id to show only select providers in the widget. Example ['upwork', 'freelancer']
+             * 账号创建时的回调.
              */
-            providers: [],
-
-            /**
-             * Set enableSearchBar to false if you wish to hide the providers search bar.
-             * Default: true
-             */
-            enableSearchBar: true,
-
-            /**
-             * Set enableTypeBar to false if you wish to hide the provider types filter.
-             * Default: true
-             */
-            enableTypeBar: true,
-
-            /**
-             * Enable or disable file uploads.
-             */
-            enableUpload: true,           
-
-            /**
-             * Set to your company name if you wish your company name to be reflected on the Consent and Login screens.
-             * Default: empty
-             */
-            companyName: "",
-
-            /**
-             * Account login callback.
-             */
-            onAccountCreated: ({
-                accountId,
-                userId,
-                providerId
-            }) => {
+            onAccountCreated: ({ accountId, userId, providerId }) => {
                 console.log('Account created: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
-             * Account login success callback.
+             * 账号登录成功时的回调.
              */
-            onAccountConnected: ({
-                accountId,
-                userId,
-                providerId
-            }) => {
+            onAccountConnected: ({ accountId, userId, providerId }) => {
                 console.log('Account connected: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
-             * Account revoke callback.
+             * 账号撤销链接的回调.
              */
-            onAccountRemoved: ({
-                accountId,
-                userId,
-                providerId
-            }) => {
+            onAccountRemoved: ({ accountId, userId, providerId }) => {
                 console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
-             * Token expired callback.
+             * Token 失效时的回调
              */
             onTokenExpired: () => {
                 console.log('Token expired');
             },
 
             /**
-             * Smile link SDK close callback.
+             * Smile 的 WinkWidget 关闭时回调。如果你想知道用户通过哪种方式关闭的 WinkWidget，你可以像下面的实例一样传递参数：
+             * onClose:({reason})=>{}
+             * 如果 reason == "close"， 说明用户点击了右上角的关闭图标
+             * 如果 reason == "exit"， 说明用户点击了链接成功页面的 "DONE" 按钮
              */
-            onClose: () => {
-                console.log('Widget closed')
+            onClose: ({ reason }) => {
+                console.log('Link closed, reason:', reason)
             },
 
             /**
-             * Account connection error callback.
-               Where errorCode is from the account connection errorCode in https://docs.getsmileapi.com/reference/get-account-1.
-               Example.
-                    ACCOUNT_DISABLED 
-                    ACCOUNT_INACCESSIBLE 
-                    ACCOUNT_INCOMPLETE 
-                    ACCOUNT_LOCKED 
-                    AUTH_REQUIRED 
-                    EXPIRED_CREDENTIALS 
-                    INVALID_ACCOUNT_TYPE 
-                    INVALID_AUTH 
-                    INVALID_CREDENTIALS 
-                    INVALID_MFA MFA_TIMEOUT 
-                    SERVICE_UNAVAILABLE SYSTEM_ERROR 
-                    TOS_REQUIRED 
-                    UNSUPPORTED_AUTH_TYPE 
-                    UNSUPPORTED_MFA_METHOD
+             * 账号链接出错时的回调
              */
             onAccountError: ({ accountId, userId, providerId, errorCode }) => {
                 console.log('Account error: ', accountId, ' User ID:', userId, ' Provider ID:', providerId, 'Error Code:', errorCode)
             },
 
             /**
-             * Uploads submit callback.
+             * 数据上传时的回调
              */
             onUploadsCreated: ({ uploads, userId }) => {
                 console.log('Uploads: ', uploads, ' User ID:', userId);
             },
+
+            /**
+             * 撤销已上传的数据时的回调
+             */
+            onUploadsRemoved: ({ uploads, userId }) => {
+                console.log('Uploads: ', uploads, ' User ID:', userId);
+            },
+
+            /**
+             * 当页面UI发生改变时推送的事件
+             * @param eventName 事件名称
+             * @param eventTime 发生时间
+             * @param mode 沙箱|生产环境
+             * @param userId 用户ID
+             * @param account Account对象
+             * @param archive Archive对象
+             * Uploads revoke callback.
+             */
+            onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
+                console.log('eventName:', eventName,
+                    "eventTime:", eventTime,
+                    "mode:", mode,
+                    "userId:", userId,
+                    "account:", account,
+                    "archive:", archive);
+            }
         });
         smileLinkModal.open()
     </script>

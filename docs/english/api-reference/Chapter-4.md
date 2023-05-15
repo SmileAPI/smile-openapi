@@ -72,79 +72,35 @@ Below is sample HTML code which embeds the Wink Javascript SDK.
             apiHost: 'https://link-sandbox.smileapi.io/v1',
 
             /**
-             * User token passed from your backend service which is obtained from the Smile API.
+             * User token(link token) passed from your backend service which is obtained from the Smile API.
              */
             userToken: '<usertoken>',
 
             /**
-             * Use provider id to promote certain providers to the top of the list. Example ['upwork', 'freelancer']
-             * Maximum highlighted providers: 10
+             * Use the template ID to determine how your widget looks like embedded in your app or website.
+             * You can find and create the template ID in the Smile developer-portal.
+             * https://developer-portal.smileapi.io/link/template
              */
-            topProviders: [],
-
-            /**
-             * Use provider id to show only select providers in the widget. Example ['upwork', 'freelancer']
-             */
-            providers: [],
-
-            /**
-             * Set enableSearchBar to false if you wish to hide the providers search bar.
-             * Default: true
-             */
-            enableSearchBar: true,
-
-            /**
-             * Set enableTypeBar to false if you wish to hide the provider types filter.
-             * Default: true
-             */
-            enableTypeBar: true,
-
-            /**
-             * Enable or disable file uploads.
-             */
-            enableUpload: true,           
-
-            /**
-             * Set to your company name if you wish your company name to be reflected on the Consent and Login screens.
-             * Default: empty
-             */
-            companyName: "",
-
-            /**
-             * The wink template ID, you can get it from developer portal wink templates page
-             */
-            templateId: 'wtpl-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            templateId: "<ID of wink template >",
 
             /**
              * Account login callback.
              */
-            onAccountCreated: ({
-                accountId,
-                userId,
-                providerId
-            }) => {
+            onAccountCreated: ({ accountId, userId, providerId }) => {
                 console.log('Account created: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
              * Account login success callback.
              */
-            onAccountConnected: ({
-                accountId,
-                userId,
-                providerId
-            }) => {
+            onAccountConnected: ({ accountId, userId, providerId }) => {
                 console.log('Account connected: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
              * Account revoke callback.
              */
-            onAccountRemoved: ({
-                accountId,
-                userId,
-                providerId
-            }) => {
+            onAccountRemoved: ({ accountId, userId, providerId }) => {
                 console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
@@ -156,30 +112,17 @@ Below is sample HTML code which embeds the Wink Javascript SDK.
             },
 
             /**
-             * Smile link SDK close callback.
+             * Smile link SDK close callback.If you want to know which button the user clicked to trigger the close event, you can pass parameters like this.
+             * onClose:({reason})=>{}
+             * If the value of reason is equal to "close", it means that the user clicked the close icon in the upper right corner of the page to close the SDK
+             * If the value of reason is equal to "exit", it means that the user clicked the DONE button on the connection page to close the SDK
              */
-            onClose: () => {
-                console.log('Widget closed')
+            onClose: ({ reason }) => {
+                console.log('Link closed, reason:', reason)
             },
 
             /**
-             * Account connection error callback.
-               Where errorCode is from the account connection errorCode in https://docs.getsmileapi.com/reference/get-account-1.
-               Example.
-                    ACCOUNT_DISABLED 
-                    ACCOUNT_INACCESSIBLE 
-                    ACCOUNT_INCOMPLETE 
-                    ACCOUNT_LOCKED 
-                    AUTH_REQUIRED 
-                    EXPIRED_CREDENTIALS 
-                    INVALID_ACCOUNT_TYPE 
-                    INVALID_AUTH 
-                    INVALID_CREDENTIALS 
-                    INVALID_MFA MFA_TIMEOUT 
-                    SERVICE_UNAVAILABLE SYSTEM_ERROR 
-                    TOS_REQUIRED 
-                    UNSUPPORTED_AUTH_TYPE 
-                    UNSUPPORTED_MFA_METHOD
+             * Account connect error callback.
              */
             onAccountError: ({ accountId, userId, providerId, errorCode }) => {
                 console.log('Account error: ', accountId, ' User ID:', userId, ' Provider ID:', providerId, 'Error Code:', errorCode)
@@ -193,13 +136,14 @@ Below is sample HTML code which embeds the Wink Javascript SDK.
             },
 
             /**
-             * Fired whenever a new widget screen is shown to the user.
-             * @param eventName event name
-             * @param eventTime happen time
-             * @param mode SANDBOX|PRODUCTION
-             * @param userId user ID
-             * @param account Account Object
-             * @param archive Archive Object
+             * Uploads revoke callback.
+             */
+            onUploadsRemoved: ({ uploads, userId }) => {
+                console.log('Uploads: ', uploads, ' User ID:', userId);
+            },
+
+            /**
+             * User event callback is used to capture all the user activities from Smile Wink SDK
              */
             onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
                 console.log('eventName:', eventName,
@@ -208,8 +152,7 @@ Below is sample HTML code which embeds the Wink Javascript SDK.
                     "userId:", userId,
                     "account:", account,
                     "archive:", archive);
-            },
-
+            }
         });
         smileLinkModal.open()
     </script>

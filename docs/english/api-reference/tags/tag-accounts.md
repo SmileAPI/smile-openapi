@@ -11,7 +11,7 @@ No login credentials are stored with [User](/reference/users) accounts. Upon pro
 
 By default, the List Accounts API will return all accounts under your `tenantId` that match your query parameters. Make sure to filter the results by `userId` or `startDate` and `endDate` to narrow down your query.
 
-Once connected by the user, their data is kept for 60 days unless they revoke access via the SDK or otherwise through the [Revoke Account API](/reference/delete-account).
+Once users revoke their accounts (via the SDK, or tenants may initiate this process through the [Revoke Account API](/reference/delete-account)), their data will be removed and will no longer be accessible.
 
 ## The Account object
 

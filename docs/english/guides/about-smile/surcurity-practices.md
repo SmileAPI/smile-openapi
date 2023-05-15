@@ -19,4 +19,4 @@ Otherwise, we retain data for 60 days, after which all personal data is anonymiz
 
 ## Privacy Policy
 
-We also maintain a [Privacy Policy ](https://www.getsmileapi.com/privacy-policy)so you can be sure how your data is being used
+We also maintain a [Privacy Policy](https://www.getsmileapi.com/privacy-policy) so you can be sure how your data is being used

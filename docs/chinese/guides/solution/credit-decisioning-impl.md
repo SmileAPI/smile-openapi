@@ -39,124 +39,99 @@ slug: credit-decisioning-implementation
     <script type="text/javascript">
         const smileLinkModal = new SmileLinkModal({
             /**
-             * Link API URI。注意：Sandbox 和 Production 模式使用不同的API URI。
+             * Link API URI 。注意： Sandbox 和 Production 模式使用不同的 API URI 。
              */
             apiHost: 'https://link-sandbox.smileapi.io/v1',
 
             /**
-             * 从您的后端服务传递的 Smile API 的 User token(link token)。
+             * User Token： 从你的后端服务里面获取，你的后端服务需要调用 SmileAPI /tokens 或者 /users 接口来获取。
              */
             userToken: '<usertoken>',
 
             /**
-             * 通过提供商 ID 将某些提供商提升到列表的顶部。例如 ['upwork', 'freelancer']。
+             * 使用模板来控制集成在你APP或者网站上的WinkWidget的页面样式与数据
+             * 你可以在 Smile 的开发者控制台创建并获取 TemplateID
+             * https://developer-portal.smileapi.io/link/template
              */
-            topProviders: [],
+            templateId: "<ID of wink template >",
 
             /**
-             * 通过使用提供商 ID，在 Wink Widget 中只显示选定的提供商。例如 ['upwork', 'freelancer'] 。
+             * 账号创建时的回调.
              */
-            providers: [],
-
-            /**
-             * 如果您想隐藏提供商搜索栏，请将 enableSearchBar 设置为 false。
-             * 默认为：true
-             */
-            enableSearchBar: true,
-
-            /**
-             * 如果您想隐藏提供商类型过滤器，请将 enableTypeBar 设置为 false。
-             * 默认为: true
-             */
-            enableTypeBar: true,
-
-            /**
-             * 启用或禁用上传文件。
-             */
-            enableUpload: true,           
-
-            /**
-             * 如果您希望公司名称反映在同意和登录页面上，请设置为您的公司名称。
-             * 默认为: 空
-             */
-            companyName: "",
-
-            /**
-             * 帐户创建回调。
-             */
-            onAccountCreated: ({
-                accountId,
-                userId,
-                providerId
-            }) => {
+            onAccountCreated: ({ accountId, userId, providerId }) => {
                 console.log('Account created: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
-             * 帐户登录成功回调。
+             * 账号登录成功时的回调.
              */
-            onAccountConnected: ({
-                accountId,
-                userId,
-                providerId
-            }) => {
+            onAccountConnected: ({ accountId, userId, providerId }) => {
                 console.log('Account connected: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
-             * 帐户撤销回调。
+             * 账号撤销链接的回调.
              */
-            onAccountRemoved: ({
-                accountId,
-                userId,
-                providerId
-            }) => {
+            onAccountRemoved: ({ accountId, userId, providerId }) => {
                 console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
-             * Token 过期回调。
+             * Token 失效时的回调
              */
             onTokenExpired: () => {
                 console.log('Token expired');
             },
 
             /**
-             * Smile link SDK 关闭回调。
+             * Smile 的 WinkWidget 关闭时回调。如果你想知道用户通过哪种方式关闭的 WinkWidget，你可以像下面的实例一样传递参数：
+             * onClose:({reason})=>{}
+             * 如果 reason == "close"， 说明用户点击了右上角的关闭图标
+             * 如果 reason == "exit"， 说明用户点击了链接成功页面的 "DONE" 按钮
              */
-            onClose: () => {
-                console.log('Widget closed')
+            onClose: ({ reason }) => {
+                console.log('Link closed, reason:', reason)
             },
 
             /**
-             * 帐户连接错误回调。
-               其中 errorCode 是来自 https://docs.getsmileapi.com/reference/get-account-1 中的账户连接 errorCode。
-               例如：
-                    ACCOUNT_DISABLED 
-                    ACCOUNT_INACCESSIBLE 
-                    ACCOUNT_INCOMPLETE 
-                    ACCOUNT_LOCKED 
-                    AUTH_REQUIRED 
-                    EXPIRED_CREDENTIALS 
-                    INVALID_ACCOUNT_TYPE 
-                    INVALID_AUTH 
-                    INVALID_CREDENTIALS 
-                    INVALID_MFA MFA_TIMEOUT 
-                    SERVICE_UNAVAILABLE SYSTEM_ERROR 
-                    TOS_REQUIRED 
-                    UNSUPPORTED_AUTH_TYPE 
-                    UNSUPPORTED_MFA_METHOD
+             * 账号链接出错时的回调
              */
             onAccountError: ({ accountId, userId, providerId, errorCode }) => {
                 console.log('Account error: ', accountId, ' User ID:', userId, ' Provider ID:', providerId, 'Error Code:', errorCode)
             },
 
             /**
-             * 上传提交回调。
+             * 数据上传时的回调
              */
             onUploadsCreated: ({ uploads, userId }) => {
                 console.log('Uploads: ', uploads, ' User ID:', userId);
             },
+
+            /**
+             * 撤销已上传的数据时的回调
+             */
+            onUploadsRemoved: ({ uploads, userId }) => {
+                console.log('Uploads: ', uploads, ' User ID:', userId);
+            },
+
+            /**
+             * 当页面UI发生改变时推送的事件
+             * @param eventName 事件名称
+             * @param eventTime 发生时间
+             * @param mode 沙箱|生产环境
+             * @param userId 用户ID
+             * @param account Account对象
+             * @param archive Archive对象
+             * Uploads revoke callback.
+             */
+            onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
+                console.log('eventName:', eventName,
+                    "eventTime:", eventTime,
+                    "mode:", mode,
+                    "userId:", userId,
+                    "account:", account,
+                    "archive:", archive);
+            }
         });
         smileLinkModal.open()
     </script>

@@ -11,8 +11,7 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 默认情况下，List Accounts API 将返回您的 `tenantId` 下所有符合查询参数的账户。请确保通过`userId`、`startDate`或`endDate`来过滤结果，以缩小查询范围。
 
-用户连接后的数据将被保存60天，除非他们经由 SDK 或其他方式通过[ Revoke Account API ]( /reference/delete-account )撤销访问。
-
+当用户通过 SDK，或客户通过启动 [Revoke Account API](/reference/delete-account) 撤销了连接的账户时，用户的数据将被删除，不能再被访问。
 ## 帐户对象
 
 | 属性         | 类型          | 详情                      |

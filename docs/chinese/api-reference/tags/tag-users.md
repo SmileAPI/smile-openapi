@@ -11,7 +11,7 @@ slug: users
 
 用户可以有一个或多个[Accounts](/reference/accounts)连接到他们的用户记录。
 
-我们保留长达 60 天的用户记录。此外，如果用户或者租户在这段时间内的任何时候撤销共享数据，他们的记录也将被从 Smile 中删除。_这个行为是不可逆的。_
+当用户通过 SDK，或客户通过启动 [Revoke Account API](/reference/delete-account) 撤销了连接的账户时，用户的数据将被删除，不能再被访问。
 
 ## 用户对象
 

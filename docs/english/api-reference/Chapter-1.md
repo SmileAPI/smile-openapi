@@ -60,12 +60,7 @@ User Data can either come from linked accounts or from uploaded data. To be able
 If you will be embedding the Client SDK yourself into your own application, you will need to instantiate the widget, after which a user will be created in the Smile Network, with a short-lived token. When the widget is instantiated, your users will first need to provide their consent for Smile to retrieve that data on their behalf. After that, we will display a list of employment and income data providers that your users can choose from. They will then need to either:
 
 1. **Authenticate with a digital data provider.** If we have a direct connection to that data provider, we will display it in a list from which the user can choose from. If they have an account with any of the displayed providers, they can select that provider, then afterwards enter their credentials with that selected data provider. After giving permission, an account is created in the Smile Network from which data will be retrieved, aggregated, and normalized into a standard schema and sent to you in a developer-friendly JSON format. 
-2. **Upload a scanned or photographed document containing their employment or income information.** Not all source employment and income information is in digital form. Typically the source for this type of information still comes in the form of paper documents. Users can scan  or photograph these documents, upload it, and we can then digitize and retrieve the pertinent data from it, in most cases also extracting the data (via Optical Character Recognition or OCR) into a developer-friendly JSON format. In cases where we cannot automatically extract the information, we will always provide a URL to the uploaded file available via the /archives endpoint. 
-
-> 🚧 Warning
-> 
-> **We will keep a copy of the uploaded file/s, for a period of only 60 days!** If you need to retain a copy, please make sure to download and archive these files for yourselves as well.
-
+2. **Upload a scanned or photographed document containing their employment or income information.** Not all source employment and income information is in digital form. Typically the source for this type of information still comes in the form of paper documents. Users can scan  or photograph these documents, upload it, and we can then digitize and retrieve the pertinent data from it, in most cases also extracting the data (via Optical Character Recognition or OCR) into a developer-friendly JSON format. In cases where we cannot automatically extract the information, we will always provide a URL to the uploaded file available via the /archives endpoint.
 
 
 

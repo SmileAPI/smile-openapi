@@ -23,7 +23,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 - Joint Photographic Experts Group files (`.jpg` or `.jpeg`)
 - Tag Image File Format files (`.tiff`)
 
-除非被用户删除，所有文件从上传之日起保存 60 天。
+在用户通过 SDK 删除账户之前，文件都会被储存起来。
 
 从可核实的来源（如工资系统）自动检索的文件和档案将在 Documents 端点下找到。
 
