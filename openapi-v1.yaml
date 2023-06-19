@@ -2099,6 +2099,108 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-eincomes
       description: Get the user's estimated incomes by ID.
+  /simpleIdentities/verify:
+    post:
+      tags:
+        - SimpleIdentities
+      operationId: verify-simpleIdentity
+      summary: Verify the user's identity data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimpleIdentityVerifyRequest'
+        description: request parameters
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleIdentityVerifyResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      hit: true
+                      message: matched
+                      result:
+                        nameMatchScore: 99
+                        mobileMatched: true
+                        emailMatched: false
+                        genderMatched: true
+                        maritalStatusMatched: true
+                        dobMatched: true
+  /simpleIdentities/query:
+    post:
+      tags:
+        - SimpleIdentities
+      operationId: query-simpleIdentity
+      summary: Query more user informations base on request parameters
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SimpleIdentityQueryRequest'
+        description: request parameters
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleIdentityQueryResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      hit: true
+                      message: matched
+                      result:
+                        nameMatchScore: 99
+                        firstName: First Name
+                        middleName: Middle Name
+                        lastName: Last Name
+                        suffix: Jr.
+                        mobile: '+639561388888'
+                        email: george@smilerandom.com
+                        gender: Male
+                        maritalStatus: Married
+                        dob: '2000-01-21'
+                Example2:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      hit: true
+                      message: not match
+                      result:
+                        nameMatchScore: 20
+                        firstName: null
+                        middleName: null
+                        lastName: null
+                        suffix: null
+                        mobile: null
+                        email: null
+                        gender: null
+                        maritalStatus: null
+                        dob: null
+                Example3:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      hit: false
+                      message: invaild identification number
+                      result: null
   /contributions:
     get:
       summary: List Contributions
@@ -2371,6 +2473,100 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-liabilities
       description: Get the user's liabilities by ID.
+  /buckets:
+    parameters: []
+    get:
+      operationId: list-buckets
+      description: List buckets from data sources.
+      summary: List buckets
+      tags:
+        - Features
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: List Buckets Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BucketListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: bucket-123abc456def789abc123def456abc78
+                          cutoffTime: '2022-07-05T10:30:11Z'
+                          features:
+                            incomes_count: 100
+                            incomes_first_income_month_range: 10
+                          metadata:
+                            createdAt: '2021-04-14T09:30:24Z'
+                            sourceId: a-123abc456def789abc123def456abc78
+                            sourceType: ACCOUNT
+                            userId: tenantId-123abc456def789abc123def456abc78
+                            providerId: abccorp
+  /buckets/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Bucket
+      tags:
+        - Features
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BucketGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: bucket-123abc456def789abc123def456abc78
+                      cutoffTime: '2022-07-05T10:30:11Z'
+                      features:
+                        incomes_count: 100
+                        incomes_first_income_month_range: 10
+                      metadata:
+                        createdAt: '2021-04-14T09:30:24Z'
+                        sourceId: a-123abc456def789abc123def456abc78
+                        sourceType: ACCOUNT
+                        userId: tenantId-123abc456def789abc123def456abc78
+                        providerId: abccorp
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: get-feature-bucket
+      description: Get the user's feature bucket by ID.
   /inviteTemplates:
     get:
       summary: List Invite Templates
@@ -3935,33 +4131,14 @@ components:
           description: Suffix
           nullable: true
         gender:
-          type: string
-          enum:
-            - Male
-            - Female
-            - Non-binary
-            - null
-          example: Male
-          description: Gender
-          nullable: true
+          $ref: '#/components/schemas/Ref-Gender'
         dob:
           type: string
           format: date
           description: Date of birth
           nullable: true
         maritalStatus:
-          type: string
-          enum:
-            - Divorced
-            - Married
-            - Separated
-            - Single
-            - Widowed
-            - Lifetime Partner
-            - null
-          example: Married
-          description: Marital status
-          nullable: true
+          $ref: '#/components/schemas/Ref-MaritalStatus'
         countryResidence:
           $ref: '#/components/schemas/Ref-Country'
         citizenship:
@@ -4424,6 +4601,7 @@ components:
           expiryDate: '2010-08-24'
           fileUrl: >-
             https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+          remarks: NO RECORD ON FILE
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
             sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
@@ -4477,6 +4655,11 @@ components:
           description: Publicly available URL reference for the document
           example: >-
             https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+          nullable: true
+        remarks:
+          type: string
+          description: Remarks section
+          example: NO RECORD ON FILE
           nullable: true
         metadata:
           $ref: '#/components/schemas/Object-Reference-Metadata'
@@ -4961,6 +5144,223 @@ components:
         - loanAmount
         - currency
         - amortizationFrequency
+    BucketListResponse:
+      title: Bucket List Response
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              type: object
+              properties:
+                nextCursor:
+                  $ref: '#/components/schemas/Object-Next-Cursor'
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Bucket'
+    BucketGetResponse:
+      title: Bucket Get Response
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/Bucket'
+    Bucket:
+      title: Bucket
+      type: object
+      x-internal: true
+      properties:
+        id:
+          type: string
+          example: bucket-123456789012345678901234567890
+        cutoffTime:
+          type: string
+          title: Cutoff time for feature calculations.
+          format: date-time
+          example: '2021-04-14T09:30:24Z'
+          description: Date and time
+          x-internal: true
+        metadata:
+          $ref: '#/components/schemas/Object-Reference-Metadata'
+        features:
+          $ref: '#/components/schemas/Object-Feature'
+    SimpleIdentityVerifyRequest:
+      title: object
+      required:
+        - idType
+        - idNumber
+        - firstName
+      properties:
+        idType:
+          type: string
+          description: The identification type, currently only support SSS
+          enum:
+            - SSS
+        idNumber:
+          type: string
+          description: Identification number
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dob:
+          type: string
+          format: date
+          description: The day of birth, yyyy-MM-dd
+          example: '2000-01-21'
+        middleName:
+          type: string
+        suffix:
+          type: string
+        mobile:
+          type: string
+        email:
+          type: string
+        gender:
+          $ref: '#/components/schemas/Ref-Gender'
+        maritalStatus:
+          $ref: '#/components/schemas/Ref-MaritalStatus'
+    SimpleIdentityVerifyResponse:
+      title: Simple Identity Query Response
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/SimpleIdentityVerifyData'
+    SimpleIdentityVerifyData:
+      type: object
+      required:
+        - hit
+      properties:
+        hit:
+          type: boolean
+          description: >-
+            if the identification number is invalid or it can not be found then
+            the value is false
+        message:
+          type: string
+        result:
+          type: object
+          required:
+            - nameMatchScore
+          properties:
+            nameMatchScore:
+              type: integer
+              maximum: 100
+              minimum: 0
+              description: The idNumber firstName, lastName match score
+            dobMatched:
+              type: boolean
+              description: >-
+                The dob matched or not, if the dob in request parameters is
+                null, then return null
+            mobileMatched:
+              type: boolean
+              description: >-
+                The mobile matched or not, if the mobile in request parameters
+                is null, then return null
+            emailMatched:
+              type: boolean
+              description: >-
+                The email matched or not, if the email in request parameters is
+                null, then return null
+            genderMatched:
+              type: boolean
+              description: >-
+                The gender matched or not, if the gender in request parameters
+                is null, then return null
+            maritalStatusMatched:
+              type: boolean
+              description: >-
+                The maritalStatus matched or not, if the maritalStatus in
+                request parametere is null, then return null
+    SimpleIdentityQueryRequest:
+      title: object
+      required:
+        - idType
+        - idNumber
+        - firstName
+      properties:
+        idType:
+          type: string
+          description: The identification type, currently only support SSS
+          enum:
+            - SSS
+        idNumber:
+          type: string
+          description: Identification number
+        firstName:
+          type: string
+        lastName:
+          type: string
+        dob:
+          type: string
+          format: date
+          description: The day of birthday, yyyy-MM-dd
+          example: '2000-01-21'
+    SimpleIdentityQueryResponse:
+      title: Simple Identity Query Response
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/SimpleIdentity'
+    SimpleIdentity:
+      type: object
+      required:
+        - hit
+      properties:
+        hit:
+          type: boolean
+          description: >-
+            if the identification number is invalid or it can not be found then
+            the value is false
+        message:
+          type: string
+        result:
+          type: object
+          required:
+            - nameMatchScore
+          properties:
+            nameMatchScore:
+              type: integer
+              description: >-
+                the score if matched the name(first name, last name). If
+                matched(score >= 80), then Smile will return the matched
+                information. If not matched, all other fields will return null
+            firstName:
+              type: string
+              description: the firstName from Smile side
+            lastName:
+              type: string
+              description: the firstName from Smile side
+            middleName:
+              type: string
+              description: the firstName from Smile side
+            suffix:
+              type: string
+              description: the firstName from Smile side
+            dob:
+              type: string
+              format: date
+              description: The day of birthday, yyyy-MM-dd
+              example: '2000-01-21'
+            mobile:
+              type: string
+            email:
+              type: string
+            gender:
+              $ref: '#/components/schemas/Ref-Gender'
+            maritalStatus:
+              $ref: '#/components/schemas/Ref-MaritalStatus'
     Contribution:
       title: Contribution
       x-stoplight:
@@ -6558,6 +6958,271 @@ components:
             updatedTo: '2023-04-14T09:30:24Z'
             updatedAt: '2021-04-14T09:30:24Z'
       description: Payload when account update estimated incomes.
+    IncomesUpdatedEvent:
+      title: 'Webhook: Incomes Updated Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            providers:
+              type: array
+              items:
+                type: string
+            count:
+              type: integer
+              description: the updated count of the records.
+              default: 0
+            updatedFrom:
+              $ref: '#/components/schemas/Ref-DateTime'
+            updatedTo:
+              $ref: '#/components/schemas/Ref-DateTime'
+            updatedAt:
+              $ref: '#/components/schemas/Ref-DateTime'
+          required:
+            - userId
+            - accountId
+            - providers
+            - count
+            - updatedFrom
+            - updatedTo
+            - updatedAt
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: INCOMES_UPDATED
+          createdAt: '2023-04-14T09:30:24Z'
+          data:
+            userId: l17f7340df7fla-243275f71a5d4030bc2ceeaa1ecd5163
+            accountId: a-5329a7fcc4f746ed9281196203f79927
+            providers:
+              - sss_ph
+            count: 10
+            updatedFrom: '2021-04-14T09:30:24Z'
+            updatedTo: '2023-04-14T09:30:24Z'
+            updatedAt: '2021-04-14T09:30:24Z'
+      description: Payload when account update incomes.
+    DocumentsUpdatedEvent:
+      title: 'Webhook: Documents Updated Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            providers:
+              type: array
+              items:
+                type: string
+            updatedIds:
+              type: array
+              items:
+                type: string
+            count:
+              type: integer
+              description: the updated count of the records.
+              default: 0
+            updatedAt:
+              $ref: '#/components/schemas/Ref-DateTime'
+          required:
+            - userId
+            - accountId
+            - providers
+            - count
+            - updatedIds
+            - updatedAt
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: DOCUMENTS_UPDATED
+          createdAt: '2023-04-14T09:30:24Z'
+          data:
+            userId: l17f7340df7fla-243275f71a5d4030bc2ceeaa1ecd5163
+            accountId: a-5329a7fcc4f746ed9281196203f79927
+            providers:
+              - sss_ph
+            updatedIds:
+              - d-b16d5acefbda46eab37ba441d6a2943b
+            count: 1
+            updatedAt: '2023-05-14T09:30:24Z'
+      description: account update documents.
+    EmploymentsUpdatedEvent:
+      title: 'Webhook: Employments Updated Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            providers:
+              type: array
+              items:
+                type: string
+            updatedIds:
+              type: array
+              items:
+                type: string
+            count:
+              type: integer
+              description: the updated count of the records.
+              default: 0
+            updatedAt:
+              $ref: '#/components/schemas/Ref-DateTime'
+          required:
+            - userId
+            - accountId
+            - providers
+            - updatedIds
+            - count
+            - updatedAt
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69g
+          version: 1
+          type: EMPLOYMENTS_UPDATED
+          createdAt: '2023-05-03T09:30:24Z'
+          data:
+            userId: l17f7340df7fla-243275f71a5d4030bc2ceeaa1ecd5163
+            accountId: a-5329a7fcc4f746ed9281196203f79927
+            providers:
+              - sss_ph
+            updatedIds:
+              - e-460f98489960421eac1c65d14b219a60
+            count: 1
+            updatedAt: '2023-05-14T09:30:00Z'
+      description: when account update employments.
+    LiabilitiesUpdatedEvent:
+      title: 'Webhook: Liabilities Updated Event'
+      x-tags:
+        - Accounts
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            providers:
+              type: array
+              items:
+                type: string
+            updatedIds:
+              type: array
+              items:
+                type: string
+            count:
+              type: integer
+              description: the updated count of the records.
+              default: 0
+            updatedAt:
+              $ref: '#/components/schemas/Ref-DateTime'
+          required:
+            - userId
+            - accountId
+            - providers
+            - updatedIds
+            - count
+            - updatedAt
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: LIABILITIES_UPDATED
+          createdAt: '2023-05-12T09:30:24Z'
+          data:
+            userId: l17f7340df7fla-243275f71a5d4030bc2ceeaa1ecd5163
+            accountId: a-5329a7fcc4f746ed9281196203f79927
+            providers:
+              - sss_ph
+            updatedIds:
+              - lia-3ba4346eb48445609fc676bee06f2c64
+            count: 1
+            updatedAt: '2023-05-14T09:30:24Z'
+      description: when account update liabilities.
     AccountConnectedEvent:
       title: 'Webhook: Account Connected Event'
       x-tags:
@@ -7609,6 +8274,60 @@ components:
             providers:
               - string
       description: Payload when estimated incomes data shared by a user are added.
+    BucketAddedEvent:
+      title: 'Webhook: Bucket Added Event'
+      x-tags:
+        - Features
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              description: The connected user ID.
+            accountId:
+              type: string
+              description: The connected account ID.
+            id:
+              type: string
+              description: The id of the bucket. It can be used to the API GET /bucket/{id}
+            providers:
+              type: array
+              items:
+                type: string
+          required:
+            - userId
+            - accountId
+            - id
+            - providers
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: et-17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: BUCKET_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            id: bucket-17bbf36498de4d68a0d4f86c7b62f69f
+            providers:
+              - string
+      description: Payload when features calculated after the user linked an account.
     LiabilitiesAddedEvent:
       title: 'Webhook: Liability Added Event'
       x-tags:
@@ -7805,6 +8524,29 @@ components:
       example: '2021-04-14T09:30:24Z'
       description: Date and time
       x-internal: true
+    Ref-Gender:
+      type: string
+      title: GenderEnum
+      enum:
+        - Male
+        - Female
+        - Non-binary
+        - null
+      example: Male
+      description: Gender
+    Ref-MaritalStatus:
+      type: string
+      title: MaritalStatusEnum
+      enum:
+        - Divorced
+        - Married
+        - Separated
+        - Single
+        - Widowed
+        - Lifetime Partner
+        - null
+      example: Married
+      description: Marital status
     Ref-Country:
       type: string
       nullable: true
@@ -8384,6 +9126,301 @@ components:
         - null
       example: Annually
       x-internal: true
+    Object-Feature:
+      type: object
+      properties:
+        incomes_count:
+          type: integer
+          example: 9
+        incomes_first_income_month_range:
+          type: integer
+          example: -999
+          description: >-
+            Calculate the interval from the first income record time to the
+            current time by month
+        incomes_missing_month_max:
+          type: integer
+          example: -999
+          description: >-
+            From all estimated incomes, calculate the number of months between
+            the last payment month and the next payment month, and then take the
+            maximum value
+        incomes_missing_month_count:
+          type: integer
+          example: -999
+          description: >-
+            From all estimated incomes, calculate the months diff between
+            current income month and the before income month, and count if the
+            diff > 1
+        incomes_amount_sum:
+          type: number
+          example: -999
+          description: From all estimated incomes, calculate the total of the amount
+        incomes_amount_average:
+          type: number
+          example: 1100
+          description: >-
+            From all estimated incomes, calculate the average amount of the
+            total amount
+        incomes_amount_min:
+          type: number
+          example: 1000
+          description: From all estimated incomes, get the miximum amount
+        incomes_amount_max:
+          type: number
+          example: 1200
+          description: From all estimated incomes, get the maximum amount
+        incomes_amount_median:
+          type: number
+          example: 1200
+          description: From all estimated incomes, get the median amount
+        incomes_amount_std:
+          type: number
+          example: 1000
+          description: From all estimated incomes, get the median amount
+        incomes_last3_months_amount_sum:
+          type: number
+          example: 6000
+          description: >-
+            From all estimated incomes in last 3 months, calculate the total of
+            the amount
+        incomes_last3_months_amount_average:
+          type: number
+          example: 1100
+          description: >-
+            From all estimated incomes in last 3 months, calculate the average
+            amount of the total amount
+        incomes_last3_months_amount_min:
+          type: number
+          example: 1000
+          description: From all estimated incomes in last 3 months, get the miximum amount
+        incomes_last3_months_amount_max:
+          type: number
+          example: 1200
+          description: From all estimated incomes in last 3 months, get the maximum amount
+        incomes_last3_months_amount_median:
+          type: number
+          example: 1200
+          description: From all estimated incomes in last 3 months, get the median amount
+        incomes_last3_months_amount_std:
+          type: number
+          example: 1000
+          description: >-
+            From all estimated incomes in last 3 months, get the standard
+            deviation of the amount
+        incomes_last6_months_amount_sum:
+          type: number
+          example: 6000
+          description: >-
+            From all estimated incomes in last 6 months, calculate the total of
+            the amount
+        incomes_last6_months_amount_average:
+          type: number
+          example: 1100
+          description: >-
+            From all estimated incomes in last 6 months, calculate the average
+            amount of the total amount
+        incomes_last6_months_amount_min:
+          type: number
+          example: 1000
+          description: From all estimated incomes in last 6 months, get the miximum amount
+        incomes_last6_months_amount_max:
+          type: number
+          example: 1200
+          description: From all estimated incomes in last 6 months, get the maximum amount
+        incomes_last6_months_amount_median:
+          type: number
+          example: 1200
+          description: From all estimated incomes in last 6 months, get the median amount
+        incomes_last6_months_amount_std:
+          type: number
+          example: 1000
+          description: >-
+            From all estimated incomes in last 6 months, get the standard
+            deviation of the amount
+        incomes_last9_months_amount_sum:
+          type: number
+          example: 6000
+          description: >-
+            From all estimated incomes in last 9 months, calculate the total of
+            the amount
+        incomes_last9_months_amount_average:
+          type: number
+          example: 1100
+          description: >-
+            From all estimated incomes in last 9 months, calculate the average
+            amount of the total amount
+        incomes_last9_months_amount_min:
+          type: number
+          example: 1000
+          description: From all estimated incomes in last 9 months, get the miximum amount
+        incomes_last9_months_amount_max:
+          type: number
+          example: 1200
+          description: From all estimated incomes in last 9 months, get the maximum amount
+        incomes_last9_months_amount_median:
+          type: number
+          example: 1200
+          description: From all estimated incomes in last 9 months, get the median amount
+        incomes_last9_months_amount_std:
+          type: number
+          example: 1000
+          description: >-
+            From all estimated incomes in last 9 months, get the standard
+            deviation of the amount
+        incomes_last12_months_amount_sum:
+          type: number
+          example: 6000
+          description: >-
+            From all estimated incomes in last 12 months, calculate the total of
+            the amount
+        incomes_last12_months_amount_average:
+          type: number
+          example: 1100
+          description: >-
+            From all estimated incomes in last 12 months, calculate the average
+            amount of the total amount
+        incomes_last12_months_amount_min:
+          type: number
+          example: 1000
+          description: From all estimated incomes in last 12 months, get the miximum amount
+        incomes_last12_months_amount_max:
+          type: number
+          example: 1200
+          description: From all estimated incomes in last 12 months, get the maximum amount
+        incomes_last12_months_amount_median:
+          type: number
+          example: 1200
+          description: From all estimated incomes in last 12 months, get the median amount
+        incomes_last12_months_amount_std:
+          type: number
+          example: 1000
+          description: >-
+            From all estimated incomes in last 12 months, get the standard
+            deviation of the amount
+        incomes_last18_months_amount_sum:
+          type: number
+          example: 6000
+          description: >-
+            From all estimated incomes in last 18 months, calculate the total of
+            the amount
+        incomes_last18_months_amount_average:
+          type: number
+          example: 1100
+          description: >-
+            From all estimated incomes in last 18 months, calculate the average
+            amount of the total amount
+        incomes_last18_months_amount_min:
+          type: number
+          example: 1000
+          description: From all estimated incomes in last 18 months, get the miximum amount
+        incomes_last18_months_amount_max:
+          type: number
+          example: 1200
+          description: From all estimated incomes in last 18 months, get the maximum amount
+        incomes_last18_months_amount_median:
+          type: number
+          example: 1200
+          description: From all estimated incomes in last 18 months, get the median amount
+        incomes_last18_months_amount_std:
+          type: number
+          example: 1000
+          description: >-
+            From all estimated incomes in last 18 months, get the standard
+            deviation of the amount
+        incomes_last18_months_max_amount_count:
+          type: number
+          example: 1000
+          description: >-
+            From all estimated incomes in last 18 months, find the maximum
+            amount, and count the number of monthly income equal to the maximum
+            amount
+        incomes_starting_amount:
+          type: number
+          example: 1000
+          description: the estimated income from when the user has started earning income
+        incomes_current_amount:
+          type: number
+          example: 1000
+          description: the amount from the latetest one record
+        incomes_latest_growth:
+          type: number
+          example: 1000
+          description: >-
+            For the latetest one record, calculate the growth of income from the
+            same month last year
+        liabilities_loan_count:
+          type: integer
+          example: 1000
+          description: For the latetest one record, calculate the count of records
+        liabilities_loan_amount_min:
+          type: number
+          example: 1000
+          description: From all liabilities, calculate the miximum of the amount
+        liabilities_loan_amount_max:
+          type: number
+          example: 1000
+          description: From all liabilities, calculate the maximum of the amount
+        liabilities_loan_amount_total:
+          type: number
+          example: 1000
+          description: From all liabilities, calculate the total of the amount
+        liabilities_loan_amount_average:
+          type: number
+          example: 1000
+          description: From all liabilities, calculate the average of the amount
+        liabilities_loan_amount_std:
+          type: number
+          example: 1000
+          description: From all liabilities, calculate the standard deviation of the amount
+        liabilities_finished_loan_count:
+          type: number
+          example: 1000
+          description: >-
+            From all liabilities that outstandingBalance <= 0, calculate the
+            count of the records
+        liabilities_outstanding_loan_count:
+          type: integer
+          example: 10
+          description: >-
+            From all liabilities that outstandingBalance > 0, calculate the
+            count of the records
+        liabilities_outstanding_amount_max:
+          type: number
+          example: 1000
+          description: >-
+            From all liabilities that outstandingBalance > 0, calculate the
+            count of the records
+        liabilities_outstanding_amount_total:
+          type: number
+          example: 1000
+          description: >-
+            From all liabilities that outstandingBalance > 0, calculate the
+            total of the amount
+        liabilities_outstanding_amount_average:
+          type: number
+          example: 1000
+          description: >-
+            From all liabilities that outstandingBalance > 0, calculate the
+            average of the amount
+        liabilities_overdue_loan_count:
+          type: integer
+          example: 10
+          description: >-
+            From all liabilities that overduePaymentAmount > 0, calculate the
+            count of the records
+        liabilities_overdue_amount_total:
+          type: number
+          example: 1000
+          description: >-
+            From all liabilities that overduePaymentAmount > 0, calculate the
+            total of the amount
+        liabilities_overdue_amount_average:
+          type: number
+          example: 1000
+          description: >-
+            From all liabilities that overduePaymentAmount > 0, calculate the
+            average of the amount
     Ref-Webhook-Event-Type:
       title: Ref-WebhookEventType
       description: Event Type which will be sent as a notification via webhook
@@ -8407,13 +9444,18 @@ components:
         - RATING_ADDED
         - TRANSACTIONS_ADDED
         - DOCUMENTS_ADDED
+        - DOCUMENTS_UPDATED
         - EMPLOYMENTS_ADDED
+        - EMPLOYMENTS_UPDATED
         - INCOMES_ADDED
+        - INCOMES_UPDATED
         - CONTRIBUTIONS_ADDED
         - CONTRIBUTIONS_UPDATED
         - EINCOMES_ADDED
         - EINCOMES_UPDATED
         - LIABILITIES_ADDED
+        - LIABILITIES_UPDATED
+        - BUCKET_ADDED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
     Ref-Webhook-Event-Version:
