@@ -59,7 +59,7 @@ Invite Link is valid for 14 days. Before expiry, recipient can access Invite Lin
 
 ## How long is the user data stored in Smile servers?
 
-All data is deleted and irretrievable once users have revoked access. If users do not revoke access explicitly, all user data is retained for 60 days, after which all personal data is anonymized.
+All data is deleted and irretrievable once users have revoked access.
 
 ## What is the validity period of the invite link?
 

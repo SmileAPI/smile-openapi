@@ -9,7 +9,7 @@ slug: faqs
 
 ### How do you secure your API?
 
-All data from Smile API is encrypted at RSA 4096 with SHA-256 signing for maximum security. Additionally, Smile does not store end-user credentials at any point: we pass these directly to the data source's servers via TLS to initiate the process of information sharing.
+All data from Smile API is encrypted at RSA 4096 with SHA-256 signing for maximum security. Smile passes all sensitive data to/from the data source's servers via TLS to initiate the process of information sharing.
 
 ### Is your API compliant with the data privacy act?
 
@@ -17,7 +17,7 @@ Smile believes in the sanctity of one's privacy and that our users are the owner
 
 Sharing users' data with our clients is done provided on a revocation-based model: only via explicit consent of the user via our SDK. Users can, at any point, revoke access to their data through this same means, making sure they are in full control when and to whom they share their own data.
 
-All information is deleted and irretrievable once users have revoked access. Any other data is retained for 60 days, after which all personal data is anonymized.
+All information is deleted and irretrievable once users have revoked access.
 
 We also maintain a Privacy Policy so you can be sure how your data is being used.
 

@@ -2099,17 +2099,17 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-eincomes
       description: Get the user's estimated incomes by ID.
-  /simpleIdentities/verify:
+  /profiles/-/identities/verify:
     post:
       tags:
-        - SimpleIdentities
-      operationId: verify-simpleIdentity
+        - ProfileIdentities
+      operationId: verify-profile-identity
       summary: Verify the user's identity data
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SimpleIdentityVerifyRequest'
+              $ref: '#/components/schemas/ProfileIdentityVerifyRequest'
         description: request parameters
       responses:
         '200':
@@ -2117,7 +2117,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SimpleIdentityVerifyResponse'
+                $ref: '#/components/schemas/ProfileIdentityVerifyResponse'
               examples:
                 Example:
                   value:
@@ -2134,17 +2134,17 @@ paths:
                         genderMatched: true
                         maritalStatusMatched: true
                         dobMatched: true
-  /simpleIdentities/query:
+  /profiles/-/identities/query:
     post:
       tags:
-        - SimpleIdentities
-      operationId: query-simpleIdentity
+        - ProfileIdentities
+      operationId: query-profile-identity
       summary: Query more user informations base on request parameters
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SimpleIdentityQueryRequest'
+              $ref: '#/components/schemas/ProfileIdentityQueryRequest'
         description: request parameters
       responses:
         '200':
@@ -2152,7 +2152,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SimpleIdentityQueryResponse'
+                $ref: '#/components/schemas/ProfileIdentityQueryResponse'
               examples:
                 Example:
                   value:
@@ -2473,14 +2473,14 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-liabilities
       description: Get the user's liabilities by ID.
-  /buckets:
+  /insights:
     parameters: []
     get:
-      operationId: list-buckets
-      description: List buckets from data sources.
-      summary: List buckets
+      operationId: list-insights
+      description: List insights from data sources.
+      summary: List insights
       tags:
-        - Features
+        - Insights
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
@@ -2488,11 +2488,11 @@ paths:
         - $ref: '#/components/parameters/sourceId'
       responses:
         '200':
-          description: List Buckets Response
+          description: List Insights Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BucketListResponse'
+                $ref: '#/components/schemas/InsightListResponse'
               examples:
                 Example:
                   value:
@@ -2502,7 +2502,7 @@ paths:
                     data:
                       nextCursor: '1259723474'
                       items:
-                        - id: bucket-123abc456def789abc123def456abc78
+                        - id: insight-123abc456def789abc123def456abc78
                           cutoffTime: '2022-07-05T10:30:11Z'
                           features:
                             incomes_count: 100
@@ -2513,20 +2513,20 @@ paths:
                             sourceType: ACCOUNT
                             userId: tenantId-123abc456def789abc123def456abc78
                             providerId: abccorp
-  /buckets/{id}:
+  /insights/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
-      summary: Get Bucket
+      summary: Get Insight
       tags:
-        - Features
+        - Insights
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BucketGetResponse'
+                $ref: '#/components/schemas/InsightGetResponse'
               examples:
                 Example:
                   value:
@@ -2534,7 +2534,7 @@ paths:
                     message: Success
                     requestId: 5b79399a-6852-4234-bb0e-ad472648282d
                     data:
-                      id: bucket-123abc456def789abc123def456abc78
+                      id: insight-123abc456def789abc123def456abc78
                       cutoffTime: '2022-07-05T10:30:11Z'
                       features:
                         incomes_count: 100
@@ -2565,8 +2565,8 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
         '504':
           $ref: '#/components/responses/Standard-Errors'
-      operationId: get-feature-bucket
-      description: Get the user's feature bucket by ID.
+      operationId: get-feature-insight
+      description: Get the user's insight by ID.
   /inviteTemplates:
     get:
       summary: List Invite Templates
@@ -5144,8 +5144,8 @@ components:
         - loanAmount
         - currency
         - amortizationFrequency
-    BucketListResponse:
-      title: Bucket List Response
+    InsightListResponse:
+      title: Insight List Response
       type: object
       x-internal: true
       allOf:
@@ -5159,24 +5159,24 @@ components:
                 items:
                   type: array
                   items:
-                    $ref: '#/components/schemas/Bucket'
-    BucketGetResponse:
-      title: Bucket Get Response
+                    $ref: '#/components/schemas/Insight'
+    InsightGetResponse:
+      title: Insight Get Response
       type: object
       x-internal: true
       allOf:
         - $ref: '#/components/schemas/CommonResponse'
         - properties:
             data:
-              $ref: '#/components/schemas/Bucket'
-    Bucket:
-      title: Bucket
+              $ref: '#/components/schemas/Insight'
+    Insight:
+      title: Insight
       type: object
       x-internal: true
       properties:
         id:
           type: string
-          example: bucket-123456789012345678901234567890
+          example: insight-123456789012345678901234567890
         cutoffTime:
           type: string
           title: Cutoff time for feature calculations.
@@ -5188,7 +5188,7 @@ components:
           $ref: '#/components/schemas/Object-Reference-Metadata'
         features:
           $ref: '#/components/schemas/Object-Feature'
-    SimpleIdentityVerifyRequest:
+    ProfileIdentityVerifyRequest:
       title: object
       required:
         - idType
@@ -5224,16 +5224,16 @@ components:
           $ref: '#/components/schemas/Ref-Gender'
         maritalStatus:
           $ref: '#/components/schemas/Ref-MaritalStatus'
-    SimpleIdentityVerifyResponse:
-      title: Simple Identity Query Response
+    ProfileIdentityVerifyResponse:
+      title: Profile Identity Query Response
       type: object
       x-internal: true
       allOf:
         - $ref: '#/components/schemas/CommonResponse'
         - properties:
             data:
-              $ref: '#/components/schemas/SimpleIdentityVerifyData'
-    SimpleIdentityVerifyData:
+              $ref: '#/components/schemas/ProfileIdentityVerifyData'
+    ProfileIdentityVerifyData:
       type: object
       required:
         - hit
@@ -5280,7 +5280,7 @@ components:
               description: >-
                 The maritalStatus matched or not, if the maritalStatus in
                 request parametere is null, then return null
-    SimpleIdentityQueryRequest:
+    ProfileIdentityQueryRequest:
       title: object
       required:
         - idType
@@ -5304,16 +5304,16 @@ components:
           format: date
           description: The day of birthday, yyyy-MM-dd
           example: '2000-01-21'
-    SimpleIdentityQueryResponse:
-      title: Simple Identity Query Response
+    ProfileIdentityQueryResponse:
+      title: Profile Identity Query Response
       type: object
       x-internal: true
       allOf:
         - $ref: '#/components/schemas/CommonResponse'
         - properties:
             data:
-              $ref: '#/components/schemas/SimpleIdentity'
-    SimpleIdentity:
+              $ref: '#/components/schemas/ProfileIdentity'
+    ProfileIdentity:
       type: object
       required:
         - hit
@@ -8274,8 +8274,8 @@ components:
             providers:
               - string
       description: Payload when estimated incomes data shared by a user are added.
-    BucketAddedEvent:
-      title: 'Webhook: Bucket Added Event'
+    InsightAddedEvent:
+      title: 'Webhook: Insight Added Event'
       x-tags:
         - Features
       type: object
@@ -8299,7 +8299,9 @@ components:
               description: The connected account ID.
             id:
               type: string
-              description: The id of the bucket. It can be used to the API GET /bucket/{id}
+              description: >-
+                The id of the insight. It can be used to the API GET
+                /insight/{id}
             providers:
               type: array
               items:
@@ -8319,12 +8321,12 @@ components:
         Example:
           id: et-17bbf36498de4d68a0d4f86c7b62f69f
           version: 1
-          type: BUCKET_ADDED
+          type: INSIGHT_ADDED
           createdAt: '2021-04-14T09:30:24Z'
           data:
             userId: string
             accountId: string
-            id: bucket-17bbf36498de4d68a0d4f86c7b62f69f
+            id: insight-17bbf36498de4d68a0d4f86c7b62f69f
             providers:
               - string
       description: Payload when features calculated after the user linked an account.
@@ -9455,7 +9457,7 @@ components:
         - EINCOMES_UPDATED
         - LIABILITIES_ADDED
         - LIABILITIES_UPDATED
-        - BUCKET_ADDED
+        - INSIGHT_ADDED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
     Ref-Webhook-Event-Version:

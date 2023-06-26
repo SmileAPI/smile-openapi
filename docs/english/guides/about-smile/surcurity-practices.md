@@ -9,7 +9,7 @@ Smile takes security seriously by using the highest security standards to protec
 
 ## Credential security
 
-Smile does not store end-user credentials at any point: we pass these directly to the data source's servers via TLS to initiate the process of information sharing. All data is encrypted at RSA 4096 with SHA-256 signing for maximum security.
+Smile passes all credentials to the data source's servers via TLS to initiate the process of information sharing. All data is encrypted at RSA 4096 with SHA-256 signing for maximum security.
 
 ## Personal data privacy
 
@@ -19,4 +19,4 @@ Otherwise, we retain data for 60 days, after which all personal data is anonymiz
 
 ## Privacy Policy
 
-We also maintain a [Privacy Policy](https://www.getsmileapi.com/privacy-policy) so you can be sure how your data is being used
+We also maintain a [Privacy Policy](https://www.getsmileapi.com/privacy-policy) so you can be sure how your data is being used.
