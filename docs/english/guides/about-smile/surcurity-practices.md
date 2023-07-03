@@ -15,8 +15,6 @@ Smile passes all credentials to the data source's servers via TLS to initiate th
 
 Users' personal data is provided on a revocation-based model: users can, at any point, revoke access to their data, making sure they are in full control when and to whom they share their own data. All information is deleted once they revoke access through our available Revoke API.
 
-Otherwise, we retain data for 60 days, after which all personal data is anonymized.
-
 ## Privacy Policy
 
 We also maintain a [Privacy Policy](https://www.getsmileapi.com/privacy-policy) so you can be sure how your data is being used.
