@@ -6,6 +6,7 @@ slug: chapter-4-cn
 ---
 
 
+
 您可以通过两种方式从用户那里获取数据：
 - 通过 API 中的 `/invitations` 端点邀请您的用户，或使用 Developer Portal 中 Users 页面内的邀请功能。
 - 嵌入客户端 SDK 并实例化 Wink Widget 。
@@ -66,90 +67,83 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
     <script type="text/javascript">
         const smileLinkModal = new SmileLinkModal({
             /**
-             * Link API URI 。注意： Sandbox 和 Production 模式使用不同的 API URI 。
+             * The Link API URI. Note: Sandbox and Production modes use different API URIs.
              */
             apiHost: 'https://link-sandbox.smileapi.io/v1',
 
             /**
-             * User Token： 从你的后端服务里面获取，你的后端服务需要调用 SmileAPI /tokens 或者 /users 接口来获取。
+             * User token(link token) passed from your backend service which is obtained from the Smile API.
              */
             userToken: '<usertoken>',
 
             /**
-             * 使用模板来控制集成在你APP或者网站上的WinkWidget的页面样式与数据
-             * 你可以在 Smile 的开发者控制台创建并获取 TemplateID
+             * Use the template ID to determine how your widget looks like embedded in your app or website.
+             * You can find and create the template ID in the Smile developer-portal.
              * https://developer-portal.smileapi.io/link/template
              */
             templateId: "<ID of wink template >",
 
             /**
-             * 账号创建时的回调.
+             * Account login callback.
              */
             onAccountCreated: ({ accountId, userId, providerId }) => {
                 console.log('Account created: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
-             * 账号登录成功时的回调.
+             * Account login success callback.
              */
             onAccountConnected: ({ accountId, userId, providerId }) => {
                 console.log('Account connected: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
-             * 账号撤销链接的回调.
+             * Account revoke callback.
              */
             onAccountRemoved: ({ accountId, userId, providerId }) => {
                 console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
             },
 
             /**
-             * Token 失效时的回调
+             * Token expired callback.
              */
             onTokenExpired: () => {
                 console.log('Token expired');
             },
 
             /**
-             * Smile 的 WinkWidget 关闭时回调。如果你想知道用户通过哪种方式关闭的 WinkWidget，你可以像下面的实例一样传递参数：
+             * Smile link SDK close callback.If you want to know which button the user clicked to trigger the close event, you can pass parameters like this.
              * onClose:({reason})=>{}
-             * 如果 reason == "close"， 说明用户点击了右上角的关闭图标
-             * 如果 reason == "exit"， 说明用户点击了链接成功页面的 "DONE" 按钮
+             * If the value of reason is equal to "close", it means that the user clicked the close icon in the upper right corner of the page to close the SDK
+             * If the value of reason is equal to "exit", it means that the user clicked the DONE button on the connection page to close the SDK
              */
             onClose: ({ reason }) => {
                 console.log('Link closed, reason:', reason)
             },
 
             /**
-             * 账号链接出错时的回调
+             * Account connect error callback.
              */
             onAccountError: ({ accountId, userId, providerId, errorCode }) => {
                 console.log('Account error: ', accountId, ' User ID:', userId, ' Provider ID:', providerId, 'Error Code:', errorCode)
             },
 
             /**
-             * 数据上传时的回调
+             * Uploads submit callback.
              */
             onUploadsCreated: ({ uploads, userId }) => {
                 console.log('Uploads: ', uploads, ' User ID:', userId);
             },
 
             /**
-             * 撤销已上传的数据时的回调
+             * Uploads revoke callback.
              */
             onUploadsRemoved: ({ uploads, userId }) => {
                 console.log('Uploads: ', uploads, ' User ID:', userId);
             },
 
             /**
-             * 当页面UI发生改变时推送的事件
-             * @param eventName 事件名称
-             * @param eventTime 发生时间
-             * @param mode 沙箱|生产环境
-             * @param userId 用户ID
-             * @param account Account对象
-             * @param archive Archive对象
-             * Uploads revoke callback.
+             * User event callback is used to capture all the user activities from Smile Wink SDK
              */
             onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
                 console.log('eventName:', eventName,
@@ -245,9 +239,14 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 | ERROR | 上传文件的分析出现问题。|
 | REVOKED | 用户撤销了从上传的文件中共享数据的权限。|
 
+## 维护用户数据
+
+只要用户同意并通过 Wink Widget 连接他们的账户，Smile API 的*连续数据同步* ( CDS )功能可以让您从用户那里获得最新的数据。同意 CDS 功能后，用户可以授权 Smile 为您同步多个月的数据，直到他们撤销对其帐户的访问权限。
+
+在 [Accounts section](/reference/accounts) 了解更多关于 CDS 和启用 CDS 的信息。
 
 ---
-<!-- 焦点：假-->
+<!-- focus: false -->
 ![测试](https://img.icons8.com/material-outlined/50/000000/test-tube.png)
 
 ## Sandbox 测试

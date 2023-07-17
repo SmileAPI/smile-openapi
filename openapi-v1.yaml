@@ -2567,6 +2567,86 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-feature-insight
       description: Get the user's insight by ID.
+  /links:
+    parameters: []
+    get:
+      operationId: list-links
+      description: List links from data sources.
+      summary: List links
+      tags:
+        - Links
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: List Links Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: link-123abc456def789abc123def456abc78
+                          startDate: '2023-01-05T10:30:11Z'
+                          endDate: '2023-07-05T10:30:11Z'
+                          records:
+                            - count: 2
+                              linkedAt:
+                                - '2023-04-05T10:30:11Z'
+                                - '2023-07-01T10:30:11Z'
+                          metadata:
+                            createdAt: '2021-04-14T09:30:24Z'
+                            sourceId: a-123abc456def789abc123def456abc78
+                            sourceType: ACCOUNT
+                            userId: tenantId-123abc456def789abc123def456abc78
+                            providerId: abccorp
+  /links/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Link
+      operationId: get-link
+      description: Get the Account's link result by ID.
+      tags:
+        - Links
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: link-123abc456def789abc123def456abc78
+                      startDate: '2023-01-05T10:30:11Z'
+                      endDate: '2023-07-05T10:30:11Z'
+                      records:
+                        - count: 2
+                          linkedAt:
+                            - '2023-04-05T10:30:11Z'
+                            - '2023-07-01T10:30:11Z'
+                      metadata:
+                        createdAt: '2021-04-14T09:30:24Z'
+                        sourceId: a-123abc456def789abc123def456abc78
+                        sourceType: ACCOUNT
+                        userId: tenantId-123abc456def789abc123def456abc78
+                        providerId: abccorp
   /inviteTemplates:
     get:
       summary: List Invite Templates
@@ -5188,6 +5268,61 @@ components:
           $ref: '#/components/schemas/Object-Reference-Metadata'
         features:
           $ref: '#/components/schemas/Object-Feature'
+    LinkListResponse:
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              type: object
+              properties:
+                nextCursor:
+                  $ref: '#/components/schemas/Object-Next-Cursor'
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Link'
+    LinkGetResponse:
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      x-internal: true
+      required:
+        - id
+        - endDate
+      properties:
+        id:
+          type: string
+          example: link-123456789012345678901234567890
+        startDate:
+          $ref: '#/components/schemas/Ref-DateTime'
+        endDate:
+          $ref: '#/components/schemas/Ref-DateTime'
+        records:
+          type: array
+          default: []
+          items:
+            type: object
+            title: LinkRecord
+            required:
+              - count
+            properties:
+              count:
+                type: integer
+              linkedAt:
+                type: array
+                default: []
+                items:
+                  $ref: '#/components/schemas/Ref-DateTime'
+        metadata:
+          $ref: '#/components/schemas/Object-Reference-Metadata'
     ProfileIdentityVerifyRequest:
       title: object
       required:
@@ -7949,6 +8084,65 @@ components:
             providers:
               - string
       description: Payload when rating data about a user is added.
+    WebhookCommonEvent:
+      type: object
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+      properties:
+        id:
+          $ref: '#/components/schemas/Ref-Object-ID'
+        version:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Version'
+        type:
+          $ref: '#/components/schemas/Ref-Webhook-Event-Type'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+    LinkAddedEvent:
+      allOf:
+        - $ref: '#/components/schemas/WebhookCommonEvent'
+        - type: object
+          properties:
+            data:
+              type: object
+              title: LinkAddedEventData
+              properties:
+                userId:
+                  type: string
+                  description: The connected user ID.
+                accountId:
+                  type: string
+                  description: The connected account ID.
+                id:
+                  type: string
+                  description: The added link ID.
+                providers:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - userId
+                - accountId
+                - id
+                - providers
+      title: 'Webhook: Link Added Event'
+      x-tags:
+        - Links
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: LINK_ADDED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            userId: string
+            accountId: string
+            ratingId: string
+            providers:
+              - string
+      description: Payload when link data about a user is added.
     TransactionsAddedEvent:
       title: 'Webhook: Transactions Add Event'
       x-tags:
@@ -9458,6 +9652,7 @@ components:
         - LIABILITIES_ADDED
         - LIABILITIES_UPDATED
         - INSIGHT_ADDED
+        - LINK_ADDED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
     Ref-Webhook-Event-Version:

@@ -239,6 +239,11 @@ If the the user was able to successfully upload employment and income data via s
 | ERROR | Something went wrong with the analysis of the uploaded file. |
 | REVOKED | The user revoked permission to share data from the uploaded files. |
 
+## Maintaining User Data
+
+Smile API's *Continuous Data Sync* (CDS) feature provides you access to the most up-to-date and recent data from your users, once these users have consented and connected their account through the Wink Widget. By consenting to CDS, users can authorize Smile to sync data for you across multiple months, until they revoke access to their account.
+
+Find out more about CDS and enabling CDS in the [Accounts section](/reference/accounts).
 
 ---
 <!-- focus: false -->

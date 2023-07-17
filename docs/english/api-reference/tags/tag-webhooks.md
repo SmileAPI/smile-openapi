@@ -75,12 +75,13 @@ Below are the events you can subscribe to via webhooks.
 | Event                                             | Event Type           | Description                                                                                        |
 |---------------------------------------------------|----------------------|----------------------------------------------------------------------------------------------------|
 | User Creation Successful                          | USER_CREATED         | Sent when a new user and link token is created.                                                    |
-| Account Creation Initiated                     | ACCOUNT_CREATED    | Sent when the account linking process has been initiated by the user. |
+| Account Creation Initiated                        | ACCOUNT_CREATED      | Sent when the account linking process has been initiated by the user.                              |
 | Account Connection Successful                     | ACCOUNT_CONNECTED    | Sent when a user successfully connects their work account.                                         |
 | Account Disconnection Successful                  | ACCOUNT_DISCONNECTED | Sent when a user disconnects or revokes the link to their work account.                            |
-| Account Connection Failed                         | ACCOUNT_FAILED       | Sent when the account linking process is is unsuccessful.                                          |
+| Account Connection Failed                         | ACCOUNT_FAILED       | Sent when the account linking process is unsuccessful.                                          |
 | Task Started                                      | TASK_STARTED         | Sent when the data sync process for a user's account is started.                                 |
 | Task Finished                                     | TASK_FINISHED        | Sent when the data sync task process for a user's account is finished.                             |
+| Account Sync Task Finished                         | ACCOUNT_SYNC_TASK_FINISHED | Sent when the account syncing process is finished.                                          |
 | Archive Creation Successful                       | ARCHIVE_STARTED      | Sent when a user has uploaded one or several files which becomes an "archive" in Smile.            |
 | Archive Analysis Successful                       | ARCHIVE_ANALYZED     | Sent when an archive has been analyzed and converted into JSON data automatically via OCR.         |
 | Archive Revocation Successful                     | ARCHIVE_REVOKED      | Sent when a user removes permission to access or use an archive.                                   |
@@ -96,7 +97,19 @@ Below are the events you can subscribe to via webhooks.
 | Estimated Incomes Data Added <br>*(early access)* | EINCOMES_ADDED       | Payload when estimated income data has been derived from data shared by a user.                    |
 | Contributions Data Added                          | CONTRIBUTIONS_ADDED  | Sent when social security contributions data shared by a user is added.                            |
 | Liabilities Data Added                            | LIABILITIES_ADDED    | Sent when liabilities data shared by a user is added.                                              |
+| Insight Data Added                            | INSIGHT_ADDED    | Sent when insights data calculated from shared user data is added. |
+| Link Data Added                                   | LINK_ADDED           | Sent when link data detected after user linked is added.                                           |
 
+> 📘 Note
+> 
+> The following Continuous Data Sync related events are deprecated, please use `ACCOUNT_SYNC_TASK_FINISHED` to track the following events:
+> 
+> - CONTRIBUTIONS_UPDATED
+> - INCOMES_UPDATED
+> - DOCUMENTS_UPDATED
+> - EMPLOYMENTS_UPDATED
+> - EINCOMES_UPDATED
+> - LIABILITIES_UPDATED
 
 <!-- focus: false -->
 ![Payload](https://img.icons8.com/ios/50/000000/json-download.png)
@@ -232,6 +245,33 @@ Sent when the data sync task process for a user's account is finished.
     ],
     "datapoints": [
       "IDENTITIES",
+      "INCOMES"
+    ]
+  }
+}
+```
+
+#### Account Sync Task Finished
+Sent when the account syncing process is finished.
+
+```json
+{
+  "id": "123abc456def789abc123def456abc78",
+  "version": 1,
+  "type": "ACCOUNT_SYNC_TASK_FINISHED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "sourceId": "a-123abc456def789abc123def456abc78",
+    "sourceType": "ACCOUNT",
+    "providers": [
+      "abccorp"
+    ],
+    "status": "SUCCEEDED",
+    "monitorStatus": "ACTIVE",
+    "dataPoints": [
+      "IDENTITIES",
+      "EMPLOYMENTS",
       "INCOMES"
     ]
   }
@@ -511,6 +551,45 @@ Payload when estimated income data has been derived from data shared by a user.
 }
 ```
 
+#### Insight Added
+
+Payload when insight data has been derived from data shared by a user.
+```json
+{
+  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "version": 1,
+  "type": "INSIGHT_ADDED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "id": "insight-ef789aabc41236abc7856df45bc123de",
+    "providers": [
+      "abccorp"
+    ]
+  }
+}
+```
+
+#### Link Added
+
+Payload when link data has been derived from data shared by a user.
+```json
+{
+  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "version": 1,
+  "type": "LINK_ADDED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "id": "link-ef789aabc41236abc7856df45bc123de",
+    "providers": [
+      "abccorp"
+    ]
+  }
+}
+```
 
 <!-- focus: false -->
 ![Signatures](https://img.icons8.com/ios/50/000000/signature.png)

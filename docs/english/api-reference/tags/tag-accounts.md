@@ -7,11 +7,32 @@ slug: accounts
 
 Accounts in the Smile Network form the basis of the data shared by the user to our clients. Each user may connect multiple accounts among the data [Providers](/reference/providers) that Smile supports, which provides a clearer picture of their history and information.
 
-No login credentials are stored with [User](/reference/users) accounts. Upon providing access, Smile retrieves available data from the account and provides normalized data under each user data endpoint. Available data points for each provider may vary. You can track availability of the data using [Webhook event notifications](/reference/chapter-5).
+Upon providing consent and access directly from the end user, Smile retrieves available data from the account and provides normalized data under each user data endpoint at that particular point in time. If your account has *Continuous Data Sync* enabled, Smile will also periodically check with the provider for updated data, and keep your user's information updated for as long as the account is connected (i.e., not revoked by the user).
+
+Available data points for each provider may vary, which you can review real-time using [the Data Sources section of the Developer Portal](https://developer-portal.smileapi.io/providers). You can track availability of the data using [Webhook event notifications](/reference/chapter-5).
 
 By default, the List Accounts API will return all accounts under your `tenantId` that match your query parameters. Make sure to filter the results by `userId` or `startDate` and `endDate` to narrow down your query.
 
 Once users revoke their accounts (via the SDK, or tenants may initiate this process through the [Revoke Account API](/reference/delete-account)), their data will be removed and will no longer be accessible.
+
+## Continuous Data Sync
+
+Smile API's *Continuous Data Sync* (CDS) feature provides you access to the most up-to-date and recent data from your users, once these users have consented and connected their account through the Wink Widget.
+
+Instead of requiring the user to reconnect their account if you need updated information, CDS provides you with permissioned access to updated data. By consenting to CDS, users can authorize Smile to sync data for you across multiple months, until they revoke access to their account.
+
+We fire a webhook event `ACCOUNT_SYNC_TASK_FINISHED` (see below) when an Account has been newly refreshed, so you can receive information about the update.
+
+CDS must be enabled for your business to enjoy these features, but once enabled, there is no change needed to your integration with Smile API.
+
+### Supported Providers and Data Points
+
+| Provider | Data Points Available | Update Frequency |
+| :--------- | :----- | :-------- |
+| My.SSS | Identities, Employments, Documents, Contributions, Liabilities, Estimated Incomes* | Monthly, on the day of initial connection |
+| eGSIS MO | Identities, Employments, Documents, Incomes, Estimated Incomes* | Monthly, on the day of initial connection |
+| My PhilHealth Portal | Identities, Employments, Documents, Contributions, Estimated Incomes* | Monthly, on the day of initial connection |
+| Virtual Pag-IBIG | Identities, Employments, Documents, Contributions, Liabilities, Estimated Incomes* | Monthly, on the day of initial connection |
 
 ## The Account object
 
@@ -21,7 +42,31 @@ Once users revoke their accounts (via the SDK, or tenants may initiate this proc
 | createdAt | date-time | Date/time when the account was created |
 | providerId | string | ID of the data provider of the user's account |
 | userId | string | ID of the user on the Smile Network |
+| connectionStatus | string | Status of the account's connection state, see *Account Statuses* section below |
 | connection | object | Object containing connection information for the account |
+| monitorStatus | string | Status of the account's monitoring/sync state, see *Account Statuses* section below |
+| monitor | object | Object containing monitoring information for the account |
+
+## Account Statuses
+
+### Connection Status
+
+| Event | Description |
+|----------|---------|
+| PENDING | The account was created but is pending successful authentication. |
+| AWAITING_MFA | The user was able to successfully authenticate, however the data provider is waiting for the user to enter their verification code in a 2-factor authentication scenario. |
+| ERROR | The data provider returned an error. The user may have entered the wrong credentials, or there was a problem on the side of the provider. |
+| CONNECTED | The user was able to successfully authenticate with an employment data provider. |
+| DISCONNECTED | The user disconnected the link with the employment data provider. |
+
+### Monitoring Status
+
+| Event | Description |
+|----------|---------|
+| UNSUPPORTED | The account does not have data syncing enabled |
+| ACTIVE | The account has data syncing enabled and is currently active |
+| USER_ACTION_REQUIRED | The account has data syncing enabled but the user needs to re-authorize access. This may be due to a change of password or other reason where the account connection has failed. |
+| CUSTOMER_DISABLED | The account syncing has been disabled |
 
 ## Sample Account data
 
@@ -37,6 +82,11 @@ Once users revoke their accounts (via the SDK, or tenants may initiate this proc
         "errorCode": null,
         "errorMessage": null,
         "updatedAt": "2022-10-01T00:00:00Z"
+    },
+    "monitorStatus": "UNSUPPORTED",
+    "monitor": {
+        "status" : "UNSUPPORTED",
+        "updatedAt" : null
     }
 }
 ```
@@ -48,6 +98,7 @@ Once users revoke their accounts (via the SDK, or tenants may initiate this proc
 | [Retrieve all accounts](/reference/list-accounts-1) | `GET /accounts` |
 | [Retrieve one account](/reference/get-account-1) | `GET /accounts/{id}` |
 | [Revoke account access](/reference/delete-account) | `DELETE /accounts` |
+| [Disable account monitoring](/reference/disable-account-monitor) | `POST /accounts/{id}/disableMonitor` |
 
 ## Webhooks
 
@@ -130,6 +181,34 @@ Fired when the account linking process initiated by the user is unsuccessful.
     "errorMessage": "Error message",
     "providers": [
       "abccorp"
+    ]
+  }
+}
+```
+
+### `ACCOUNT_SYNC_TASK_FINISHED`
+
+Fired when the account syncing task has been completed in the backend.
+
+``` json
+{
+  "id": "123abc456def789abc123def456abc78",
+  "version": 1,
+  "type": "ACCOUNT_SYNC_TASK_FINISHED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "sourceId": "a-123abc456def789abc123def456abc78",
+    "sourceType": "ACCOUNT",
+    "providers": [
+      "abccorp"
+    ],
+    "status": "SUCCEEDED",
+    "monitorStatus": "ACTIVE",
+    "dataPoints": [
+      "IDENTITIES",
+      "EMPLOYMENTS",
+      "INCOMES"
     ]
   }
 }

@@ -75,12 +75,13 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
 | 事件                                         | 事件类型                       | 详情                                            |
 |--------------------------------------------|----------------------------|-----------------------------------------------|
 | User Creation Successful                   | USER_CREATED               | 当创建新用户和链接 token 时发送                           |
-| Account Creation Initiated                     | ACCOUNT_CREATED    | 当用户启动账户连接程序时发送。|
+| Account Creation Initiated                     | ACCOUNT_CREATED    | 当用户启动账户连接程序时发送。                               |
 | Account Connection Successful              | ACCOUNT_CONNECTED          | 当用户成功连接其工作账户时发送。                              |
 | Account Disconnection Successful           | ACCOUNT_DISCONNECTED       | 当用户断开或撤销与其账户的链接时发送。                           |
 | Account Connection Failed                  | ACCOUNT_FAILED             | 当账户关联过程失败时发送。                                 |
 | Task Started                                      | TASK_STARTED         | 当用户账户的数据同步进程开始时发送。                            |
 | Task Finished                                     | TASK_FINISHED        | 当用户账户的数据同步进程结束时发送。                            |
+| Account Sync Task Finished                         | ACCOUNT_SYNC_TASK_FINISHED | 账户同步过程结束时发送。                                  |
 | Archive Creation Successful                | ARCHIVE_STARTED            | 当用户成功上传一个或多个文件时发送，这些文件将作为 Smile 中的 “archive” 。 |
 | Archive Analysis Successful                | ARCHIVE_ANALYZED           | 当 archive 已通过 OCR 自动分析并转换为 JSON 数据时发送。        |
 | Archive Revocation Successful              | ARCHIVE_REVOKED            | 当用户删除访问或使用 archive 的权限时发送。                    |
@@ -96,8 +97,18 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
 | Estimated Incomes Data Added <br>*(抢先试用版)* | EINCOMES_ADDED             | 当添加用户共享的估计收入数据时发送。                            |
 | Contributions Data Added                   | CONTRIBUTIONS_ADDED        | 当添加用户共享的社会保障缴款数据时发送。                          |
 | Liabilities Data Added                     | LIABILITIES_ADDED          | 添加用户共享的负债数据时发送。                               |
-
-
+| Insight Data Added                            | INSIGHT_ADDED    | 根据用户共享数据计算的 insight 数据被添加时发送。                                              |
+| Link Data Added                            | LINK_ADDED           | 当统计好用户在其它平台申请数据时发送。                            |
+> 📘 注意
+>
+> 不建议使用以下与持续数据同步相关的事件，请使用 `ACCOUNT_SYNC_TASK_FINISHED` 来跟踪以下事件：
+>
+> - CONTRIBUTIONS_UPDATED
+> - INCOMES_UPDATED
+> - DOCUMENTS_UPDATED
+> - EMPLOYMENTS_UPDATED
+> - EINCOMES_UPDATED
+> - LIABILITIES_UPDATED
 
 <!-- focus: false -->
 ![Payload](https://img.icons8.com/ios/50/000000/json-download.png)
@@ -233,6 +244,33 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
     ],
     "datapoints": [
       "IDENTITIES",
+      "INCOMES"
+    ]
+  }
+}
+```
+
+#### 账户同步任务已完成
+账户同步过程结束时，事件发送格式如下：
+
+```json
+{
+  "id": "123abc456def789abc123def456abc78",
+  "version": 1,
+  "type": "ACCOUNT_SYNC_TASK_FINISHED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "sourceId": "a-123abc456def789abc123def456abc78",
+    "sourceType": "ACCOUNT",
+    "providers": [
+      "abccorp"
+    ],
+    "status": "SUCCEEDED",
+    "monitorStatus": "ACTIVE",
+    "dataPoints": [
+      "IDENTITIES",
+      "EMPLOYMENTS",
       "INCOMES"
     ]
   }
@@ -511,6 +549,46 @@ archive 创建或分析过程不成功时，事件发送格式如下：
 }
 ```
 
+#### 新加 Insights
+
+添加根据用共享户数据计算的 insight 数据时，事件发送格式如下：
+
+```json
+{
+  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "version": 1,
+  "type": "INSIGHT_ADDED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "id": "insight-ef789aabc41236abc7856df45bc123de",
+    "providers": [
+      "abccorp"
+    ]
+  }
+}
+```
+
+#### 用户多平台申请统计
+
+当统计好用户在其它平台申请数据时发送
+```json
+{
+  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "version": 1,
+  "type": "LINK_ADDED",
+  "createdAt": "2021-04-14T09:30:24Z",
+  "data": {
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "accountId": "a-123abc456def789abc123def456abc78",
+    "id": "link-ef789aabc41236abc7856df45bc123de",
+    "providers": [
+      "abccorp"
+    ]
+  }
+}
+```
 
 <!-- focus: false -->
 ![Signatures](https://img.icons8.com/ios/50/000000/signature.png)
