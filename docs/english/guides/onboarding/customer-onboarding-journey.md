@@ -17,11 +17,11 @@ slug: customer-onboarding-journey
 "h-0": "Milestones",
 "h-1": "Guides",
 "0-0": "Requirements",
-"0-1": "1. [Typical Requirement Gathering Concerns](https://docs.getsmileapi.com/docs/onboarding-faqs#what-are-the-typical-concerns-i-need-to-consider-during-requirement-gathering-)  \n2. [Sample Apps To Understand How Smile Works](https://sampleapps.getsmileapi.com/)",
+"0-1": "1. [Typical Requirement Gathering Concerns](/docs/onboarding-faqs)  \n2. [Sample Apps To Understand How Smile Works](https://sampleapps.getsmileapi.com/)",
 "1-0": "Design",
-"1-1": "1. [Customer Verification Design](doc:design-1)  \n2. [Credit Decisioning Design](doc:design)",
+"1-1": "1. [Customer Verification Design](/docs/customer-verification-design)  \n2. [Credit Decisioning Design](/docs/credit-decisioning-design)",
 "2-0": "Implementation & Go-live",
-"2-1": "1. [Customer Verification Implementation & Go-live](doc:implementation)  \n2. [Credit Decisioning Implementation & Go-live](doc:implementation-1)"
+"2-1": "1. [Customer Verification Implementation & Go-live](/docs/customer-verification-implementation)  \n2. [Credit Decisioning Implementation & Go-live](/docs/credit-decisioning-implementation)"
 },
 "cols": 2,
 "rows": 3,

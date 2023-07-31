@@ -22,7 +22,7 @@ _预估收入目前在公测阶段。_
 | id         | string | 该预估收入对象的唯一ID                |
 | month      | string | 该预估收入所属的月份，格式为 "YYYY-MM"    |
 | currency   | string | 该预估收入的货币，以标准的三个字母ISO代码表示    |
-| baseAmount | number | 收入金额                        |
+| amount | number | 收入金额                        |
 | metadata   | object | 有关该资源的其他信息，如创建日期、数据来源、用户ID等 |
 
 ### 数据对象
@@ -46,7 +46,7 @@ _预估收入目前在公测阶段。_
     "id": "einc-123abc456def789abc123def456abc78",  
     "month": "2022-07",  
     "currency": "PHP",  
-    "baseAmount": 8500,  
+    "amount": 8500,  
     "metadata": {  
         "createdAt": "2022-09-01T01:44:18Z",
         "itemCreatedAt": "2022-08-24T05:24:37Z",
@@ -61,7 +61,7 @@ _预估收入目前在公测阶段。_
     "id": "einc-123abc456def789abc123def456abc78",  
     "month": "2022-06",  
     "currency": "PHP",  
-    "baseAmount": 8500,  
+    "amount": 8500,  
     "metadata": {  
         "createdAt": "2022-09-01T01:44:18Z",  
         "itemCreatedAt": "2022-08-24T05:24:37Z",

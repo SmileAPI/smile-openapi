@@ -172,7 +172,7 @@ By default, Smile will have your users grant ongoing access to their employment 
 
 # Step 2: Make a loan decision
 
-When users connect their accounts, you can retrieve their employment and income information via the [Smile OpenAPI](https://docs.getsmileapi.com/reference) to inform your loan decisioning process.
+When users connect their accounts, you can retrieve their employment and income information via the [Smile OpenAPI](/reference/chapter-1) to inform your loan decisioning process.
 
 ![](https://files.readme.io/58acc20-image.png)
 

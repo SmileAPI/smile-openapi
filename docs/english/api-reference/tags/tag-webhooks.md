@@ -201,8 +201,8 @@ Payload when the account linking process is unsuccessful.
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
     "loginName": "userLoginName",
-    "errorCode": "500",
-    "errorMessage": "Error message",
+    "errorCode": "INVALID_CREDENTIALS",
+    "errorMessage": "Invalid username or password!",
     "providers": [
       "abccorp"
     ]
@@ -337,8 +337,8 @@ Payload when the the archive creation or analysis process is unsuccessful.
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "archiveId": "u-123abc456def789abc123def456abc78",
-    "errorCode": "500",
-    "errorMessage": "Error Message"
+    "errorCode": "FILE_UNABLE_TO_RECOGNIZE",
+    "errorMessage": "Invalid file!"
   }
 }
 ```

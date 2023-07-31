@@ -189,8 +189,8 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
    "data": {
       "userId": "tenantId-123abc456def789abc123def456abc78",
       "archiveId": "u-123abc456def789abc123def456abc78",
-      "errorCode": "500",
-      "errorMessage": "Error Message"
+      "errorCode": "FILE_UNABLE_TO_RECOGNIZE",
+      "errorMessage": "Invalid file!"
    }
 }
 ```

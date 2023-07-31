@@ -38,8 +38,8 @@ Our Wink Widget sits in a Webview instance of your native app and may be closed 
 
 There are two ways to disconnect a linked account:
 
-1. Let users do it by themselves via the Wink SDK as shown in the [Solutions](https://docs.getsmileapi.com/docs/customer-verification-design#how-can-a-user-disconnect-their-account)
-2. Clients can call the Smile [OpenAPI](https://docs.getsmileapi.com/reference/delete-account) to actively revoke accounts:
+1. Let users do it by themselves via the Wink SDK as shown in the [Solutions](/docs/customer-verification-design#how-can-a-user-disconnect-their-account)
+2. Clients can call the Smile [OpenAPI](/reference/delete-account) to actively revoke accounts:
 
 ```curl curl
 DELETE https://open.smileapi.io/v1/accounts/{id}
@@ -51,7 +51,7 @@ DELETE https://open.smileapi.io/v1/accounts/{id}
 
 ## What is the validity period of the user (Link) token?
 
-The user token is used to initialize Smile Wink Widget,  and is valid for 5 hours (300 minutes) before expiry. You may call the [Refresh Token endpoint](https://docs.getsmileapi.com/reference/create-token-1) to get a new user token anytime to obtain a new token.
+The user token is used to initialize Smile Wink Widget,  and is valid for 5 hours (300 minutes) before expiry. You may call the [Refresh Token endpoint](/reference/create-token-1) to get a new user token anytime to obtain a new token.
 
 ## What is the validity period of the Invite Link?
 
@@ -68,7 +68,7 @@ The invite link is valid for 14 days. Users can open the link anytime before exp
 ## How soon will Smile return user data after the user account is connected?
 
 The duration between the account connection being established and the data being available depends on the performance of the data providers. This typically ranges from several seconds to a few minutes. The Smile SLA for this is 5 minutes, which means you can get user's data via [API ](https://docs.getsmileapi.com/reference/)  within 5 minutes.  
-You may also listen to our available [Webhooks](https://docs.getsmileapi.com/reference/webhooks) to ensure your system can immediately retrieve data once it is available.
+You may also listen to our available [Webhooks](/reference/webhooks) to ensure your system can immediately retrieve data once it is available.
 
 ## How map your user with Smile user?
 

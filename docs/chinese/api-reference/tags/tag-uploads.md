@@ -9,4 +9,4 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 > 🚧 注意
 >
-> **此端点已被废弃，并被 Archives 端点所取代**，只为向后兼容而保留。请访问 [the Archives section](/reference/archives) 以了解更多。
+> **此端点已被废弃，并被 Archives 端点所取代**，只为向后兼容而保留。请访问 [Archives 部分](/reference/archives) 以了解更多。

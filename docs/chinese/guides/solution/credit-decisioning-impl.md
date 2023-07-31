@@ -10,7 +10,7 @@ slug: credit-decisioning-implementation
 为了成功地将 Smile 融入您的流程，我们建议通过以下3个步骤来实现：
 
 - 收集需求 - 探索您的使用用例，以及您想通过 Smile 数据实现什么目标
-- [Design](/docs/credit-decisioning-design) - 设计您的用户流程以及与 Smile 的集成
+- [设计](/docs/credit-decisioning-design) - 设计您的用户流程以及与 Smile 的集成
 - 实施与上线（本指南）--设置和启动集成的详细步骤
 
 ***
@@ -151,12 +151,12 @@ User tokens 是临时的（5小时后失效）访问密钥，通过它开始您�
 **新用户的链接初始化：**
 
 1. 通过调用 `/users` 端点创建一个带有源数据的新的 Smile 用户，类似于您的产品/系统中的用户标识。您将收到一个 Smile `userId`。我们建议您在系统中保存这个 Smile `userId`，以便将来参考与使用。
-2. 通过调用 [`/tokens` endpoint](https://docs.getsmileapi.com/reference/tokens) ，使用 `userId` 来创建一个新的 user token。您将收到相应的 `userToken`。
+2. 通过调用 [`/tokens` endpoint](/reference/tokens) ，使用 `userId` 来创建一个新的 user token。您将收到相应的 `userToken`。
 3. 我们在您的 Smile Wink 初始化中提供`userToken`。请确保 user token 在服务器端被请求，您的 `client_id` 和 `client_secret` 将永远不会暴露在前端。
 
 ****老用户的链接初始化或刷新 Link token****
 
-1. 通过调用 [`/tokens` endpoint ](https://docs.getsmileapi.com/reference/tokens) 获得一个新的 user token，其 `userId`是您之前保存的。
+1. 通过调用 [`/tokens` endpoint ](/reference/tokens) 获得一个新的 user token，其 `userId`是您之前保存的。
 2. 我们在您的 Smile Wink 初始化中提供 `userToken`。请确保 user token 在服务器端被请求，您的 `client_id` 和 `client_secret` 永远不会暴露在前端。
 
 ```html
@@ -406,7 +406,7 @@ GET https://https://open-sandbox.smileapi.io/v1/employments?sourceId=<accountId>
 
 
 
-关于其他数据字段，请参考 [Smile API reference](https://docs.getsmileapi.com/reference/chapter-1)
+关于其他数据字段，请参考 [Smile API reference](/reference/chapter-1-cn)
 
 # 第4步：将 transaction, eincome 以及 contribution 数据输入您的信用决策引擎
 
@@ -418,7 +418,7 @@ GET https://https://open-sandbox.smileapi.io/v1/employments?sourceId=<accountId>
 
 # 第5步：设置 webhooks
 
-如果想要定期收到用户的账户，identity，contribution 以及 employment 数据的更新，请订阅 [webhooks](https://docs.getsmileapi.com/reference/chapter-5) 。
+如果想要定期收到用户的账户，identity，contribution 以及 employment 数据的更新，请订阅 [webhooks](/reference/chapter-5-cn) 。
 
 ![](https://files.readme.io/e9abfe9-image.png)
 

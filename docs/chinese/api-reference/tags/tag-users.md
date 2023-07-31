@@ -9,7 +9,7 @@ slug: users
 
 同时为用户发放一个 token ，并可通过 ``GET /tokens`` 端点更新。
 
-用户可以有一个或多个[Accounts](/reference/accounts)连接到他们的用户记录。
+用户可以有一个或多个[ Accounts ](/reference/accounts)连接到他们的用户记录。
 
 当用户通过 SDK，或客户通过启动 [Revoke Account API](/reference/delete-account) 撤销了连接的账户时，用户的数据将被删除，不能再被访问。
 

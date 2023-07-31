@@ -22,7 +22,7 @@ slug: developer-portal
 
 Smile 为我们的生产环境提供了一个 Sandbox 模式，在该模式下，您可以通过使用样本数据来测试您的集成。您也可以通过在 Developer Portal 上使用 Sandbox 模式来测试 Wink Widget emulator（如下所述）。
 
-所有开发者账户都可以访问 Sandbox 模式。更多信息见 [在 Sandbox 模式下测试](https://docs.getsmileapi.com/reference/chapter-4#testing-in-sandbox) 。为了在 Production 模式下进行实际测试，请 [与我们预约通话](https://www.getsmileapi.com/book-a-call-with-smile-api?utm_source=FAQ&utm_medium=FAQ&utm_campaign=FAQ) 来为您的账户申请访问权限。
+所有开发者账户都可以访问 Sandbox 模式。更多信息见 [在 Sandbox 模式下测试](/reference/chapter-4-cn) 。为了在 Production 模式下进行实际测试，请 [与我们预约通话](https://www.getsmileapi.com/book-a-call-with-smile-api?utm_source=FAQ&utm_medium=FAQ&utm_campaign=FAQ) 来为您的账户申请访问权限。
 
 ## Wink Widget Emulator
 

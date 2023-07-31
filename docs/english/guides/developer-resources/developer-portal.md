@@ -22,7 +22,7 @@ Through the Developer Portal, you can:
 
 Smile provides a Sandbox Mode for our production environment to allow you to test your integration with sample data. You can also use the Sandbox Mode in the Developer Portal while testing the Wink Widget emulator (outlined below).
 
-All developer accounts have access to the Sandbox Mode. See [Testing in Sandbox mode](https://docs.getsmileapi.com/reference/chapter-4#testing-in-sandbox) for more information. In order to test against live items in Production Mode, [book a call with us](https://www.getsmileapi.com/book-a-call-with-smile-api?utm_source=FAQ&utm_medium=FAQ&utm_campaign=FAQ) to request access for your account.
+All developer accounts have access to the Sandbox Mode. See [Testing in Sandbox mode](/reference/chapter-4) for more information. In order to test against live items in Production Mode, [book a call with us](https://www.getsmileapi.com/book-a-call-with-smile-api?utm_source=FAQ&utm_medium=FAQ&utm_campaign=FAQ) to request access for your account.
 
 ## Wink Widget Emulator
 

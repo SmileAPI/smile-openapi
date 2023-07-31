@@ -23,19 +23,19 @@ If the sources provided by your user are not enough, you can also make use of Sm
 
 ## The Employment object
 
-| Attribute  | Type   | Description |
-| :--------- | :----- | :------- |
-| id | string | Unique ID of the employment information on the Smile Network |
-| name | string | Work performed, if available from the provider. Null if not available |
-| description | string | Description of the work performed, if available from the provider. Null if not available |
-| jobTitle | string | Job title or position with the employer, if available from the provider. Null if not available |
-| department | string | Department of the user with the employer, if available from the provider. Null if not available |
-| employeeNumber | string | Employee number of the user with the employer, if available from the provider. Null if not available |
-| employer | string | Company or business name of the employer, if available from the provider. Null if not available. Possible values: `Male`, `Female`, `Non-binary` |
-| status | string | Status of the user's employment, if available from the provider. Null if not available |
+| Attribute  | Type   | Description                                                                                                  |
+| :--------- | :----- |:-------------------------------------------------------------------------------------------------------------|
+| id | string | Unique ID of the employment information on the Smile Network                                                 |
+| name | string | Work performed, if available from the provider. Null if not available                                        |
+| description | string | Description of the work performed, if available from the provider. Null if not available                     |
+| jobTitle | string | Job title or position with the employer, if available from the provider. Null if not available               |
+| department | string | Department of the user with the employer, if available from the provider. Null if not available              |
+| employeeNumber | string | Employee number of the user with the employer, if available from the provider. Null if not available         |
+| employer | string | Company or business name of the employer, if available from the provider. Null if not available.             |
+| status | string | Status of the user's employment, if available from the provider. Null if not available                       |
 | startDate | date | Start date of the user's employment with the employer, if available from the provider. Null if not available |
-| endDate | date | End date of the user's employment with the employer, if available from the provider. Null if not available |
-| metadata | object | Contains data about this employment data point. See object below |
+| endDate | date | End date of the user's employment with the employer, if available from the provider. Null if not available   |
+| metadata | object | Contains data about this employment data point. See object below                                             |
 
 
 ### The Meta Data object

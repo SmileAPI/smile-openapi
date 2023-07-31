@@ -17,7 +17,7 @@ slug: customer-verification-design
 
 - 需求收集 - 探讨您的使用情况以及您想通过 Smile 的数据实现什么目标
 - 设计（本指南）--设计您的用户流程和与 Smile 的集成。
-- [Implementation & Go-live](/docs/customer-verification-implementation) - 设置和启动 Smile 的步骤
+- [实施与上线](/docs/customer-verification-implementation) - 设置和启动 Smile 的步骤
 
 ***
 

@@ -243,7 +243,7 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 
 只要用户同意并通过 Wink Widget 连接他们的账户，Smile API 的*连续数据同步* ( CDS )功能可以让您从用户那里获得最新的数据。同意 CDS 功能后，用户可以授权 Smile 为您同步多个月的数据，直到他们撤销对其帐户的访问权限。
 
-在 [Accounts section](/reference/accounts) 了解更多关于 CDS 和启用 CDS 的信息。
+在 [Accounts 部分](/reference/accounts) 了解更多关于 CDS 和启用 CDS 的信息。
 
 ---
 <!-- focus: false -->

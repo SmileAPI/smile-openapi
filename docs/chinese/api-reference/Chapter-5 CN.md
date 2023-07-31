@@ -12,7 +12,7 @@ slug: chapter-5-cn
 
 当我们的服务器中发生与您的环境相关的事件时，Smile 使用 webhooks 实时通知您的应用程序。
 
-当创建一个用户，成功连接一个账号，上传一个就业文件，发送一个邀请时，或者当任何新类型的数据，如用户的身份，收入，就业等被添加时，事件通知将被发送。在我们的[Webhooks reference page](/reference/webhooks)中查看您可以订阅的可用事件列表。
+当创建一个用户，成功连接一个账号，上传一个就业文件，发送一个邀请时，或者当任何新类型的数据，如用户的身份，收入，就业等被添加时，事件通知将被发送。在我们的[Webhooks 参考页面](/reference/webhooks)中查看您可以订阅的可用事件列表。
 
 这些 webhooks 通过安全通道发送，使用来自静态 IP 地址的 HTTPS，数据以 JSON 格式发送。并带有一个签名，供您验证内容的真实性。
 
@@ -22,7 +22,7 @@ slug: chapter-5-cn
 
 Webhook 对于获取有关异步事件的通知非常有用，当这些事件发生时，它可以在您的后台系统中执行行动，或者知道何时刷新您的前端系统以显示新数据。
 
-关于详细的实施步骤，请访问我们的[Webhooks reference page](/reference/webhooks)了解更多信息。
+关于详细的实施步骤，请访问我们的[Webhooks 参考页面](/reference/webhooks)了解更多信息。
 
 ## 回调
 
@@ -108,7 +108,7 @@ onAccountRemoved: ({
 
 #### onTokenExpired
 
-当链接令牌已过期时触发。您可以通过调用[Refresh Token API](/reference/creat-token-1)来更新用户的 token 。
+当链接令牌已过期时触发。您可以通过调用[刷新 Token API](/reference/tokens)来更新用户的 token 。
 
 ``` javascript
 onTokenExpired: () => {
@@ -128,7 +128,7 @@ onClose: () => {
 
 #### onAccountError
 
-当用户账户链接出现错误时触发。完整的错误列表可以在[Get Account API reference](/reference/get-account-1)中看到。
+当用户账户链接出现错误时触发。完整的错误列表可以在[Get Account API 参考页面](/reference/get-account-1)中看到。
 
 ``` javascript
 onAccountError: ({

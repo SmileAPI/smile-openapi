@@ -144,12 +144,12 @@ User tokens are temporary (expires in 5 hours) access keys that allow you to sta
 **Link initialization for new user :**
 
 1. Create a new Smile user by calling the `/users` endpoint with metadata, such as your user identifier in your product/system. You will receive a Smile `userId`. We recommend storing this Smile `userId` in your system for future reference and use
-2. Create a new user token by calling the [`/tokens` endpoint](https://docs.getsmileapi.com/reference/tokens) with their `userId`. You will receive their `userToken`
+2. Create a new user token by calling the [`/tokens` endpoint](/reference/tokens) with their `userId`. You will receive their `userToken`
 3. Provide the `userToken` in your Smile Wink initialization. Make sure the user tokens are requested server-side and your `client_id` and `client_secret` are never exposed on the front-end.
 
 **Link initialization for a returning user or for refreshing the Link token**
 
-1. Obtain a new user token by calling the [`/tokens` endpoint ](https://docs.getsmileapi.com/reference/tokens)with their `userId` that you have previously stored.
+1. Obtain a new user token by calling the [`/tokens` endpoint ](/reference/tokens) with their `userId` that you have previously stored.
 2. Provide the `userToken` in your Smile Wink initialization. Make sure user tokens are requested server-side and your `client_id` and `client_secret` are never exposed on the front-end.
 
 ```html
@@ -422,11 +422,11 @@ Here is an example response:
 
 
 
-For additional data fields, please refer to the [Smile API reference](https://docs.getsmileapi.com/reference/chapter-1).
+For additional data fields, please refer to the [Smile API reference](/reference/chapter-1).
 
 # Step 4: Setup webhooks
 
-To receive regular updates on a user's accounts, identity, contribution and employment data, subscribe to [webhooks](https://docs.getsmileapi.com/reference/chapter-5).
+To receive regular updates on a user's accounts, identity, contribution and employment data, subscribe to [webhooks](/reference/chapter-5).
 
 ![](https://files.readme.io/79ad8de-image.png)
 

@@ -22,7 +22,7 @@ _Estimated Incomes is currently in alpha._
 | id         | string | Unique ID of this estimated income object                                                  |
 | month      | string | The month where this estimated income is for, in 'YYYY-MM' format                          |
 | currency   | string | Currency of the estimated income in standard three-letter ISO code                         |
-| baseAmount | number | Income amount                                                                              |
+| amount | number | Income amount                                                                              |
 | metadata   | object | Additional information about the resource such as created date, data source, user id, etc. |
 
 ### The Meta Data object
@@ -46,7 +46,7 @@ Estimated income is always returned as a monthly amount.
     "id": "einc-123abc456def789abc123def456abc78",  
     "month": "2022-07",  
     "currency": "PHP",  
-    "baseAmount": 8500,  
+    "amount": 8500,  
     "metadata": {  
         "createdAt": "2022-09-01T01:44:18Z",
         "itemCreatedAt": "2022-08-24T05:24:37Z",
@@ -60,7 +60,7 @@ Estimated income is always returned as a monthly amount.
     "id": "einc-123abc456def789abc123def456abc78",  
     "month": "2022-06",  
     "currency": "PHP",  
-    "baseAmount": 8500,  
+    "amount": 8500,  
     "metadata": {  
         "createdAt": "2022-09-01T01:44:18Z",  
         "itemCreatedAt": "2022-08-24T05:24:37Z",

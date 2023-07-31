@@ -200,8 +200,8 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
     "loginName": "userLoginName",
-    "errorCode": "500",
-    "errorMessage": "Error message",
+    "errorCode": "INVALID_CREDENTIALS",
+    "errorMessage": "Invalid username or password!",
     "providers": [
       "abccorp"
     ]
@@ -335,8 +335,8 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "archiveId": "u-123abc456def789abc123def456abc78",
-    "errorCode": "500",
-    "errorMessage": "Error Message"
+    "errorCode": "FILE_UNABLE_TO_RECOGNIZE",
+    "errorMessage": "Invalid file!"
   }
 }
 ```

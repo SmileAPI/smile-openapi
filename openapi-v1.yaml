@@ -2004,7 +2004,7 @@ paths:
                         - id: einc-a-123abc456def789abc123def456abc78
                           month: 2021-06
                           currency: PHP
-                          baseAmount: 1000
+                          amount: 1000
                           metadata:
                             createdAt: '2021-04-14T09:30:24Z'
                             sourceId: a-123abc456def789abc123def456abc78
@@ -2102,7 +2102,7 @@ paths:
   /profiles/-/identities/verify:
     post:
       tags:
-        - ProfileIdentities
+        - Profile Identities
       operationId: verify-profile-identity
       summary: Verify the user's identity data
       requestBody:
@@ -2137,7 +2137,7 @@ paths:
   /profiles/-/identities/query:
     post:
       tags:
-        - ProfileIdentities
+        - Profile Identities
       operationId: query-profile-identity
       summary: Query more user informations base on request parameters
       requestBody:
@@ -2173,6 +2173,19 @@ paths:
                         gender: Male
                         maritalStatus: Married
                         dob: '2000-01-21'
+                        homeTelphone: '09474004836'
+                        socialSecurityCoverageType: EMPLOYEE
+                        socialSecurityCoverageDate: '2020-12-21'
+                        totalEmploymentReportCount: 10
+                        firstEmploymentReportDate: '2021-01-01'
+                        latestEmploymentReportDate: '2021-10-01'
+                        address:
+                          line1: 12 Maybunga St
+                          line2: Barangay Paraiso
+                          city: Pasig City
+                          region: NCR
+                          zip: '1600'
+                          country: PH
                 Example2:
                   value:
                     code: OK
@@ -5090,7 +5103,7 @@ components:
           id: einc-17bbf36498de4d68a0d4f86c7b62f69f
           month: 2021-06
           currency: PHP
-          baseAmount: 8500
+          amount: 8500
           metadata:
             createdAt: '2021-06-14T09:30:24Z'
             sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
@@ -5111,6 +5124,13 @@ components:
           $ref: '#/components/schemas/Ref-Currency'
         baseAmount:
           type: number
+          deprecated: true
+          description: >-
+            income amount, has been renamed to amount, baseAmount will be
+            removed in the future
+          nullable: true
+        amount:
+          type: number
           description: income amount
           nullable: true
         metadata:
@@ -5120,6 +5140,7 @@ components:
         - month
         - currency
         - baseAmount
+        - amount
         - metadata
     LiabilityGetResponse:
       title: Liability Get Response
@@ -5191,7 +5212,7 @@ components:
         endDate:
           type: string
           format: date
-          description: the loan start date
+          description: the loan end date
         firstAmortizationDate:
           type: string
           format: date
@@ -5360,7 +5381,7 @@ components:
         maritalStatus:
           $ref: '#/components/schemas/Ref-MaritalStatus'
     ProfileIdentityVerifyResponse:
-      title: Profile Identity Query Response
+      title: Profile Identity Verify Response
       type: object
       x-internal: true
       allOf:
@@ -5476,13 +5497,13 @@ components:
               description: the firstName from Smile side
             lastName:
               type: string
-              description: the firstName from Smile side
+              description: the lastName from Smile side
             middleName:
               type: string
-              description: the firstName from Smile side
+              description: the middleName from Smile side
             suffix:
               type: string
-              description: the firstName from Smile side
+              description: the suffix from Smile side
             dob:
               type: string
               format: date
@@ -5496,6 +5517,59 @@ components:
               $ref: '#/components/schemas/Ref-Gender'
             maritalStatus:
               $ref: '#/components/schemas/Ref-MaritalStatus'
+            homeTelphone:
+              type: string
+              description: home telephone number
+            address:
+              $ref: '#/components/schemas/ProfileIdentityAddress'
+            socialSecurityCoverageType:
+              type: string
+              description: >-
+                Social security coverage type, Possible values: EMPLOYEE,
+                VOLUNTARY, SELF EMPLOYED, FOR EMPLOYMENT
+            socialSecurityCoverageDate:
+              type: string
+              format: date
+              description: Social security start time
+              example: '2000-01-21'
+            totalEmploymentReportCount:
+              type: integer
+              description: the total of employment report records
+            firstEmploymentReportDate:
+              type: string
+              format: date
+              description: First employment record reported date
+              example: '2000-01-21'
+            latestEmploymentReportDate:
+              type: string
+              format: date
+              description: Latest employment record reported date
+              example: '2022-09-21'
+    ProfileIdentityAddress:
+      type: object
+      properties:
+        line1:
+          type: string
+          nullable: true
+          description: Line 1 of street address
+        line2:
+          type: string
+          nullable: true
+          description: Line 2 of street address
+        city:
+          type: string
+          nullable: true
+          description: City
+        region:
+          type: string
+          nullable: true
+          description: Geographic region such as state or province
+        zip:
+          type: string
+          nullable: true
+          description: Post code
+        country:
+          $ref: '#/components/schemas/Ref-Country'
     Contribution:
       title: Contribution
       x-stoplight:
@@ -6805,7 +6879,7 @@ components:
           type: string
           description: >-
             The key that will be used to generate HMAC-SHA512 hex digest value
-            in the SmileAPI-Signature header.
+            in the Smile-Signature header.
           example: a little secret
           minLength: 1
           maxLength: 64
@@ -8684,6 +8758,7 @@ components:
         - CONTRIBUTIONS
         - EINCOMES
         - LIABILITIES
+        - LINK
       description: Supported data points for this employment data provider
       example: IDENTITIES
       x-internal: true
@@ -9736,7 +9811,10 @@ components:
       required: false
       schema:
         type: string
-      description: Filter to those associated with a particular source ID.
+      description: >-
+        Filter to those associated with a particular source ID. If we query the
+        link account data, the sourceId is the accountId, If we query the
+        archive data, then the sourceId is the archiveId
   securitySchemes:
     basicAuth:
       type: http

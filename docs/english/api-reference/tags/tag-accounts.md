@@ -177,8 +177,8 @@ Fired when the account linking process initiated by the user is unsuccessful.
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
     "loginName": "userLoginName",
-    "errorCode": "500",
-    "errorMessage": "Error message",
+    "errorCode": "INVALID_CREDENTIALS",
+    "errorMessage": "Invalid username or password!",
     "providers": [
       "abccorp"
     ]
