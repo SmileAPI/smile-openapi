@@ -1117,6 +1117,116 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-transaction
       description: Get a user's transaction by ID.
+  /tasks:
+    get:
+      summary: List Tasks
+      tags:
+        - Tasks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: task-a2e3ad1afa54ee818678e3494eb5ca30
+                          type: LINK_ACCOUNT
+                          startedAt: '2023-04-14T09:31:24Z'
+                          finishedAt: '2023-04-14T09:33:21Z'
+                          status: Finished
+                          datapoints:
+                            - IDENTITIES
+                            - DOCUMENTS
+                            - EINCOMES
+                            - INCOMES
+                          metadata:
+                            createdAt: '2021-04-14T09:30:24Z'
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceType: ACCOUNT
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: upwork
+                        - id: task-a2e3ad18678e3494eb5ca301afa54ee8
+                          type: LINK_ACCOUNT
+                          startedAt: '2023-04-14T09:31:24Z'
+                          finishedAt: null
+                          status: Started
+                          datapoints: []
+                          metadata:
+                            createdAt: '2021-04-14T09:30:24Z'
+                            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+                            sourceType: ACCOUNT
+                            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                            providerId: upwork
+      operationId: list-tasks
+      description: Get the user's tasks.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - schema:
+            type: string
+            format: date
+            example: '2021-04-01'
+          in: query
+          name: startDate
+          description: Filter by task created date, start of date range (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+            example: '2021-04-21'
+          in: query
+          name: endDate
+          description: Filter by task created date, end of date range (YYYY-MM-DD)
+        - $ref: '#/components/parameters/sourceId'
+  /tasks/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Task
+      tags:
+        - Tasks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: task-a2e3ad1afa54ee818678e3494eb5ca30
+                      type: LINK_ACCOUNT
+                      startedAt: '2023-04-14T09:31:24Z'
+                      finishedAt: '2023-04-14T09:33:21Z'
+                      status: Finished
+                      datapoints:
+                        - IDENTITIES
+                        - DOCUMENTS
+                        - EINCOMES
+                        - LINK
+                        - INSIGHT
+                      metadata:
+                        createdAt: '2021-04-14T09:30:24Z'
+                        sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+                        sourceType: ACCOUNT
+                        userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                        providerId: upwork
+      operationId: get-task
+      description: Get a user's task by ID.
   /uploads:
     get:
       summary: List Uploads
@@ -2104,7 +2214,7 @@ paths:
       tags:
         - Profile Identities
       operationId: verify-profile-identity
-      summary: Verify the user's identity data
+      summary: Verify identity
       requestBody:
         content:
           application/json:
@@ -2139,7 +2249,7 @@ paths:
       tags:
         - Profile Identities
       operationId: query-profile-identity
-      summary: Query more user informations base on request parameters
+      summary: Query Identity
       requestBody:
         content:
           application/json:
@@ -2173,7 +2283,7 @@ paths:
                         gender: Male
                         maritalStatus: Married
                         dob: '2000-01-21'
-                        homeTelphone: '09474004836'
+                        homeTelephone: '09474004836'
                         socialSecurityCoverageType: EMPLOYEE
                         socialSecurityCoverageDate: '2020-12-21'
                         totalEmploymentReportCount: 10
@@ -2205,6 +2315,13 @@ paths:
                         gender: null
                         maritalStatus: null
                         dob: null
+                        homeTelephone: null
+                        socialSecurityCoverageType: null
+                        socialSecurityCoverageDate: null
+                        totalEmploymentReportCount: null
+                        firstEmploymentReportDate: null
+                        latestEmploymentReportDate: null
+                        address: null
                 Example3:
                   value:
                     code: OK
@@ -3141,6 +3258,8 @@ paths:
                           updatedAt: '2021-04-14T09:30:24Z'
                           invitedAt: '2021-04-14T09:30:24Z'
                           linkedAt: '2021-04-14T09:30:24Z'
+                          inviteLandingPageUrl: >-
+                            https://user.getsmileapi.com/invite-user/xx-xxxxxx?token=xxxxxxxxx
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -3196,6 +3315,8 @@ paths:
                       updatedAt: '2021-04-14T09:30:24Z'
                       invitedAt: '2021-04-14T09:30:24Z'
                       linkedAt: '2021-04-14T09:30:24Z'
+                      inviteLandingPageUrl: >-
+                        https://user.getsmileapi.com/invite-user/xx-xxxxxx?token=xxxxxxxxx
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -3327,6 +3448,8 @@ paths:
                       updatedAt: '2021-04-14T09:30:24Z'
                       invitedAt: '2021-04-14T09:30:24Z'
                       linkedAt: '2021-04-14T09:30:24Z'
+                      inviteLandingPageUrl: >-
+                        https://user.getsmileapi.com/invite-user/xx-xxxxxx?token=xxxxxxxxx
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -4676,6 +4799,70 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Rating'
+    TaskGetResponse:
+      title: Rating Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Task'
+    TaskListResponse:
+      title: Rating List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Task'
+    Task:
+      type: object
+      required:
+        - id
+        - type
+        - startedAt
+        - status
+        - metadata
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - LINK_ACCOUNT
+        startedAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        finishedAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        status:
+          type: string
+          enum:
+            - Started
+            - Finished
+        datapoints:
+          type: array
+          description: The datapoints saved when the task finished
+          items:
+            $ref: '#/components/schemas/Ref-Datapoint'
+        metadata:
+          $ref: '#/components/schemas/Object-Reference-Metadata'
     Document:
       title: Document
       type: object
@@ -5361,8 +5548,10 @@ components:
           description: Identification number
         firstName:
           type: string
+          description: User first name
         lastName:
           type: string
+          description: User last name
         dob:
           type: string
           format: date
@@ -5370,12 +5559,16 @@ components:
           example: '2000-01-21'
         middleName:
           type: string
+          description: User middle name
         suffix:
           type: string
+          description: User suffix
         mobile:
           type: string
+          description: User mobile number
         email:
           type: string
+          description: User email address
         gender:
           $ref: '#/components/schemas/Ref-Gender'
         maritalStatus:
@@ -5401,6 +5594,7 @@ components:
             the value is false
         message:
           type: string
+          description: Some descriptions for this result
         result:
           type: object
           required:
@@ -5453,8 +5647,10 @@ components:
           description: Identification number
         firstName:
           type: string
+          description: User first name
         lastName:
           type: string
+          description: User last name
         dob:
           type: string
           format: date
@@ -5489,21 +5685,21 @@ components:
             nameMatchScore:
               type: integer
               description: >-
-                the score if matched the name(first name, last name). If
+                The score if matched the name(first name, last name). If
                 matched(score >= 80), then Smile will return the matched
                 information. If not matched, all other fields will return null
             firstName:
               type: string
-              description: the firstName from Smile side
+              description: The firstName from Smile side
             lastName:
               type: string
-              description: the lastName from Smile side
+              description: The lastName from Smile side
             middleName:
               type: string
-              description: the middleName from Smile side
+              description: The middleName from Smile side
             suffix:
               type: string
-              description: the suffix from Smile side
+              description: The suffix from Smile side
             dob:
               type: string
               format: date
@@ -5511,13 +5707,15 @@ components:
               example: '2000-01-21'
             mobile:
               type: string
+              description: Mobile number
             email:
               type: string
+              description: Email address
             gender:
               $ref: '#/components/schemas/Ref-Gender'
             maritalStatus:
               $ref: '#/components/schemas/Ref-MaritalStatus'
-            homeTelphone:
+            homeTelephone:
               type: string
               description: home telephone number
             address:
@@ -5980,6 +6178,7 @@ components:
           updatedAt: '2021-04-14T09:30:24Z'
           invitedAt: '2021-04-14T09:30:24Z'
           linkedAt: '2021-04-14T09:30:24Z'
+          inviteLandingPageUrl: https://user.getsmileapi.com/invite-user/xx-xxxxxx?token=xxxxxxxxx
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -6022,6 +6221,11 @@ components:
           $ref: '#/components/schemas/Ref-DateTime'
         linkedAt:
           $ref: '#/components/schemas/Ref-DateTime'
+        inviteLandingPageUrl:
+          type: string
+          description: >-
+            The landing page url that user can visit and go redirect to link
+            account
       required:
         - id
         - createdAt

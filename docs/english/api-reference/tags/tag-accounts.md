@@ -9,7 +9,7 @@ Accounts in the Smile Network form the basis of the data shared by the user to o
 
 Upon providing consent and access directly from the end user, Smile retrieves available data from the account and provides normalized data under each user data endpoint at that particular point in time. If your account has *Continuous Data Sync* enabled, Smile will also periodically check with the provider for updated data, and keep your user's information updated for as long as the account is connected (i.e., not revoked by the user).
 
-Available data points for each provider may vary, which you can review real-time using [the Data Sources section of the Developer Portal](https://developer-portal.smileapi.io/providers). You can track availability of the data using [Webhook event notifications](/reference/chapter-5).
+Available data points for each provider may vary, which you can review real-time using [the Data Sources section of the Developer Portal](https://portal.getsmileapi.com/providers). You can track availability of the data using [Webhook event notifications](/reference/chapter-5).
 
 By default, the List Accounts API will return all accounts under your `tenantId` that match your query parameters. Make sure to filter the results by `userId` or `startDate` and `endDate` to narrow down your query.
 

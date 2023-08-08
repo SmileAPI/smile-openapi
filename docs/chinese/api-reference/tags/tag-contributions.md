@@ -14,7 +14,7 @@ Contributions 数据端点允许您识别用户的社会保险缴费行为。根
 
 在菲律宾，SSS、PhilHealth 和 Pag-IBIG/HDMF 平台都有社保缴费数据。
 
-在用户通过 Smile 连接一个 [Account](/reference/accounts) 后，Smile 从 [Provider](/reference/providers) 检索用户的社保缴费数据并使其可被检索。您可以监听部分事件和 webhooks（概述如下），以确定他们的社保缴费数据何时准备好。
+在用户通过 Smile 连接一个 [Account](/v1.0-Chinese/reference/accounts) 后，Smile 从 [Provider](/reference/providers) 检索用户的社保缴费数据并使其可被检索。您可以监听部分事件和 webhooks（概述如下），以确定他们的社保缴费数据何时准备好。
 
 您也可以查看 Smile 提供的用户洞察产品 [Estimated Income](/reference/estimated-incomes)，作为不需要与年度缴费表进行比较便可以快速确定收入的方法。
 

@@ -9,7 +9,7 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 在得到来自最终用户的同意和直接访问权限后，Smile 从账户中检索可用数据，并在该特定时间点提供每个数据端点下的规范化数据。如果您的账户启用了 *Continuous Data Sync* ，Smile 也会定期检查提供商更新的数据，并在账户连接期间（即没有被用户撤销）持续更新您的用户信息。
 
-每个提供商支持的可用数据端点可能有所不同，您可以使用 [Developer Portal 下的 Data Sources 部分](https://developer-portal.smileapi.io/providers) 实时检查。您也可以使用 [Webhook 事件通知](/reference/chapter-5-cn) 跟踪数据的可用性。
+每个提供商支持的可用数据端点可能有所不同，您可以使用 [Developer Portal 下的 Data Sources 部分](https://portal.getsmileapi.com/providers) 实时检查。您也可以使用 [Webhook 事件通知](/reference/chapter-5-cn) 跟踪数据的可用性。
 
 默认情况下，List Accounts API 将返回您的 `tenantId` 下所有符合查询参数的账户。请确保通过`userId`、`startDate`或`endDate`来过滤结果，以缩小查询范围。
 
