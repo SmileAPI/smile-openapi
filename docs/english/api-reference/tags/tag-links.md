@@ -2,7 +2,7 @@
 title: Multiple Application Warning Service
 excerpt: ""
 category: 631090d0cbc5350036d31763
-slug: multiple-application-warning
+slug: links
 ---
 
 Multiple Application Warning (MAW) offers lenders notifications when a potential borrower has applied for loans with multiple financial institutions. With MAW, lenders can make better and informed decisions when assessing risk with the information of their customer's behavior across the network.

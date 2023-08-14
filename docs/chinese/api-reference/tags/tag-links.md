@@ -2,7 +2,7 @@
 title: Multiple Application Warning Service
 excerpt: ""
 category: 631853c44ea4ae04ab847012
-slug: multiple-application-warning
+slug: links
 ---
 
 当潜在借款人向多家金融机构申请贷款时，贷款机构会收到多头申请警告（MAW）通知。有了 MAW，贷款机构在评估风险时就能利用借款人在整个网络中的行为信息做出更明智的决策。
