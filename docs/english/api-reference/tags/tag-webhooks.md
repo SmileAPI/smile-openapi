@@ -98,7 +98,7 @@ Below are the events you can subscribe to via webhooks.
 | Contributions Data Added                          | CONTRIBUTIONS_ADDED  | Sent when social security contributions data shared by a user is added.                            |
 | Liabilities Data Added                            | LIABILITIES_ADDED    | Sent when liabilities data shared by a user is added.                                              |
 | Insight Data Added                            | INSIGHT_ADDED    | Sent when insights data calculated from shared user data is added. |
-| Link Data Added                                   | LINK_ADDED           | Sent when link data detected after user linked is added.                                           |
+| Link Data Added                                   | LINK_ADDED           | Sent when a link is detected after the user has connected their account. |
 
 > 📘 Note
 > 

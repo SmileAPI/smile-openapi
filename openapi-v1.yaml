@@ -471,7 +471,7 @@ paths:
                     data:
                       nextCursor: '1259723474'
                       items:
-                        - id: 17bbf36498de4d68a0d4f86c7b62f69f
+                        - id: a-17bbf36498de4d68a0d4f86c7b62f69f
                           createdAt: '2021-04-14T09:30:24Z'
                           providerId: grab
                           userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
@@ -485,7 +485,7 @@ paths:
                           monitor:
                             status: UNSUPPORTED
                             updatedAt: null
-                        - id: 7fa7e260ad724f39b61427f6ac2edc69
+                        - id: a-7fa7e260ad724f39b61427f6ac2edc69
                           createdAt: '2021-04-15T09:30:24Z'
                           providerId: freelancer
                           userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
@@ -499,7 +499,7 @@ paths:
                           monitor:
                             stust: ACTIVE
                             updatedAt: '2023-03-14T09:30:24Z'
-                        - id: 79da958ecb2143659747deaebca1cfe0
+                        - id: a-79da958ecb2143659747deaebca1cfe0
                           createdAt: '2021-04-17T09:30:24Z'
                           providerId: upwork
                           userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
@@ -577,7 +577,7 @@ paths:
                     message: Success
                     requestId: 5b79399a-6852-4234-bb0e-ad472648282d
                     data:
-                      id: 17bbf36498de4d68a0d4f86c7b62f69f
+                      id: a-17bbf36498de4d68a0d4f86c7b62f69f
                       createdAt: '2021-04-14T09:30:24Z'
                       providerId: grab
                       userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
@@ -4019,9 +4019,10 @@ components:
       x-internal: true
       x-examples: {}
       title: User Post Request
-      description: ''
+      description: Create user request body
     UserPostResponse:
       title: User Post Response
+      description: Create user response body
       properties:
         code:
           $ref: '#/components/schemas/Object-Metadata-Ref-Code'
@@ -4535,6 +4536,7 @@ components:
         amount:
           type: number
           example: 10000
+          description: Transaction amount
         referenceId:
           type: string
           description: Reference transaction ID from data provider
@@ -4843,8 +4845,10 @@ components:
       properties:
         id:
           type: string
+          description: Task id
         type:
           type: string
+          description: Task type
           enum:
             - LINK_ACCOUNT
         startedAt:
@@ -4853,6 +4857,7 @@ components:
           $ref: '#/components/schemas/Ref-DateTime'
         status:
           type: string
+          description: Task status
           enum:
             - Started
             - Finished
@@ -5509,12 +5514,14 @@ components:
         id:
           type: string
           example: link-123456789012345678901234567890
+          description: Link request ID
         startDate:
           $ref: '#/components/schemas/Ref-DateTime'
         endDate:
           $ref: '#/components/schemas/Ref-DateTime'
         records:
           type: array
+          description: Link records
           default: []
           items:
             type: object
@@ -5524,9 +5531,13 @@ components:
             properties:
               count:
                 type: integer
+                description: >-
+                  The number of times the user has linked at least one account
+                  with other participating organizations
               linkedAt:
                 type: array
                 default: []
+                description: The latest link time of each application
                 items:
                   $ref: '#/components/schemas/Ref-DateTime'
         metadata:
@@ -6960,8 +6971,10 @@ components:
           description: Whether OCR for file type is supported
         supported:
           type: array
+          description: The datapoints that the provider could support
           items:
             type: string
+            description: Datapoint
             enum:
               - IDENTITIES
               - TRANSACTIONS
@@ -7040,11 +7053,15 @@ components:
           example: a little secret
         eventTypes:
           type: array
+          description: Special events that you want to subscribe to
           items:
             $ref: '#/components/schemas/Ref-Webhook-Event-Type'
         active:
           type: boolean
           default: true
+          description: >-
+            Set to true or false depending on if you would like to enable this
+            webhook or not
         updatedAt:
           $ref: '#/components/schemas/Ref-DateTime'
       required:
@@ -7213,8 +7230,10 @@ components:
               description: The connected account ID.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -7262,8 +7281,10 @@ components:
               description: The connected account ID.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
             count:
               type: integer
               description: the updated count of the records.
@@ -7329,8 +7350,10 @@ components:
               description: The connected account ID.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
             count:
               type: integer
               description: the updated count of the records.
@@ -7396,8 +7419,10 @@ components:
               description: The connected account ID.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
             count:
               type: integer
               description: the updated count of the records.
@@ -7463,8 +7488,10 @@ components:
               description: The connected account ID.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
             updatedIds:
               type: array
               items:
@@ -7529,8 +7556,10 @@ components:
               description: The connected account ID.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
             updatedIds:
               type: array
               items:
@@ -7595,8 +7624,10 @@ components:
               description: The connected account ID.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
             updatedIds:
               type: array
               items:
@@ -7664,8 +7695,10 @@ components:
               description: the login name user used.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -7715,8 +7748,10 @@ components:
               description: The connected account ID.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -7768,8 +7803,10 @@ components:
               $ref: '#/components/schemas/Ref-Source-Type'
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - sourceId
@@ -7821,8 +7858,10 @@ components:
               $ref: '#/components/schemas/Ref-Source-Type'
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
             datapoints:
               type: array
               items:
@@ -7879,8 +7918,10 @@ components:
               $ref: '#/components/schemas/Ref-Source-Type'
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
             status:
               type: string
               description: the status of the task
@@ -8282,8 +8323,10 @@ components:
               description: the new identity ID.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -8336,8 +8379,10 @@ components:
               description: The added rating ID.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -8398,8 +8443,10 @@ components:
                   description: The added link ID.
                 providers:
                   type: array
+                  description: The providers this account associated to
                   items:
                     type: string
+                    description: Provider id
               required:
                 - userId
                 - accountId
@@ -8449,8 +8496,10 @@ components:
               description: The number of transactions added.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -8503,8 +8552,10 @@ components:
               description: The number of documents added.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -8557,8 +8608,10 @@ components:
               description: The number of employments added.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -8611,8 +8664,10 @@ components:
               description: the number of incomes added.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -8666,8 +8721,10 @@ components:
               description: the number of eincomes added.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -8720,8 +8777,10 @@ components:
               description: the number of eincomes added.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -8776,8 +8835,10 @@ components:
                 /insight/{id}
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -8830,8 +8891,10 @@ components:
               description: the number of eincomes added.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -8884,8 +8947,10 @@ components:
               description: the number of contributions added.
             providers:
               type: array
+              description: The providers this account associated to
               items:
                 type: string
+                description: Provider id
           required:
             - userId
             - accountId
@@ -9607,6 +9672,7 @@ components:
         incomes_count:
           type: integer
           example: 9
+          description: The quantity of the estimated incomes
         incomes_first_income_month_range:
           type: integer
           example: -999
@@ -9640,7 +9706,7 @@ components:
         incomes_amount_min:
           type: number
           example: 1000
-          description: From all estimated incomes, get the miximum amount
+          description: From all estimated incomes, get the minimum amount
         incomes_amount_max:
           type: number
           example: 1200
@@ -9668,7 +9734,7 @@ components:
         incomes_last3_months_amount_min:
           type: number
           example: 1000
-          description: From all estimated incomes in last 3 months, get the miximum amount
+          description: From all estimated incomes in last 3 months, get the minimum amount
         incomes_last3_months_amount_max:
           type: number
           example: 1200
@@ -9698,7 +9764,7 @@ components:
         incomes_last6_months_amount_min:
           type: number
           example: 1000
-          description: From all estimated incomes in last 6 months, get the miximum amount
+          description: From all estimated incomes in last 6 months, get the minimum amount
         incomes_last6_months_amount_max:
           type: number
           example: 1200
@@ -9728,7 +9794,7 @@ components:
         incomes_last9_months_amount_min:
           type: number
           example: 1000
-          description: From all estimated incomes in last 9 months, get the miximum amount
+          description: From all estimated incomes in last 9 months, get the minimum amount
         incomes_last9_months_amount_max:
           type: number
           example: 1200
@@ -9758,7 +9824,7 @@ components:
         incomes_last12_months_amount_min:
           type: number
           example: 1000
-          description: From all estimated incomes in last 12 months, get the miximum amount
+          description: From all estimated incomes in last 12 months, get the minimum amount
         incomes_last12_months_amount_max:
           type: number
           example: 1200
@@ -9788,7 +9854,7 @@ components:
         incomes_last18_months_amount_min:
           type: number
           example: 1000
-          description: From all estimated incomes in last 18 months, get the miximum amount
+          description: From all estimated incomes in last 18 months, get the minimum amount
         incomes_last18_months_amount_max:
           type: number
           example: 1200
@@ -9831,7 +9897,7 @@ components:
         liabilities_loan_amount_min:
           type: number
           example: 1000
-          description: From all liabilities, calculate the miximum of the amount
+          description: From all liabilities, calculate the minimum of the amount
         liabilities_loan_amount_max:
           type: number
           example: 1000
