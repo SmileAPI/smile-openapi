@@ -63,8 +63,8 @@ slug: links
 
 | 端点                                      |                      |
 |:----------------------------------------| :------------------- |
-| [获取 Link 数据列表](/reference/list-users-1) | `GET /links`      |
-| [获取一条 Link 记录](/reference/get-user-1)   | `GET /links/{id}` |
+| [获取 Link 数据列表](/reference/list-links) | `GET /links`      |
+| [获取一条 Link 记录](/reference/get-link)   | `GET /links/{id}` |
 
 ## Webhooks
 

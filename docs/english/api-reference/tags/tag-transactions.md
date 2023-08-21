@@ -23,7 +23,7 @@ If the sources your user provided are not enough, you can also make use of Smile
 | date | date | Date of the transaction |
 | description | string | Description of the transaction |
 | currency | string | Currency of the transaction in 3 character alpha ISO 4217 |
-| amount | number | Amount of the transaction |
+| amount | float | Amount of the transaction |
 | referenceId | string | Reference ID of the transaction from the provider |
 | metadata | object | Contains data about this transaction data point. See object below |
 
@@ -43,19 +43,21 @@ If the sources your user provided are not enough, you can also make use of Smile
 
 ```json
 {
-    "id": "einc-123abc456def789abc123def456abc78",
-    "month": "2022-06",
-    "currency": "PHP",
-    "baseAmount": 8510.50,
-    "metadata": {
-        "createdAt": "2022-09-01T01:44:18Z",
-        "itemCreatedAt": "2022-08-24T05:24:37Z",
-        "sourceId": "a-123abc456def789abc123def456abc78",
-        "sourceType": "ACCOUNT",
-        "userId": "tenantId-123abc456def789abc123def456abc78",
-        "providerId": "abccorp",
-        "accountId": "a-123abc456def789abc123def456abc78"
-    }
+  "id": "t-123abc456def789abc123def456abc78",
+  "date": "2023-08-17",
+  "description": "xxx",
+  "currency": "PHP",
+  "amount": 8510.50,
+  "referenceId": "1234567890",
+  "metadata": {
+    "createdAt": "2022-09-01T01:44:18Z",
+    "itemCreatedAt": "2022-08-24T05:24:37Z",
+    "sourceId": "a-123abc456def789abc123def456abc78",
+    "sourceType": "ACCOUNT",
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "providerId": "abccorp",
+    "accountId": "a-123abc456def789abc123def456abc78"
+  }
 }
 ```
 
@@ -76,12 +78,12 @@ Sent when transaction data from a user is added from the provider.
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
-  "type": "IDENTITY_ADDED",
+  "type": "TRANSACTIONS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "identityId": "i-123abc456def789abc123def456abc78",
+    "count": 625,
     "providers": [
       "abccorp"
     ]

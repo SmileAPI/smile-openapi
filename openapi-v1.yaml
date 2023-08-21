@@ -6235,8 +6235,8 @@ components:
         inviteLandingPageUrl:
           type: string
           description: >-
-            The landing page url that user can visit and go redirect to link
-            account
+            URL of the unique landing page for the invited user to connect their
+            accounts
       required:
         - id
         - createdAt

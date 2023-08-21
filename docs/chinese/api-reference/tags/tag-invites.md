@@ -32,21 +32,22 @@ slug: invites
 
 ## 邀请对象
 
-| 属性             | 类型     | 详情                                                                  |
-| :--------- | :----- |:--------------------------------------------------------------------|
-| id | string |                                                                     |
-| createdAt | datetime | 邀请创建的日期和时间                                                          |
-| fullName | string | 受邀人的全名（必填）                                                          |
-| firstName | string | 受邀人的名字                                                              |
-| lastName | string | 受邀人的姓氏                                                              |
-| email | string | 邀请应发送到的邮件地址（必填）                                                     |
-| winkTemplateId | string | 要使用的 Wink Template ID，通常格式为 `wtpl-123abc456def789abc123def456abc78` |
-| userId | string | 邀请人唯一的用户 ID，当发送邀请时创建                                                |
-| status | string | 邀请的状态。可能的值：`INVITED`、`LINKED`                                       |
-| updatedAt | datetime | 上次更新邀请的日期和时间                                                        |
-| invitedAt | datetime | 邀请发送的日期和时间                                                          |
-| linkedAt | datetime | 受邀用户连接帐户的日期和时间                                                      |
-
+| 属性             | 类型     | 详情                                                                     |
+| :--------- | :----- |:-----------------------------------------------------------------------|
+| id | string |                                                                        |
+| createdAt | datetime | 邀请创建的日期和时间                                                             |
+| fullName | string | 受邀人的全名（必填）                                                             |
+| firstName | string | 受邀人的名字                                                                 |
+| lastName | string | 受邀人的姓氏                                                                 |
+| email | string | 邀请应发送到的邮件地址（必填）                                                        |
+| templateId | string | 要使用的 Wink Template ID，通常格式为 `tpl-123abc456def789abc123def456abc78`（必填） |
+| winkTemplateId | string | 要使用的 Wink Template ID，通常格式为 `wtpl-123abc456def789abc123def456abc78`    |
+| userId | string | 邀请人唯一的用户 ID，当发送邀请时创建                                                   |
+| status | string | 邀请的状态。可能的值：`INVITED`、`LINKED`                                          |
+| updatedAt | datetime | 上次更新邀请的日期和时间                                                           |
+| invitedAt | datetime | 邀请发送的日期和时间                                                             |
+| linkedAt | datetime | 受邀用户连接帐户的日期和时间                                                         |
+| inviteLandingPageUrl | string | 供受邀用户连接其账户登陆页面的唯一 URL                                                  |
 
 ## 邀请数据样例
 

@@ -47,6 +47,7 @@ If you cannot use the Invites API to create automated emails sent to your end us
 | updatedAt | datetime | Date and time the invite was last updated |
 | invitedAt | datetime | Date and time the invite was sent |
 | linkedAt | datetime | Date and time the invited user has linked an account |
+| inviteLandingPageUrl | string | URL of the unique landing page for the invited user to connect their accounts |
 
 ## Sample Invites data
 

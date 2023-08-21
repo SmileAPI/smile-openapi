@@ -61,10 +61,10 @@ This allows you multiple ways of retrieving the data according to your needs.
 
 ## Endpoints
 
-| Endpoint                                                        |                      |
-| :-------------------------------------------------------------- | :------------------- |
-| [Retrieve user links](/reference/list-users-1)      | `GET /links`      |
-| [Retrieve one user link](/reference/get-user-1) | `GET /links/{id}` |
+| Endpoint                                      |                      |
+|:----------------------------------------------| :------------------- |
+| [Retrieve user links](/reference/list-links)  | `GET /links`      |
+| [Retrieve one user link](/reference/get-link) | `GET /links/{id}` |
 
 ## Webhooks
 

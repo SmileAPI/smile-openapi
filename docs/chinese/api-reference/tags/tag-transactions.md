@@ -23,7 +23,7 @@ Transactions 数据端点可用于许多 gig 平台，可能包含收入、支�
 | date        | date   | 交易日期                      |
 | description | string | 交易的详情                     |
 | currency    | string | 交易的货币，符合3字符阿尔法 ISO 4217   |
-| amount      | number | 交易金额                      |
+| amount      | float  | 交易金额                      |
 | referenceId | string | 来自提供商的交易参考 ID             |
 | metadata    | object | 包含关于此交易数据端点的数据。见下面的对象     |
 
@@ -43,10 +43,12 @@ Transactions 数据端点可用于许多 gig 平台，可能包含收入、支�
 
 ```json
 {
-    "id": "einc-123abc456def789abc123def456abc78",
-    "month": "2022-06",
+    "id": "t-123abc456def789abc123def456abc78", 
+    "date": "2023-08-17",
+    "description": "xxx",
     "currency": "PHP",
-    "baseAmount": 8510.50,
+    "amount": 8510.50,
+    "referenceId": "1234567890",
     "metadata": {
         "createdAt": "2022-09-01T01:44:18Z",
         "itemCreatedAt": "2022-08-24T05:24:37Z",
@@ -76,12 +78,12 @@ Transactions 数据端点可用于许多 gig 平台，可能包含收入、支�
 {
   "id": "123abc456def789abc123def456abc78",
   "version": 1,
-  "type": "IDENTITY_ADDED",
+  "type": "TRANSACTIONS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "identityId": "i-123abc456def789abc123def456abc78",
+    "count": 625,
     "providers": [
       "abccorp"
     ]
