@@ -255,9 +255,9 @@ Smile provides a Sandbox mode for our production environment to allow you to tes
 
 To use the Sandbox, you can use the following example credentials:
 
-| User Name | Full Name | Email | Mobile Phone | Password | Verification Code |
-|---|---|---|---|---|---|
-| George | George Palomero Jr. | gpalomero1234@smileapi.io | (+63) 9559991234 | 123456 | 1234|
-| Ryan | Ryan Ng | ryan1234@smileapi.io |  (+62) 8119994321 | 654321 | 1234 |
-| Christina | Christina Tan | christina4321@smileapi.io |  (+65) 99996789 | YGUS1 | 1234 |
-|Anisha | Anisha Bhatia | anisha98765@smileapi.io |  (+91) 9511198765 | 123456 | 1234 |
+| User Name | Full Name | Email | Mobile Phone | Password | Verification Code | SSS Number |
+|---|---|---|---|---|---|---|
+| George | George Palomero Jr. | gpalomero1234@smileapi.io | (+63) 9559991234 | 123456 | 1234 | 3300000008 |
+| Ryan | Ryan Ng | ryan1234@smileapi.io |  (+62) 8119994321 | 654321 | 1234 | N/A |
+| Christina | Christina Tan | christina4321@smileapi.io |  (+65) 99996789 | YGUS1 | 1234 | N/A |
+| Anisha | Anisha Bhatia | anisha98765@smileapi.io |  (+91) 9511198765 | 123456 | 1234 | N/A |

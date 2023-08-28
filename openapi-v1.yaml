@@ -9962,6 +9962,100 @@ components:
           description: >-
             From all liabilities that overduePaymentAmount > 0, calculate the
             average of the amount
+        liabilities_ongoing_amortization_amount_sum:
+          type: number
+          example: 1000
+          description: >-
+            Sum of all amortization amounts for ongoing/current liabilities (not
+            yet fully paid off)
+        liabilities_ongoing_amortization_amount_min:
+          type: number
+          example: 1000
+          description: >-
+            Smallest of all amortization amounts for ongoing/current liabilities
+            (not yet fully paid off)
+        liabilities_ongoing_amortization_amount_max:
+          type: number
+          example: 1000
+          description: >-
+            Largest of all amortization amounts for ongoing/current liabilities
+            (not yet fully paid off)
+        liabilities_ongoing_amortization_amount_average:
+          type: number
+          example: 1000
+          description: >-
+            Average of all amortization amounts for ongoing/current liabilities
+            (not yet fully paid off)
+        liabilities_ongoing_amortization_amount_median:
+          type: number
+          example: 1000
+          description: >-
+            Median of all amortization amounts for ongoing/current liabilities
+            (not yet fully paid off)
+        liabilities_ongoing_amortization_amount_std:
+          type: number
+          example: 1000
+          description: >-
+            Standard deviation of all amortization amounts for ongoing/current
+            liabilities (not yet fully paid off)
+        liabilities_payment_count:
+          type: number
+          example: 10
+          description: Quantity of liability payments made (across all liability records)
+        liabilities_payment_amount_max:
+          type: number
+          example: 1000
+          description: >-
+            Largest amount of payments made for liabilities (across all
+            liability records).
+        liabilities_payment_amount_min:
+          type: number
+          example: 1000
+          description: >-
+            Smallest amount of payments made for liabilities (across all
+            liability records).
+        liabilities_payment_amount_median:
+          type: number
+          example: 1000
+          description: >-
+            Median amount of payments made for liabilities (across all liability
+            records).
+        liabilities_payment_amount_average:
+          type: number
+          example: 1000
+          description: >-
+            Average amount of payments made for liabilities (across all
+            liability records).
+        liabilities_payment_amount_sum:
+          type: number
+          example: 1000
+          description: >-
+            Total amount of payments made for liabilities (across all liability
+            records).
+        liabilities_payment_amount_std:
+          type: number
+          example: 1000
+          description: >-
+            Standard deviation of payments made for liabilities (across all
+            liability records).
+        employments_current_status:
+          type: string
+          example: EMPLOYED
+          description: >-
+            The user's current employment status, may be one of: EMPLOYED, GIG
+            (for gig economy workers), or UNEMPLOYED
+        employments_employer_count:
+          type: integer
+          example: 3
+          description: Quantity of unique employers
+        employments_current_tenure:
+          type: integer
+          example: 5
+          description: Quantity of months at current employer
+        identity_age:
+          type: integer
+          example: 30
+          description: Age of the user based on date of birth
     Ref-Webhook-Event-Type:
       title: Ref-WebhookEventType
       description: Event Type which will be sent as a notification via webhook
