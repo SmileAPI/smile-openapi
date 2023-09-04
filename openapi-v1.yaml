@@ -2212,7 +2212,7 @@ paths:
   /profiles/-/identities/verify:
     post:
       tags:
-        - Profile Identities
+        - User Data Verification
       operationId: verify-profile-identity
       summary: Verify identity
       requestBody:
@@ -2247,7 +2247,7 @@ paths:
   /profiles/-/identities/query:
     post:
       tags:
-        - Profile Identities
+        - Profile Data
       operationId: query-profile-identity
       summary: Query Identity
       requestBody:

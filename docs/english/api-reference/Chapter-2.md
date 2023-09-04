@@ -54,7 +54,19 @@ Inside the Developer Portal, you will see the following:
 
 7. **Documentation:** This is a link to the API documentation which you are reading now!
 
+## Using this Reference
 
+To fully explore the Smile API, we encourage you to make full use of this Reference website by entering your API Key and Secret on the right hand side of the reference pages.
+
+![how-to-use-reference-sidebar.png](../../../assets/images/how-to-use-reference-sidebar.png)
+
+> 📘 Note
+> 
+> Your API Key and Secret can be found by logging into the [Developer Portal](https://portal.getsmileapi.com/) under the **API Keys** section. Upon signup, you will have instant and free access to test on our Sandbox environment. If you need Production environment access, [contact us](https://www.getsmileapi.com/contact-us).
+> 
+> ![where-to-find-api-keys.png](../../../assets/images/where-to-find-api-keys.png)
+> 
+> You may click on the Copy icon next to your API Key and Secret to easily copy it to your computer clipboard.
 
 ---
 <!-- focus: false -->

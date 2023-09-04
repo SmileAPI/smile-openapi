@@ -12,6 +12,7 @@ slug: chapter-2-cn
 
 ## 集成步骤
 SmileAPI 很容易上手！ 使用 SmileAPI 涉及简单的客户端和服务器端集成，下面分四个关键步骤进行概述：
+
 1. **Link token:** 您的应用服务器向我们的 REST API 发送一个请求，以生成一个短暂的 "Link " token 。
 
 2. **Wink Widget:** 使用 Link token ，您的应用程序客户端将初始化客户端 SDK 以启动 Smile Wink Widget 。您的终端用户将与 Wink Widget 互动以登陆他们的账号，以便通过安全和加密的连接向他们的就业数据提供商进行身份验证。
@@ -53,8 +54,19 @@ SmileAPI 很容易上手！ 使用 SmileAPI 涉及简单的客户端和服务器
 
 7. **Documentation:** 这是您正在阅读的 API 文档的链接！
 
+## 如何使用本参考文档
 
+如要充分探索 Smile API，我们鼓励您通过在参考页面右侧输入 API Key 和 Secret来充分利用本参考文档。
 
+![how-to-use-reference-sidebar.png](../../../assets/images/how-to-use-reference-sidebar.png)
+
+> 📘 注意
+>
+> 您可以登录 [Developer Portal](https://portal.getsmileapi.com/) ，在 **API Keys** 部分找到 API Key 和 Secret。注册后，您可以免费访问我们的 Sandbox mode 进行测试。如果您需要 Production mode 的访问权限，请 [联系我们](https://www.getsmileapi.com/contact-us) 。
+>
+> ![where-to-find-api-keys.png](../../../assets/images/where-to-find-api-keys.png)
+>
+> 您可以通过点击 API Key 和 Secret 旁边的复制图标，轻松将其复制到电脑剪贴板。
 ---
 <!-- focus: false -->
 ![Quickstart](https://img.icons8.com/ios/50/000000/speed.png)
