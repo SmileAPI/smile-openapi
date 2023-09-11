@@ -108,7 +108,7 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 ``` json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_CREATED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -128,7 +128,7 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 ``` json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_CONNECTED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -149,7 +149,7 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 ``` json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_DISCONNECTED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -169,7 +169,7 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 ``` json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_FAILED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -192,7 +192,7 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 ``` json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_SYNC_TASK_FINISHED",
   "createdAt": "2021-04-14T09:30:24Z",

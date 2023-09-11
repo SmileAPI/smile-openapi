@@ -122,7 +122,7 @@ Below are the events you can subscribe to via webhooks.
 Payload when a new user and link token is created
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "USER_CREATED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -140,7 +140,7 @@ Payload when the account linking process has been initiated by the user. This we
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_CREATED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -158,7 +158,7 @@ Payload when the account linking process has been initiated by the user. This we
 Payload when a user successfully connects his/her work account.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_CONNECTED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -176,7 +176,7 @@ Payload when a user successfully connects his/her work account.
 Payload when a user disconnects or revokes the link to his/her work account.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_DISCONNECTED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -193,7 +193,7 @@ Payload when a user disconnects or revokes the link to his/her work account.
 Payload when the account linking process is unsuccessful.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_FAILED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -214,7 +214,7 @@ Payload when the account linking process is unsuccessful.
 Sent when the data sync process for a user's account is started.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "TASK_STARTED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -232,7 +232,7 @@ Sent when the data sync process for a user's account is started.
 Sent when the data sync task process for a user's account is finished.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "TASK_FINISHED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -256,7 +256,7 @@ Sent when the account syncing process is finished.
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_SYNC_TASK_FINISHED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -284,7 +284,7 @@ Sent when the account syncing process is finished.
 Payload when a user has uploaded one or several files which becomes an "archive" in Smile.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ARCHIVE_STARTED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -299,7 +299,7 @@ Payload when a user has uploaded one or several files which becomes an "archive"
 Payload when an archive has been analyzed and converted into JSON data automatically via OCR.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ARCHIVE_ANALYZED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -315,7 +315,7 @@ Payload when an archive has been analyzed and converted into JSON data automatic
 Payload when user removes permission to access or use an archive.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ARCHIVE_REVOKED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -330,7 +330,7 @@ Payload when user removes permission to access or use an archive.
 Payload when the the archive creation or analysis process is unsuccessful.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ARCHIVE_FAILED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -349,7 +349,7 @@ Payload when the the archive creation or analysis process is unsuccessful.
 Payload when an invitation is sent out to a user successfully.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "INVITE_INVITED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -364,7 +364,7 @@ Payload when an invitation is sent out to a user successfully.
 Payload when the a user that has been sent an invitation is able to link his or her work account successfully.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "INVITE_LINKED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -381,7 +381,7 @@ Payload when the a user that has been sent an invitation is able to link his or 
 Payload when identity data about a user is added.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "IDENTITY_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -400,7 +400,7 @@ Payload when identity data about a user is added.
 Payload when ratings data about a user is added.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "RATING_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -419,7 +419,7 @@ Payload when ratings data about a user is added.
 Payload when transactions data shared by a user are added.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "TRANSACTIONS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -438,7 +438,7 @@ Payload when transactions data shared by a user are added.
 Payload when documents data shared by a user are added.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "DOCUMENTS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -457,7 +457,7 @@ Payload when documents data shared by a user are added.
 Payload when employments data shared by a user are added.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "EMPLOYMENTS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -476,7 +476,7 @@ Payload when employments data shared by a user are added.
 Payload when income data shared by a user are added.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "INCOMES_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -495,7 +495,7 @@ Payload when income data shared by a user are added.
 Payload when contributions data shared by a user are added.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "CONTRIBUTIONS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -514,7 +514,7 @@ Payload when contributions data shared by a user are added.
 Payload when liabilities data shared by a user are added.
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "LIABILITIES_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -556,14 +556,14 @@ Payload when estimated income data has been derived from data shared by a user.
 Payload when insight data has been derived from data shared by a user.
 ```json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "INSIGHT_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "id": "insight-ef789aabc41236abc7856df45bc123de",
+    "id": "insight-123abc456def789abc123def456abc78",
     "providers": [
       "abccorp"
     ]
@@ -576,14 +576,14 @@ Payload when insight data has been derived from data shared by a user.
 Payload when link data has been derived from data shared by a user.
 ```json
 {
-  "id": "17bbf36498de4d68a0d4f86c7b62f69f",
+  "id": "123abc456def789abc123def456abc78",
   "version": 1,
   "type": "LINK_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "accountId": "a-123abc456def789abc123def456abc78",
-    "id": "link-ef789aabc41236abc7856df45bc123de",
+    "id": "link-123abc456def789abc123def456abc78",
     "providers": [
       "abccorp"
     ]

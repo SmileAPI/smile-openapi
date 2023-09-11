@@ -90,7 +90,7 @@ Fired when estimated income data has been derived from data shared by a user, ei
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "EINCOMES_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",

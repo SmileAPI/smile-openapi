@@ -170,7 +170,7 @@ slug: identities
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "IDENTITY_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -191,7 +191,7 @@ slug: identities
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "TASK_FINISHED",
   "createdAt": "2021-04-14T09:30:24Z",

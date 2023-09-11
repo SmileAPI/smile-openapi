@@ -131,7 +131,7 @@ Fired when a user has uploaded one or several files ("archive") to Smile.
 
 ``` json
 {
-   "id": "123abc456def789abc123def456abc78",
+   "id": "et-123abc456def789abc123def456abc78",
    "version": 1,
    "type": "ARCHIVE_STARTED",
    "createdAt": "2021-04-14T09:30:24Z",
@@ -148,7 +148,7 @@ Fired when an archive has been analyzed and converted into JSON data automatical
 
 ``` json
 {
-   "id": "123abc456def789abc123def456abc78",
+   "id": "et-123abc456def789abc123def456abc78",
    "version": 1,
    "type": "ARCHIVE_STARTED",
    "createdAt": "2021-04-14T09:30:24Z",
@@ -165,7 +165,7 @@ Fired when a user removes permission to access or use an archive.
 
 ``` json
 {
-   "id": "123abc456def789abc123def456abc78",
+   "id": "et-123abc456def789abc123def456abc78",
    "version": 1,
    "type": "ARCHIVE_REVOKED",
    "createdAt": "2021-04-14T09:30:24Z",
@@ -182,7 +182,7 @@ Fired when the archive creation or analysis process is unsuccessful.
 
 ``` json
 {
-   "id": "123abc456def789abc123def456abc78",
+   "id": "et-123abc456def789abc123def456abc78",
    "version": 1,
    "type": "ARCHIVE_FAILED",
    "createdAt": "2021-04-14T09:30:24Z",

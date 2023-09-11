@@ -131,7 +131,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 ``` json
 {
-   "id": "123abc456def789abc123def456abc78",
+   "id": "et-123abc456def789abc123def456abc78",
    "version": 1,
    "type": "ARCHIVE_STARTED",
    "createdAt": "2021-04-14T09:30:24Z",
@@ -148,7 +148,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 ``` json
 {
-   "id": "123abc456def789abc123def456abc78",
+   "id": "et-123abc456def789abc123def456abc78",
    "version": 1,
    "type": "ARCHIVE_STARTED",
    "createdAt": "2021-04-14T09:30:24Z",
@@ -165,7 +165,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 ``` json
 {
-   "id": "123abc456def789abc123def456abc78",
+   "id": "et-123abc456def789abc123def456abc78",
    "version": 1,
    "type": "ARCHIVE_REVOKED",
    "createdAt": "2021-04-14T09:30:24Z",
@@ -182,7 +182,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 ``` json
 {
-   "id": "123abc456def789abc123def456abc78",
+   "id": "et-123abc456def789abc123def456abc78",
    "version": 1,
    "type": "ARCHIVE_FAILED",
    "createdAt": "2021-04-14T09:30:24Z",

@@ -75,7 +75,7 @@ Ratings 数据端点提供用户在[ Provider ](/reference/providers)平台上�
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "RATING_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -96,7 +96,7 @@ Ratings 数据端点提供用户在[ Provider ](/reference/providers)平台上�
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "TASK_FINISHED",
   "createdAt": "2021-04-14T09:30:24Z",

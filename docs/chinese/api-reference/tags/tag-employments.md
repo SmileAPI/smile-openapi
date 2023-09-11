@@ -92,7 +92,7 @@ Smile 从平台上原封不动地返回就业信息，如开始和结束日期�
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "EMPLOYMENTS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -113,7 +113,7 @@ Smile 从平台上原封不动地返回就业信息，如开始和结束日期�
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "TASK_FINISHED",
   "createdAt": "2021-04-14T09:30:24Z",

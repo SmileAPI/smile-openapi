@@ -3926,6 +3926,10 @@ components:
           description: Supported data points for this employment data provider
           items:
             $ref: '#/components/schemas/Ref-Datapoint'
+        monitorSupported:
+          type: boolean
+          description: Whether support CDS for this data provider
+          default: false
       required:
         - id
         - name
@@ -3940,6 +3944,7 @@ components:
         - mfa
         - accountConnection
         - supported
+        - monitorSupported
     ProviderGetResponse:
       title: Provider Get Response
       properties:
@@ -4233,7 +4238,7 @@ components:
         - USER_ACTION_REQUIRED
         - UNSUPPORTED
         - CUSTOMER_DISABLED
-      description: Account monitor status
+      description: Account CDS status
       example: ACTIVE
     AccountGetResponse:
       title: Account Get Response
@@ -9028,6 +9033,7 @@ components:
         - EINCOMES
         - LIABILITIES
         - LINK
+        - INSIGHTS
       description: Supported data points for this employment data provider
       example: IDENTITIES
       x-internal: true

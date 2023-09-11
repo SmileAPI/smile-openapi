@@ -85,7 +85,7 @@ Sent when an invitation is sent out to a user successfully.
 
 ```
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "INVITE_INVITED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -102,7 +102,7 @@ Sent when a user that has been sent an invitation is able to link their work acc
 
 ```
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "INVITE_LINKED",
   "createdAt": "2021-04-14T09:30:24Z",

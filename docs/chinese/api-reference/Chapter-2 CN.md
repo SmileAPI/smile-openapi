@@ -58,14 +58,27 @@ SmileAPI 很容易上手！ 使用 SmileAPI 涉及简单的客户端和服务器
 
 如要充分探索 Smile API，我们鼓励您通过在参考页面右侧输入 API Key 和 Secret来充分利用本参考文档。
 
-![how-to-use-reference-sidebar.png](../../../assets/images/how-to-use-reference-sidebar.png)
+[block:image]
+{
+"images": [
+{
+"image": [
+"https://files.readme.io/b7d08d8-how-to-use-reference-sidebar.png",
+null,
+""
+],
+"align": "center"
+}
+]
+}
+[/block]
 
 > 📘 注意
 >
 > 您可以登录 [Developer Portal](https://portal.getsmileapi.com/) ，在 **API Keys** 部分找到 API Key 和 Secret。注册后，您可以免费访问我们的 Sandbox mode 进行测试。如果您需要 Production mode 的访问权限，请 [联系我们](https://www.getsmileapi.com/contact-us) 。
 >
-> ![where-to-find-api-keys.png](../../../assets/images/where-to-find-api-keys.png)
->
+>![](https://files.readme.io/70f1152-where-to-find-api-keys.png)
+> 
 > 您可以通过点击 API Key 和 Secret 旁边的复制图标，轻松将其复制到电脑剪贴板。
 ---
 <!-- focus: false -->

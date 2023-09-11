@@ -43,7 +43,7 @@ slug: links
 
 ```json
 {
-    "id": "123abc456def789abc123def456abc78",
+    "id": "link-123abc456def789abc123def456abc78",
     "startDate": "2022-03-20T01:27:26Z",
     "endDate": "2022-09-20T01:27:26Z",
     "records": [
@@ -74,7 +74,7 @@ slug: links
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "LINK_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",

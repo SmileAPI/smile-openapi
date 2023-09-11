@@ -108,7 +108,7 @@ Fired when the account linking process has been initiated by the user. This webh
 
 ``` json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_CREATED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -128,7 +128,7 @@ Fired when a user has successfully connected an account to the Smile Network. Th
 
 ``` json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_CONNECTED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -149,7 +149,7 @@ Fired when a user has successfully disconnected or revoked the link to their acc
 
 ``` json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_DISCONNECTED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -169,7 +169,7 @@ Fired when the account linking process initiated by the user is unsuccessful.
 
 ``` json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_FAILED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -192,7 +192,7 @@ Fired when the account syncing task has been completed in the backend.
 
 ``` json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "ACCOUNT_SYNC_TASK_FINISHED",
   "createdAt": "2021-04-14T09:30:24Z",

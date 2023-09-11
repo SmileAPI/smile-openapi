@@ -76,7 +76,7 @@ Transactions 数据端点可用于许多 gig 平台，可能包含收入、支�
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "TRANSACTIONS_ADDED",
   "createdAt": "2021-04-14T09:30:24Z",
@@ -97,7 +97,7 @@ Transactions 数据端点可用于许多 gig 平台，可能包含收入、支�
 
 ```json
 {
-  "id": "123abc456def789abc123def456abc78",
+  "id": "et-123abc456def789abc123def456abc78",
   "version": 1,
   "type": "TASK_FINISHED",
   "createdAt": "2021-04-14T09:30:24Z",
