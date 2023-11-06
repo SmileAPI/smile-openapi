@@ -7,12 +7,14 @@ slug: archives
 
 Smile API can also store and process photos and other files to aid in verifying users' records. If enabled, users may upload photos, scans, or PDF files as a fallback method or as an additional data point for your records and verification use. These can be any of the following:
 
-- SSS records
-- Income tax documents
-- Payslips
-- Company IDs
+| Archive type | Upload via Wink Widget | Upload via API |
+| :--------- | :----- | :--- |
+| SSS Records | ✅ | ❌ |
+| Income Tax Document | ✅ | ❌ |
+| Payslips | ✅ | ✅ |
+| Company ID | ✅ | ❌ |
 
-Additional analysis is done on SSS records and income tax documents to retrieve basic information from the uploaded file.
+Additional analysis is done on SSS records, income tax documents, and payslips to retrieve basic information from the uploaded file such as employment and income information. This allows you to immediately ingest the information from the document without needing to manually transcribe the data.
 
 These user-uploaded files can be retrieved via the Archives endpoint, to allow for download or manual verification if you require.
 
@@ -23,9 +25,9 @@ Files up to a maximum of 15MB are accepted, and can be of the following formats:
 - Joint Photographic Experts Group files (`.jpg` or `.jpeg`)
 - Tag Image File Format files (`.tiff`)
 
-Files are stored until removed by the user via the SDK.
+Files are stored until removed by the user via the SDK, or revoked via the API.
 
-Documents and files that are automatically retrieved from verifiable sources such as payroll systems will be found under the Documents endpoint.
+Documents and files that are automatically retrieved from verifiable sources such as payroll systems will be found under the [Documents endpoint](/reference/documents). The data retrieved from the document will be found under the respective data type, such as [Employments](/reference/employments) or [Incomes](/reference/incomes).
 
 ## The Archive object
 
@@ -65,7 +67,7 @@ Documents and files that are automatically retrieved from verifiable sources suc
 
 ``` json
 {
-   "id": "u-123abc456def789abc123def456abc78",
+   "id": "archive-123abc456def789abc123def456abc78",
    "createdAt": "2022-11-01T10:00:00Z",
    "providerId": "user-provided",
    "userId": "tenandId-123abc456def789abc123def456abc78",
@@ -89,7 +91,7 @@ Documents and files that are automatically retrieved from verifiable sources suc
       ]
    },
    {
-      "id": "u-123abc456def789abc123def456abc78",
+      "id": "archive-123abc456def789abc123def456abc78",
       "createdAt": "2022-11-01T10:00:00Z",
       "providerId": "user-provided",
       "userId": "tenantId-123abc456def789abc123def456abc78",
@@ -122,6 +124,7 @@ Documents and files that are automatically retrieved from verifiable sources suc
 | :------- | :---- |
 | [List archives](/reference/list-archives) | `GET /archives` |
 | [Get archive](/reference/get-archive) | `GET /archives/{id}` |
+| [Upload payslip file](/reference/upload-payslip-file) | `POST /archives/-/payslips/uploadRawFile` |
 
 ## Webhooks
 
@@ -137,7 +140,7 @@ Fired when a user has uploaded one or several files ("archive") to Smile.
    "createdAt": "2021-04-14T09:30:24Z",
    "data": {
       "userId": "tenantId-123abc456def789abc123def456abc78",
-      "archiveId": "u-123abc456def789abc123def456abc78"
+      "archiveId": "archive-123abc456def789abc123def456abc78"
    }
 }
 ```
@@ -154,7 +157,7 @@ Fired when an archive has been analyzed and converted into JSON data automatical
    "createdAt": "2021-04-14T09:30:24Z",
    "data": {
       "userId": "tenantId-123abc456def789abc123def456abc78",
-      "archiveId": "u-123abc456def789abc123def456abc78"
+      "archiveId": "archive-123abc456def789abc123def456abc78"
    }
 }
 ```
@@ -171,7 +174,7 @@ Fired when a user removes permission to access or use an archive.
    "createdAt": "2021-04-14T09:30:24Z",
    "data": {
       "userId": "tenantId-123abc456def789abc123def456abc78",
-      "archiveId": "u-123abc456def789abc123def456abc78"
+      "archiveId": "archive-123abc456def789abc123def456abc78"
    }
 }
 ```
@@ -188,7 +191,7 @@ Fired when the archive creation or analysis process is unsuccessful.
    "createdAt": "2021-04-14T09:30:24Z",
    "data": {
       "userId": "tenantId-123abc456def789abc123def456abc78",
-      "archiveId": "u-123abc456def789abc123def456abc78",
+      "archiveId": "archive-123abc456def789abc123def456abc78",
       "errorCode": "FILE_UNABLE_TO_RECOGNIZE",
       "errorMessage": "Invalid file!"
    }

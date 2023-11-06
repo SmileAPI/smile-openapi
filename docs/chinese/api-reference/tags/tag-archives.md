@@ -7,12 +7,14 @@ slug: archives
 
 Smile API 还可以存储和处理照片及其他文件，以帮助验证用户的记录。启用后用户可以上传照片、扫描件或 PDF 文件，作为供您记录和验证使用的备份或额外的数据点。支持以下文件类别：
 
-- SSS records
-- Income tax documents
-- Payslips
-- Company IDs
+| Archive 类型          | 是否通过 Wink Widget 上传 | 是否通过 API 上传 |
+|:--------------------|:--------------------|:------------|
+| SSS Records         | ✅                   | ❌           |
+| Income Tax Document | ✅                   | ❌           |
+| Payslips            | ✅                   | ✅           |
+| Company ID          | ✅                   | ❌           |
 
-对 SSS 记录和所得税文件进行额外分析，以便从上传的文件中检索出基本信息。
+对 SSS 记录、所得税文件和工资单进行额外分析，以便从上传的文件中检索基本信息，如就业和收入信息。这样，您就可以直接从文件中获取信息，而无需手动转录数据。
 
 这些用户上传的文件可以通过 Archives 端点进行检索，以便在您需要时下载或进行人工验证。
 
@@ -23,9 +25,9 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 - Joint Photographic Experts Group files (`.jpg` or `.jpeg`)
 - Tag Image File Format files (`.tiff`)
 
-在用户通过 SDK 删除账户之前，文件都会被储存起来。
+在用户通过 SDK 或 API 撤销账户之前，文件都会被储存起来。
 
-从可核实的来源（如工资系统）自动检索的文件和档案将在 Documents 端点下找到。
+从可核实的来源（如工资系统）自动检索的文件和档案将在 [Documents 端点](/reference/documents) 下找到。从文件中检索到的数据将在相应的数据类型下找到，如 [Employments](/reference/employments) 或 [Incomes](/reference/incomes)。
 
 ## Archive 对象
 
@@ -65,7 +67,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 ``` json
 {
-   "id": "u-123abc456def789abc123def456abc78",
+   "id": "archive-123abc456def789abc123def456abc78",
    "createdAt": "2022-11-01T10:00:00Z",
    "providerId": "user-provided",
    "userId": "tenandId-123abc456def789abc123def456abc78",
@@ -89,7 +91,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
       ]
    },
    {
-      "id": "u-123abc456def789abc123def456abc78",
+      "id": "archive-123abc456def789abc123def456abc78",
       "createdAt": "2022-11-01T10:00:00Z",
       "providerId": "user-provided",
       "userId": "tenantId-123abc456def789abc123def456abc78",
@@ -122,6 +124,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 |:-------------------------------------------| :---- |
 | [获取 Archives 列表](/v1.0-Chinese/reference/list-archives) | `GET /archives` |
 | [获取一条 Archive 记录](/v1.0-Chinese/reference/get-archive)  | `GET /archives/{id}` |
+| [上传工资单文件](/reference/upload-payslip-file) | `POST /archives/-/payslips/uploadRawFile` |
 
 ## Webhooks
 
@@ -137,7 +140,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
    "createdAt": "2021-04-14T09:30:24Z",
    "data": {
       "userId": "tenantId-123abc456def789abc123def456abc78",
-      "archiveId": "u-123abc456def789abc123def456abc78"
+      "archiveId": "archive-123abc456def789abc123def456abc78"
    }
 }
 ```
@@ -154,7 +157,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
    "createdAt": "2021-04-14T09:30:24Z",
    "data": {
       "userId": "tenantId-123abc456def789abc123def456abc78",
-      "archiveId": "u-123abc456def789abc123def456abc78"
+      "archiveId": "archive-123abc456def789abc123def456abc78"
    }
 }
 ```
@@ -171,7 +174,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
    "createdAt": "2021-04-14T09:30:24Z",
    "data": {
       "userId": "tenantId-123abc456def789abc123def456abc78",
-      "archiveId": "u-123abc456def789abc123def456abc78"
+      "archiveId": "archive-123abc456def789abc123def456abc78"
    }
 }
 ```
@@ -188,7 +191,7 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
    "createdAt": "2021-04-14T09:30:24Z",
    "data": {
       "userId": "tenantId-123abc456def789abc123def456abc78",
-      "archiveId": "u-123abc456def789abc123def456abc78",
+      "archiveId": "archive-123abc456def789abc123def456abc78",
       "errorCode": "FILE_UNABLE_TO_RECOGNIZE",
       "errorMessage": "Invalid file!"
    }

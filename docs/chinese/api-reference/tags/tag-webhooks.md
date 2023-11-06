@@ -290,7 +290,7 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
-    "archiveId": "u-123abc456def789abc123def456abc78"
+    "archiveId": "archive-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -305,7 +305,7 @@ archive 被分析并通过 OCR 自动转换为 JSON 数据时，事件发送格�
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
-    "archiveId": "u-123abc456def789abc123def456abc78"
+    "archiveId": "archive-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -320,7 +320,7 @@ archive 被分析并通过 OCR 自动转换为 JSON 数据时，事件发送格�
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
-    "archiveId": "u-123abc456def789abc123def456abc78"
+    "archiveId": "archive-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -335,7 +335,7 @@ archive 创建或分析过程不成功时，事件发送格式如下：
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
-    "archiveId": "u-123abc456def789abc123def456abc78",
+    "archiveId": "archive-123abc456def789abc123def456abc78",
     "errorCode": "FILE_UNABLE_TO_RECOGNIZE",
     "errorMessage": "Invalid file!"
   }

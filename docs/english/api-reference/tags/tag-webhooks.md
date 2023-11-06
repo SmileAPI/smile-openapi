@@ -290,7 +290,7 @@ Payload when a user has uploaded one or several files which becomes an "archive"
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
-    "archiveId": "u-123abc456def789abc123def456abc78"
+    "archiveId": "archive-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -305,7 +305,7 @@ Payload when an archive has been analyzed and converted into JSON data automatic
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
-    "archiveId": "u-123abc456def789abc123def456abc78"
+    "archiveId": "archive-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -321,7 +321,7 @@ Payload when user removes permission to access or use an archive.
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
-    "archiveId": "u-123abc456def789abc123def456abc78"
+    "archiveId": "archive-123abc456def789abc123def456abc78"
   }
 }
 ```
@@ -336,7 +336,7 @@ Payload when the the archive creation or analysis process is unsuccessful.
   "createdAt": "2021-04-14T09:30:24Z",
   "data": {
     "userId": "tenantId-123abc456def789abc123def456abc78",
-    "archiveId": "u-123abc456def789abc123def456abc78",
+    "archiveId": "archive-123abc456def789abc123def456abc78",
     "errorCode": "FILE_UNABLE_TO_RECOGNIZE",
     "errorMessage": "Invalid file!"
   }
