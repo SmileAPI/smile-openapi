@@ -79,87 +79,112 @@ Insights 可从以下数据源获得：
 | `liabilities_payment_amount_sum` `liabilities_payment_amount_average` `liabilities_payment_amount_min` `liabilities_payment_amount_max` `liabilities_payment_amount_median` `liabilities_payment_amount_std` |    所有贷款的总还款额、平均还款额、最低还款额、最高还款额、中位数和标准差    |
 | `liabilities_ongoing_amortization_amount_sum` `liabilities_ongoing_amortization_amount_average` `liabilities_ongoing_amortization_amount_min` `liabilities_ongoing_amortization_amount_max` `liabilities_ongoing_amortization_amount_median` `liabilities_ongoing_amortization_amount_std` | 持续贷款的总摊销额、平均摊销额、最低摊销额、最高摊销额、中位数和标准差 |
 
+## 链接数据因子( Insights ) 
+
+Links 是 [Multiple Application Warning](/reference/links) 服务的支柱，如果同时选择了 MAW 和 Insights 服务，我们还会额外提供与用户链接活动相关的 Insights 信息。这些信息可轻松纳入专有数据模型，以便改进信贷决策过程。
+
+| Insight 变量名                  | 详情                                                                                                      |
+|---|---|
+| `link_days_since_first` | 自首次连接起的天数 |
+| `link_days_since_last` | 距离上次连接的天数 |
+| `link_day3_count` | 用户在过去 3 天内的连接次数 |
+| `link_day7_count` | 用户在过去 7 天内的连接次数|
+| `link_day30_count` | 用户在过去 30 天内的连接次数 |
+| `link_day90_count` | 用户在过去 90 天内的连接次数 |
+| `link_day180_count` | 用户在过去 180 天内的连接次数 |
+| `link_day365_count` |用户在过去 365 天内的连接次数 |
+| `link_day730_count` | 用户在过去 730 天内的连接次数 |
+
 _Insights 目前处于 alpha 阶段。_
 
 ## Features 对象
 
-| 属性                                              | 类型     | 详情                                        |
-|:------------------------------------------------|:-------|:------------------------------------------|
-| incomes_count                                   | number | 收入记录的数量                                   |
-| incomes_current_amount                          | number | 当月的收入                                     |
-| incomes_starting_amount                         | number | 用户工作第一个月的收入（起始收入）                         |
-| incomes_first_income_month_range                | number | 第一条收入记录以来的月数，即用户工作了多少个月                   |
-| incomes_latest_growth                           | number | 与去年同期相比的收入增长情况                            |
-| incomes_last18_months_max_amount_count          | number | 用户获得最高收入的月份数                              |
-| incomes_missing_month_count                     | number | 没有收入的月份数                                  |
-| incomes_missing_month_max                       | number | 没有收入的最长持续时间（月）                            |
-| incomes_amount_sum                              | number | 所得收入的总额（终生）                               |
-| incomes_amount_average                          | number | 月平均收入（终生）                                 |
-| incomes_amount_min                              | number | 每月所得收入的最小值（终生）                            |
-| incomes_amount_max                              | number | 每月所得收入的最大值（终生）                            |
-| incomes_amount_median                           | number | 每月所得收入的中位数（终生）                            |
-| incomes_amount_std                              | number | 每月所得收入的标准差（终生）                            |
-| incomes_last3_months_amount_sum                 | number | 所得收入的总额（最近 3 个月）                          |
-| incomes_last3_months_amount_average             | number | 月平均收入（最近 3 个月）                            |
-| incomes_last3_months_amount_min                 | number | 每月所得收入的最小值（最近 3 个月）                       |
-| incomes_last3_months_amount_max                 | number | 每月所得收入的最大值（最近 3 个月）                       |
-| incomes_last3_months_amount_median              | number | 每月所得收入的中位数（最近 3 个月）                       |
-| incomes_last3_months_amount_std                 | number | 每月所得收入的标准差（最近 3 个月）                       |
-| incomes_last6_months_amount_sum                 | number | 所得收入的总额（最近 6 个月）                          |
-| incomes_last6_months_amount_average             | number | 月平均收入（最近 6 个月）                            |
-| incomes_last6_months_amount_min                 | number | 每月所得收入的最小值（最近 6 个月）                       |
-| incomes_last6_months_amount_max                 | number | 每月所得收入的最大值（最近 6 个月）                       |
-| incomes_last6_months_amount_median              | number | 每月所得收入的中位数（最近 6 个月）                       |
-| incomes_last6_months_amount_std                 | number | 每月所得收入的标准差（最近 6 个月）                       |
-| incomes_last9_months_amount_sum                 | number | 所得收入的总额（最近 9 个月）                          |
-| incomes_last9_months_amount_average             | number | 月平均收入（最近 9 个月）                            |
-| incomes_last9_months_amount_min                 | number | 每月所得收入的最小值（最近 9 个月）                       |
-| incomes_last9_months_amount_max                 | number | 每月所得收入的最大值（最近 9 个月）                       |
-| incomes_last9_months_amount_median              | number | 每月所得收入的中位数（最近 9 个月）                       |
-| incomes_last9_months_amount_std                 | number | 每月所得收入的标准差（最近 9 个月）                       |
-| incomes_last12_months_amount_sum                | number | 所得收入的总额（最近 12 个月）                         |
-| incomes_last12_months_amount_average            | number | 月平均收入（最近 12 个月）                           |
-| incomes_last12_months_amount_min                | number | 每月所得收入的最小值（最近 12 个月）                      |
-| incomes_last12_months_amount_max                | number | 每月所得收入的最大值（最近 12 个月）                      |
-| incomes_last12_months_amount_median             | number | 每月所得收入的中位数（最近 12 个月）                      |
-| incomes_last12_months_amount_std                | number | 每月所得收入的标准差（最近 12 个月）                      |
-| incomes_last18_months_amount_sum                | number | 所得收入的总额（最近 18 个月）                         |
-| incomes_last18_months_amount_average            | number | 月平均收入（最近 18 个月）                           |
-| incomes_last18_months_amount_min                | number | 每月所得收入的最小值（最近 18 个月）                      |
-| incomes_last18_months_amount_max                | number | 每月所得收入的最大值（最近 18 个月）                      |
-| incomes_last18_months_amount_median             | number | 每月所得收入的中位数（最近 18 个月）                      |
-| incomes_last18_months_amount_std                | number | 每月所得收入的标准差（最近 18 个月）                      |
-| liabilities_loan_count                          | number | 贷款数量（所有负债）                                |
-| liabilities_loan_amount_total                   | number | 贷款总额（所有负债）                                |
-| liabilities_loan_amount_average                 | number | 平均贷款金额（所有负债）                              |
-| liabilities_loan_amount_min                     | number | 最小贷款金额（所有负债）                              |
-| liabilities_loan_amount_max                     | number | 最大贷款金额（所有负债）                              |
-| liabilities_loan_amount_std                     | number | 贷款金额标准差（所有负债）                             |
-| liabilities_finished_loan_count                 | number | 已完成的贷款数量                                  |
-| liabilities_outstanding_loan_count              | number | 未偿还的贷款数量                                  |
-| liabilities_outstanding_amount_total            | number | 贷款总额（仅指未偿还债务）                             |
-| liabilities_outstanding_amount_average          | number | 平均贷款额（仅指未偿还债务）                            |
-| liabilities_outstanding_amount_max              | number | 最大贷款金额（仅指未偿还债务）                           |
-| liabilities_overdue_loan_count                  | number | 逾期贷款的数量                                   |
-| liabilities_overdue_amount_total                | number | 贷款总额（仅指逾期债务）                              |
-| liabilities_overdue_amount_average              | number | 平均贷款金额（仅指逾期债务）                            |
-| liabilities_payment_count                       | number | 已支付贷款的次数                                  |
-| liabilities_payment_amount_sum                  | number | 已支付总额（所有债务）                               |
-| liabilities_payment_amount_average              | number | 平均支付金额（所有债务）                              |
-| liabilities_payment_amount_min                  | number | 已支付的最小金额（所有债务）                            |
-| liabilities_payment_amount_max                  | number | 已支付的最大金额（所有债务）                            |
-| liabilities_payment_amount_median               | number | 已支付金额的中位数（所有债务）                           |
-| liabilities_payment_amount_std                  | number | 已支付金额的标准差（所有债务）                           |
-| liabilities_ongoing_amortization_amount_sum     | number | 所有摊销总额（仅指持贷款）                             |
-| liabilities_ongoing_amortization_amount_average | number | 平均摊销额（仅指持续贷款）                             |
-| liabilities_ongoing_amortization_amount_min     | number | 最小摊销额（仅指持续贷款）                             |
-| liabilities_ongoing_amortization_amount_max     | number | 最大摊销额（仅指持续贷款）                             |
-| liabilities_payment_amount_median               | number | 摊销额中位数（仅指持续贷款）                            |
-| liabilities_ongoing_amortization_amount_std     | number | 摊销金额的标准差（仅指持续贷款）                          |
-| identity_age                                    | number | 用户目前的年龄                                   |
-| employments_current_status                      | string | 就业状态，可以是 `EMPLOYED`, `GIG`, 或`UNEMPLOYED` |
-| employments_employer_count                      | number | 唯一雇主的数量                                   |
-| employments_current_tenure                      | number | 在现任雇主处工作的月数                               |
+| 属性                                              | 类型     | 详情                                                             |
+|:------------------------------------------------|:-------|:---------------------------------------------------------------|
+| incomes_count                                   | number | 收入记录的数量                                                        |
+| incomes_current_amount                          | number | 当月的收入                                                          |
+| incomes_starting_amount                         | number | 用户工作第一个月的收入（起始收入）                                              |
+| incomes_first_income_month_range                | number | 第一条收入记录以来的月数，即用户工作了多少个月                                        |
+| incomes_latest_growth                           | number | 与去年同期相比的收入增长情况                                                 |
+| incomes_last18_months_max_amount_count          | number | 用户获得最高收入的月份数                                                   |
+| incomes_missing_month_count                     | number | 没有收入的月份数                                                       |
+| incomes_missing_month_max                       | number | 没有收入的最长持续时间（月）                                                 |
+| incomes_amount_sum                              | number | 所得收入的总额（终生）                                                    |
+| incomes_amount_average                          | number | 月平均收入（终生）                                                      |
+| incomes_amount_min                              | number | 每月所得收入的最小值（终生）                                                 |
+| incomes_amount_max                              | number | 每月所得收入的最大值（终生）                                                 |
+| incomes_amount_median                           | number | 每月所得收入的中位数（终生）                                                 |
+| incomes_amount_std                              | number | 每月所得收入的标准差（终生）                                                 |
+| incomes_last3_months_amount_sum                 | number | 所得收入的总额（最近 3 个月）                                               |
+| incomes_last3_months_amount_average             | number | 月平均收入（最近 3 个月）                                                 |
+| incomes_last3_months_amount_min                 | number | 每月所得收入的最小值（最近 3 个月）                                            |
+| incomes_last3_months_amount_max                 | number | 每月所得收入的最大值（最近 3 个月）                                            |
+| incomes_last3_months_amount_median              | number | 每月所得收入的中位数（最近 3 个月）                                            |
+| incomes_last3_months_amount_std                 | number | 每月所得收入的标准差（最近 3 个月）                                            |
+| incomes_last6_months_amount_sum                 | number | 所得收入的总额（最近 6 个月）                                               |
+| incomes_last6_months_amount_average             | number | 月平均收入（最近 6 个月）                                                 |
+| incomes_last6_months_amount_min                 | number | 每月所得收入的最小值（最近 6 个月）                                            |
+| incomes_last6_months_amount_max                 | number | 每月所得收入的最大值（最近 6 个月）                                            |
+| incomes_last6_months_amount_median              | number | 每月所得收入的中位数（最近 6 个月）                                            |
+| incomes_last6_months_amount_std                 | number | 每月所得收入的标准差（最近 6 个月）                                            |
+| incomes_last9_months_amount_sum                 | number | 所得收入的总额（最近 9 个月）                                               |
+| incomes_last9_months_amount_average             | number | 月平均收入（最近 9 个月）                                                 |
+| incomes_last9_months_amount_min                 | number | 每月所得收入的最小值（最近 9 个月）                                            |
+| incomes_last9_months_amount_max                 | number | 每月所得收入的最大值（最近 9 个月）                                            |
+| incomes_last9_months_amount_median              | number | 每月所得收入的中位数（最近 9 个月）                                            |
+| incomes_last9_months_amount_std                 | number | 每月所得收入的标准差（最近 9 个月）                                            |
+| incomes_last12_months_amount_sum                | number | 所得收入的总额（最近 12 个月）                                              |
+| incomes_last12_months_amount_average            | number | 月平均收入（最近 12 个月）                                                |
+| incomes_last12_months_amount_min                | number | 每月所得收入的最小值（最近 12 个月）                                           |
+| incomes_last12_months_amount_max                | number | 每月所得收入的最大值（最近 12 个月）                                           |
+| incomes_last12_months_amount_median             | number | 每月所得收入的中位数（最近 12 个月）                                           |
+| incomes_last12_months_amount_std                | number | 每月所得收入的标准差（最近 12 个月）                                           |
+| incomes_last18_months_amount_sum                | number | 所得收入的总额（最近 18 个月）                                              |
+| incomes_last18_months_amount_average            | number | 月平均收入（最近 18 个月）                                                |
+| incomes_last18_months_amount_min                | number | 每月所得收入的最小值（最近 18 个月）                                           |
+| incomes_last18_months_amount_max                | number | 每月所得收入的最大值（最近 18 个月）                                           |
+| incomes_last18_months_amount_median             | number | 每月所得收入的中位数（最近 18 个月）                                           |
+| incomes_last18_months_amount_std                | number | 每月所得收入的标准差（最近 18 个月）                                           |
+| liabilities_loan_count                          | number | 贷款数量（所有负债）                                                     |
+| liabilities_loan_amount_total                   | number | 贷款总额（所有负债）                                                     |
+| liabilities_loan_amount_average                 | number | 平均贷款金额（所有负债）                                                   |
+| liabilities_loan_amount_min                     | number | 最小贷款金额（所有负债）                                                   |
+| liabilities_loan_amount_max                     | number | 最大贷款金额（所有负债）                                                   |
+| liabilities_loan_amount_std                     | number | 贷款金额标准差（所有负债）                                                  |
+| liabilities_finished_loan_count                 | number | 已完成的贷款数量                                                       |
+| liabilities_outstanding_loan_count              | number | 未偿还的贷款数量                                                       |
+| liabilities_outstanding_amount_total            | number | 贷款总额（仅指未偿还债务）                                                  |
+| liabilities_outstanding_amount_average          | number | 平均贷款额（仅指未偿还债务）                                                 |
+| liabilities_outstanding_amount_max              | number | 最大贷款金额（仅指未偿还债务）                                                |
+| liabilities_overdue_loan_count                  | number | 逾期贷款的数量                                                        |
+| liabilities_overdue_amount_total                | number | 贷款总额（仅指逾期债务）                                                   |
+| liabilities_overdue_amount_average              | number | 平均贷款金额（仅指逾期债务）                                                 |
+| liabilities_payment_count                       | number | 已支付贷款的次数                                                       |
+| liabilities_payment_amount_sum                  | number | 已支付总额（所有债务）                                                    |
+| liabilities_payment_amount_average              | number | 平均支付金额（所有债务）                                                   |
+| liabilities_payment_amount_min                  | number | 已支付的最小金额（所有债务）                                                 |
+| liabilities_payment_amount_max                  | number | 已支付的最大金额（所有债务）                                                 |
+| liabilities_payment_amount_median               | number | 已支付金额的中位数（所有债务）                                                |
+| liabilities_payment_amount_std                  | number | 已支付金额的标准差（所有债务）                                                |
+| liabilities_ongoing_amortization_amount_sum     | number | 所有摊销总额（仅指持贷款）                                                  |
+| liabilities_ongoing_amortization_amount_average | number | 平均摊销额（仅指持续贷款）                                                  |
+| liabilities_ongoing_amortization_amount_min     | number | 最小摊销额（仅指持续贷款）                                                  |
+| liabilities_ongoing_amortization_amount_max     | number | 最大摊销额（仅指持续贷款）                                                  |
+| liabilities_payment_amount_median               | number | 摊销额中位数（仅指持续贷款）                                                 |
+| liabilities_ongoing_amortization_amount_std     | number | 摊销金额的标准差（仅指持续贷款）                                               |
+| identity_age                                    | number | 用户目前的年龄                                                        |
+| employments_current_status                      | string | 就业状态，可以是 `EMPLOYED`, `GIG`, 或`UNEMPLOYED`                      |
+| employments_employer_count                      | number | 唯一雇主的数量                                                        |
+| employments_current_tenure                      | number | 在现任雇主处工作的月数                                                    |
+| link_days_since_first | number | 自首次连接起的天数                                                      |
+| link_days_since_last | number | 距离上次连接的天数                                                      |
+| link_day3_count | number | 用户在过去 3 天内的连接次数，如果未订阅 Multiple Application Warning，则为 `-999`   |
+| link_day7_count | number | 用户在过去 7 天内的连接次数，如果未订阅 Multiple Application Warning，则为 `-999`   |
+| link_day30_count | number | 用户在过去 30 天内的连接次数，如果未订阅 Multiple Application Warning，则为 `-999`  |
+| link_day90_count | number | 用户在过去 90 天内的连接次数，如果未订阅 Multiple Application Warning，则为 `-999`  |
+| link_day180_count | number | 用户在过去 180 天内的连接次数，如果未订阅 Multiple Application Warning，则为 `-999` |
+| link_day365_count | number | 用户在过去 365 天内的连接次数，如果未订阅 Multiple Application Warning，则为 `-999` |
+| link_day730_count | number | 用户在过去 730 天内的连接次数，如果未订阅 Multiple Application Warning，则为 `-999` |
 
 ## Features 样例数据
 
@@ -242,6 +267,15 @@ _Insights 目前处于 alpha 阶段。_
   "employments_current_status": "EMPLOYED",
   "employments_employer_count": 3,
   "employments_current_tenure": 24
+  "link_days_since_first": 21,
+  "link_days_since_last": 4,
+  "link_day3_count": 0,
+  "link_day7_count": 2,
+  "link_day30_count": 5,
+  "link_day90_count": 5,
+  "link_day180_count": 5,
+  "link_day365_count": 5,
+  "link_day730_count": 5
 }
 ```
 

@@ -79,6 +79,22 @@ Liabilities Insights give you a quick summarized view of the User's loan informa
 | `liabilities_payment_amount_sum` `liabilities_payment_amount_average` `liabilities_payment_amount_min` `liabilities_payment_amount_max` `liabilities_payment_amount_median` `liabilities_payment_amount_std` | Total, average, min, max, median, and standard deviation of loan payments across all loans |
 | `liabilities_ongoing_amortization_amount_sum` `liabilities_ongoing_amortization_amount_average` `liabilities_ongoing_amortization_amount_min` `liabilities_ongoing_amortization_amount_max` `liabilities_ongoing_amortization_amount_median` `liabilities_ongoing_amortization_amount_std` | Total, average, min, max, median, and standard deviation of loan amortization amounts across ongoing loans |
 
+## Link Insights
+
+Links form the backbone of the [Multiple Application Warning](/reference/links) service, and if opted into both Multiple Application Warning and Insights, we also provide additional Insights surrounding the user's linking activity. These can be easily included in proprietary data models to improve the credit decisioning process.
+
+| Insight variable name | Description |
+|---|---|
+| `link_days_since_first` | Number of days since first connection |
+| `link_days_since_last` | Number of days since last connection |
+| `link_day3_count` | Number of times user has connected in the last 3 days |
+| `link_day7_count` | Number of times user has connected in the last 7 days |
+| `link_day30_count` | Number of times user has connected in the last 30 days |
+| `link_day90_count` | Number of times user has connected in the last 90 days |
+| `link_day180_count` | Number of times user has connected in the last 180 days |
+| `link_day365_count` | Number of times user has connected in the last 365 days |
+| `link_day730_count` | Number of times user has connected in the last 730 days |
+
 _Insights is currently in alpha._
 
 ## The Features object
@@ -160,6 +176,15 @@ _Insights is currently in alpha._
 | employments_current_status | string | Employment status, can be either `EMPLOYED`, `GIG`, or `UNEMPLOYED` |
 | employments_employer_count | number | Number of unique employers |
 | employments_current_tenure | number | Number of months at current employer |
+| link_days_since_first | number | Number of days since first connection |
+| link_days_since_last | number | Number of days since last connection |
+| link_day3_count | number | Number of times user has connected in the last 3 days, `-999` if not subscribed to Multiple Application Warning  |
+| link_day7_count | number | Number of times user has connected in the last 7 days, `-999` if not subscribed to Multiple Application Warning |
+| link_day30_count | number | Number of times user has connected in the last 30 days, `-999` if not subscribed to Multiple Application Warning |
+| link_day90_count | number | Number of times user has connected in the last 90 days, `-999` if not subscribed to Multiple Application Warning |
+| link_day180_count | number | Number of times user has connected in the last 180 days, `-999` if not subscribed to Multiple Application Warning |
+| link_day365_count | number | Number of times user has connected in the last 365 days, `-999` if not subscribed to Multiple Application Warning |
+| link_day730_count | number | Number of times user has connected in the last 730 days, `-999` if not subscribed to Multiple Application Warning |
 
 ## Sample Features data
 
@@ -241,7 +266,16 @@ Estimated income is always returned as a monthly amount.
   "identity_age": 30,
   "employments_current_status": "EMPLOYED",
   "employments_employer_count": 3,
-  "employments_current_tenure": 24
+  "employments_current_tenure": 24,
+  "link_days_since_first": 21,
+  "link_days_since_last": 4,
+  "link_day3_count": 0,
+  "link_day7_count": 2,
+  "link_day30_count": 5,
+  "link_day90_count": 5,
+  "link_day180_count": 5,
+  "link_day365_count": 5,
+  "link_day730_count": 5
 }
 ```
 
