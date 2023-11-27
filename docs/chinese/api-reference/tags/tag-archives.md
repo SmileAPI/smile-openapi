@@ -29,6 +29,10 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 从可核实的来源（如工资系统）自动检索的文件和档案将在 [Documents 端点](/reference/documents) 下找到。从文件中检索到的数据将在相应的数据类型下找到，如 [Employments](/reference/employments) 或 [Incomes](/reference/incomes)。
 
+> 🚧 注意
+>
+> Sandbox 模式下的 Archive 只支持测试特定的工资单。要在 Sandbox 模式下测试 Archive，您可以在 Developer Portal 下载工资单样例，然后通过 Wink Widget 或 API 上传。在 Sandbox 模式下上传其他文件将返回错误。
+
 ## Archive 对象
 
 | 属性         | 类型               | 详情                                                                           |

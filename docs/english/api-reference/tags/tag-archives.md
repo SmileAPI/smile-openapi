@@ -29,6 +29,10 @@ Files are stored until removed by the user via the SDK, or revoked via the API.
 
 Documents and files that are automatically retrieved from verifiable sources such as payroll systems will be found under the [Documents endpoint](/reference/documents). The data retrieved from the document will be found under the respective data type, such as [Employments](/reference/employments) or [Incomes](/reference/incomes).
 
+> 🚧 Warning
+> 
+> Archives in Sandbox Mode return only specific payslips. To test Archives while in Sandbox Mode, you may download the sample payslips within the Developer Portal and upload it through the Wink Widget or through the API. Other files uploaded during Sandbox mode will return errors.
+
 ## The Archive object
 
 | Attribute  | Type   | Description  |

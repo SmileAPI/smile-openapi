@@ -199,7 +199,7 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 
 > 🚧 警告
 >
-> **上传在 Sandbox 模式下被禁用。**如果您需要预览上传的工作方式，您将需要访问 Production 模式。请通过 access@getsmileapi.com 联系我们或通过开发者控制台预约电话以获取访问权限。
+> Sandbox 模式下的 Archive 只支持测试特定的工资单。要在 Sandbox 模式下测试 Archive，您可以在 Developer Portal 下载工资单样例，然后通过 Wink Widget 或 API 上传。在 Sandbox 模式下上传其他文件将返回错误。
 
 ---
 <!-- focus：false-->
@@ -255,9 +255,12 @@ Smile 为我们的生产环境提供了 Sandbox 模式，让您可以测试与�
 
 您可以使用以下示例账号来使用 Sandbox ：
 
-| User Name | Full Name | Email | Mobile Phone | Password | Verification Code | SSS Number |
+| User Name | Full Name | Email | Mobile Phone | Password | Verification Code | SS Number |
 |---|---|---|---|---|---|---|
 | George | George Palomero Jr. | gpalomero1234@smileapi.io | (+63) 9559991234 | 123456 | 1234 | 3300000008 |
-| Ryan | Ryan Ng | ryan1234@smileapi.io |  (+62) 8119994321 | 654321 | 1234 | N/A |
+| Ryan | Ryan Lestari | ryan1234@smileapi.io |  (+62) 8119994321 | 654321 | 1234 | N/A |
 | Christina | Christina Tan | christina4321@smileapi.io |  (+65) 99996789 | YGUS1 | 1234 | N/A |
 | Anisha | Anisha Bhatia | anisha98765@smileapi.io |  (+91) 9511198765 | 123456 | 1234 | N/A |
+
+Sandbox 模式下的 Archive 只支持测试特定的工资单。要在 Sandbox 模式下测试 Archive，您可以在 Developer Portal 下载工资单样例，然后通过 Wink Widget 或 API 上传。在 Sandbox 模式下上传其他文件将返回错误。
+

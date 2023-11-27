@@ -199,7 +199,7 @@ Version 1 is still maintained and security monitoring, updates, and patches will
 
 > 🚧 Warning
 > 
-> **Uploads are disabled in Sandbox mode.** If you need to preview how uploads work, you will need access to Production mode. Contact us at access@getsmileapi.com or book a call through the Developer Portal to get access.
+> Archives in Sandbox Mode return only specific payslips. To test Archives while in Sandbox Mode, you may download the sample payslips within the Developer Portal and upload it through the Wink Widget or through the API. Other files uploaded during Sandbox mode will return errors.
 
 ---
 <!-- focus: false -->
@@ -255,9 +255,11 @@ Smile provides a Sandbox mode for our production environment to allow you to tes
 
 To use the Sandbox, you can use the following example credentials:
 
-| User Name | Full Name | Email | Mobile Phone | Password | Verification Code | SSS Number |
+| User Name | Full Name | Email | Mobile Phone | Password | Verification Code | SS Number |
 |---|---|---|---|---|---|---|
 | George | George Palomero Jr. | gpalomero1234@smileapi.io | (+63) 9559991234 | 123456 | 1234 | 3300000008 |
-| Ryan | Ryan Ng | ryan1234@smileapi.io |  (+62) 8119994321 | 654321 | 1234 | N/A |
+| Ryan | Ryan Lestari | ryan1234@smileapi.io |  (+62) 8119994321 | 654321 | 1234 | N/A |
 | Christina | Christina Tan | christina4321@smileapi.io |  (+65) 99996789 | YGUS1 | 1234 | N/A |
 | Anisha | Anisha Bhatia | anisha98765@smileapi.io |  (+91) 9511198765 | 123456 | 1234 | N/A |
+
+Archives in Sandbox Mode return only specific payslips. To test Archives while in Sandbox Mode, you may download the sample payslips within the Developer Portal and upload it through the Wink Widget or through the API. Other files uploaded during Sandbox mode will return errors.
