@@ -4421,6 +4421,21 @@ components:
             providerId: upwork
       x-tags:
         - Identities
+      allOf:
+        - $ref: '#/components/schemas/IdentityPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+      required:
+        - id
+        - fullName
+        - emails
+        - phones
+        - socialProfiles
+        - addresses
+        - metadata
+    IdentityPayload:
+      type: object
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -4549,8 +4564,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Ref-Address'
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
       required:
         - id
         - fullName
@@ -4558,7 +4571,6 @@ components:
         - phones
         - socialProfiles
         - addresses
-        - metadata
     IdentityGetResponse:
       title: Identity Get Response
       properties:
@@ -4583,16 +4595,18 @@ components:
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
         data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/Object-Next-Cursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Identity'
+          $ref: '#/components/schemas/IdentityListData'
       x-internal: true
       x-examples: {}
+    IdentityListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/Object-Next-Cursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
     Transaction:
       title: Transaction
       type: object
@@ -4619,6 +4633,24 @@ components:
               sourceType: ACCOUNT
               userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
               providerId: upwork
+      allOf:
+        - $ref: '#/components/schemas/TransactionPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+      required:
+        - id
+        - date
+        - currency
+        - amount
+        - metadata
+    TransactionPayload:
+      type: object
+      required:
+        - id
+        - date
+        - currency
+        - amount
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -4642,14 +4674,6 @@ components:
           type: string
           description: Reference transaction ID from data provider
           nullable: true
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
-      required:
-        - id
-        - date
-        - currency
-        - amount
-        - metadata
     TransactionGetResponse:
       title: Transaction Get Response
       type: object
@@ -4675,16 +4699,18 @@ components:
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
         data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/Object-Next-Cursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Transaction'
+          $ref: '#/components/schemas/TransactionListData'
       x-internal: true
       x-examples: {}
+    TransactionListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/Object-Next-Cursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
     Employment:
       title: Employment
       type: object
@@ -4715,6 +4741,20 @@ components:
             providerId: abccorp
       x-tags:
         - Employments
+      allOf:
+        - $ref: '#/components/schemas/EmploymentPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+      required:
+        - id
+        - startDate
+        - metadata
+    EmploymentPayload:
+      type: object
+      required:
+        - id
+        - startDate
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -4764,12 +4804,6 @@ components:
           format: date
           example: '2019-08-24'
           nullable: true
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
-      required:
-        - id
-        - startDate
-        - metadata
     EmploymentGetResponse:
       title: Employment Get Response
       type: object
@@ -4795,14 +4829,16 @@ components:
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
         data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/Object-Next-Cursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Employment'
+          $ref: '#/components/schemas/EmploymentListData'
+    EmploymentListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/Object-Next-Cursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employment'
     Rating:
       title: Rating
       type: object
@@ -4827,6 +4863,18 @@ components:
             providerId: upwork
       x-tags:
         - Ratings
+      allOf:
+        - $ref: '#/components/schemas/RatingPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+      required:
+        - id
+        - metadata
+    RatingPayload:
+      type: object
+      required:
+        - id
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -4864,11 +4912,6 @@ components:
           description: Jobs actually completed in the employment platform
           example: 12
           nullable: true
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
-      required:
-        - id
-        - metadata
     RatingGetResponse:
       title: Rating Get Response
       type: object
@@ -4997,6 +5040,20 @@ components:
             providerId: upwork
       x-tags:
         - Documents
+      allOf:
+        - $ref: '#/components/schemas/DocumentPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+      required:
+        - id
+        - name
+        - metadata
+    DocumentPayload:
+      type: object
+      required:
+        - id
+        - name
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -5048,12 +5105,6 @@ components:
           description: Remarks section
           example: NO RECORD ON FILE
           nullable: true
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
-      required:
-        - id
-        - name
-        - metadata
     DocumentGetResponse:
       title: Document Get Response
       type: object
@@ -5079,14 +5130,16 @@ components:
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
         data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/Object-Next-Cursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Document'
+          $ref: '#/components/schemas/DocumentListData'
+    DocumentListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/Object-Next-Cursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
     Asset:
       title: Asset
       type: object
@@ -5277,6 +5330,22 @@ components:
       x-internal: false
       x-tags:
         - Incomes
+      allOf:
+        - $ref: '#/components/schemas/IncomePayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+      required:
+        - id
+        - startDate
+        - currency
+        - metadata
+    IncomePayload:
+      type: object
+      required:
+        - id
+        - startDate
+        - currency
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -5313,13 +5382,6 @@ components:
           type: number
           description: Net amount
           nullable: true
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
-      required:
-        - id
-        - startDate
-        - currency
-        - metadata
     IncomeGetResponse:
       title: Income Get Response
       type: object
@@ -5345,14 +5407,16 @@ components:
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
         data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/Object-Next-Cursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Income'
+          $ref: '#/components/schemas/IncomeListData'
+    IncomeListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/Object-Next-Cursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Income'
     EincomeGetResponse:
       title: Enhanced Income Get Response
       type: object
@@ -5378,14 +5442,16 @@ components:
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
         data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/Object-Next-Cursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Eincome'
+          $ref: '#/components/schemas/EincomeListData'
+    EincomeListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/Object-Next-Cursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Eincome'
     Eincome:
       title: Eincome
       type: object
@@ -5407,6 +5473,26 @@ components:
       x-internal: false
       x-tags:
         - Estimated Incomes
+      allOf:
+        - $ref: '#/components/schemas/EincomePayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+      required:
+        - id
+        - month
+        - currency
+        - baseAmount
+        - amount
+        - metadata
+    EincomePayload:
+      type: object
+      required:
+        - id
+        - month
+        - currency
+        - baseAmount
+        - amount
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -5427,15 +5513,6 @@ components:
           type: number
           description: income amount
           nullable: true
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
-      required:
-        - id
-        - month
-        - currency
-        - baseAmount
-        - amount
-        - metadata
     LiabilityGetResponse:
       title: Liability Get Response
       type: object
@@ -5453,14 +5530,16 @@ components:
         - $ref: '#/components/schemas/CommonResponse'
         - properties:
             data:
-              type: object
-              properties:
-                nextCursor:
-                  $ref: '#/components/schemas/Object-Next-Cursor'
-                items:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Liability'
+              $ref: '#/components/schemas/LiabilityListData'
+    LiabilityListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/Object-Next-Cursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Liability'
     Liability:
       title: Liability
       type: object
@@ -5489,6 +5568,28 @@ components:
       x-internal: false
       x-tags:
         - Liabilities
+      allOf:
+        - $ref: '#/components/schemas/LiabilityPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+      required:
+        - id
+        - type
+        - startDate
+        - loanAmount
+        - currency
+        - amortizationFrequency
+        - metadata
+    LiabilityPayload:
+      type: object
+      required:
+        - id
+        - type
+        - startDate
+        - loanAmount
+        - currency
+        - amortizationFrequency
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -5530,15 +5631,6 @@ components:
         overduePaymentAmount:
           type: number
           description: loan total overdue amount
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
-      required:
-        - id
-        - type
-        - startDate
-        - loanAmount
-        - currency
-        - amortizationFrequency
     InsightListResponse:
       title: Insight List Response
       type: object
@@ -5568,6 +5660,17 @@ components:
       title: Insight
       type: object
       x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/InsightPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+    InsightPayload:
+      type: object
+      required:
+        - id
+        - cutoffTime
+        - features
       properties:
         id:
           type: string
@@ -5579,8 +5682,6 @@ components:
           example: '2021-04-14T09:30:24Z'
           description: Date and time
           x-internal: true
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
         features:
           $ref: '#/components/schemas/Object-Feature'
     LinkListResponse:
@@ -5590,14 +5691,16 @@ components:
         - $ref: '#/components/schemas/CommonResponse'
         - properties:
             data:
-              type: object
-              properties:
-                nextCursor:
-                  $ref: '#/components/schemas/Object-Next-Cursor'
-                items:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Link'
+              $ref: '#/components/schemas/LinkListData'
+    LinkListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/Object-Next-Cursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     LinkGetResponse:
       type: object
       x-internal: true
@@ -5609,6 +5712,17 @@ components:
     Link:
       type: object
       x-internal: true
+      required:
+        - id
+        - endDate
+        - metadata
+      allOf:
+        - $ref: '#/components/schemas/LinkPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+    LinkPayload:
+      type: object
       required:
         - id
         - endDate
@@ -5642,8 +5756,6 @@ components:
                 description: The latest link time of each application
                 items:
                   $ref: '#/components/schemas/Ref-DateTime'
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
     ProfileIdentityVerifyRequest:
       title: object
       required:
@@ -5904,6 +6016,18 @@ components:
             providerId: sss-ph
       x-tags:
         - Contributions
+      allOf:
+        - $ref: '#/components/schemas/ContributionPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/Object-Reference-Metadata'
+    ContributionPayload:
+      type: object
+      required:
+        - id
+        - date
+        - currency
+        - amount
       properties:
         id:
           $ref: '#/components/schemas/Ref-Object-ID'
@@ -5922,8 +6046,6 @@ components:
           type: string
           description: Reference contribution ID from the data provider
           example: PA9634415
-        metadata:
-          $ref: '#/components/schemas/Object-Reference-Metadata'
     ContributionGetResponse:
       title: Contribution Get Response
       x-stoplight:
@@ -5953,14 +6075,16 @@ components:
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
         data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/Object-Next-Cursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Contribution'
+          $ref: '#/components/schemas/ContributionListData'
+    ContributionListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/Object-Next-Cursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contribution'
     RawFile:
       title: RawFile
       type: object
@@ -7313,6 +7437,12 @@ components:
           description: >-
             Set to true or false depending on if you would like to enable this
             webhook or not
+        includePayload:
+          type: boolean
+          default: false
+          description: >-
+            Whether to put all datapoints' payload into the
+            events(TASK_FINISHED_EVENT, ACCOUNT_SNYC_TASK_FINISHED_EVENT)
         updatedAt:
           $ref: '#/components/schemas/Ref-DateTime'
       required:
@@ -7347,6 +7477,12 @@ components:
         active:
           type: boolean
           description: Whether to set this webhook active to received events
+        includePayload:
+          type: boolean
+          default: false
+          description: >-
+            Whether to put all datapoints' payload into the
+            events(TASK_FINISHED, ACCOUNT_SNYC_TASK_FINISHED)
         secret:
           type: string
           description: >-
@@ -8126,12 +8262,15 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Ref-Datapoint'
+            payload:
+              $ref: '#/components/schemas/AllDatapointPayload'
           required:
             - userId
             - sourceId
             - sourceType
             - providers
             - datapoints
+            - data
       required:
         - id
         - version
@@ -8151,6 +8290,87 @@ components:
             providers:
               - string
       description: Event indicates data sync of an account is finished.
+    AllDatapointPayload:
+      type: object
+      properties:
+        identity:
+          $ref: '#/components/schemas/IdentityPayload'
+        rating:
+          $ref: '#/components/schemas/RatingPayload'
+        documents:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/DocumentPayload'
+        incomes:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/IncomePayload'
+        transactions:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/TransactionPayload'
+        employments:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/EmploymentPayload'
+        contributions:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPayload'
+        liabilities:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/LiabilityPayload'
+        eincomes:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/EincomePayload'
+        links:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/LinkPayload'
+        insight:
+          $ref: '#/components/schemas/InsightPayload'
     AccountSyncTaskFinishedEvent:
       title: 'Webhook: Account Sync Task Finished Event'
       x-tags:
@@ -8194,6 +8414,8 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Ref-Datapoint'
+            payload:
+              $ref: '#/components/schemas/AllDatapointPayload'
           required:
             - userId
             - sourceId
