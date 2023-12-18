@@ -28,11 +28,31 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
 2. **创建一个 webhook 端点**作为服务器或应用程序上的 HTTPS 端点 (URL)。
 3. **测试您的 webhook 端点是否正常工作。** 通过解析每个事件对象并返回 “2xx” 响应状态代码，确保您的服务器或应用程序能够处理来自 Smile 的请求。
 4. **部署您的 webhook 端点**，使其成为可公开访问的 HTTPS URL。
-5. **通过向 ``/webhooks`` 端点发出POST请求来注册您的可公开访问的 webhook 端点**。您将需要指定以下内容：
-    - **URL**：webhook 端点或 URL。
-    - **事件类型**：您要监控的事件类型，用逗号分隔（不同的事件类型见下文），或者简单地使用 ``ALL_EVENTS`` 来获取所有事件类型的通知。
-    - **活动**：您希望此端点定义处于活动状态还是非活动状态（您可以稍后通过更新请求进行更新）
-    - **Secret**：一个短语或值，可用于通过使用 HMAC-SHA512 消化接收到的内容正文来验证其真实性，其中 Secret 作为密钥。 请参阅下面的*验证内容*。
+5. 使用以下两种方式之一来**注册可公开访问的 webhook 端点**。
+
+#### 通过 Developer Portal 注册 Webhook
+
+您可以使用 [Developer Portal](https://portal.getsmileapi.com/) 轻松注册您的 webhook。登录后，导航至 **Webhooks** 部分，点击 **Add New Webhook** 按钮，添加新的 webhook。
+
+![portal-webhooks.png](../../../../assets/images/portal-webhooks.png)
+
+提供以下详细信息：
+
+- **Name**: 用于轻松识别 webhook 的名称。仅在 Developer Portal 中显示。
+- **URL**: webhook 端点或 URL。
+- **Secret**: 是一个短语或值，您可以用它来验证内容的真实性，方法是使用 HMAC-SHA512 对接收到的内容正文进行摘要，并将密文作为密钥。请参阅下面的*验证内容*。
+- **Include Payload**： 可设置为 *True* 或 *False* ，取决于您是否想要在相关事件中包含与数据端点相关的完整 payload 数据。默认为 false 。Payload 数据的大小可能会有所不同。仅适用于 `TASK_FINISHED` 和 `ACCOUNT_SYNC_TASK_FINISHED` 事件。
+- **Events**：想要监控的事件类型。您可以监控所有事件，也可以在选择区域手动选择特定事件。
+
+#### 通过 API 注册 Webhook
+
+或者，您也可以通过[向 ``/webhooks`` 端点发出 POST request](/reference/create-webhook) 来注册您的 webhook。您需要指定以下内容：
+
+- **URL**: webhook 端点或 URL。
+- **Event types**：想要监控的事件类型，用逗号分隔（不同事件类型见下文），或者直接使用 ``ALL_EVENTS`` 获取所有事件类型的通知。
+- **Active**：必须设置为 True，否则 Webhook 不会生效
+- **Secret**: 是一个短语或值，您可以用它来验证内容的真实性，方法是使用 HMAC-SHA512 对接收到的内容正文进行摘要，并将密文作为密钥。请参阅下面的*验证内容*。
+- **Include Payload**： 可设置为 *True* 或 *False* ，取决于您是否想要在相关事件中包含与数据端点相关的完整 payload 数据。默认为 false 。Payload 数据的大小可能会有所不同。仅适用于 `TASK_FINISHED` 和 `ACCOUNT_SYNC_TASK_FINISHED` 事件。
 
 > 📘 Note
 >
@@ -51,9 +71,20 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
 >     "IDENTITY_ADDED"
 >   ],
 >   "active": true,
->   "secret": "a little secret"
+>   "secret": "a little secret",
+>   "includePayload": false
 > }'
 > ```
+
+### 包含数据 Payload
+
+对于 `TASK_FINISHED` 和 `ACCOUNT_SYNC_TASK_FINISHED` 事件，您可以选择在收到事件通知时包含数据 payload。这样，在收到通知后您就可以跳过手动查询相关数据端点的 API ，直接获取相关端点的数据。
+
+例如，当一个新用户连接了一个账户，您可以选择通过 webhook 获取其全部数据，这样就省去了调用 API 获取数据的过程。但要注意的是，这种数据 payload 的大小可能会很大。
+
+> 📘 注意
+>
+> 如果数据端点是列表数据（如Contributions、Estimated Incomes等），数据 payload 将最多返回 300 项。如果账户数据超过 300 项，请通过相关数据端点分别查询。
 
 ### Webhook 重试
 
@@ -230,6 +261,9 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
 ```
 #### 任务结束
 用户账户的数据同步进程结束时，事件发送格式如下：
+
+如果 `includePayload` 设置为 `FALSE`，则 `payload` 为空。
+
 ```json
 {
   "id": "et-123abc456def789abc123def456abc78",
@@ -246,13 +280,188 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
     "datapoints": [
       "IDENTITIES",
       "INCOMES"
-    ]
+  ],
+    "payload": {
+      "identity": {
+        "id": "i-34b7fe18cc5a482dac6a8a2132a7972f",
+        "fullName": "George Cimafranca Palomero, Jr",
+        "firstName": "George",
+        "middleName": "Cimafranca",
+        "lastName": "Palomero",
+        "suffix": "Jr",
+        "gender": "Male",
+        "dob": "1970-08-24",
+        "maritalStatus": "Married",
+        "countryResidence": "PH",
+        "citizenship": "Citizen",
+        "photoUrl": "https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg",
+        "referenceId": null,
+        "profileUrl": null,
+        "latestEmployerName": null,
+        "emails": [
+        {
+            "address": "gpalomero1234@smileapi.io",
+            "type": "Primary"
+        }],
+        "phones": [
+        {
+            "number": "+639559991234",
+            "type": "Mobile"
+        }],
+        "socialProfiles": [
+        {
+            "socialUrl": "https://www.facebook.com/gpalomero",
+            "type": "Facebook"
+        }],
+        "addresses": [
+        {
+            "fullAddress": "12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH",
+            "line1": "12 Maybunga St",
+            "line2": "Barangay Paraiso",
+            "city": "Pasig City",
+            "region": "NCR",
+            "zip": "1600",
+            "country": "PH",
+            "latitude": "14.573454",
+            "longitude": "121.085042",
+            "type": "Primary"
+        }]
+      },
+      "rating": null,
+      "documents":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "d-f671e0ed7ed143b9880dce6a0b283693",
+            "name": "SSS",
+            "docId": "04-0751449-0",
+            "status": null,
+            "documentType": "IDENTIFICATION",
+            "issueDate": null,
+            "expiryDate": null,
+            "fileUrl": null,
+            "remarks": null
+        },
+        {
+            "id": "d-7d5527088bfb4c278acbad934c1099ed",
+            "name": "UMID",
+            "docId": "0026-1215160-9",
+            "status": null,
+            "documentType": "IDENTIFICATION",
+            "issueDate": null,
+            "expiryDate": null,
+            "fileUrl": null,
+            "remarks": null
+        }]
+      },
+      "incomes": null,
+      "transactions": null,
+      "employments":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "e-a5eaa67e6c884a56a70a476960700692",
+            "name": "Security",
+            "description": null,
+            "jobTitle": "Security Guard",
+            "department": null,
+            "employeeNumber": "EMP-123456",
+            "employer": "ABC Corporation",
+            "status": "Permanent",
+            "startDate": "2023-10-01",
+            "endDate": "2023-10-31"
+        },
+        {
+            "id": "e-6371af9f7e284497996cebf09ff250a2",
+            "name": "Security",
+            "description": null,
+            "jobTitle": "Security Guard",
+            "department": null,
+            "employeeNumber": "CDE-98765",
+            "employer": "CDE Corporation",
+            "status": "Permanent",
+            "startDate": "2023-09-01",
+            "endDate": "2023-09-30"
+        }]
+      },
+      "contributions":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "con-03de6eb74ffc48fa82976714b5e001a9",
+            "date": "2023-11-27",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "JA8833327"
+        },
+        {
+            "id": "con-a00bfb19a4e64959ba22e5c8859f428f",
+            "date": "2023-11-26",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "PA9634415"
+        },
+        {
+            "id": "con-56c2e6dc2d734750a01dd4d3f1140d77",
+            "date": "2023-11-25",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "VC2534561"
+        }]
+      },
+      "liabilities":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "lia-413ca2d214cf43618804ad20ca0bb0e4",
+            "type": "Salary Loan",
+            "referenceId": "SL201601011234567",
+            "startDate": "2023-10-28",
+            "endDate": "2024-10-28",
+            "firstAmortizationDate": "2023-11-28",
+            "amortizationFrequency": "Monthly",
+            "currency": "PHP",
+            "loanAmount": 16000.0,
+            "amortizationAmount": 738.32,
+            "outstandingBalance": 14599.76,
+            "nextPaymentAmount": 732.38,
+            "overduePaymentAmount": 0.0
+        }]
+      },
+      "eincomes":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "einc-b30d0dc40e724d7199268f891e7fedd4",
+            "month": "2023-10",
+            "currency": "PHP",
+            "baseAmount": 8500.0,
+            "amount": 8500.0
+        },
+        {
+            "id": "einc-102efd96ecc94ab7b8ee18526a888c61",
+            "month": "2023-09",
+            "currency": "PHP",
+            "baseAmount": 8500.0,
+            "amount": 8500.0
+        }]
+      },
+      "links": null,
+      "insight": null,
+    }
   }
 }
 ```
 
 #### 账户同步任务已完成
 账户同步过程结束时，事件发送格式如下：
+
+如果 `includePayload` 设置为 `FALSE`，则 `payload` 为空。
 
 ```json
 {
@@ -273,7 +482,180 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
       "IDENTITIES",
       "EMPLOYMENTS",
       "INCOMES"
-    ]
+    ],
+    "payload": {
+      "identity": {
+        "id": "i-34b7fe18cc5a482dac6a8a2132a7972f",
+        "fullName": "George Cimafranca Palomero, Jr",
+        "firstName": "George",
+        "middleName": "Cimafranca",
+        "lastName": "Palomero",
+        "suffix": "Jr",
+        "gender": "Male",
+        "dob": "1970-08-24",
+        "maritalStatus": "Married",
+        "countryResidence": "PH",
+        "citizenship": "Citizen",
+        "photoUrl": "https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg",
+        "referenceId": null,
+        "profileUrl": null,
+        "latestEmployerName": null,
+        "emails": [
+          {
+            "address": "gpalomero1234@smileapi.io",
+            "type": "Primary"
+          }],
+        "phones": [
+          {
+            "number": "+639559991234",
+            "type": "Mobile"
+          }],
+        "socialProfiles": [
+          {
+            "socialUrl": "https://www.facebook.com/gpalomero",
+            "type": "Facebook"
+          }],
+        "addresses": [
+          {
+            "fullAddress": "12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH",
+            "line1": "12 Maybunga St",
+            "line2": "Barangay Paraiso",
+            "city": "Pasig City",
+            "region": "NCR",
+            "zip": "1600",
+            "country": "PH",
+            "latitude": "14.573454",
+            "longitude": "121.085042",
+            "type": "Primary"
+          }]
+      },
+      "rating": null,
+      "documents":
+      {
+        "nextCursor": null,
+        "items": [
+          {
+            "id": "d-f671e0ed7ed143b9880dce6a0b283693",
+            "name": "SSS",
+            "docId": "04-0751449-0",
+            "status": null,
+            "documentType": "IDENTIFICATION",
+            "issueDate": null,
+            "expiryDate": null,
+            "fileUrl": null,
+            "remarks": null
+          },
+          {
+            "id": "d-7d5527088bfb4c278acbad934c1099ed",
+            "name": "UMID",
+            "docId": "0026-1215160-9",
+            "status": null,
+            "documentType": "IDENTIFICATION",
+            "issueDate": null,
+            "expiryDate": null,
+            "fileUrl": null,
+            "remarks": null
+          }]
+      },
+      "incomes": null,
+      "transactions": null,
+      "employments":
+      {
+        "nextCursor": null,
+        "items": [
+          {
+            "id": "e-a5eaa67e6c884a56a70a476960700692",
+            "name": "Security",
+            "description": null,
+            "jobTitle": "Security Guard",
+            "department": null,
+            "employeeNumber": "EMP-123456",
+            "employer": "ABC Corporation",
+            "status": "Permanent",
+            "startDate": "2023-10-01",
+            "endDate": "2023-10-31"
+          },
+          {
+            "id": "e-6371af9f7e284497996cebf09ff250a2",
+            "name": "Security",
+            "description": null,
+            "jobTitle": "Security Guard",
+            "department": null,
+            "employeeNumber": "CDE-98765",
+            "employer": "CDE Corporation",
+            "status": "Permanent",
+            "startDate": "2023-09-01",
+            "endDate": "2023-09-30"
+          }]
+      },
+      "contributions":
+      {
+        "nextCursor": null,
+        "items": [
+          {
+            "id": "con-03de6eb74ffc48fa82976714b5e001a9",
+            "date": "2023-11-27",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "JA8833327"
+          },
+          {
+            "id": "con-a00bfb19a4e64959ba22e5c8859f428f",
+            "date": "2023-11-26",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "PA9634415"
+          },
+          {
+            "id": "con-56c2e6dc2d734750a01dd4d3f1140d77",
+            "date": "2023-11-25",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "VC2534561"
+          }]
+      },
+      "liabilities":
+      {
+        "nextCursor": null,
+        "items": [
+          {
+            "id": "lia-413ca2d214cf43618804ad20ca0bb0e4",
+            "type": "Salary Loan",
+            "referenceId": "SL201601011234567",
+            "startDate": "2023-10-28",
+            "endDate": "2024-10-28",
+            "firstAmortizationDate": "2023-11-28",
+            "amortizationFrequency": "Monthly",
+            "currency": "PHP",
+            "loanAmount": 16000.0,
+            "amortizationAmount": 738.32,
+            "outstandingBalance": 14599.76,
+            "nextPaymentAmount": 732.38,
+            "overduePaymentAmount": 0.0
+          }]
+      },
+      "eincomes":
+      {
+        "nextCursor": null,
+        "items": [
+          {
+            "id": "einc-b30d0dc40e724d7199268f891e7fedd4",
+            "month": "2023-10",
+            "currency": "PHP",
+            "baseAmount": 8500.0,
+            "amount": 8500.0
+          },
+          {
+            "id": "einc-102efd96ecc94ab7b8ee18526a888c61",
+            "month": "2023-09",
+            "currency": "PHP",
+            "baseAmount": 8500.0,
+            "amount": 8500.0
+          }]
+      },
+      "links": null,
+      "insight": null,
+    }
   }
 }
 ```

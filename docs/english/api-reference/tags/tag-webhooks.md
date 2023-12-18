@@ -28,11 +28,31 @@ You can start receiving event notifications in your application using the follow
 2. **Create a webhook endpoint** as an HTTPS endpoint (URL) on your  server or application. 
 3. **Test that your webhook endpoint is working properly.** Make sure that your server or application is able to handle requests from Smile by parsing each event object and returning ``2xx`` response status codes.
 4. **Deploy your webhook endpoint** so it's a publicly accessible HTTPS URL.
-5. **Register your publicly accessible webhook endpoint** by [making a POST request to the ``/webhooks`` endpoint](/reference/create-webhook). You will need to specify the following:
-   - **URL**: the webhook endpoint or URL.
-   - **Event types**: the event types you want to monitor, separated by commas (see below for the different event types), or simply use ``ALL_EVENTS`` to get notifications on all event types.
-   - **Active**: whether you want this endpoint definition to be active or inactive (you can update this later via an update request)
-   - **Secret**: a phrase or value that you can use to validate the authenticity of the payload by digesting the received payload body using HMAC-SHA512, with the secret as the key. See *Validating Payloads*, below.
+5. **Register your publicly accessible webhook endpoint** using one of the two methods below.
+
+#### Webhook Registration via Developer Portal
+
+You may register your webhooks easily using the [Developer Portal](https://portal.getsmileapi.com/). After logging in, navigate to the **Webhooks** section and click on the **Add New Webhook** button to add your new webhook.
+
+![portal-webhooks.png](../../../../assets/images/portal-webhooks.png)
+
+Provide the following details:
+
+- **Name**: Name to easily identify the webhook. Only displayed in the Developer Portal.
+- **URL**: the webhook endpoint or URL.
+- **Secret**: a phrase or value that you can use to validate the authenticity of the payload by digesting the received payload body using HMAC-SHA512, with the secret as the key. See *Validating Payloads*, below.
+- **Include Payload**: Set to *True* or *False* depending on if you wish to include the full data payload related to the endpoint affected by the event. Defaults to false. Payload size may vary. Only for `TASK_FINISHED` and `ACCOUNT_SYNC_TASK_FINISHED` events.
+- **Events**: the event types you want to monitor. You may monitor all events or specific events by selecting them manually in the select area.
+
+#### Webhook Registration via API
+
+Alternatively, you may make a [POST request to the ``/webhooks`` endpoint](/reference/create-webhook) to register your webhook. You will need to specify the following:
+
+- **URL**: the webhook endpoint or URL.
+- **Event types**: the event types you want to monitor, separated by commas (see below for the different event types), or simply use ``ALL_EVENTS`` to get notifications on all event types.
+- **Active**: must be set to True or the Webhook will not take effect
+- **Secret**: a phrase or value that you can use to validate the authenticity of the payload by digesting the received payload body using HMAC-SHA512, with the secret as the key. See *Validating Payloads*, below.
+- **Include Payload**: `TRUE` or `FALSE` depending on if you wish to include the full data payload related to the endpoint affected by the event. Defaults to false. Payload size may vary. Only for `TASK_FINISHED` and `ACCOUNT_SYNC_TASK_FINISHED` events.
 
 > 📘 Note
 > 
@@ -51,9 +71,20 @@ You can start receiving event notifications in your application using the follow
 >     "IDENTITY_ADDED"
 >   ],
 >   "active": true,
->   "secret": "a little secret"
+>   "secret": "a little secret",
+>   "includePayload": false
 > }'
 > ```
+
+### Including the Data Payload
+
+For the `TASK_FINISHED` and `ACCOUNT_SYNC_TASK_FINISHED` events, you may opt to include the data payload when you are notified of the event. This will allow you to skip a manual API query to the related endpoint after receiving the notification, but still obtain the data related to the event.
+
+For example, if a new user has connected an account, you may opt to obtain their full data through the webhook, saving you an API call to obtain the data. However, note that this data payload may be large in size.
+
+> 📘 Note
+> 
+> If the datapoint is list data (for example, Contributions, Estimated Incomes, etc.), the data payload will return a maximum of 300 items. If the Account has more than 300 items, please query the other items separately via the related endpoint.
 
 ### Webhook Retries
 
@@ -230,6 +261,9 @@ Sent when the data sync process for a user's account is started.
 ```
 #### Task Finished
 Sent when the data sync task process for a user's account is finished.
+
+The `payload` item will be empty if `includePayload` is set to `FALSE`.
+
 ```json
 {
   "id": "et-123abc456def789abc123def456abc78",
@@ -246,13 +280,188 @@ Sent when the data sync task process for a user's account is finished.
     "datapoints": [
       "IDENTITIES",
       "INCOMES"
-    ]
+    ],
+    "payload": {
+      "identity": {
+        "id": "i-34b7fe18cc5a482dac6a8a2132a7972f",
+        "fullName": "George Cimafranca Palomero, Jr",
+        "firstName": "George",
+        "middleName": "Cimafranca",
+        "lastName": "Palomero",
+        "suffix": "Jr",
+        "gender": "Male",
+        "dob": "1970-08-24",
+        "maritalStatus": "Married",
+        "countryResidence": "PH",
+        "citizenship": "Citizen",
+        "photoUrl": "https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg",
+        "referenceId": null,
+        "profileUrl": null,
+        "latestEmployerName": null,
+        "emails": [
+        {
+            "address": "gpalomero1234@smileapi.io",
+            "type": "Primary"
+        }],
+        "phones": [
+        {
+            "number": "+639559991234",
+            "type": "Mobile"
+        }],
+        "socialProfiles": [
+        {
+            "socialUrl": "https://www.facebook.com/gpalomero",
+            "type": "Facebook"
+        }],
+        "addresses": [
+        {
+            "fullAddress": "12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH",
+            "line1": "12 Maybunga St",
+            "line2": "Barangay Paraiso",
+            "city": "Pasig City",
+            "region": "NCR",
+            "zip": "1600",
+            "country": "PH",
+            "latitude": "14.573454",
+            "longitude": "121.085042",
+            "type": "Primary"
+        }]
+      },
+      "rating": null,
+      "documents":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "d-f671e0ed7ed143b9880dce6a0b283693",
+            "name": "SSS",
+            "docId": "04-0751449-0",
+            "status": null,
+            "documentType": "IDENTIFICATION",
+            "issueDate": null,
+            "expiryDate": null,
+            "fileUrl": null,
+            "remarks": null
+        },
+        {
+            "id": "d-7d5527088bfb4c278acbad934c1099ed",
+            "name": "UMID",
+            "docId": "0026-1215160-9",
+            "status": null,
+            "documentType": "IDENTIFICATION",
+            "issueDate": null,
+            "expiryDate": null,
+            "fileUrl": null,
+            "remarks": null
+        }]
+      },
+      "incomes": null,
+      "transactions": null,
+      "employments":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "e-a5eaa67e6c884a56a70a476960700692",
+            "name": "Security",
+            "description": null,
+            "jobTitle": "Security Guard",
+            "department": null,
+            "employeeNumber": "EMP-123456",
+            "employer": "ABC Corporation",
+            "status": "Permanent",
+            "startDate": "2023-10-01",
+            "endDate": "2023-10-31"
+        },
+        {
+            "id": "e-6371af9f7e284497996cebf09ff250a2",
+            "name": "Security",
+            "description": null,
+            "jobTitle": "Security Guard",
+            "department": null,
+            "employeeNumber": "CDE-98765",
+            "employer": "CDE Corporation",
+            "status": "Permanent",
+            "startDate": "2023-09-01",
+            "endDate": "2023-09-30"
+        }]
+      },
+      "contributions":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "con-03de6eb74ffc48fa82976714b5e001a9",
+            "date": "2023-11-27",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "JA8833327"
+        },
+        {
+            "id": "con-a00bfb19a4e64959ba22e5c8859f428f",
+            "date": "2023-11-26",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "PA9634415"
+        },
+        {
+            "id": "con-56c2e6dc2d734750a01dd4d3f1140d77",
+            "date": "2023-11-25",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "VC2534561"
+        }]
+      },
+      "liabilities":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "lia-413ca2d214cf43618804ad20ca0bb0e4",
+            "type": "Salary Loan",
+            "referenceId": "SL201601011234567",
+            "startDate": "2023-10-28",
+            "endDate": "2024-10-28",
+            "firstAmortizationDate": "2023-11-28",
+            "amortizationFrequency": "Monthly",
+            "currency": "PHP",
+            "loanAmount": 16000.0,
+            "amortizationAmount": 738.32,
+            "outstandingBalance": 14599.76,
+            "nextPaymentAmount": 732.38,
+            "overduePaymentAmount": 0.0
+        }]
+      },
+      "eincomes":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "einc-b30d0dc40e724d7199268f891e7fedd4",
+            "month": "2023-10",
+            "currency": "PHP",
+            "baseAmount": 8500.0,
+            "amount": 8500.0
+        },
+        {
+            "id": "einc-102efd96ecc94ab7b8ee18526a888c61",
+            "month": "2023-09",
+            "currency": "PHP",
+            "baseAmount": 8500.0,
+            "amount": 8500.0
+        }]
+      },
+      "links": null,
+      "insight": null,
+    }
   }
 }
 ```
 
 #### Account Sync Task Finished
 Sent when the account syncing process is finished.
+
+The `payload` item will be empty if `includePayload` is set to `FALSE`.
 
 ```json
 {
@@ -273,7 +482,180 @@ Sent when the account syncing process is finished.
       "IDENTITIES",
       "EMPLOYMENTS",
       "INCOMES"
-    ]
+    ],
+    "payload": {
+      "identity": {
+        "id": "i-34b7fe18cc5a482dac6a8a2132a7972f",
+        "fullName": "George Cimafranca Palomero, Jr",
+        "firstName": "George",
+        "middleName": "Cimafranca",
+        "lastName": "Palomero",
+        "suffix": "Jr",
+        "gender": "Male",
+        "dob": "1970-08-24",
+        "maritalStatus": "Married",
+        "countryResidence": "PH",
+        "citizenship": "Citizen",
+        "photoUrl": "https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg",
+        "referenceId": null,
+        "profileUrl": null,
+        "latestEmployerName": null,
+        "emails": [
+        {
+            "address": "gpalomero1234@smileapi.io",
+            "type": "Primary"
+        }],
+        "phones": [
+        {
+            "number": "+639559991234",
+            "type": "Mobile"
+        }],
+        "socialProfiles": [
+        {
+            "socialUrl": "https://www.facebook.com/gpalomero",
+            "type": "Facebook"
+        }],
+        "addresses": [
+        {
+            "fullAddress": "12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH",
+            "line1": "12 Maybunga St",
+            "line2": "Barangay Paraiso",
+            "city": "Pasig City",
+            "region": "NCR",
+            "zip": "1600",
+            "country": "PH",
+            "latitude": "14.573454",
+            "longitude": "121.085042",
+            "type": "Primary"
+        }]
+      },
+      "rating": null,
+      "documents":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "d-f671e0ed7ed143b9880dce6a0b283693",
+            "name": "SSS",
+            "docId": "04-0751449-0",
+            "status": null,
+            "documentType": "IDENTIFICATION",
+            "issueDate": null,
+            "expiryDate": null,
+            "fileUrl": null,
+            "remarks": null
+        },
+        {
+            "id": "d-7d5527088bfb4c278acbad934c1099ed",
+            "name": "UMID",
+            "docId": "0026-1215160-9",
+            "status": null,
+            "documentType": "IDENTIFICATION",
+            "issueDate": null,
+            "expiryDate": null,
+            "fileUrl": null,
+            "remarks": null
+        }]
+      },
+      "incomes": null,
+      "transactions": null,
+      "employments":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "e-a5eaa67e6c884a56a70a476960700692",
+            "name": "Security",
+            "description": null,
+            "jobTitle": "Security Guard",
+            "department": null,
+            "employeeNumber": "EMP-123456",
+            "employer": "ABC Corporation",
+            "status": "Permanent",
+            "startDate": "2023-10-01",
+            "endDate": "2023-10-31"
+        },
+        {
+            "id": "e-6371af9f7e284497996cebf09ff250a2",
+            "name": "Security",
+            "description": null,
+            "jobTitle": "Security Guard",
+            "department": null,
+            "employeeNumber": "CDE-98765",
+            "employer": "CDE Corporation",
+            "status": "Permanent",
+            "startDate": "2023-09-01",
+            "endDate": "2023-09-30"
+        }]
+      },
+      "contributions":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "con-03de6eb74ffc48fa82976714b5e001a9",
+            "date": "2023-11-27",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "JA8833327"
+        },
+        {
+            "id": "con-a00bfb19a4e64959ba22e5c8859f428f",
+            "date": "2023-11-26",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "PA9634415"
+        },
+        {
+            "id": "con-56c2e6dc2d734750a01dd4d3f1140d77",
+            "date": "2023-11-25",
+            "currency": "PHP",
+            "amount": 1375.0,
+            "referenceId": "VC2534561"
+        }]
+      },
+      "liabilities":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "lia-413ca2d214cf43618804ad20ca0bb0e4",
+            "type": "Salary Loan",
+            "referenceId": "SL201601011234567",
+            "startDate": "2023-10-28",
+            "endDate": "2024-10-28",
+            "firstAmortizationDate": "2023-11-28",
+            "amortizationFrequency": "Monthly",
+            "currency": "PHP",
+            "loanAmount": 16000.0,
+            "amortizationAmount": 738.32,
+            "outstandingBalance": 14599.76,
+            "nextPaymentAmount": 732.38,
+            "overduePaymentAmount": 0.0
+        }]
+      },
+      "eincomes":
+      {
+        "nextCursor": null,
+        "items": [
+        {
+            "id": "einc-b30d0dc40e724d7199268f891e7fedd4",
+            "month": "2023-10",
+            "currency": "PHP",
+            "baseAmount": 8500.0,
+            "amount": 8500.0
+        },
+        {
+            "id": "einc-102efd96ecc94ab7b8ee18526a888c61",
+            "month": "2023-09",
+            "currency": "PHP",
+            "baseAmount": 8500.0,
+            "amount": 8500.0
+        }]
+      },
+      "links": null,
+      "insight": null,
+    }
   }
 }
 ```
