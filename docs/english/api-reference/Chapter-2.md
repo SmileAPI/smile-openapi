@@ -127,8 +127,6 @@ Below steps are also included in the README.md document found in the the Quickst
    
    # API Host (whether this will run in Sandbox or Production)
    OPEN_API_HOST=<openapihost>
-   # Link API Host
-   LINK_API_HOST=<linkapihost>
    ```
 
    You can use the ``.env.example`` file, included in the Quickstart repository, as a reference.

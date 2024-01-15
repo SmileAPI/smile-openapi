@@ -67,11 +67,6 @@ Below is sample HTML code which embeds the Wink Javascript SDK.
     <script type="text/javascript">
         const smileLinkModal = new SmileLinkModal({
             /**
-             * The Link API URI. Note: Sandbox and Production modes use different API URIs.
-             */
-            apiHost: 'https://link-sandbox.smileapi.io/v1',
-
-            /**
              * User token(link token) passed from your backend service which is obtained from the Smile API.
              */
             userToken: '<usertoken>',
@@ -184,18 +179,12 @@ Version 1 is still maintained and security monitoring, updates, and patches will
 
 ## Configuration parameters
 
-| Parameter |Value |
-|----------|---------|
-| apiHost | https://link-sandbox.smileapi.io/v1 for Sandbox |
-|         | https://link.smileapi.io/v1 for Production |
-| userToken | The user token returned from Smile using the /users endpoint (see documentation on Users endpoint) |
-| topProviders | Pass a list of providers using their provider id (see documentation on Providers endpoint) to have them appear on the top of the list of providers in the Wink widget. Use this parameter to highlight certain providers and to make sure that they can easily be seen by the user when the list is first loaded. Maximum number of providers to highlight is 10. |
-| providers | Pass a list of providers using their provider id (see documentation on Providers endpoint) to pre-filter the list of providers in the Wink widget. Passing just one provider id will skip the selection list and take the user immediately to the authentication screen. |
-| enableSearchBar | Set this variable to false if you wish to hide the provider search bar. Be default, provider search is displayed. |
-| enableTypeBar | Set this variable to false if you wish to hide the provider type filter bar. Be default, provider types filter is displayed. |
-| enableUpload | Enable or disable showing upload option in the list of providers (true or false). By default we disable uploads when this is not set. Disabling uploads will also hide data sources where a direct account connection or link is not possible. |
-| companyName | Set this variable if you wish your company name to be reflected on the Consent and Login screens on the widget. |
-| enableConsentPage | When only one provider is passed to the ``providers`` parameter above, setting this value to false will direct the end user to the provider login screen directly without a standalone consent page displayed in the user flow. Defaults to true. |
+| Parameter  |Value |
+|------------|---------|
+| userToken  | The user token returned from Smile using the /users endpoint (see documentation on Users endpoint) |
+| callbacks  | All the callbacks are optional, but suggest listening to onClose() callback, so you can return from Smile SDK to your application page                                                                                   |
+| templateId | ID of wink template                                                                                   |
+
 
 > 🚧 Warning
 > 

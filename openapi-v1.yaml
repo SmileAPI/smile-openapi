@@ -4991,11 +4991,7 @@ components:
           type: string
           description: Task id
         type:
-          type: string
-          description: Task type
-          enum:
-            - LINK_ACCOUNT
-            - ANALYZE_ARCHIVE
+          $ref: '#/components/schemas/TaskType'
         startedAt:
           $ref: '#/components/schemas/Ref-DateTime'
         finishedAt:
@@ -5013,6 +5009,13 @@ components:
             $ref: '#/components/schemas/Ref-Datapoint'
         metadata:
           $ref: '#/components/schemas/Object-Reference-Metadata'
+    TaskType:
+      type: string
+      description: Task type
+      enum:
+        - LINK_ACCOUNT
+        - ANALYZE_ARCHIVE
+        - UPDATE_ACCOUNT
     Document:
       title: Document
       type: object
@@ -8188,6 +8191,8 @@ components:
               description: The source ID .
             sourceType:
               $ref: '#/components/schemas/Ref-Source-Type'
+            taskType:
+              $ref: '#/components/schemas/TaskType'
             providers:
               type: array
               description: The providers this account associated to
@@ -8198,6 +8203,7 @@ components:
             - userId
             - sourceId
             - sourceType
+            - taskType
             - providers
       required:
         - id
@@ -8215,6 +8221,7 @@ components:
             userId: string
             sourceId: string
             sourceType: ACCOUNT
+            taskType: LINK_ACCOUNT
             providers:
               - string
       description: Event indicates data sync of an account is started.
@@ -8243,6 +8250,8 @@ components:
               description: The source ID .
             sourceType:
               $ref: '#/components/schemas/Ref-Source-Type'
+            taskType:
+              $ref: '#/components/schemas/TaskType'
             status:
               type: string
               description: The task status.
@@ -8287,6 +8296,7 @@ components:
             userId: string
             sourceId: string
             sourceType: ACCOUNT
+            taskType: LINK_ACCOUNT
             providers:
               - string
       description: Event indicates data sync of an account is finished.

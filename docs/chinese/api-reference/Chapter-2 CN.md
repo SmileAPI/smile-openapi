@@ -126,8 +126,6 @@ null,
     
    # API Host (决定这将在Sandbox还是Production模式下运行)
    OPEN_API_HOST=<openapihost>
-   # Link API Host
-   LINK_API_HOST=<linkapihost>
    ```
 
    您可以使用 Quickstart 仓库中包含的 ``.env.example`` 文件作为参考。
