@@ -554,6 +554,104 @@ paths:
           name: endDate
           description: Filter by account linking date, end of date range (YYYY-MM-DD)
     parameters: []
+  /accounts/{id}/payload:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Account Payload
+      tags:
+        - Accounts
+      operationId: get-account-payload
+      description: Get a user's particular account payload.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountPayloadGetResponse'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      parameters: []
+  /accounts/{id}/exports/generate:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    post:
+      summary: Generate account export
+      tags:
+        - Accounts
+      operationId: generate-account-export
+      description: Generate a particular account export.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountExportGenerateRequest'
+            examples:
+              Example:
+                value:
+                  exportExtensionType: PDF
+        description: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountExportGenerateResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: export-4d686c7b62f69fa0d4f817bbf36498de
+                      createdAt: '2021-04-14T09:30:24Z'
+                      accountId: a-17bbf36498de4d68a0d4f86c7b62f69f
+                      exportExtensionType: PDF
+                      md5: f8498de49d68a0d4bbf36f6c7b62f617
+                      downloadUrl: >-
+                        https://file.smileapi.io/tenants/xx/users/xx-2c4f00ad9b014466868b57b554e9391b/accounts/a-35aa43673f024b26bd699c713e885ddb/exports/export-4d686c7b62f69fa0d4f817bbf36498de.pdf
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      parameters: []
   /accounts/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
@@ -4220,6 +4318,50 @@ components:
           $ref: '#/components/schemas/Token'
       x-internal: true
       x-examples: {}
+    AccountPayload:
+      required:
+        - metadata
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Object-Reference-Metadata2'
+        identity:
+          $ref: '#/components/schemas/IdentityPayload'
+        rating:
+          $ref: '#/components/schemas/RatingPayload'
+        documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentPayload'
+        incomes:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncomePayload'
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionPayload'
+        employments:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmploymentPayload'
+        contributions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContributionPayload'
+        liabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/LiabilityPayload'
+        eincomes:
+          type: array
+          items:
+            $ref: '#/components/schemas/EincomePayload'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkPayload'
+        insight:
+          $ref: '#/components/schemas/InsightPayload'
     Account:
       title: Account
       type: object
@@ -4336,6 +4478,72 @@ components:
         - CUSTOMER_DISABLED
       description: Account CDS status
       example: ACTIVE
+    AccountExportGenerateRequest:
+      type: object
+      required:
+        - exportExtensionType
+      properties:
+        exportExtensionType:
+          $ref: '#/components/schemas/ExportExtensionType'
+    ExportExtensionType:
+      type: string
+      description: The type of the export
+      enum:
+        - PDF
+    AccountExportGenerateResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/AccountExport'
+    AccountExport:
+      type: object
+      required:
+        - id
+        - accountId
+        - exportExtensionType
+        - createdAt
+        - downloadUrl
+        - md5
+      properties:
+        accountId:
+          type: string
+          description: The particular account ID
+        id:
+          type: string
+          description: The unique ID of this export
+        downloadUrl:
+          type: string
+          description: >-
+            The url which can download the export. This url will become invalid
+            after account revoked or more than 60 days ago.
+        exportExtensionType:
+          $ref: '#/components/schemas/ExportExtensionType'
+        md5:
+          type: string
+          description: >-
+            You can use this value to check whether the file is modified. Smile
+            use Md5 algorithm to generate the value
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+    AccountPayloadGetResponse:
+      title: Account Get Payload Response
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/AccountPayload'
+      x-internal: true
+      x-examples: {}
     AccountGetResponse:
       title: Account Get Response
       properties:
@@ -9557,6 +9765,35 @@ components:
       example: '2021-04-14T09:30:24Z'
       description: Date and time
       x-internal: true
+    Object-Reference-Metadata2:
+      title: Reference Metadata
+      type: object
+      description: Metadata related to account-specific data
+      x-internal: true
+      properties:
+        sourceId:
+          type: string
+          description: The ACCOUNT or ARCHIVE ID associated with this object
+        sourceType:
+          type: string
+          enum:
+            - ACCOUNT
+            - UPLOAD
+            - ARCHIVE
+          description: >-
+            Indicates whether the source associated with this object is either
+            ACCOUNT or ARCHIVE type
+        userId:
+          type: string
+          description: The user ID associated with this object
+        providerId:
+          type: string
+          description: The provider ID associated with this object
+      required:
+        - sourceId
+        - sourceType
+        - userId
+        - providerId
     Ref-Gender:
       type: string
       title: GenderEnum
@@ -9929,45 +10166,13 @@ components:
           description: Whether address is primary or secondary
       required:
         - type
-    Object-Reference-Metadata:
-      title: Reference Metadata
-      type: object
-      description: Metadata related to account-specific data
+    Ref-Employer:
+      type: string
+      title: Employer
+      nullable: true
       x-internal: true
-      properties:
-        itemCreatedAt:
-          $ref: '#/components/schemas/Ref-DateTime'
-        createdAt:
-          $ref: '#/components/schemas/Ref-DateTime'
-        accountId:
-          type: string
-          deprecated: true
-          description: The accountId of this object
-        sourceId:
-          type: string
-          description: The ACCOUNT or ARCHIVE ID associated with this object
-        sourceType:
-          type: string
-          enum:
-            - ACCOUNT
-            - UPLOAD
-            - ARCHIVE
-          description: >-
-            Indicates whether the source associated with this object is either
-            ACCOUNT or ARCHIVE type
-        userId:
-          type: string
-          description: The user ID associated with this object
-        providerId:
-          type: string
-          description: The provider ID associated with this object
-      required:
-        - createdAt
-        - itemCreatedAt
-        - sourceId
-        - sourceType
-        - userId
-        - providerId
+      description: Employer name
+      example: ABC Corporation
     Ref-Currency:
       type: string
       title: Currency ISO Codes
@@ -10152,13 +10357,6 @@ components:
         - null
       example: Annually
       x-internal: true
-    Ref-Employer:
-      type: string
-      title: Employer
-      nullable: true
-      x-internal: true
-      description: Employer name
-      example: ABC Corporation
     Object-Feature:
       type: object
       properties:
@@ -10601,6 +10799,45 @@ components:
           description: >-
             Number of tenants this account has connected to in the last 730
             days, if MAW is enabled.
+    Object-Reference-Metadata:
+      title: Reference Metadata
+      type: object
+      description: Metadata related to account-specific data
+      x-internal: true
+      properties:
+        itemCreatedAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        accountId:
+          type: string
+          deprecated: true
+          description: The accountId of this object
+        sourceId:
+          type: string
+          description: The ACCOUNT or ARCHIVE ID associated with this object
+        sourceType:
+          type: string
+          enum:
+            - ACCOUNT
+            - UPLOAD
+            - ARCHIVE
+          description: >-
+            Indicates whether the source associated with this object is either
+            ACCOUNT or ARCHIVE type
+        userId:
+          type: string
+          description: The user ID associated with this object
+        providerId:
+          type: string
+          description: The provider ID associated with this object
+      required:
+        - createdAt
+        - itemCreatedAt
+        - sourceId
+        - sourceType
+        - userId
+        - providerId
     Ref-Webhook-Event-Type:
       title: Ref-WebhookEventType
       description: Event Type which will be sent as a notification via webhook
