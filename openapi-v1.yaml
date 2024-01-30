@@ -6631,13 +6631,6 @@ components:
           $ref: '#/components/schemas/Object-Reference-Metadata'
     ArchivePayslip:
       type: object
-      required:
-        - startDate
-        - endDate
-        - currency
-        - amount
-        - employeeName
-        - employerName
       properties:
         startDate:
           type: string
@@ -6647,16 +6640,12 @@ components:
           type: string
           format: date
           description: end date of the payslip
+        payDate:
+          type: string
+          format: date
+          description: pay date of the payslip
         currency:
           $ref: '#/components/schemas/Ref-Currency'
-        amount:
-          type: number
-          description: >-
-            NetAmount, grossAmount, baseAmount take the first value that is not
-            null in order
-        baseAmount:
-          type: number
-          description: Base amount
         grossAmount:
           type: number
           description: Base amount
@@ -6668,8 +6657,18 @@ components:
         employeeName:
           type: string
           description: Employee name
-        frequency:
-          $ref: '#/components/schemas/Ref-Pay-Period'
+        ssNumber:
+          type: string
+          description: Employee' Social Security (SS) Number
+        philHealthNumber:
+          type: string
+          description: Employee' PhilHealth Identification Number
+        taxNumber:
+          type: string
+          description: Employee' Tax Identification Number
+        pagIbigNumber:
+          type: string
+          description: Employee' Pag-IBIG MID Number
     ArchivePayslipManualResultSendRequest:
       type: object
       required:
@@ -6699,14 +6698,6 @@ components:
               description: end date of the payslip
             currency:
               $ref: '#/components/schemas/Ref-Currency'
-            amount:
-              type: number
-              description: >-
-                NetAmount, grossAmount, baseAmount take the first value that is
-                not null in order
-            baseAmount:
-              type: number
-              description: Base amount
             grossAmount:
               type: number
               description: Base amount
@@ -6718,8 +6709,22 @@ components:
             employeeName:
               type: string
               description: Employee name
-            frequency:
-              $ref: '#/components/schemas/Ref-Pay-Period'
+            payDate:
+              type: string
+              format: date
+              description: pay date of the payslip
+            ssNumber:
+              type: string
+              description: Employee' Social Security (SS) Number
+            philHealthNumber:
+              type: string
+              description: Employee' PhilHealth Identification Number
+            taxNumber:
+              type: string
+              description: Employee' Tax Identification Number
+            pagIbigNumber:
+              type: string
+              description: Employee' Pag-IBIG MID Number
     ArchiveResponse:
       title: Archive Response
       type: object
