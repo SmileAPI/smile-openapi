@@ -6669,6 +6669,50 @@ components:
         pagIbigNumber:
           type: string
           description: Employee' Pag-IBIG MID Number
+        matchResult:
+          type: object
+          properties:
+            employeeNameAndIdentificationNumberMatchScore:
+              type: integer
+              maximum: 100
+              minimum: 0
+              description: >-
+                The match score of the employee's name and all identification
+                numbers. If Smile can not verify it or you disabled verify
+                feature, this value will be null. If mutilple identification
+                numbers have a match score, take the lowest match score.
+            employeeNameAndSsNumberMatchScore:
+              type: integer
+              maximum: 100
+              minimum: 0
+              description: >-
+                The match score of the employee name and SS number. If Smile can
+                not verify it or you disabled verify feature, this value will be
+                null.
+            employeeNameAndPagIbigNumberMatchScore:
+              type: integer
+              maximum: 100
+              minimum: 0
+              description: >-
+                The match score of the employee name and PagIbig number. If
+                Smile can not verify it or you disabled verify feature, this
+                value will be null.
+            employeeNameAndPhilHealthNumberMatchScore:
+              type: integer
+              maximum: 100
+              minimum: 0
+              description: >-
+                The match score of the employee name and Phil Health number. If
+                Smile can not verify it or you disabled verify feature, this
+                value will be null.
+            employeeNameAndTaxNumberMatchScore:
+              type: integer
+              maximum: 100
+              minimum: 0
+              description: >-
+                The match score of the employee name and tax number. If Smile
+                can not verify it or you disabled verify feature, this value
+                will be null.
     ArchivePayslipManualResultSendRequest:
       type: object
       required:
