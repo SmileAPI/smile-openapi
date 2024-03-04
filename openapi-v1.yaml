@@ -4490,6 +4490,7 @@ components:
       description: The type of the export
       enum:
         - PDF
+        - CSV
     AccountExportGenerateResponse:
       type: object
       properties:
