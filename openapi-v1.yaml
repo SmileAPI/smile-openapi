@@ -1686,6 +1686,57 @@ paths:
       tags:
         - Archives
       x-internal: true
+  /archives/-/payslips/listPredictions:
+    get:
+      summary: list the payslip predictions
+      tags:
+        - Archives
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - schema:
+            type: string
+            format: date
+            example: '2021-04-01'
+          in: query
+          name: startDate
+          description: Filter by user creation date, start of date range (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+            example: '2021-04-21'
+          in: query
+          name: endDate
+          description: Filter by user creation date, end of date range (YYYY-MM-DD)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchivePayslipPredictionsListResponse'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: list-archive-payslip-predictions
+      description: List Archive payslip predictions.
   /archives/-/payslips/sendManualResult:
     post:
       summary: Send payslip manual check result
@@ -1832,6 +1883,57 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-rating
       description: Get a user's ratings by ID.
+  /alpha/verifications:
+    get:
+      summary: List Verifications
+      tags:
+        - Verification
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationListResponse'
+      operationId: list-verifications
+      description: List verificatins.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+    post:
+      summary: Request Verification
+      tags:
+        - Verification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerificationCreateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationCreateResponse'
+      operationId: create-verification
+      description: sumbit required parameters to request verification.
+  /alpha/verifications/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Verification
+      tags:
+        - Verification
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationGetResponse'
+      operationId: get-verification
+      description: Get verification by ID.
   /employments:
     get:
       summary: List Employments
@@ -5162,6 +5264,255 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Rating'
+    VerificationListResponse:
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Verification'
+    VerificationGetResponse:
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Verification'
+    VerificationCreateResponse:
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Verification'
+    Verification:
+      type: object
+      required:
+        - id
+        - createdAt
+        - status
+        - updatedAt
+      properties:
+        id:
+          type: string
+          description: the id of the verification
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        status:
+          type: string
+          description: the status of the verification
+          enum:
+            - PROCESSING
+            - COMPLETED
+            - ERROR
+        updatedAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        errorMessage:
+          type: string
+          description: error message when the status is error
+        result:
+          type: object
+          required:
+            - finalMatches
+            - names
+          properties:
+            finalMatches:
+              type: boolean
+              description: the final match result
+            names:
+              type: object
+              properties:
+                firstNameMatches:
+                  type: boolean
+                  description: >-
+                    first name fuzzy match result. If request without firstName
+                    or Smile do not support to match this field, then the value
+                    is null.
+                lastNameMatches:
+                  type: boolean
+                  description: >-
+                    first name fuzzy match result. If request without lastName
+                    or Smile do not support to match this field, then the value
+                    is null.
+                middleNameMatches:
+                  type: boolean
+                  description: >-
+                    middle name fuzzy match result. If request without
+                    middleName or Smile do not support to match this field, then
+                    the value is null.
+                fullNameMatches:
+                  type: boolean
+                  description: >-
+                    full name fuzzy match result. If request without fullName or
+                    Smile do not support to match this field, then the value is
+                    null.
+            additionalData:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/VerificationIdMatchResult'
+                dobMatches:
+                  type: boolean
+                  description: >-
+                    dob full match result. If request without dob or Smile do
+                    not support to match this field, then the value is null.
+                genderMatches:
+                  type: boolean
+                  description: >-
+                    gender full match result. If request without gender or Smile
+                    do not support to match this field, then the value is null.
+                phoneMatches:
+                  type: boolean
+                  description: >-
+                    phone full match result. If request without phone or Smile
+                    do not support to match this field, then the value is null.
+                emailMatches:
+                  type: boolean
+                  description: >-
+                    email full match result. If request without email or Smile
+                    do not support to match this field, then the value is null.
+                addressMatches:
+                  type: boolean
+                  description: >-
+                    address fuzzy match result. If request without address or
+                    Smile do not support to match this field, then the value is
+                    null.
+    VerificationIdMatchResult:
+      type: object
+      required:
+        - idNumber
+        - idType
+        - matches
+      properties:
+        idNumber:
+          type: string
+        idType:
+          type: string
+        idSubtype:
+          type: string
+        matches:
+          type: boolean
+    VerificationCreateRequest:
+      type: object
+      required:
+        - consent
+      properties:
+        firstName:
+          type: string
+          description: First Name
+        middleName:
+          type: string
+          description: Middle Name
+        lastName:
+          type: string
+          description: Last Name
+        suffix:
+          type: string
+          description: Suffix
+        fullName:
+          type: string
+          description: Full Name
+        additionalData:
+          type: object
+          properties:
+            email:
+              type: string
+            phone:
+              type: string
+            dob:
+              $ref: '#/components/schemas/Ref-Date'
+            gender:
+              $ref: '#/components/schemas/Ref-Gender'
+            address:
+              type: string
+              description: the address you want to verify
+            employer:
+              type: string
+              description: employer name
+            employmentStatus:
+              type: string
+              description: employment status
+              enum:
+                - EMPLOYED
+                - UNEMPLOYED
+                - SELF-EMPLOYED
+                - GIG
+                - RETIRED
+            ids:
+              type: array
+              items:
+                $ref: '#/components/schemas/VerificationId'
+        consent:
+          $ref: '#/components/schemas/Consent'
+    Consent:
+      type: object
+      required:
+        - type
+        - version
+        - consentedAt
+        - consentedWith
+      properties:
+        type:
+          type: string
+          description: >-
+            the consent flag key, the consent content should be sent to Smile
+            previously
+        version:
+          type: string
+          description: the version of this consent
+        consentedAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        consentedWith:
+          type: string
+          description: The short sentences diplay on the consent page.
+    VerificationId:
+      type: object
+      required:
+        - idType
+        - idNumber
+      properties:
+        idType:
+          $ref: '#/components/schemas/VerificationIdType'
+        idSubType:
+          type: string
+          description: >-
+            If idType = prclicense_ph, subtype should be one of the
+            PrcProfessionEnum value.
+        idNumber:
+          type: string
+    VerificationIdType:
+      type: string
+      enum:
+        - sss_ph
+        - pagibig_ph
+        - prclicense_ph
+        - tin_ph
+    PrcProfessionEnum:
+      $ref: '#/components/schemas/Ref-PRC-Profession'
     TaskGetResponse:
       title: Rating Get Response
       type: object
@@ -6722,6 +7073,27 @@ components:
                 The match score of the employee name and tax number. If Smile
                 can not verify it or you disabled verify feature, this value
                 will be null.
+    ArchivePayslipPredictionsListResponse:
+      title: Archive Payslip Predictions List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/Object-Next-Cursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ArchivePayslipPredictionQueryResponseData'
+      x-internal: true
+      x-examples: {}
     ArchivePayslipManualResultSendRequest:
       type: object
       required:
@@ -10896,6 +11268,11 @@ components:
         - sourceType
         - userId
         - providerId
+    Ref-Date:
+      type: string
+      format: date
+      description: The date, yyyy-MM-dd
+      example: '2000-01-21'
     Ref-Webhook-Event-Type:
       title: Ref-WebhookEventType
       description: Event Type which will be sent as a notification via webhook
@@ -10934,6 +11311,82 @@ components:
         - LINK_ADDED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
+    Ref-PRC-Profession:
+      type: string
+      description: PROFESSIONAL REGULATION COMMISSION license profession
+      enums:
+        - AERONAUTICAL ENGINEER
+        - AGRICULTURAL AND BIOSYSTEMS ENGINEER
+        - AGRICULTURIST
+        - AIR COND. & REFRIGERATION SPECIALIST
+        - ARCHITECT
+        - CERTIFIED MILL FOREMAN
+        - CERTIFIED MINE FOREMAN
+        - CERTIFIED PLANT MECHANIC
+        - CERTIFIED PUBLIC ACCOUNTANT
+        - CERTIFIED QUARRY FOREMAN
+        - CHEMICAL ENGINEER
+        - CHEMICAL TECHNICIAN
+        - CHEMIST
+        - CHINESE DRUGGIST
+        - CIVIL ENGINEER
+        - CRIMINOLOGIST
+        - CUSTOMS BROKER
+        - DENTAL HYGIENIST
+        - DENTAL TECHNOLOGIST
+        - DENTIST
+        - ELECTRONICS ENGINEER
+        - ELECTRONICS TECHNICIAN
+        - ENVIRONMENTAL PLANNER
+        - FISHERIES TECHNOLOGIST
+        - FOREIGN MEDICAL PROFESSIONAL
+        - FORESTER
+        - GEODETIC ENGINEER
+        - GEOLOGIC AIDE
+        - GEOLOGIST
+        - GUIDANCE COUNSELOR
+        - INTERIOR DESIGNER
+        - LANDSCAPE ARCHITECT
+        - LIBRARIAN
+        - MASTER PLUMBER
+        - MECHANICAL ENGINEER
+        - MEDICAL LABORATORY TECHNICIAN
+        - MEDICAL TECHNOLOGIST
+        - METALLURGICAL ENGINEER
+        - METALLURGICAL PLANT FOREMAN
+        - MIDWIFE
+        - MIDWIFE (RA 2382)
+        - MINING ENGINEER
+        - NAVAL ARCHITECT
+        - NURSE
+        - NUTRITIONIST DIETITIAN
+        - OCCUPATIONAL THERAPIST
+        - OCCUPATIONAL THERAPY TECHNICIAN
+        - OCULAR PHARMACOLOGIST
+        - OPTOMETRIST
+        - PHARMACIST
+        - PHYSICAL THERAPIST
+        - PHYSICIAN
+        - PROFESSIONAL ELECTRICAL ENGINEER
+        - PROFESSIONAL ELECTRONICS ENGINEER
+        - PROFESSIONAL FOOD TECHNOLOGIST
+        - PROFESSIONAL MECHANICAL ENGINEER
+        - PROFESSIONAL TEACHER
+        - PSYCHOLOGIST
+        - PSYCHOMETRICIAN
+        - RADIOLOGIC TECHNOLOGIST
+        - REAL ESTATE APPRAISER
+        - REAL ESTATE BROKER
+        - REAL ESTATE CONSULTANT
+        - REAL ESTATE SALESPERSONS
+        - REGISTERED ELECTRICAL ENGINEER
+        - REGISTERED MASTER ELECTRICIAN
+        - RESPIRATORY THERAPIST
+        - SANITARY ENGINEER
+        - SOCIAL WORKER
+        - SPEECH LANGUAGE PATHOLOGY
+        - VETERINARIAN
+        - X-RAY TECHNOLOGIST
     Ref-Webhook-Event-Version:
       title: Ref-WebhookEventVersion
       description: Event schema's major version
