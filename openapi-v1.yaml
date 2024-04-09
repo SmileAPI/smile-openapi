@@ -11314,7 +11314,7 @@ components:
     Ref-PRC-Profession:
       type: string
       description: PROFESSIONAL REGULATION COMMISSION license profession
-      enums:
+      enum:
         - AERONAUTICAL ENGINEER
         - AGRICULTURAL AND BIOSYSTEMS ENGINEER
         - AGRICULTURIST
