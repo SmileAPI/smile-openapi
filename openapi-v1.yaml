@@ -1537,6 +1537,11 @@ paths:
         - $ref: '#/components/parameters/cursor'
         - $ref: '#/components/parameters/userId'
         - schema:
+            $ref: '#/components/schemas/FileTypeEnum'
+          in: query
+          name: fileType
+          description: Filter by archive date, start of date range (YYYY-MM-DD)
+        - schema:
             type: string
             format: date
             example: '2021-04-01'
@@ -5332,6 +5337,8 @@ components:
         errorMessage:
           type: string
           description: error message when the status is error
+        requestMeta:
+          $ref: '#/components/schemas/VerificationCreateRequest'
         result:
           type: object
           required:
@@ -7938,6 +7945,16 @@ components:
         requestId:
           $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
       description: ''
+    FileTypeEnum:
+      title: FileTypeEnum
+      type: string
+      description: Upload file type
+      example: PAYSLIP
+      enum:
+        - SOCIAL_SECURITY
+        - TAX_DOCUMENT
+        - PAYSLIP
+        - COMPANY_ID
     FileType:
       title: FileType
       type: object
@@ -7962,14 +7979,7 @@ components:
           description: URL to the file type image
           example: https://cdn.smileapi.io/image/provider-logo/v20210813064500/sss.png
         type:
-          type: string
-          description: Upload file type
-          example: SOCIAL_SECURITY
-          enum:
-            - SOCIAL_SECURITY
-            - TAX_DOCUMENT
-            - PAYSLIP
-            - COMPANY_ID
+          $ref: '#/components/schemas/FileTypeEnum'
         typeLabel:
           type: string
           description: Upload file type label

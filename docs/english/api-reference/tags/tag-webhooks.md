@@ -112,7 +112,6 @@ Below are the events you can subscribe to via webhooks.
 | Account Connection Failed                         | ACCOUNT_FAILED       | Sent when the account linking process is unsuccessful.                                          |
 | Task Started                                      | TASK_STARTED         | Sent when the data sync process for a user's account is started.                                 |
 | Task Finished                                     | TASK_FINISHED        | Sent when the data sync task process for a user's account is finished.                             |
-| Account Sync Task Finished                         | ACCOUNT_SYNC_TASK_FINISHED | Sent when the account syncing process is finished.                                          |
 | Archive Creation Successful                       | ARCHIVE_STARTED      | Sent when a user has uploaded one or several files which becomes an "archive" in Smile.            |
 | Archive Analysis Successful                       | ARCHIVE_ANALYZED     | Sent when an archive has been analyzed and converted into JSON data automatically via OCR.         |
 | Archive Revocation Successful                     | ARCHIVE_REVOKED      | Sent when a user removes permission to access or use an archive.                                   |
@@ -130,17 +129,6 @@ Below are the events you can subscribe to via webhooks.
 | Liabilities Data Added                            | LIABILITIES_ADDED    | Sent when liabilities data shared by a user is added.                                              |
 | Insight Data Added                            | INSIGHT_ADDED    | Sent when insights data calculated from shared user data is added. |
 | Link Data Added                                   | LINK_ADDED           | Sent when a link is detected after the user has connected their account. |
-
-> 📘 Note
-> 
-> The following Continuous Data Sync related events are deprecated, please use `ACCOUNT_SYNC_TASK_FINISHED` to track the following events:
-> 
-> - CONTRIBUTIONS_UPDATED
-> - INCOMES_UPDATED
-> - DOCUMENTS_UPDATED
-> - EMPLOYMENTS_UPDATED
-> - EINCOMES_UPDATED
-> - LIABILITIES_UPDATED
 
 <!-- focus: false -->
 ![Payload](https://img.icons8.com/ios/50/000000/json-download.png)
@@ -253,6 +241,7 @@ Sent when the data sync process for a user's account is started.
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "sourceId": "a-123abc456def789abc123def456abc78",
     "sourceType": "ACCOUNT",
+    "taskType": "LINK_ACCOUNT",
     "providers": [
       "abccorp"
     ]
@@ -274,6 +263,9 @@ The `payload` item will be empty if `includePayload` is set to `FALSE`.
     "userId": "tenantId-123abc456def789abc123def456abc78",
     "sourceId": "a-123abc456def789abc123def456abc78",
     "sourceType": "ACCOUNT",
+    "taskType": "LINK_ACCOUNT",
+    "status": "SUCCEEDED",
+    "errorCode": null,
     "providers": [
       "abccorp"
     ],
@@ -452,209 +444,7 @@ The `payload` item will be empty if `includePayload` is set to `FALSE`.
         }]
       },
       "links": null,
-      "insight": null,
-    }
-  }
-}
-```
-
-#### Account Sync Task Finished
-Sent when the account syncing process is finished.
-
-The `payload` item will be empty if `includePayload` is set to `FALSE`.
-
-```json
-{
-  "id": "et-123abc456def789abc123def456abc78",
-  "version": 1,
-  "type": "ACCOUNT_SYNC_TASK_FINISHED",
-  "createdAt": "2021-04-14T09:30:24Z",
-  "data": {
-    "userId": "tenantId-123abc456def789abc123def456abc78",
-    "sourceId": "a-123abc456def789abc123def456abc78",
-    "sourceType": "ACCOUNT",
-    "providers": [
-      "abccorp"
-    ],
-    "status": "SUCCEEDED",
-    "monitorStatus": "ACTIVE",
-    "dataPoints": [
-      "IDENTITIES",
-      "EMPLOYMENTS",
-      "INCOMES"
-    ],
-    "payload": {
-      "identity": {
-        "id": "i-34b7fe18cc5a482dac6a8a2132a7972f",
-        "fullName": "George Cimafranca Palomero, Jr",
-        "firstName": "George",
-        "middleName": "Cimafranca",
-        "lastName": "Palomero",
-        "suffix": "Jr",
-        "gender": "Male",
-        "dob": "1970-08-24",
-        "maritalStatus": "Married",
-        "countryResidence": "PH",
-        "citizenship": "Citizen",
-        "photoUrl": "https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg",
-        "referenceId": null,
-        "profileUrl": null,
-        "latestEmployerName": null,
-        "emails": [
-        {
-            "address": "gpalomero1234@smileapi.io",
-            "type": "Primary"
-        }],
-        "phones": [
-        {
-            "number": "+639559991234",
-            "type": "Mobile"
-        }],
-        "socialProfiles": [
-        {
-            "socialUrl": "https://www.facebook.com/gpalomero",
-            "type": "Facebook"
-        }],
-        "addresses": [
-        {
-            "fullAddress": "12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH",
-            "line1": "12 Maybunga St",
-            "line2": "Barangay Paraiso",
-            "city": "Pasig City",
-            "region": "NCR",
-            "zip": "1600",
-            "country": "PH",
-            "latitude": "14.573454",
-            "longitude": "121.085042",
-            "type": "Primary"
-        }]
-      },
-      "rating": null,
-      "documents":
-      {
-        "nextCursor": null,
-        "items": [
-        {
-            "id": "d-f671e0ed7ed143b9880dce6a0b283693",
-            "name": "SSS",
-            "docId": "04-0751449-0",
-            "status": null,
-            "documentType": "IDENTIFICATION",
-            "issueDate": null,
-            "expiryDate": null,
-            "fileUrl": null,
-            "remarks": null
-        },
-        {
-            "id": "d-7d5527088bfb4c278acbad934c1099ed",
-            "name": "UMID",
-            "docId": "0026-1215160-9",
-            "status": null,
-            "documentType": "IDENTIFICATION",
-            "issueDate": null,
-            "expiryDate": null,
-            "fileUrl": null,
-            "remarks": null
-        }]
-      },
-      "incomes": null,
-      "transactions": null,
-      "employments":
-      {
-        "nextCursor": null,
-        "items": [
-        {
-            "id": "e-a5eaa67e6c884a56a70a476960700692",
-            "name": "Security",
-            "description": null,
-            "jobTitle": "Security Guard",
-            "department": null,
-            "employeeNumber": "EMP-123456",
-            "employer": "ABC Corporation",
-            "status": "Permanent",
-            "startDate": "2023-10-01",
-            "endDate": "2023-10-31"
-        },
-        {
-            "id": "e-6371af9f7e284497996cebf09ff250a2",
-            "name": "Security",
-            "description": null,
-            "jobTitle": "Security Guard",
-            "department": null,
-            "employeeNumber": "CDE-98765",
-            "employer": "CDE Corporation",
-            "status": "Permanent",
-            "startDate": "2023-09-01",
-            "endDate": "2023-09-30"
-        }]
-      },
-      "contributions":
-      {
-        "nextCursor": null,
-        "items": [
-        {
-            "id": "con-03de6eb74ffc48fa82976714b5e001a9",
-            "date": "2023-11-27",
-            "currency": "PHP",
-            "amount": 1375.0,
-            "referenceId": "JA8833327"
-        },
-        {
-            "id": "con-a00bfb19a4e64959ba22e5c8859f428f",
-            "date": "2023-11-26",
-            "currency": "PHP",
-            "amount": 1375.0,
-            "referenceId": "PA9634415"
-        },
-        {
-            "id": "con-56c2e6dc2d734750a01dd4d3f1140d77",
-            "date": "2023-11-25",
-            "currency": "PHP",
-            "amount": 1375.0,
-            "referenceId": "VC2534561"
-        }]
-      },
-      "liabilities":
-      {
-        "nextCursor": null,
-        "items": [
-        {
-            "id": "lia-413ca2d214cf43618804ad20ca0bb0e4",
-            "type": "Salary Loan",
-            "referenceId": "SL201601011234567",
-            "startDate": "2023-10-28",
-            "endDate": "2024-10-28",
-            "firstAmortizationDate": "2023-11-28",
-            "amortizationFrequency": "Monthly",
-            "currency": "PHP",
-            "loanAmount": 16000.0,
-            "amortizationAmount": 738.32,
-            "outstandingBalance": 14599.76,
-            "nextPaymentAmount": 732.38,
-            "overduePaymentAmount": 0.0
-        }]
-      },
-      "eincomes":
-      {
-        "nextCursor": null,
-        "items": [
-        {
-            "id": "einc-b30d0dc40e724d7199268f891e7fedd4",
-            "month": "2023-10",
-            "currency": "PHP",
-            "baseAmount": 8500.0,
-            "amount": 8500.0
-        },
-        {
-            "id": "einc-102efd96ecc94ab7b8ee18526a888c61",
-            "month": "2023-09",
-            "currency": "PHP",
-            "baseAmount": 8500.0,
-            "amount": 8500.0
-        }]
-      },
-      "links": null,
-      "insight": null,
+      "insight": null
     }
   }
 }
