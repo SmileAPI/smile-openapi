@@ -4073,6 +4073,85 @@ paths:
       description: Delete a webhook endpoint.
       tags:
         - Webhooks
+  /consentTemplates:
+    post:
+      description: Create a consent template
+      operationId: create-consent-template
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsentTemplateCreateRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsentTemplateCreateResponse'
+          description: OK
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      summary: Create Consent Template
+      tags:
+        - Consent Templates
+      x-contentType: application/json
+      x-accepts: application/json
+    get:
+      description: List consent templates
+      operationId: list-consent-templates
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsentTemplateListResponse'
+          description: OK
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      summary: List Consent Templates
+      tags:
+        - Consent Templates
+      x-accepts: application/json
 components:
   schemas:
     Provider:
@@ -6334,6 +6413,89 @@ components:
                 description: The latest link time of each application
                 items:
                   $ref: '#/components/schemas/Ref-DateTime'
+    ConsentTemplateCreateRequest:
+      properties:
+        consentType:
+          type: string
+          maxLength: 200
+          minLength: 1
+        version:
+          type: string
+          maxLength: 64
+          minLength: 1
+        consentMethod:
+          type: string
+          maxLength: 200
+          minLength: 1
+        consentText:
+          type: string
+          maxLength: 200
+          minLength: 1
+      required:
+        - consentType
+        - version
+        - consentText
+    ConsentTemplateCreateResponse:
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/ConsentTemplate'
+    ConsentTemplateListResponse:
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/ConsentTemplateListResponseData'
+      title: ConsentTemplatesListResponse
+      type: object
+      x-examples: {}
+      x-internal: true
+    ConsentTemplateListResponseData:
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/Object-Next-Cursor'
+        items:
+          items:
+            $ref: '#/components/schemas/ConsentTemplate'
+          type: array
+      type: object
+    ConsentTemplate:
+      properties:
+        id:
+          description: unique id for this consent template
+          type: string
+          x-internal: true
+        createdAt:
+          format: date-time
+          type: string
+          x-internal: true
+        consentType:
+          type: string
+          maxLength: 200
+          minLength: 1
+        version:
+          type: string
+          maxLength: 64
+          minLength: 1
+        consentMethod:
+          type: string
+          maxLength: 200
+          minLength: 1
+        consentText:
+          type: string
+          maxLength: 200
+          minLength: 1
     ProfileIdentityVerifyRequest:
       title: object
       required:
