@@ -5557,8 +5557,6 @@ components:
     Consent:
       type: object
       required:
-        - type
-        - version
         - consentedAt
         - consentedWith
       properties:
@@ -5575,6 +5573,9 @@ components:
         consentedWith:
           type: string
           description: The short sentences diplay on the consent page.
+        consentTemplateId:
+          type: string
+          description: the releated consent template id
     VerificationId:
       type: object
       required:
