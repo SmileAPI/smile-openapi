@@ -4152,6 +4152,76 @@ paths:
       tags:
         - Consent Templates
       x-accepts: application/json
+  /alpha/signals:
+    post:
+      summary: Create Signal
+      operationId: create-signal
+      tags:
+        - Signals
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignalPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      errorCode: ''
+                      errorMessage: ''
+                      requestMeta:
+                        phone: '+639178902345'
+                      result:
+                        events_arbitrary_day30: 0
+                        events_preloan_day30: 0
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignalPostRequest'
+  /alpha/signals/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get signal by unique ID
+      operationId: get-signal
+      x-internal: true
+      tags:
+        - Signals
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignalGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      errorCode: ''
+                      errorMessage: ''
+                      requestMeta:
+                        phone: '+639178902345'
+                      result:
+                        events_arbitrary_day30: 0
+                        events_preloan_day30: 0
 components:
   schemas:
     Provider:
@@ -5472,21 +5542,47 @@ components:
                     gender full match result. If request without gender or Smile
                     do not support to match this field, then the value is null.
                 phoneMatches:
-                  type: boolean
-                  description: >-
-                    phone full match result. If request without phone or Smile
-                    do not support to match this field, then the value is null.
+                  $ref: '#/components/schemas/VerificationContactMatchResult'
                 emailMatches:
-                  type: boolean
-                  description: >-
-                    email full match result. If request without email or Smile
-                    do not support to match this field, then the value is null.
+                  $ref: '#/components/schemas/VerificationContactMatchResult'
                 addressMatches:
                   type: boolean
                   description: >-
                     address fuzzy match result. If request without address or
                     Smile do not support to match this field, then the value is
                     null.
+    VerificationContactMatchResult:
+      type: object
+      properties:
+        value:
+          type: string
+          description: the value of the contact
+        matches:
+          type: boolean
+          description: >-
+            Full match result. If request without this field or Smile do not
+            support to match this field, then the value is null.
+        disposable:
+          type: boolean
+          description: >-
+            Disposable email/phone. If request without this field or Smile do
+            not support to match this field, then the value is null.
+        deliverable:
+          type: boolean
+          description: >-
+            Deliverable email/phone. If request without this field or Smile do
+            not support to match this field, then the value is null.
+        active:
+          type: boolean
+          description: >-
+            Active email/phone. If request without this field or Smile do not
+            support to match this field, then the value is null.
+        provider:
+          type: string
+          description: The provider of the contact
+        freeProvider:
+          type: boolean
+          description: If the provider is free provider.
     VerificationIdMatchResult:
       type: object
       required:
@@ -5600,6 +5696,71 @@ components:
         - tin_ph
     PrcProfessionEnum:
       $ref: '#/components/schemas/Ref-PRC-Profession'
+    SignalPostRequest:
+      type: object
+      required:
+        - consent
+        - phone
+      properties:
+        phone:
+          type: string
+          description: Must start with country code i.e. +63
+        consent:
+          $ref: '#/components/schemas/Consent'
+    SignalPostResponse:
+      title: Signal Post Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Signal'
+    SignalGetResponse:
+      title: Signal Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Code'
+        message:
+          $ref: '#/components/schemas/Object-Metadata-Ref-Message'
+        requestId:
+          $ref: '#/components/schemas/Object-Metadata-Ref-RequestID'
+        data:
+          $ref: '#/components/schemas/Signal'
+    Signal:
+      type: object
+      required:
+        - id
+        - createdAt
+        - status
+        - requestMeta
+      properties:
+        id:
+          type: string
+          description: Signal id
+        createdAt:
+          $ref: '#/components/schemas/Ref-DateTime'
+        status:
+          type: string
+          description: Signal process status
+          enum:
+            - PROCESSING
+            - ERROR
+            - COMPLETED
+        requestMeta:
+          type: object
+          properties:
+            phone:
+              type: string
+              description: request phone
+        result:
+          $ref: '#/components/schemas/Object-Signal-Ref-Result'
     TaskGetResponse:
       title: Rating Get Response
       type: object
@@ -6427,10 +6588,10 @@ components:
         consentMethod:
           type: string
           maxLength: 200
-          minLength: 1
+          minLength: 0
         consentText:
           type: string
-          maxLength: 200
+          maxLength: 65535
           minLength: 1
       required:
         - consentType
@@ -6492,10 +6653,10 @@ components:
         consentMethod:
           type: string
           maxLength: 200
-          minLength: 1
+          minLength: 0
         consentText:
           type: string
-          maxLength: 200
+          maxLength: 65535
           minLength: 1
     ProfileIdentityVerifyRequest:
       title: object
@@ -7120,6 +7281,7 @@ components:
       required:
         - userId
         - fileContent
+        - fileExtensionType
       properties:
         userId:
           type: string
@@ -11484,6 +11646,518 @@ components:
         - LINK_ADDED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
+    Object-Signal-Ref-Result:
+      type: object
+      title: Object-Signal-Ref-result
+      properties:
+        events_arbitrary_day30:
+          type: integer
+          example: 9
+          description: Number of arbitrary information events in the last 30 days
+        events_arbitrary_day30_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with arbitrary information events in the last
+            30 days
+        events_preloan_day30:
+          type: integer
+          example: 9
+          description: Number of pre-loan behavior events in the last 30 days
+        events_preloan_day30_institution_count:
+          type: integer
+          example: 0
+          description: >-
+            Number of institutions with pre-loan behavior events in the last 30
+            days
+        events_other_day30:
+          type: integer
+          example: 9
+          description: Number of other events in the last 30 days
+        events_other_day30_institution_count:
+          type: integer
+          example: 0
+          description: Number of institutions with other events in the last 30 days
+        events_lending_day30:
+          type: integer
+          example: 9
+          description: Number of lending events in the last 30 days
+        events_lending_day30_institution_count:
+          type: integer
+          example: 9
+          description: Number of institutions with lending events in the last 30 days
+        events_marketing_day30:
+          type: integer
+          example: 9
+          description: Number of marketing promotion events in the last 30 days
+        events_marketing_day30_institution_count:
+          type: integer
+          example: 0
+          description: >-
+            Number of institutions with marketing promotion events in the last
+            30 days
+        events_captcha_day30:
+          type: integer
+          example: 9
+          description: Number of captcha events in the last 30 days
+        events_captcha_day30_institution_count:
+          type: integer
+          example: 9
+          description: Number of institutions with captcha events in the last 30 days
+        events_application_reception_day30:
+          type: integer
+          example: 1
+          description: Number of application reception events in the last 30 days
+        events_application_reception_day30_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with application reception events in the last
+            30 days
+        events_application_approval_day30:
+          type: integer
+          example: 3
+          description: Number of application approval events in the last 30 days
+        events_application_approval_day30_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with application approval events in the last
+            30 days
+        events_application_rejection_day30:
+          type: integer
+          example: 9
+          description: Number of application rejection events in the last 30 days
+        events_application_rejection_day30_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with application rejection events in the last
+            30 days
+        events_loan_disbursement_day30:
+          type: integer
+          example: 9
+          description: Number of loan disbursement events in the last 30 days
+        events_loan_disbursement_day30_institution_count:
+          type: integer
+          example: 0
+          description: >-
+            Number of institutions with loan disbursement events in the last 30
+            days
+        events_repayment_reminder_day30:
+          type: integer
+          example: 9
+          description: Number of repayment reminder events in the last 30 days
+        events_repayment_reminder_day30_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with repayment reminder events in the last 30
+            days
+        events_successful_repayment_day30:
+          type: integer
+          example: 9
+          description: Number of successful repayment events in the last 30 days
+        events_successful_repayment_day30_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with successful repayment events in the last
+            30 days
+        events_overdue_day30:
+          type: integer
+          example: 9
+          description: Number of overdue events in the last 30 days
+        events_overdue_day30_institution_count:
+          type: integer
+          example: 9
+          description: Number of institutions with overdue events in the last 30 days
+        events_loan_disbursement_day30_amount:
+          type: integer
+          example: 9
+          description: Amount of loan disbursement events in the last 30 days
+        events_repayment_reminder_day30_amount:
+          type: integer
+          example: 9
+          description: Amount of repayment reminder events in the last 30 days
+        events_successful_repayment_day30_amount:
+          type: integer
+          example: 9
+          description: Amount of successful repayment events in the last 30 days
+        events_overdue_day30_amount:
+          type: integer
+          example: 9
+          description: Amount of overdue events in the last 30 days
+        events_debt_day30_amount:
+          type: integer
+          example: 9
+          description: Amount of debt events in the last 30 days
+        events_repayment_reminder_day30_days:
+          type: integer
+          example: 9
+          description: Number of days of repayment reminder events in the last 30 days
+        events_overdue_day30_days:
+          type: integer
+          example: 9
+          description: Number of days of overdue events in the last 30 days
+        events_overdue_autorepay_failure_day30_days:
+          type: integer
+          example: 9
+          description: >-
+            Number of days of overdue or automatic repayment failure events in
+            the last 30 days
+        events_arbitrary_day90:
+          type: integer
+          example: 9
+          description: Number of arbitrary information events in the last 90 days
+        events_arbitrary_day90_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with arbitrary information events in the last
+            90 days
+        events_preloan_day90:
+          type: integer
+          example: 9
+          description: Number of pre-loan behavior events in the last 90 days
+        events_preloan_day90_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with pre-loan behavior events in the last 90
+            days
+        events_other_day90:
+          type: integer
+          example: 9
+          description: Number of other events in the last 90 days
+        events_other_day90_institution_count:
+          type: integer
+          example: 9
+          description: Number of institutions with other events in the last 90 days
+        events_lending_day90:
+          type: integer
+          example: 9
+          description: Number of lending events in the last 90 days
+        events_lending_day90_institution_count:
+          type: integer
+          example: 9
+          description: Number of institutions with lending events in the last 90 days
+        events_marketing_day90:
+          type: integer
+          example: 9
+          description: Number of marketing promotion events in the last 90 days
+        events_marketing_day90_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with marketing promotion events in the last
+            90 days
+        events_captcha_day90:
+          type: integer
+          example: 9
+          description: Number of captcha events in the last 90 days
+        events_captcha_day90_institution_count:
+          type: integer
+          example: 9
+          description: Number of institutions with captcha events in the last 90 days
+        events_application_reception_day90:
+          type: integer
+          example: 9
+          description: Number of application reception events in the last 90 days
+        events_application_reception_day90_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with application reception events in the last
+            90 days
+        events_application_approval_day90:
+          type: integer
+          example: 9
+          description: Number of application approval events in the last 90 days
+        events_application_approval_day90_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with application approval events in the last
+            90 days
+        events_application_rejection_day90:
+          type: integer
+          example: 0
+          description: Number of application rejection events in the last 90 days
+        events_application_rejection_day90_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with application rejection events in the last
+            90 days
+        events_loan_disbursement_day90:
+          type: integer
+          example: 9
+          description: Number of loan disbursement events in the last 90 days
+        events_loan_disbursement_day90_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with loan disbursement events in the last 90
+            days
+        events_repayment_reminder_day90:
+          type: integer
+          example: 9
+          description: Number of repayment reminder events in the last 90 days
+        events_repayment_reminder_day90_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with repayment reminder events in the last 90
+            days
+        events_successful_repayment_day90:
+          type: integer
+          example: 9
+          description: Number of successful repayment events in the last 90 days
+        events_successful_repayment_day90_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with successful repayment events in the last
+            90 days
+        events_overdue_day90:
+          type: integer
+          example: 9
+          description: Number of overdue events in the last 90 days
+        events_overdue_day90_institution_count:
+          type: integer
+          example: 0
+          description: Number of institutions with overdue events in the last 90 days
+        events_loan_disbursement_day90_amount:
+          type: integer
+          example: 9
+          description: Amount of loan disbursement events in the last 90 days
+        events_repayment_reminder_day90_amount:
+          type: integer
+          example: 9
+          description: Amount of repayment reminder events in the last 90 days
+        events_successful_repayment_day90_amount:
+          type: integer
+          example: 0
+          description: Amount of successful repayment events in the last 90 days
+        events_overdue_day90_amount:
+          type: integer
+          example: 9
+          description: Amount of overdue events in the last 90 days
+        events_debt_day90_amount:
+          type: integer
+          example: 1
+          description: Amount of debt events in the last 90 days
+        events_repayment_reminder_day90_days:
+          type: integer
+          example: 9
+          description: Number of days of repayment reminder events in the last 90 days
+        events_overdue_day90_days:
+          type: integer
+          example: 4
+          description: Number of days of overdue events in the last 90 days
+        events_overdue_autorepay_failure_day90_days:
+          type: integer
+          example: 9
+          description: >-
+            Number of days of overdue or automatic repayment failure events in
+            the last 90 days
+        events_arbitrary_day180:
+          type: integer
+          example: 9
+          description: Number of arbitrary information events in the last 180 days
+        events_arbitrary_day180_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with arbitrary information events in the last
+            180 days
+        events_preloan_day180:
+          type: integer
+          example: 3
+          description: Number of pre-loan behavior events in the last 180 days
+        events_preloan_day180_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with pre-loan behavior events in the last 180
+            days
+        events_other_day180:
+          type: integer
+          example: 7
+          description: Number of other events in the last 180 days
+        events_other_day180_institution_count:
+          type: integer
+          example: 9
+          description: Number of institutions with other events in the last 180 days
+        events_lending_day180:
+          type: integer
+          example: 9
+          description: Number of lending events in the last 180 days
+        events_lending_day180_institution_count:
+          type: integer
+          example: 9
+          description: Number of institutions with lending events in the last 180 days
+        events_marketing_day180:
+          type: integer
+          example: 9
+          description: Number of marketing promotion events in the last 180 days
+        events_marketing_day180_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with marketing promotion events in the last
+            180 days
+        events_captcha_day180:
+          type: integer
+          example: 9
+          description: Number of captcha events in the last 180 days
+        events_captcha_day180_institution_count:
+          type: integer
+          example: 9
+          description: Number of institutions with captcha events in the last 180 days
+        events_application_reception_day180:
+          type: integer
+          example: 9
+          description: Number of application reception events in the last 180 days
+        events_application_reception_day180_institution_count:
+          type: integer
+          example: 5
+          description: >-
+            Number of institutions with application reception events in the last
+            180 days
+        events_application_approval_day180:
+          type: integer
+          example: 9
+          description: Number of application approval events in the last 180 days
+        events_application_approval_day180_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with application approval events in the last
+            180 days
+        events_application_rejection_day180:
+          type: integer
+          example: 9
+          description: Number of application rejection events in the last 180 days
+        events_application_rejection_day180_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with application rejection events in the last
+            180 days
+        events_loan_disbursement_day180:
+          type: integer
+          example: 9
+          description: Number of loan disbursement events in the last 180 days
+        events_loan_disbursement_day180_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with loan disbursement events in the last 180
+            days
+        events_repayment_reminder_day180:
+          type: integer
+          example: 9
+          description: Number of repayment reminder events in the last 180 days
+        events_repayment_reminder_day180_institution_count:
+          type: integer
+          example: 9
+          description: >-
+            Number of institutions with repayment reminder events in the last
+            180 days
+        events_successful_repayment_day180:
+          type: integer
+          example: 9
+          description: Number of successful repayment events in the last 180 days
+        events_successful_repayment_day180_institution_count:
+          type: integer
+          example: 2
+          description: >-
+            Number of institutions with successful repayment events in the last
+            180 days
+        events_overdue_day180:
+          type: integer
+          example: 9
+          description: Number of overdue events in the last 180 days
+        events_overdue_day180_institution_count:
+          type: integer
+          example: null
+          description: Number of institutions with overdue events in the last 180 days
+        events_loan_disbursement_day180_amount:
+          type: integer
+          example: 0
+          description: Amount of loan disbursement events in the last 180 days
+        events_repayment_reminder_day180_amount:
+          type: integer
+          example: 9
+          description: Amount of repayment reminder events in the last 180 days
+        events_successful_repayment_day180_amount:
+          type: integer
+          example: 0
+          description: Amount of successful repayment events in the last 180 days
+        events_overdue_day180_amount:
+          type: integer
+          example: 9
+          description: Amount of overdue events in the last 180 days
+        events_debt_day180_amount:
+          type: integer
+          example: 9
+          description: Amount of debt events in the last 180 days
+        events_repayment_reminder_day180_days:
+          type: integer
+          example: 0
+          description: Number of days of repayment reminder events in the last 180 days
+        events_overdue_day180_days:
+          type: integer
+          example: 0
+          description: Number of days of overdue events in the last 180 days
+        events_overdue_autorepay_failure_day180_days:
+          type: integer
+          example: 9
+          description: >-
+            Number of days of overdue or automatic repayment failure events in
+            the last 180 days
+        events_marketing_days_since_last:
+          type: integer
+          example: 9
+          description: Number of days since the last marketing promotion event
+        events_captcha_days_since_last:
+          type: integer
+          example: 9
+          description: Number of days since the last captcha event
+        events_application_reception_days_since_last:
+          type: integer
+          example: 9
+          description: Number of days since the last application reception event
+        events_application_approval_days_since_last:
+          type: integer
+          example: 8
+          description: Number of days since the last application approval event
+        events_application_rejection_days_since_last:
+          type: integer
+          example: 9
+          description: Number of days since the last application rejection event
+        events_loan_disbursement_days_since_last:
+          type: integer
+          example: 9
+          description: Number of days since the last loan disbursement event
+        events_repayment_reminder_days_since_last:
+          type: integer
+          example: 6
+          description: Number of days since the last repayment reminder event
+        events_successful_repayment_days_since_last:
+          type: integer
+          example: 4
+          description: Number of days since the last successful repayment event
+        events_overdue_days_since_last:
+          type: integer
+          example: 1
+          description: Number of days since the last overdue event
+        events_risk_level:
+          type: integer
+          example: 0
+          description: Risk level, higher values indicate higher risk
     Ref-PRC-Profession:
       type: string
       description: PROFESSIONAL REGULATION COMMISSION license profession
