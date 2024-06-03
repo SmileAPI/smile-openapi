@@ -5704,7 +5704,10 @@ components:
       properties:
         phone:
           type: string
-          description: Must start with country code i.e. +63
+          description: >-
+            Must start with country code i.e. +639178912345, and no leading
+            zeros
+          example: '+639178902345'
         consent:
           $ref: '#/components/schemas/Consent'
     SignalPostResponse:
@@ -5748,17 +5751,29 @@ components:
           $ref: '#/components/schemas/Ref-DateTime'
         status:
           type: string
-          description: Signal process status
+          description: Signal task process status
           enum:
             - PROCESSING
             - ERROR
             - COMPLETED
+        resultCode:
+          type: string
+          description: Signal task query result code
+          enum:
+            - SUCCESS
+            - NO_DATA
+            - SYSTEM_ERROR
+            - SERVICE_UNAVAILABLE
+        resultMessage:
+          type: string
+          description: Query result code text description
         requestMeta:
           type: object
           properties:
             phone:
               type: string
               description: request phone
+              example: '+639178912345'
         result:
           $ref: '#/components/schemas/Object-Signal-Ref-Result'
     TaskGetResponse:
