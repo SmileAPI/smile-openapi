@@ -7036,10 +7036,10 @@ components:
           enum:
             - PDF
             - PNG
-            - TIFF
+            - JPG
             - JPEG
           example: PNG
-          description: File type (only JPEG, PNG, PDF, or TIFF formats are supported)
+          description: File type (only JPEG, PNG, PDF, or JPG formats are supported)
         url:
           type: string
           description: URL to access the file. URL will expire after 60 days
