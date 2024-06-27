@@ -19,3 +19,8 @@ To get started, register your application with us by emailing access@getsmileapi
 After registration, your application will be assigned an API key and an API secret. The API secret must be kept safe and used only in exchanges between your application's server and Smile API's server.
 
 For more information, you can visit [our website](https://www.getsmileapi.com), or email us at info@getsmileapi.com.
+
+## Attentions
+### 1. $ref path in YAML the format should be like this:
+`$ref: 'relativePath/someone.yaml#/components/schemas/<schema_name>'`
+*  behind the .yaml should not have "/", java plugin will not work, will print "schemas not found"

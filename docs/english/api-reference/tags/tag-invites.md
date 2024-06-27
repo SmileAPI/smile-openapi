@@ -1,7 +1,7 @@
 ---
 title: Invites
 excerpt: ""
-category: 6294c0fd9494580032b22740
+category: 66611f40576121006f501bc1
 slug: invites
 ---
 
