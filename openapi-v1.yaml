@@ -1997,6 +1997,8 @@ paths:
                               format: PNG
                               url: >-
                                 https://file.smileapi.io/tenants/smileapi/users/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                          classification: null
+                          analysis: null
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -2045,6 +2047,65 @@ paths:
       tags:
         - Archives
       x-internal: true
+    post:
+      summary: Create Archive
+      description: Create an archive.
+      operationId: create-archive
+      tags:
+        - Archives
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArchiveCreateRequest'
+            examples:
+              Example:
+                value:
+                  userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                  fileType: PAYSLIP
+                  rawFiles:
+                    - fileExtensionType: PDF
+                      fileSubtype: PAYSLIP
+                      fileName: 2021-04-14-17bbf36498de4d68a0d4f86c7b62f69f.pdf
+                      fileContent: base64 encoded file content
+              Example2:
+                value:
+                  userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                  fileType: null
+                  rawFiles:
+                    - fileExtensionType: PDF
+                      fileSubtype: null
+                      fileName: 2021-04-14-17bbf36498de4d68a0d4f86c7b62f69f.pdf
+                      fileContent: base64 encoded file content
+        description: request parameters
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveCreateResponse'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
   /archives/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
@@ -2083,6 +2144,47 @@ paths:
                           format: PNG
                           url: >-
                             https://file.smileapi.io/tenants/smileapi/users/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                      classification: null
+                      analysis: null
+                Example2:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: u-17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      providerId: user-provided
+                      userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                      type: PAYSLIP
+                      state:
+                        status: ANALYZED
+                        errorCode: null
+                        errorMessage: null
+                        updatedAt: '2021-04-14T09:30:24Z'
+                      rawFiles:
+                        - id: f-17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: '2021-04-14T09:30:24Z'
+                          name: Screen Shot 2021-04-14 at 5.30.24 PM
+                          subType: PAYSLIP
+                          size: 3048
+                          format: PNG
+                          url: >-
+                            https://file.smileapi.io/tenants/smileapi/users/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                      classification: null
+                      analysis:
+                        startDate: '2023-04-16'
+                        endDate: '2023-04-30'
+                        payDate: '2023-04-30'
+                        employeeName: John Doe
+                        currency: PHP
+                        grossAmount: 10000
+                        netAmount: 9000
+                        employerName: Acme Inc.
+                        ssNumber: '1234567890'
+                        philHealthNumber: '123456789012'
+                        taxNumber: '123456789'
+                        pagIbigNumber: '123456789012'
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -2108,6 +2210,85 @@ paths:
       tags:
         - Archives
       x-internal: true
+  /archives/classify:
+    post:
+      summary: Classify Archive
+      description: Classify an archive.
+      operationId: create-and-classify-archive
+      tags:
+        - Archives
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArchiveClassifyRequest'
+            examples:
+              Example:
+                value:
+                  userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                  rawFiles:
+                    - fileExtensionType: PDF
+                      fileSubtype: null
+                      fileName: 2021-04-14-17bbf36498de4d68a0d4f86c7b62f69f.pdf
+                      fileContent: base64 encoded file content
+        description: request parameters
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArchiveClassifyResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: u-17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      providerId: user-provided
+                      userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                      type: SOCIAL_SECURITY
+                      state:
+                        status: STARTED
+                        errorCode: null
+                        errorMessage: null
+                        updatedAt: '2021-04-14T09:30:24Z'
+                      rawFiles:
+                        - id: f-17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: '2021-04-14T09:30:24Z'
+                          name: Screen Shot 2021-04-14 at 5.30.24 PM
+                          subType: PERSONAL_INFORMATION
+                          size: 3048
+                          format: PNG
+                          url: >-
+                            https://file.smileapi.io/tenants/smileapi/users/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+                      classification:
+                        fileType: PAYSLIP
+                      analysis: null
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
   /archives/-/payslips/uploadRawFile:
     post:
       summary: Upload payslip file
@@ -2186,20 +2367,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
-        - schema:
-            type: string
-            format: date
-            example: '2021-04-01'
-          in: query
-          name: startDate
-          description: Filter by user creation date, start of date range (YYYY-MM-DD)
-        - schema:
-            type: string
-            format: date
-            example: '2021-04-21'
-          in: query
-          name: endDate
-          description: Filter by user creation date, end of date range (YYYY-MM-DD)
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
       responses:
         '200':
           description: OK
@@ -4969,8 +5138,10 @@ components:
             sourceId: string
             sourceType: ACCOUNT
             taskType: LINK_ACCOUNT
+            status: SUCCEEDED
+            errorCode: null
             providers:
-              - string
+              - sss_ph
       description: Event indicates data sync of an account is finished.
     AccountSyncTaskFinishedEvent:
       title: 'Webhook: Account Sync Task Finished Event'
@@ -6799,6 +6970,7 @@ components:
       enum:
         - LINK_ACCOUNT
         - ANALYZE_ARCHIVE
+        - CLASSIFY_ARCHIVE
         - UPDATE_ACCOUNT
     RefSourceType:
       type: string
@@ -9513,6 +9685,14 @@ components:
         - TAX_DOCUMENT
         - PAYSLIP
         - COMPANY_ID
+        - ID_FRONT
+        - ID_BACK
+        - BANK_STATEMENT
+        - UTILITY_BILLS
+        - CLEARANCE_NBI
+        - CLEARANCE_POLICE
+        - CLEARANCE_BARANGAY
+        - OTHERS
     RawFile:
       title: RawFile
       type: object
@@ -9564,6 +9744,84 @@ components:
         - size
         - format
         - url
+    ArchiveClassification:
+      type: object
+      required:
+        - fileType
+      properties:
+        fileType:
+          type: string
+          enum:
+            - PAYSLIP
+            - TAX_DOCUMENT
+            - EMPLOYMENT_CERTIFICATE
+            - OTHERS
+    RefDate:
+      type: string
+      format: date
+      description: The date, yyyy-MM-dd
+      example: '2000-01-21'
+    ArchivePayslipAnalysis:
+      title: Payslip Analysis
+      type: object
+      properties:
+        startDate:
+          $ref: '#/components/schemas/RefDate'
+        endDate:
+          $ref: '#/components/schemas/RefDate'
+        payDate:
+          $ref: '#/components/schemas/RefDate'
+        currency:
+          $ref: '#/components/schemas/RefCurrency'
+        grossAmount:
+          type: number
+          description: Base amount
+        netAmount:
+          type: number
+          description: Base amount
+        employerName:
+          type: string
+        employeeName:
+          type: string
+          description: Employee name
+        ssNumber:
+          type: string
+          description: Employee' Social Security (SS) Number
+        philHealthNumber:
+          type: string
+          description: Employee' PhilHealth Identification Number
+        taxNumber:
+          type: string
+          description: Employee' Tax Identification Number
+        pagIbigNumber:
+          type: string
+          description: Employee' Pag-IBIG MID Number
+    ArchiveTaxDocumentAnalysis:
+      title: Tax Document Analysis
+      type: object
+      properties:
+        startDate:
+          $ref: '#/components/schemas/RefDate'
+        endDate:
+          $ref: '#/components/schemas/RefDate'
+        grossAmount:
+          type: number
+          description: Gross amount
+        baseAmount:
+          type: number
+          description: Base amount
+        employerName:
+          type: string
+        employeeName:
+          type: string
+          description: Employee name
+        taxNumber:
+          type: string
+          description: Employee' Tax Identification Number
+    ArchiveAnalysis:
+      oneOf:
+        - $ref: '#/components/schemas/ArchivePayslipAnalysis'
+        - $ref: '#/components/schemas/ArchiveTaxDocumentAnalysis'
     Archive:
       title: Archive
       type: object
@@ -9590,6 +9848,8 @@ components:
               format: PNG
               url: >-
                 https://file.smileapi.io/tenants/smileapi/users/smileapi-17bbf36498de4d68a0d4f86c7b62f69f/files/file-17bbf36498de4d68a0d4f86c7b62f69f.jpeg
+          classification: null
+          analysis: null
       x-tags:
         - Archives
       properties:
@@ -9606,14 +9866,7 @@ components:
           description: User ID associated with this account
           example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
         type:
-          type: string
-          example: SOCIAL_SECURITY
-          enum:
-            - PAYSLIP
-            - TAX_DOCUMENT
-            - COMPANY_ID
-            - SOCIAL_SECURITY
-          description: Type of document uploaded
+          $ref: '#/components/schemas/FileTypeEnum'
         state:
           type: object
           required:
@@ -9651,6 +9904,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RawFile'
+        classification:
+          $ref: '#/components/schemas/ArchiveClassification'
+        analysis:
+          $ref: '#/components/schemas/ArchiveAnalysis'
       required:
         - id
         - createdAt
@@ -9679,6 +9936,70 @@ components:
               items:
                 $ref: '#/components/schemas/Archive'
       x-internal: true
+    FileSubtype:
+      type: string
+      enum:
+        - PAYSLIP
+        - PERSONAL_INFORMATION
+        - EMPLOYMENT_INFORMATION
+        - TAX_PAYMENT
+        - COMPANY_ID_FRONT
+        - COMPANY_ID_BACK
+    FileObject:
+      type: object
+      required:
+        - fileContent
+        - fileExtensionType
+      properties:
+        fileSubtype:
+          $ref: '#/components/schemas/FileSubtype'
+        fileName:
+          type: string
+          description: >-
+            raw file name. If null, then Smile will use the file name from the
+            fileType.
+        fileExtensionType:
+          type: string
+          description: raw file type
+          enum:
+            - PDF
+            - PNG
+            - JPG
+            - JPEG
+        fileContent:
+          type: string
+          description: Archive file content, use base64 of file byte data
+    ArchiveCreateRequest:
+      type: object
+      required:
+        - files
+      properties:
+        userId:
+          type: string
+          description: >-
+            User ID associated with this archive. If null, then Smile will
+            create a new user associated with this archive
+        fileType:
+          $ref: '#/components/schemas/FileTypeEnum'
+        rawFiles:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/FileObject'
+    ArchiveCreateResponse:
+      title: Archive Create Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Archive'
+      description: Create Archive Response
+      x-internal: true
     ArchiveGetResponse:
       title: Archive Get Response
       type: object
@@ -9693,6 +10014,31 @@ components:
           $ref: '#/components/schemas/Archive'
       description: ''
       x-internal: true
+    ArchiveClassifyRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: >-
+            User ID associated with this archive. If null, then Smile will
+            create a new user associated with this archive
+        rawFiles:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/FileObject'
+    ArchiveClassifyResponse:
+      type: object
+      title: Archive Classify Response
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Archive'
     ArchivePayslipRawFileUploadRequest:
       type: object
       required:
@@ -9955,14 +10301,7 @@ components:
           description: User ID associated with this account
           example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
         type:
-          type: string
-          example: SOCIAL_SECURITY
-          enum:
-            - PAYSLIP
-            - TAX_DOCUMENT
-            - COMPANY_ID
-            - SOCIAL_SECURITY
-          description: Type of document uploaded
+          $ref: '#/components/schemas/FileTypeEnum'
         state:
           type: object
           required:
@@ -10127,11 +10466,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/FileType'
-    RefDate:
-      type: string
-      format: date
-      description: The date, yyyy-MM-dd
-      example: '2000-01-21'
     VerificationIdType:
       type: string
       enum:
@@ -10163,11 +10497,11 @@ components:
         type:
           type: string
           description: >-
-            the consent flag key, the consent content should be sent to Smile
+            The consent flag key, the consent content should be sent to Smile
             previously
         version:
           type: string
-          description: the version of this consent
+          description: The version of this consent
         consentedAt:
           $ref: '#/components/schemas/RefDateTime'
         consentedWith:
@@ -10175,7 +10509,7 @@ components:
           description: The short sentences diplay on the consent page.
         consentTemplateId:
           type: string
-          description: the releated consent template id
+          description: The releated consent template id
     VerificationCreateRequest:
       type: object
       required:
@@ -10209,13 +10543,13 @@ components:
               $ref: '#/components/schemas/RefGender'
             address:
               type: string
-              description: the address you want to verify
+              description: The address you want to verify
             employer:
               type: string
-              description: employer name
+              description: Employer name
             employmentStatus:
               type: string
-              description: employment status
+              description: Employment status
               enum:
                 - EMPLOYED
                 - UNEMPLOYED
@@ -10248,7 +10582,7 @@ components:
       properties:
         value:
           type: string
-          description: the value of the contact
+          description: The value of the contact
         matches:
           type: boolean
           description: >-
@@ -10285,12 +10619,12 @@ components:
       properties:
         id:
           type: string
-          description: the id of the verification
+          description: The ID of the verification
         createdAt:
           $ref: '#/components/schemas/RefDateTime'
         status:
           type: string
-          description: the status of the verification
+          description: The status of the verification
           enum:
             - PROCESSING
             - COMPLETED
@@ -10299,7 +10633,7 @@ components:
           $ref: '#/components/schemas/RefDateTime'
         errorMessage:
           type: string
-          description: error message when the status is error
+          description: Error message when the status is error
         requestMeta:
           $ref: '#/components/schemas/VerificationCreateRequest'
         result:
@@ -10310,32 +10644,32 @@ components:
           properties:
             finalMatches:
               type: boolean
-              description: the final match result
+              description: The final match result
             names:
               type: object
               properties:
                 firstNameMatches:
                   type: boolean
                   description: >-
-                    first name fuzzy match result. If request without firstName
+                    First name fuzzy match result. If request without firstName
                     or Smile do not support to match this field, then the value
                     is null.
                 lastNameMatches:
                   type: boolean
                   description: >-
-                    first name fuzzy match result. If request without lastName
+                    First name fuzzy match result. If request without lastName
                     or Smile do not support to match this field, then the value
                     is null.
                 middleNameMatches:
                   type: boolean
                   description: >-
-                    middle name fuzzy match result. If request without
+                    Middle name fuzzy match result. If request without
                     middleName or Smile do not support to match this field, then
                     the value is null.
                 fullNameMatches:
                   type: boolean
                   description: >-
-                    full name fuzzy match result. If request without fullName or
+                    Full name fuzzy match result. If request without fullName or
                     Smile do not support to match this field, then the value is
                     null.
             additionalData:
@@ -10348,12 +10682,12 @@ components:
                 dobMatches:
                   type: boolean
                   description: >-
-                    dob full match result. If request without dob or Smile do
+                    Dob full match result. If request without dob or Smile do
                     not support to match this field, then the value is null.
                 genderMatches:
                   type: boolean
                   description: >-
-                    gender full match result. If request without gender or Smile
+                    Gender full match result. If request without gender or Smile
                     do not support to match this field, then the value is null.
                 phoneMatches:
                   $ref: '#/components/schemas/VerificationContactMatchResult'
@@ -10362,7 +10696,7 @@ components:
                 addressMatches:
                   type: boolean
                   description: >-
-                    address fuzzy match result. If request without address or
+                    Address fuzzy match result. If request without address or
                     Smile do not support to match this field, then the value is
                     null.
     VerificationListResponse:
@@ -10620,7 +10954,7 @@ components:
           properties:
             phone:
               type: string
-              description: request phone
+              description: Request phone
               example: '+639178912345'
         result:
           $ref: '#/components/schemas/ObjectSignalRefResult'
@@ -11716,6 +12050,22 @@ components:
         Filter to those associated with a particular source ID. If we query the
         link account data, the sourceId is the accountId, If we query the
         archive data, then the sourceId is the archiveId
+    startDate:
+      schema:
+        type: string
+        format: date
+        example: '2021-04-01'
+      in: query
+      name: startDate
+      description: Filter by creation date, start of date range (YYYY-MM-DD)
+    endDate:
+      schema:
+        type: string
+        format: date
+        example: '2021-04-21'
+      in: query
+      name: endDate
+      description: Filter by creation date, end of date range (YYYY-MM-DD)
     accountId:
       name: accountId
       in: query
