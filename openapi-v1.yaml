@@ -2661,6 +2661,97 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/VerificationListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - id: 5b79399a-6852-4234-bb0e-ad472648282d
+                          createdAt: '2021-04-14T09:30:24Z'
+                          updatedAt: '2021-04-14T09:30:24Z'
+                          status: PROCESSING
+                          errorMessage: null
+                          requestMeta:
+                            firstName: George
+                            lastName: Smith
+                            middleName: null
+                            fullName: George Smith
+                            additionalData:
+                              ids:
+                                - idType: sss_ph
+                                  idSubType: null
+                                  idNumber: 1234567890
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I aggree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          result: null
+                        - id: 5b79399a-6853-4234-bb0e-ad472648282d
+                          createdAt: '2021-04-14T09:30:24Z'
+                          updatedAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          errorMessage: null
+                          requestMeta:
+                            firstName: George2
+                            lastName: Smith
+                            middleName: null
+                            fullName: George2 Smith
+                            additionalData:
+                              ids:
+                                - idType: sss_ph
+                                  idSubType: null
+                                  idNumber: 1234567890
+                              dob: '1990-01-01'
+                              gender: Female
+                              address: null
+                              employer: null
+                              employmentStatus: null
+                              email: someone@gmail.com
+                              phone: 639123456789
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I aggree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          result:
+                            finalMatches: true
+                            names:
+                              firstNameMatches: true
+                              lastNameMatches: true
+                              middleNameMatches: null
+                              fullNameMatches: true
+                            additionalData:
+                              ids:
+                                - idType: sss_ph
+                                  idSubType: null
+                                  idNumber: 1234567890
+                                  matches: true
+                              dobMatches: true
+                              genderMatches: false
+                              addressMatches: null
+                              phoneMatches:
+                                value: 639123456789
+                                matches: true
+                                disposable: false
+                                deliverable: null
+                                active: true
+                                provider: Smart Communications
+                                freeProvider: false
+                              emailMatches:
+                                value: someone@gmail.com
+                                matches: true
+                                disposable: false
+                                deliverable: true
+                                active: true
+                                provider: Google LLC
+                                freeProvider: true
       operationId: list-verifications
       description: List verificatins.
       parameters:
@@ -2722,6 +2813,73 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/VerificationGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 5b79399a-6853-4234-bb0e-ad472648282d
+                      createdAt: '2021-04-14T09:30:24Z'
+                      updatedAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      errorMessage: null
+                      requestMeta:
+                        firstName: George2
+                        lastName: Smith
+                        middleName: null
+                        fullName: George2 Smith
+                        additionalData:
+                          ids:
+                            - idType: sss_ph
+                              idSubType: null
+                              idNumber: 1234567890
+                          dob: '1990-01-01'
+                          gender: Female
+                          address: null
+                          employer: null
+                          employmentStatus: null
+                          email: someone@gmail.com
+                          phone: 639123456789
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I aggree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      result:
+                        finalMatches: true
+                        names:
+                          firstNameMatches: true
+                          lastNameMatches: true
+                          middleNameMatches: null
+                          fullNameMatches: true
+                        additionalData:
+                          ids:
+                            - idType: sss_ph
+                              idSubType: null
+                              idNumber: 1234567890
+                              matches: true
+                          dobMatches: true
+                          genderMatches: false
+                          addressMatches: null
+                          phoneMatches:
+                            value: 639123456789
+                            matches: true
+                            disposable: false
+                            deliverable: null
+                            active: true
+                            provider: Smart Communications
+                            freeProvider: false
+                          emailMatches:
+                            value: someone@gmail.com
+                            matches: true
+                            disposable: false
+                            deliverable: true
+                            active: true
+                            provider: Google LLC
+                            freeProvider: true
       operationId: get-verification
       description: Get verification by ID.
   /alpha/signals:
@@ -6680,29 +6838,34 @@ components:
     ConsentTemplate:
       properties:
         id:
-          description: unique id for this consent template
+          description: Unique id for this consent template
           type: string
           x-internal: true
         createdAt:
           format: date-time
           type: string
           x-internal: true
+          example: '2021-04-14T09:30:24Z'
         consentType:
           type: string
           maxLength: 200
           minLength: 1
+          example: Terms and Conditions
         version:
           type: string
           maxLength: 64
           minLength: 1
+          example: 1.0.0
         consentMethod:
           type: string
           maxLength: 200
           minLength: 0
+          example: I agree to the terms and conditions
         consentText:
           type: string
           maxLength: 65535
           minLength: 1
+          example: <consent content>
     ConsentTemplateListResponseData:
       properties:
         nextCursor:
@@ -6730,20 +6893,28 @@ components:
       properties:
         consentType:
           type: string
+          description: The type of consent template, e.g. Terms and Conditions
           maxLength: 200
           minLength: 1
+          example: Terms and Conditions
         version:
           type: string
+          description: The version of the consent template
           maxLength: 64
           minLength: 1
+          example: 1.0.0
         consentMethod:
           type: string
+          description: The method of consent
           maxLength: 200
           minLength: 0
+          example: I agree to the terms and conditions
         consentText:
           type: string
+          description: The content of the consent template
           maxLength: 65535
           minLength: 1
+          example: <consent content>
       required:
         - consentType
         - version
@@ -10499,17 +10670,23 @@ components:
           description: >-
             The consent flag key, the consent content should be sent to Smile
             previously
+          example: Terms and Conditions
         version:
           type: string
           description: The version of this consent
+          example: 1.0.0
         consentedAt:
           $ref: '#/components/schemas/RefDateTime'
         consentedWith:
           type: string
           description: The short sentences diplay on the consent page.
+          example: I agree to the terms and conditions
         consentTemplateId:
           type: string
-          description: The releated consent template id
+          description: >-
+            The releated consent template id, you can get it from Smile
+            Developer Portal or /consentTemplates endpoint.
+          example: ct-4604588d9502491b4c72a67cdb0a2aea
     VerificationCreateRequest:
       type: object
       required:
@@ -10517,35 +10694,44 @@ components:
       properties:
         firstName:
           type: string
+          example: John
           description: First Name
         middleName:
           type: string
+          example: Doe
           description: Middle Name
         lastName:
           type: string
+          example: Smith
           description: Last Name
         suffix:
           type: string
+          example: Jr
           description: Suffix
         fullName:
           type: string
+          example: John Doe Smith Jr
           description: Full Name
         additionalData:
           type: object
           properties:
             email:
               type: string
+              example: john.doe@smile.com
             phone:
               type: string
+              example: 6391234567890
             dob:
               $ref: '#/components/schemas/RefDate'
             gender:
               $ref: '#/components/schemas/RefGender'
             address:
               type: string
+              example: 123 Main St, Anytown, CA 12345
               description: The address you want to verify
             employer:
               type: string
+              example: Google
               description: Employer name
             employmentStatus:
               type: string
