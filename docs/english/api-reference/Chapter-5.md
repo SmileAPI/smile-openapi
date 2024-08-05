@@ -38,7 +38,7 @@ Via callbacks, you can react or perform other actions once your user performs a 
 | `onAccountConnected` | `accountId`, `userId`, `providerId` | Fired when the account linking process has completed successfully |
 | `onAccountRemoved` | `accountId`, `userId`, `providerId` | Fired when the account access has been revoked by the user |
 | `onTokenExpired` | - | Fired when the Link token has expired |
-| `onClose` | - | Fired when the Wink Widget has been closed by the user |
+| `onClose` | `reason` | Fired when the Wink Widget has been closed by the user |
 | `onAccountError` | `accountId`, `userId`, `providerId`, `errorCode` | Fired when the user account linking results in an error. |
 | `onUploadsCreated` | `uploads`, `userId` | Fired when the user has submitted documents to be uploaded via the Wink Widget. |
 | `onUploadsRemoved` | `uploads`, `userId` | Fired when the user has removed/revoked uploaded documents via the Wink Widget. |
@@ -120,9 +120,15 @@ onTokenExpired: () => {
 
 Fired when the Wink Widget has been closed by the user via the close icon or exit buttons.
 
+The `reason` parameter can be any one of the following values:
+
+- `close` - the user clicked the Close icon in the upper right corner of the page to close the SDK
+- `exit` - the user clicked the "Done" button on the Successful Connection screen to close the SDK
+- `error` - the user clicked the Exit button on the error page to close the SDK
+
 ``` javascript
-onClose: () => {
-    console.log('Widget closed')
+onClose: ( reason ) => {
+    console.log('Widget closed. Reason: ', reason )
 },
 ```
 

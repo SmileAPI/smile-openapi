@@ -38,7 +38,7 @@ Smile 还使用回调来实时通知您的应用程序在您的环境中发生�
 | `onAccountConnected` | `accountId`, `userId`, `providerId`              | 当账户连接过程成功完成时触发                    |
 | `onAccountRemoved`   | `accountId`, `userId`, `providerId`              | 当账户访问权被用户撤销时触发                    |
 | `onTokenExpired`     | -                                                | 当链接 token 过期时触发                   |
-| `onClose`            | -                                                | 当 Wink Widget 被用户关闭时触发            |
+| `onClose` | `reason` | 当 Wink Widget 被用户关闭时触发            |
 | `onAccountError`     | `accountId`, `userId`, `providerId`, `errorCode` | 当用户账户链接出现错误时触发                    |
 | `onUploadsCreated`   | `uploads`, `userId`                              | 当用户通过 Wink Widget 提交要上传的文件时触发     |
 | `onUploadsRemoved` | `uploads`, `userId` | 当用户通过 Wink Widget 删除/撤销上传的文件时触发   |
@@ -120,9 +120,15 @@ onTokenExpired: () => {
 
 当 Wink Widget 被用户通过关闭图标或退出按钮关闭时触发。
 
+`reason` 参数可以是以下任一值：
+
+- `close`- 用户点击页面右上角的关闭图标关闭 SDK
+- `exit`- 用户单击成功连接页面上的 ”Done“ 按钮关闭 SDK
+- `error`- 用户点击错误页面上的退出按钮关闭 SDK
+
 ``` javascript
-onClose: () => {
-    console.log('Widget closed')
+onClose: ( reason ) => {
+    console.log('Widget closed. Reason: ', reason )
 },
 ```
 

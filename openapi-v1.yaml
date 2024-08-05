@@ -511,6 +511,49 @@ paths:
       tags:
         - Consent Templates
       x-accepts: application/json
+  /consentTemplates/{id}:
+    delete:
+      summary: Delete Consent Template
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      operationId: delete-consent-template
+      description: Delete a consent template
+      tags:
+        - Consent Templates
+      parameters:
+        - $ref: '#/components/parameters/id'
   /webhooks:
     get:
       summary: List Webhooks
@@ -2910,6 +2953,12 @@ paths:
                       errorMessage: ''
                       requestMeta:
                         phone: '+639178902345'
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
                       result:
                         events_arbitrary_day30: 0
                         events_preloan_day30: 0
@@ -2919,6 +2968,72 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SignalPostRequest'
+    get:
+      summary: List Signals
+      tags:
+        - Signals
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignalListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - signal:
+                            id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                            createdAt: '2021-04-14T09:30:24Z'
+                            status: COMPLETED
+                            errorCode: ''
+                            errorMessage: ''
+                            requestMeta:
+                              phone: '+639178902345'
+                              consent:
+                                type: Terms And Conditions
+                                version: 1
+                                consentedWith: I agree to the terms and conditions.
+                                consentedAt: '2021-04-14T09:30:24Z'
+                                consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                            result:
+                              events_arbitrary_day30: 0
+                              events_preloan_day30: 0
+      operationId: list-Signals
+      description: List Signals.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: signalId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter to those associated with signal ID.
+        - name: phone
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter to those associated with signal phone.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: Filter by create date, start of date range (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter by create date, end of date range (YYYY-MM-DD)
   /alpha/signals/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
@@ -2949,6 +3064,12 @@ paths:
                       errorMessage: ''
                       requestMeta:
                         phone: '+639178902345'
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
                       result:
                         events_arbitrary_day30: 0
                         events_preloan_day30: 0
@@ -6851,6 +6972,11 @@ components:
           maxLength: 200
           minLength: 1
           example: Terms and Conditions
+        title:
+          type: string
+          maxLength: 200
+          minLength: 1
+          example: Terms and Conditions
         version:
           type: string
           maxLength: 64
@@ -6897,6 +7023,14 @@ components:
           maxLength: 200
           minLength: 1
           example: Terms and Conditions
+        title:
+          type: string
+          description: >-
+            The name of the consent document that will be visible to end users
+            if you choose to make it visible.
+          maxLength: 200
+          minLength: 1
+          example: Terms and Conditions
         version:
           type: string
           description: The version of the consent template
@@ -6931,6 +7065,21 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/ConsentTemplate'
+    CommonResponse:
+      title: CommonResponse
+      type: object
+      x-internal: true
+      required:
+        - code
+        - requestId
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+      description: ''
     RefWebhookEventType:
       title: RefWebhookEventType
       description: Event Type which will be sent as a notification via webhook
@@ -7400,21 +7549,6 @@ components:
           $ref: '#/components/schemas/Account'
       x-internal: true
       x-examples: {}
-    CommonResponse:
-      title: CommonResponse
-      type: object
-      x-internal: true
-      required:
-        - code
-        - requestId
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-      description: ''
     ObjectReferenceMetadata2:
       title: Reference Metadata2
       type: object
@@ -10644,6 +10778,7 @@ components:
         - pagibig_ph
         - prclicense_ph
         - tin_ph
+        - nbi_ph
     VerificationId:
       type: object
       required:
@@ -10928,20 +11063,6 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/Verification'
-    SignalPostRequest:
-      type: object
-      required:
-        - consent
-        - phone
-      properties:
-        phone:
-          type: string
-          description: >-
-            Must start with country code i.e. +639178912345, and no leading
-            zeros
-          example: '+639178902345'
-        consent:
-          $ref: '#/components/schemas/Consent'
     ObjectSignalRefResult:
       type: object
       title: Object-Signal-Ref-result
@@ -11142,8 +11263,44 @@ components:
               type: string
               description: Request phone
               example: '+639178912345'
+            consent:
+              $ref: '#/components/schemas/Consent'
         result:
           $ref: '#/components/schemas/ObjectSignalRefResult'
+    SignalListResponse:
+      title: Signal list Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Signal'
+    SignalPostRequest:
+      type: object
+      required:
+        - consent
+        - phone
+      properties:
+        phone:
+          type: string
+          description: >-
+            Must start with country code i.e. +639178912345, and no leading
+            zeros
+          example: '+639178902345'
+        consent:
+          $ref: '#/components/schemas/Consent'
     SignalPostResponse:
       title: Signal Post Response
       type: object
