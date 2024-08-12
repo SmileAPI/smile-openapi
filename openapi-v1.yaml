@@ -10123,10 +10123,43 @@ components:
         taxNumber:
           type: string
           description: Employee' Tax Identification Number
+    ArchiveNbiClearanceDocumentAnalysis:
+      title: NBI clearance Document Analysis
+      type: object
+      properties:
+        expireDate:
+          $ref: '#/components/schemas/RefDate'
+        dateOfBirth:
+          $ref: '#/components/schemas/RefDate'
+        firstName:
+          type: string
+          description: First name
+        lastName:
+          type: string
+          description: Last name
+        middleName:
+          type: string
+          description: Middle name
+        nbiIdNumber:
+          type: string
+          description: NBI Id Number
+        address:
+          type: string
+          description: Address
+        maritalStatus:
+          $ref: '#/components/schemas/RefMaritalStatus'
+        gender:
+          $ref: '#/components/schemas/RefGender'
+        citizenship:
+          type: string
+          description: Citizenship
+        remark:
+          type: string
     ArchiveAnalysis:
       oneOf:
         - $ref: '#/components/schemas/ArchivePayslipAnalysis'
         - $ref: '#/components/schemas/ArchiveTaxDocumentAnalysis'
+        - $ref: '#/components/schemas/ArchiveNbiClearanceDocumentAnalysis'
     Archive:
       title: Archive
       type: object
