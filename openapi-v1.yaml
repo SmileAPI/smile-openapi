@@ -6508,6 +6508,188 @@ components:
             count: 0
             providers:
               - string
+    VerificationStartedEvent:
+      title: 'Webhook: Verification Started Event'
+      x-tags:
+        - Verifications
+      type: object
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      allOf:
+        - $ref: '#/components/schemas/SmileCommonEvent'
+        - type: object
+          properties:
+            data:
+              type: object
+              title: Verification Started Event Data
+              required:
+                - verificationId
+              properties:
+                verificationId:
+                  type: string
+      x-examples:
+        example-1:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: VERIFICATION_STARTED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            verificationId: ver-8a62f69f08de4dd4f86c7b17bbf36496
+      description: Event indicates verification process is started.
+    VerificationCompletedEvent:
+      title: 'Webhook: Verification Completed Event'
+      x-tags:
+        - Verifications
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/SmileCommonEvent'
+        - type: object
+          properties:
+            data:
+              type: object
+              title: Verification Started Event Data
+              required:
+                - verificationId
+                - resultCode
+                - result
+              properties:
+                verificationId:
+                  type: string
+                resultCode:
+                  type: string
+                resultMessage:
+                  type: string
+                result:
+                  $ref: '#/components/schemas/VerificationResult'
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        example-1:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          version: 1
+          type: VERIFICATION_STARTED
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            verificationId: ver-8a62f69f08de4dd4f86c7b17bbf36496
+            resultCode: SUCCESS
+            resultMessage: Verification completed successfully
+            result:
+              finalMatches: true
+              names:
+                firstNameMatches: true
+                lastNameMatches: true
+                middleNameMatches: null
+                fullNameMatches: true
+              additionalData:
+                ids:
+                  - idType: sss_ph
+                    idSubType: null
+                    idNumber: 1234567890
+                    matches: true
+                dobMatches: true
+                genderMatches: false
+                addressMatches: null
+                phoneMatches:
+                  value: 639123456789
+                  matches: true
+                  disposable: false
+                  deliverable: null
+                  active: true
+                  provider: Smart Communications
+                  freeProvider: false
+                emailMatches:
+                  value: someone@gmail.com
+                  matches: true
+                  disposable: false
+                  deliverable: true
+                  active: true
+                  provider: Google LLC
+                  freeProvider: true
+      description: Event indicates verification process is completed.
+    RefPrcProfession:
+      type: string
+      description: PROFESSIONAL REGULATION COMMISSION license profession
+      enum:
+        - AERONAUTICAL ENGINEER
+        - AGRICULTURAL AND BIOSYSTEMS ENGINEER
+        - AGRICULTURIST
+        - AIR COND. & REFRIGERATION SPECIALIST
+        - ARCHITECT
+        - CERTIFIED MILL FOREMAN
+        - CERTIFIED MINE FOREMAN
+        - CERTIFIED PLANT MECHANIC
+        - CERTIFIED PUBLIC ACCOUNTANT
+        - CERTIFIED QUARRY FOREMAN
+        - CHEMICAL ENGINEER
+        - CHEMICAL TECHNICIAN
+        - CHEMIST
+        - CHINESE DRUGGIST
+        - CIVIL ENGINEER
+        - CRIMINOLOGIST
+        - CUSTOMS BROKER
+        - DENTAL HYGIENIST
+        - DENTAL TECHNOLOGIST
+        - DENTIST
+        - ELECTRONICS ENGINEER
+        - ELECTRONICS TECHNICIAN
+        - ENVIRONMENTAL PLANNER
+        - FISHERIES TECHNOLOGIST
+        - FOREIGN MEDICAL PROFESSIONAL
+        - FORESTER
+        - GEODETIC ENGINEER
+        - GEOLOGIC AIDE
+        - GEOLOGIST
+        - GUIDANCE COUNSELOR
+        - INTERIOR DESIGNER
+        - LANDSCAPE ARCHITECT
+        - LIBRARIAN
+        - MASTER PLUMBER
+        - MECHANICAL ENGINEER
+        - MEDICAL LABORATORY TECHNICIAN
+        - MEDICAL TECHNOLOGIST
+        - METALLURGICAL ENGINEER
+        - METALLURGICAL PLANT FOREMAN
+        - MIDWIFE
+        - MIDWIFE (RA 2382)
+        - MINING ENGINEER
+        - NAVAL ARCHITECT
+        - NURSE
+        - NUTRITIONIST DIETITIAN
+        - OCCUPATIONAL THERAPIST
+        - OCCUPATIONAL THERAPY TECHNICIAN
+        - OCULAR PHARMACOLOGIST
+        - OPTOMETRIST
+        - PHARMACIST
+        - PHYSICAL THERAPIST
+        - PHYSICIAN
+        - PROFESSIONAL ELECTRICAL ENGINEER
+        - PROFESSIONAL ELECTRONICS ENGINEER
+        - PROFESSIONAL FOOD TECHNOLOGIST
+        - PROFESSIONAL MECHANICAL ENGINEER
+        - PROFESSIONAL TEACHER
+        - PSYCHOLOGIST
+        - PSYCHOMETRICIAN
+        - RADIOLOGIC TECHNOLOGIST
+        - REAL ESTATE APPRAISER
+        - REAL ESTATE BROKER
+        - REAL ESTATE CONSULTANT
+        - REAL ESTATE SALESPERSONS
+        - REGISTERED ELECTRICAL ENGINEER
+        - REGISTERED MASTER ELECTRICIAN
+        - RESPIRATORY THERAPIST
+        - SANITARY ENGINEER
+        - SOCIAL WORKER
+        - SPEECH LANGUAGE PATHOLOGY
+        - VETERINARIAN
+        - X-RAY TECHNOLOGIST
     ObjectMetadataRefCode:
       type: string
       title: ObjectMetadataRefCode
@@ -7116,6 +7298,8 @@ components:
         - LIABILITIES_UPDATED
         - INSIGHT_ADDED
         - LINK_ADDED
+        - VERIFICATION_STARTED
+        - VERIFICATION_COMPLETED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
     Webhook:
@@ -10963,6 +11147,68 @@ components:
         freeProvider:
           type: boolean
           description: If the provider is free provider.
+    VerificationResult:
+      type: object
+      required:
+        - finalMatches
+        - names
+      properties:
+        finalMatches:
+          type: boolean
+          description: The final match result
+        names:
+          type: object
+          properties:
+            firstNameMatches:
+              type: boolean
+              description: >-
+                First name fuzzy match result. If request without firstName or
+                Smile do not support to match this field, then the value is
+                null.
+            lastNameMatches:
+              type: boolean
+              description: >-
+                First name fuzzy match result. If request without lastName or
+                Smile do not support to match this field, then the value is
+                null.
+            middleNameMatches:
+              type: boolean
+              description: >-
+                Middle name fuzzy match result. If request without middleName or
+                Smile do not support to match this field, then the value is
+                null.
+            fullNameMatches:
+              type: boolean
+              description: >-
+                Full name fuzzy match result. If request without fullName or
+                Smile do not support to match this field, then the value is
+                null.
+        additionalData:
+          type: object
+          properties:
+            ids:
+              type: array
+              items:
+                $ref: '#/components/schemas/VerificationIdMatchResult'
+            dobMatches:
+              type: boolean
+              description: >-
+                Dob full match result. If request without dob or Smile do not
+                support to match this field, then the value is null.
+            genderMatches:
+              type: boolean
+              description: >-
+                Gender full match result. If request without gender or Smile do
+                not support to match this field, then the value is null.
+            phoneMatches:
+              $ref: '#/components/schemas/VerificationContactMatchResult'
+            emailMatches:
+              $ref: '#/components/schemas/VerificationContactMatchResult'
+            addressMatches:
+              type: boolean
+              description: >-
+                Address fuzzy match result. If request without address or Smile
+                do not support to match this field, then the value is null.
     Verification:
       type: object
       required:
@@ -10991,68 +11237,7 @@ components:
         requestMeta:
           $ref: '#/components/schemas/VerificationCreateRequest'
         result:
-          type: object
-          required:
-            - finalMatches
-            - names
-          properties:
-            finalMatches:
-              type: boolean
-              description: The final match result
-            names:
-              type: object
-              properties:
-                firstNameMatches:
-                  type: boolean
-                  description: >-
-                    First name fuzzy match result. If request without firstName
-                    or Smile do not support to match this field, then the value
-                    is null.
-                lastNameMatches:
-                  type: boolean
-                  description: >-
-                    First name fuzzy match result. If request without lastName
-                    or Smile do not support to match this field, then the value
-                    is null.
-                middleNameMatches:
-                  type: boolean
-                  description: >-
-                    Middle name fuzzy match result. If request without
-                    middleName or Smile do not support to match this field, then
-                    the value is null.
-                fullNameMatches:
-                  type: boolean
-                  description: >-
-                    Full name fuzzy match result. If request without fullName or
-                    Smile do not support to match this field, then the value is
-                    null.
-            additionalData:
-              type: object
-              properties:
-                ids:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/VerificationIdMatchResult'
-                dobMatches:
-                  type: boolean
-                  description: >-
-                    Dob full match result. If request without dob or Smile do
-                    not support to match this field, then the value is null.
-                genderMatches:
-                  type: boolean
-                  description: >-
-                    Gender full match result. If request without gender or Smile
-                    do not support to match this field, then the value is null.
-                phoneMatches:
-                  $ref: '#/components/schemas/VerificationContactMatchResult'
-                emailMatches:
-                  $ref: '#/components/schemas/VerificationContactMatchResult'
-                addressMatches:
-                  type: boolean
-                  description: >-
-                    Address fuzzy match result. If request without address or
-                    Smile do not support to match this field, then the value is
-                    null.
+          $ref: '#/components/schemas/VerificationResult'
     VerificationListResponse:
       type: object
       x-internal: true
@@ -12376,6 +12561,22 @@ components:
                 $ref: '#/components/schemas/LinkPayload'
         insight:
           $ref: '#/components/schemas/InsightPayload'
+    SmileCommonEvent:
+      type: object
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        version:
+          $ref: '#/components/schemas/RefWebhookEventVersion'
+        type:
+          $ref: '#/components/schemas/RefWebhookEventType'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
   securitySchemes:
     basicAuth:
       type: http
