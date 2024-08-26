@@ -3006,7 +3006,7 @@ paths:
                               events_arbitrary_day30: 0
                               events_preloan_day30: 0
       operationId: list-Signals
-      description: List Signals.
+      description: List all Signal Requests.
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
@@ -3015,25 +3015,29 @@ paths:
           required: false
           schema:
             type: string
-          description: Filter to those associated with signal ID.
+          description: Filter Signal Requests by a specific Signal Request ID.
         - name: phone
           in: query
           required: false
           schema:
             type: string
-          description: Filter to those associated with signal phone.
+          description: Filter Signal Requests by a specific mobile phone.
         - schema:
             type: string
             format: date
           in: query
           name: startDate
-          description: Filter by create date, start of date range (YYYY-MM-DD)
+          description: >-
+            Filter Signal Requests by request date, start of date range
+            (YYYY-MM-DD)
         - schema:
             type: string
             format: date
           in: query
           name: endDate
-          description: Filter by create date, end of date range (YYYY-MM-DD)
+          description: >-
+            Filter Signal Requests by request date, end of date range
+            (YYYY-MM-DD)
   /alpha/signals/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
@@ -11453,19 +11457,19 @@ components:
       properties:
         id:
           type: string
-          description: Signal id
+          description: Unique ID for the Signal Request
         createdAt:
           $ref: '#/components/schemas/RefDateTime'
         status:
           type: string
-          description: Signal task process status
+          description: Current status of the Signal Request
           enum:
             - PROCESSING
             - ERROR
             - COMPLETED
         resultCode:
           type: string
-          description: Signal task query result code
+          description: Final result of the Signal Request
           enum:
             - SUCCESS
             - NO_DATA
@@ -11473,13 +11477,13 @@ components:
             - SERVICE_UNAVAILABLE
         resultMessage:
           type: string
-          description: Query result code text description
+          description: Longer description of the final result of the Signal Request
         requestMeta:
           type: object
           properties:
             phone:
               type: string
-              description: Request phone
+              description: Subject's mobile number provided in the request
               example: '+639178912345'
             consent:
               $ref: '#/components/schemas/Consent'
@@ -11514,8 +11518,8 @@ components:
         phone:
           type: string
           description: >-
-            Must start with country code i.e. +639178912345, and no leading
-            zeros
+            Subject's mobile number. Must start with country code i.e.
+            +639178912345, and no leading zeros
           example: '+639178902345'
         consent:
           $ref: '#/components/schemas/Consent'
