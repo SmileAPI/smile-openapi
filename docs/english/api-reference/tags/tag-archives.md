@@ -5,16 +5,26 @@ category: 66611ec162e8c700572c4be3
 slug: archives
 ---
 
-Smile API can also store and process photos and other files to aid in verifying users' records. If enabled, users may upload photos, scans, or PDF files as a fallback method or as an additional data point for your records and verification use. These can be any of the following:
+Smile API can also store and process photos and other files to aid in verifying users' records. If enabled, users may upload photos, scans, or PDF files as a fallback method or as an additional data point for your records and verification use.
 
-| Archive type | Upload via Wink Widget | Upload via API |
-| :--------- | :----- | :--- |
-| SSS Records | ✅ | ❌ |
-| Income Tax Document | ✅ | ❌ |
-| Payslips | ✅ | ✅ |
-| Company ID | ✅ | ❌ |
+These can be any of the following:
 
-Additional analysis is done on SSS records, income tax documents, and payslips to retrieve basic information from the uploaded file such as employment and income information. This allows you to immediately ingest the information from the document without needing to manually transcribe the data.
+| Archive Type | Wink Widget Upload | API Upload | Data Extraction | API File Type | File Subtypes |
+| :----------- | :----------------- | :--------- | :-------------- | :------------ | :------------ |
+| Income Tax Document | ✅ | ✅ | ✅ | `TAX_DOCUMENT` | `TAX_PAYMENT` |
+| Payslip | ✅ | ✅ | ✅ | `PAYSLIP` | `PAYSLIP` |
+| SSS Record Screenshot (Deprecated) | ❌ | ❌ | ❌ | `SOCIAL_SECURITY` | `PERSONAL_INFORMATION`, `EMPLOYMENT_INFORMATION` |
+| Company ID | ✅ | ✅ | ❌ | `COMPANY_ID` | `COMPANY_ID_FRONT`, `COMPANY_ID_BACK` |
+| NBI Clearance Document | ❌ | ✅ | ✅ | `CLEARANCE_NBI` | N/A |
+| ID (Front) | ❌ | ✅ | ❌ | `ID_FRONT` | N/A |
+| ID (Back) | ❌ | ✅ | ❌ | `ID_BACK` | N/A |
+| Bank Statement | ❌ | ✅ | ❌ | `BACK_STATEMENT` | N/A |
+| Utility Bills | ❌ | ✅ | ❌ | `UTILITY_BILLS` | N/A |
+| Police Clearance | ❌ | ✅ | ❌ | `CLEARANCE_POLICE` | N/A |
+| Barangay Clearance | ❌ | ✅ | ❌ | `CLEARANCE_BARANGAY` | N/A |
+| Others | ❌ | ✅ | ❌ | `OTHERS` | N/A |
+
+Additional analysis is done on supported document types to retrieve basic information from the uploaded file such as employment and income information. This allows you to immediately ingest the information from the document without needing to manually transcribe the data.
 
 These user-uploaded files can be retrieved via the Archives endpoint, to allow for download or manual verification if you require.
 
@@ -25,9 +35,9 @@ Files up to a maximum of 15MB are accepted, and can be of the following formats:
 - Joint Photographic Experts Group files (`.jpg` or `.jpeg`)
 - Tag Image File Format files (`.tiff`)
 
-Files are stored until removed by the user via the SDK, or revoked via the API.
+Files are stored until removed by the user via the SDK, or revoked via the API, or for a maximum of 60 days.
 
-Documents and files that are automatically retrieved from verifiable sources such as payroll systems will be found under the [Documents endpoint](/reference/documents). The data retrieved from the document will be found under the respective data type, such as [Employments](/reference/employments) or [Incomes](/reference/incomes).
+Documents and files that are automatically retrieved from verifiable sources such as permissioned access to payroll systems will also be found under the [Documents endpoint](/reference/documents). The data retrieved from the document will also be found under the respective data type, such as [Employments](/reference/employments) or [Incomes](/reference/incomes).
 
 > 🚧 Warning
 > 
@@ -44,8 +54,10 @@ Documents and files that are automatically retrieved from verifiable sources suc
 | type | string | Type of file uploaded, can be one of the following: `PAYSLIP`, `TAX_DOCUMENT`, `COMPANY_ID`, `SOCIAL_SECURITY` |
 | state | object | Current state of the processing for this file, see below |
 | rawFiles | array of objects | Additional details about the raw file |
+| classification | object | File type of the uploaded file based on AI analysis of the file contents |
+| analysis | object | Extracted data based on AI analysis of the file contents |
 
-**The State object**
+### The State object
 
 | Attribute  | Type   | Description  |
 | :--------- | :----- | :----------------------------------------------------------------------------------------- |
@@ -54,70 +66,110 @@ Documents and files that are automatically retrieved from verifiable sources suc
 | errorMessage | string | Human-readable error message for the `errorCode` above |
 | updatedAt | date-time | Date and time when the file was last updated/analyzed |
 
-**The rawFiles object**
+### The Raw Files object
 
 | Attribute  | Type   | Description  |
 | :--------- | :----- | :----------------------------------------------------------------------------------------- |
 | id | string | Unique ID of the raw file |
 | createdAt | date-time | Date and time when the file was uploaded by the user |
 | name | string | Filename of the file as uploaded by the user |
-| subType | string | Type of file updated |
+| subType | string | Type of file updated based on the parent file type |
 | size | integer | File size in kilobytes |
 | format | string | File format of the file, can be one of the following: `PDF`, `PNG`, `TIFF`, `JPEG` |
 | url | string | Accessible URL to the file |
 
-## Sample Archive data
+### The Classification object
 
+| Attribute  | Type   | Description  |
+| :--------- | :----- | :----------------------------------------------------------------------------------------- |
+| fileType | string | File type of the uploaded file based on AI analysis of the file contents, can be one of the following: `PAYSLIP`, `TAX_DOCUMENT`, `EMPLOYMENT_CERTIFICATE`, `OTHERS` |
+
+### The Analysis object
+
+The Analysis object will return extracted data based on the file type of the uploaded file. Other fields that are not found on the file will return null.
+
+| Attribute  | Type | Supported File Type | Description |
+| :--------- | :--- | :------------------ | :---------- |
+| startDate | date | `PAYSLIP`, `TAX_DOCUMENT` | Start date of the payslip period, in YYYY-MM-DD format. Null if not available. |
+| endDate | date | `PAYSLIP`, `TAX_DOCUMENT` | End date of the payslip period, in YYYY-MM-DD format. Null if not available. |
+| payDate | date | `PAYSLIP` | Payment date of the payslip, in YYYY-MM-DD format. Null if not available. |
+| currency | date | `PAYSLIP` | Currency of the payslip in 3 character alpha ISO 4217 format. Null if not available. |
+| baseAmount | float | `PAYSLIP`, `TAX_DOCUMENT` | Base salary amount. Null if not available. |
+| grossAmount | float | `PAYSLIP`, `TAX_DOCUMENT` | Gross salary payment amount. Null if not available. |
+| netAmount | float | `PAYSLIP` | Net salary payment amount. Null if not available. |
+| employerName | string | `PAYSLIP`, `TAX_DOCUMENT` | Employer name from the payslip. Null if not available. |
+| employeeName | string | `PAYSLIP`, `TAX_DOCUMENT` | Employee name from the payslip. Null if not available. |
+| ssNumber | string | `PAYSLIP` | Social Security Number from the payslip. Null if not available. |
+| philHealthNumber | string | `PAYSLIP` | PhilHealth Identification Number from the payslip. Null if not available. |
+| taxNumber | string | `PAYSLIP`, `TAX_DOCUMENT` | Tax Identification Number from the payslip. Null if not available. |
+| pagIbigNumber | string | `PAYSLIP` | Pag-IBIG Member ID Number from the payslip. Null if not available. |
+| expireDate | date | `CLEARANCE_NBI` | Expiry date of the clearance document, in YYYY-MM-DD format. Null if not available. |
+| dateOfBirth | date | `CLEARANCE_NBI` | Date of birth, in YYYY-MM-DD format. Null if not available. |
+| firstName | string | `CLEARANCE_NBI` | First name from the document. Null if not available. |
+| lastName | string | `CLEARANCE_NBI` | Last name from the document. Null if not available. |
+| middleName | string | `CLEARANCE_NBI` | Middle name from the document. Null if not available. |
+| nbiIdNumber | string | `CLEARANCE_NBI` | NBI Clearance Document Number from the document. Null if not available. |
+| address | string | `CLEARANCE_NBI` | Address from the document. Null if not available. |
+| maritalStatus | string | `CLEARANCE_NBI` | Marital status from the document. Null if not available. |
+| gender | string | `CLEARANCE_NBI` | Gender from the document. Null if not available. |
+| citizenship | string | `CLEARANCE_NBI` | Citizenship from the document. Null if not available. |
+| remark | string | `CLEARANCE_NBI` | Remarks from the document. Null if not available. |
+
+## Sample Archive data
 
 ``` json
 {
-   "id": "archive-123abc456def789abc123def456abc78",
-   "createdAt": "2022-11-01T10:00:00Z",
-   "providerId": "user-provided",
-   "userId": "tenandId-123abc456def789abc123def456abc78",
-   "type": "TAX_DOCUMENT",
-   "state": {
-     "status": "ANALYZED",
-     "errorCode": null,
-     "errorMessage": null,
-     "updatedAt": "2022-11-17T02:04:21Z"
-   },
-   "rawFiles": [
-      {
-         "id": "f-123abc456def789abc123def456abc78",
-         "createdAt": "2022-11-01T10:00:00Z",
-         "name": "ITR-2020-2021.png",
-         "subType": "TAX_PAYMENT",
-         "size": 300,
-         "format": "PNG",
-         "url": "https://url-to-file.png"
-      }
-      ]
-   },
-   {
-      "id": "archive-123abc456def789abc123def456abc78",
-      "createdAt": "2022-11-01T10:00:00Z",
-      "providerId": "user-provided",
-      "userId": "tenantId-123abc456def789abc123def456abc78",
-      "type": "PAYSLIP",
-      "state": {
-         "status": "UNSUPPORTED",
-         "errorCode": null,
-         "errorMessage": null,
-         "updatedAt": "2022-11-17T02:04:21Z"
-      },
-      "rawFiles": [
-      {
-         "id": "f-123abc456def789abc123def456abc78",
-         "createdAt": "2022-11-01T10:00:00Z",
-         "name": "payslip-november-2022.jpeg",
-         "subType": "PAYSLIP",
-         "size": 100,
-         "format": "JPEG",
-         "url": "https://url-to-file.jpeg"
-      }
-      ]
-   }
+    "id": "archive-123abc456def789abc123def456abc78",
+    "createdAt": "2024-01-01T12:34:56Z",
+    "providerId": "tenant-provided",
+    "userId": "tenantId-123abc456def789abc123def456abc78",
+    "type": null,
+    "state": {
+        "status": "ANALYZED",
+        "errorCode": null,
+        "errorMessage": null,
+        "updatedAt": "2024-01-01T12:34:56Z"
+    },
+    "rawFiles": [
+        {
+            "id": "f-123abc456def789abc123def456abc78",
+            "createdAt": "2024-01-01T12:34:56Z",
+            "name": "default.pdf",
+            "subType": null,
+            "size": 123,
+            "format": "PDF",
+            "url": "https://url-to-file.pdf"
+        }
+    ],
+    "classification": {
+        "fileType": "PAYSLIP"
+    },
+    "analysis": {
+        "startDate": "2024-01-01",
+        "endDate": "2024-01-15",
+        "payDate": null,
+        "currency": null,
+        "grossAmount": 20000.0,
+        "netAmount": 18000.0,
+        "employerName": "ABC Corporation",
+        "employeeName": "George Palomero",
+        "ssNumber": "1234567890",
+        "philHealthNumber": "123456789012",
+        "taxNumber": null,
+        "pagIbigNumber": "123456789012",
+        "baseAmount": null,
+        "expireDate": null,
+        "dateOfBirth": null,
+        "firstName": null,
+        "lastName": null,
+        "middleName": null,
+        "nbiIdNumber": null,
+        "address": null,
+        "maritalStatus": null,
+        "gender": null,
+        "citizenship": null,
+        "remark": null
+    }
 }
 ```
 
@@ -127,8 +179,10 @@ Documents and files that are automatically retrieved from verifiable sources suc
 | Endpoint | |
 | :------- | :---- |
 | [List archives](/reference/list-archives) | `GET /archives` |
+| [Create archive](/reference/create-archive) | `POST /archives` |
 | [Get archive](/reference/get-archive) | `GET /archives/{id}` |
-| [Upload payslip file](/reference/upload-payslip-file) | `POST /archives/-/payslips/uploadRawFile` |
+| [Classify archive](/reference/create-and-classify-archive) | `POST /archives/classify` |
+
 
 ## Webhooks
 

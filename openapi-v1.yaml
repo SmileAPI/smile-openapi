@@ -10190,9 +10190,8 @@ components:
       title: RawFile
       type: object
       description: >-
-        Scanned or photographed document or form uploaded by the user to be able
-        to share hardcopy employment and income information. File size limit is
-        15 MB.
+        Scanned or photographed document or form uploaded by the user to share
+        hard copy employment and income information. File size limit is 15 MB.
       x-examples: {}
       x-internal: false
       x-tags:
@@ -10268,27 +10267,28 @@ components:
           $ref: '#/components/schemas/RefCurrency'
         grossAmount:
           type: number
-          description: Base amount
+          description: Gross amount
         netAmount:
           type: number
-          description: Base amount
+          description: Net amount
         employerName:
           type: string
+          description: Employer name
         employeeName:
           type: string
           description: Employee name
         ssNumber:
           type: string
-          description: Employee' Social Security (SS) Number
+          description: Employee's Social Security (SS) Number
         philHealthNumber:
           type: string
-          description: Employee' PhilHealth Identification Number
+          description: Employee's PhilHealth Identification Number
         taxNumber:
           type: string
-          description: Employee' Tax Identification Number
+          description: Employee's Tax Identification Number
         pagIbigNumber:
           type: string
-          description: Employee' Pag-IBIG MID Number
+          description: Employee's Pag-IBIG MID Number
     ArchiveTaxDocumentAnalysis:
       title: Tax Document Analysis
       type: object
@@ -10310,7 +10310,7 @@ components:
           description: Employee name
         taxNumber:
           type: string
-          description: Employee' Tax Identification Number
+          description: Employee's Tax Identification Number
     ArchiveNbiClearanceDocumentAnalysis:
       title: NBI clearance Document Analysis
       type: object
@@ -10330,7 +10330,7 @@ components:
           description: Middle name
         nbiIdNumber:
           type: string
-          description: NBI Id Number
+          description: NBI Clearance Document Number
         address:
           type: string
           description: Address
@@ -10343,6 +10343,7 @@ components:
           description: Citizenship
         remark:
           type: string
+          description: Remarks included in the document
     ArchiveAnalysis:
       oneOf:
         - $ref: '#/components/schemas/ArchivePayslipAnalysis'
@@ -10386,10 +10387,12 @@ components:
         providerId:
           type: string
           example: user-provided
-          description: ID of the data provider
+          description: >-
+            ID of the data provider, 'user-provided' if files are provided by
+            the user, or 'tenant-provided' if files are provided via API
         userId:
           type: string
-          description: User ID associated with this account
+          description: User ID associated with this archive
           example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
         type:
           $ref: '#/components/schemas/FileTypeEnum'
@@ -10605,40 +10608,41 @@ components:
         startDate:
           type: string
           format: date
-          description: start date of the payslip
+          description: Start date of the payslip period, in YYYY-MM-DD format
         endDate:
           type: string
           format: date
-          description: end date of the payslip
+          description: End date of the payslip period, in YYYY-MM-DD format
         payDate:
           type: string
           format: date
-          description: pay date of the payslip
+          description: Pay date of the payslip, in YYYY-MM-DD format
         currency:
           $ref: '#/components/schemas/RefCurrency'
         grossAmount:
           type: number
-          description: Base amount
+          description: Gross amount
         netAmount:
           type: number
-          description: Base amount
+          description: Net amount
         employerName:
           type: string
+          description: Employer name
         employeeName:
           type: string
           description: Employee name
         ssNumber:
           type: string
-          description: Employee' Social Security (SS) Number
+          description: Employee's Social Security (SS) Number
         philHealthNumber:
           type: string
-          description: Employee' PhilHealth Identification Number
+          description: Employee's PhilHealth Identification Number
         taxNumber:
           type: string
-          description: Employee' Tax Identification Number
+          description: Employee's Tax Identification Number
         pagIbigNumber:
           type: string
-          description: Employee' Pag-IBIG MID Number
+          description: Employee's Pag-IBIG MID Number
         matchResult:
           type: object
           properties:
@@ -10656,7 +10660,7 @@ components:
               maximum: 100
               minimum: 0
               description: >-
-                The match score of the employee name and SS number. If Smile can
+                The match score of the employee name and SS Number. If Smile can
                 not verify it or you disabled verify feature, this value will be
                 null.
             employeeNameAndPagIbigNumberMatchScore:
@@ -10664,7 +10668,7 @@ components:
               maximum: 100
               minimum: 0
               description: >-
-                The match score of the employee name and PagIbig number. If
+                The match score of the employee name and Pag-IBIG number. If
                 Smile can not verify it or you disabled verify feature, this
                 value will be null.
             employeeNameAndPhilHealthNumberMatchScore:
@@ -10672,7 +10676,7 @@ components:
               maximum: 100
               minimum: 0
               description: >-
-                The match score of the employee name and Phil Health number. If
+                The match score of the employee name and PhilHealth number. If
                 Smile can not verify it or you disabled verify feature, this
                 value will be null.
             employeeNameAndTaxNumberMatchScore:
@@ -10680,7 +10684,7 @@ components:
               maximum: 100
               minimum: 0
               description: >-
-                The match score of the employee name and tax number. If Smile
+                The match score of the employee name and tax ID number. If Smile
                 can not verify it or you disabled verify feature, this value
                 will be null.
     ArchivePayslipMetaData:
@@ -10821,10 +10825,12 @@ components:
         providerId:
           type: string
           example: user-provided
-          description: ID of the data provider
+          description: >-
+            ID of the data provider, 'user-provided' if files are provided by
+            the user, or 'tenant-provided' if files are provided via API
         userId:
           type: string
-          description: User ID associated with this account
+          description: User ID associated with this archive
           example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
         type:
           $ref: '#/components/schemas/FileTypeEnum'
