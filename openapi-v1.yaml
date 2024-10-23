@@ -2928,9 +2928,9 @@ paths:
   /alpha/signals:
     post:
       summary: Create Signal
-      operationId: create-signal
+      operationId: create-alpha-signal
       tags:
-        - Signals
+        - Signals(Alpha)
       x-internal: true
       responses:
         '200':
@@ -2971,7 +2971,7 @@ paths:
     get:
       summary: List Signals
       tags:
-        - Signals
+        - Signals(Alpha)
       responses:
         '200':
           description: OK
@@ -3005,7 +3005,7 @@ paths:
                             result:
                               events_arbitrary_day30: 0
                               events_preloan_day30: 0
-      operationId: list-Signals
+      operationId: list-alpha-signals
       description: List all Signal Requests.
       parameters:
         - $ref: '#/components/parameters/size'
@@ -3043,10 +3043,10 @@ paths:
       - $ref: '#/components/parameters/id'
     get:
       summary: Get signal by unique ID
-      operationId: get-signal
+      operationId: get-alpha-signal
       x-internal: true
       tags:
-        - Signals
+        - Signals(Alpha)
       responses:
         '200':
           description: OK
@@ -3077,6 +3077,182 @@ paths:
                       result:
                         events_arbitrary_day30: 0
                         events_preloan_day30: 0
+  /beta/signals:
+    post:
+      summary: Create Signal
+      operationId: create-beta-signal
+      tags:
+        - Signals(Beta)
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaSignalPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      errorCode: ''
+                      errorMessage: ''
+                      requestMeta:
+                        phone: '+639178902345'
+                        templateId: signalTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - name: events_arbitrary_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_preloan_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_debt_day90_amount
+                          value: A0
+                          valueType: STRING
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaSignalPostRequest'
+    get:
+      summary: List Signals
+      operationId: list-BetaSignals
+      tags:
+        - Signals(Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaSignalListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - signal:
+                            id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                            createdAt: '2021-04-14T09:30:24Z'
+                            status: COMPLETED
+                            errorCode: ''
+                            errorMessage: ''
+                            requestMeta:
+                              phone: '+639178902345'
+                              templateId: signalTpl-xxxxxxxxxxxxxxx
+                              consent:
+                                type: Terms And Conditions
+                                version: 1
+                                consentedWith: I agree to the terms and conditions.
+                                consentedAt: '2021-04-14T09:30:24Z'
+                                consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                            items:
+                              - name: events_arbitrary_day30
+                                value: 0
+                                valueType: NUMBER
+                              - name: events_preloan_day30
+                                value: 0
+                                valueType: NUMBER
+                              - name: events_debt_day90_amount
+                                value: A0
+                                valueType: STRING
+      description: List all BetaSignal Requests.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: signalId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter Signal Requests by a specific Signal Request ID.
+        - name: phone
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter Signal Requests by a specific mobile phone.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: >-
+            Filter Signal Requests by request date, start of date range
+            (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: >-
+            Filter Signal Requests by request date, end of date range
+            (YYYY-MM-DD)
+  /beta/signals/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get signal by unique ID
+      operationId: get-beta-signal
+      x-internal: true
+      tags:
+        - Signals(Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaSignalGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      errorCode: ''
+                      errorMessage: ''
+                      requestMeta:
+                        phone: '+639178902345'
+                        templateId: signalTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - name: events_arbitrary_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_preloan_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_debt_day90_amount
+                          value: A0
+                          valueType: STRING
   /identities:
     get:
       summary: List Identities
@@ -4680,6 +4856,114 @@ paths:
                       hit: false
                       message: invaild identification number
                       result: null
+  /alpha/employerBasics/query:
+    get:
+      summary: Fuzzy search employers and return employers' basic information
+      operationId: query-employer-basics
+      tags:
+        - Employers
+      x-internal: true
+      parameters:
+        - name: keyword
+          in: query
+          description: >-
+            Business name of the employer. Fuzzy search, please provide a
+            minimum of 3 characters.
+          schema:
+            type: string
+            example: ABC Inc.
+            minLength: 3
+            maxLength: 255
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployerBasicQueryResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      - businessName: ABC Inc.
+                        registrations:
+                          - number: '1507304'
+                            organization: dti_ph
+                            status: Registered
+                            date: '2020-02-10'
+                            scope: Philippines
+                        matchPercentage: 100
+                        sources:
+                          - DTI
+                        verificationStatus: VERIFIED
+  /alpha/employers/query:
+    get:
+      summary: Query Employer
+      operationId: query-employer
+      tags:
+        - Employers
+      x-internal: true
+      parameters:
+        - name: businessName
+          in: query
+          description: >-
+            Business name of the employer. Exact query, please provide a minimum
+            of 3 characters. Return only one record. If not found, an empty
+            array will be returned.
+          schema:
+            type: string
+            example: ABC Inc.
+            minLength: 3
+            maxLength: 255
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployerQueryResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      - businessName: ABC Inc.
+                        shortName: ABC
+                        registrations:
+                          - number: '1507304'
+                            organization: dti_ph
+                            status: Registered
+                            date: '2020-02-10'
+                            scope: Philippines
+                        isicCode: ISIC-K
+                        isicSector: Financial and Insurance Activities
+                        psic: '64191'
+                        psicIndustry: Expanded commercial banking (universal banking)
+                        businessAddress:
+                          fullAddress: 123 Main St., Anytown, Any
+                          line1: 123 Main St.
+                          line2: Apt. 123
+                          city: Anytown
+                          region: Anyregion
+                          zipCode: '12345'
+                          country: PH
+                          latitude: null
+                          longitude: null
+                        contactPersons:
+                          - contactName: John Doe
+                            position: Owner
+                            contactEmail: john.doe@abc.com
+                            contactPhone: '+639123456789'
+                        licenses:
+                          - licenseNumber: '123456789'
+                            licenseType: Transfer Agent
+                            licenseIssuedDate: '2020-02-10'
+                            licenseStatus: Active
 components:
   schemas:
     UserCreatedEvent:
@@ -10178,14 +10462,13 @@ components:
         - TAX_DOCUMENT
         - PAYSLIP
         - COMPANY_ID
-        - ID_FRONT
-        - ID_BACK
         - BANK_STATEMENT
         - UTILITY_BILLS
         - CLEARANCE_NBI
         - CLEARANCE_POLICE
         - CLEARANCE_BARANGAY
         - OTHERS
+        - GOVERNMENT_ID
     RawFile:
       title: RawFile
       type: object
@@ -10474,6 +10757,8 @@ components:
         - TAX_PAYMENT
         - COMPANY_ID_FRONT
         - COMPANY_ID_BACK
+        - CARD_FRONT
+        - CARD_BACK
     FileObject:
       type: object
       required:
@@ -11555,6 +11840,144 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/Signal'
+    BetaSignalItem:
+      type: object
+      required:
+        - name
+        - value
+        - valueType
+      properties:
+        name:
+          type: string
+          description: Unique Name to feature
+        value:
+          type: string
+          description: null
+        valueType:
+          type: string
+          enum:
+            - STRING
+            - NUMBER
+            - BOOLEAN
+    BetaSignal:
+      type: object
+      required:
+        - id
+        - createdAt
+        - status
+        - requestMeta
+      properties:
+        id:
+          type: string
+          description: Unique ID for the Beta Signal Request
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        status:
+          type: string
+          description: Current status of the Signal Request
+          enum:
+            - PROCESSING
+            - ERROR
+            - COMPLETED
+        resultCode:
+          type: string
+          description: Final result of the Signal Request
+          enum:
+            - SUCCESS
+            - NO_DATA
+            - SYSTEM_ERROR
+            - SERVICE_UNAVAILABLE
+        resultMessage:
+          type: string
+          description: Longer description of the final result of the Signal Request
+        requestMeta:
+          type: object
+          properties:
+            phone:
+              type: string
+              description: Subject's mobile number provided in the request
+              example: '+639178912345'
+            templateId:
+              type: string
+              description: >-
+                Generate by smile internal. Customer should ask smile to provide
+                the special templateId. If templateId is null, Smile will
+                request the default signals set, same as the alpha result.
+              example: signalTpl-xxxxxxxxxxxxxxx
+            consent:
+              $ref: '#/components/schemas/Consent'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BetaSignalItem'
+    BetaSignalListResponse:
+      title: Beta Signal list Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/BetaSignal'
+    BetaSignalPostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - phone
+      properties:
+        phone:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            +639178912345, and no leading zeros
+          example: '+639178902345'
+        templateId:
+          type: string
+          description: >-
+            Generate by smile internal. Customer should ask smile to provide the
+            special templateId. If templateId is null, Smile will request the
+            default signals set, same as the alpha result.
+          example: signalTpl-xxxxxxxxxxxxxxx
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaSignalPostResponse:
+      title: BetaSignal Post Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/BetaSignal'
+    BetaSignalGetResponse:
+      title: Beta Signal Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/BetaSignal'
     Identity:
       type: object
       title: Identity
@@ -12485,6 +12908,175 @@ components:
         - properties:
             data:
               $ref: '#/components/schemas/ProfileIdentity'
+    EmployerRegistration:
+      title: Employer Registration
+      type: object
+      x-internal: true
+      required:
+        - number
+        - organization
+      properties:
+        number:
+          type: string
+          description: Registration Number
+        organization:
+          type: string
+          description: Registering body or organization
+        date:
+          $ref: '#/components/schemas/RefDate'
+        scope:
+          type: string
+          description: Registration Scope
+        status:
+          type: string
+          description: Registration Status
+          enum:
+            - Registered
+            - Suspended
+            - Revoked
+            - Dissolved
+            - Delinquent
+    EmployerSource:
+      title: Employer Source
+      type: string
+      enum:
+        - SEC
+        - DTI
+        - SERP
+        - Facebook
+        - LinkedIn
+    EmployerBasic:
+      title: Employer Basic
+      type: object
+      x-internal: true
+      properties:
+        businessName:
+          type: string
+          description: Business Name
+        registrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerRegistration'
+        matchPercentage:
+          type: integer
+          description: Match Percentage, 100 = exact match, 0 = no match.
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerSource'
+        verificationStatus:
+          type: string
+          description: >-
+            Verification Status. If the data source is an authoritative source,
+            the status will be VERIFIED. Otherwise, UNVERIFIED.
+          enum:
+            - VERIFIED
+            - UNVERIFIED
+    EmployerBasicQueryResponse:
+      title: Employer Basic Query Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerBasic'
+    EmployerContactPerson:
+      title: Employer Contact Person
+      type: object
+      x-internal: true
+      properties:
+        contactName:
+          type: string
+          description: Contact Name
+        position:
+          type: string
+          description: Position
+        contactEmail:
+          type: string
+          description: Contact Email
+        contactPhone:
+          type: string
+          description: Contact Phone
+    EmployerLicense:
+      title: Employer License
+      type: object
+      x-internal: true
+      required:
+        - licenseNumber
+        - licenseType
+      properties:
+        licenseNumber:
+          type: string
+          description: License Number
+        licenseType:
+          type: string
+          description: License Type
+        licenseIssuedDate:
+          $ref: '#/components/schemas/RefDate'
+        licenseStatus:
+          type: string
+          description: License Status
+    Employer:
+      title: Employer
+      type: object
+      x-internal: true
+      required:
+        - businessName
+      properties:
+        businessName:
+          type: string
+          description: Business Name
+        shortName:
+          type: string
+          description: Short Name
+        registrations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerRegistration'
+        businessAddress:
+          $ref: '#/components/schemas/RefAddress'
+        isicCode:
+          type: string
+          description: International Standard Industrial Classification Code
+        isicSector:
+          type: string
+          description: Sector
+        psicCode:
+          type: string
+          description: Philippine Standard Industrial Classification code
+        psicIndustry:
+          type: string
+          description: Industry
+        contactPersons:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerContactPerson'
+        licenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmployerLicense'
+    EmployerQueryResponse:
+      title: Employer Query Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employer'
     RefWebhookEventVersion:
       title: RefWebhookEventVersion
       description: Event schema's major version
