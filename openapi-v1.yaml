@@ -11849,10 +11849,10 @@ components:
       properties:
         name:
           type: string
-          description: Unique Name to feature
+          description: Unique Name to the item
         value:
           type: string
-          description: null
+          description: Value of the item
         valueType:
           type: string
           enum:
