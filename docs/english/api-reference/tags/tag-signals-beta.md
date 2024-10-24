@@ -2,7 +2,7 @@
 title: Signals(Beta)
 excerpt: ''
 category: 66611ec162e8c700572c4be3
-slug: signalsalpha
+slug: signalsbeta
 ---
 
 In today's fast-paced financial landscape, accurate and timely risk assessment is crucial for making informed decisions. Smile API's Signals API provides a powerful solution by delivering real-time risk signals using a person's mobile number or email address, from a wide variety of activities and events.
