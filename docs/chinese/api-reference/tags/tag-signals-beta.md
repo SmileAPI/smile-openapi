@@ -2,7 +2,7 @@
 title: Signals(Beta)
 excerpt: ''
 category: 64c78531461848004b92b92f
-slug: signalsbeta
+slug: signals-beta
 ---
 
 在当今快节奏的金融环境中，准确及时的风险评估对于做出明智的决策至关重要。Smile API 的 Signals API 通过使用个人的手机号码或电子邮件地址，从各种活动和事件中提供实时风险信号，从而提供了一个强大的解决方案。

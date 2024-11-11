@@ -2930,7 +2930,7 @@ paths:
       summary: Create Signal
       operationId: create-alpha-signal
       tags:
-        - Signals(Alpha)
+        - Signals (Alpha)
       x-internal: true
       responses:
         '200':
@@ -2949,8 +2949,8 @@ paths:
                       id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
                       createdAt: '2021-04-14T09:30:24Z'
                       status: COMPLETED
-                      errorCode: ''
-                      errorMessage: ''
+                      resultCode: ''
+                      resultMessage: ''
                       requestMeta:
                         phone: '+639178902345'
                         consent:
@@ -2971,7 +2971,7 @@ paths:
     get:
       summary: List Signals
       tags:
-        - Signals(Alpha)
+        - Signals (Alpha)
       responses:
         '200':
           description: OK
@@ -2992,8 +2992,8 @@ paths:
                             id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
                             createdAt: '2021-04-14T09:30:24Z'
                             status: COMPLETED
-                            errorCode: ''
-                            errorMessage: ''
+                            resultCode: ''
+                            resultMessage: ''
                             requestMeta:
                               phone: '+639178902345'
                               consent:
@@ -3046,7 +3046,7 @@ paths:
       operationId: get-alpha-signal
       x-internal: true
       tags:
-        - Signals(Alpha)
+        - Signals (Alpha)
       responses:
         '200':
           description: OK
@@ -3064,8 +3064,8 @@ paths:
                       id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
                       createdAt: '2021-04-14T09:30:24Z'
                       status: COMPLETED
-                      errorCode: ''
-                      errorMessage: ''
+                      resultCode: ''
+                      resultMessage: ''
                       requestMeta:
                         phone: '+639178902345'
                         consent:
@@ -3082,7 +3082,7 @@ paths:
       summary: Create Signal
       operationId: create-beta-signal
       tags:
-        - Signals(Beta)
+        - Signals (Beta)
       x-internal: true
       responses:
         '200':
@@ -3101,8 +3101,8 @@ paths:
                       id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
                       createdAt: '2021-04-14T09:30:24Z'
                       status: COMPLETED
-                      errorCode: ''
-                      errorMessage: ''
+                      resultCode: ''
+                      resultMessage: ''
                       requestMeta:
                         phone: '+639178902345'
                         templateId: signalTpl-xxxxxxxxxxxxxxx
@@ -3130,9 +3130,9 @@ paths:
               $ref: '#/components/schemas/BetaSignalPostRequest'
     get:
       summary: List Signals
-      operationId: list-BetaSignals
+      operationId: list-beta-signals
       tags:
-        - Signals(Beta)
+        - Signals (Beta)
       responses:
         '200':
           description: OK
@@ -3153,8 +3153,8 @@ paths:
                             id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
                             createdAt: '2021-04-14T09:30:24Z'
                             status: COMPLETED
-                            errorCode: ''
-                            errorMessage: ''
+                            resultCode: ''
+                            resultMessage: ''
                             requestMeta:
                               phone: '+639178902345'
                               templateId: signalTpl-xxxxxxxxxxxxxxx
@@ -3214,7 +3214,7 @@ paths:
       operationId: get-beta-signal
       x-internal: true
       tags:
-        - Signals(Beta)
+        - Signals (Beta)
       responses:
         '200':
           description: OK
@@ -3232,8 +3232,8 @@ paths:
                       id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
                       createdAt: '2021-04-14T09:30:24Z'
                       status: COMPLETED
-                      errorCode: ''
-                      errorMessage: ''
+                      resultCode: ''
+                      resultMessage: ''
                       requestMeta:
                         phone: '+639178902345'
                         templateId: signalTpl-xxxxxxxxxxxxxxx
