@@ -37,7 +37,7 @@ Smile Snap 的智能文档处理 (IDP) 服务结合了光学字符识别 (OCR) �
 
 ## 测试服务
 
-要测试服务，您可以在 Sandbox 模式下调用 API ，也可以使用 [Developer Portal](https://portal.getsmileapi.com/) 直接试用服务。
+要测试服务，您可以在 Sandbox 模式下调用 API ，也可以使用 [Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link) 下的 [Snap Lookup > Scanned Documents 部分](https://portal.getsmileapi.com/snap/scanned?utm_source=docs&utm_medium=internal_link) 直接试用服务。
 
 > 🚧 注意
 >

@@ -23,7 +23,7 @@ Basic authentication is a simple authentication scheme built into the HTTP proto
 >
 > `Authorization: Basic ZGVtbzpwQDU1dzByZA==`
 
-**Your API Key and Secret can be found by logging into the [Developer Portal](https://portal.getsmileapi.com/) under the *API Keys* section.**
+**Your API Key and Secret can be found by logging into the [Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link) under the *API Keys* section.**
 
 Upon signup, you will have instant and free access to test on our Sandbox environment. If you need Production environment access, [contact us](https://www.getsmileapi.com/contact-us).
 

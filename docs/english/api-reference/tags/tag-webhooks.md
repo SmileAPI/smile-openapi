@@ -32,7 +32,7 @@ You can start receiving event notifications in your application using the follow
 
 #### Webhook Registration via Developer Portal
 
-You may register your webhooks easily using the [Developer Portal](https://portal.getsmileapi.com/). After logging in, navigate to the **Webhooks** section and click on the **Add New Webhook** button to add your new webhook.
+You may register your webhooks easily using the [Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link). After logging in, navigate to [the **Webhooks** section](https://portal.getsmileapi.com/webhooks?utm_source=docs&utm_medium=internal_link) and click on the **Add New Webhook** button to add your new webhook.
 
 ![portal-webhooks.png](../../../../assets/images/portal-webhooks.png)
 

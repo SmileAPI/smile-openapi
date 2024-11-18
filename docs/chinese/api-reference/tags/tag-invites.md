@@ -28,7 +28,7 @@ slug: invites
 
 ## 补充数据方式
 
-如果无法使用 Invite API 来创建自动发送给终端用户的邮件，您还可以通过访问 [Smile Developer Portal](https://portal.getsmileapi.com/) 的 Users 页面手动发送邀请。
+如果无法使用 Invite API 来创建自动发送给终端用户的邮件，您还可以通过访问 [Smile Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link) 的 Users 页面手动发送邀请。请注意，您必须在 Production Mode 下才能使用此功能。
 
 ## 邀请对象
 

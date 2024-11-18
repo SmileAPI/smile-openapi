@@ -12,7 +12,7 @@ slug: chapter-3
 
 ## Authentication
 
-The Smile API uses HTTP Basic Auth. A set of credentials called the API key and API secret, which is associated with your developer account, can be used to access the Smile Network. To retrieve your credentials, simply register and access the API Keys section of the [developer portal](https://portal.getsmileapi.com).
+The Smile API uses HTTP Basic Auth. A set of credentials called the API key and API secret, which is associated with your developer account, can be used to access the Smile Network. To retrieve your credentials, simply register and access [your API Keys in the developer portal](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link).
 
 To retrieve data from our API, you should include in your Authorization header, the word ``Basic``, followed by a space and a base64-encoded (non-encrypted) string ``apikey:apisecret`` or ``Authorization: Basic {base64 encoded string}``.
 

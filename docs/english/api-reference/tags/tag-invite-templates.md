@@ -88,7 +88,7 @@ The template codes that are supported are below:
 
 ## Fallback Methods
 
-If you cannot use the Invites API to create automated emails sent to your end users, you may also access the [Smile Developer Portal](https://portal.getsmileapi.com/) to send invites manually via the Users section.
+If you cannot use the Invites API to create automated emails sent to your end users, you may also access the [Smile Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link) to send invites manually via [the Users section](https://portal.getsmileapi.com/users?utm_source=docs&utm_medium=internal_link). Note that you must be on Production mode to use this functionality.
 
 ## The Invite Templates object
 

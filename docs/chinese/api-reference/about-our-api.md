@@ -23,9 +23,9 @@ slug: about-our-api
 >
 > `Authorization: Basic ZGVtbzpwQDU1dzByZA==`
 
-**您可以登录 [Developer Portal](https://portal.getsmileapi.com/) ，在 *API Keys* 部分找到您的 API Key 和Secret**
+**您可以登录 [Developer Portal](https://portal.getsmileapi.com/?utm_source=docs&utm_medium=internal_link) ，在 *API Keys* 部分找到您的 API Key 和Secret**
 
-注册后，您可以免费访问我们的 Sandbox mode 进行测试。如果您需要 Production mode 的访问权限，请 [联系我们](https://www.getsmileapi.com/contact-us) 。
+注册后，您可以免费访问我们的 Sandbox mode 进行测试。如果您需要 Production mode 的访问权限，请 [联系我们](https://www.getsmileapi.com/contact-us?utm_source=docs&utm_medium=internal_link) 。
 
 ![where-to-find-api-keys.png](../../../assets/images/where-to-find-api-keys.png)
 

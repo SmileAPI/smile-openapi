@@ -24,7 +24,7 @@ Smile 通过简单的 API 提供跨平台的就业和雇佣数据。银行、金
  
 
 ##  我们的 API
-Smile API 建立在 RESTful 原则之上。所有请求和响应的内容都以 JSON 格式编码。 出于安全考虑，所有请求都必须通过 HTTPS 发送。 要访问 API，您需要[注册我们的开发者控制台](https://portal.getsmileapi.com)。
+Smile API 建立在 RESTful 原则之上。所有请求和响应的内容都以 JSON 格式编码。 出于安全考虑，所有请求都必须通过 HTTPS 发送。 要访问 API，您需要[注册我们的开发者控制台](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link)。
 
 <!-- focus: false -->
 ![Jobs](https://img.icons8.com/ios-filled/50/000000/find-matching-job.png)

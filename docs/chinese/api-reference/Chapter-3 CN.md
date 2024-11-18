@@ -12,7 +12,7 @@ slug: chapter-3-cn
 
 ## 验证
 
-Smile API 使用 HTTP 基本身份验证。一组与您的开发人员帐户相关联的被称为 API key 和 API secret 的凭据可用于访问 Smile Network 。要检索您的凭据，只需注册并访问开发者控制台的 API key 部分。
+Smile API 使用 HTTP Basic Auth。一组称为 API key 和 API secret 的凭证与您的开发者账户相关联，可用于访问 Smile Network。要检索您的凭证，只需注册并访问[您在 Developer Portal 中的 API key](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link) 。
 
 想要从我们的 API 检索数据，您应该在 Authorization header 中包含单词 ``Basic`` ，后跟一个空格和 base64-encoded （非加密）的字符串 ``apikey:apisecret`` 或 ``Authorization: Basic {base64 encoded string}`` 。
 

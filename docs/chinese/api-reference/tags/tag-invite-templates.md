@@ -88,7 +88,7 @@ slug: invite-templates
 
 ## 补充数据方法
 
-如果您不能使用 Invites API 来创建自动发送给终端用户的邮件，您也可以通过访问 [Smile Developer Portal](https://portal.getsmileapi.com/) 来手动发送邀请给部分用户。
+如果您不能使用 Invites API 来创建自动发送给终端用户的邮件，您也可以通过访问 [Smile Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link) 来手动发送邀请给部分用户。请注意，您必须在 Production Mode 下才能使用此功能。
 
 ## 邀请模板对象
 

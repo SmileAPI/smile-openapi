@@ -37,7 +37,7 @@ There are only a few steps in implementing Smile API's IDP service in your proce
 
 ## Testing the Service
 
-To test the service, you may connect to the API in Sandbox mode or you may also use the [Developer Portal](https://portal.getsmileapi.com/) to try out the service directly.
+To test the service, you may connect to the API in Sandbox mode or you may also use the [Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link) to try out the service directly, under [the Snap Lookup > Scanned Documents section](https://portal.getsmileapi.com/snap/scanned?utm_source=docs&utm_medium=internal_link).
 
 > 🚧 Warning
 > 

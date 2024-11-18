@@ -8,7 +8,7 @@ slug: chapter-4
 
 
 You can obtain data from your users via two ways:
- - Inviting your user via the ``/invitations`` endpoint in the API or using the invitation functionality in the Developer Portal, under the Users section.
+ - Inviting your user via the ``/invitations`` endpoint in the API or using [the invitation functionality in the Developer Portal, under the Users section](https://portal.getsmileapi.com/users/invite?utm_source=docs&utm_medium=internal_link).
  - Embedding the Client SDK and instantiating the Wink Widget.
 
 ---
@@ -17,7 +17,7 @@ You can obtain data from your users via two ways:
 
 ## Invitations
 
-Invitations allow you to invite your users to connect their work accounts or upload copies of their employment-related documents via communication channels such as email. Using the Invitation endpoint in the API, you can send a message to a user, or send multiple invitations by looping through the contact information such as email address of several users. To make it easier for you to try it out, we provide an example implementation of Invitations in the Developer Portal. 
+Invitations allow you to invite your users to connect their work accounts or upload copies of their employment-related documents via communication channels such as email. Using the Invitation endpoint in the API, you can send a message to a user, or send multiple invitations by looping through the contact information such as email address of several users. To make it easier for you to try it out, we provide an [example implementation of Invitations in the Developer Portal](https://portal.getsmileapi.com/users/invite?utm_source=docs&utm_medium=internal_link). 
 
 If you want to customize the content of the messages, you can define an Invitation Template. You can do so via the API or use the example implementation in the the Developer Portal. The template accepts dynamic variables such as the following:
 

@@ -30,7 +30,7 @@ Its easy to get started with the Smile API! Implementing the Smile API involves 
 ![Signup](https://img.icons8.com/ios-filled/50/000000/sign-up.png)
 
 ## Using the Developer Portal
-To get started, simply register to the [Developer Portal](https://portal.getsmileapi.com). After registering, you will be asked to verify your email and then you can log in. 
+To get started, simply register to the [Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link). After registering, you will be asked to verify your email and then you can log in. 
 
 By default, when you register and log in, you will be in "Sandbox" mode. You can access "Production" mode by booking a call or emailing access@getsmileapi.com, and submitting the necessary information to go live. 
 
@@ -40,19 +40,23 @@ By default, when you register and log in, you will be in "Sandbox" mode. You can
 
 Inside the Developer Portal, you will see the following:
 
-1. **Wink Widget:** Use this to preview how the Wink Widget works. The behavior of the widget changes depending on the mode you are in. In Sandbox mode, you can use the provided test accounts on the page to simulate the process of logging into different data providers such as a gig platform or payroll system.  In Production mode, you will be able to actually link a live account or upload an actual file. 
+1. **[Account Usage](https://portal.getsmileapi.com/usage?utm_source=docs&utm_medium=internal_link):** You can view your account usage here, such as number of connected accounts and users in your tenant.
 
-2. **Users:** View the users created in the back-end, as well as the data captured from that user, during the account linking process or after uploading the user uploads a file. In this section, you can also preview how the returned data from Smile looks like for each resource such as Employments and Incomes.
+2. **[Wink Widget](https://portal.getsmileapi.com/link/emulator?utm_source=docs&utm_medium=internal_link):** Use this to preview how the Wink Widget works. The behavior of the widget changes depending on the mode you are in. In Sandbox mode, you can use the provided test accounts on the page to simulate the process of logging into different data providers such as a gig platform or payroll system.  In Production mode, you will be able to actually link a live account or upload an actual file.
 
-3. **Data Source:** The Data Source section is where you can find all the Data providers as well as File Types that can be uploaded. Data providers include different types such as the names of different employers, gig platforms, government services, or HR and payroll systems. File types on the other hand are those that can be uploaded by the user such as copies of payslips, tax documents and others.
+3. **Snap Lookup:** You may test out the various Smile Snap services here, such as [Verifications](https://portal.getsmileapi.com/snap/verification?utm_source=docs&utm_medium=internal_link), [Intelligent Document Processing](https://portal.getsmileapi.com/snap/scanned?utm_source=docs&utm_medium=internal_link), and [Signals](https://portal.getsmileapi.com/snap/signals?utm_source=docs&utm_medium=internal_link).
 
-4. **API Keys:** After registration, you will be given a Sandbox API key and an API secret. The API secret must be kept safe and used only in exchanges between your application's server and Smile API's server. Upon request, you can also be given the API key and API secret to use the Smile API in production. This will also allow you to switch the Developer Portal to "Production Mode" for live testing.
+4. **[User Data](https://portal.getsmileapi.com/users?utm_source=docs&utm_medium=internal_link):** View the users created in the back-end, as well as the data captured from that user, during the account linking process or after uploading the user uploads a file. In this section, you can also preview how the returned data from Smile looks like for each resource such as Employments and Incomes.
 
-5. **Organizations:** This is where you can enter details about your organization.
+5. **[Data Sources](https://portal.getsmileapi.com/providers?utm_source=docs&utm_medium=internal_link):** The Data Sources section is where you can find all the Data providers as well as File Types that can be uploaded. Data providers include different types such as the names of different employers, gig platforms, government services, or HR and payroll systems. File types on the other hand are those that can be uploaded by the user such as copies of payslips, tax documents and others.
 
-6. **Team:** This is where you can invite additional members from your organization to join the Portal and share a common tenant or workspace.
+6. **[API Keys](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link):** After registration, you will be given a Sandbox API key and an API secret. The API secret must be kept safe and used only in exchanges between your application's server and Smile API's server. Upon request, you can also be given the API key and API secret to use the Smile API in production. This will also allow you to switch the Developer Portal to "Production Mode" for live testing.
 
-7. **Documentation:** This is a link to the API documentation which you are reading now!
+7. **[Webhooks](https://portal.getsmileapi.com/webhooks?utm_source=docs&utm_medium=internal_link):** You may create and manage your webhooks here to communicate to your application.
+
+8. **[Settings](https://portal.getsmileapi.com/account/organization?utm_source=docs&utm_medium=internal_link):** This is where you can enter details about your organization and team. You may also invite additional members from your organization to join the Portal and share a common tenant or workspace.
+
+9. **Documentation:** This is a link to the API documentation which you are reading now!
 
 ## Using this Reference
 
@@ -75,7 +79,7 @@ null,
 
 > 📘 Note
 > 
-> Your API Key and Secret can be found by logging into the [Developer Portal](https://portal.getsmileapi.com/) under the **API Keys** section. Upon signup, you will have instant and free access to test on our Sandbox environment. If you need Production environment access, [contact us](https://www.getsmileapi.com/contact-us).
+> Your API Key and Secret can be found by logging into the [Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link) under [the **API Keys** section](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link). Upon signup, you will have instant and free access to test on our Sandbox environment. If you need Production environment access, [contact us](https://www.getsmileapi.com/contact-us?utm_source=docs&utm_medium=internal_link).
 >
 >![](https://files.readme.io/70f1152-where-to-find-api-keys.png)
 > 

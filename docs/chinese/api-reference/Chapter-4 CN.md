@@ -8,7 +8,7 @@ slug: chapter-4-cn
 
 
 您可以通过两种方式从用户那里获取数据：
-- 通过 API 中的 `/invitations` 端点邀请您的用户，或使用 Developer Portal 中 Users 页面内的邀请功能。
+- 通过 API 中的 `/invitations` 端点邀请您的用户，或使用 [Developer Portal 中 Users 页面内的邀请功能](https://portal.getsmileapi.com/users/invite?utm_source=docs&utm_medium=internal_link) 。
 - 嵌入客户端 SDK 并实例化 Wink Widget 。
 
 ---
@@ -17,7 +17,7 @@ slug: chapter-4-cn
 
 ## 邀请
 
-Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们的工作帐户或上传与就业相关的文件副本。使用 API 中的 Invitation API ，您可以向一个用户发送消息，或者通过循环访问多个用户的电子邮件地址等联系信息来发送多个邀请。为了让您更容易尝试，我们在 Developer Portal 中提供了 Invite 的示例实现。
+Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们的工作帐户或上传与就业相关的文件副本。使用 API 中的 Invitation API ，您可以向一个用户发送消息，或者通过循环访问多个用户的电子邮件地址等联系信息来发送多个邀请。为了让您更容易尝试，我们在 [Developer Portal 中提供了 Invite 的示例](https://portal.getsmileapi.com/users/invite?utm_source=docs&utm_medium=internal_link) 。
 
 如果您想自定义消息的内容，您可以定义一个 Invite 模板。您可以通过 API 执行此操作，也可以使用 Developer Portal 中的示例实现。该模板接受如下动态变量：
 

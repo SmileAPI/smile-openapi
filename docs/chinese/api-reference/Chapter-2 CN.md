@@ -30,7 +30,7 @@ SmileAPI 很容易上手！ 使用 SmileAPI 涉及简单的客户端和服务器
 ![Signup](https://img.icons8.com/ios-filled/50/000000/sign-up.png)
 
 ## 使用开发者控制台
-要想开始只需注册[开发者控制台](https://portal.getsmileapi.com)。注册后，我们将要求验证您的电子邮件，然后您就可以登录了。
+要想开始只需注册[开发者控制台](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link)。注册后，我们将要求验证您的电子邮件，然后您就可以登录了。
 
 默认情况下，当您注册和登录时，您将处于 "Sandbox" 模式。您可以通过预约电话或发送电子邮件到 access@getsmileapi.com 并提交上线所需的信息来访问 “Production” 模式。
 
@@ -40,19 +40,24 @@ SmileAPI 很容易上手！ 使用 SmileAPI 涉及简单的客户端和服务器
 
 在开发者控制台内，您将会看到以下内容。
 
-1. **Wink Widget:** 使用它来预览 Wink Widget 的工作原理。 Wink Widget 的行为取决于您所处的模式。在 Sandbox 模式下，您可以使用页面上提供的测试帐户来模拟登录到不同数据提供商（例如 Gig 平台或工资系统）的过程。在 Production 模式下，您将能够实际链接到真实账户或上传实际文件。
+1. **[Account Usage](https://portal.getsmileapi.com/usage?utm_source=docs&utm_medium=internal_link) ：** 您可以在此查看您的账户使用情况，如租户中已连接账户和用户的数量。
 
-2. **Users:** 在帐户链接过程中或用户上传文件后，查看在后端创建的用户以及从该用户捕获的数据。在本部分中，您还可以预览从 Smile 返回的数据,包括每个资源（例如就业和收入）的格式。
+2. **[Wink Widget](https://portal.getsmileapi.com/link/emulator?utm_source=docs&utm_medium=internal_link) ：** 使用此功能可预览 Wink Widget 的工作方式。Wink Widget 的行为会根据您所处的 Mode 发生变化。在 Sandbox Mode 下，您可以使用页面上提供的测试账户来模拟登录不同数据提供商（如 Gig 平台或工资系统）的过程。在 Production Mode下，您可以实际连接一个真实账户或上传一份实际文件。
 
-3. **Data Source:** 数据源部分是您可以找到所有数据提供商以及可以上传的文件类型的地方。数据提供商包括不同的类型，例如不同雇主的名称、Gig 平台、政府服务或人力资源和工资系统。另一方面，文件类型是用户可以上传的文件类型，例如工资单、税务文件和其他文件的副本。
+3. **Snap Lookup：** 您可以在这里测试各种 Smile Snap 服务，如 [Verifications](https://portal.getsmileapi.com/snap/verification?utm_source=docs&utm_medium=internal_link), [Intelligent Document Processing](https://portal.getsmileapi.com/snap/scanned?utm_source=docs&utm_medium=internal_link) 以及 [Signals](https://portal.getsmileapi.com/snap/signals?utm_source=docs&utm_medium=internal_link) 。
 
-4. **API Keys:** 注册后，您将获得一个 Sandbox API key 和一个 API secret 。API secret 必须保持安全，并且仅用于您的应用程序服务器和 Smile API 的服务器之间的交换。 根据要求，您还可以获得 Production API key 和 API secret ，以便在Production模式中使用 Smile API 。 这也将允许您将开发者控制台切换到 “Production” 模式以进行实时测试。
+4. **[User Data](https://portal.getsmileapi.com/users?utm_source=docs&utm_medium=internal_link) ：** 在账户连接过程中或用户上传文件后，查看在后台创建的用户以及从该用户获取的数据。在此部分中，您还可以预览从 Smile 返回的每个资源（如就业和收入）的数据。
 
-5. **Organizations:** 您可以在此处输入有关您的组织的详细信息。
+5. **[Data Sources](https://portal.getsmileapi.com/providers?utm_source=docs&utm_medium=internal_link) ：** 在 Data Sources 部分，您可以找到所有的数据提供商以及可上传的文件类型。数据提供商包含多种类型，例如雇主、Gig 平台、政府服务
+   、人力资源以及薪资系统。文件类型是指用户可上传的文件形式，如工资单副本、税务文件等。
 
-6. **Team:** 您可以在此处邀请组织中的其他成员加入门户并共享公共租户或工作区。
+6. **[API Keys](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link) ：** 注册后，您将获得一个 Sandbox API key 和一个 API secret。API secret 必须妥善保管，并且只能在您的应用服务器和 Smile API 服务器之间交换时使用。与我们沟通后，您也可以获得在 Production Mode 下使用的 Smile API key 和 API secret。这也可以让您将 Developer Portal 切换到 “Production Mode” 下进行实时测试。
 
-7. **Documentation:** 这是您正在阅读的 API 文档的链接！
+7. **[Webhooks](https://portal.getsmileapi.com/webhooks?utm_source=docs&utm_medium=internal_link) :** 为了便于与您的应用程序通信，您可以在此创建和管理 Webhooks。
+
+8. **[Settings](https://portal.getsmileapi.com/account/organization?utm_source=docs&utm_medium=internal_link) :** 您可以在这里输入有关您的组织和团队的详细信息。您还可以邀请组织中的其他成员加入 Developer Portal，共享一个共同的租户或工作区。
+
+9. **Documentation：** 这是您正在阅读的 API 文档链接！
 
 ## 如何使用本参考文档
 
@@ -75,7 +80,7 @@ null,
 
 > 📘 注意
 >
-> 您可以登录 [Developer Portal](https://portal.getsmileapi.com/) ，在 **API Keys** 部分找到 API Key 和 Secret。注册后，您可以免费访问我们的 Sandbox mode 进行测试。如果您需要 Production mode 的访问权限，请 [联系我们](https://www.getsmileapi.com/contact-us) 。
+> 您可以登录 [Developer Portal](https://portal.getsmileapi.com/?utm_source=docs&utm_medium=internal_link) ，在 [**API Keys** 部分](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link) 找到 API Key 和 Secret。注册后，您可以免费访问我们的 Sandbox mode 进行测试。如果您需要 Production mode 的访问权限，请 [联系我们](https://www.getsmileapi.com/contact-us?utm_source=docs&utm_medium=internal_link) 。
 >
 >![](https://files.readme.io/70f1152-where-to-find-api-keys.png)
 > 

@@ -24,7 +24,7 @@ Access to the data is provided by the employees themselves, which is part of the
 
 
 ##  Our API
-The Smile API is built on RESTful principles. All request and response payloads are encoded in JSON format. For security purposes, all requests must be sent through HTTPS. To get access to the API, you will need to [sign up to our developer portal](https://portal.getsmileapi.com).
+The Smile API is built on RESTful principles. All request and response payloads are encoded in JSON format. For security purposes, all requests must be sent through HTTPS. To get access to the API, you will need to [sign up to our developer portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link).
 
 ---
 <!-- focus: false -->
