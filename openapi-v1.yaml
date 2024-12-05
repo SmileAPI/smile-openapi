@@ -3105,6 +3105,7 @@ paths:
                       resultMessage: ''
                       requestMeta:
                         phone: '+639178902345'
+                        countryCode: PH
                         templateId: signalTpl-xxxxxxxxxxxxxxx
                         consent:
                           type: Terms And Conditions
@@ -3157,6 +3158,7 @@ paths:
                             resultMessage: ''
                             requestMeta:
                               phone: '+639178902345'
+                              countryCode: PH
                               templateId: signalTpl-xxxxxxxxxxxxxxx
                               consent:
                                 type: Terms And Conditions
@@ -3236,6 +3238,7 @@ paths:
                       resultMessage: ''
                       requestMeta:
                         phone: '+639178902345'
+                        countryCode: PH
                         templateId: signalTpl-xxxxxxxxxxxxxxx
                         consent:
                           type: Terms And Conditions
@@ -11906,6 +11909,8 @@ components:
               example: signalTpl-xxxxxxxxxxxxxxx
             consent:
               $ref: '#/components/schemas/Consent'
+            countryCode:
+              $ref: '#/components/schemas/RefCountry'
         items:
           type: array
           items:
@@ -11952,6 +11957,8 @@ components:
           example: signalTpl-xxxxxxxxxxxxxxx
         consent:
           $ref: '#/components/schemas/Consent'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
     BetaSignalPostResponse:
       title: BetaSignal Post Response
       type: object
