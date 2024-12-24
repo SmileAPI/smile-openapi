@@ -4511,6 +4511,107 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-transaction
       description: Get a user's transaction by ID.
+  /alpha/forms:
+    get:
+      summary: List Forms
+      tags:
+        - Forms (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: form-17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: '2021-04-14T09:30:24Z'
+                          name: Personal Information
+                          userId: tenant-5c1a2e8678e3494eb
+                          winkSiteId: ws-17bbf36498de4d68a0d4f86c7b62f69f
+                          winkSiteSessionId: wss-17bbf36498df69fe4d68a0d4f86c7b62
+                          reference: form_1
+                          data:
+                            firstName: John
+                            lastName: Doe
+                            email: john.doe@abc.com
+                        - id: form-17bbf36c7b62f69f498de4d68a0d4f86
+                          createdAt: '2021-04-14T09:30:24Z'
+                          name: Income Information
+                          userId: tenant-5c1a2e8678e3494eb
+                          winkSiteId: ws-17bbf36498de4d68a0d4f86c7b62f69f
+                          winkSiteSessionId: wss-17bbf36498df69fe4d68a0d4f86c7b62
+                          reference: form_2
+                          data:
+                            monthlyIncome: 50000
+                            employmentStatus: Active
+                            employer: ABC Corp
+      operationId: list-alpha-forms
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - schema:
+            type: string
+          in: query
+          description: Filter by wink site ID
+          name: winkSiteId
+        - schema:
+            type: string
+            format: date
+          in: query
+          description: Filter by form date, start of date range (YYYY-MM-DD)
+          name: startDate
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter by form date, end of date range (YYYY-MM-DD)
+      description: Get the user's forms data.
+    parameters: []
+  /alpha/forms/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Form
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: form-17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      name: Personal Information
+                      userId: tenant-5c1a2e8678e3494eb
+                      winkSiteId: ws-17bbf36498de4d68a0d4f86c7b62f69f
+                      winkSiteSessionId: wss-17bbf36498df69fe4d68a0d4f86c7b62
+                      reference: form_1
+                      data:
+                        firstName: John
+                        lastName: Doe
+                        email: john.doe@abc.com
+      operationId: get-alpha-form
+      tags:
+        - Forms (Alpha)
+      description: Get a user's form by ID.
   /eincomes:
     parameters: []
     get:
@@ -12576,6 +12677,101 @@ components:
           $ref: '#/components/schemas/Transaction'
       x-internal: true
       x-examples: {}
+    Form:
+      title: Form
+      type: object
+      x-internal: false
+      description: The stored form information of the user from an wink site.
+      x-examples:
+        Example:
+          id: form-17bbf36498de4d68a0d4f86c7b62f69f
+          createdAt: '2021-04-14T09:30:24Z'
+          name: Personal Information
+          userId: tenant-5c1a2e8678e3494eb
+          winkSiteId: ws-17bbf36498de4d68a0d4f86c7b62f69f
+          winkSiteSessionId: wss-17bbf36498df69fe4d68a0d4f86c7b62
+          reference: form_1
+          data:
+            firstName: John
+            lastName: Doe
+            email: john.doe@abc.com
+      x-tags:
+        - Forms
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        name:
+          type: string
+          description: The name of the form.
+          example: Personal Information
+          nullable: true
+          maxLength: 255
+        userId:
+          type: string
+          description: The ID of the user who submitted the form.
+          example: tenant-5c1a2e8678e3494eb
+        winkSiteId:
+          type: string
+          description: The ID of the wink site where the form was submitted.
+          example: ws-17bbf36498de4d68a0d4f86c7b62f69f
+        winkSiteSessionId:
+          type: string
+          description: The ID of the wink site session where the form was submitted.
+          example: wss-17bbf36498df69fe4d68a0d4f86c7b62
+        reference:
+          type: string
+          description: The reference of the form.
+          example: form_1
+        data:
+          type: object
+          description: The data submitted by the user.
+          additionalProperties:
+            type: object
+      required:
+        - id
+        - createdAt
+        - winkSiteId
+        - winkSiteSessionId
+        - userId
+        - reference
+        - data
+    FormListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Form'
+    FormListResponse:
+      title: Form List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/FormListData'
+    FormGetResponse:
+      title: Form Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Form'
     Eincome:
       title: Eincome
       type: object
