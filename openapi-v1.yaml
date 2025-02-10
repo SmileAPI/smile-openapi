@@ -3006,7 +3006,7 @@ paths:
                               events_arbitrary_day30: 0
                               events_preloan_day30: 0
       operationId: list-alpha-signals
-      description: List all Signal Requests.
+      description: List all Signals.
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
@@ -3042,7 +3042,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
-      summary: Get signal by unique ID
+      summary: Get Signal
+      description: Get Signal by unique ID.
       operationId: get-alpha-signal
       x-internal: true
       tags:
@@ -3176,7 +3177,7 @@ paths:
                               - name: events_debt_day90_amount
                                 value: A0
                                 valueType: STRING
-      description: List all BetaSignal Requests.
+      description: List all Signals.
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
@@ -3212,7 +3213,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
-      summary: Get signal by unique ID
+      summary: Get Signal
+      description: Get Signal by unique ID.
       operationId: get-beta-signal
       x-internal: true
       tags:
@@ -3363,7 +3365,7 @@ paths:
                             - name: companyName
                               value: Google
                               valueType: STRING
-      description: List all AlphaFootprint Requests.
+      description: List all Footprints.
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
@@ -3397,7 +3399,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
-      summary: Get footprint by unique ID
+      summary: Get Footprint
+      description: Get Footprint by unique ID.
       operationId: get-alpha-footprint
       x-internal: true
       tags:
@@ -3552,7 +3555,7 @@ paths:
                               source: sms
                               duration: null
                               platformId: 5b79399a68524234bb0ead472648282d
-      description: List all AlphaMaw Requests.
+      description: List all Maws.
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
@@ -3584,7 +3587,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/id'
     get:
-      summary: Get maw by unique ID
+      summary: Get Maw
+      description: Get Maw by unique ID.
       operationId: get-alpha-maw
       x-internal: true
       tags:
