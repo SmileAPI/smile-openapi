@@ -3256,6 +3256,379 @@ paths:
                         - name: events_debt_day90_amount
                           value: A0
                           valueType: STRING
+  /alpha/footprints:
+    post:
+      summary: Create Footprint
+      operationId: create-alpha-footprint
+      tags:
+        - Footprints (Alpha)
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaFootprintPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: footprint-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        emailAddress: someone@email.com
+                        templateId: footprintTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - name: registered
+                          value: 'false'
+                          valueType: BOOLEAN
+                        - name: creationTime
+                          value: '2021-04-14T09:30:24Z'
+                          valueType: STRING
+                        - name: companyName
+                          value: Google
+                          valueType: STRING
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlphaFootprintPostRequest'
+            examples:
+              Example:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                  templateId: footprintTpl-xxxxxxxxxxxxxxx
+                  emailAddress: someone@email.com
+    get:
+      summary: List Footprints
+      operationId: list-alpha-footprints
+      tags:
+        - Footprints (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaFootprintListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - id: footprint-e35d521ef8f147c4aa01b7c1af85aaf7
+                          createdAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: ''
+                          resultMessage: ''
+                          requestMeta:
+                            emailAddress: someone@email.com
+                            templateId: footprintTpl-xxxxxxxxxxxxxxx
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          items:
+                            - name: registered
+                              value: 'false'
+                              valueType: BOOLEAN
+                            - name: creationTime
+                              value: '2021-04-14T09:30:24Z'
+                              valueType: STRING
+                            - name: companyName
+                              value: Google
+                              valueType: STRING
+      description: List all AlphaFootprint Requests.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: footprintId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter footprints by a specific Footprint ID.
+        - name: emailAddress
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter footprints by a specific email address.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: >-
+            Filter footprints by the start date of the request range
+            (YYYY-MM-DD).
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter footprints by the end date of the request range (YYYY-MM-DD).
+  /alpha/footprints/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get footprint by unique ID
+      operationId: get-alpha-footprint
+      x-internal: true
+      tags:
+        - Footprints (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaFootprintGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: footprint-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        emailAddress: someone@email.com
+                        templateId: footprintTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - name: registered
+                          value: 'false'
+                          valueType: BOOLEAN
+                        - name: creationTime
+                          value: '2021-04-14T09:30:24Z'
+                          valueType: STRING
+                        - name: companyName
+                          value: Google
+                          valueType: STRING
+  /alpha/maws:
+    post:
+      summary: Create Maw
+      operationId: create-alpha-maw
+      tags:
+        - Maws (Alpha)
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaMawPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      requestMeta:
+                        mobileNumber: '6381789801234'
+                        countryCode: PH
+                        templateId: mawTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - date: '2021-04-14'
+                          level: '2'
+                          source: seat
+                          duration: '10'
+                          platformId: 5b79399a68524234bb0ead472648282d
+                        - date: '2021-03-14'
+                          level: '3'
+                          source: sms
+                          duration: null
+                          platformId: 5b79399a68524234bb0ead472648282d
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlphaMawPostRequest'
+            examples:
+              Example:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                  templateId: mawTpl-xxxxxxxxxxxxxxx
+                  mobileNumber: '6381789801234'
+                  countryCode: PH
+    get:
+      summary: List Maws
+      operationId: list-alpha-maws
+      tags:
+        - Maws (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaMawListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
+                          createdAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: ''
+                          resultMessage: ''
+                          requestMeta:
+                            mobileNumber: '6381789801234'
+                            countryCode: PH
+                            templateId: mawTpl-xxxxxxxxxxxxxxx
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          items:
+                            - date: '2021-04-14'
+                              level: '2'
+                              source: seat
+                              duration: '10'
+                              platformId: 5b79399a68524234bb0ead472648282d
+                            - date: '2021-03-14'
+                              level: '3'
+                              source: sms
+                              duration: null
+                              platformId: 5b79399a68524234bb0ead472648282d
+      description: List all AlphaMaw Requests.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: mawId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter maws by a specific Maw ID.
+        - name: mobileNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter maws by a specific mobile number.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: Filter maws by the start date of the request range (YYYY-MM-DD).
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter maws by the end date of the request range (YYYY-MM-DD).
+  /alpha/maws/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get maw by unique ID
+      operationId: get-alpha-maw
+      x-internal: true
+      tags:
+        - Maws (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaMawGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        mobileNumber: '6381789801234'
+                        countryCode: PH
+                        templateId: mawTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - date: '2021-04-14'
+                          level: '2'
+                          source: seat
+                          duration: '10'
+                          platformId: 5b79399a68524234bb0ead472648282d
+                        - date: '2021-03-14'
+                          level: '3'
+                          source: sms
+                          duration: null
+                          platformId: 5b79399a68524234bb0ead472648282d
   /identities:
     get:
       summary: List Identities
@@ -12086,6 +12459,271 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/BetaSignal'
+    AlphaFootprintItem:
+      type: object
+      required:
+        - name
+        - value
+        - valueType
+      properties:
+        name:
+          type: string
+          description: A unique name for the item.
+        value:
+          type: string
+          description: The value associated with the item.
+        valueType:
+          type: string
+          enum:
+            - STRING
+            - NUMBER
+            - BOOLEAN
+    AlphaFootprint:
+      type: object
+      required:
+        - id
+        - createdAt
+        - status
+        - requestMeta
+      properties:
+        id:
+          type: string
+          description: The unique ID for the Alpha Footprint.
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        status:
+          type: string
+          description: The current status of the Footprint.
+          enum:
+            - PROCESSING
+            - ERROR
+            - COMPLETED
+        resultCode:
+          type: string
+          description: The final result of the Footprint.
+          enum:
+            - SUCCESS
+            - NO_DATA
+            - SYSTEM_ERROR
+            - SERVICE_UNAVAILABLE
+        resultMessage:
+          type: string
+          description: A detailed description of the final result of the Footprint.
+        requestMeta:
+          type: object
+          properties:
+            emailAddress:
+              type: string
+              description: The email address of the subject provided in the request.
+              example: some@email.com
+            templateId:
+              type: string
+              description: >-
+                Generated internally by Smile. Customers should request the
+                specific templateId from Smile.
+              example: footprintTpl-xxxxxxxxxxxxxxx
+            consent:
+              $ref: '#/components/schemas/Consent'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AlphaFootprintItem'
+    AlphaFootprintListResponse:
+      title: Alpha Footprint List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/AlphaFootprint'
+    AlphaFootprintPostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - emailAddress
+      properties:
+        emailAddress:
+          type: string
+          description: The email address of the subject. It must be a valid email address.
+          example: some@email.com
+        templateId:
+          type: string
+          description: >-
+            Generated internally by Smile. Customers should request the specific
+            templateId from Smile.
+          example: footprintTpl-xxxxxxxxxxxxxxx
+        consent:
+          $ref: '#/components/schemas/Consent'
+    AlphaFootprintPostResponse:
+      title: Alpha Footprint Post Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/AlphaFootprint'
+    AlphaFootprintGetResponse:
+      title: Alpha Footprint Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/AlphaFootprint'
+    AlphaMawPostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - mobileNumber
+        - countryCode
+      properties:
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            639178912345, and no leading zeros
+          example: '639178902345'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: >-
+            Generated internally by Smile. Customers should request the specific
+            templateId from Smile.
+          example: mawTpl-xxxxxxxxxxxxxxx
+        consent:
+          $ref: '#/components/schemas/Consent'
+    AlphaMawItem:
+      type: object
+      required:
+        - platformId
+        - source
+        - date
+        - level
+      properties:
+        date:
+          $ref: '#/components/schemas/RefDate'
+        level:
+          type: string
+          description: >-
+            The level of the item. 1 - whitelist 2 - secondary whitelist, 3 -
+            normal, 4 - greylist, 5 - blacklist
+        platformId:
+          type: string
+          description: Unique ID for the platform.
+        duration:
+          type: string
+          description: The duration of the item. It will have value if source is seat.
+        source:
+          type: string
+          description: 'The source of the item. Possible values are: seat, voice, sms.'
+    AlphaMaw:
+      type: object
+      required:
+        - id
+        - createdAt
+        - status
+        - requestMeta
+      properties:
+        id:
+          type: string
+          description: The unique ID for the Alpha Maw.
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        status:
+          type: string
+          description: The current status of the Maw.
+          enum:
+            - PROCESSING
+            - ERROR
+            - COMPLETED
+        resultCode:
+          type: string
+          description: The final result of the Maw.
+          enum:
+            - SUCCESS
+            - NO_DATA
+            - SYSTEM_ERROR
+            - SERVICE_UNAVAILABLE
+        resultMessage:
+          type: string
+          description: A detailed description of the final result of the Maw.
+        requestMeta:
+          $ref: '#/components/schemas/AlphaMawPostRequest'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AlphaMawItem'
+    AlphaMawListResponse:
+      title: Alpha Maw List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/AlphaMaw'
+    AlphaMawPostResponse:
+      title: Alpha Maw Post Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/AlphaMaw'
+    AlphaMawGetResponse:
+      title: Alpha Maw Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/AlphaMaw'
     Identity:
       type: object
       title: Identity
