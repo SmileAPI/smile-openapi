@@ -34,7 +34,7 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
 
 您可以使用 [Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link) 轻松注册您的 webhook。登录后，导航至 [**Webhooks** 部分](https://portal.getsmileapi.com/webhooks?utm_source=docs&utm_medium=internal_link) ，点击 **Add New Webhook** 按钮，添加新的 webhook。
 
-![portal-webhooks.png](../../../../assets/images/portal-webhooks.png)
+![portal-webhooks.png](https://files.readme.io/9001666064436e1833dae7d587ba336f2b51eb3778c050b00f3a0b482b0d106d-portal-webhooks.png)
 
 提供以下详细信息：
 

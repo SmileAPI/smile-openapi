@@ -27,6 +27,6 @@ Basic authentication is a simple authentication scheme built into the HTTP proto
 
 Upon signup, you will have instant and free access to test on our Sandbox environment. If you need Production environment access, [contact us](https://www.getsmileapi.com/contact-us).
 
-![where-to-find-api-keys.png](../../../assets/images/where-to-find-api-keys.png)
+![where-to-find-api-keys.png](https://files.readme.io/834b7582dbcdf49bf523958d5a7b33793990041654508b6af5fe6e29e24cfc10-where-to-find-api-keys.png)
 
 You may click on the Copy icon next to your API Key and Secret to easily copy it to your computer clipboard.

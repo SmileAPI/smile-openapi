@@ -3262,6 +3262,15 @@ paths:
     post:
       summary: Create Footprint
       operationId: create-alpha-footprint
+      description: >-
+        Create a Footprint object. This endpoint requires the input parameters
+        `consent`, `emailAddress`, and `templateId`, all of which are mandatory.
+        The `templateId` is fixed as
+        `footprintTpl-61e10d070e07a4ea96e9430668d4bb9f`. When in sandbox mode
+        and using the test email address `sample@smileapi.net`, mock items will
+        be returned along with a `resultCode` of `SUCCESS`. For any other valid
+        email addresses, the `resultCode` will be `NO_DATA` and no items will be
+        returned.
       tags:
         - Footprints (Alpha)
       x-internal: true
@@ -3447,6 +3456,15 @@ paths:
     post:
       summary: Create Maw
       operationId: create-alpha-maw
+      description: >-
+        Create a Maw object. This endpoint requires the input parameters
+        `consent`, `mobileNumber`, `countryCode`, and `templateId`, all of which
+        are mandatory. The `templateId` is fixed as
+        `mawTpl-bfc93eb72d24860bf62429a1dd06708d`. When in sandbox mode and
+        using the test mobile number `639171234567` and countryCode `PH`, mock
+        items will be returned along with a `resultCode` of `SUCCESS`. For any
+        other valid mobile number and countryCode, the `resultCode` will be
+        `NO_DATA` and no items will be returned.
       tags:
         - Maws (Alpha)
       x-internal: true

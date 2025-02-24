@@ -27,6 +27,6 @@ slug: about-our-api
 
 注册后，您可以免费访问我们的 Sandbox mode 进行测试。如果您需要 Production mode 的访问权限，请 [联系我们](https://www.getsmileapi.com/contact-us?utm_source=docs&utm_medium=internal_link) 。
 
-![where-to-find-api-keys.png](../../../assets/images/where-to-find-api-keys.png)
+![where-to-find-api-keys.png](https://files.readme.io/834b7582dbcdf49bf523958d5a7b33793990041654508b6af5fe6e29e24cfc10-where-to-find-api-keys.png)
 
 您可以通过点击 API Key 和 Secret 旁边的复制图标，轻松将其复制到电脑剪贴板。
