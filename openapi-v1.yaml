@@ -3651,6 +3651,197 @@ paths:
                           source: sms
                           duration: null
                           platformId: 5b79399a68524234bb0ead472648282d
+  /alpha/blacklists:
+    post:
+      summary: Create Blacklist
+      operationId: create-alpha-blacklist
+      description: >-
+        Create a Blacklist object. This endpoint requires input parameters
+        `consent`, `mobileNumber`, `templateId`, and `countryCode`. If
+        templateId is null, the system uses the default value
+        `blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e`. If countryCode is not
+        provided, the default value `PH` will be used. In sandbox mode: When
+        using test mobile number `639559991234` with country code PH, mock data
+        are returned with resultCode: `SUCCESS` and hit: `true`. For all other
+        valid mobile number and country code combinations, the response includes
+        resultCode: SUCCESS and hit: false
+      tags:
+        - Blacklists (Alpha)
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaBlacklistPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      requestMeta:
+                        mobileNumber: '6381789801234'
+                        countryCode: PH
+                        applicationDate: '2021-04-14'
+                        templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      result:
+                        hit: true
+                        dates:
+                          - '2021-04-14'
+                          - '2021-03-14'
+                          - '2021-02-14'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlphaBlacklistPostRequest'
+            examples:
+              Example:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                  templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                  mobileNumber: '6381789801234'
+                  applicationDate: '2021-04-14'
+                  countryCode: PH
+    get:
+      summary: List Blacklists
+      operationId: list-alpha-blacklists
+      tags:
+        - Blacklists (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaBlacklistListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
+                          createdAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: ''
+                          resultMessage: ''
+                          requestMeta:
+                            mobileNumber: '6381789801234'
+                            countryCode: PH
+                            applicationDate: '2021-04-14'
+                            templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          result:
+                            hit: true
+                            dates:
+                              - '2021-04-14'
+                              - '2021-03-14'
+                              - '2021-02-14'
+      description: List all Blacklists.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: blacklistId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter blacklists by a specific Blacklist ID.
+        - name: mobileNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter blacklists by a specific mobile number.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: >-
+            Filter blacklists by the start date of the request range
+            (YYYY-MM-DD).
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter blacklists by the end date of the request range (YYYY-MM-DD).
+  /alpha/blacklists/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Blacklist
+      description: Get Blacklist by unique ID.
+      operationId: get-alpha-blacklist
+      x-internal: true
+      tags:
+        - Blacklists (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaBlacklistGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        mobileNumber: '6381789801234'
+                        countryCode: PH
+                        applicationDate: '2021-04-14'
+                        templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      result:
+                        hit: true
+                        dates:
+                          - '2021-04-14'
+                          - '2021-03-14'
+                          - '2021-02-14'
   /identities:
     get:
       summary: List Identities
@@ -12746,6 +12937,127 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/AlphaMaw'
+    AlphaBlacklistPostRequest:
+      type: object
+      required:
+        - consent
+        - mobileNumber
+      properties:
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            639178912345, and no leading zeros
+          example: '639178902345'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: >-
+            Generated internally by Smile. Customers should request the specific
+            templateId from Smile. If this value is null, Smile will use the
+            default value `blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e`.
+          example: blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e
+          default: blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e
+        applicationDate:
+          type: string
+          format: date
+          description: >-
+            Smile will query the data that before this date. The format is
+            yyyy-MM-dd.
+          example: '2023-01-21'
+        consent:
+          $ref: '#/components/schemas/Consent'
+    AlphaBlacklist:
+      type: object
+      required:
+        - id
+        - createdAt
+        - status
+        - requestMeta
+      properties:
+        id:
+          type: string
+          description: The unique ID for the Alpha Blacklist.
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        status:
+          type: string
+          description: The current status of the Blacklist.
+          enum:
+            - PROCESSING
+            - ERROR
+            - COMPLETED
+        resultCode:
+          type: string
+          description: The final result of the Blacklist.
+          enum:
+            - SUCCESS
+            - SYSTEM_ERROR
+            - SERVICE_UNAVAILABLE
+        resultMessage:
+          type: string
+          description: A detailed description of the final result of the Blacklist.
+        requestMeta:
+          $ref: '#/components/schemas/AlphaBlacklistPostRequest'
+        result:
+          type: object
+          title: Blacklist Result
+          properties:
+            hit:
+              type: boolean
+              description: Whether the Blacklist is a hit or not.
+            dates:
+              type: array
+              description: The list of dates.
+              items:
+                $ref: '#/components/schemas/RefDate'
+    AlphaBlacklistListResponse:
+      title: Alpha Blacklist List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/AlphaBlacklist'
+    AlphaBlacklistPostResponse:
+      title: Alpha Blacklist Post Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/AlphaBlacklist'
+    AlphaBlacklistGetResponse:
+      title: Alpha Blacklist Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/AlphaBlacklist'
     Identity:
       type: object
       title: Identity
