@@ -1,7 +1,7 @@
 ---
 title: Signals(Alpha)
 excerpt: ''
-category: 66611ec162e8c700572c4be3
+category: 6294c158bef44e0098ed88a1
 slug: signals-alpha
 ---
 

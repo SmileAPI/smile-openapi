@@ -1,7 +1,7 @@
 ---
 title: Insights
 excerpt: ''
-category: 631090d0cbc5350036d31763
+category: 6294c158bef44e0098ed88a1
 slug: insights
 ---
 

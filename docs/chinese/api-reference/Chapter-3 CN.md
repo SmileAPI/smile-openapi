@@ -1,374 +1,221 @@
 ---
-title: 了解 API 
+title: 事件通知
 excerpt: ""  
 category: 62ce2a159aafea009af30da8
 slug: chapter-3-cn
 ---
 
-
-
 <!-- focus: false -->
-![Authentication](https://img.icons8.com/ios-glyphs/50/000000/key--v1.png)
+![Webhooks](https://img.icons8.com/ios-filled/50/000000/webhook.png)
 
-## 验证
+## Webhook（网络钩子）
 
-Smile API 使用 HTTP Basic Auth。一组称为 API key 和 API secret 的凭证与您的开发者账户相关联，可用于访问 Smile Network。要检索您的凭证，只需注册并访问[您在 Developer Portal 中的 API key](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link) 。
+当我们服务器中发生与您的环境相关的事件时，Smile 会使用 Webhook 实时通知您的应用程序。
 
-想要从我们的 API 检索数据，您应该在 Authorization header 中包含单词 ``Basic`` ，后跟一个空格和 base64-encoded （非加密）的字符串 ``apikey:apisecret`` 或 ``Authorization: Basic {base64 encoded string}`` 。
+当创建新用户、成功连接账户、上传就业文件、发送邀请，或者添加任何新类型的数据（如用户身份、收入、就业等）时，都会发送事件通知。您可以在我们的 [Webhook 参考页面](/reference/webhooks) 查看可订阅的可用事件列表。
 
----
-<!-- focus: false -->
-![Modes](https://img.icons8.com/material-rounded/50/000000/switch-on.png)
+这些通知通过安全通道发送，使用来自静态 IP 地址的 HTTPS，数据以 JSON 格式传输。同时还会附带一个签名，供您验证负载的真实性。
 
-## 运行模式
+> 📘 注意
+>
+> 我们的静态 IP 地址是 **18.142.61.230**。您可以在后端将此 IP 地址列入白名单，以确保您的应用程序能收到来自 Smile 的事件通知。
 
-API 有两种模式，可以通过向不同的基本 URL 发送请求来访问。您被授予的每个 API 客户端密钥只能用于单一模式。 例如：授予访问 Sandbox 模式的 API 客户端 ID 和 secret 只能在该模式下使用。
+Webhook 对于获取异步事件的通知特别有用，您可以在这些事件发生时在后端系统中执行操作，或者知道何时刷新前端系统以显示新数据。
 
-| 模式        | 主页                                        | 详情 |
-|-------------|---------------------------------------------|-------------|
-| Sandbox     | https://sandbox.smileapi.io/v1     |     使用 Sandbox 模式来构建和测试您的集成。在这种模式下，您必须使用测试账号向就业数据提供商进行身份验证。 所有 API 都将返回模拟数据，并且不返回实际的用户数据。 |
-| Production  | https://open.smileapi.io/v1  |      Production 模式用于与您的集成一起上线。您的最终用户将使用他们的真实账号向他们的就业数据提供商进行身份验证。 API 返回真实数据，在这种模式下，所有 API 调用都是计费的。  |
+有关详细的实施步骤，请访问我们的 [Webhook 参考页面](/reference/webhooks) 了解更多信息。
 
----
-<!-- focus: false -->
-![Versions](https://img.icons8.com/ios-glyphs/50/000000/versions.png)
+## 回调
 
-## 版本控制
-该版本包含在 URI 路径中。 例如：``https://open.smileapi.io/v1/``
+Smile 还使用回调来实时通知您的应用程序在您的环境中发生的与前端相关的事件。
 
-我们使用的版本约定是 **1.2.3** 格式，其中**1** 是主要版本，**2** 是次要版本，**3**是补丁更新：
+通过回调，一旦您的用户使用 Wink Widget 执行了受支持的操作，您就可以做出反应或执行其他操作。监听账户连接、Token过期或关闭 Widget 等事件，可以帮助您的原生应用程序管理并响应用户的操作。
 
-- **主要版本：** URI 中使用的版本，表示对 API 的重大更改。虽然我们试图保持更改向后兼容，但在某些情况下，我们需要引入可能会改变现有行为或功能的更改。这些更改将在不同 URI 下可访问的 API 版本中实现（例如 ``https://open.smileapi.io/v2/``）  。您可以继续使用现有 URI 以避免破坏现有集成，但为了使用新功能，您必须更新应用程序以指向新版本和 URI。
-- **次要版本和补丁版本：** 这些对客户端是透明的，我们在内部使用它来进行向后兼容的更新。当我们发布次要更新或补丁时，您不需要更新您的集成。我们将通过我们的变更日志和电子邮件传达这些信息，以便您了解这些变更中的任何一项。
+### 回调列表
 
+| 回调                   | 参数                                                               | 描述                              |
+|:---------------------|:-----------------------------------------------------------------|:--------------------------------|
+| `onAccountCreated`   | `accountId`, `userId`, `providerId`                              | 账户链接过程启动时触发                     |
+| `onAccountConnected` | `accountId`, `userId`, `providerId`                              | 账户链接过程成功完成时触发                   |
+| `onAccountRemoved`   | `accountId`, `userId`, `providerId`                              | 用户撤销账户访问权限时触发                   |
+| `onTokenExpired`     | -                                                                | 链接Token过期时触发                    |
+| `onClose`            | `reason`                                                         | 用户关闭 Wink Widget 时触发            |
+| `onAccountError`     | `accountId`, `userId`, `providerId`, `errorCode`                 | 用户账户链接出现错误时触发                   |
+| `onUploadsCreated`   | `uploads`, `userId`                                              | 用户通过 Wink Widget 提交要上传的文件时触发    |
+| `onUploadsRemoved`   | `uploads`, `userId`                                              | 用户通过 Wink Widget 删除/撤销已上传的文件时触发 |
+| `onUIEvent`          | `eventName`, `eventTime`, `mode`, `userId`, `account`, `archive` | 向用户显示新的 Widget 页面时触发。见下面的页面列表   |
 
----
-<!-- focus: false -->
-![Alert](https://img.icons8.com/ios-glyphs/50/000000/error--v1.png)
+### 事件示例
 
-## 错误信息
+#### onAccountCreated
 
-| HTTP 状态码                     | 状态描述                                         | Smile 代码               | 信息                                   |
-|------------------------------|----------------------------------------------|------------------------|--------------------------------------|
-| 400 - Bad Request            | 由于语法不正确，服务器无法理解该请求。客户端不应该在没有修改的情况下重复请求。      | INVALID_CREDENTIALS    | 由于参数不正确，服务器无法接受该请求。                  |
-| 400 - Bad Request            | 由于语法不正确，服务器无法理解该请求。客户端不应该在没有修改的情况下重复请求。      | INVALID_PARAMETERS     | 您的请求中发送了缺失或无效的参数。                    |
-| 401 - Unauthorized           | 表示请求需要用户认证信息。客户端可以使用合适的 Authorization 头域重复请求 | INVALID_TOKEN          | 您提供的 token 无效或已过期。                   |
-| 403 - Forbidden              | 未经授权的请求。客户端没有内容的访问权限。与 401 不同，客户端的身份为服务器所知。  | UNAUTHORIZED_ACCESS    | 您无权访问此资源。                            |
-| 404 - Not Found              | 服务器找不到请求的资源。                                 | MISSING_RESOURCE       | 您提供的资源找不到或不可用。                       |
-| 415 - Unsupported Media Type | 内容格式未定义或格式不受支持。                              | UNSUPPORTED_TYPE       | 请为您的请求指定有效的内容类型。                     |
-| 429 - Too Many Requests      | 在给定时间内发送的请求过多。                               | REQUEST_LIMIT_EXCEEDED | 您已超出此资源的速率限制。请稍后再试或联系支持人员。           |
-| 500 - Internal Server Error  | 服务器遇到了一个意外情况，导致它无法完成请求。                      | SERVER_ERROR           | 我们的系统目前遇到问题。请稍后再试或联系支持人员。            |
-| 501 - Not Implemented        | 服务器不支持 HTTP 方式，无法处理。                         | UNSUPPORTED_METHOD     | 此资源不支持您使用的 HTTP 方法。                  |
-| 503 - Service Unavailable    | 服务器尚未准备好处理请求。                                | SERVER_UNAVAILABLE     | 服务器无法处理请求。它可能已关闭或正在维护中。请稍后再试或联系支持人员。 |
-| 504 - Gateway Timeout        | 服务器无法及时响应。                                   | TIME_LIMIT_EXCEEDED    | 服务器无法在分配的时间内给出响应。 请稍后再试或联系支持人员。      |
+当用户通过发送登录凭证等方式启动账户链接过程时触发。此操作不会显示用户的登录凭证。
 
----
-<!-- focus: false -->
-![JSON](https://img.icons8.com/glyph-neue/50/000000/json.png)
+```javascript
+onAccountCreated: ({
+    accountId,
+    userId,
+    providerId
+}) => {
+    console.log('Account created: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
+},
+```
 
-## 响应数据
+| Property   | Type   | 描述                    |
+|:-----------|:-------|:----------------------|
+| accountId  | string | 用户试图连接的账户 ID          |
+| userId     | string | 终端用户在 Smile 网络上的用户 ID |
+| providerId | string | 用户试图连接的提供商 ID         |
 
-所有响应都以 JSON 编码并返回以下属性：
+#### onAccountConnected
 
-- **code**
-- **message**
-- **requestId**
-- **data**
+当账户链接过程成功完成，并且向用户显示连接成功屏幕时触发。
 
-如果响应是单个对象，则数据属性的值就是该对象。 例如，获取 Identity API 将返回以下内容，属性 ``data`` 返回单个身份对象
+```javascript
+onAccountConnected: ({
+    accountId,
+    userId,
+    providerId
+}) => {
+    console.log('Account connected: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
+},
+```
 
-```json
-{
-    "code": "OK",
-    "message": "Success!",
-    "requestId": "58be58d8-fdc9-4834-a5d2-711fb7386a0c",
-    "data": {
-      "id": "i-123abc456def789abc123def456abc78",
-      "fullName": "George Cimafranca Palomero, Jr",
-      "firstName": "George",
-      "middleName": "Cimafranca",
-      "lastName": "Palomero",
-      "suffix": "Jr",
-      "gender": "Male",
-      "dob": "1970-08-24",
-      "maritalStatus": "Married",
-      "countryResidence": "PH",
-      "citizenship": "Citizen",
-      "photoUrl": "https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg",
-      "referenceId": null,
-      "profileUrl": null,
-      "emails": [
-        {
-          "address": "gpalomero1234@smileapi.io",
-          "type": "Primary"
-        }
-      ],
-      "phones": [
-        {
-          "number": "+639559991234",
-          "type": "Mobile"
-        }
-      ],
-      "socialProfiles": [
-        {
-          "socialUrl": "https://www.facebook.com/gpalomero1234",
-          "type": "Facebook"
-        }
-      ],
-      "addresses": [
-        {
-          "fullAddress": "12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH",
-          "line1": "12 Maybunga St",
-          "line2": "Barangay Paraiso",
-          "city": "Pasig City",
-          "region": "NCR",
-          "zip": "1600",
-          "country": "PH",
-          "latitude": "14.573454",
-          "longitude": "121.085042",
-          "type": "Primary"
-        }
-      ],
-      "metadata": {
-        "createdAt": "2022-08-19T07:29:08Z",
-        "itemCreatedAt": "2022-08-24T05:24:37Z",
-        "sourceId": "a-123abc456def789abc123def456abc78",
-        "sourceType": "ACCOUNT",
-        "userId": "tenantId-123abc456def789abc123def456abc78",
-        "providerId": "abccorp"
-        }
-    }
+| Property   | Type   | 描述                    |
+|:-----------|:-------|:----------------------|
+| accountId  | string | 用户已连接的账户 ID           |
+| userId     | string | 终端用户在 Smile 网络上的用户 ID |
+| providerId | string | 用户已连接的提供商 ID          |
+
+#### onAccountRemoved
+
+当用户撤销账户访问权限时触发。
+
+```javascript
+onAccountRemoved: ({
+    accountId,
+    userId,
+    providerId
+}) => {
+    console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
 }
 ```
 
-如果结果与从用户帐户检索的数据相关，则还会返回元数据对象，其中包含有关响应的更多信息，例如：
+| Property   | Type   | 描述                    |
+|:-----------|:-------|:----------------------|
+| accountId  | string | 用户已移除的账户 ID           |
+| userId     | string | 终端用户在 Smile 网络上的用户 ID |
+| providerId | string | 用户已移除账户的提供商 ID        |
 
-- **createdAt**
-- **itemCreatedAt**
-- **sourceId**
-- **sourceType**
-- **userId**
-- **providerId**
+#### onTokenExpired
 
-如果响应是列表或集合，则 data 属性的值是对象数组。 例如，List Transactions API 将返回一个 Transactions 集合：
+当链接Token过期时触发。您可以调用 [刷新Token API](/reference/create-token-1) 来刷新用户的Token。
 
-```json
-{
-  "code": "OK",
-  "message": "Success!",
-  "requestId": "508a2074-9229-4d59-b716-bb6b4221e196",
-  "data": {
-    "nextCursor": null,
-    "items": [
-      {
-        "id": "t-f4b8293631c84e759d30afebb7d98678",
-        "date": "2021-08-06",
-        "description": "Order revenue",
-        "currency": "PHP",
-        "amount": 222.0000,
-        "referenceId": "Order ID-945485798532",
-        "metadata": {
-          "createdAt": "2022-02-22T05:26:09Z",
-          "itemCreatedAt": "2022-02-22T05:36:09Z",
-          "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
-          "sourceType": "ACCOUNT",
-          "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
-          "providerId": "upwork"
-        }
-      },
-      {
-        "id": "t-281ad47efdc043e796e128ee5bdf50c3",
-        "date": "2021-08-07",
-        "description": "Order revenue",
-        "currency": "PHP",
-        "amount": 114.0000,
-        "referenceId": "Order ID-023485780332",
-        "metadata": {
-          "createdAt": "2022-02-22T05:26:09Z",
-          "itemCreatedAt": "2022-02-22T05:36:09Z",
-          "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
-          "sourceType": "ACCOUNT",
-          "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
-          "providerId": "upwork"
-        }
-      },
-      {
-        "id": "t-6853edd863514eae98b18abf56764fc3",
-        "date": "2021-08-08",
-        "description": "Platform fee",
-        "currency": "PHP",
-        "amount": -25.5000,
-        "referenceId": "Order ID-934585780080",
-        "metadata": {
-          "createdAt": "2022-02-22T05:26:09Z",
-          "itemCreatedAt": "2022-02-22T05:36:09Z",
-          "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
-          "sourceType": "ACCOUNT",
-          "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
-          "providerId": "upwork"
-        }
-      },
-      {
-        "id": "t-9409019eb2f141f898e73775be4c6600",
-        "date": "2021-04-04",
-        "description": "Order revenue",
-        "currency": "PHP",
-        "amount": 220.0000,
-        "referenceId": "Order ID-934587514002",
-        "metadata": {
-          "createdAt": "2022-02-22T05:26:09Z",
-          "itemCreatedAt": "2022-02-22T05:36:09Z",
-          "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
-          "sourceType": "ACCOUNT",
-          "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
-          "providerId": "upwork"
-        }
-      },
-      {
-        "id": "t-a402ac196f404ab5bf1d148c5685624f",
-        "date": "2021-08-09",
-        "description": "Platform fee",
-        "currency": "PHP",
-        "amount": -20.0000,
-        "referenceId": "Order ID-156987512999",
-        "metadata": {
-          "createdAt": "2022-02-22T05:26:09Z",
-          "itemCreatedAt": "2022-02-22T05:36:09Z",
-          "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
-          "sourceType": "ACCOUNT",
-          "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
-          "providerId": "upwork"
-        }
-      },
-      {
-        "id": "t-d318e3b6ad7845fda960a5d5add60bcb",
-        "date": "2021-08-10",
-        "description": "",
-        "currency": "PHP",
-        "amount": 59.0000,
-        "referenceId": "Order ID-664426992012",
-        "metadata": {
-          "createdAt": "2022-02-22T05:26:09Z",
-          "itemCreatedAt": "2022-02-22T05:36:09Z",
-          "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
-          "sourceType": "ACCOUNT",
-          "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
-          "providerId": "upwork"
-        }
-      },
-      {
-        "id": "t-b1b8412a02e5482da260c7dbb045f455",
-        "date": "2021-08-12",
-        "description": "Platform fee",
-        "currency": "PHP",
-        "amount": -20.0000,
-        "referenceId": "Order ID-234728692099",
-        "metadata": {
-          "createdAt": "2022-02-22T05:26:09Z",
-          "itemCreatedAt": "2022-02-22T05:36:09Z",
-          "sourceId": "0e0e97100eec49e8b954e9e419d527fe",
-          "sourceType": "ACCOUNT",
-          "userId": "smilejan-329789936388493f831ad0edd1f8bc8c",
-          "providerId": "upwork"
-        }
-      }
-    ]
-  }
+```javascript
+onTokenExpired: () => {
+    console.log('Token expired');
 }
 ```
 
----
-<!-- focus: false -->
-![Parameters](https://img.icons8.com/windows/50/000000/null-symbol.png)
+#### onClose
 
-## 空值
+当用户通过关闭图标或退出按钮关闭 Wink Widget 时触发。
 
-有时您可能会看到 ``null`` 作为 API 响应中给定属性的返回值。这可能发生在以下情况：
+`reason` 参数可以是以下任意值：
 
-- 数据提供商没有该属性的字段。例如，它没有与 Identities 数据相关的“公民身份”或“居住国”字段。
-- 在其他情况下，该字段由数据提供商支持，但它是一个可选字段，未启用、隐藏或仅在用户共享信息时不存在的某些条件下显示。 例如，如果他们未在其就业平台中进行帐户验证或 KYC 流程，则可能无法获得其手机或地址等详细信息。
+- `close` - 用户点击页面右上角的关闭图标关闭 SDK
+- `exit` - 用户点击成功连接屏幕上的 “完成” 按钮关闭 SDK
+- `error` - 用户点击错误页面上的退出按钮关闭 SDK
 
----
-<!-- focus: false -->
-![ISO](https://img.icons8.com/ios/50/000000/iso.png)
-
-## 公约和标准
-
-为了帮助进行日志记录和故障排除，我们在向您返回数据时应用了一些约定。
-
-| 资源属性 | 前缀 | 样例 | 详情                                |
-| -------------------| ------ | ------- |-----------------------------------|
-| User ID | ``tenantId-`` | smile1234-a5b39dfe76174defb353d7e97a88a85e | 在我们的系统中，每个用户 ID 都有一个与其租户 ID 相关的前缀 |
-| Identity ID | ``i-`` | i-45567e7689be49d5bc052a6e4a3805e6 | 身份相关信息                            |
-| Transaction ID | ``t-`` | t-11de60721342404daa35f60d2875f37b | 交易相关信息                            |
-| Ratings ID | ``r-`` | r-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 评级相关信息                            |
-| Documents ID | ``d-`` | d-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 文件相关信息                            |
-| Employments ID | ``e-`` | e-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 就业相关信息                            |
-| Incomes ID | ``inc-`` | inc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 收入相关信息                            |
-| Estimated Incomes ID <br>*(抢先试用版)* | ``einc-`` | einc-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 预估收入相关信息                          |
-| Contributions ID | ``con-`` | con-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 缴费相关信息                            |
-| Archives ID | ``u-`` | u-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 上传的文件可用作存档                        |
-| Invites ID | ``iv-`` | iv-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 发出的邀请                             |
-| Invite Templates ID | ``ivt-`` | ivt-ff4723f9af5f4dc5b6a22ea27fb3c8a1 | 已创建的邀请模板                          |
-
-为了标准化数据格式，我们使用普遍接受的标准来格式化数据，包括：
-
-| 数据类型 | 格式 | 样例 | 标准 |
-| -----| ------ | --------| -------- |
-| date | yyyy-MM-dd | 2021-04-21 | ISO 8601 full date | 
-| date-time | yyyy-MM-ddTHH:mm:ssZ | 2021-04-21T08:25:05Z | ISO 8601 full time |
-| month | yyyy-MM | 2021-04 | ISO 8601 month |
-| phone numbers | + (country code) (local area code) (phone number) | +65281234567 | E.164 |
-| country codes | ISO alpha-2 | 'SG' for Singapore | ISO 3166 |
-| currencies | ISO alpha-3 | 'USD' for US Dollars | ISO 4217 |
-
----
-<!-- focus: false -->
-![Pagination](https://img.icons8.com/windows/50/000000/choose-page.png)
-
-## 列出结果和分页
-
-资源或 API 可以返回一个列表或对象集合。 默认情况下，我们一次返回 10 个，最多返回 150 个。 您可以通过传递大小参数来限制结果。 有关过滤或限制结果的更多信息，请参阅下面的查询参数。
-
-当 Smile 返回一个集合时，我们也会返回一个名为 ``nextCursor`` 的值。 请参阅下面的示例：
-```json
-{
-    "code": "OK",
-    "message": "Success!",
-    "requestId": "17bc5a84-2468-47f6-9d3c-05b5257befa5",
-    "data": {
-        "nextCursor": "20",
-        "items": ["..."]
-    }
+```javascript
+onClose: ( reason ) => {
+    console.log('Widget closed. Reason: ', reason )
 }
 ```
 
-要转到集合中的下一页，只需在查询 API 时附加 ``cursor`` 参数，使用从上一个查询返回的 ``nextCursor`` 值转到集合中的下一页。 有关游标和其他查询参数的更多信息，请参见下文。
+#### onAccountError
 
----
-<!-- focus: false -->
-![Parameters](https://img.icons8.com/ios-glyphs/50/000000/filled-filter.png)
+当用户账户链接出现错误时触发。完整的错误列表可以在 [获取账户 API 参考](/reference/get-account-1) 中查看。
 
-## 查询参数
+```javascript
+onAccountError: ({
+    accountId,
+    userId,
+    providerId,
+    errorCode
+}) => {
+    console.log('Account error: ', accountId, ' User ID:', userId, ' Provider ID:', providerId, 'Error Code:', errorCode)
+}
+```
 
-可以根据不同的查询参数过滤或限制返回对象列表或对象集合的 API 。下面是一些例子：
+| Property   | Type   | 描述                    |
+|:-----------|:-------|:----------------------|
+| accountId  | string | 用户试图连接的账户 ID          |
+| userId     | string | 终端用户在 Smile 网络上的用户 ID |
+| providerId | string | 用户试图连接的提供商 ID         |
+| errorCode  | string | 错误的错误代码               |
 
-| 参数 | 详情 |
-|----------------------|----------------------|
-| size | 您希望在集合中返回的对象数。请参阅上面有关默认值的更多信息。|
-| cursor |使用上一页的过滤器值来确定下一组项目。请参阅上面有关分页的更多信息。|
-| userId |按关联的 userId 过滤结果。 |
-| sourceId | 对于源相关数据，根据关联的 sourceId 过滤结果。 |
-| startDate |对于具有日期属性的数据，能够按日期范围过滤结果。 |
-| endDate | 对于具有日期属性的数据，能够按日期范围过滤结果。 |
+#### onUploadsCreated
 
-然而，一些资源具有与之关联的唯一查询参数。 查看每个API中的文档以了解更多信息。
+当用户通过 Wink Widget 提交要上传的文件时触发。
 
-<!-- focus: false -->
-![Rate Limits](https://img.icons8.com/ios-filled/50/000000/traffic-light.png)
+```javascript
+onUploadsCreated: ({ uploads, userId }) => {
+    console.log('Uploads: ', uploads, ' User ID:', userId);
+}
+```
 
-## 速率限制
+| Property | Type   | 描述                    |
+|:---------|:-------|:----------------------|
+| uploads  | object | 包含有关上传的具体信息           |
+| userId   | string | 终端用户在 Smile 网络上的用户 ID |
 
-Smile 限制了对每个 API 的调用量，以确保平台的稳定性和可用性。目前，我们的客户端对**每个 IP 地址最多只允许每秒 20 个请求**。这适用于所有 API 。连续发出过多请求的客户端将收到 HTTP 状态码 429 或请求过多的错误。
+#### onUploadsRemoved
 
-如要请求更高的限制，请联系 access@getsmileapi.com 。
+当用户通过 Wink Widget 删除/撤销已上传的文件时触发。
+
+```javascript
+onUploadsRemoved: ({ uploads, userId }) => {
+    console.log('Uploads: ', uploads, ' User ID:', userId);
+}
+```
+
+| Property | Type | 描述 |
+| :------- | :---- | :---- |
+| uploads | object | 包含有关上传的具体信息 |
+| userId | string | 终端用户在 Smile 网络上的用户 ID |
+
+#### onUIEvent
+
+每当向用户显示新的 Widget 页面时触发。
+
+```javascript
+onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
+    console.log('Event Name: ', eventName, ', Event Time: ', eventTime, ', mode: ', mode, ', User ID: ', userId, ', Account: ', account, ', Archive: ', archive);
+}
+```
+
+| Property  | Type   | 描述                                                                  |
+|:----------|:-------|:--------------------------------------------------------------------|
+| eventName | string | 事件名称，例如 `LoginPageOpened`                                           |
+| eventTime | string | 事件发生的时间                                                             |
+| mode      | string | 当前运行的 Wink Widget 模式，例如 `SANDBOX` 或 `PRODUCTION`                    |
+| userId    | string | 终端用户在 Smile 网络上的用户 ID                                               |
+| account   | object | 包含与事件相关的特定账户信息，例如 `providerId` 或 `accountId`。请注意，这些是 Smile 网络特定的 ID |
+| archive   | object | 包含与事件相关的特定存档信息，例如 `fileType`                                        |
+
+事件名称列表如下：
+
+| Event Name               | 描述                                          | 事件特定属性                |
+|:-------------------------|:--------------------------------------------|:----------------------|
+| ConsentPageOpened        | 用户打开同意页面                                    |                       |
+| ProviderListPageOpened   | 用户打开提供商列表页面                                 |                       |
+| LoginPageOpened          | 用户打开登录页面                                    | providerId            |
+| MfaPageOpened            | 用户打开多因素身份验证页面                               | providerId            |
+| ConnectSuccessPageOpened | 用户打开账户连接成功页面                                | providerId, accountId |
+| AccountRevokePageOpened  | 用户打开账户连接状态页面/撤销页面                           | providerId, accountId |
+| LoginOptionsPageOpened   | 用户打开替代登录选项页面                                |                       |
+| EmployerSurveyPageOpened | 用户打开雇主调查问卷页面                                |                       |
+| FileTypeListPageOpened   | 用户打开文档类型选择页面（例如，选择他们希望上传的文档类型，如社保记录、所得税记录等） |                       |
+| FileTypePageOpened       | 用户打开文档上传页面                                  |                       |
+| ArchiveSuccessPageOpened | 用户成功上传文件并打开成功页面                             |                       |
+| RevokeArchivePageOpened  | 用户打开存档状态页面/删除页面                             |                       |

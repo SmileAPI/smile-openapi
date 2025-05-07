@@ -1,7 +1,7 @@
 ---
 title: Intelligent Document Processing
 excerpt: ""  
-category: 66611ec162e8c700572c4be3
+category: 6294c0fd9494580032b22740
 slug: intelligent-document-processing
 ---
 

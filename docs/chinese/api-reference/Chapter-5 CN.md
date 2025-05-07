@@ -1,221 +1,79 @@
 ---
-title: 事件通知
+title: 文档处理
 excerpt: ''
 category: 62ce2a159aafea009af30da7
 slug: chapter-5-cn
 ---
 
+**Smile Snap** 是 Smile API 强大的文档处理产品，它既可以与 Wink Widget无缝集成，也可以作为独立 API 服务使用。Smile Snap 的自动分析功能可以从所得税文件和工资单中提取关键信息，如就业详情和收入数据，然后分析文档是否存在篡改迹象、计算不一致等问题。
+
+此功能消除了手动转录数据的需求，确保了验证过程的高效和无差错。这不仅提高了效率，还有助于创建更准确和全面的用户档案。
+
+如果用户无法使用在线验证方法，Smile Snap 还可以作为可靠的备用验证方法。如果主要验证方法遇到问题，用户可以提交相关文档，确保验证过程的稳健和安全。
+
+---
 <!-- focus: false -->
-![Webhooks](https://img.icons8.com/ios-filled/50/000000/webhook.png)
+![Checklist](https://img.icons8.com/ios/50/000000/checklist--v1.png)
+## 集成步骤
 
-## Webhooks
+在您的流程中实施 Smile API 的文档处理服务只需几个步骤：
 
-当我们的服务器中发生与您的环境相关的事件时，Smile 使用 webhooks 实时通知您的应用程序。
+1. **向 Smile API 提供文档**
 
-当创建一个用户，成功连接一个账号，上传一个就业文件，发送一个邀请时，或者当任何新类型的数据，如用户的身份，收入，就业等被添加时，事件通知将被发送。在我们的[Webhooks 参考页面](/reference/webhooks)中查看您可以订阅的可用事件列表。
+   > 有两种方式向 Smile API 提供文档或文件进行处理：
+   > 1. 使用 [Wink Widget SDK](/reference/chapter-4-cn#client-sdk) 快速集成到您的用户流程中。
+   > 2. 使用 [Archive API](/reference/archives) 对用户旅程进行更精细的控制。
 
-这些 webhooks 通过安全通道发送，使用来自静态 IP 地址的 HTTPS，数据以 JSON 格式发送。并带有一个签名，供您验证内容的真实性。
+2. **检索分析后的数据**
 
-> 📘 Note
+   > 一旦数据上传完成，我们的智能文档处理引擎会自动根据预期的文件类型对支持的文档类型进行检查和分类。
+   >
+   > 分类完成后，我们的引擎会解析文件，从文档中提取数据并进行相应的标记。每种文件类型会有不同的数据集合，并会反映在文档分析中。
+   >
+   > 分析完成后，存档数据负载将通过 Webhook 发送给您，或者您也可以直接调用存档 API。更多信息请参阅 API 文档。
+
+3. **对提取的数据进行验证**
+
+   > 我们目前正在努力将这些调用集成到 API 中，但您可以使用从*步骤 2* 中检索到的数据调用我们的 [Verification API](/reference/verification)，以验证您的验证对象的信息，如姓名和身份证号码。这为您提供了另一层保证，确保文档是有效的。
+
+<!-- ## 如何设置 -->
+<!-- TODO: 快速入门或类似内容 -->
+
+> 🚧 警告
 >
-> 我们的静态 IP 地址是 **18.142.61.230**。您可以在后端将此 IP 地址列入白名单，以确保您的应用程序收到来自 Smile 的事件通知。
+> SANDBOX模式下的存档仅返回特定的工资单。要在SANDBOX模式下测试存档，您可以在开发者门户中下载示例工资单，并通过 Wink Widget或 API 上传。在SANDBOX模式下上传其他文件将返回错误。
 
-Webhook 对于获取有关异步事件的通知非常有用，当这些事件发生时，它可以在您的后台系统中执行行动，或者知道何时刷新您的前端系统以显示新数据。
+<!-- ## 获取用户数据 -->
+<!-- ## 配置 -->
 
-关于详细的实施步骤，请访问我们的[Webhooks 参考页面](/reference/webhooks)了解更多信息。
+---
+<!-- focus: false -->
+![Event](https://img.icons8.com/ios/50/000000/important-event.png)
+## 事件通知
 
-## 回调
+当用户在 Wink Widget屏幕上操作时，用户执行的任何活动都会被捕获，这些活动要么用于更新模态窗口的消息和展示，要么发送给 Smile 以检索任何与源相关的数据。
 
-Smile 还使用回调来实时通知您的应用程序在您的环境中发生的与前端有关的事件。
+### 上传成功
 
-通过回调，一旦用户使用 Wink Widget 执行了被支持的动作，您就可以做出反应或执行其他动作。监听诸如账户连接、token 到期或关闭 Wink Widget 等事件，可以帮助您的本地应用程序管理并对用户的行为做出反应。
+如果用户能够通过扫描或拍摄的文档成功上传就业和收入数据，链接状态将更改为 "STARTED"。用户的上传状态可以随时通过 ``/archives`` 端点进行查询。捕获的事件示例包括：
 
-### 回调列表
+| Event       | 描述                                |
+|-------------|-----------------------------------|
+| STARTED     | 上传成功，已开始分析是否可以提取数据。               |
+| ANALYZED    | 分析完成，数据已成功提取（通过 OCR）并转换为 JSON 格式。 |
+| UNSUPPORTED | 上传的文件类型无法分析。无法自动提取数据。             |
+| ERROR       | 上传文件的分析过程中出现问题。                   |
+| REVOKED     | 用户撤销了共享上传文件中数据的权限。                |
 
-| 回调                   | 数据                                               | 详情                                |
-|:---------------------|:-------------------------------------------------|:----------------------------------|
-| `onAccountCreated`   | `accountId`, `userId`, `providerId`              | 当启动账户连接过程时触发                      |
-| `onAccountConnected` | `accountId`, `userId`, `providerId`              | 当账户连接过程成功完成时触发                    |
-| `onAccountRemoved`   | `accountId`, `userId`, `providerId`              | 当账户访问权被用户撤销时触发                    |
-| `onTokenExpired`     | -                                                | 当链接 token 过期时触发                   |
-| `onClose` | `reason` | 当 Wink Widget 被用户关闭时触发            |
-| `onAccountError`     | `accountId`, `userId`, `providerId`, `errorCode` | 当用户账户链接出现错误时触发                    |
-| `onUploadsCreated`   | `uploads`, `userId`                              | 当用户通过 Wink Widget 提交要上传的文件时触发     |
-| `onUploadsRemoved` | `uploads`, `userId` | 当用户通过 Wink Widget 删除/撤销上传的文件时触发   |
-| `onUIEvent` | `eventName`, `eventTime`, `mode`, `userId`, `account`, `archive` | 当向用户显示一个新的 widget 页面时触发。见下面的页面列表。 |
+---
+<!-- focus: false -->
+![Storage](https://img.icons8.com/?size=50&id=1476&format=png&color=000000)
+## 维护用户数据
 
-### 事件示例
+Smile API 仅在以下情况之一发生之前存储用户数据：
 
-#### onAccountCreated
+1. 用户通过 Wink Widget撤销对其文档的访问权限
+2. 通过撤销 API 撤销访问权限（即，如果由开发者发起）
+3. 自文档上传之日起已过去 60 天
 
-当账户连接过程由用户启动时触发，例如通过发送他们的登录凭证。这不会显示用户的登录凭证。
-
-``` javascript
-onAccountCreated: ({
-    accountId,
-    userId,
-    providerId
-}) => {
-    console.log('Account created: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
-},
-```
-
-| 属性         | 类型     | 详情                                                   |
-|:-----------|:-------|:-----------------------------------------------------|
-| accountId  | string | 用户试图连接到的账户 ID                                        |
-| userId     | string | 终端用户在 Smile Network 上的用户 ID                          |
-| providerId | string | 用户试图连接到的提供商 ID|
-
-#### onAccountConnected
-
-当账户连接过程成功完成，并向用户显示成功连接屏幕时触发。
-
-``` javascript
-onAccountConnected: ({
-    accountId,
-    userId,
-    providerId
-}) => {
-    console.log('Account connected: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
-},
-```
-
-| 属性         | 类型     | 详情                          |
-|:-----------|:-------|:----------------------------|
-| accountId  | string | 用户连接到的账户 ID                 |
-| userId     | string | 终端用户在 Smile Network 上的用户 ID |
-| providerId | string | 用户已连接到的提供商 ID               |
-
-#### onAccountRemoved
-
-当账户访问权被用户撤销时触发。
-
-``` javascript
-onAccountRemoved: ({
-    accountId,
-    userId,
-    providerId
-}) => {
-    console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
-},
-```
-
-| 属性         | 类型     | 详情                                                   |
-|:-----------|:-------|:-----------------------------------------------------|
-| accountId  | string | 用户已删除的账户 ID                                          |
-| userId     | string | 终端用户在 Smile Network 上的用户 ID                          |
-| providerId | string | 用户已删除账户的提供商 ID |
-
-#### onTokenExpired
-
-当链接令牌已过期时触发。您可以通过调用[刷新 Token API](/reference/tokens)来更新用户的 token 。
-
-``` javascript
-onTokenExpired: () => {
-    console.log('Token expired');
-},
-```
-
-#### onClose
-
-当 Wink Widget 被用户通过关闭图标或退出按钮关闭时触发。
-
-`reason` 参数可以是以下任一值：
-
-- `close`- 用户点击页面右上角的关闭图标关闭 SDK
-- `exit`- 用户单击成功连接页面上的 ”Done“ 按钮关闭 SDK
-- `error`- 用户点击错误页面上的退出按钮关闭 SDK
-
-``` javascript
-onClose: ( reason ) => {
-    console.log('Widget closed. Reason: ', reason )
-},
-```
-
-#### onAccountError
-
-当用户账户链接出现错误时触发。完整的错误列表可以在[Get Account API 参考页面](/reference/get-account-1)中看到。
-
-``` javascript
-onAccountError: ({
-    accountId,
-    userId,
-    providerId,
-    errorCode
-}) => {
-    console.log('Account error: ', accountId, ' User ID:', userId, ' Provider ID:', providerId, 'Error Code:', errorCode)
-},
-```
-
-| 属性         | 类型     | 详情                                                   |
-|:-----------|:-------|:-----------------------------------------------------|
-| accountId  | string | 用户试图连接到的账户 ID                                        |
-| userId     | string | 终端用户在 Smile Network 上的用户 ID                          |
-| providerId | string | 用户试图连接到的提供商 ID                                       |
-| errorCode  | string | 该错误的错误代码                         |
-
-#### onUploadsCreated
-
-当用户通过 Wink Widget 提交要上传的文件时触发。
-
-``` javascript
-onUploadsCreated: ({ uploads, userId }) => {
-    console.log('Uploads: ', uploads, ' User ID:', userId);
-},
-```
-
-| 属性      | 类型     | 详情                          |
-|:--------|:-------|:----------------------------|
-| uploads | object | 包含关于上传的具体信息                 |
-| userId  | string | 终端用户在 Smile Network 上的用户 ID |
-
-#### onUploadsRemoved
-
-当用户通过 Wink Widget 删除/撤销上传的文件时触发。
-
-``` javascript
-onUploadsRemoved: ({ uploads, userId }) => {
-    console.log('Uploads: ', uploads, ' User ID:', userId);
-},
-```
-
-| 属性      | 类型     | 详情                          |
-|:--------|:-------|:----------------------------|
-| uploads | object | 包含关于上传的具体信息                 |
-| userId  | string | 终端用户在 Smile Network 上的用户 ID |
-
-#### onUIEvent
-
-当向用户显示一个新的 widget 页面时触发。
-
-``` javascript
-onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
-    console.log('Event Name: ', eventName, ', Event Time: ', eventTime, ', mode: ', mode, ', User ID: ', userId, ', Account: ', account, ', Archive: ', archive);
-},
-```
-
-| 属性        | 类型     | 详情                                                                                                                                                     |
-|:----------|:-------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| eventName | string | 事件的名称，即`LoginPageOpened`                                                                                                                               |
-| eventTime | string | 事件发生的时间                                                                                                                                                |
-| mode      | string | 当前运行的 Wink Widget 模式，即`SANDBOX`或`PRODUCTION`                                                                                                           |
-| userId    | string | 终端用户在 Smile Network 上的用户 ID                                                                                                                            |
-| account   | object | 包含与事件有关的特定账户相关信息，即`providerId` 或 `accountId`。请注意，这些是特定于 Smile Network 的 ID                                                                             |
-| archive   | object | 包含与事件相关的特定 archive 信息，即`fileType`                                                                                                                      |
-
-事件名称的清单，见下表：
-
-| 事件名称                     | 详情                                                                          |事件特定属性|
-|:-------------------------|:----------------------------------------------------------------------------| :---- |
-| ConsentPageOpened        | 用户打开了同意页面                                                                   | |
-| ProviderListPageOpened   | 用户打开了提供商列表页面                                                                | |
-| LoginPageOpened          | 该用户打开了登录页面                                                                  | providerId |
-| MfaPageOpened            | 用户打开了多因素认证页面                                                                | providerId |
-| ConnectSuccessPageOpened | 用户打开账户连接成功页面                                                                | providerId, accountId |
-| AccountRevokePageOpened  | 用户打开账户连接状态页面/撤销页面                                                           | providerId, accountId |
-| LoginOptionsPageOpened   | 用户打开了备选登录选项页面                                                               | |
-| EmployerSurveyPageOpened | 用户打开了雇主调查页面                                                                 | |
-| FileTypeListPageOpened   | 用户打开文件类型选择页面（即选择他们希望上传的文件类型，如SSS记录、所得税记录等）                                  | |
-| FileTypePageOpened       | 用户打开了文件上传页面                                                                            | |
-| ArchiveSuccessPageOpened | 用户已经成功上传了一个文件并打开了成功页面 | |
-| RevokeArchivePageOpened  | 用户打开了 archive 状态页面/删除页面                  | |
+为确保在最长 60 天的时间范围之后仍能持续访问文档，请确保您在自己的服务器上检索并存储用户的文档。一旦您从 Smile 服务器检索到文档，您可以使用撤销 API 指示 Smile 删除该文档。当用户手动撤销其文档共享时，您还将收到 Smile 发出的事件通知。

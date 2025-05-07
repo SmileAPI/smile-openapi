@@ -1,80 +1,120 @@
 ---
-title: 简介  
+title: 快速入门  
 excerpt: ""  
 category: 62ce2a159aafea009af30da7 
 slug: chapter-1-cn
 ---
 
-# 简介
-
 <!-- focus: false -->
 ![Smile](https://img.icons8.com/material-outlined/50/000000/smiling.png)
 
+## 关于 Smile
+您好，欢迎来到 Smile！
 
-##  关于 Smile
-您好，欢迎来到 Smile !
+Smile 通过单一的 API 提供跨平台、跨雇主和跨文档的身份、收入和就业数据。银行、金融科技公司、招聘机构和其他服务提供商可以通过单一的 API 获取并分析就业和收入数据来提高采用率和转化率、降低成本和风险。
 
-Smile 通过简单的 API 提供跨平台的就业和雇佣数据。银行、金融科技公司、招聘机构和其他服务提供商可以利用就业和收入数据，通过简单的API来提高采用率和转化率、降低成本和风险。
+数据访问权限由用户自己提供，这是我们所提供 API 的一部分。我们提供了一种机制，通过该机制，您的用户可以同意将其个人数据收集起来，并代表他们将其传输给您或他们信任的任何一方。所有这些操作都以简单、安全和无缝的方式完成。
 
-对数据的访问权限由用户自己提供，这也是我们提供的 API 的一部分。通过我们提供的授权机制，您的用户可以允许 Smile 将这些个人数据收集起来，并将其以简单、安全和无缝的方式传输给您或他们信任的任何一方。 
+根据您可用的输入和预期的输出，**Smile API 的产品可以帮助您更好地了解您的客户。**
+
+![Smile API 产品线](https://files.readme.io/a7db7799e61dadb3822eb2dab65dd38480ea0d26625aa48f6200a6c72b111ca7-smile-api-inputs-outputs.png)
 
 ---
 <!-- focus: false -->
 ![API](https://img.icons8.com/glyph-neue/50/000000/api.png)
- 
 
-##  我们的 API
-Smile API 建立在 RESTful 原则之上。所有请求和响应的内容都以 JSON 格式编码。 出于安全考虑，所有请求都必须通过 HTTPS 发送。 要访问 API，您需要[注册我们的开发者控制台](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link)。
+## 我们的 API
+Smile API 基于 RESTFUL 原则构建。所有请求和响应的有效负载均采用 JSON 格式编码。出于安全考虑，所有请求必须通过 HTTPS 发送。要访问该 API，您需要[注册我们的开发者门户](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link)。
 
+要了解更多关于我们 API 的信息，请参阅[第 2 章，了解 API](/reference/chapter-2-cn?utm_source=docs&utm_medium=internal_link)。
+
+---
 <!-- focus: false -->
-![Jobs](https://img.icons8.com/ios-filled/50/000000/find-matching-job.png)
+![Signup](https://img.icons8.com/ios-filled/50/000000/sign-up.png)
 
-## 现有资源
-Smile API 中的现有资源由两种类型组成。
-- Smile Network Resources - Smile 资源数据
-- User Data - 用户数据
+## 使用开发者控制台
+要开始使用，只需在[开发者控制台](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link)上注册。注册后，您将被要求验证您的电子邮件，验证通过后即可登录。
 
-### Smile Network
-这些是用于与 Smile API 集成和获取数据的数据资源。 他们包括：
+默认情况下，当您注册并登录时，您将处于“SANDBOX”模式，该模式仅返回测试数据。您可以通过预约电话或[联系我们](https://www.getsmileapi.com/contact-us?utm_source=docs&utm_medium=internal_link)，并提交上线所需的必要信息来访问“PRODUCTION”模式。
 
-| 资源 | 类型    | 详情 |
-|----------|---------|-------------|
-| Providers | Smile Network | Smile Network 中可用的就业数据提供商列表。数据提供商进一步细分为不同的子类型，如 Gig 平台、人力资源平台和其他。 |
-| Users | Smile Network | 这些是您的用户，他们已经启动了账户链接程序，并同意与您和 Smile 分享他们的就业数据。当一个新的用户被创建时，一个 token 也同时被发出。 |
-| Tokens | Smile Network |通过使用 token 来访问用户账户的相关数据。您可以使用这个资源来检索现有的 token ，或为现有用户刷新一个 token 。 |
-| Accounts | Smile Network |您的用户已经成功登录的账户，以及与账户相关的数据将被检索出来。更多信息请参见下面的 "源数据"。 |
-| Archives | Smile Network | 这是指包含用户上传的扫描或拍照文件。 |
-| File Types | Smile Network | 这是指接受上传的文件类型，上传后可作为存档使用。 | 
-| Invites | Smile Network | 您可以使用它来邀请用户通过他们首选的通信渠道（例如电子邮件）链接他们的工作帐户。 |
-| Invite Templates | Smile Network |如果您将邀请用户通过 Invite 链接他们的工作帐户，请使用它来定义和检索 Invite 的外观。  |
-| Webhooks | Smile Network | Webhook 用于在您的环境中发生事件时实时通知您的应用程序。  |
+> 📘 注意
+>
+> 要了解更多关于不同模式的信息，请查看下一节**“了解 API”**
 
+在开发者控制台内，您将看到以下内容：
 
+1. **[账户使用情况](https://portal.getsmileapi.com/usage?utm_source=docs&utm_medium=internal_link)：** 您可以在此查看您的账户使用情况，例如您的租户中已连接的账户和用户数量。
+2. **[Wink Widget](https://portal.getsmileapi.com/link/emulator?utm_source=docs&utm_medium=internal_link)：** 使用此功能可预览 Wink Widget的工作方式。Widget的行为会根据您所处的模式而变化。在SANDBOX模式下，您可以使用页面上提供的测试账户来模拟登录不同数据提供商（如零工平台或工资系统）的过程。在PRODUCTION模式下，您将能够实际连接一个真实账户或上传一份实际文件。
+3. **Snap 查询：** 您可以在这里测试各种 Smile Snap 服务，如[验证](https://portal.getsmileapi.com/snap/verification?utm_source=docs&utm_medium=internal_link)、[智能文档处理](https://portal.getsmileapi.com/snap/scanned?utm_source=docs&utm_medium=internal_link)和[信号](https://portal.getsmileapi.com/snap/signals?utm_source=docs&utm_medium=internal_link)。
+4. **[用户数据](https://portal.getsmileapi.com/users?utm_source=docs&utm_medium=internal_link)：** 在账户连接过程中或用户上传文件后，查看在后台创建的用户以及从该用户获取的数据。在此部分中，您还可以预览从 Smile 返回的每个资源（如就业和收入）的数据。
+5. **[数据源](https://portal.getsmileapi.com/providers?utm_source=docs&utm_medium=internal_link)：** 在数据源部分，您可以找到所有的数据提供商以及可上传的文件类型。数据提供商包括不同类型，如不同雇主的名称、零工平台、政府服务或人力资源和工资系统。而文件类型则是用户可以上传的文件，如工资单副本、税务文件等。
+6. **[API Key](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link)：** 注册后，您将获得一个SANDBOX API 密钥对。API 密钥对必须妥善保管，并且只能在您的应用程序服务器和 Smile API 服务器之间的交换中使用。根据您的请求，您还可以获得在生产环境中使用 Smile API 的 API 密钥对。这也将允许您将开发者控制台切换到“PRODUCTION”模式进行实时测试。
+7. **[Webhook](https://portal.getsmileapi.com/webhooks?utm_source=docs&utm_medium=internal_link)：** 您可以在此创建和管理 Webhook 以与您的应用程序进行通信。
+8. **[设置](https://portal.getsmileapi.com/account/organization?utm_source=docs&utm_medium=internal_link)：** 您可以在这里输入有关您的组织和团队的详细信息。您还可以邀请组织中的其他成员加入控制台，共享一个共同的租户或工作区。
+9. **文档：** 这是您正在阅读的 API 文档的链接！
 
-### User Data
-User Data 可以来自关联的帐户，也可以来自上传的数据。为了能够检索就业和收入数据并将其用于您的应用程序，您需要使用我们的用户邀请功能或使用我们的客户端 SDK 并将我们的 Wink Widget 嵌入到您的应用程序中。
-> 📘 注意事项
-> 
-> 要了解有关 Wink Widget 的更多信息，请查看 **"获取用户数据"部分** 
+## 使用本参考文档
+要充分探索 Smile API，我们鼓励您在参考页面的右侧输入您的 API 密钥对，以充分利用本参考网站。
 
-如果您想将客户端 SDK 嵌入到您自己的应用程序中，您将需要实例化 Wink Widget ，之后将在 Smile Network 中创建一个用户，并得到一个短期 token 。当 Wink Widget 被实例化时，首先需要您的用户同意 Smile 代表他们检索该数据。之后，我们将为用户显示可以选择的就业和收入数据提供商列表。然后，他们将需要：
+[block:image]
+{
+    "images": [
+        {
+            "image": [
+                "https://files.readme.io/b7d08d8-how-to-use-reference-sidebar.png",
+                null,
+                ""
+            ],
+            "align": "center"
+        }
+    ]
+}
+[/block]
 
-1. **通过数字化数据提供商进行身份验证。** 如果我们与该数据提供商有直接链接，我们会将其显示在用户可以从中选择的列表中。如果他们有任何显示的提供商的帐号，他们可以选择该提供商，然后登陆他们的账号。授予权限后，将会在 Smile Network 中创建一个帐户，从中检索、汇总数据并将其规范化为标准形式，并以对开发人员友好的 JSON 格式发送给您。
-2. **上传包含其就业或收入信息的扫描或照片文件。** 并非所有来源的就业和收入信息都是数字形式。通常，此类信息仍以纸质文件的形式出现。用户可以扫描或拍摄这些文档，上传，然后我们可以数字化并从中检索相关数据，在大多数情况下，还可以将数据（通过光学字符识别即 OCR）提取为开发人员友好的 JSON 格式。如果我们无法自动提取信息，我们将始终通过 /archives API 提供上传文件的 URL 。
+> 📘 注意
+>
+> 您可以通过登录[开发者控制台](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link)，在[**API Key**部分](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link)找到您的 API 密钥和密钥秘密。注册后，您将可以立即免费在我们的SANDBOX环境中进行测试。如果您需要访问生产环境，请[联系我们](https://www.getsmileapi.com/contact-us?utm_source=docs&utm_medium=internal_link)。
+>
+>![](https://files.readme.io/70f1152-where-to-find-api-keys.png)
+>
+> 您可以点击您的 API Key和API Secret旁边的复制图标，轻松将其复制到您的计算机剪贴板。
 
+---
+<!-- focus: false -->
+![API](https://img.icons8.com/ios/50/000000/api-settings.png)
 
-| 资源 | 类型    | 详情                                                                                                                 |
-|----------|---------|--------------------------------------------------------------------------------------------------------------------|
-| Identity | User Data | 从现任和前任雇主那里获得经过审核的身份信息，如姓名、联系信息、居住地址等。                                                                              |
-| Transactions |User Data | 从源数据提供商那里获得用户的详细交易数据。这包括在源提供商那里记录的增加项（或信贷）和扣除项（或借贷）。                                                               |
-| Ratings | User Data | 获取用户的工作业绩评级信息。                                                                                                     |  
-| Documents | User Data | 获取文件信息，如他们的驾驶执照、国民身份证，以及其他。                                                                                        |  
-| Employments | User Data | 获得以前的就业信息，如用户曾工作过的公司、工作职位、任期和其他。                                                                                   |  
-| Incomes | User Data | 获得以前的收入信息，如毛收入和净收入，以及构成收入的其他部分。<br> 来自 Contributions 和 Transactions 的 **Estimated Income** *（抢先试用版）* 数据也可在期限内免费获得。 |  
-| Contributions | User Data | 获取以前的社会保障缴款信息，以了解收入水平。                                                                                             |  
-| Liabilities | User Data | 获取从与就业相关的数据源和社会保障服务得到的当前和以前的贷款信息。                                                                                  |  
+## 额外资源
+我们在下面提供了一些**开源**资源，帮助您立即开始使用 Smile API！
 
-<!--
-| Assets | Source Data | Get information on assets owned or used for their employment such as motor vehicles, motorcycles and others.|  
-| Schools | Source Data | Get previous educational history such as school, degree, years attended and so on.|  
--->
+### API 规范
+
+> 📘 注意
+>
+> 您可以在 [Github](https://github.com/SmileAPI) 上下载 Smile API 的[规范](https://github.com/SmileAPI/smile-openapi/blob/main/openapi-v1.yaml)副本。如果您安装了 git，您可以克隆该仓库或运行以下命令：
+
+```bash
+git clone https://github.com/SmileAPI/smile-openapi
+```
+
+规范文档采用 **YAML 格式**，遵循 [Open API Specification version 3.0.0](https://swagger.io/specification/)。您还可以在 /docs 子目录下以 **markdown 格式** 下载我们的开发者文档的离线副本。
+
+### Postman 集合
+
+> 📘 注意
+>
+> 在 [Github](https://github.com/SmileAPI) 上下载 Smile API 的 [Postman 集合](https://github.com/SmileAPI/smile-openapi/blob/main/postman-collection-v1.json)。如果您安装了 git，您可以克隆该仓库或运行以下命令：
+
+```bash
+git clone https://github.com/SmileAPI/smile-openapi
+```
+
+您可以通过以 **JSON 格式** 下载我们的 Postman 集合并将其导入 Postman 来轻松开始审查和测试我们的 API。
+
+#### 使用 Postman 集合
+
+1. 从我们的 [Github 仓库](https://github.com/SmileAPI/smile-openapi) 下载 “postman-collection-(v#).json” 文档。
+2. 如果您还没有这样做，请访问 [Postman](https://www.postman.com/) 并创建一个账户，或下载他们的免费桌面客户端。
+3. 打开 Postman 并选择一个工作区。
+4. 导入 Postman 集合。
+5. 确保您能够通过输入您的 API Key和 API Secret进行身份验证。
+6. 就是这样！您现在可以开始测试 Smile 的 API 了！

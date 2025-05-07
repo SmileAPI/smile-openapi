@@ -1,7 +1,7 @@
 ---
-title: Multiple Application Warning Service
+title: 账户多头申请警告（MAW）
 excerpt: ""
-category: 66700efb7d3c7b005b21f71a
+category: 62ce2a159aafea009af30dab
 slug: links
 ---
 

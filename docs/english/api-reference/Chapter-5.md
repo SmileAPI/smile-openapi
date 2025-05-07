@@ -1,221 +1,83 @@
 ---
-title: Event Notifications
+title: Document Processing
 excerpt: ''
 category: 6215975992e4610014e7b757
 slug: chapter-5
 ---
 
+**Smile Snap**, Smile API's powerful Document Processing product, is designed as both a seamless integration with Wink Widget but is also available as a standalone, API-only service. Smile Snap's automated analysis feature extracts crucial information from Income Tax Documents and Payslips, such as employment details and income data, and then analyzes the document for signs of tampering, computational inconsistencies, and other issues.
+
+This eliminates the need for manual data transcription, ensuring a streamlined and error-free verification process. This not only enhances efficiency but also contributes to a more accurate and comprehensive user profile.
+
+Smile Snap also acts as a reliable fallback method for user verification if online methods are not available for the user. If primary verification methods encounter challenges, users can submit relevant documents, ensuring a robust and secure verification process.
+
+---
 <!-- focus: false -->
-![Webhooks](https://img.icons8.com/ios-filled/50/000000/webhook.png)
+![Checklist](https://img.icons8.com/ios/50/000000/checklist--v1.png)
+## Integration Steps
 
-## Webhooks
+There are only a few steps in implementing Smile API's Document Processing service in your process:
 
-Smile uses webhooks to notify your application in real time when an event happens in our servers that is related to your environment.
+1. **Provide the document to Smile API**
 
-Event notifications can be sent when a new user is created, an account is successfully connected, an employment document is uploaded, an invitation is sent, or when new any new type data is added such as a user's identity, income, employment, and others. Check out the list of available events that you can subscribe to in our [Webhooks reference page](/reference/webhooks). 
+    > There are two ways to provide the document or file to Smile API for processing:
+    > 1. Using the [Wink Widget SDK](/reference/chapter-4#client-sdk) for quick implementation into your user flow.
+    > 2. Using the [Archives API](/reference/archives) for finer control over your user journey.
 
-These are sent via a secure channel, using HTTPS from a static IP address, with the data being sent in JSON format. These also come with a signature for you to validate the authenticity of the payload. 
+2. **Retrieve the analyzed data**
 
-> 📘 Note
+    > Once data has been uploaded, our Intelligent Document Processing engine automatically checks and classifies the document according to the expected file type, for supported document types.
+    >
+    > Once this classification is done, our engine parses the file and extracts the data from the document and tags is accordingly. Each file type will have a different set of data and will be reflected in the analysis of the document.
+    >
+    > Once analysis is finished, the Archive data payload will be sent to you via webhook, or you may call the Archives API directly. See the API documentation for more information.
+
+3. **Run Verification on your extracted data**
+
+    > We are currently working on integrating these calls into the API, but you may call our [Verification API](/reference/verification) using the data retrieved from *Step 2* in order to verify your subject's information such as Name and ID numbers. This gives you another layer of assurance that the document is valid.
+
+<!-- ## How to Set Up -->
+<!-- TODO: Quickstart or similar -->
+
+> 🚧 Warning
 > 
-> Our static IP address is **18.142.61.230**. You can whitelist this IP address in your back-end to ensure that your application receives event notifications coming from Smile.
+> Archives in Sandbox Mode return only specific payslips. To test Archives while in Sandbox Mode, you may download the sample payslips within the Developer Portal and upload it through the Wink Widget or through the API. Other files uploaded during Sandbox mode will return errors.
 
-Webhooks are particularly useful for getting notifications about asynchronous events, and either executing actions in your backend system when any of these events happen, or knowing when to refresh your front-end system to display any new data.
+<!-- ## Getting User Data -->
+<!-- ## Configuration -->
 
-For detailed implementation steps, visit our [Webhooks reference page](/reference/webhooks) for more information.
+---
+<!-- focus: false -->
+![Event](https://img.icons8.com/ios/50/000000/important-event.png)
+## Event Notifications
 
-## Callbacks
+As the user moves through the Wink widget screen, any activities performed by the user are captured and are either used to update the messsages and presentation of the modal window, or are sent to Smile so that any source-related data can be retrieved. 
 
-Smile also uses callbacks to notify your application in real time of frontend-related events that happen in your environment.
+### Successful Uploads
 
-Via callbacks, you can react or perform other actions once your user performs a supported action using the Wink Widget. Listening to events such as account connection, token expiry, or closing of the widget can help your native application manage and react to your user's actions.
+If the the user was able to successfully upload employment and income data via scanned or photographed documents, the Link status is changed to "STARTED". The upload status of the user can be queried at any time via the ``/archives`` endpoint. Examples of the events captured include:
 
-### List of Callbacks
+| Event |Description |
+|----------|---------|
+| STARTED | The upload was successful, and analysis on whether data can be extracted has started. |
+| ANALYZED | The analysis has completed and data was successfully extracted (via OCR) and converted to JSON format. |
+| UNSUPPORTED | The type of file uploaded cannot be analyzed. Data cannot be automatically extracted. |
+| ERROR | Something went wrong with the analysis of the uploaded file. |
+| REVOKED | The user revoked permission to share data from the uploaded files. |
 
-| Callback | Data | Description |
-| :------- | :---- | :---- |
-| `onAccountCreated` | `accountId`, `userId`, `providerId` | Fired when the account linking process has been initiated |
-| `onAccountConnected` | `accountId`, `userId`, `providerId` | Fired when the account linking process has completed successfully |
-| `onAccountRemoved` | `accountId`, `userId`, `providerId` | Fired when the account access has been revoked by the user |
-| `onTokenExpired` | - | Fired when the Link token has expired |
-| `onClose` | `reason` | Fired when the Wink Widget has been closed by the user |
-| `onAccountError` | `accountId`, `userId`, `providerId`, `errorCode` | Fired when the user account linking results in an error. |
-| `onUploadsCreated` | `uploads`, `userId` | Fired when the user has submitted documents to be uploaded via the Wink Widget. |
-| `onUploadsRemoved` | `uploads`, `userId` | Fired when the user has removed/revoked uploaded documents via the Wink Widget. |
-| `onUIEvent` | `eventName`, `eventTime`, `mode`, `userId`, `account`, `archive` | Fired whenever a new widget screen is shown to the user. See list of screens below. |
 
-### Example Events
+---
+<!-- focus: false -->
+![Storage](https://img.icons8.com/?size=50&id=1476&format=png&color=000000)
+## Maintaining User Data
 
-#### onAccountCreated
+User data is stored by Smile API only until one of the following occur:
 
-Fired when the account linking process has been initiated by the user such as through sending their login credentials. This does not surface the user's login credentials.
+1. The user revokes access to their document via the Wink Widget
+2. The access is revoked via the Revoke API (i.e. if initiated by the developer)
+3. 60 days have passed from document upload
 
-``` javascript
-onAccountCreated: ({
-    accountId,
-    userId,
-    providerId
-}) => {
-    console.log('Account created: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
-},
-```
+To ensure continued access to the document past the 60-day maximum timeframe, ensure you retrieve and store the user's document in your own servers. You may instruct Smile to delete the document as soon as you have retrieved it from the Smile servers using the Revoke API. You will also receive an event notification from Smile to notify you when the user has manually revoked the sharing of their document.
 
-| Property | Type | Description |
-| :------- | :---- | :---- |
-| accountId | string | Account Id that the user is attempting to connect to |
-| userId | string | User Id of the end user on the Smile Network |
-| providerId | string | Provider Id that the user is attempting to connect to |
+<!-- ## Versioning -->
 
-#### onAccountConnected
-
-Fired when the account linking process has completed successfully, and the user is shown the success connection screen.
-
-``` javascript
-onAccountConnected: ({
-    accountId,
-    userId,
-    providerId
-}) => {
-    console.log('Account connected: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
-},
-```
-
-| Property | Type | Description |
-| :------- | :---- | :---- |
-| accountId | string | Account Id that the user has connected to |
-| userId | string | User Id of the end user on the Smile Network |
-| providerId | string | Provider Id that the user has connected to |
-
-#### onAccountRemoved
-
-Fired when the account access has been revoked by the user.
-
-``` javascript
-onAccountRemoved: ({
-    accountId,
-    userId,
-    providerId
-}) => {
-    console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
-},
-```
-
-| Property | Type | Description |
-| :------- | :---- | :---- |
-| accountId | string | Account Id that the user has removed |
-| userId | string | User Id of the end user on the Smile Network |
-| providerId | string | Provider Id of the account that the user has removed |
-
-#### onTokenExpired
-
-Fired when the Link token has expired. You may then call the [Refresh Token API](/reference/create-token-1) to refresh the user's token.
-
-``` javascript
-onTokenExpired: () => {
-    console.log('Token expired');
-},
-```
-
-#### onClose
-
-Fired when the Wink Widget has been closed by the user via the close icon or exit buttons.
-
-The `reason` parameter can be any one of the following values:
-
-- `close` - the user clicked the Close icon in the upper right corner of the page to close the SDK
-- `exit` - the user clicked the "Done" button on the Successful Connection screen to close the SDK
-- `error` - the user clicked the Exit button on the error page to close the SDK
-
-``` javascript
-onClose: ( reason ) => {
-    console.log('Widget closed. Reason: ', reason )
-},
-```
-
-#### onAccountError
-
-Fired when the user account linking results in an error. The full list of errors can be seen at the [Get Account API reference](/reference/get-account-1).
-
-``` javascript
-onAccountError: ({
-    accountId,
-    userId,
-    providerId,
-    errorCode
-}) => {
-    console.log('Account error: ', accountId, ' User ID:', userId, ' Provider ID:', providerId, 'Error Code:', errorCode)
-},
-```
-
-| Property | Type | Description |
-| :------- | :---- | :---- |
-| accountId | string | Account Id that the user is attempting to connect to |
-| userId | string | User Id of the end user on the Smile Network |
-| providerId | string | Provider Id that the user is attempting to connect to |
-| errorCode | string | Error code for the error |
-
-#### onUploadsCreated
-
-Fired when the user has submitted documents to be uploaded via the Wink Widget.
-
-``` javascript
-onUploadsCreated: ({ uploads, userId }) => {
-    console.log('Uploads: ', uploads, ' User ID:', userId);
-},
-```
-
-| Property | Type | Description |
-| :------- | :---- | :---- |
-| uploads | object | Contains specific information about the upload |
-| userId | string | User Id of the end user on the Smile Network |
-
-#### onUploadsRemoved
-
-Fired when the user has removed/revoked uploaded documents via the Wink Widget.
-
-``` javascript
-onUploadsRemoved: ({ uploads, userId }) => {
-    console.log('Uploads: ', uploads, ' User ID:', userId);
-},
-```
-
-| Property | Type | Description |
-| :------- | :---- | :---- |
-| uploads | object | Contains specific information about the upload |
-| userId | string | User Id of the end user on the Smile Network |
-
-#### onUIEvent
-
-Fired whenever a new widget screen is shown to the user.
-
-``` javascript
-onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
-    console.log('Event Name: ', eventName, ', Event Time: ', eventTime, ', mode: ', mode, ', User ID: ', userId, ', Account: ', account, ', Archive: ', archive);
-},
-```
-
-| Property | Type | Description |
-| :------- | :---- | :---- |
-| eventName | string | Name of the event, i.e. `LoginPageOpened` |
-| eventTime | string | Time of the event |
-| mode | string | Mode of the Wink Widget currently running, i.e. `SANDBOX` or `PRODUCTION` |
-| userId | string | User Id of the end user on the Smile Network |
-| account | object | Contains specific account-related information relevant to the event, i.e. `providerId` or `accountId`. Note that these are Ids specific to Smile Network |
-| archive | object | Contains specific archive-related information relevant to the event, i.e. `fileType` |
-
-For the list of event names, see the table below:
-
-| Event Name | Description | Event-specific Properties |
-| :------- | :---- | :---- |
-| ConsentPageOpened | The user opened the consent screen | |
-| ProviderListPageOpened | The user opened the provider list screen | |
-| LoginPageOpened | The user opened the login screen | providerId |
-| MfaPageOpened | The user opened the Multi-Factor Authentication screen | providerId |
-| ConnectSuccessPageOpened | The user opened the account connected success screen | providerId, accountId |
-| AccountRevokePageOpened | The user opened the account connection status screen / revoke screen | providerId, accountId |
-| LoginOptionsPageOpened | The user opened the alternative login options screen | |
-| EmployerSurveyPageOpened | The user opened the employer survey screen | |
-| FileTypeListPageOpened | The user opened the document type selection screen (i.e. to select what type of document they wish to upload, such as SSS records, Income Tax Records, etc.) | |
-| FileTypePageOpened | The user opened the document upload screen | |
-| ArchiveSuccessPageOpened | The user has successfully uploaded a file and has opened the success screen | |
-| RevokeArchivePageOpened | The user opened the archive status screen / delete screen | |

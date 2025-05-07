@@ -1,7 +1,7 @@
 ---
-title: Intelligent Document Processing
+title: 智能文档处理 (IDP)
 excerpt: ""  
-category: 64c78531461848004b92b92f
+category: 62ce2a159aafea009af30daa
 slug: intelligent-document-processing
 ---
 

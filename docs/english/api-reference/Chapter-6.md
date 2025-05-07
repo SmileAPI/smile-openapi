@@ -1,52 +1,74 @@
 ---
-title: Additional Resources
+title: Risk Screening
 excerpt: ''
 category: 6215975992e4610014e7b757
 slug: chapter-6
 ---
 
+**Smile Signals** provides a powerful Risk Screening solution by delivering real-time risk signals using a person's mobile number or email address, from a wide variety of activities and events, to keep up to date in today's fast-paced financial landscape where accurate and timely risk assessment is crucial for making informed decisions.
 
+The suite of Signals APIs can provide access to hundreds of risk signals, allowing you to pick and choose the signals that make sense for your use case and market segment.
 
-We have included below some **Open Source** resources to help get you started right away using Smile API!
+Choose from the current suite of Signals:
 
-
----
-<!-- focus: false -->
-![API](https://img.icons8.com/ios/50/000000/api-settings.png)
-
-## API Specifications
-> 📘 Note
-> 
-> You can download a copy of Smile API's [specifications](https://github.com/SmileAPI/smile-openapi/blob/main/openapi-v1.yaml) in [Github](https://github.com/SmileAPI). If you have git installed, you can clone the repository or run the following command:
-
-``` bash
-git clone https://github.com/SmileAPI/smile-openapi
-```
-
-The specification document is in **YAML format**, following  [Open API Specification version 3.0.0](https://swagger.io/specification/). You can also download offline copies of our Developer Documentation in **markdown format**, under the /docs subdirectory.
-
+| Signal | Status | Description |
+|---|---|---|
+| Signals | Beta | Smile's first risk screening service contains a preselected 30 of the most common risk signals so you can get started immediately with only your user's mobile number. |
+| Footprints | Alpha | Obtain valuable insights on your user's digital footprint and online activities. | 
+| Multiple Application Warning | Alpha | Discover early indications of your user's lending activities. |
+| Blacklist | Alpha | Ensure your user is not blacklisted. |
+| Verification | Alpha | Verification can help you confirm matches between your user provided data and data from pre-verified and/or authoritative sources. Requires user's ID. |
 
 ---
 <!-- focus: false -->
-![Postman](https://img.icons8.com/wired/50/000000/postman-api.png)
+![Checklist](https://img.icons8.com/ios/50/000000/checklist--v1.png)
+## Integration Steps
 
-## Postman Collection
+There are only a few steps in implementing Smile API's Risk Screening service in your process:
 
-> 📘 Note
-> 
-> Download Smile API's [Postman Collection](https://github.com/SmileAPI/smile-openapi/blob/main/postman-collection-v1.json) in [Github](https://github.com/SmileAPI). If you have git installed, you can clone the repository or run the following command:
+1. **Choose the Signal service you require**
 
-``` bash
-git clone https://github.com/SmileAPI/smile-openapi
-```
+    > Select from one of Smile's powerful Signals suite according to your requirements and the data you have.
 
-You can start reviewing and testing our APIs easily by downloading our Postman collection in **JSON format** and importing it into Postman.
+2. **Provide the required input to Smile API**
 
-**Using the Postman Collection**
+    > Using the selected product, send the required input to Smile API, such as the user's phone number, email address, or other data, via the appropriate API endpoint.
+    >
+    > For example, you send the user's mobile number to the ``/signals`` endpoint to retrieve risk signal data.
 
-1. Download the "postman-collection-(v#).json" document from our [Github repository](https://github.com/SmileAPI/smile-openapi).
-2. If you haven't done so, visit [Postman](https://www.postman.com/) and create an account, or download their free desktop client.
-3. Open Postman and select a Workspace.
-4. Import the Postman collection.
-5. Make sure you are able to authenticate by entering your API key and API secret.
-6. That's it! You can now start testing Smile's APIs!
+3. **Retrieve the analyzed data**
+
+    > Once data has been uploaded, our system automatically checks and/or calculates the response based on the service you have requested.
+    >
+    > Once these calculations are complete, the result's payload will be sent to you via webhook, or you may call the appropriate API directly. See the API documentation for more information.
+
+
+<!-- ---
+<!-- focus: false -->
+<!-- ![Quickstart](https://img.icons8.com/ios/50/000000/speed.png)
+<!-- ## Quickstart / How to Set Up -->
+
+<!-- ---
+<!-- focus: false -->
+<!-- ![User Data](https://img.icons8.com/?size=50&id=FD1d9t9lMoS2&format=png&color=000000)
+<!-- ## Getting User Data -->
+
+<!-- ---
+<!-- focus: false -->
+<!-- ![Settings](https://img.icons8.com/material-outlined/50/000000/settings-3--v1.png)
+<!-- ## Configuration -->
+
+<!-- ---
+<!-- focus: false -->
+<!-- ![Event](https://img.icons8.com/ios/50/000000/important-event.png)
+<!-- ## Event Notifications -->
+
+<!-- ---
+<!-- focus: false -->
+<!-- ![Storage](https://img.icons8.com/?size=50&id=1476&format=png&color=000000)
+<!-- ## Maintaining User Data -->
+
+<!-- ---
+<!-- focus: false -->
+<!-- ![Versioning](https://img.icons8.com/?size=50&id=21889&format=png&color=000000)
+<!-- ## Versioning -->

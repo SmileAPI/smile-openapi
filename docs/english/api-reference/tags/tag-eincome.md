@@ -1,7 +1,7 @@
 ---
 title: Estimated Incomes
 excerpt: ""  
-category: 631090d0cbc5350036d31763
+category: 6294c158bef44e0098ed88a1
 slug: estimated-incomes
 ---
 
@@ -17,25 +17,25 @@ _Estimated Incomes is currently in alpha._
 
 ## The Estimated Income object
 
-| Attribute  | Type   | Description                                                                                |
-| :--------- | :----- | :----------------------------------------------------------------------------------------- |
-| id         | string | Unique ID of this estimated income object                                                  |
-| month      | string | The month where this estimated income is for, in 'YYYY-MM' format                          |
-| currency   | string | Currency of the estimated income in standard three-letter ISO code                         |
-| amount | number | Income amount                                                                              |
-| metadata   | object | Additional information about the resource such as created date, data source, user id, etc. |
+| Attribute | Type   | Description                                                                                |
+|:----------|:-------|:-------------------------------------------------------------------------------------------|
+| id        | string | Unique ID of this estimated income object                                                  |
+| month     | string | The month where this estimated income is for, in 'YYYY-MM' format                          |
+| currency  | string | Currency of the estimated income in standard three-letter ISO code                         |
+| amount    | number | Income amount                                                                              |
+| metadata  | object | Additional information about the resource such as created date, data source, user id, etc. |
 
 ### The Meta Data object
 
-| Attribute  | Type   | Description |
-| :--------- | :----- | :------- |
-| createdAt | date-time | Date/time when the account record was created |
-| itemCreatedAt | date-time | Date/time when the estimated income record was created |
-| accountId `Deprecated` | string | ID of the user's account in the Smile Network |
-| sourceId | string | ID of the user's account or archive in the Smile Network |
-| sourceType | string | Indicates whether the source associated with this object is an account or archive. Possible values: `ACCOUNT`, `UPLOAD`, `ARCHIVE` |
-| providerId | string | ID of the data provider of the user's account |
-| userId | string | ID of the user on the Smile Network |
+| Attribute              | Type      | Description                                                                                                                        |
+|:-----------------------|:----------|:-----------------------------------------------------------------------------------------------------------------------------------|
+| createdAt              | date-time | Date/time when the account record was created                                                                                      |
+| itemCreatedAt          | date-time | Date/time when the estimated income record was created                                                                             |
+| accountId `Deprecated` | string    | ID of the user's account in the Smile Network                                                                                      |
+| sourceId               | string    | ID of the user's account or archive in the Smile Network                                                                           |
+| sourceType             | string    | Indicates whether the source associated with this object is an account or archive. Possible values: `ACCOUNT`, `UPLOAD`, `ARCHIVE` |
+| providerId             | string    | ID of the data provider of the user's account                                                                                      |
+| userId                 | string    | ID of the user on the Smile Network                                                                                                |
 
 ## Sample Estimated Income data
 
@@ -78,7 +78,7 @@ Estimated income is always returned as a monthly amount.
 ## Endpoints
 
 | Endpoint                                                        |                      |
-| :-------------------------------------------------------------- | :------------------- |
+|:----------------------------------------------------------------|:---------------------|
 | [Retrieve all estimated incomes](/reference/list-eincomes)      | `GET /eincomes`      |
 | [Retrieve one estimated income record](/reference/get-eincomes) | `GET /eincomes/{id}` |
 

@@ -1,7 +1,7 @@
 ---
 title: Signals(Beta)
 excerpt: ''
-category: 64c78531461848004b92b92f
+category: 62ce2a159aafea009af30dab
 slug: signals-beta
 ---
 

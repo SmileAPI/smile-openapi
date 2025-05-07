@@ -1,50 +1,38 @@
 ---
-title: 更多的资源
+title: 风险筛查
 excerpt: ""
 category: 62ce2a159aafea009af30da7
 slug: chapter-6-cn
 ---
 
+**Smile Signals** 提供强大的风险筛查解决方案，通过一个人的手机号码或电子邮件地址，从各种活动和事件中获取实时风险信号，帮助您在当今快节奏的金融环境中保持最新动态——在这样的环境中，准确及时的风险评估对于做出明智决策至关重要。
 
+Signals API 套件可提供数百种风险信号访问权限，使您能够根据自身用例和市场细分选择合适的信号。
 
-下面的资源帮助您更好的使用 Smile
+当前可用的 Signals 套件如下：
 
----
-<!-- focus: false -->
-![API](https://img.icons8.com/ios/50/000000/api-settings.png)
+| Signal                       | 状态    | 描述                                                    |  
+|------------------------------|-------|-------------------------------------------------------|  
+| Signals                      | Beta  | Smile 的首个风险筛查服务包含预先选择的 30 种最常见风险信号，只需用户的手机号码即可立即开始使用。 |  
+| Footprints                   | Alpha | 获取用户数字足迹和在线活动的宝贵洞察。                                   |  
+| Multiple Application Warning | Alpha | 发现用户借贷活动的早期迹象。                                        |  
+| Blacklist                    | Alpha | 确保用户未被列入黑名单。                                          |  
+| Verification                 | Alpha | 验证功能可帮助您确认用户提供的数据与预验证和/或权威来源的数据是否匹配，需用户提供 ID。         |  
 
-## API Specifications
-> 📘 Note
-> 
-> 您可以在 [Github](https://github.com/SmileAPI) 中下载 Smile API's [specifications](https://github.com/SmileAPI/smile-openapi/blob/main/openapi-v1.yaml) 。或者 git clone 这个项目:
+---  
+<!-- focus: false -->  
+![Checklist](https://img.icons8.com/ios/50/000000/checklist--v1.png)
+## 集成步骤
 
-``` bash
-git clone https://github.com/SmileAPI/smile-openapi
-```
+在您的流程中实施 Smile API 的风险筛查服务只需几个步骤：
 
-这个规范文档采用 **YAML 格式**，遵循 [Open API Specification version 3.0.0](https://swagger.io/specification/) 。您还可以在 /docs 子目录下以 **markdown 格式** 下载我们的开发者文档的离线副本。
+1. **选择所需的 Signal 服务**
+   > 根据您的需求和拥有的数据，从 Smile 强大的 Signals 套件中选择一项服务。
 
----
-<!-- focus: false -->
-![Postman](https://img.icons8.com/wired/50/000000/postman-api.png)
+2. **向 Smile API 提供所需输入**
+   > 使用所选产品，通过相应的 API 端点向 Smile API 发送所需输入，例如用户的电话号码、电子邮件地址或其他数据。  
+   > 例如，将用户的手机号码发送到 ``/signals`` 端点以检索风险信号数据。
 
-## Postman Collection
-
-> 📘 Note
-> 
-> 从 [Github](https://github.com/SmileAPI) 下载 Smile API's [Postman Collection](https://github.com/SmileAPI/smile-openapi/blob/main/postman-collection-v1.json). 
-
-``` bash
-git clone https://github.com/SmileAPI/smile-openapi
-```
-
-您可以通过以 **JSON 格式** 下载我们的 Postman Collection 并将其导入 Postman 来轻松开始测试我们的 API 。
-
-**使用 Postman Collection**
-
-1. 从我们的 [Github](https://github.com/SmileAPI/smile-openapi) 下载 “postman-collection-(v#).json” 文档。
-2. 如果您还没有这样做，请访问 [Postman](https://www.postman.com/) 并创建一个帐户，或下载他们的免费桌面客户端。
-3. 打开 Postman 并选择一个工作区。
-4. 导入 Postman Collection 。
-5. 确保您能够通过输入您的 API Key 和 API Secret 进行身份验证。 
-6. 就是这样！您现在可以开始测试 SmileAPI 了！
+3. **检索分析后的数据**
+   > 数据上传后，我们的系统会根据您请求的服务自动检查和/或计算响应。  
+   > 计算完成后，结果的有效负载将通过 Webhook 发送给您，或者您也可以直接调用相应的 API。更多信息请参阅 API 文档。

@@ -1,5 +1,5 @@
 ---
-title: Introduction  
+title: Getting Started
 excerpt: ""  
 category: 6215975992e4610014e7b757  
 slug: chapter-1
@@ -10,13 +10,16 @@ slug: chapter-1
 <!-- focus: false -->
 ![Smile](https://img.icons8.com/material-outlined/50/000000/smiling.png)
 
-
 ##  About Smile
 Hello and welcome to Smile! 
 
-Smile provides income and employment data across platforms and employers, all through a single API. Banks, fintechs, recruitment agencies, and other service providers can leverage employment and income data to increase adoption and conversion, reduce cost, and reduce risk, through a single API.
+Smile provides identity, income, and employment data across platforms, employers, and documents, all through a single API. Banks, fintechs, recruitment agencies, and other service providers can leverage employment and income data to increase adoption and conversion, reduce cost, and reduce risk, through a single API.
 
-Access to the data is provided by the employees themselves, which is part of the API we provide. We offer a mechanism by which your users can give their consent to have this personal data collected and transmitted to you or any party they trust on their behalf. This is all done in a simple, secure and seamless way. 
+Access to the data is provided by the users themselves, which is part of the API we provide. We offer a mechanism by which your users can give their consent to have this personal data collected and transmitted to you or any party they trust on their behalf. This is all done in a simple, secure and seamless way.
+
+Depending on your available input and expected output, **Smile API's products can help you Know your Customer better.**
+
+![Smile API Product Lineup](https://files.readme.io/a7db7799e61dadb3822eb2dab65dd38480ea0d26625aa48f6200a6c72b111ca7-smile-api-inputs-outputs.png)
 
 ---
 <!-- focus: false -->
@@ -26,56 +29,106 @@ Access to the data is provided by the employees themselves, which is part of the
 ##  Our API
 The Smile API is built on RESTful principles. All request and response payloads are encoded in JSON format. For security purposes, all requests must be sent through HTTPS. To get access to the API, you will need to [sign up to our developer portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link).
 
+To learn more about our API, see [Chapter 2, Understanding the API](/reference/chapter-2?utm_source=docs&utm_medium=internal_link).
+
 ---
 <!-- focus: false -->
-![Jobs](https://img.icons8.com/ios-filled/50/000000/find-matching-job.png)
+![Signup](https://img.icons8.com/ios-filled/50/000000/sign-up.png)
 
-## Available resources
-The available resources in the Smile API are made up of two types: 
-- Smile Network resources
-- Source Data
+## Using the Developer Portal
+To get started, simply register on the [Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link). After registering, you will be asked to verify your email, after which you can then log in. 
 
-### Smile Network
-These are data resources for integrating and getting data from the Smile API. They include:
-
-| Resource | Type    | Description |
-|----------|---------|-------------|
-| Providers | Smile Network | List of employment data providers available in the Smile Network. The data providers are further segmented into different subtypes such as Gig platforms, HR platforms, and others. |
-| Users | Smile Network | These are your users who have initiated the account linking process and have given their consent to share their employment data with you and Smile. When a new user is created, a token is issued at the same time. |
-| Tokens | Smile Network | The tokens to be able to access account-related data of a user. You can use this resource to either retrieve existing tokens, or refresh a token for an existing user. |
-| Accounts | Smile Network | The accounts which your users have successfully logged into, and from which account-related data will be retrieved from. For more information, see below on "Source Data". |
-| Archives | Smile Network | This refers to archives that contain files of scanned or photographed documents that the users have uploaded. |
-| File Types | Smile Network | Refers to the types of files that are accepted for upload, and which will be available as an archive once it has been uploaded. | 
-| Invites | Smile Network | You can use this to invite users to link their work account via their preferred communication channel such as email. |
-| Invite Templates | Smile Network | If you will invite users to connect their work account via an invitation, use this to define and retrieve what the invite looks like.  |
-| Webhooks | Smile Network | Webhooks are used to notify your application in real time when an event happens in your environment.  |
-
-### User Data
-User Data can either come from linked accounts or from uploaded data. To be able to retrieve income and employment data and use it in your application, you will need to either use our user Invitation functionality or use our Client SDK and embed our Wink Widget into your application.
+By default, when you register and log in, you will be in "Sandbox" mode, which returns only test data. You can access "Production" mode by booking a call or [contacting us](https://www.getsmileapi.com/contact-us?utm_source=docs&utm_medium=internal_link), and submitting the necessary information to go live.
 
 > 📘 Note
 > 
-> To learn more about the Wink Widget, check out the section on **"Getting User Data"**
+> To learn more about the different modes, check out the next section on **"Understanding the API"**
 
-If you will be embedding the Client SDK yourself into your own application, you will need to instantiate the widget, after which a user will be created in the Smile Network, with a short-lived token. When the widget is instantiated, your users will first need to provide their consent for Smile to retrieve that data on their behalf. After that, we will display a list of employment and income data providers that your users can choose from. They will then need to either:
+Inside the Developer Portal, you will see the following:
 
-1. **Authenticate with a digital data provider.** If we have a direct connection to that data provider, we will display it in a list from which the user can choose from. If they have an account with any of the displayed providers, they can select that provider, then afterwards enter their credentials with that selected data provider. After giving permission, an account is created in the Smile Network from which data will be retrieved, aggregated, and normalized into a standard schema and sent to you in a developer-friendly JSON format. 
-2. **Upload a scanned or photographed document containing their employment or income information.** Not all source employment and income information is in digital form. Typically the source for this type of information still comes in the form of paper documents. Users can scan  or photograph these documents, upload it, and we can then digitize and retrieve the pertinent data from it, in most cases also extracting the data (via Optical Character Recognition or OCR) into a developer-friendly JSON format. In cases where we cannot automatically extract the information, we will always provide a URL to the uploaded file available via the /archives endpoint.
+1. **[Account Usage](https://portal.getsmileapi.com/usage?utm_source=docs&utm_medium=internal_link):** You can view your account usage here, such as number of connected accounts and users in your tenant.
+
+2. **[Wink Widget](https://portal.getsmileapi.com/link/emulator?utm_source=docs&utm_medium=internal_link):** Use this to preview how the Wink Widget works. The behavior of the widget changes depending on the mode you are in. In Sandbox mode, you can use the provided test accounts on the page to simulate the process of logging into different data providers such as a gig platform or payroll system.  In Production mode, you will be able to actually link a live account or upload an actual file.
+
+3. **Snap Lookup:** You may test out the various Smile Snap services here, such as [Verifications](https://portal.getsmileapi.com/snap/verification?utm_source=docs&utm_medium=internal_link), [Intelligent Document Processing](https://portal.getsmileapi.com/snap/scanned?utm_source=docs&utm_medium=internal_link), and [Signals](https://portal.getsmileapi.com/snap/signals?utm_source=docs&utm_medium=internal_link).
+
+4. **[User Data](https://portal.getsmileapi.com/users?utm_source=docs&utm_medium=internal_link):** View the users created in the back-end, as well as the data captured from that user, during the account linking process or after uploading the user uploads a file. In this section, you can also preview how the returned data from Smile looks like for each resource such as Employments and Incomes.
+
+5. **[Data Sources](https://portal.getsmileapi.com/providers?utm_source=docs&utm_medium=internal_link):** The Data Sources section is where you can find all the Data providers as well as File Types that can be uploaded. Data providers include different types such as the names of different employers, gig platforms, government services, or HR and payroll systems. File types on the other hand are those that can be uploaded by the user such as copies of payslips, tax documents and others.
+
+6. **[API Keys](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link):** After registration, you will be given a Sandbox API key and an API secret. The API secret must be kept safe and used only in exchanges between your application's server and Smile API's server. Upon request, you can also be given the API key and API secret to use the Smile API in production. This will also allow you to switch the Developer Portal to "Production Mode" for live testing.
+
+7. **[Webhooks](https://portal.getsmileapi.com/webhooks?utm_source=docs&utm_medium=internal_link):** You may create and manage your webhooks here to communicate to your application.
+
+8. **[Settings](https://portal.getsmileapi.com/account/organization?utm_source=docs&utm_medium=internal_link):** This is where you can enter details about your organization and team. You may also invite additional members from your organization to join the Portal and share a common tenant or workspace.
+
+9. **Documentation:** This is a link to the API documentation which you are reading now!
+
+## Using this Reference
+
+To fully explore the Smile API, we encourage you to make full use of this Reference website by entering your API Key and Secret on the right hand side of the reference pages.
+
+[block:image]
+{
+"images": [
+{
+"image": [
+"https://files.readme.io/b7d08d8-how-to-use-reference-sidebar.png",
+null,
+""
+],
+"align": "center"
+}
+]
+}
+[/block]
+
+> 📘 Note
+> 
+> Your API Key and Secret can be found by logging into the [Developer Portal](https://portal.getsmileapi.com?utm_source=docs&utm_medium=internal_link) under [the **API Keys** section](https://portal.getsmileapi.com/api-keys?utm_source=docs&utm_medium=internal_link). Upon signup, you will have instant and free access to test on our Sandbox environment. If you need Production environment access, [contact us](https://www.getsmileapi.com/contact-us?utm_source=docs&utm_medium=internal_link).
+>
+>![](https://files.readme.io/70f1152-where-to-find-api-keys.png)
+> 
+> You may click on the Copy icon next to your API Key and Secret to easily copy it to your computer clipboard.
 
 
+---
+<!-- focus: false -->
+![API](https://img.icons8.com/ios/50/000000/api-settings.png)
 
-| Resource | Type    | Description |
-|----------|---------|-------------|
-| Identity | User Data | Get vetted identity information from current and previous employers such as name, contact information, residential address, and others.|
-| Transactions | User Data | Get detailed financial transactions of the user from the source data provider. This includes additions (or credits) and deductions (or debits) recorded from the source provider. |
-| Ratings | User Data | Get information on user's job performance ratings. |  
-| Documents | User Data | Get documentary information such as their driver's license, national identity card ID, and others.|  
-| Employments | User Data | Get previous employment information such as the company the user has worked for, job title, tenure and others.|  
-| Incomes | User Data | Get previous income information such as gross pay and net pay, as well as other components that make up income.<br> **Estimated Income** *(early access)* data from Contributions and Transactions is also freely available for a limited time. |  
-| Contributions | User Data | Get previous social security contribution information to get an indication of income level.|  
-| Liabilities | User Data | Get information on current and previous loans obtained from employment-related data sources and social security services.|  
+## Additional Resources
 
-<!--
-| Assets | Source Data | Get information on assets owned or used for their employment such as motor vehicles, motorcycles and others.|  
-| Schools | Source Data | Get previous educational history such as school, degree, years attended and so on.|  
--->
+We have included below some **Open Source** resources to help get you started right away using Smile API!
+
+### API Specifications
+
+> 📘 Note
+> 
+> You can download a copy of Smile API's [specifications](https://github.com/SmileAPI/smile-openapi/blob/main/openapi-v1.yaml) in [Github](https://github.com/SmileAPI). If you have git installed, you can clone the repository or run the following command:
+
+``` bash
+git clone https://github.com/SmileAPI/smile-openapi
+```
+
+The specification document is in **YAML format**, following  [Open API Specification version 3.0.0](https://swagger.io/specification/). You can also download offline copies of our Developer Documentation in **markdown format**, under the /docs subdirectory.
+
+### Postman Collection
+
+> 📘 Note
+> 
+> Download Smile API's [Postman Collection](https://github.com/SmileAPI/smile-openapi/blob/main/postman-collection-v1.json) in [Github](https://github.com/SmileAPI). If you have git installed, you can clone the repository or run the following command:
+
+``` bash
+git clone https://github.com/SmileAPI/smile-openapi
+```
+
+You can start reviewing and testing our APIs easily by downloading our Postman collection in **JSON format** and importing it into Postman.
+
+#### Using the Postman Collection
+
+1. Download the "postman-collection-(v#).json" document from our [Github repository](https://github.com/SmileAPI/smile-openapi).
+2. If you haven't done so, visit [Postman](https://www.postman.com/) and create an account, or download their free desktop client.
+3. Open Postman and select a Workspace.
+4. Import the Postman collection.
+5. Make sure you are able to authenticate by entering your API key and API secret.
+6. That's it! You can now start testing Smile's APIs!

@@ -1,53 +1,186 @@
 ---
-title: 获取用户数据  
+title: 连接Account  
 excerpt: ""  
 category: 62ce2a159aafea009af30da7
 slug: chapter-4-cn
 ---
 
 
+**Smile Wink** 是 Smile API 的账户关联服务，它支持个人与第三方组织之间在用户授权的前提下，安全地共享身份、收入和就业数据。
 
-您可以通过两种方式从用户那里获取数据：
-- 通过 API 中的 `/invitations` 端点邀请您的用户，或使用 [Developer Portal 中 Users 页面内的邀请功能](https://portal.getsmileapi.com/users/invite?utm_source=docs&utm_medium=internal_link) 。
-- 嵌入客户端 SDK 并实例化 Wink Widget 。
+开发者可以使用基于 JavaScript 的客户端 SDK（即 Smile 的 Wink Widget），轻松地将此功能集成到 Web 或移动应用程序中。该 Widget 提供了一个无缝且安全的界面，用户可以通过输入凭证或上传相关文件，与他们的就业数据提供商进行身份验证。验证通过后，Smile 会获取数据，并可通过开发者门户或开放 API 访问这些数据。
 
----
-<!-- focus：false-->
-![邀请](https://img.icons8.com/ios/50/000000/email-open.png)
-
-## 邀请
-
-Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们的工作帐户或上传与就业相关的文件副本。使用 API 中的 Invitation API ，您可以向一个用户发送消息，或者通过循环访问多个用户的电子邮件地址等联系信息来发送多个邀请。为了让您更容易尝试，我们在 [Developer Portal 中提供了 Invite 的示例](https://portal.getsmileapi.com/users/invite?utm_source=docs&utm_medium=internal_link) 。
-
-如果您想自定义消息的内容，您可以定义一个 Invite 模板。您可以通过 API 执行此操作，也可以使用 Developer Portal 中的示例实现。该模板接受如下动态变量：
-
-
-| Party | Variable Name | Description |
-|---|---|---|
-| Sender | ${companyName} | Company Name |
-| Recipient | ${fullName} | Full Name |
-
+这个统一的解决方案简化了各种认证流程和数据格式的复杂性，既简化了开发者的集成工作，也优化了用户体验。
 
 ---
-<!-- focus：false-->
-![代码](https://img.icons8.com/ios/50/000000/open-in-popup.png)
+<!-- focus: false -->
+![Checklist](https://img.icons8.com/ios/50/000000/checklist--v1.png)
 
+## 集成步骤
 
-## 客户端 SDK
+开始使用 Smile 开放 API 非常简单。实现 Smile 开放 API 涉及简单的客户端和服务器端集成，下面概述了四个关键步骤：
 
-通过客户端 SDK 将用户数据获取到您的应用程序中涉及两件事：
+1. **Link token**：您的应用服务器向我们的 REST API 发送请求，以生成一个短期的“token”。
+2. **Wink Widget**：您的应用客户端使用token初始化客户端 SDK，以启动 Smile Wink Widget。您的最终用户将与该 Widget 进行交互，通过安全加密连接提交登录凭证，以向其就业数据提供商进行身份验证。
+3. **连接到源数据**：进入 Widget 后，用户可以连接他们的就业账户，或者上传其就业数据的照片或扫描件。这将作为您的应用程序请求的任何用户数据的来源。
+4. **请求**：我们的服务器执行您的应用程序的请求。我们从用户的就业数据提供商处读取、转换并临时存储数据，以便将其发送到客户端应用程序。
+5. **Webhook**：在数据需要异步处理的情况下，Webhook 也可以发送到您的服务器。每当数据可用或更新时，都会通过 Webhook 发送消息。然后，您的服务器可以从我们的 REST API 获取数据。在事件通知部分了解更多信息。
 
-- **为您的 Web 应用程序客户端嵌入 Javascript SDK**。目前， Smile 仅提供 Javascript SDK，但即将推出适用于 iOS 或 Android 等移动应用程序的原生 SDK 版本。Javascript SDK 会启动一个名为 “Wink Widget" 的模式窗口，用户可以在其中为 Smile 提供访问其数据的权限。首先用户将找到他们的雇主或就业数据提供商，然后通过安全和加密的连接登陆他们的账号和/或上传一些文件。使用 SDK 时，您无需担心不同就业平台的不同认证和验证实现，提供文件上传机制和管理数据分析或 OCR 。我们为您的开发人员简化了获取数据和使用该数据的过程。
+---
+<!-- focus: false -->
+![Quickstart](https://img.icons8.com/ios/50/000000/speed.png)
 
-- **从 Smile Open API 获取用户 token**。您的后端服务器应该从 /users API 获取 “Link” token 。这是一个一次性使用的短期 token ，用于初始化 Wink Widget。每次您希望启动 Wink Widget 时，您的服务器都应生成一个新的Link token。
+## 快速入门
+
+为了在您自己的环境中实际测试 Smile API，我们提供了用于实例化 Wink Widget 或 SDK 的示例代码。
+
+> 📘 注意
+>
+> 我们在 [Github](https://github.com/SmileAPI) 上提供了 [快速入门示例代码](https://github.com/SmileAPI/quickstart)，您可以根据自己的需求下载和修改。
+
+示例代码安装了一个运行在 Node.js 上的小型服务器，该服务器会自动从我们的 API 获取Token，因此您可以在自己的本地机器上实例化 Wink Widget。
+
+示例实现由两部分组成：
+- 在 ``/frontend`` 目录下，您会找到已经嵌入 Wink JavaScript SDK 的 HTML 示例代码。
+- 在 ``/node`` 目录下，您会找到用于获取Token的服务器端 JavaScript 代码。您需要下载并运行 Node.js 才能运行此代码。
+
+**实施步骤**
+
+以下步骤也包含在快速入门 [仓库](https://github.com/SmileAPI/quickstart) 的 README.md 文件中。
+
+1. **将快速入门文件下载到您的机器上**
+
+   > 📘 注意
+   >
+   > 如果您安装了 git，您可以克隆该仓库或运行以下命令：
+   >
+   > ```bash
+   > git clone https://github.com/SmileAPI/quickstart
+   > ```
+
+2. **进入您下载的快速入门文件的 ``/node`` 目录**
+
+3. **在该目录中创建一个名为 ``.env`` 的新文件**，内容如下：
+
+   ```bash
+   # 您希望示例服务器监听的端口
+   APP_PORT=<portnumber>
+   
+   # Smile 链接 API 密钥（您可以通过向 access@getsmileapi.com 请求访问来获取此密钥）
+   API_KEY=<apikey>
+   API_SECRET=<apisecret>
+   
+   # API 主机（决定这将在SANDBOX环境还是生产环境中运行）
+   OPEN_API_HOST=<openapihost>
+   ```
+
+   您可以参考快速入门仓库中包含的 ``.env.example`` 文件。
+
+   > 🚧 警告
+   >
+   > **.env 文件通常会被系统隐藏**。您可能需要在系统偏好设置中启用隐藏文件的显示才能看到它。
+   >
+   > 此外，在 Windows 机器上，Windows 不允许您直接从 Windows 资源管理器创建以 ``.`` 开头的文件名。要解决这个问题，您可以执行以下步骤：
+   >
+   > 1. 打开记事本并写入文件内容（见下文）。
+   > 2. 在记事本中转到“文件” -> “另存为”窗口。
+   > 3. 在选择窗口中选择“所有文件”类型。
+   > 4. 将文件保存为 ``.env``
+
+   您可能需要确保您的机器具有创建该文件的适当权限。
+
+   > 📘 注意
+   >
+   > 在 Mac 或 Linux 机器上，您可以打开终端并以超级用户身份输入以下命令：
+   >
+   > ```bash
+   > sudo touch .env
+   > ```
+
+4. **保存并关闭文件**
+
+5. 如果您的机器上没有安装 Node.js，请**安装 Node.js**
+
+   > 📘 注意
+   >
+   > **对于 Mac**，您可以打开终端并运行：
+   > ```bash
+   > curl "https://nodejs.org/dist/latest/node-${VERSION:-$(wget -qO- https://nodejs.org/dist/latest/ | sed -nE 's|.*>node-(.*)\.pkg</a>.*|\1|p')}.pkg" > "$HOME/Downloads/node-latest.pkg" && sudo installer -store -pkg "$HOME/Downloads/node-latest.pkg" -target "/"
+   > ```
+   >
+   > **对于 Windows**，您可以[下载安装程序](https://nodejs.org/en/#home-downloadhead)。
+   >
+   > **对于其他操作系统**，您可以从 [Node.js 网站](https://nodejs.org/en/download/package-manager/#macos) 找到安装说明。
+
+6. **使用 [npm 包管理器](https://www.npmjs.com/) 运行 Yarn**，该管理器包含在 Node.js 中，并输入以下命令：
+   ```bash
+   npm install --global yarn
+   yarn install
+   ```
+
+   > 📘 注意
+   >
+   > 在 Mac 或 Linux 系统中，您需要打开终端。如果使用 Windows 系统，您可以打开命令行。确保您仍处于刚刚下载到机器上的快速入门文件的 ``/node`` 目录中。
+   >
+   > 如果您没有足够的权限，可能需要以超级用户身份运行。在 Mac 或 Linux 机器上，您可以使用 ``sudo`` 以超级用户身份运行命令。在 Windows 上，您可以使用管理员信任级别运行命令，或者右键单击 UI 中的程序并选择“以管理员身份运行”。
+
+7. **运行服务器**
+   ```bash
+   node index.js
+   ```
+
+   > 🚧 警告
+   >
+   > 如果您在运行 Node 服务器时遇到问题，可能需要在环境中安装 dotenv。要安装 dotenv，只需运行以下命令：
+   >
+   > ```bash
+   > npm install dotenv
+   > ```
+
+8. **打开浏览器并打开示例 Wink Widget**。例如，如果您在 ``.env`` 配置文件中指定端口为 ``:8000``，则在 Web 浏览器中打开 http://127.0.0.1:8000。
+
+9. **使用提供的 [SANDBOX账户](ref:getting-user-data#testing-in-sandbox) 测试 Widget**
+
+> 👍 做得好！
+>
+> 坐下来，放松一下，为自己出色的工作鼓掌吧！
 
 
 ---
 <!-- focus: false -->
-![代码](https://img.icons8.com/ios/50/000000/code.png)
+![User Data](https://img.icons8.com/?size=50&id=FD1d9t9lMoS2&format=png&color=000000)
+## 获取用户数据
 
-## 示例代码
-以下是嵌入 Wink Javascript SDK 的 HTML 示例代码。
+您可以通过三种方式从用户那里获取数据：
+
+1. 通过 API 中的 ``/invitations`` 端点邀请您的用户，或使用 [开发者门户中用户部分的邀请功能](https://portal.getsmileapi.com/users/invite?utm_source=docs&utm_medium=internal_link)。
+2. 嵌入客户端 SDK 并实例化 Wink Widget，让您的用户直接从您的应用或网站分享他们的信息。
+3. 发布一个嵌入了 Wink Widget 的 Flip 站点，并引导您的用户完成表单（请参阅表单处理）。
+
+### 邀请
+
+邀请功能允许您通过电子邮件等通信渠道邀请用户连接他们的工作账户或上传与就业相关的文件副本。使用 API 中的邀请端点，您可以向单个用户发送消息，或者通过遍历多个用户的联系信息（如电子邮件地址）发送多个邀请。为了方便您进行尝试，我们在 [开发者门户中提供了邀请的示例实现](https://portal.getsmileapi.com/users/invite?utm_source=docs&utm_medium=internal_link)。
+
+如果您想自定义消息内容，可以定义一个邀请模板。您可以通过 API 来完成此操作，也可以使用开发者门户中的示例实现。该模板接受以下动态变量：
+
+| 参与方 | 变量名            | 描述   |
+|-----|----------------|------|
+| 发送方 | ${companyName} | 公司名称 |
+| 接收方 | ${fullName}    | 全名   |
+
+### 客户端 SDK
+
+通过客户端 SDK 将用户数据获取到您的应用程序中涉及两件事：
+
+- **为您的 Web 应用程序客户端嵌入 JavaScript SDK**。目前，Smile 仅提供 JavaScript SDK，但适用于 iOS 或 Android 等移动应用程序的原生 SDK 版本即将推出。JavaScript SDK 会启动一个名为“Wink”的模态窗口Widget，用户可以在其中授权 Smile 访问他们的数据。用户首先需要找到他们的雇主或就业数据提供商，然后通过安全加密连接提交登录凭证和/或上传一些文件。使用 SDK 时，您无需担心不同就业平台的不同认证和验证实现，也无需提供文件上传机制和管理数据分析或 OCR。我们为您的开发人员简化了获取和使用数据的过程，也为您的用户提供了流畅的体验。
+- **从 Smile 开放 API 获取用户Token**。您的后端服务器应从 /users 端点获取“链接”Token。这是一个一次性使用的短期Token，用于初始化 Wink Widget。每次您希望启动该 Widget 时，您的服务器都应生成一个新的token。
+
+---
+<!-- focus: false -->
+![Code](https://img.icons8.com/ios/50/000000/code.png)
+
+#### 示例代码
+以下是嵌入 Wink JavaScript SDK 的 HTML 示例代码。
 
 ```html
 <!DOCTYPE html>
@@ -59,7 +192,7 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="smileicon32.webp" sizes="32x32">
     <link rel="icon" href="smileicon192.webp" sizes="192x192">
-    <title>Smile Wink Quickstart - Sandbox Mode</title>
+    <title>Smile Wink 快速入门 - SANDBOX模式</title>
 </head>
 
 <body>
@@ -67,86 +200,86 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
     <script type="text/javascript">
         const smileLinkModal = new SmileLinkModal({
             /**
-             * User token(link token) passed from your backend service which is obtained from the Smile API.
+             * 从您的后端服务传递的用户Token（token），该Token从 Smile API 获取。
              */
             userToken: '<usertoken>',
 
             /**
-             * Use the template ID to determine how your widget looks like embedded in your app or website.
-             * You can find and create the template ID in the Smile developer-portal.
+             * 使用模板 ID 来确定您的Widget嵌入到应用或网站中的外观。
+             * 您可以在 Smile 开发者门户中找到并创建模板 ID。
              * https://developer-portal.smileapi.io/link/template
              */
-            templateId: "<ID of wink template >",
+            templateId: "<wink 模板的 ID>",
 
             /**
-             * Account login callback.
+             * 账户登录回调。
              */
             onAccountCreated: ({ accountId, userId, providerId }) => {
-                console.log('Account created: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
+                console.log('账户已创建: ', accountId, ' 用户 ID:', userId, ' 提供商 ID:', providerId)
             },
 
             /**
-             * Account login success callback.
+             * 账户登录成功回调。
              */
             onAccountConnected: ({ accountId, userId, providerId }) => {
-                console.log('Account connected: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
+                console.log('账户已连接: ', accountId, ' 用户 ID:', userId, ' 提供商 ID:', providerId)
             },
 
             /**
-             * Account revoke callback.
+             * 账户撤销回调。
              */
             onAccountRemoved: ({ accountId, userId, providerId }) => {
-                console.log('Account removed: ', accountId, ' User ID:', userId, ' Provider ID:', providerId)
+                console.log('账户已移除: ', accountId, ' 用户 ID:', userId, ' 提供商 ID:', providerId)
             },
 
             /**
-             * Token expired callback.
+             * Token过期回调。
              */
             onTokenExpired: () => {
-                console.log('Token expired');
+                console.log('Token已过期');
             },
 
             /**
-             * Smile link SDK close callback.If you want to know which button the user clicked to trigger the close event, you can pass parameters like this.
+             * Smile 链接 SDK 关闭回调。如果您想知道用户点击了哪个按钮来触发关闭事件，您可以像这样传递参数。
              * onClose:({reason})=>{}
-             * If the value of reason is equal to "close", it means that the user clicked the close icon in the upper right corner of the page to close the SDK
-             * If the value of reason is equal to "exit", it means that the user clicked the DONE button on the connection page to close the SDK
+             * 如果 reason 的值等于 "close"，则表示用户点击了页面右上角的关闭图标来关闭 SDK
+             * 如果 reason 的值等于 "exit"，则表示用户点击了连接页面上的“完成”按钮来关闭 SDK
              */
             onClose: ({ reason }) => {
-                console.log('Link closed, reason:', reason)
+                console.log('链接已关闭，原因:', reason)
             },
 
             /**
-             * Account connect error callback.
+             * 账户连接错误回调。
              */
             onAccountError: ({ accountId, userId, providerId, errorCode }) => {
-                console.log('Account error: ', accountId, ' User ID:', userId, ' Provider ID:', providerId, 'Error Code:', errorCode)
+                console.log('账户错误: ', accountId, ' 用户 ID:', userId, ' 提供商 ID:', providerId, '错误代码:', errorCode)
             },
 
             /**
-             * Uploads submit callback.
+             * 上传提交回调。
              */
             onUploadsCreated: ({ uploads, userId }) => {
-                console.log('Uploads: ', uploads, ' User ID:', userId);
+                console.log('上传内容: ', uploads, ' 用户 ID:', userId);
             },
 
             /**
-             * Uploads revoke callback.
+             * 上传撤销回调。
              */
             onUploadsRemoved: ({ uploads, userId }) => {
-                console.log('Uploads: ', uploads, ' User ID:', userId);
+                console.log('上传内容: ', uploads, ' 用户 ID:', userId);
             },
 
             /**
-             * User event callback is used to capture all the user activities from Smile Wink SDK
+             * 用户事件回调用于捕获 Smile Wink SDK 中的所有用户活动
              */
             onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
-                console.log('eventName:', eventName,
-                    "eventTime:", eventTime,
-                    "mode:", mode,
-                    "userId:", userId,
-                    "account:", account,
-                    "archive:", archive);
+                console.log('事件名称:', eventName,
+                    "事件时间:", eventTime,
+                    "模式:", mode,
+                    "用户 ID:", userId,
+                    "账户:", account,
+                    "存档:", archive);
             }
         });
         smileLinkModal.open()
@@ -155,100 +288,78 @@ Invite 允许您邀请您的用户通过电子邮件等通信渠道连接他们�
 
 </html>
 ```
-
 > 📘 注意
 >
-> 目前有两个版本的SDK可用。版本2（最新版本）的代码如上所示。要在版本1和版本2之间进行切换，只需将SDK的源代码从版本2切换到版本1，不需要做其他改动。
-
-## Wink Widget 的版本管理
-
-**Wink Widget 版本 2 包含许多用户体验和功能的改进，是我们推荐使用的版本**。
-
-版本 1 我们将仍然保留，安全监测、更新和补丁将继续进行。
-
-| 版本            | 嵌入 SDK 的 JavaScript                                              |
-|---------------|------------------------------------------------------------------|
-| 版本 2 **(推荐)** | `<script src="https://web.smileapi.io/v2/smile.v2.js"></script>` |
-| 版本 1          | `<script src="https://web.smileapi.io/v1/smile.v1.js"></script>` |
-
----
-
-
-<!-- focus：false-->
-![设置](https://img.icons8.com/material-outlined/60/000000/settings-3--v1.png)
-
-## 配置参数
-
-| 参数         | 值                                                             |
-|------------|---------------------------------------------------------------|
-| userToken  | 使用 /users API 从 Smile 返回的用户 token （请参阅有关 User API 的文档         |
-| callbacks  | 所有 callback 都是可选的，但建议监听 onClose() 回调，以便从 Smile SDK 返回您的应用程序页面 |
-| templateId | wink template 的 ID                                            |
-
-> 🚧 警告
->
-> Sandbox 模式下的 Archive 只支持测试特定的工资单。要在 Sandbox 模式下测试 Archive，您可以在 Developer Portal 下载工资单样例，然后通过 Wink Widget 或 API 上传。在 Sandbox 模式下上传其他文件将返回错误。
-
----
-<!-- focus：false-->
-![令牌](https://img.icons8.com/ios/50/000000/sms-token.png)
-
-## 刷新用户令牌
-您可以通过调用 /tokens API 来刷新用户的 token 。只需在查询中将 userId 作为参数传递给用户一个新的 token。更多信息可以在 Tokens API 文档中找到。
-
----
-<!-- focus：false-->
-![事件](https://img.icons8.com/ios/50/000000/important-event.png)
-
-## 链接事件
-当用户在 Wink Widget 界面上移动时，用户执行的任何活动都会被捕获并用于更新消息和模式窗口的呈现，或者发送到 Smile 以便可以检索任何与源相关的数据。
-
-### 关联账户
-如果用户能够成功地通过数字就业数据提供商进行身份验证，则链接状态将更改为 “CONNECTED” 。可以通过 /accounts API 随时查询用户的账户状态。捕获的事件示例包括：
-
-| 活动 | 描述                                               |
-|---------|--------------------------------------------------|
-| PENDING | 帐户已创建，但正在等待成功的身份验证                               |
-| AWAITING_MFA| 用户能够成功进行身份验证，但是数据提供商正在等待用户在 2 因素身份验证场景中输入他们的验证码。 |
-| ERROR | 数据提供商返回错误。用户可能没有输入错误的凭据，或者提供商方面存在问题。             |
-| CONNECTED | 用户能够成功地通过就业数据提供商进行身份验证。                          |
-| DISCONNECTED | 用户断开了与就业数据提供商的链接。                                |
-
-您也可以允许用户使用 /accounts API 撤销对其帐户数据的访问权限。与被撤销帐户相关的所有数据将从系统中删除。
-
-### 成功上传
-如果用户能够通过扫描或拍照文件成功上传就业和收入数据，则链接状态将更改为 “STARTED” 。可以随时通过 /archives API 查询用户的上传状态。捕获的事件示例包括：
-
-| 活动 |描述 |
-|---------|---------|
-| STARTED | 上传成功，开始分析能否提取数据。|
-| ANALYZED | 分析已完成，数据已成功提取（通过 OCR）并转换为 JSON 格式。|
-| UNSUPPORTED | 无法分析上传的文件类型。无法自动提取数据。|
-| ERROR | 上传文件的分析出现问题。|
-| REVOKED | 用户撤销了从上传的文件中共享数据的权限。|
-
-## 维护用户数据
-
-只要用户同意并通过 Wink Widget 连接他们的账户，Smile API 的*连续数据同步* ( CDS )功能可以让您从用户那里获得最新的数据。同意 CDS 功能后，用户可以授权 Smile 为您同步多个月的数据，直到他们撤销对其帐户的访问权限。
-
-在 [Accounts 部分](/reference/accounts) 了解更多关于 CDS 和启用 CDS 的信息。
+> 目前有两个版本的 SDK 可供使用。上面显示的是版本 2（最新版本）的代码。版本 1 已经不维护，所以请使用版本 2。要在版本 1 和版本 2 之间切换，只需将 SDK 源代码切换到版本 1 即可，无需进行其他更改。
 
 ---
 <!-- focus: false -->
-![测试](https://img.icons8.com/material-outlined/50/000000/test-tube.png)
+![Settings](https://img.icons8.com/material-outlined/50/000000/settings-3--v1.png)
 
-## Sandbox 测试
+## 配置
 
-Smile 为我们的生产环境提供了 Sandbox 模式，让您可以测试与示例数据的集成。
+Wink Widget 使用 Wink 模板来管理嵌入到您应用中的每个 Widget 的实例化设置。Wink Widget 模板允许对您的 Widget 进行丰富的自定义，包括主要颜色和为该实例选择的数据源。
 
-您可以使用以下示例账号来使用 Sandbox ：
+| 参数         | 值                                                     |
+|------------|-------------------------------------------------------|
+| templateId | 正在使用的 Wink 模板的 ID                                     |
+| userToken  | 使用 /users 端点从 Smile 返回的用户Token（请参阅用户端点的文档）            |
+| callbacks  | 所有回调都是可选的，但建议监听 onClose() 回调，以便从 Smile SDK 返回您的应用程序页面 |
 
-| User Name | Full Name | Email | Mobile Phone | Password | Verification Code | SS Number |
-|---|---|---|---|---|---|---|
-| George | George Palomero Jr. | gpalomero1234@smileapi.io | (+63) 9559991234 | 123456 | 1234 | 3300000008 |
-| Ryan | Ryan Lestari | ryan1234@smileapi.io |  (+62) 8119994321 | 654321 | 1234 | N/A |
-| Christina | Christina Tan | christina4321@smileapi.io |  (+65) 99996789 | YGUS1 | 1234 | N/A |
-| Anisha | Anisha Bhatia | anisha98765@smileapi.io |  (+91) 9511198765 | 123456 | 1234 | N/A |
+---
+<!-- focus: false -->
+![Event](https://img.icons8.com/ios/50/000000/important-event.png)
+## 事件通知
 
-Sandbox 模式下的 Archive 只支持测试特定的工资单。要在 Sandbox 模式下测试 Archive，您可以在 Developer Portal 下载工资单样例，然后通过 Wink Widget 或 API 上传。在 Sandbox 模式下上传其他文件将返回错误。
+当用户在 Wink Widget 屏幕中操作时，用户执行的任何活动都会被捕获，这些活动要么用于更新模态窗口的消息和显示，要么发送到 Smile 以便检索任何与源相关的数据。
 
+### 关联账户
+
+如果用户能够成功地通过数字就业数据提供商进行身份验证，则链接状态将更改为“已连接”。可以随时通过 /accounts 端点查询用户的账户状态。捕获的事件示例包括：
+
+| 事件           | 描述                                         |
+|--------------|--------------------------------------------|
+| PENDING      | 账户已创建，但等待成功的身份验证                           |
+| AWAITING_MFA | 用户能够成功进行身份验证，但数据提供商正在等待用户在双因素身份验证场景中输入验证码。 |
+| ERROR        | 数据提供商返回错误。用户可能输入了错误的凭证，或者提供商方面存在问题。        |
+| CONNECTED    | 用户能够成功地通过就业数据提供商进行身份验证。                    |
+| DISCONNECTED | 用户断开了与就业数据提供商的链接。                          |
+
+您也可以允许用户使用 /accounts 端点撤销对其账户数据的访问权限。与被撤销账户相关的所有数据将从系统中删除。
+
+---
+<!-- focus: false -->
+![Storage](https://img.icons8.com/?size=50&id=1476&format=png&color=000000)
+## 维护用户数据
+
+Smile API 仅在以下情况之一发生之前存储用户数据：
+
+1. 用户撤销对其数据的访问权限
+2. 通过撤销 API 撤销访问权限（即由开发者发起）
+3. 自账户连接之日起已过去 60 天
+
+为确保在最长 60 天的时间范围之后仍能持续访问数据，请确保您在自己的服务器上检索并存储用户数据。一旦您从 Smile 服务器检索到数据，您可以使用撤销 API 指示 Smile 撤销该数据。当用户手动撤销其数据共享时，您还将收到 Smile 发出的事件通知。
+
+### 连续数据同步
+
+一旦用户同意并通过 Wink Widget连接他们的账户，Smile API 的*连续数据同步*（CDS）功能可让您访问用户的最新数据。通过同意 CDS，用户可以授权 Smile 为您跨多个月同步数据，直到他们撤销对其账户的访问权限。
+
+在[账户部分](/reference/accounts)了解更多关于 CDS 以及如何启用 CDS 的信息。
+
+### 刷新用户Token
+
+您可以通过调用 `/tokens` 端点来刷新用户的Token。只需在查询中传递 `userId` 作为参数，即可为用户提供一个新的Token。更多信息可在Token端点文档中找到。
+
+---
+<!-- focus: false -->
+![Versioning](https://img.icons8.com/?size=50&id=21889&format=png&color=000000)
+## 版本管理
+
+**Wink Widget版本 2 包含许多用户体验和功能改进，是推荐使用的版本**。
+
+版本 1 仍会得到维护，并且会继续进行安全监控、更新和打补丁。
+
+| 版本                 | SDK JavaScript 嵌入代码                                              |
+|--------------------|------------------------------------------------------------------|
+| version 2 **(推荐)** | `<script src="https://web.smileapi.io/v2/smile.v2.js"></script>` |
+| version 1          | `<script src="https://web.smileapi.io/v1/smile.v1.js"></script>` |
