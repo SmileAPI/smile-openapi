@@ -1,5 +1,5 @@
 ---
-title: 连接Account  
+title: 连接账户 
 excerpt: ""  
 category: 62ce2a159aafea009af30da7
 slug: chapter-4-cn

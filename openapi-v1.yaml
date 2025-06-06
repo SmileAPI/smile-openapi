@@ -3263,14 +3263,15 @@ paths:
       summary: Create Footprint
       operationId: create-alpha-footprint
       description: >-
-        Create a Footprint object. This endpoint requires the input parameters
-        `consent`, `emailAddress`, and `templateId`, all of which are mandatory.
-        The `templateId` is fixed as
-        `footprintTpl-61e10d070e07a4ea96e9430668d4bb9f`. When in sandbox mode
-        and using the test email address `gpalomero1234@smileapi.io`, mock items
-        will be returned along with a `resultCode` of `SUCCESS`. For any other
-        valid email addresses, the `resultCode` will be `NO_DATA` and no items
-        will be returned.
+        Create a Footprint object requiring mandatory parameters: consent and
+        templateId. Provide either emailAddress or mobileNumber (mutually
+        exclusive). When using emailAddress, templateId must be
+        footprintTpl-61e10d070e07a4ea96e9430668d4bb9f. When using mobileNumber,
+        templateId must be footprintTpl-827759c3cf8a49ac894033a08ed291e3. In
+        sandbox mode: using test email gpalomero1234@smileapi.io returns mock
+        items with SUCCESS resultCode; using test mobile number 639559991234
+        returns SUCCESS with mock items. All other valid inputs return NO_DATA
+        resultCode with no items.
       tags:
         - Footprints (Alpha)
       x-internal: true
@@ -3294,14 +3295,15 @@ paths:
                       resultCode: ''
                       resultMessage: ''
                       requestMeta:
-                        emailAddress: someone@email.com
-                        templateId: footprintTpl-xxxxxxxxxxxxxxx
+                        emailAddress: gpalomero1234@smileapi.io
+                        mobileNumber: null
+                        templateId: footprintTpl-61e10d070e07a4ea96e9430668d4bb9f
                         consent:
                           type: Terms And Conditions
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       items:
                         - name: registered
                           value: 'false'
@@ -3311,6 +3313,37 @@ paths:
                           valueType: STRING
                         - name: companyName
                           value: Google
+                          valueType: STRING
+                Example2:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: footprint-e35d5af85aaf721ef8f147c4aa01b7c1
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        emailAddress: null
+                        templateId: footprintTpl-827759c3cf8a49ac894033a08ed291e3
+                        mobileNumber: '639559991234'
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: null
+                      items:
+                        - name: valid
+                          value: 'false'
+                          valueType: BOOLEAN
+                        - name: creationTime
+                          value: '2021-04-14T09:30:24Z'
+                          valueType: STRING
+                        - name: companyName
+                          value: Globe
                           valueType: STRING
       requestBody:
         required: true
@@ -3326,9 +3359,21 @@ paths:
                     version: 1
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                  templateId: footprintTpl-xxxxxxxxxxxxxxx
-                  emailAddress: someone@email.com
+                    consentTemplateId: null
+                  templateId: footprintTpl-61e10d070e07a4ea96e9430668d4bb9f
+                  emailAddress: gpalomero1234@smileapi.io
+                  mobileNumber: null
+              Example2:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: null
+                  templateId: footprintTpl-827759c3cf8a49ac894033a08ed291e3
+                  emailAddress: null
+                  mobileNumber: '639559991234'
     get:
       summary: List Footprints
       operationId: list-alpha-footprints
@@ -3358,6 +3403,7 @@ paths:
                           requestMeta:
                             emailAddress: someone@email.com
                             templateId: footprintTpl-xxxxxxxxxxxxxxx
+                            mobileNumber: null
                             consent:
                               type: Terms And Conditions
                               version: 1
@@ -3436,6 +3482,7 @@ paths:
                       requestMeta:
                         emailAddress: someone@email.com
                         templateId: footprintTpl-xxxxxxxxxxxxxxx
+                        mobileNumber: null
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -12729,6 +12776,12 @@ components:
               type: string
               description: The email address of the subject provided in the request.
               example: some@email.com
+            mobileNumber:
+              type: string
+              description: >-
+                Subject's mobile number. Must start with country code i.e.
+                639178912345, and no leading zeros
+              example: '639178902345'
             templateId:
               type: string
               description: >-
@@ -12766,12 +12819,17 @@ components:
       required:
         - consent
         - templateId
-        - emailAddress
       properties:
         emailAddress:
           type: string
           description: The email address of the subject. It must be a valid email address.
           example: some@email.com
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            639178912345, and no leading zeros
+          example: '639178902345'
         templateId:
           type: string
           description: >-
