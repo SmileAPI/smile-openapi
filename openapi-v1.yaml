@@ -1922,86 +1922,6 @@ paths:
       tags:
         - Invite Templates
       description: Delete invite template.
-  /links:
-    parameters: []
-    get:
-      operationId: list-links
-      description: List links from data sources.
-      summary: List links
-      tags:
-        - Links
-      parameters:
-        - $ref: '#/components/parameters/size'
-        - $ref: '#/components/parameters/cursor'
-        - $ref: '#/components/parameters/userId'
-        - $ref: '#/components/parameters/sourceId'
-      responses:
-        '200':
-          description: List Links Response
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LinkListResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      nextCursor: '1259723474'
-                      items:
-                        - id: link-123abc456def789abc123def456abc78
-                          startDate: '2023-01-05T10:30:11Z'
-                          endDate: '2023-07-05T10:30:11Z'
-                          records:
-                            - count: 2
-                              linkedAt:
-                                - '2023-04-05T10:30:11Z'
-                                - '2023-07-01T10:30:11Z'
-                          metadata:
-                            createdAt: '2021-04-14T09:30:24Z'
-                            sourceId: a-123abc456def789abc123def456abc78
-                            sourceType: ACCOUNT
-                            userId: tenantId-123abc456def789abc123def456abc78
-                            providerId: abccorp
-  /links/{id}:
-    parameters:
-      - $ref: '#/components/parameters/id'
-    get:
-      summary: Get Link
-      operationId: get-link
-      description: Get the Account's link result by ID.
-      tags:
-        - Links
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LinkGetResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: link-123abc456def789abc123def456abc78
-                      startDate: '2023-01-05T10:30:11Z'
-                      endDate: '2023-07-05T10:30:11Z'
-                      records:
-                        - count: 2
-                          linkedAt:
-                            - '2023-04-05T10:30:11Z'
-                            - '2023-07-01T10:30:11Z'
-                      metadata:
-                        createdAt: '2021-04-14T09:30:24Z'
-                        sourceId: a-123abc456def789abc123def456abc78
-                        sourceType: ACCOUNT
-                        userId: tenantId-123abc456def789abc123def456abc78
-                        providerId: abccorp
   /archives:
     get:
       summary: List Archives
@@ -2069,7 +1989,7 @@ paths:
         - $ref: '#/components/parameters/cursor'
         - $ref: '#/components/parameters/userId'
         - schema:
-            $ref: '#/components/schemas/FileTypeEnum'
+            $ref: '#/components/schemas/FileTypeId'
           in: query
           name: fileType
           description: Filter by archive date, start of date range (YYYY-MM-DD)
@@ -2692,1203 +2612,6 @@ paths:
           in: query
           name: ocr
           description: Filter results to file types that support OCR.
-  /alpha/verifications:
-    get:
-      summary: List Verifications
-      tags:
-        - Verification
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VerificationListResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      nextCursor: null
-                      items:
-                        - id: 5b79399a-6852-4234-bb0e-ad472648282d
-                          createdAt: '2021-04-14T09:30:24Z'
-                          updatedAt: '2021-04-14T09:30:24Z'
-                          status: PROCESSING
-                          errorMessage: null
-                          requestMeta:
-                            firstName: George
-                            lastName: Smith
-                            middleName: null
-                            fullName: George Smith
-                            additionalData:
-                              ids:
-                                - idType: sss_ph
-                                  idSubType: null
-                                  idNumber: 1234567890
-                            consent:
-                              type: Terms And Conditions
-                              version: 1
-                              consentedWith: I aggree to the terms and conditions.
-                              consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                          result: null
-                        - id: 5b79399a-6853-4234-bb0e-ad472648282d
-                          createdAt: '2021-04-14T09:30:24Z'
-                          updatedAt: '2021-04-14T09:30:24Z'
-                          status: COMPLETED
-                          errorMessage: null
-                          requestMeta:
-                            firstName: George2
-                            lastName: Smith
-                            middleName: null
-                            fullName: George2 Smith
-                            additionalData:
-                              ids:
-                                - idType: sss_ph
-                                  idSubType: null
-                                  idNumber: 1234567890
-                              dob: '1990-01-01'
-                              gender: Female
-                              address: null
-                              employer: null
-                              employmentStatus: null
-                              email: someone@gmail.com
-                              phone: 639123456789
-                            consent:
-                              type: Terms And Conditions
-                              version: 1
-                              consentedWith: I aggree to the terms and conditions.
-                              consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                          result:
-                            finalMatches: true
-                            names:
-                              firstNameMatches: true
-                              lastNameMatches: true
-                              middleNameMatches: null
-                              fullNameMatches: true
-                            additionalData:
-                              ids:
-                                - idType: sss_ph
-                                  idSubType: null
-                                  idNumber: 1234567890
-                                  matches: true
-                              dobMatches: true
-                              genderMatches: false
-                              addressMatches: null
-                              phoneMatches:
-                                value: 639123456789
-                                matches: true
-                                disposable: false
-                                deliverable: null
-                                active: true
-                                provider: Smart Communications
-                                freeProvider: false
-                              emailMatches:
-                                value: someone@gmail.com
-                                matches: true
-                                disposable: false
-                                deliverable: true
-                                active: true
-                                provider: Google LLC
-                                freeProvider: true
-      operationId: list-verifications
-      description: List verificatins.
-      parameters:
-        - $ref: '#/components/parameters/size'
-        - $ref: '#/components/parameters/cursor'
-        - name: verificationId
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter to those associated with a particular verification ID.
-        - name: finalMatches
-          in: query
-          required: false
-          schema:
-            type: boolean
-          description: Filter to those associated with verification final match result.
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: startDate
-          description: Filter by create date, start of date range (YYYY-MM-DD)
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: endDate
-          description: Filter by create date, end of date range (YYYY-MM-DD)
-    post:
-      summary: Request Verification
-      tags:
-        - Verification
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/VerificationCreateRequest'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VerificationCreateResponse'
-      operationId: create-verification
-      description: sumbit required parameters to request verification.
-  /alpha/verifications/{id}:
-    parameters:
-      - $ref: '#/components/parameters/id'
-    get:
-      summary: Get Verification
-      tags:
-        - Verification
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VerificationGetResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: 5b79399a-6853-4234-bb0e-ad472648282d
-                      createdAt: '2021-04-14T09:30:24Z'
-                      updatedAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      errorMessage: null
-                      requestMeta:
-                        firstName: George2
-                        lastName: Smith
-                        middleName: null
-                        fullName: George2 Smith
-                        additionalData:
-                          ids:
-                            - idType: sss_ph
-                              idSubType: null
-                              idNumber: 1234567890
-                          dob: '1990-01-01'
-                          gender: Female
-                          address: null
-                          employer: null
-                          employmentStatus: null
-                          email: someone@gmail.com
-                          phone: 639123456789
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I aggree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                      result:
-                        finalMatches: true
-                        names:
-                          firstNameMatches: true
-                          lastNameMatches: true
-                          middleNameMatches: null
-                          fullNameMatches: true
-                        additionalData:
-                          ids:
-                            - idType: sss_ph
-                              idSubType: null
-                              idNumber: 1234567890
-                              matches: true
-                          dobMatches: true
-                          genderMatches: false
-                          addressMatches: null
-                          phoneMatches:
-                            value: 639123456789
-                            matches: true
-                            disposable: false
-                            deliverable: null
-                            active: true
-                            provider: Smart Communications
-                            freeProvider: false
-                          emailMatches:
-                            value: someone@gmail.com
-                            matches: true
-                            disposable: false
-                            deliverable: true
-                            active: true
-                            provider: Google LLC
-                            freeProvider: true
-      operationId: get-verification
-      description: Get verification by ID.
-  /alpha/signals:
-    post:
-      summary: Create Signal
-      operationId: create-alpha-signal
-      tags:
-        - Signals (Alpha)
-      x-internal: true
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SignalPostResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: ''
-                      resultMessage: ''
-                      requestMeta:
-                        phone: '+639178902345'
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                      result:
-                        events_arbitrary_day30: 0
-                        events_preloan_day30: 0
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SignalPostRequest'
-    get:
-      summary: List Signals
-      tags:
-        - Signals (Alpha)
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SignalListResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      nextCursor: null
-                      items:
-                        - signal:
-                            id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
-                            createdAt: '2021-04-14T09:30:24Z'
-                            status: COMPLETED
-                            resultCode: ''
-                            resultMessage: ''
-                            requestMeta:
-                              phone: '+639178902345'
-                              consent:
-                                type: Terms And Conditions
-                                version: 1
-                                consentedWith: I agree to the terms and conditions.
-                                consentedAt: '2021-04-14T09:30:24Z'
-                                consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                            result:
-                              events_arbitrary_day30: 0
-                              events_preloan_day30: 0
-      operationId: list-alpha-signals
-      description: List all Signals.
-      parameters:
-        - $ref: '#/components/parameters/size'
-        - $ref: '#/components/parameters/cursor'
-        - name: signalId
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter Signal Requests by a specific Signal Request ID.
-        - name: phone
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter Signal Requests by a specific mobile phone.
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: startDate
-          description: >-
-            Filter Signal Requests by request date, start of date range
-            (YYYY-MM-DD)
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: endDate
-          description: >-
-            Filter Signal Requests by request date, end of date range
-            (YYYY-MM-DD)
-  /alpha/signals/{id}:
-    parameters:
-      - $ref: '#/components/parameters/id'
-    get:
-      summary: Get Signal
-      description: Get Signal by unique ID.
-      operationId: get-alpha-signal
-      x-internal: true
-      tags:
-        - Signals (Alpha)
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SignalGetResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: ''
-                      resultMessage: ''
-                      requestMeta:
-                        phone: '+639178902345'
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                      result:
-                        events_arbitrary_day30: 0
-                        events_preloan_day30: 0
-  /beta/signals:
-    post:
-      summary: Create Signal
-      operationId: create-beta-signal
-      tags:
-        - Signals (Beta)
-      x-internal: true
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BetaSignalPostResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: ''
-                      resultMessage: ''
-                      requestMeta:
-                        phone: '+639178902345'
-                        countryCode: PH
-                        templateId: signalTpl-xxxxxxxxxxxxxxx
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                      items:
-                        - name: events_arbitrary_day30
-                          value: 0
-                          valueType: NUMBER
-                        - name: events_preloan_day30
-                          value: 0
-                          valueType: NUMBER
-                        - name: events_debt_day90_amount
-                          value: A0
-                          valueType: STRING
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BetaSignalPostRequest'
-    get:
-      summary: List Signals
-      operationId: list-beta-signals
-      tags:
-        - Signals (Beta)
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BetaSignalListResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      nextCursor: null
-                      items:
-                        - signal:
-                            id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
-                            createdAt: '2021-04-14T09:30:24Z'
-                            status: COMPLETED
-                            resultCode: ''
-                            resultMessage: ''
-                            requestMeta:
-                              phone: '+639178902345'
-                              countryCode: PH
-                              templateId: signalTpl-xxxxxxxxxxxxxxx
-                              consent:
-                                type: Terms And Conditions
-                                version: 1
-                                consentedWith: I agree to the terms and conditions.
-                                consentedAt: '2021-04-14T09:30:24Z'
-                                consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                            items:
-                              - name: events_arbitrary_day30
-                                value: 0
-                                valueType: NUMBER
-                              - name: events_preloan_day30
-                                value: 0
-                                valueType: NUMBER
-                              - name: events_debt_day90_amount
-                                value: A0
-                                valueType: STRING
-      description: List all Signals.
-      parameters:
-        - $ref: '#/components/parameters/size'
-        - $ref: '#/components/parameters/cursor'
-        - name: signalId
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter Signal Requests by a specific Signal Request ID.
-        - name: phone
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter Signal Requests by a specific mobile phone.
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: startDate
-          description: >-
-            Filter Signal Requests by request date, start of date range
-            (YYYY-MM-DD)
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: endDate
-          description: >-
-            Filter Signal Requests by request date, end of date range
-            (YYYY-MM-DD)
-  /beta/signals/{id}:
-    parameters:
-      - $ref: '#/components/parameters/id'
-    get:
-      summary: Get Signal
-      description: Get Signal by unique ID.
-      operationId: get-beta-signal
-      x-internal: true
-      tags:
-        - Signals (Beta)
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BetaSignalGetResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: ''
-                      resultMessage: ''
-                      requestMeta:
-                        phone: '+639178902345'
-                        countryCode: PH
-                        templateId: signalTpl-xxxxxxxxxxxxxxx
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                      items:
-                        - name: events_arbitrary_day30
-                          value: 0
-                          valueType: NUMBER
-                        - name: events_preloan_day30
-                          value: 0
-                          valueType: NUMBER
-                        - name: events_debt_day90_amount
-                          value: A0
-                          valueType: STRING
-  /alpha/footprints:
-    post:
-      summary: Create Footprint
-      operationId: create-alpha-footprint
-      description: >-
-        Create a Footprint object requiring mandatory parameters: consent and
-        templateId. Provide either emailAddress or mobileNumber (mutually
-        exclusive). When using emailAddress, templateId must be
-        footprintTpl-61e10d070e07a4ea96e9430668d4bb9f. When using mobileNumber,
-        templateId must be footprintTpl-827759c3cf8a49ac894033a08ed291e3. In
-        sandbox mode: using test email gpalomero1234@smileapi.io returns mock
-        items with SUCCESS resultCode; using test mobile number 639559991234
-        returns SUCCESS with mock items. All other valid inputs return NO_DATA
-        resultCode with no items.
-      tags:
-        - Footprints (Alpha)
-      x-internal: true
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlphaFootprintPostResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: footprint-e35d521ef8f147c4aa01b7c1af85aaf7
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: ''
-                      resultMessage: ''
-                      requestMeta:
-                        emailAddress: gpalomero1234@smileapi.io
-                        mobileNumber: null
-                        templateId: footprintTpl-61e10d070e07a4ea96e9430668d4bb9f
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: null
-                      items:
-                        - name: registered
-                          value: 'false'
-                          valueType: BOOLEAN
-                        - name: creationTime
-                          value: '2021-04-14T09:30:24Z'
-                          valueType: STRING
-                        - name: companyName
-                          value: Google
-                          valueType: STRING
-                Example2:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: footprint-e35d5af85aaf721ef8f147c4aa01b7c1
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: ''
-                      resultMessage: ''
-                      requestMeta:
-                        emailAddress: null
-                        templateId: footprintTpl-827759c3cf8a49ac894033a08ed291e3
-                        mobileNumber: '639559991234'
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: null
-                      items:
-                        - name: valid
-                          value: 'false'
-                          valueType: BOOLEAN
-                        - name: creationTime
-                          value: '2021-04-14T09:30:24Z'
-                          valueType: STRING
-                        - name: companyName
-                          value: Globe
-                          valueType: STRING
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AlphaFootprintPostRequest'
-            examples:
-              Example:
-                value:
-                  consent:
-                    type: Terms And Conditions
-                    version: 1
-                    consentedWith: I agree to the terms and conditions.
-                    consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: null
-                  templateId: footprintTpl-61e10d070e07a4ea96e9430668d4bb9f
-                  emailAddress: gpalomero1234@smileapi.io
-                  mobileNumber: null
-              Example2:
-                value:
-                  consent:
-                    type: Terms And Conditions
-                    version: 1
-                    consentedWith: I agree to the terms and conditions.
-                    consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: null
-                  templateId: footprintTpl-827759c3cf8a49ac894033a08ed291e3
-                  emailAddress: null
-                  mobileNumber: '639559991234'
-    get:
-      summary: List Footprints
-      operationId: list-alpha-footprints
-      tags:
-        - Footprints (Alpha)
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlphaFootprintListResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      nextCursor: null
-                      items:
-                        - id: footprint-e35d521ef8f147c4aa01b7c1af85aaf7
-                          createdAt: '2021-04-14T09:30:24Z'
-                          status: COMPLETED
-                          resultCode: ''
-                          resultMessage: ''
-                          requestMeta:
-                            emailAddress: someone@email.com
-                            templateId: footprintTpl-xxxxxxxxxxxxxxx
-                            mobileNumber: null
-                            consent:
-                              type: Terms And Conditions
-                              version: 1
-                              consentedWith: I agree to the terms and conditions.
-                              consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                          items:
-                            - name: registered
-                              value: 'false'
-                              valueType: BOOLEAN
-                            - name: creationTime
-                              value: '2021-04-14T09:30:24Z'
-                              valueType: STRING
-                            - name: companyName
-                              value: Google
-                              valueType: STRING
-      description: List all Footprints.
-      parameters:
-        - $ref: '#/components/parameters/size'
-        - $ref: '#/components/parameters/cursor'
-        - name: footprintId
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter footprints by a specific Footprint ID.
-        - name: emailAddress
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter footprints by a specific email address.
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: startDate
-          description: >-
-            Filter footprints by the start date of the request range
-            (YYYY-MM-DD).
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: endDate
-          description: Filter footprints by the end date of the request range (YYYY-MM-DD).
-  /alpha/footprints/{id}:
-    parameters:
-      - $ref: '#/components/parameters/id'
-    get:
-      summary: Get Footprint
-      description: Get Footprint by unique ID.
-      operationId: get-alpha-footprint
-      x-internal: true
-      tags:
-        - Footprints (Alpha)
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlphaFootprintGetResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: footprint-e35d521ef8f147c4aa01b7c1af85aaf7
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: ''
-                      resultMessage: ''
-                      requestMeta:
-                        emailAddress: someone@email.com
-                        templateId: footprintTpl-xxxxxxxxxxxxxxx
-                        mobileNumber: null
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                      items:
-                        - name: registered
-                          value: 'false'
-                          valueType: BOOLEAN
-                        - name: creationTime
-                          value: '2021-04-14T09:30:24Z'
-                          valueType: STRING
-                        - name: companyName
-                          value: Google
-                          valueType: STRING
-  /alpha/maws:
-    post:
-      summary: Create Maw
-      operationId: create-alpha-maw
-      description: >-
-        Create a Maw object. This endpoint requires the input parameters
-        `consent`, `mobileNumber`, `countryCode`, and `templateId`, all of which
-        are mandatory. The `templateId` is fixed as
-        `mawTpl-bfc93eb72d24860bf62429a1dd06708d`. When in sandbox mode and
-        using the test mobile number `639559991234` and countryCode `PH`, mock
-        items will be returned along with a `resultCode` of `SUCCESS`. For any
-        other valid mobile number and countryCode, the `resultCode` will be
-        `NO_DATA` and no items will be returned.
-      tags:
-        - Maws (Alpha)
-      x-internal: true
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlphaMawPostResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: SUCCESS
-                      resultMessage: Success!
-                      requestMeta:
-                        mobileNumber: '6381789801234'
-                        countryCode: PH
-                        templateId: mawTpl-xxxxxxxxxxxxxxx
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                      items:
-                        - date: '2021-04-14'
-                          level: '2'
-                          source: seat
-                          duration: '10'
-                          platformId: 5b79399a68524234bb0ead472648282d
-                        - date: '2021-03-14'
-                          level: '3'
-                          source: sms
-                          duration: null
-                          platformId: 5b79399a68524234bb0ead472648282d
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AlphaMawPostRequest'
-            examples:
-              Example:
-                value:
-                  consent:
-                    type: Terms And Conditions
-                    version: 1
-                    consentedWith: I agree to the terms and conditions.
-                    consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                  templateId: mawTpl-xxxxxxxxxxxxxxx
-                  mobileNumber: '6381789801234'
-                  countryCode: PH
-    get:
-      summary: List Maws
-      operationId: list-alpha-maws
-      tags:
-        - Maws (Alpha)
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlphaMawListResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      nextCursor: null
-                      items:
-                        - id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
-                          createdAt: '2021-04-14T09:30:24Z'
-                          status: COMPLETED
-                          resultCode: ''
-                          resultMessage: ''
-                          requestMeta:
-                            mobileNumber: '6381789801234'
-                            countryCode: PH
-                            templateId: mawTpl-xxxxxxxxxxxxxxx
-                            consent:
-                              type: Terms And Conditions
-                              version: 1
-                              consentedWith: I agree to the terms and conditions.
-                              consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                          items:
-                            - date: '2021-04-14'
-                              level: '2'
-                              source: seat
-                              duration: '10'
-                              platformId: 5b79399a68524234bb0ead472648282d
-                            - date: '2021-03-14'
-                              level: '3'
-                              source: sms
-                              duration: null
-                              platformId: 5b79399a68524234bb0ead472648282d
-      description: List all Maws.
-      parameters:
-        - $ref: '#/components/parameters/size'
-        - $ref: '#/components/parameters/cursor'
-        - name: mawId
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter maws by a specific Maw ID.
-        - name: mobileNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter maws by a specific mobile number.
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: startDate
-          description: Filter maws by the start date of the request range (YYYY-MM-DD).
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: endDate
-          description: Filter maws by the end date of the request range (YYYY-MM-DD).
-  /alpha/maws/{id}:
-    parameters:
-      - $ref: '#/components/parameters/id'
-    get:
-      summary: Get Maw
-      description: Get Maw by unique ID.
-      operationId: get-alpha-maw
-      x-internal: true
-      tags:
-        - Maws (Alpha)
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlphaMawGetResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: ''
-                      resultMessage: ''
-                      requestMeta:
-                        mobileNumber: '6381789801234'
-                        countryCode: PH
-                        templateId: mawTpl-xxxxxxxxxxxxxxx
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                      items:
-                        - date: '2021-04-14'
-                          level: '2'
-                          source: seat
-                          duration: '10'
-                          platformId: 5b79399a68524234bb0ead472648282d
-                        - date: '2021-03-14'
-                          level: '3'
-                          source: sms
-                          duration: null
-                          platformId: 5b79399a68524234bb0ead472648282d
-  /alpha/blacklists:
-    post:
-      summary: Create Blacklist
-      operationId: create-alpha-blacklist
-      description: >-
-        Create a Blacklist object. This endpoint requires input parameters
-        `consent`, `mobileNumber`, `templateId`, and `countryCode`. If
-        templateId is null, the system uses the default value
-        `blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e`. If countryCode is not
-        provided, the default value `PH` will be used. In sandbox mode: When
-        using test mobile number `639559991234` with country code PH, mock data
-        are returned with resultCode: `SUCCESS` and hit: `true`. For all other
-        valid mobile number and country code combinations, the response includes
-        resultCode: SUCCESS and hit: false
-      tags:
-        - Blacklists (Alpha)
-      x-internal: true
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlphaBlacklistPostResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: SUCCESS
-                      resultMessage: Success!
-                      requestMeta:
-                        mobileNumber: '6381789801234'
-                        countryCode: PH
-                        applicationDate: '2021-04-14'
-                        templateId: blacklistTpl-xxxxxxxxxxxxxxx
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                      result:
-                        hit: true
-                        dates:
-                          - '2021-04-14'
-                          - '2021-03-14'
-                          - '2021-02-14'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AlphaBlacklistPostRequest'
-            examples:
-              Example:
-                value:
-                  consent:
-                    type: Terms And Conditions
-                    version: 1
-                    consentedWith: I agree to the terms and conditions.
-                    consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                  templateId: blacklistTpl-xxxxxxxxxxxxxxx
-                  mobileNumber: '6381789801234'
-                  applicationDate: '2021-04-14'
-                  countryCode: PH
-    get:
-      summary: List Blacklists
-      operationId: list-alpha-blacklists
-      tags:
-        - Blacklists (Alpha)
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlphaBlacklistListResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      nextCursor: null
-                      items:
-                        - id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
-                          createdAt: '2021-04-14T09:30:24Z'
-                          status: COMPLETED
-                          resultCode: ''
-                          resultMessage: ''
-                          requestMeta:
-                            mobileNumber: '6381789801234'
-                            countryCode: PH
-                            applicationDate: '2021-04-14'
-                            templateId: blacklistTpl-xxxxxxxxxxxxxxx
-                            consent:
-                              type: Terms And Conditions
-                              version: 1
-                              consentedWith: I agree to the terms and conditions.
-                              consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                          result:
-                            hit: true
-                            dates:
-                              - '2021-04-14'
-                              - '2021-03-14'
-                              - '2021-02-14'
-      description: List all Blacklists.
-      parameters:
-        - $ref: '#/components/parameters/size'
-        - $ref: '#/components/parameters/cursor'
-        - name: blacklistId
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter blacklists by a specific Blacklist ID.
-        - name: mobileNumber
-          in: query
-          required: false
-          schema:
-            type: string
-          description: Filter blacklists by a specific mobile number.
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: startDate
-          description: >-
-            Filter blacklists by the start date of the request range
-            (YYYY-MM-DD).
-        - schema:
-            type: string
-            format: date
-          in: query
-          name: endDate
-          description: Filter blacklists by the end date of the request range (YYYY-MM-DD).
-  /alpha/blacklists/{id}:
-    parameters:
-      - $ref: '#/components/parameters/id'
-    get:
-      summary: Get Blacklist
-      description: Get Blacklist by unique ID.
-      operationId: get-alpha-blacklist
-      x-internal: true
-      tags:
-        - Blacklists (Alpha)
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AlphaBlacklistGetResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
-                    data:
-                      id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
-                      createdAt: '2021-04-14T09:30:24Z'
-                      status: COMPLETED
-                      resultCode: ''
-                      resultMessage: ''
-                      requestMeta:
-                        mobileNumber: '6381789801234'
-                        countryCode: PH
-                        applicationDate: '2021-04-14'
-                        templateId: blacklistTpl-xxxxxxxxxxxxxxx
-                        consent:
-                          type: Terms And Conditions
-                          version: 1
-                          consentedWith: I agree to the terms and conditions.
-                          consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
-                      result:
-                        hit: true
-                        dates:
-                          - '2021-04-14'
-                          - '2021-03-14'
-                          - '2021-02-14'
   /identities:
     get:
       summary: List Identities
@@ -5469,6 +4192,1288 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
       operationId: get-feature-insight
       description: Get the user's insight by ID.
+  /alpha/verifications:
+    get:
+      summary: List Verifications
+      tags:
+        - Verification
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - id: 5b79399a-6852-4234-bb0e-ad472648282d
+                          createdAt: '2021-04-14T09:30:24Z'
+                          updatedAt: '2021-04-14T09:30:24Z'
+                          status: PROCESSING
+                          errorMessage: null
+                          requestMeta:
+                            firstName: George
+                            lastName: Smith
+                            middleName: null
+                            fullName: George Smith
+                            additionalData:
+                              ids:
+                                - idType: sss_ph
+                                  idSubType: null
+                                  idNumber: 1234567890
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I aggree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          result: null
+                        - id: 5b79399a-6853-4234-bb0e-ad472648282d
+                          createdAt: '2021-04-14T09:30:24Z'
+                          updatedAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          errorMessage: null
+                          requestMeta:
+                            firstName: George2
+                            lastName: Smith
+                            middleName: null
+                            fullName: George2 Smith
+                            additionalData:
+                              ids:
+                                - idType: sss_ph
+                                  idSubType: null
+                                  idNumber: 1234567890
+                              dob: '1990-01-01'
+                              gender: Female
+                              address: null
+                              employer: null
+                              employmentStatus: null
+                              email: someone@gmail.com
+                              phone: 639123456789
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I aggree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          result:
+                            finalMatches: true
+                            names:
+                              firstNameMatches: true
+                              lastNameMatches: true
+                              middleNameMatches: null
+                              fullNameMatches: true
+                            additionalData:
+                              ids:
+                                - idType: sss_ph
+                                  idSubType: null
+                                  idNumber: 1234567890
+                                  matches: true
+                              dobMatches: true
+                              genderMatches: false
+                              addressMatches: null
+                              phoneMatches:
+                                value: 639123456789
+                                matches: true
+                                disposable: false
+                                deliverable: null
+                                active: true
+                                provider: Smart Communications
+                                freeProvider: false
+                              emailMatches:
+                                value: someone@gmail.com
+                                matches: true
+                                disposable: false
+                                deliverable: true
+                                active: true
+                                provider: Google LLC
+                                freeProvider: true
+      operationId: list-verifications
+      description: List verificatins.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: verificationId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter to those associated with a particular verification ID.
+        - name: finalMatches
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: Filter to those associated with verification final match result.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: Filter by create date, start of date range (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter by create date, end of date range (YYYY-MM-DD)
+    post:
+      summary: Request Verification
+      tags:
+        - Verification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerificationCreateRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationCreateResponse'
+      operationId: create-verification
+      description: sumbit required parameters to request verification.
+  /alpha/verifications/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Verification
+      tags:
+        - Verification
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: 5b79399a-6853-4234-bb0e-ad472648282d
+                      createdAt: '2021-04-14T09:30:24Z'
+                      updatedAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      errorMessage: null
+                      requestMeta:
+                        firstName: George2
+                        lastName: Smith
+                        middleName: null
+                        fullName: George2 Smith
+                        additionalData:
+                          ids:
+                            - idType: sss_ph
+                              idSubType: null
+                              idNumber: 1234567890
+                          dob: '1990-01-01'
+                          gender: Female
+                          address: null
+                          employer: null
+                          employmentStatus: null
+                          email: someone@gmail.com
+                          phone: 639123456789
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I aggree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      result:
+                        finalMatches: true
+                        names:
+                          firstNameMatches: true
+                          lastNameMatches: true
+                          middleNameMatches: null
+                          fullNameMatches: true
+                        additionalData:
+                          ids:
+                            - idType: sss_ph
+                              idSubType: null
+                              idNumber: 1234567890
+                              matches: true
+                          dobMatches: true
+                          genderMatches: false
+                          addressMatches: null
+                          phoneMatches:
+                            value: 639123456789
+                            matches: true
+                            disposable: false
+                            deliverable: null
+                            active: true
+                            provider: Smart Communications
+                            freeProvider: false
+                          emailMatches:
+                            value: someone@gmail.com
+                            matches: true
+                            disposable: false
+                            deliverable: true
+                            active: true
+                            provider: Google LLC
+                            freeProvider: true
+      operationId: get-verification
+      description: Get verification by ID.
+  /alpha/signals:
+    post:
+      summary: Create Signal
+      operationId: create-alpha-signal
+      tags:
+        - Signals (Alpha)
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignalPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        phone: '+639178902345'
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      result:
+                        events_arbitrary_day30: 0
+                        events_preloan_day30: 0
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignalPostRequest'
+    get:
+      summary: List Signals
+      tags:
+        - Signals (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignalListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - signal:
+                            id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                            createdAt: '2021-04-14T09:30:24Z'
+                            status: COMPLETED
+                            resultCode: ''
+                            resultMessage: ''
+                            requestMeta:
+                              phone: '+639178902345'
+                              consent:
+                                type: Terms And Conditions
+                                version: 1
+                                consentedWith: I agree to the terms and conditions.
+                                consentedAt: '2021-04-14T09:30:24Z'
+                                consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                            result:
+                              events_arbitrary_day30: 0
+                              events_preloan_day30: 0
+      operationId: list-alpha-signals
+      description: List all Signals.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: signalId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter Signal Requests by a specific Signal Request ID.
+        - name: phone
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter Signal Requests by a specific mobile phone.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: >-
+            Filter Signal Requests by request date, start of date range
+            (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: >-
+            Filter Signal Requests by request date, end of date range
+            (YYYY-MM-DD)
+  /alpha/signals/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Signal
+      description: Get Signal by unique ID.
+      operationId: get-alpha-signal
+      x-internal: true
+      tags:
+        - Signals (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignalGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        phone: '+639178902345'
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      result:
+                        events_arbitrary_day30: 0
+                        events_preloan_day30: 0
+  /beta/signals:
+    post:
+      summary: Create Signal
+      operationId: create-beta-signal
+      tags:
+        - Signals (Beta)
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaSignalPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        phone: '+639178902345'
+                        countryCode: PH
+                        templateId: signalTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - name: events_arbitrary_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_preloan_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_debt_day90_amount
+                          value: A0
+                          valueType: STRING
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaSignalPostRequest'
+    get:
+      summary: List Signals
+      operationId: list-beta-signals
+      tags:
+        - Signals (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaSignalListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - signal:
+                            id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                            createdAt: '2021-04-14T09:30:24Z'
+                            status: COMPLETED
+                            resultCode: ''
+                            resultMessage: ''
+                            requestMeta:
+                              phone: '+639178902345'
+                              countryCode: PH
+                              templateId: signalTpl-xxxxxxxxxxxxxxx
+                              consent:
+                                type: Terms And Conditions
+                                version: 1
+                                consentedWith: I agree to the terms and conditions.
+                                consentedAt: '2021-04-14T09:30:24Z'
+                                consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                            items:
+                              - name: events_arbitrary_day30
+                                value: 0
+                                valueType: NUMBER
+                              - name: events_preloan_day30
+                                value: 0
+                                valueType: NUMBER
+                              - name: events_debt_day90_amount
+                                value: A0
+                                valueType: STRING
+      description: List all Signals.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: signalId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter Signal Requests by a specific Signal Request ID.
+        - name: phone
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter Signal Requests by a specific mobile phone.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: >-
+            Filter Signal Requests by request date, start of date range
+            (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: >-
+            Filter Signal Requests by request date, end of date range
+            (YYYY-MM-DD)
+  /beta/signals/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Signal
+      description: Get Signal by unique ID.
+      operationId: get-beta-signal
+      x-internal: true
+      tags:
+        - Signals (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaSignalGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        phone: '+639178902345'
+                        countryCode: PH
+                        templateId: signalTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - name: events_arbitrary_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_preloan_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_debt_day90_amount
+                          value: A0
+                          valueType: STRING
+  /alpha/footprints:
+    post:
+      summary: Create Footprint
+      operationId: create-alpha-footprint
+      description: >-
+        Create a Footprint object requiring mandatory parameters: consent and
+        templateId. Provide either emailAddress or mobileNumber (mutually
+        exclusive). When using emailAddress, templateId must be
+        footprintTpl-61e10d070e07a4ea96e9430668d4bb9f. When using mobileNumber,
+        templateId must be footprintTpl-827759c3cf8a49ac894033a08ed291e3. In
+        sandbox mode: using test email gpalomero1234@smileapi.io returns mock
+        items with SUCCESS resultCode; using test mobile number 639559991234
+        returns SUCCESS with mock items. All other valid inputs return NO_DATA
+        resultCode with no items.
+      tags:
+        - Footprints (Alpha)
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaFootprintPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: footprint-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        emailAddress: gpalomero1234@smileapi.io
+                        mobileNumber: null
+                        templateId: footprintTpl-61e10d070e07a4ea96e9430668d4bb9f
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: null
+                      items:
+                        - name: registered
+                          value: 'false'
+                          valueType: BOOLEAN
+                        - name: creationTime
+                          value: '2021-04-14T09:30:24Z'
+                          valueType: STRING
+                        - name: companyName
+                          value: Google
+                          valueType: STRING
+                Example2:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: footprint-e35d5af85aaf721ef8f147c4aa01b7c1
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        emailAddress: null
+                        templateId: footprintTpl-827759c3cf8a49ac894033a08ed291e3
+                        mobileNumber: '639559991234'
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: null
+                      items:
+                        - name: valid
+                          value: 'false'
+                          valueType: BOOLEAN
+                        - name: creationTime
+                          value: '2021-04-14T09:30:24Z'
+                          valueType: STRING
+                        - name: companyName
+                          value: Globe
+                          valueType: STRING
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlphaFootprintPostRequest'
+            examples:
+              Example:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: null
+                  templateId: footprintTpl-61e10d070e07a4ea96e9430668d4bb9f
+                  emailAddress: gpalomero1234@smileapi.io
+                  mobileNumber: null
+              Example2:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: null
+                  templateId: footprintTpl-827759c3cf8a49ac894033a08ed291e3
+                  emailAddress: null
+                  mobileNumber: '639559991234'
+    get:
+      summary: List Footprints
+      operationId: list-alpha-footprints
+      tags:
+        - Footprints (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaFootprintListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - id: footprint-e35d521ef8f147c4aa01b7c1af85aaf7
+                          createdAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: ''
+                          resultMessage: ''
+                          requestMeta:
+                            emailAddress: someone@email.com
+                            templateId: footprintTpl-xxxxxxxxxxxxxxx
+                            mobileNumber: null
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          items:
+                            - name: registered
+                              value: 'false'
+                              valueType: BOOLEAN
+                            - name: creationTime
+                              value: '2021-04-14T09:30:24Z'
+                              valueType: STRING
+                            - name: companyName
+                              value: Google
+                              valueType: STRING
+      description: List all Footprints.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: footprintId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter footprints by a specific Footprint ID.
+        - name: emailAddress
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter footprints by a specific email address.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: >-
+            Filter footprints by the start date of the request range
+            (YYYY-MM-DD).
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter footprints by the end date of the request range (YYYY-MM-DD).
+  /alpha/footprints/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Footprint
+      description: Get Footprint by unique ID.
+      operationId: get-alpha-footprint
+      x-internal: true
+      tags:
+        - Footprints (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaFootprintGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: footprint-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        emailAddress: someone@email.com
+                        templateId: footprintTpl-xxxxxxxxxxxxxxx
+                        mobileNumber: null
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - name: registered
+                          value: 'false'
+                          valueType: BOOLEAN
+                        - name: creationTime
+                          value: '2021-04-14T09:30:24Z'
+                          valueType: STRING
+                        - name: companyName
+                          value: Google
+                          valueType: STRING
+  /links:
+    parameters: []
+    get:
+      operationId: list-links
+      description: List links from data sources.
+      summary: List links
+      tags:
+        - Links
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/sourceId'
+      responses:
+        '200':
+          description: List Links Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: link-123abc456def789abc123def456abc78
+                          startDate: '2023-01-05T10:30:11Z'
+                          endDate: '2023-07-05T10:30:11Z'
+                          records:
+                            - count: 2
+                              linkedAt:
+                                - '2023-04-05T10:30:11Z'
+                                - '2023-07-01T10:30:11Z'
+                          metadata:
+                            createdAt: '2021-04-14T09:30:24Z'
+                            sourceId: a-123abc456def789abc123def456abc78
+                            sourceType: ACCOUNT
+                            userId: tenantId-123abc456def789abc123def456abc78
+                            providerId: abccorp
+  /links/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Link
+      operationId: get-link
+      description: Get the Account's link result by ID.
+      tags:
+        - Links
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: link-123abc456def789abc123def456abc78
+                      startDate: '2023-01-05T10:30:11Z'
+                      endDate: '2023-07-05T10:30:11Z'
+                      records:
+                        - count: 2
+                          linkedAt:
+                            - '2023-04-05T10:30:11Z'
+                            - '2023-07-01T10:30:11Z'
+                      metadata:
+                        createdAt: '2021-04-14T09:30:24Z'
+                        sourceId: a-123abc456def789abc123def456abc78
+                        sourceType: ACCOUNT
+                        userId: tenantId-123abc456def789abc123def456abc78
+                        providerId: abccorp
+  /alpha/maws:
+    post:
+      summary: Create Maw
+      operationId: create-alpha-maw
+      description: >-
+        Create a Maw object. This endpoint requires the input parameters
+        `consent`, `mobileNumber`, `countryCode`, and `templateId`, all of which
+        are mandatory. The templateId can be either `tpl-maw002001` or
+        `tpl-maw004001`. The template `tpl-maw002001` is support IN or MX. The
+        template tpl-maw004001` is specifically for Mexican phone numbers, and
+        the countryCode must be MX. The phone number must include the country
+        code. It also supports MD5 encryption in the format: MD5(countryCode +
+        phoneNumber). For example: MD5(639559991234). When in sandbox mode and
+        using the test mobile number `639559991234`, templateId =
+        `tpl-maw002001` and countryCode `PH`, mock items will be returned along
+        with a `resultCode` of `SUCCESS`. For any other valid mobile number and
+        countryCode, the `resultCode` will be `NO_DATA` and no items will be
+        returned.
+      tags:
+        - Maws (Alpha)
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaMawPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      requestMeta:
+                        mobileNumber: '6381789801234'
+                        countryCode: PH
+                        templateId: mawTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - date: '2021-04-14'
+                          level: '2'
+                          source: seat
+                          duration: '10'
+                          platformId: 5b79399a68524234bb0ead472648282d
+                        - date: '2021-03-14'
+                          level: '3'
+                          source: sms
+                          duration: null
+                          platformId: 5b79399a68524234bb0ead472648282d
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlphaMawPostRequest'
+            examples:
+              Example:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                  templateId: mawTpl-xxxxxxxxxxxxxxx
+                  mobileNumber: '6381789801234'
+                  countryCode: PH
+    get:
+      summary: List Maws
+      operationId: list-alpha-maws
+      tags:
+        - Maws (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaMawListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
+                          createdAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: ''
+                          resultMessage: ''
+                          requestMeta:
+                            mobileNumber: '6381789801234'
+                            countryCode: PH
+                            templateId: mawTpl-xxxxxxxxxxxxxxx
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          items:
+                            - date: '2021-04-14'
+                              level: '2'
+                              source: seat
+                              duration: '10'
+                              platformId: 5b79399a68524234bb0ead472648282d
+                            - date: '2021-03-14'
+                              level: '3'
+                              source: sms
+                              duration: null
+                              platformId: 5b79399a68524234bb0ead472648282d
+      description: List all Maws.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: mawId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter maws by a specific Maw ID.
+        - name: mobileNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter maws by a specific mobile number.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: Filter maws by the start date of the request range (YYYY-MM-DD).
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter maws by the end date of the request range (YYYY-MM-DD).
+  /alpha/maws/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Maw
+      description: Get Maw by unique ID.
+      operationId: get-alpha-maw
+      x-internal: true
+      tags:
+        - Maws (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaMawGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        mobileNumber: '6381789801234'
+                        countryCode: PH
+                        templateId: mawTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - date: '2021-04-14'
+                          level: '2'
+                          source: seat
+                          duration: '10'
+                          platformId: 5b79399a68524234bb0ead472648282d
+                        - date: '2021-03-14'
+                          level: '3'
+                          source: sms
+                          duration: null
+                          platformId: 5b79399a68524234bb0ead472648282d
+  /alpha/blacklists:
+    post:
+      summary: Create Blacklist
+      operationId: create-alpha-blacklist
+      description: >-
+        Create a Blacklist object. This endpoint requires input parameters
+        `consent`, `mobileNumber`, `templateId`, and `countryCode`. If
+        templateId is null, the system uses the default value
+        `blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e`. If countryCode is not
+        provided, the default value `PH` will be used. In sandbox mode: When
+        using test mobile number `639559991234` with country code PH, mock data
+        are returned with resultCode: `SUCCESS` and hit: `true`. For all other
+        valid mobile number and country code combinations, the response includes
+        resultCode: SUCCESS and hit: false
+      tags:
+        - Blacklists (Alpha)
+      x-internal: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaBlacklistPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      requestMeta:
+                        mobileNumber: '6381789801234'
+                        countryCode: PH
+                        applicationDate: '2021-04-14'
+                        templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      result:
+                        hit: true
+                        dates:
+                          - '2021-04-14'
+                          - '2021-03-14'
+                          - '2021-02-14'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlphaBlacklistPostRequest'
+            examples:
+              Example:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                  templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                  mobileNumber: '6381789801234'
+                  applicationDate: '2021-04-14'
+                  countryCode: PH
+    get:
+      summary: List Blacklists
+      operationId: list-alpha-blacklists
+      tags:
+        - Blacklists (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaBlacklistListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
+                          createdAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: ''
+                          resultMessage: ''
+                          requestMeta:
+                            mobileNumber: '6381789801234'
+                            countryCode: PH
+                            applicationDate: '2021-04-14'
+                            templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          result:
+                            hit: true
+                            dates:
+                              - '2021-04-14'
+                              - '2021-03-14'
+                              - '2021-02-14'
+      description: List all Blacklists.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: blacklistId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter blacklists by a specific Blacklist ID.
+        - name: mobileNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter blacklists by a specific mobile number.
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: >-
+            Filter blacklists by the start date of the request range
+            (YYYY-MM-DD).
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: Filter blacklists by the end date of the request range (YYYY-MM-DD).
+  /alpha/blacklists/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Blacklist
+      description: Get Blacklist by unique ID.
+      operationId: get-alpha-blacklist
+      x-internal: true
+      tags:
+        - Blacklists (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaBlacklistGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        mobileNumber: '6381789801234'
+                        countryCode: PH
+                        applicationDate: '2021-04-14'
+                        templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      result:
+                        hit: true
+                        dates:
+                          - '2021-04-14'
+                          - '2021-03-14'
+                          - '2021-02-14'
   /profiles/-/identities/verify:
     post:
       tags:
@@ -11152,60 +11157,11 @@ components:
         requestId:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
       description: ''
-    Link:
-      type: object
-      x-internal: true
-      required:
-        - id
-        - endDate
-        - metadata
-      allOf:
-        - $ref: '#/components/schemas/LinkPayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-    LinkListData:
-      type: object
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    LinkListResponse:
-      type: object
-      x-internal: true
-      allOf:
-        - $ref: '#/components/schemas/CommonResponse'
-        - properties:
-            data:
-              $ref: '#/components/schemas/LinkListData'
-    LinkGetResponse:
-      type: object
-      x-internal: true
-      allOf:
-        - $ref: '#/components/schemas/CommonResponse'
-        - properties:
-            data:
-              $ref: '#/components/schemas/Link'
-    FileTypeEnum:
-      title: FileTypeEnum
+    FileTypeId:
+      title: FileTypeId
       type: string
-      description: Upload file type
+      description: Upload file type. You can get all types from `/fileTypes` api
       example: PAYSLIP
-      enum:
-        - SOCIAL_SECURITY
-        - TAX_DOCUMENT
-        - PAYSLIP
-        - COMPANY_ID
-        - BANK_STATEMENT
-        - UTILITY_BILLS
-        - CLEARANCE_NBI
-        - CLEARANCE_POLICE
-        - CLEARANCE_BARANGAY
-        - OTHERS
-        - GOVERNMENT_ID
     RawFile:
       title: RawFile
       type: object
@@ -11364,11 +11320,82 @@ components:
         remark:
           type: string
           description: Remarks included in the document
+    ArchiveTelcoBillAnalysis:
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: Full name
+        firstName:
+          type: string
+          description: First name
+        lastName:
+          type: string
+          description: Last name
+        middleName:
+          type: string
+          description: Middle name
+        accountNumber:
+          type: string
+          description: Account number
+        address:
+          type: string
+          description: Address
+        startDate:
+          type: string
+          format: date
+          description: Period start date, in YYYY-MM-DD format
+        endDate:
+          type: string
+          format: date
+          description: Period end date, in YYYY-MM-DD format
+        statementDate:
+          type: string
+          format: date
+          description: Statement date, in YYYY-MM-DD format
+        dueDate:
+          type: string
+          format: date
+          description: Due date, in YYYY-MM-DD format
+        paymentDate:
+          type: string
+          format: date
+          description: Payment date, in YYYY-MM-DD format
+        dueAmount:
+          type: number
+          description: Due amount
+        vatAmount:
+          type: number
+          description: Vat amount
+        adjustmentAmount:
+          type: number
+          description: Adjustment amount
+        currentBillAmount:
+          type: number
+          description: Current bill amount
+        balanceAmount:
+          type: number
+          description: Balance amount
+        previousDueAmount:
+          type: number
+          description: Previous due amount
+        currency:
+          $ref: '#/components/schemas/RefCurrency'
+        emailAddress:
+          type: string
+          description: Email address
+        phoneNumber:
+          type: string
+          description: Phone number
+        supplier:
+          type: string
+          description: Supplier name
     ArchiveAnalysis:
       oneOf:
         - $ref: '#/components/schemas/ArchivePayslipAnalysis'
         - $ref: '#/components/schemas/ArchiveTaxDocumentAnalysis'
         - $ref: '#/components/schemas/ArchiveNbiClearanceDocumentAnalysis'
+        - $ref: '#/components/schemas/ArchiveTelcoBillAnalysis'
     Archive:
       title: Archive
       type: object
@@ -11415,7 +11442,7 @@ components:
           description: User ID associated with this archive
           example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
         type:
-          $ref: '#/components/schemas/FileTypeEnum'
+          $ref: '#/components/schemas/FileTypeId'
         state:
           type: object
           required:
@@ -11531,7 +11558,7 @@ components:
             User ID associated with this archive. If null, then Smile will
             create a new user associated with this archive
         fileType:
-          $ref: '#/components/schemas/FileTypeEnum'
+          $ref: '#/components/schemas/FileTypeId'
         rawFiles:
           type: array
           minItems: 1
@@ -11855,7 +11882,7 @@ components:
           description: User ID associated with this archive
           example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
         type:
-          $ref: '#/components/schemas/FileTypeEnum'
+          $ref: '#/components/schemas/FileTypeId'
         state:
           type: object
           required:
@@ -11959,7 +11986,7 @@ components:
           description: URL to the file type image
           example: https://cdn.smileapi.io/image/provider-logo/v20210813064500/sss.png
         type:
-          $ref: '#/components/schemas/FileTypeEnum'
+          $ref: '#/components/schemas/FileTypeId'
         typeLabel:
           type: string
           description: Upload file type label
@@ -12020,6 +12047,794 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/FileType'
+    Identity:
+      type: object
+      title: Identity
+      description: >-
+        The stored identity information of the user from an employment data
+        provider.
+      x-examples:
+        Example:
+          id: i-17bbf36498de4d68a0d4f86c7b62f69f
+          fullName: George Cimafranca Palomero, Jr
+          firstName: George
+          middleName: Cimafranca
+          lastName: Palomero
+          suffix: Jr
+          gender: Male
+          dob: '1970-08-24'
+          maritalStatus: Married
+          countryResidence: PH
+          citizenship: Citizen
+          photoUrl: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
+          referenceId: null
+          profileUrl: null
+          emails:
+            - address: gpalomero1234@yahoo.com
+              type: Primary
+          phones:
+            - number: '+639559991234'
+              type: Mobile
+          socialProfiles:
+            - socialUrl: https://www.facebook.com/gpalomero
+              type: Facebook
+          addresses:
+            - fullAddress: 12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH
+              line1: 12 Maybunga St
+              line2: Barangay Paraiso
+              city: Pasig City
+              region: NCR
+              zip: '1600'
+              country: PH
+              latitude: '14.573454'
+              longitude: '121.085042'
+              type: Primary
+          metadata:
+            createdAt: '2021-04-14T09:30:24Z'
+            itemCreatedAt: '2021-04-14T09:30:26Z'
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: upwork
+      x-tags:
+        - Identities
+      allOf:
+        - $ref: '#/components/schemas/IdentityPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+      required:
+        - id
+        - fullName
+        - emails
+        - phones
+        - socialProfiles
+        - addresses
+        - metadata
+    IdentityListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    IdentityListResponse:
+      title: Identity List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/IdentityListData'
+      x-internal: true
+      x-examples: {}
+    IdentityGetResponse:
+      title: Identity Get Response
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Identity'
+      x-internal: true
+      x-examples: {}
+    Rating:
+      title: Rating
+      type: object
+      description: >-
+        The stored performance ratings of the user in the employment data
+        provider.
+      x-internal: false
+      x-examples:
+        Example:
+          id: r-17bbf36498de4d68a0d4f86c7b62f69f
+          currentRating: 90
+          maxRating: 100
+          calculatedPercentage: 90
+          reviewsReceived: 12
+          likesReceived: 8
+          jobsCompleted: 12
+          metadata:
+            createdAt: '2021-04-14T09:30:24Z'
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: upwork
+      x-tags:
+        - Ratings
+      allOf:
+        - $ref: '#/components/schemas/RatingPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+      required:
+        - id
+        - metadata
+    RatingListResponse:
+      title: Rating List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Rating'
+    RatingGetResponse:
+      title: Rating Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Rating'
+    Document:
+      title: Document
+      type: object
+      x-internal: false
+      description: >-
+        The stored document-related information of the user from an employment
+        data provider.
+      x-examples:
+        Example:
+          id: d-17bbf36498de4d68a0d4f86c7b62f69f
+          name: Facebook Social Media Marketing Professional Certificate
+          docId: ABCD123456
+          documentType: IDENTIFICATION
+          status: VALID
+          issueDate: '2007-08-24'
+          expiryDate: '2010-08-24'
+          fileUrl: >-
+            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
+          remarks: NO RECORD ON FILE
+          metadata:
+            createdAt: '2021-04-14T09:30:24Z'
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: upwork
+      x-tags:
+        - Documents
+      allOf:
+        - $ref: '#/components/schemas/DocumentPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+      required:
+        - id
+        - name
+        - metadata
+    DocumentListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+    DocumentListResponse:
+      title: Document List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/DocumentListData'
+    DocumentGetResponse:
+      title: Document Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Document'
+    Employment:
+      title: Employment
+      type: object
+      x-internal: false
+      description: >-
+        The stored employment information of the user from an employment data
+        provider.
+      x-examples:
+        Example:
+          id: e-17bbf36498de4d68a0d4f86c7b62f69f
+          name: Digital Marketing
+          description: >-
+            Gathering and reporting relevant data, maintaining specific reports
+            and dashboards, using platforms and programs to address marketing
+            requirements, and updating specific marketing materials.
+          jobTitle: Digital Marketing Assistant
+          department: Marketing
+          employeeNumber: EMP-123456
+          employer: ABC Corporation
+          status: Permanent
+          startDate: '2016-02-24'
+          endDate: '2019-08-24'
+          metadata:
+            createdAt: '2021-04-14T09:30:24Z'
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: UPLOAD
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: abccorp
+      x-tags:
+        - Employments
+      allOf:
+        - $ref: '#/components/schemas/EmploymentPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+      required:
+        - id
+        - startDate
+        - metadata
+    EmploymentListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Employment'
+    EmploymentListResponse:
+      title: Employment List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/EmploymentListData'
+    EmploymentGetResponse:
+      title: Employment Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Employment'
+    Income:
+      title: Income
+      type: object
+      description: >-
+        The stored income information of the user from an employment data
+        provider.
+      x-examples:
+        Example:
+          id: inc-17bbf36498de4d68a0d4f86c7b62f69f
+          workItem: null
+          employer: ABC Corporation
+          startDate: '2021-06-01'
+          endDate: '2021-06-15'
+          currency: PHP
+          frequency: Monthly
+          baseAmount: 8500
+          grossAmount: 10000
+          netAmount: 7820.25
+          metadata:
+            createdAt: '2021-06-14T09:30:24Z'
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: UPLOAD
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: user-provided
+      x-internal: false
+      x-tags:
+        - Incomes
+      allOf:
+        - $ref: '#/components/schemas/IncomePayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+      required:
+        - id
+        - startDate
+        - currency
+        - metadata
+    IncomeListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Income'
+    IncomeListResponse:
+      title: Income List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/IncomeListData'
+    IncomeGetResponse:
+      title: Income Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Income'
+    Contribution:
+      title: Contribution
+      x-stoplight:
+        id: ymth27j2l09a4
+      type: object
+      description: >-
+        The social security insurance contribution made by, or in behalf, of a
+        user as recorded by the employment data provider.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          date: '2021-04-30'
+          currency: PHP
+          amount: 1375
+          referenceId: PA9634415
+          metadata:
+            createdAt: '2021-04-14T09:30:24Z'
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: sss-ph
+      x-tags:
+        - Contributions
+      allOf:
+        - $ref: '#/components/schemas/ContributionPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+    ContributionListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contribution'
+    ContributionListResponse:
+      title: Contribution List Response
+      x-stoplight:
+        id: xqq606vnqa1nk
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/ContributionListData'
+    ContributionGetResponse:
+      title: Contribution Get Response
+      x-stoplight:
+        id: 9r9jv3d46jvrw
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Contribution'
+      x-internal: true
+    Liability:
+      title: Liability
+      type: object
+      description: The liabilities of the user from an employment data provider.
+      x-examples:
+        Example:
+          id: lia-123abc456def789abc123def456abc78
+          type: Salary Loan
+          referenceId: SL201601011234567
+          startDate: '2016-07-05'
+          firstAmortizationDate: '2016-09-01'
+          endDate: '2017-08-01'
+          amortizationFrequency: Monthly
+          currency: PHP
+          loanAmount: 16000
+          amortizationAmount: 738.32
+          outstandingBalance: 25599.76
+          nextPaymentAmount: 732.38
+          overduePaymentAmount: 0
+          metadata:
+            createdAt: '2021-06-14T09:30:24Z'
+            sourceId: a-123abc456def789abc123def456abc78
+            sourceType: ACCOUNT
+            userId: tenantId-123abc456def789abc123def456abc78
+            providerId: abccorp
+      x-internal: false
+      x-tags:
+        - Liabilities
+      allOf:
+        - $ref: '#/components/schemas/LiabilityPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+      required:
+        - id
+        - type
+        - startDate
+        - loanAmount
+        - currency
+        - amortizationFrequency
+        - metadata
+    LiabilityListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Liability'
+    LiabilityListResponse:
+      title: Liability List Response
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/LiabilityListData'
+    LiabilityGetResponse:
+      title: Liability Get Response
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/Liability'
+    Transaction:
+      title: Transaction
+      type: object
+      description: >-
+        The stored financial transaction data of the user from an employment
+        data provider.
+      x-tags:
+        - Transactions
+      x-examples:
+        Example:
+          code: OK
+          message: Success
+          requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+          data:
+            id: t-17bbf36498de4d68a0d4f86c7b62f69f
+            date: '2021-04-21'
+            description: Payment for web design project
+            currency: PHP
+            amount: 10000
+            referenceId: string
+            metadata:
+              createdAt: '2021-04-21T09:30:24Z'
+              sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+              sourceType: ACCOUNT
+              userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+              providerId: upwork
+      allOf:
+        - $ref: '#/components/schemas/TransactionPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+      required:
+        - id
+        - date
+        - currency
+        - amount
+        - metadata
+    TransactionListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+    TransactionListResponse:
+      title: Transaction List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/TransactionListData'
+      x-internal: true
+      x-examples: {}
+    TransactionGetResponse:
+      title: Transaction Get Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Transaction'
+      x-internal: true
+      x-examples: {}
+    Form:
+      title: Form
+      type: object
+      x-internal: false
+      description: The stored form information of the user from an wink site.
+      x-examples:
+        Example:
+          id: form-17bbf36498de4d68a0d4f86c7b62f69f
+          createdAt: '2021-04-14T09:30:24Z'
+          name: Personal Information
+          userId: tenant-5c1a2e8678e3494eb
+          winkSiteId: ws-17bbf36498de4d68a0d4f86c7b62f69f
+          winkSiteSessionId: wss-17bbf36498df69fe4d68a0d4f86c7b62
+          reference: form_1
+          data:
+            firstName: John
+            lastName: Doe
+            email: john.doe@abc.com
+      x-tags:
+        - Forms
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        name:
+          type: string
+          description: The name of the form.
+          example: Personal Information
+          nullable: true
+          maxLength: 255
+        userId:
+          type: string
+          description: The ID of the user who submitted the form.
+          example: tenant-5c1a2e8678e3494eb
+        winkSiteId:
+          type: string
+          description: The ID of the wink site where the form was submitted.
+          example: ws-17bbf36498de4d68a0d4f86c7b62f69f
+        winkSiteSessionId:
+          type: string
+          description: The ID of the wink site session where the form was submitted.
+          example: wss-17bbf36498df69fe4d68a0d4f86c7b62
+        reference:
+          type: string
+          description: The reference of the form.
+          example: form_1
+        data:
+          type: object
+          description: The data submitted by the user.
+          additionalProperties:
+            type: object
+      required:
+        - id
+        - createdAt
+        - winkSiteId
+        - winkSiteSessionId
+        - userId
+        - reference
+        - data
+    FormListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Form'
+    FormListResponse:
+      title: Form List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/FormListData'
+    FormGetResponse:
+      title: Form Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Form'
+    Eincome:
+      title: Eincome
+      type: object
+      description: >-
+        The stored eincome information of the user from an employment data
+        provider.
+      x-examples:
+        Example:
+          id: einc-17bbf36498de4d68a0d4f86c7b62f69f
+          month: 2021-06
+          currency: PHP
+          amount: 8500
+          metadata:
+            createdAt: '2021-06-14T09:30:24Z'
+            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
+            sourceType: ACCOUNT
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            providerId: sss_ph
+      x-internal: false
+      x-tags:
+        - Estimated Incomes
+      allOf:
+        - $ref: '#/components/schemas/EincomePayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+      required:
+        - id
+        - month
+        - currency
+        - baseAmount
+        - amount
+        - metadata
+    EincomeListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Eincome'
+    EincomeListResponse:
+      title: Enhanced Income List Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/EincomeListData'
+    EincomeGetResponse:
+      title: Enhanced Income Get Response
+      type: object
+      x-internal: true
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Eincome'
+    Insight:
+      title: Insight
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/InsightPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+    InsightListResponse:
+      title: Insight List Response
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              type: object
+              properties:
+                nextCursor:
+                  $ref: '#/components/schemas/ObjectNextCursor'
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Insight'
+    InsightGetResponse:
+      title: Insight Get Response
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/Insight'
     VerificationIdType:
       type: string
       enum:
@@ -12864,6 +13679,43 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/AlphaFootprint'
+    Link:
+      type: object
+      x-internal: true
+      required:
+        - id
+        - endDate
+        - metadata
+      allOf:
+        - $ref: '#/components/schemas/LinkPayload'
+        - properties:
+            metadata:
+              $ref: '#/components/schemas/ObjectReferenceMetadata'
+    LinkListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    LinkListResponse:
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/LinkListData'
+    LinkGetResponse:
+      type: object
+      x-internal: true
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/Link'
     AlphaMawPostRequest:
       type: object
       required:
@@ -13116,794 +13968,6 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/AlphaBlacklist'
-    Identity:
-      type: object
-      title: Identity
-      description: >-
-        The stored identity information of the user from an employment data
-        provider.
-      x-examples:
-        Example:
-          id: i-17bbf36498de4d68a0d4f86c7b62f69f
-          fullName: George Cimafranca Palomero, Jr
-          firstName: George
-          middleName: Cimafranca
-          lastName: Palomero
-          suffix: Jr
-          gender: Male
-          dob: '1970-08-24'
-          maritalStatus: Married
-          countryResidence: PH
-          citizenship: Citizen
-          photoUrl: https://cdn.smileapi.io/image/avatar/v20211115191600/george.jpg
-          referenceId: null
-          profileUrl: null
-          emails:
-            - address: gpalomero1234@yahoo.com
-              type: Primary
-          phones:
-            - number: '+639559991234'
-              type: Mobile
-          socialProfiles:
-            - socialUrl: https://www.facebook.com/gpalomero
-              type: Facebook
-          addresses:
-            - fullAddress: 12 Maybunga St, Barangay Paraiso, Pasig City, NCR, 1600, PH
-              line1: 12 Maybunga St
-              line2: Barangay Paraiso
-              city: Pasig City
-              region: NCR
-              zip: '1600'
-              country: PH
-              latitude: '14.573454'
-              longitude: '121.085042'
-              type: Primary
-          metadata:
-            createdAt: '2021-04-14T09:30:24Z'
-            itemCreatedAt: '2021-04-14T09:30:26Z'
-            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
-            sourceType: ACCOUNT
-            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: upwork
-      x-tags:
-        - Identities
-      allOf:
-        - $ref: '#/components/schemas/IdentityPayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-      required:
-        - id
-        - fullName
-        - emails
-        - phones
-        - socialProfiles
-        - addresses
-        - metadata
-    IdentityListData:
-      type: object
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    IdentityListResponse:
-      title: Identity List Response
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/IdentityListData'
-      x-internal: true
-      x-examples: {}
-    IdentityGetResponse:
-      title: Identity Get Response
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Identity'
-      x-internal: true
-      x-examples: {}
-    Rating:
-      title: Rating
-      type: object
-      description: >-
-        The stored performance ratings of the user in the employment data
-        provider.
-      x-internal: false
-      x-examples:
-        Example:
-          id: r-17bbf36498de4d68a0d4f86c7b62f69f
-          currentRating: 90
-          maxRating: 100
-          calculatedPercentage: 90
-          reviewsReceived: 12
-          likesReceived: 8
-          jobsCompleted: 12
-          metadata:
-            createdAt: '2021-04-14T09:30:24Z'
-            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
-            sourceType: ACCOUNT
-            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: upwork
-      x-tags:
-        - Ratings
-      allOf:
-        - $ref: '#/components/schemas/RatingPayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-      required:
-        - id
-        - metadata
-    RatingListResponse:
-      title: Rating List Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Rating'
-    RatingGetResponse:
-      title: Rating Get Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Rating'
-    Document:
-      title: Document
-      type: object
-      x-internal: false
-      description: >-
-        The stored document-related information of the user from an employment
-        data provider.
-      x-examples:
-        Example:
-          id: d-17bbf36498de4d68a0d4f86c7b62f69f
-          name: Facebook Social Media Marketing Professional Certificate
-          docId: ABCD123456
-          documentType: IDENTIFICATION
-          status: VALID
-          issueDate: '2007-08-24'
-          expiryDate: '2010-08-24'
-          fileUrl: >-
-            https://images.credly.com/size/680x680/images/c4a900b7-8d1b-4e8f-a572-347985eeaa5c/Coursera_Badge__1_.png
-          remarks: NO RECORD ON FILE
-          metadata:
-            createdAt: '2021-04-14T09:30:24Z'
-            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
-            sourceType: ACCOUNT
-            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: upwork
-      x-tags:
-        - Documents
-      allOf:
-        - $ref: '#/components/schemas/DocumentPayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-      required:
-        - id
-        - name
-        - metadata
-    DocumentListData:
-      type: object
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-    DocumentListResponse:
-      title: Document List Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/DocumentListData'
-    DocumentGetResponse:
-      title: Document Get Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Document'
-    Employment:
-      title: Employment
-      type: object
-      x-internal: false
-      description: >-
-        The stored employment information of the user from an employment data
-        provider.
-      x-examples:
-        Example:
-          id: e-17bbf36498de4d68a0d4f86c7b62f69f
-          name: Digital Marketing
-          description: >-
-            Gathering and reporting relevant data, maintaining specific reports
-            and dashboards, using platforms and programs to address marketing
-            requirements, and updating specific marketing materials.
-          jobTitle: Digital Marketing Assistant
-          department: Marketing
-          employeeNumber: EMP-123456
-          employer: ABC Corporation
-          status: Permanent
-          startDate: '2016-02-24'
-          endDate: '2019-08-24'
-          metadata:
-            createdAt: '2021-04-14T09:30:24Z'
-            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
-            sourceType: UPLOAD
-            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: abccorp
-      x-tags:
-        - Employments
-      allOf:
-        - $ref: '#/components/schemas/EmploymentPayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-      required:
-        - id
-        - startDate
-        - metadata
-    EmploymentListData:
-      type: object
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Employment'
-    EmploymentListResponse:
-      title: Employment List Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/EmploymentListData'
-    EmploymentGetResponse:
-      title: Employment Get Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Employment'
-    Income:
-      title: Income
-      type: object
-      description: >-
-        The stored income information of the user from an employment data
-        provider.
-      x-examples:
-        Example:
-          id: inc-17bbf36498de4d68a0d4f86c7b62f69f
-          workItem: null
-          employer: ABC Corporation
-          startDate: '2021-06-01'
-          endDate: '2021-06-15'
-          currency: PHP
-          frequency: Monthly
-          baseAmount: 8500
-          grossAmount: 10000
-          netAmount: 7820.25
-          metadata:
-            createdAt: '2021-06-14T09:30:24Z'
-            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
-            sourceType: UPLOAD
-            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: user-provided
-      x-internal: false
-      x-tags:
-        - Incomes
-      allOf:
-        - $ref: '#/components/schemas/IncomePayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-      required:
-        - id
-        - startDate
-        - currency
-        - metadata
-    IncomeListData:
-      type: object
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Income'
-    IncomeListResponse:
-      title: Income List Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/IncomeListData'
-    IncomeGetResponse:
-      title: Income Get Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Income'
-    Contribution:
-      title: Contribution
-      x-stoplight:
-        id: ymth27j2l09a4
-      type: object
-      description: >-
-        The social security insurance contribution made by, or in behalf, of a
-        user as recorded by the employment data provider.
-      x-examples:
-        Example:
-          id: 17bbf36498de4d68a0d4f86c7b62f69f
-          date: '2021-04-30'
-          currency: PHP
-          amount: 1375
-          referenceId: PA9634415
-          metadata:
-            createdAt: '2021-04-14T09:30:24Z'
-            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
-            sourceType: ACCOUNT
-            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: sss-ph
-      x-tags:
-        - Contributions
-      allOf:
-        - $ref: '#/components/schemas/ContributionPayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-    ContributionListData:
-      type: object
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Contribution'
-    ContributionListResponse:
-      title: Contribution List Response
-      x-stoplight:
-        id: xqq606vnqa1nk
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/ContributionListData'
-    ContributionGetResponse:
-      title: Contribution Get Response
-      x-stoplight:
-        id: 9r9jv3d46jvrw
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Contribution'
-      x-internal: true
-    Liability:
-      title: Liability
-      type: object
-      description: The liabilities of the user from an employment data provider.
-      x-examples:
-        Example:
-          id: lia-123abc456def789abc123def456abc78
-          type: Salary Loan
-          referenceId: SL201601011234567
-          startDate: '2016-07-05'
-          firstAmortizationDate: '2016-09-01'
-          endDate: '2017-08-01'
-          amortizationFrequency: Monthly
-          currency: PHP
-          loanAmount: 16000
-          amortizationAmount: 738.32
-          outstandingBalance: 25599.76
-          nextPaymentAmount: 732.38
-          overduePaymentAmount: 0
-          metadata:
-            createdAt: '2021-06-14T09:30:24Z'
-            sourceId: a-123abc456def789abc123def456abc78
-            sourceType: ACCOUNT
-            userId: tenantId-123abc456def789abc123def456abc78
-            providerId: abccorp
-      x-internal: false
-      x-tags:
-        - Liabilities
-      allOf:
-        - $ref: '#/components/schemas/LiabilityPayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-      required:
-        - id
-        - type
-        - startDate
-        - loanAmount
-        - currency
-        - amortizationFrequency
-        - metadata
-    LiabilityListData:
-      type: object
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Liability'
-    LiabilityListResponse:
-      title: Liability List Response
-      type: object
-      x-internal: true
-      allOf:
-        - $ref: '#/components/schemas/CommonResponse'
-        - properties:
-            data:
-              $ref: '#/components/schemas/LiabilityListData'
-    LiabilityGetResponse:
-      title: Liability Get Response
-      type: object
-      x-internal: true
-      allOf:
-        - $ref: '#/components/schemas/CommonResponse'
-        - properties:
-            data:
-              $ref: '#/components/schemas/Liability'
-    Transaction:
-      title: Transaction
-      type: object
-      description: >-
-        The stored financial transaction data of the user from an employment
-        data provider.
-      x-tags:
-        - Transactions
-      x-examples:
-        Example:
-          code: OK
-          message: Success
-          requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-          data:
-            id: t-17bbf36498de4d68a0d4f86c7b62f69f
-            date: '2021-04-21'
-            description: Payment for web design project
-            currency: PHP
-            amount: 10000
-            referenceId: string
-            metadata:
-              createdAt: '2021-04-21T09:30:24Z'
-              sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
-              sourceType: ACCOUNT
-              userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-              providerId: upwork
-      allOf:
-        - $ref: '#/components/schemas/TransactionPayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-      required:
-        - id
-        - date
-        - currency
-        - amount
-        - metadata
-    TransactionListData:
-      type: object
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-    TransactionListResponse:
-      title: Transaction List Response
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/TransactionListData'
-      x-internal: true
-      x-examples: {}
-    TransactionGetResponse:
-      title: Transaction Get Response
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Transaction'
-      x-internal: true
-      x-examples: {}
-    Form:
-      title: Form
-      type: object
-      x-internal: false
-      description: The stored form information of the user from an wink site.
-      x-examples:
-        Example:
-          id: form-17bbf36498de4d68a0d4f86c7b62f69f
-          createdAt: '2021-04-14T09:30:24Z'
-          name: Personal Information
-          userId: tenant-5c1a2e8678e3494eb
-          winkSiteId: ws-17bbf36498de4d68a0d4f86c7b62f69f
-          winkSiteSessionId: wss-17bbf36498df69fe4d68a0d4f86c7b62
-          reference: form_1
-          data:
-            firstName: John
-            lastName: Doe
-            email: john.doe@abc.com
-      x-tags:
-        - Forms
-      properties:
-        id:
-          $ref: '#/components/schemas/RefObjectID'
-        createdAt:
-          $ref: '#/components/schemas/RefDateTime'
-        name:
-          type: string
-          description: The name of the form.
-          example: Personal Information
-          nullable: true
-          maxLength: 255
-        userId:
-          type: string
-          description: The ID of the user who submitted the form.
-          example: tenant-5c1a2e8678e3494eb
-        winkSiteId:
-          type: string
-          description: The ID of the wink site where the form was submitted.
-          example: ws-17bbf36498de4d68a0d4f86c7b62f69f
-        winkSiteSessionId:
-          type: string
-          description: The ID of the wink site session where the form was submitted.
-          example: wss-17bbf36498df69fe4d68a0d4f86c7b62
-        reference:
-          type: string
-          description: The reference of the form.
-          example: form_1
-        data:
-          type: object
-          description: The data submitted by the user.
-          additionalProperties:
-            type: object
-      required:
-        - id
-        - createdAt
-        - winkSiteId
-        - winkSiteSessionId
-        - userId
-        - reference
-        - data
-    FormListData:
-      type: object
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Form'
-    FormListResponse:
-      title: Form List Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/FormListData'
-    FormGetResponse:
-      title: Form Get Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Form'
-    Eincome:
-      title: Eincome
-      type: object
-      description: >-
-        The stored eincome information of the user from an employment data
-        provider.
-      x-examples:
-        Example:
-          id: einc-17bbf36498de4d68a0d4f86c7b62f69f
-          month: 2021-06
-          currency: PHP
-          amount: 8500
-          metadata:
-            createdAt: '2021-06-14T09:30:24Z'
-            sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
-            sourceType: ACCOUNT
-            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: sss_ph
-      x-internal: false
-      x-tags:
-        - Estimated Incomes
-      allOf:
-        - $ref: '#/components/schemas/EincomePayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-      required:
-        - id
-        - month
-        - currency
-        - baseAmount
-        - amount
-        - metadata
-    EincomeListData:
-      type: object
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Eincome'
-    EincomeListResponse:
-      title: Enhanced Income List Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/EincomeListData'
-    EincomeGetResponse:
-      title: Enhanced Income Get Response
-      type: object
-      x-internal: true
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Eincome'
-    Insight:
-      title: Insight
-      type: object
-      x-internal: true
-      allOf:
-        - $ref: '#/components/schemas/InsightPayload'
-        - properties:
-            metadata:
-              $ref: '#/components/schemas/ObjectReferenceMetadata'
-    InsightListResponse:
-      title: Insight List Response
-      type: object
-      x-internal: true
-      allOf:
-        - $ref: '#/components/schemas/CommonResponse'
-        - properties:
-            data:
-              type: object
-              properties:
-                nextCursor:
-                  $ref: '#/components/schemas/ObjectNextCursor'
-                items:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Insight'
-    InsightGetResponse:
-      title: Insight Get Response
-      type: object
-      x-internal: true
-      allOf:
-        - $ref: '#/components/schemas/CommonResponse'
-        - properties:
-            data:
-              $ref: '#/components/schemas/Insight'
     ProfileIdentityVerifyRequest:
       title: object
       required:
