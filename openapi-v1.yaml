@@ -4581,6 +4581,19 @@ paths:
   /beta/signals:
     post:
       summary: Create Signal
+      description: >-
+        Create a Signal object. This endpoint requires the mandatory input
+        parameters: consent, phone, countryCode, and templateId. The default
+        templateId is tpl-sgn003001. The phone number must include the country
+        code and may optionally be provided in an MD5 encrypted format using the
+        string concatenation: MD5(countryCode + phoneNumber), e.g.,
+        MD5(+639559991234). When operating in sandbox mode and using the test
+        mobile number 639559991234 with templateId set to tpl-sgn003001 and
+        countryCode as PH, the system will return mock items along with a
+        resultCode of SUCCESS. For any other valid mobile number and countryCode
+        combination, the response will contain a resultCode of NO_DATA, and no
+        items will be returned. You may also request Smile to provide additional
+        specialized templates.
       operationId: create-beta-signal
       tags:
         - Signals (Beta)
@@ -4765,12 +4778,11 @@ paths:
       description: >-
         Create a Footprint object requiring mandatory parameters: consent and
         templateId. Provide either emailAddress or mobileNumber (mutually
-        exclusive). When using emailAddress, templateId must be
-        footprintTpl-61e10d070e07a4ea96e9430668d4bb9f. When using mobileNumber,
-        templateId must be footprintTpl-827759c3cf8a49ac894033a08ed291e3. In
-        sandbox mode: using test email gpalomero1234@smileapi.io returns mock
-        items with SUCCESS resultCode; using test mobile number 639559991234
-        returns SUCCESS with mock items. All other valid inputs return NO_DATA
+        exclusive). When using emailAddress, templateId must be `tpl-ftp005001`.
+        When using mobileNumber, templateId must be `tpl-ftp005002`. In sandbox
+        mode: using test email gpalomero1234@smileapi.io returns mock items with
+        SUCCESS resultCode; using test mobile number 639559991234 returns
+        SUCCESS with mock items. All other valid inputs return NO_DATA
         resultCode with no items.
       tags:
         - Footprints (Alpha)
@@ -4797,7 +4809,7 @@ paths:
                       requestMeta:
                         emailAddress: gpalomero1234@smileapi.io
                         mobileNumber: null
-                        templateId: footprintTpl-61e10d070e07a4ea96e9430668d4bb9f
+                        templateId: tpl-ftp005001
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -4827,7 +4839,7 @@ paths:
                       resultMessage: ''
                       requestMeta:
                         emailAddress: null
-                        templateId: footprintTpl-827759c3cf8a49ac894033a08ed291e3
+                        templateId: tpl-ftp005002
                         mobileNumber: '639559991234'
                         consent:
                           type: Terms And Conditions
@@ -4860,7 +4872,7 @@ paths:
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
                     consentTemplateId: null
-                  templateId: footprintTpl-61e10d070e07a4ea96e9430668d4bb9f
+                  templateId: tpl-ftp005001
                   emailAddress: gpalomero1234@smileapi.io
                   mobileNumber: null
               Example2:
@@ -4871,7 +4883,7 @@ paths:
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
                     consentTemplateId: null
-                  templateId: footprintTpl-827759c3cf8a49ac894033a08ed291e3
+                  templateId: tpl-ftp005002
                   emailAddress: null
                   mobileNumber: '639559991234'
     get:
@@ -5290,13 +5302,12 @@ paths:
       description: >-
         Create a Blacklist object. This endpoint requires input parameters
         `consent`, `mobileNumber`, `templateId`, and `countryCode`. If
-        templateId is null, the system uses the default value
-        `blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e`. If countryCode is not
-        provided, the default value `PH` will be used. In sandbox mode: When
-        using test mobile number `639559991234` with country code PH, mock data
-        are returned with resultCode: `SUCCESS` and hit: `true`. For all other
-        valid mobile number and country code combinations, the response includes
-        resultCode: SUCCESS and hit: false
+        templateId is null, the system uses the default value `tpl-blk002001`.
+        If countryCode is not provided, the default value `PH` will be used. In
+        sandbox mode: When using test mobile number `639559991234` with country
+        code PH, mock data are returned with resultCode: `SUCCESS` and hit:
+        `true`. For all other valid mobile number and country code combinations,
+        the response includes resultCode: SUCCESS and hit: false
       tags:
         - Blacklists (Alpha)
       x-internal: true
@@ -11223,6 +11234,12 @@ components:
             - PAYSLIP
             - TAX_DOCUMENT
             - EMPLOYMENT_CERTIFICATE
+            - COMPANY_ID
+            - CLEARANCE_NBI
+            - GOVERNMENT_ID
+            - TELCO_BILL
+            - ELECTRICITY_BILL
+            - WATER_BILL
             - OTHERS
     RefDate:
       type: string
