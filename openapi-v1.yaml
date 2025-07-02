@@ -4569,38 +4569,56 @@ paths:
     post:
       summary: Create Signal
       description: >
-        Create a **Signal** object.   This endpoint requires the following
-        mandatory parameters:   `consent`, `phone`, `countryCode`, and
-        `templateId`.
+        ## Create a **Signal** object.  
+
+        This endpoint requires the following mandatory parameters:  
+
+        `consent`, `phone`, `countryCode`, and `templateId`.
+
 
         ### Supported Template
 
-        | Template ID       | Region     | Required
+
+        | Template ID     | Region       | Required
         Parameters                             |
-        |-------------------|------------|--------------------------------------------------|
-        | `tpl-sgn003001`   | PH (default) | `consent`, `templateId`,
-        `countryCode`, `phone`  |
+
+        |-----------------|--------------|-------------------------------------------------|
+
+        | `tpl-sgn003001` | PH (default) | `consent`, `templateId`,
+        `countryCode`, `phone` |
+
 
         ### Field Guidelines
 
+
         - `phone` must include the country code (e.g., `+639559991234` or
-        `639559991234`)   - MD5 encryption is supported using the format:
-        `MD5(countryCode + phone)`,  
-          e.g., `MD5(+639559991234)`
+        `639559991234`)  
+
+        - MD5 encryption is supported using the format: `MD5(countryCode +
+        phone)`,  
+
+        e.g., `MD5(+639559991234)`
+
 
         ### Sandbox Test Values
 
-        | Parameter     | Value            | Expected
-        Response                      |
-        |---------------|------------------|----------------------------------------|
-        | `templateId`  | `tpl-sgn003001` 
-        |                                        | | `countryCode` |
-        `PH`             |                                        | |
-        `phone`       | `639559991234`   | `resultCode = SUCCESS`, with mock
-        data |
+
+        | Parameter     | Value           | Expected Response      |
+
+        |---------------|-----------------|------------------------|
+
+        | `templateId`  | `tpl-sgn003001` |                        |
+
+        | `countryCode` | `PH`            |                        |
+
+        | `phone`       | `639559991234`  | `resultCode = SUCCESS` |
+
 
         For all other valid `phone` and `countryCode` combinations, the response
-        will return:   `resultCode = NO_DATA`, and no items will be included.
+        will return:  
+
+        `resultCode = NO_DATA`, and no items will be included.
+
 
         You may also contact **Smile** to request additional specialized
         `templateId`s for other regions or business cases.
@@ -4783,41 +4801,67 @@ paths:
     post:
       summary: Create Footprint
       operationId: create-alpha-footprint
-      description: >
-        Create a **Footprint** object.   This endpoint requires the following
-        mandatory parameters:   - `consent`   - `templateId`   In addition, you
-        must provide **either** `emailAddress` **or** `mobileNumber` — these two
-        are **mutually exclusive**.
+      description: >-
+        ## Create a **Footprint** object.  
+
+        This endpoint requires the following mandatory parameters:  
+
+        - `consent`  
+
+        - `templateId`  
+
+
+        In addition, you must provide **either** `emailAddress` **or**
+        `mobileNumber` — these two are **mutually exclusive**.
+
 
         ### Supported Templates
 
-        | Template ID       | Input Type     | Required
-        Parameters                    |
-        |-------------------|----------------|-----------------------------------------|
-        | `tpl-ftp005001`   | Email address  | `consent`, `templateId`,
-        `emailAddress` | | `tpl-ftp005002`   | Mobile number  | `consent`,
-        `templateId`, `mobileNumber` |
+
+        | Template ID     | Input Type    | Required
+        Parameters                     |
+
+        |-----------------|---------------|-----------------------------------------|
+
+        | `tpl-ftp005001` | Email address | `consent`, `templateId`,
+        `emailAddress` |
+
+        | `tpl-ftp005002` | Mobile number | `consent`, `templateId`,
+        `mobileNumber` |
+
 
         ### Field Rules
 
+
         - For `tpl-ftp005001`, `emailAddress` must be provided and
-        `mobileNumber` must be omitted.   - For `tpl-ftp005002`, `mobileNumber`
-        must be provided and `emailAddress` must be omitted.   - `emailAddress`
-        and `mobileNumber` **cannot** be used together in the same request.
+        `mobileNumber` must be omitted.  
+
+        - For `tpl-ftp005002`, `mobileNumber` must be provided and
+        `emailAddress` must be omitted.  
+
+        - `emailAddress` and `mobileNumber` **cannot** be used together in the
+        same request.
+
 
         ### Sandbox Test Values
 
-        | Template ID     | Test Input                                | Expected
-        Response                      |
-        |-----------------|--------------------------------------------|----------------------------------------|
+
+        | Template ID     | Test Input                                 |
+        Expected Response      |
+
+        |-----------------|--------------------------------------------|------------------------|
+
         | `tpl-ftp005001` | `emailAddress = gpalomero1234@smileapi.io` |
-        `resultCode = SUCCESS`, with mock data | | `tpl-ftp005002` |
-        `mobileNumber = 639559991234`              | `resultCode = SUCCESS`,
-        with mock data |
+        `resultCode = SUCCESS` |
+
+        | `tpl-ftp005002` | `mobileNumber = 639559991234`              |
+        `resultCode = SUCCESS` |
+
 
         For all other valid input combinations, if no mock data is matched, the
-        response will return:   `resultCode = NO_DATA`, and no items will be
-        included.
+        response will return:  
+
+        `resultCode = NO_DATA`, and no items will be included.
       tags:
         - Footprints (Alpha)
       responses:
@@ -5127,36 +5171,57 @@ paths:
     post:
       summary: Create Maw
       operationId: create-alpha-maw
-      description: >
-        Create a **Maw** object.   This endpoint requires **four mandatory
-        parameters**:   `consent`, `mobileNumber`, `countryCode`, and
-        `templateId`.
+      description: >-
+        ## Create a **Maw** object.  
+
+        This endpoint requires **four mandatory parameters**:  
+
+        `consent`, `mobileNumber`, `countryCode`, and `templateId`.
+
 
         ### Supported Template
 
-        | Template ID     | Region(s)              | Required
-        Parameters               |
-        |-----------------|------------------------|-----------------------------------|
-        | `tpl-maw002001` | IN (India), MX (Mexico) | `mobileNumber`,
-        `countryCode`      |
 
-        ### Field Guidelines - **`mobileNumber`** must **include the country
-        code** (e.g., `529559991234`).   - MD5‑encrypted input is accepted in
-        the form `MD5(countryCode + mobileNumber)`—for example,
-        `MD5(529559991234)`.
+        | Template ID     | Region(s)               | Required
+        Parameters           |
+
+        |-----------------|-------------------------|-------------------------------|
+
+        | `tpl-maw002001` | IN (India), MX (Mexico) | `mobileNumber`,
+        `countryCode` |
+
+
+        ### Field Guidelines
+
+        - **`mobileNumber`** must **include the country code** (e.g.,
+        `529559991234`).  
+
+        - MD5‑encrypted input is accepted in the form `MD5(countryCode +
+        mobileNumber)`—for example, `MD5(529559991234)`.
+
 
         ### Sandbox Test Values
 
-        | Parameter    | Value            | Expected Response                 |
-        |--------------|------------------|-----------------------------------|
-        | templateId   | `tpl-maw002001`  |                                   |
-        | countryCode  | `PH`             |                                   |
-        | mobileNumber | `639559991234`   | `resultCode = SUCCESS` with mock
-        data |
+
+        | Parameter    | Value           | Expected Response                    
+        |
+
+        |--------------|-----------------|---------------------------------------|
+
+        | templateId   | `tpl-maw002001` |                                      
+        |
+
+        | countryCode  | `PH`            |                                      
+        |
+
+        | mobileNumber | `639559991234`  | `resultCode = SUCCESS` with mock data
+        |
+
 
         For **all other valid input combinations**, if no mock data match is
-        found, the system returns   `resultCode = NO_DATA` and the response
-        contains no items.
+        found, the system returns  
+
+        `resultCode = NO_DATA` and the response contains no items.
       tags:
         - Maws (Alpha)
       responses:
@@ -5345,36 +5410,57 @@ paths:
     post:
       summary: Create Maw
       operationId: create-beta-Maw2
-      description: >
-        Create a **Maw** object.   This endpoint requires **four mandatory
-        parameters**:   `consent`, `mobileNumber`, `countryCode`, and
-        `templateId`.
+      description: >-
+        ## Create a **Maw** object.  
+
+        This endpoint requires **four mandatory parameters**:  
+
+        `consent`, `mobileNumber`, `countryCode`, and `templateId`.
+
 
         ### Supported Template
 
-        | Template ID     | Region(s)              | Required
-        Parameters               |
-        |-----------------|------------------------|-----------------------------------|
-        | `tpl-maw002001` | IN (India), MX (Mexico) | `mobileNumber`,
-        `countryCode`      |
 
-        ### Field Guidelines - **`mobileNumber`** must **include the country
-        code** (e.g., `529559991234`).   - MD5‑encrypted input is accepted in
-        the form `MD5(countryCode + mobileNumber)`—for example,
-        `MD5(529559991234)`.
+        | Template ID     | Region(s)               | Required
+        Parameters           |
+
+        |-----------------|-------------------------|-------------------------------|
+
+        | `tpl-maw002001` | IN (India), MX (Mexico) | `mobileNumber`,
+        `countryCode` |
+
+
+        ### Field Guidelines
+
+        - **`mobileNumber`** must **include the country code** (e.g.,
+        `529559991234`).  
+
+        - MD5‑encrypted input is accepted in the form `MD5(countryCode +
+        mobileNumber)`—for example, `MD5(529559991234)`.
+
 
         ### Sandbox Test Values
 
-        | Parameter    | Value            | Expected Response                 |
-        |--------------|------------------|-----------------------------------|
-        | templateId   | `tpl-maw002001`  |                                   |
-        | countryCode  | `PH`             |                                   |
-        | mobileNumber | `639559991234`   | `resultCode = SUCCESS` with mock
-        data |
+
+        | Parameter    | Value           | Expected Response                    
+        |
+
+        |--------------|-----------------|---------------------------------------|
+
+        | templateId   | `tpl-maw002001` |                                      
+        |
+
+        | countryCode  | `PH`            |                                      
+        |
+
+        | mobileNumber | `639559991234`  | `resultCode = SUCCESS` with mock data
+        |
+
 
         For **all other valid input combinations**, if no mock data match is
-        found, the system returns   `resultCode = NO_DATA` and the response
-        contains no items.
+        found, the system returns  
+
+        `resultCode = NO_DATA` and the response contains no items.
       tags:
         - Maws (Beta)
       responses:
@@ -5441,46 +5527,71 @@ paths:
     post:
       summary: Create Maw3
       operationId: create-beta-Maw3
-      description: >
-        Create a **Maw** object.   This endpoint supports different templates
-        depending on region and use case.   Required parameters: `consent`,
-        `templateId`, plus additional fields depending on the selected template.
+      description: >-
+        ## Create a **Maw** object.  
+
+        This endpoint supports different templates depending on region and use
+        case.  
+
+        Required parameters: `consent`, `templateId`, plus additional fields
+        depending on the selected template.
+
 
         ### Supported Templates
 
-        | Template ID       | Region           | Required
-        Parameters                                                  |
-        |-------------------|------------------|-----------------------------------------------------------------------|
-        | `tpl-maw004001`   | Mexico (MX)      | `mobileNumber`, `countryCode`,
-        `fullName`, `idType=NATIONAL_ID`, `idNumber` | | `tpl-maw004002`   |
-        Africa countries |
-        `gaid`                                                                |
+
+        | Template ID     | Region           | Required
+        Parameters                                                         |
+
+        |-----------------|------------------|-----------------------------------------------------------------------------|
+
+        | `tpl-maw004001` | Mexico (MX)      | `mobileNumber`, `countryCode`,
+        `fullName`, `idType=NATIONAL_ID`, `idNumber` |
+
+        | `tpl-maw004002` | Africa countries |
+        `gaid`                                                                     
+        |
+
 
         ### Field Guidelines
 
+
         - For `tpl-maw004001`:
-          - `countryCode` **must be** `MX`
-          - `mobileNumber` should **exclude** the country code (e.g., `9559991234`)
-          - Supports MD5 input in the format: `MD5(529559991234)`
+
+        - `countryCode` **must be** `MX`
+
+        - `mobileNumber` should **exclude** the country code (e.g.,
+        `9559991234`)
+
+        - Supports MD5 input in the format: `MD5(529559991234)`
+
 
         - For `tpl-maw004002`:
-          - Only the `gaid` parameter is required
+
+        - Only the `gaid` parameter is required
+
 
         ### Sandbox Test Values
 
+
         | Template ID     |
-        Parameters                                                                
-        | Expected Response                     |
-        |-----------------|----------------------------------------------------------------------------|---------------------------------------|
+        Parameters                                                           |
+        Expected Response      |
+
+        |-----------------|----------------------------------------------------------------------|------------------------|
+
         | `tpl-maw004001` | `mobileNumber = 9559991234`, `countryCode = MX`,
-        `fullName = George`       | `resultCode = SUCCESS`, with mock data | |
-        `tpl-maw004002` | `gaid =
-        '00000000-0000-0000-0000-000000000000'`                            |
-        `resultCode = SUCCESS`, with mock data |
+        `fullName = George` | `resultCode = SUCCESS` |
+
+        | `tpl-maw004002` | `gaid =
+        '00000000-0000-0000-0000-000000000000'`                      |
+        `resultCode = SUCCESS` |
+
 
         For **all other valid input combinations**, if no mock data match is
-        found, the system will return:   `resultCode = NO_DATA`, and no items
-        will be included in the response.
+        found, the system will return:  
+
+        `resultCode = NO_DATA`, and no items will be included in the response.
       tags:
         - Maws (Beta)
       responses:
@@ -5851,39 +5962,60 @@ paths:
     post:
       summary: Create Blacklist
       operationId: create-alpha-blacklist
-      description: >
-        Create a **Blacklist** object.   This endpoint requires the following
-        input parameters:   `consent`, `mobileNumber`, `templateId`, and
-        `countryCode`.
+      description: >-
+        ## Create a **Blacklist** object.  
 
-        ### Default Behavior - If `templateId` is **not provided**, it defaults
-        to `tpl-blk002001`.   - If `countryCode` is **omitted**, it defaults to
-        `PH`.
+        This endpoint requires the following input parameters:  
+
+        `consent`, `mobileNumber`, `templateId`, and `countryCode`.
+
+
+        ### Default Behavior
+
+        - If `templateId` is **not provided**, it defaults to `tpl-blk002001`.  
+
+        - If `countryCode` is **omitted**, it defaults to `PH`.
+
 
         ### Supported Template
 
-        | Template ID       | Region     | Required
-        Parameters                                     |
-        |-------------------|------------|----------------------------------------------------------|
-        | `tpl-blk002001`   | PH (default) | `consent`, `mobileNumber`,
-        `countryCode`, `templateId`   |
+
+        | Template ID     | Region       | Required
+        Parameters                                    |
+
+        |-----------------|--------------|--------------------------------------------------------|
+
+        | `tpl-blk002001` | PH (default) | `consent`, `mobileNumber`,
+        `countryCode`, `templateId` |
+
 
         ### Field Rules
 
+
         - `templateId` is optional; if missing, the system uses `tpl-blk002001`.
+
         - `countryCode` is also optional; if omitted, it defaults to `PH`.
+
 
         ### Sandbox Test Values
 
+
         | Parameter       | Value            | Expected
         Response                      |
+
         |-----------------|------------------|----------------------------------------|
+
         | `mobileNumber`  | `639559991234`  
-        |                                        | | `countryCode`   |
-        `PH`             | `resultCode = SUCCESS`, `hit = true`   |
+        |                                        |
+
+        | `countryCode`   | `PH`             | `resultCode = SUCCESS`, `hit =
+        true`   |
+
 
         For all other valid mobile number and country code combinations, the
-        response will return:   `resultCode = SUCCESS`, but `hit = false`.
+        response will return:  
+
+        `resultCode = SUCCESS`, but `hit = false`.
       tags:
         - Blacklists (Alpha)
       responses:
