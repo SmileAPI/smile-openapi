@@ -24,3 +24,11 @@ For more information, you can visit [our website](https://www.getsmileapi.com), 
 ### 1. $ref path in YAML the format should be like this:
 `$ref: 'relativePath/someone.yaml#/components/schemas/<schema_name>'`
 *  behind the .yaml should not have "/", java plugin will not work, will print "schemas not found"
+
+### 2. If you want to use maven to build the code on your local environment. Please follow shell scripts. 
+- Ensure you have installed `npm` on your local environment.
+```shell
+npm i -g @redocly/openapi-cli@latest
+mkdir openapi-definitions
+openapi bundle src/main/resources/api.yaml --output openapi-definitions/openapi.yaml
+```

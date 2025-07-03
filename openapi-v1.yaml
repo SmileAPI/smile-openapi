@@ -5172,7 +5172,7 @@ paths:
       summary: Create Maw
       operationId: create-alpha-maw
       description: >-
-        ## Create a **Maw** object.  
+        ## Create a Maw2 object.  
 
         This endpoint requires **four mandatory parameters**:  
 
@@ -5191,31 +5191,18 @@ paths:
         `countryCode` |
 
 
-        ### Field Guidelines
-
-        - **`mobileNumber`** must **include the country code** (e.g.,
-        `529559991234`).  
-
-        - MD5‑encrypted input is accepted in the form `MD5(countryCode +
-        mobileNumber)`—for example, `MD5(529559991234)`.
-
-
         ### Sandbox Test Values
 
 
-        | Parameter    | Value           | Expected Response                    
-        |
+        | Parameter    | Value           | Expected Response      |
 
-        |--------------|-----------------|---------------------------------------|
+        |--------------|-----------------|------------------------|
 
-        | templateId   | `tpl-maw002001` |                                      
-        |
+        | templateId   | `tpl-maw002001` |                        |
 
-        | countryCode  | `PH`            |                                      
-        |
+        | countryCode  | `PH`            |                        |
 
-        | mobileNumber | `639559991234`  | `resultCode = SUCCESS` with mock data
-        |
+        | mobileNumber | `639559991234`  | `resultCode = SUCCESS` |
 
 
         For **all other valid input combinations**, if no mock data match is
@@ -5408,10 +5395,10 @@ paths:
                           platformId: 5b79399a68524234bb0ead472648282d
   /beta/maws/requestMaw2:
     post:
-      summary: Create Maw
-      operationId: create-beta-Maw2
+      summary: Create Maw2
+      operationId: create-beta-maw2
       description: >-
-        ## Create a **Maw** object.  
+        ## Create a Maw2 object.  
 
         This endpoint requires **four mandatory parameters**:  
 
@@ -5430,31 +5417,18 @@ paths:
         `countryCode` |
 
 
-        ### Field Guidelines
-
-        - **`mobileNumber`** must **include the country code** (e.g.,
-        `529559991234`).  
-
-        - MD5‑encrypted input is accepted in the form `MD5(countryCode +
-        mobileNumber)`—for example, `MD5(529559991234)`.
-
-
         ### Sandbox Test Values
 
 
-        | Parameter    | Value           | Expected Response                    
-        |
+        | Parameter    | Value           | Expected Response      |
 
-        |--------------|-----------------|---------------------------------------|
+        |--------------|-----------------|------------------------|
 
-        | templateId   | `tpl-maw002001` |                                      
-        |
+        | templateId   | `tpl-maw002001` |                        |
 
-        | countryCode  | `PH`            |                                      
-        |
+        | countryCode  | `PH`            |                        |
 
-        | mobileNumber | `639559991234`  | `resultCode = SUCCESS` with mock data
-        |
+        | mobileNumber | `639559991234`  | `resultCode = SUCCESS` |
 
 
         For **all other valid input combinations**, if no mock data match is
@@ -5526,7 +5500,7 @@ paths:
   /beta/maws/requestMaw3:
     post:
       summary: Create Maw3
-      operationId: create-beta-Maw3
+      operationId: create-beta-maw3
       description: >-
         ## Create a **Maw** object.  
 
@@ -5553,38 +5527,20 @@ paths:
         |
 
 
-        ### Field Guidelines
-
-
-        - For `tpl-maw004001`:
-
-        - `countryCode` **must be** `MX`
-
-        - `mobileNumber` should **exclude** the country code (e.g.,
-        `9559991234`)
-
-        - Supports MD5 input in the format: `MD5(529559991234)`
-
-
-        - For `tpl-maw004002`:
-
-        - Only the `gaid` parameter is required
-
-
         ### Sandbox Test Values
 
 
         | Template ID     |
-        Parameters                                                           |
+        Parameters                                                             |
         Expected Response      |
 
-        |-----------------|----------------------------------------------------------------------|------------------------|
+        |-----------------|------------------------------------------------------------------------|------------------------|
 
-        | `tpl-maw004001` | `mobileNumber = 9559991234`, `countryCode = MX`,
+        | `tpl-maw004001` | `mobileNumber = 529559991234`, `countryCode = MX`,
         `fullName = George` | `resultCode = SUCCESS` |
 
         | `tpl-maw004002` | `gaid =
-        '00000000-0000-0000-0000-000000000000'`                      |
+        '00000000-0000-0000-0000-000000000000'`                        |
         `resultCode = SUCCESS` |
 
 
@@ -14356,7 +14312,7 @@ components:
         templateId:
           type: string
           description: >-
-            Generated internally by Smile. Customers should request the specific
+            Generated internally by Smile. You can request the specific
             templateId from Smile.
           example: mawTpl-xxxxxxxxxxxxxxx
         consent:
@@ -14477,15 +14433,17 @@ components:
           type: string
           description: >-
             Subject's mobile number. Must start with country code i.e.
-            639178912345, and no leading zeros
+            639178912345, and no leading zeros. MD5‑encrypted input is accepted
+            with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
           example: '639178902345'
         countryCode:
           $ref: '#/components/schemas/RefCountry'
         templateId:
           type: string
           description: >-
-            Generated internally by Smile. Customers should request the specific
-            templateId from Smile.
+            Fixed to `tpl-maw002001`. You can request the specific templateId
+            from Smile if need.
         consent:
           $ref: '#/components/schemas/Consent'
     MawType:
@@ -14509,7 +14467,9 @@ components:
           type: string
           description: >-
             Subject's mobile number. `Required`. Must start with country code
-            i.e. 639178912345, and no leading zeros
+            i.e. 529178912345, and no leading zeros. MD5‑encrypted input is
+            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
           example: '639178902345'
         fullName:
           type: string
@@ -14534,8 +14494,8 @@ components:
         templateId:
           type: string
           description: >-
-            Generated internally by Smile. Customers should request the specific
-            templateId from Smile.
+            Fixed to `tpl-maw004001`. You can request the specific templateId
+            from Smile if need.
         consent:
           $ref: '#/components/schemas/Consent'
     BetaMaw3Tpl2PostRequest:
@@ -14552,8 +14512,8 @@ components:
         templateId:
           type: string
           description: >-
-            Generated internally by Smile. Customers should request the specific
-            templateId from Smile.
+            Fixed to `tpl-maw004002`. You can request the specific templateId
+            from Smile if need.
         consent:
           $ref: '#/components/schemas/Consent'
     BetaMawRequestMeta:
