@@ -5182,13 +5182,15 @@ paths:
         ### Supported Template
 
 
-        | Template ID     | Region(s)               | Required
-        Parameters           |
+        | Template ID     |
+        Region(s)                                                                           
+        | Required Parameters           |
 
-        |-----------------|-------------------------|-------------------------------|
+        |-----------------|--------------------------------------------------------------------------------------|-------------------------------|
 
-        | `tpl-maw002001` | IN (India), MX (Mexico) | `mobileNumber`,
-        `countryCode` |
+        | `tpl-maw002001` | IN (India), MX (Mexico), PH (Philippines),ID
+        (Indonesia),CO (Colombia),TH (Thailand) | `mobileNumber`, `countryCode`
+        |
 
 
         ### Sandbox Test Values
@@ -5408,13 +5410,15 @@ paths:
         ### Supported Template
 
 
-        | Template ID     | Region(s)               | Required
-        Parameters           |
+        | Template ID     |
+        Region(s)                                                                           
+        | Required Parameters           |
 
-        |-----------------|-------------------------|-------------------------------|
+        |-----------------|--------------------------------------------------------------------------------------|-------------------------------|
 
-        | `tpl-maw002001` | IN (India), MX (Mexico) | `mobileNumber`,
-        `countryCode` |
+        | `tpl-maw002001` | IN (India), MX (Mexico), PH (Philippines),ID
+        (Indonesia),CO (Colombia),TH (Thailand) | `mobileNumber`, `countryCode`
+        |
 
 
         ### Sandbox Test Values
@@ -5531,17 +5535,18 @@ paths:
 
 
         | Template ID     |
-        Parameters                                                             |
-        Expected Response      |
+        Parameters                                                                                             
+        | Expected Response      |
 
-        |-----------------|------------------------------------------------------------------------|------------------------|
+        |-----------------|---------------------------------------------------------------------------------------------------------|------------------------|
 
         | `tpl-maw004001` | `mobileNumber = 529559991234`, `countryCode = MX`,
-        `fullName = George` | `resultCode = SUCCESS` |
+        `fullName = George`, `idNumber = ZAZD801124MBSYQN13` | `resultCode =
+        SUCCESS` |
 
         | `tpl-maw004002` | `gaid =
-        '00000000-0000-0000-0000-000000000000'`                        |
-        `resultCode = SUCCESS` |
+        '00000000-0000-0000-0000-000000000000'`                                                        
+        | `resultCode = SUCCESS` |
 
 
         For **all other valid input combinations**, if no mock data match is
@@ -14477,12 +14482,12 @@ components:
           example: George Smith
         idNumber:
           type: string
-          description: Subject's ID number.  `Required`.
-          example: '1234567890123456'
+          description: Subject's ID number.  `Required`. Must be a valid Mexico CURP.
+          example: ZAZD801124MBSYQN13
         idType:
           type: string
           description: Subject's ID type.  `Required`.
-          example: PASSPORT
+          example: NATIONAL_ID
           enum:
             - NATIONAL_ID
         gaid:
