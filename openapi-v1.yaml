@@ -6201,10 +6201,15 @@ paths:
         `resultCode = NO_DATA` and the response contains no items.
 
 
+        ### Remarks
+
         In production mode, if the API request is successful, a SocialSecurity
         object will be created with the status of `PROCESSING`. When the Status
-        becomes `COMPLETED` or `ERROR`, it will be notified through the Webhook.
+        becomes `COMPLETED` or `ERROR`, it will be notified through the
+        [webhook](https://docs.getsmileapi.com/reference/webhooks#records-completed).
         Generally, the API will return the result in about 1 minute.
+
+
 
       tags:
         - Social Securities
@@ -6333,7 +6338,7 @@ paths:
                           resultCode: SUCCESS
                           resultMessage: Success!
                           result:
-                            name: John Doe
+                            fullName: John Doe
                             curp: DOEJ800101HDFXXX01
                             nss: '12345678901'
                             reportDate: '2024-01-15'
@@ -6361,7 +6366,7 @@ paths:
                           resultCode: SUCCESS
                           resultMessage: Success!
                           result:
-                            name: Jane Smith
+                            fullName: Jane Smith
                             curp: SMIT850215MDFXXX02
                             nss: '98765432109'
                             reportDate: '2024-01-10'
@@ -6432,7 +6437,7 @@ paths:
                       resultCode: SUCCESS
                       resultMessage: Success!
                       result:
-                        name: John Doe
+                        fullName: John Doe
                         curp: DOEJ800101HDFXXX01
                         nss: '12345678901'
                         reportDate: '2024-01-15'
@@ -9250,7 +9255,7 @@ components:
         - LINK_ADDED
         - VERIFICATION_STARTED
         - VERIFICATION_COMPLETED
-        - RECORD_STARTED
+        - RECORD_CREATED
         - RECORD_COMPLETED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
@@ -15054,7 +15059,7 @@ components:
     SocialSecurityResult:
       type: object
       required:
-        - name
+        - fullName
         - curp
         - nss
         - reportDate
@@ -15065,7 +15070,7 @@ components:
         - contributionBaseAmount
         - currency
       properties:
-        name:
+        fullName:
           type: string
           description: Full name of the person
         curp:
