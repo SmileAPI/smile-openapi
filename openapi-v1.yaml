@@ -6152,6 +6152,328 @@ paths:
                           - '2021-04-14'
                           - '2021-03-14'
                           - '2021-02-14'
+  /alpha/socialSecurities:
+    post:
+      summary: Create Social Security
+      operationId: create-social-security
+      description: >+
+        ## Create a Social Security object.  
+
+        This endpoint requires **four mandatory parameters**:  
+
+        `consent`, `mobileNumber`, `fullName`, `curp`, `emailAddress`, and
+        `templateId`.
+
+
+        ### Supported Template
+
+
+        | Template ID     | Region(s)   | Required
+        Parameters                                |
+
+        |-----------------|-------------|----------------------------------------------------|
+
+        | `tpl-sss003001` | MX (Mexico) | `mobileNumber`, `fullName`, `curp`,
+        `emailAddress` |
+
+
+        ### Sandbox Test Values
+
+
+        | Parameter    | Value                   | Expected Response      |
+
+        |--------------|-------------------------|------------------------|
+
+        | templateId   | `tpl-sss003001`         |                        |
+
+        | emailAddress | Any valid email address |                        |
+
+        | curp         | Any valid curp          |                        |
+
+        | fullName     | Any string              |                        |
+
+        | mobileNumber | `529559991234`          | `resultCode = SUCCESS` |
+
+
+        For **all other valid input combinations**, if no mock data match is
+        found, the system returns  
+
+        `resultCode = NO_DATA` and the response contains no items.
+
+
+        In production mode, if the API request is successful, a SocialSecurity
+        object will be created with the status of `PROCESSING`. When the Status
+        becomes `COMPLETED` or `ERROR`, it will be notified through the Webhook.
+        Generally, the API will return the result in about 1 minute.
+
+      tags:
+        - Social Securities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocialSecurityPostRequest'
+            examples:
+              Example:
+                value:
+                  emailAddress: john.doe@example.com
+                  fullName: John Doe
+                  mobileNumber: '529559991234'
+                  curp: DOEJ800101HDFXXX01
+                  templateId: tpl-sss003001
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialSecurityPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: CREATED
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: ss-17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: PROCESSING
+                      resultCode: null
+                      resultMessage: null
+                      result: null
+                      requestMeta:
+                        emailAddress: john.doe@example.com
+                        fullName: John Doe
+                        mobileNumber: '529559991234'
+                        curp: DOEJ800101HDFXXX01
+                        templateId: tpl-sss003001
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+    get:
+      summary: List Social Securities
+      operationId: list-social-securities
+      description: List all social security records for users
+      tags:
+        - Social Securities
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: socialSecurityId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter social securities by social security id
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: >-
+            Filter social securities by report date, start of date range
+            (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: >-
+            Filter social securities by report date, end of date range
+            (YYYY-MM-DD)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialSecurityListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: ss-17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: SUCCESS
+                          resultMessage: Success!
+                          result:
+                            name: John Doe
+                            curp: DOEJ800101HDFXXX01
+                            nss: '12345678901'
+                            reportDate: '2024-01-15'
+                            employerName: ABC Corporation
+                            employerRegistration: ABC123456
+                            maritalStatus: Single
+                            contributionDays: 365
+                            contributionBaseAmount: 50000
+                            currency: MXN
+                          requestMeta:
+                            emailAddress: john.doe@example.com
+                            fullName: John Doe
+                            mobileNumber: '529559991234'
+                            curp: DOEJ800101HDFXXX01
+                            templateId: tpl-sss003001
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                        - id: ss-28ccf47509ef5e79b1e5g97d8c73g80g
+                          createdAt: '2021-04-10T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: SUCCESS
+                          resultMessage: Success!
+                          result:
+                            name: Jane Smith
+                            curp: SMIT850215MDFXXX02
+                            nss: '98765432109'
+                            reportDate: '2024-01-10'
+                            employerName: XYZ Company
+                            employerRegistration: XYZ789012
+                            maritalStatus: Single
+                            contributionDays: 300
+                            contributionBaseAmount: 45000
+                            currency: MXN
+                          requestMeta:
+                            emailAddress: jane.smith@example.com
+                            fullName: Jane Smith
+                            mobileNumber: '+1987654321'
+                            curp: SMIT850215MDFXXX02
+                            templateId: tpl-sss003001
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-10T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+  /alpha/socialSecurities/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Social Security
+      operationId: get-social-security
+      description: Get a social security record by ID
+      tags:
+        - Social Securities
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialSecurityGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: ss-17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      result:
+                        name: John Doe
+                        curp: DOEJ800101HDFXXX01
+                        nss: '12345678901'
+                        reportDate: '2024-01-15'
+                        employerName: ABC Corporation
+                        employerRegistration: ABC123456
+                        maritalStatus: Single
+                        contributionDays: 365
+                        contributionBaseAmount: 50000
+                        currency: MXN
+                      requestMeta:
+                        emailAddress: john.doe@example.com
+                        fullName: John Doe
+                        mobileNumber: '529559991234'
+                        curp: DOEJ800101HDFXXX01
+                        templateId: tpl-sss003001
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
   /profiles/-/identities/verify:
     post:
       tags:
@@ -7007,30 +7329,7 @@ components:
         createdAt:
           $ref: '#/components/schemas/RefDateTime'
         data:
-          type: object
-          properties:
-            userId:
-              type: string
-              description: The user ID.
-            sourceId:
-              type: string
-              description: The source ID .
-            sourceType:
-              $ref: '#/components/schemas/RefSourceType'
-            taskType:
-              $ref: '#/components/schemas/TaskType'
-            providers:
-              type: array
-              description: The providers this account associated to
-              items:
-                type: string
-                description: Provider id
-          required:
-            - userId
-            - sourceId
-            - sourceType
-            - taskType
-            - providers
+          $ref: '#/components/schemas/TaskStartedEventData'
       required:
         - id
         - version
@@ -7066,46 +7365,7 @@ components:
         createdAt:
           $ref: '#/components/schemas/RefDateTime'
         data:
-          type: object
-          properties:
-            userId:
-              type: string
-              description: The user ID.
-            sourceId:
-              type: string
-              description: The source ID .
-            sourceType:
-              $ref: '#/components/schemas/RefSourceType'
-            taskType:
-              $ref: '#/components/schemas/TaskType'
-            status:
-              type: string
-              description: The task status.
-              enum:
-                - SUCCEEDED
-                - FAILED
-            errorCode:
-              type: string
-              description: If status = FAILURE, this field has value.
-            providers:
-              type: array
-              description: The providers this account associated to
-              items:
-                type: string
-                description: Provider id
-            datapoints:
-              type: array
-              items:
-                $ref: '#/components/schemas/RefDatapoint'
-            payload:
-              $ref: '#/components/schemas/AllDatapointPayload'
-          required:
-            - userId
-            - sourceId
-            - sourceType
-            - providers
-            - datapoints
-            - data
+          $ref: '#/components/schemas/TaskFinishedEventData'
       required:
         - id
         - version
@@ -8990,6 +9250,8 @@ components:
         - LINK_ADDED
         - VERIFICATION_STARTED
         - VERIFICATION_COMPLETED
+        - RECORD_STARTED
+        - RECORD_COMPLETED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
     Webhook:
@@ -9169,6 +9431,7 @@ components:
         - ACCOUNT
         - UPLOAD
         - ARCHIVE
+        - SOCIAL_SECURITY
       description: Source Type
     ObjectReferenceMetadata:
       title: Reference Metadata
@@ -14788,6 +15051,179 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/AlphaBlacklist'
+    SocialSecurityResult:
+      type: object
+      required:
+        - name
+        - curp
+        - nss
+        - reportDate
+        - employerName
+        - employerRegistration
+        - gender
+        - contributionDays
+        - contributionBaseAmount
+        - currency
+      properties:
+        name:
+          type: string
+          description: Full name of the person
+        curp:
+          type: string
+          description: CURP (Clave Única de Registro de Población)
+        nss:
+          type: string
+          description: NSS (Número de Seguridad Social)
+        reportDate:
+          type: string
+          format: date
+          description: Date of the social security report
+        employerName:
+          type: string
+          description: Name of the employer
+        employerRegistration:
+          type: string
+          description: Employer registration number
+        maritalStatus:
+          $ref: '#/components/schemas/RefMaritalStatus'
+        contributionDays:
+          type: integer
+          description: Number of contribution days
+        contributionBaseAmount:
+          type: number
+          description: Base amount for contributions
+        currency:
+          $ref: '#/components/schemas/RefCurrency'
+    SocialSecurityRequestMeta:
+      type: object
+      required:
+        - emailAddress
+        - fullName
+        - mobileNumber
+        - curp
+        - templateId
+        - consent
+      properties:
+        emailAddress:
+          type: string
+          format: email
+        fullName:
+          type: string
+        mobileNumber:
+          $ref: '#/components/schemas/RefPhoneNumber'
+        curp:
+          type: string
+        templateId:
+          type: string
+        consent:
+          $ref: '#/components/schemas/Consent'
+    SocialSecurity:
+      title: Social Security
+      type: object
+      description: >-
+        The stored social security information of the user from a social
+        security data provider.
+      required:
+        - id
+        - createdAt
+        - status
+        - requestMeta
+        - result
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        status:
+          type: string
+          description: The current status of the Social Security record.
+          enum:
+            - PROCESSING
+            - ERROR
+            - COMPLETED
+        resultCode:
+          type: string
+          description: The final result of the Social Security process.
+          enum:
+            - SUCCESS
+            - NO_DATA
+            - SYSTEM_ERROR
+            - SERVICE_UNAVAILABLE
+        resultMessage:
+          type: string
+          description: A detailed description of the final result.
+        result:
+          $ref: '#/components/schemas/SocialSecurityResult'
+        requestMeta:
+          $ref: '#/components/schemas/SocialSecurityRequestMeta'
+    SocialSecurityListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialSecurity'
+    SocialSecurityListResponse:
+      title: Social Security List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/SocialSecurityListData'
+    SocialSecurityPostRequest:
+      type: object
+      required:
+        - emailAddress
+        - fullName
+        - mobileNumber
+        - curp
+        - templateId
+        - consent
+      properties:
+        emailAddress:
+          type: string
+          format: email
+        fullName:
+          type: string
+        mobileNumber:
+          $ref: '#/components/schemas/RefPhoneNumber'
+        curp:
+          type: string
+        templateId:
+          type: string
+        consent:
+          $ref: '#/components/schemas/Consent'
+    SocialSecurityPostResponse:
+      title: Social Security Post Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/SocialSecurity'
+    SocialSecurityGetResponse:
+      title: Social Security Get Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/SocialSecurity'
     ProfileIdentityVerifyRequest:
       title: object
       required:
@@ -15190,6 +15626,32 @@ components:
       description: Event schema's major version
       type: number
       example: 1
+    TaskStartedEventData:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: The user ID.
+        sourceId:
+          type: string
+          description: The source ID .
+        sourceType:
+          $ref: '#/components/schemas/RefSourceType'
+        taskType:
+          type: string
+          description: The task type. Please refer /tasks/{id} API to get all types
+        providers:
+          type: array
+          description: The providers this account associated to
+          items:
+            type: string
+            description: Provider id
+      required:
+        - userId
+        - sourceId
+        - sourceType
+        - taskType
+        - providers
     AllDatapointPayload:
       type: object
       properties:
@@ -15271,6 +15733,48 @@ components:
                 $ref: '#/components/schemas/LinkPayload'
         insight:
           $ref: '#/components/schemas/InsightPayload'
+    TaskFinishedEventData:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: The user ID.
+        sourceId:
+          type: string
+          description: The source ID .
+        sourceType:
+          $ref: '#/components/schemas/RefSourceType'
+        taskType:
+          type: string
+          description: The task type. Please refer /tasks/{id} API to get all types
+        status:
+          type: string
+          description: The task status.
+          enum:
+            - SUCCEEDED
+            - FAILED
+        errorCode:
+          type: string
+          description: If status = FAILURE, this field has value.
+        providers:
+          type: array
+          description: The providers this account associated to
+          items:
+            type: string
+            description: Provider id
+        datapoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefDatapoint'
+        payload:
+          $ref: '#/components/schemas/AllDatapointPayload'
+      required:
+        - userId
+        - sourceId
+        - sourceType
+        - providers
+        - datapoints
+        - data
     SmileCommonEvent:
       type: object
       required:
