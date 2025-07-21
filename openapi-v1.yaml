@@ -6344,7 +6344,7 @@ paths:
                             reportDate: '2024-01-15'
                             employerName: ABC Corporation
                             employerRegistration: ABC123456
-                            maritalStatus: Single
+                            state: SINALOA
                             contributionDays: 365
                             contributionBaseAmount: 50000
                             currency: MXN
@@ -6372,7 +6372,7 @@ paths:
                             reportDate: '2024-01-10'
                             employerName: XYZ Company
                             employerRegistration: XYZ789012
-                            maritalStatus: Single
+                            state: SINALOA
                             contributionDays: 300
                             contributionBaseAmount: 45000
                             currency: MXN
@@ -6443,7 +6443,7 @@ paths:
                         reportDate: '2024-01-15'
                         employerName: ABC Corporation
                         employerRegistration: ABC123456
-                        maritalStatus: Single
+                        state: SINALOA
                         contributionDays: 365
                         contributionBaseAmount: 50000
                         currency: MXN
@@ -8585,6 +8585,48 @@ components:
                   provider: Google LLC
                   freeProvider: true
       description: Event indicates verification process is completed.
+    RecordCreatedEvent:
+      title: 'Webhook: Record Started Event'
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        version:
+          $ref: '#/components/schemas/RefWebhookEventVersion'
+        type:
+          $ref: '#/components/schemas/RefWebhookEventType'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        data:
+          $ref: '#/components/schemas/RecordCreatedEventData'
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      description: Event indicates record is created.
+    RecordCompletedEvent:
+      title: 'Webhook: Record Completed Event'
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        version:
+          $ref: '#/components/schemas/RefWebhookEventVersion'
+        type:
+          $ref: '#/components/schemas/RefWebhookEventType'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        data:
+          $ref: '#/components/schemas/RecordCompletedEventData'
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      description: Event indicates data sync of an account is finished.
     RefPrcProfession:
       type: string
       description: PROFESSIONAL REGULATION COMMISSION license profession
@@ -12251,6 +12293,9 @@ components:
           type: string
           format: date
           description: Statement date, in YYYY-MM-DD format
+        statementNumber:
+          type: string
+          description: Statement number
         dueDate:
           type: string
           format: date
@@ -12288,12 +12333,172 @@ components:
         supplier:
           type: string
           description: Supplier name
+    ArchiveElectricityBillAnalysis:
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: Full name
+        firstName:
+          type: string
+          description: First name
+        lastName:
+          type: string
+          description: Last name
+        middleName:
+          type: string
+          description: Middle name
+        accountNumber:
+          type: string
+          description: Account number
+        address:
+          type: string
+          description: Address
+        startDate:
+          type: string
+          format: date
+          description: Period start date, in YYYY-MM-DD format
+        endDate:
+          type: string
+          format: date
+          description: Period end date, in YYYY-MM-DD format
+        statementDate:
+          type: string
+          format: date
+          description: Statement date, in YYYY-MM-DD format
+        dueDate:
+          type: string
+          format: date
+          description: Due date, in YYYY-MM-DD format
+        paymentDate:
+          type: string
+          format: date
+          description: Payment date, in YYYY-MM-DD format
+        dueAmount:
+          type: number
+          description: Due amount
+        vatAmount:
+          type: number
+          description: Vat amount
+        currentBillAmount:
+          type: number
+          description: Current bill amount
+        balanceAmount:
+          type: number
+          description: Balance amount
+        previousDueAmount:
+          type: number
+          description: Previous due amount
+        currency:
+          $ref: '#/components/schemas/RefCurrency'
+        emailAddress:
+          type: string
+          description: Email address
+        phoneNumber:
+          type: string
+          description: Phone number
+        statementNumber:
+          type: string
+          description: Statement number
+        currentPeriodUsage:
+          type: number
+          description: Current period usage
+        previousReading:
+          type: number
+          description: Previous period usage
+        presentReading:
+          type: number
+          description: Present period usage
+        supplier:
+          type: string
+          description: Supplier name
+    ArchiveWaterBillAnalysis:
+      type: object
+      properties:
+        fullName:
+          type: string
+          description: Full name
+        firstName:
+          type: string
+          description: First name
+        lastName:
+          type: string
+          description: Last name
+        middleName:
+          type: string
+          description: Middle name
+        accountNumber:
+          type: string
+          description: Account number
+        address:
+          type: string
+          description: Address
+        startDate:
+          type: string
+          format: date
+          description: Period start date, in YYYY-MM-DD format
+        endDate:
+          type: string
+          format: date
+          description: Period end date, in YYYY-MM-DD format
+        statementDate:
+          type: string
+          format: date
+          description: Statement date, in YYYY-MM-DD format
+        dueDate:
+          type: string
+          format: date
+          description: Due date, in YYYY-MM-DD format
+        paymentDate:
+          type: string
+          format: date
+          description: Payment date, in YYYY-MM-DD format
+        dueAmount:
+          type: number
+          description: Due amount
+        vatAmount:
+          type: number
+          description: Vat amount
+        currentBillAmount:
+          type: number
+          description: Current bill amount
+        balanceAmount:
+          type: number
+          description: Balance amount
+        previousDueAmount:
+          type: number
+          description: Previous due amount
+        currency:
+          $ref: '#/components/schemas/RefCurrency'
+        emailAddress:
+          type: string
+          description: Email address
+        phoneNumber:
+          type: string
+          description: Phone number
+        statementNumber:
+          type: string
+          description: Statement number
+        currentPeriodUsage:
+          type: number
+          description: Current period usage
+        previousReading:
+          type: number
+          description: Previous period usage
+        presentReading:
+          type: number
+          description: Present period usage
+        supplier:
+          type: string
+          description: Supplier name
     ArchiveAnalysis:
       allOf:
         - $ref: '#/components/schemas/ArchivePayslipAnalysis'
         - $ref: '#/components/schemas/ArchiveTaxDocumentAnalysis'
         - $ref: '#/components/schemas/ArchiveNbiClearanceDocumentAnalysis'
         - $ref: '#/components/schemas/ArchiveTelcoBillAnalysis'
+        - $ref: '#/components/schemas/ArchiveElectricityBillAnalysis'
+        - $ref: '#/components/schemas/ArchiveWaterBillAnalysis'
     Archive:
       title: Archive
       type: object
@@ -15089,8 +15294,9 @@ components:
         employerRegistration:
           type: string
           description: Employer registration number
-        maritalStatus:
-          $ref: '#/components/schemas/RefMaritalStatus'
+        state:
+          type: string
+          description: State where contributions are made
         contributionDays:
           type: integer
           description: Number of contribution days
@@ -15115,7 +15321,13 @@ components:
         fullName:
           type: string
         mobileNumber:
-          $ref: '#/components/schemas/RefPhoneNumber'
+          type: string
+          description: >-
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 529178912345, and no leading zeros. MD5‑encrypted input is
+            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
+          example: '529559991234'
         curp:
           type: string
         templateId:
@@ -15153,6 +15365,7 @@ components:
             - SUCCESS
             - NO_DATA
             - SYSTEM_ERROR
+            - INVALID_PARAMETERS
             - SERVICE_UNAVAILABLE
         resultMessage:
           type: string
@@ -15198,7 +15411,13 @@ components:
         fullName:
           type: string
         mobileNumber:
-          $ref: '#/components/schemas/RefPhoneNumber'
+          type: string
+          description: >-
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 529178912345, and no leading zeros. MD5‑encrypted input is
+            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
+          example: '529559991234'
         curp:
           type: string
         templateId:
@@ -15796,6 +16015,64 @@ components:
           $ref: '#/components/schemas/RefWebhookEventType'
         createdAt:
           $ref: '#/components/schemas/RefDateTime'
+    RecordType:
+      type: string
+      nullable: true
+      title: Record Type
+      example: SOCIAL_SECURITY
+      enum:
+        - SOCIAL_SECURITY
+      description: Source Type
+    RecordCreatedEventData:
+      type: object
+      properties:
+        recordId:
+          type: string
+          description: The record ID .
+        recordType:
+          $ref: '#/components/schemas/RecordType'
+      required:
+        - recordId
+        - recordType
+    SocialSecurityCompletedEventData:
+      type: object
+      properties:
+        recordId:
+          type: string
+          description: The record ID .
+        recordType:
+          type: string
+          description: The record type. Please refer to RecordType enum
+        status:
+          type: string
+          description: The task status.
+          enum:
+            - COMPLETED
+            - ERROR
+        resultCode:
+          type: string
+          description: The final result of the Social Security process.
+          enum:
+            - SUCCESS
+            - NO_DATA
+            - SYSTEM_ERROR
+            - SERVICE_UNAVAILABLE
+        resultMessage:
+          type: string
+          description: A detailed description of the final result.
+        payload:
+          $ref: '#/components/schemas/SocialSecurity'
+      required:
+        - recordId
+        - recordType
+        - status
+    RecordCompletedEventData:
+      oneOf:
+        - $ref: '#/components/schemas/SocialSecurityCompletedEventData'
+      discriminator:
+        propertyName: recordType
+        mapping:
+          SOCIAL_SECURITY: '#/components/schemas/SocialSecurityCompletedEventData'
   securitySchemes:
     basicAuth:
       type: http

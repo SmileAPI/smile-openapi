@@ -808,7 +808,7 @@ Sent when the record is completed.
         "reportDate": "2024-01-15",
         "employerName": "ABC Corporation",
         "employerRegistration": "ABC123456",
-        "gender": "Male",
+        "state": "SINALOA",
         "contributionDays": 365,
         "contributionBaseAmount": 50000,
         "currency": "MXN"
