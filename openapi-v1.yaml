@@ -4886,6 +4886,7 @@ paths:
                       requestMeta:
                         emailAddress: gpalomero1234@smileapi.io
                         mobileNumber: null
+                        countryCode: PH
                         templateId: tpl-ftp005001
                         consent:
                           type: Terms And Conditions
@@ -4952,6 +4953,7 @@ paths:
                   templateId: tpl-ftp005001
                   emailAddress: gpalomero1234@smileapi.io
                   mobileNumber: null
+                  countryCode: null
               Example2:
                 value:
                   consent:
@@ -4963,6 +4965,7 @@ paths:
                   templateId: tpl-ftp005002
                   emailAddress: null
                   mobileNumber: '639559991234'
+                  countryCode: PH
     get:
       summary: List Footprints
       operationId: list-alpha-footprints
@@ -4993,6 +4996,7 @@ paths:
                             emailAddress: someone@email.com
                             templateId: footprintTpl-xxxxxxxxxxxxxxx
                             mobileNumber: null
+                            countryCode: null
                             consent:
                               type: Terms And Conditions
                               version: 1
@@ -5071,6 +5075,7 @@ paths:
                         emailAddress: someone@email.com
                         templateId: footprintTpl-xxxxxxxxxxxxxxx
                         mobileNumber: null
+                        countryCode: null
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -14658,6 +14663,8 @@ components:
                 Subject's mobile number. Must start with country code i.e.
                 639178912345, and no leading zeros
               example: '639178902345'
+            countryCode:
+              $ref: '#/components/schemas/RefCountry'
             templateId:
               type: string
               description: >-
@@ -14705,6 +14712,8 @@ components:
             Subject's mobile number. Must start with country code i.e.
             639178912345, and no leading zeros
           example: '639178902345'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
         templateId:
           type: string
           description: >-
