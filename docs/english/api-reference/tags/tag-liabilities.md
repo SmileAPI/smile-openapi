@@ -8,7 +8,7 @@ slug: liabilities
 
 The Liabilities data point allows you to retrieve provider-specific loans in seconds, giving you access to important data for decisions and underwriting. Currently these are from government institutions that provide this service to their citizens.
 
-In the Philippines, Liabilities support is provided for SSS. Pag-IBIG and other sources are part of the roadmap and will be added at a later date.
+In the Philippines, Liabilities support is provided for the social security services agency. National housing provident fund and other sources are part of the roadmap and will be added at a later date.
 
 After the user connects an [Account](/reference/accounts) via Smile, Smile retrieves the user's Liabilities data from the [Provider](/reference/providers) and makes it available for retrieval. You may listen for the appropiate events and webhooks (outlined below) in order to determine when their Liabilities data is ready.
 

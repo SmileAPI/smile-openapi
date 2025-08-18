@@ -29,10 +29,10 @@ CDS must be enabled for your business to enjoy these features, but once enabled,
 
 | Provider | Data Points Available | Update Frequency |
 | :--------- | :----- | :-------- |
-| My.SSS | Identities, Employments, Documents, Contributions, Liabilities, Estimated Incomes* | Monthly, on the day of initial connection |
-| eGSIS MO | Identities, Employments, Documents, Incomes, Estimated Incomes* | Monthly, on the day of initial connection |
-| My PhilHealth Portal | Identities, Employments, Documents, Contributions, Estimated Incomes* | Monthly, on the day of initial connection |
-| Virtual Pag-IBIG | Identities, Employments, Documents, Contributions, Liabilities, Estimated Incomes* | Monthly, on the day of initial connection |
+| Social security services | Identities, Employments, Documents, Contributions, Liabilities, Estimated Incomes* | Monthly, on the day of initial connection |
+| Government employee insurance and pension agency | Identities, Employments, Documents, Incomes, Estimated Incomes* | Monthly, on the day of initial connection |
+| National health insurance agency | Identities, Employments, Documents, Contributions, Estimated Incomes* | Monthly, on the day of initial connection |
+| National housing provident fund | Identities, Employments, Documents, Contributions, Liabilities, Estimated Incomes* | Monthly, on the day of initial connection |
 
 ## The Account object
 

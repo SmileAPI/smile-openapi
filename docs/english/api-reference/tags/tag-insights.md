@@ -13,10 +13,10 @@ Insights are available for the following data sources:
 
 | Data source | Insight category |
 |---|---|
-| My.SSS | Identity, Employments, Incomes, Liabilities |
-| eGSIS MO | Identity, Employments, Incomes |
-| My PhilHealth Portal | Identity, Incomes |
-| Virtual Pag-IBIG | Identity, Employments, Incomes, Liabilities |
+| Social security services | Identity, Employments, Incomes, Liabilities |
+| Government employee insurance and pension agency | Identity, Employments, Incomes |
+| National health insurance agency | Identity, Incomes |
+| National housing provident fund | Identity, Employments, Incomes, Liabilities |
 
 > 📘 Note
 > 

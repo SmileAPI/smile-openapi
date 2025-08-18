@@ -13,9 +13,9 @@ These can be any of the following:
 | :----------- | :----------------- | :--------- | :-------------- | :------------ | :------------ |
 | Income Tax Document | ✅ | ✅ | ✅ | `TAX_DOCUMENT` | `TAX_PAYMENT` |
 | Payslip | ✅ | ✅ | ✅ | `PAYSLIP` | `PAYSLIP` |
-| SSS Record Screenshot (Deprecated) | ❌ | ❌ | ❌ | `SOCIAL_SECURITY` | `PERSONAL_INFORMATION`, `EMPLOYMENT_INFORMATION` |
+| Social Security Record Screenshot (Deprecated) | ❌ | ❌ | ❌ | `SOCIAL_SECURITY` | `PERSONAL_INFORMATION`, `EMPLOYMENT_INFORMATION` |
 | Company ID | ✅ | ✅ | ❌ | `COMPANY_ID` | `COMPANY_ID_FRONT`, `COMPANY_ID_BACK` |
-| NBI Clearance Document | ❌ | ✅ | ✅ | `CLEARANCE_NBI` | N/A |
+| National Criminal Record Clearance Document | ❌ | ✅ | ✅ | `CLEARANCE_NBI` | N/A |
 | ID (Front) | ❌ | ✅ | ❌ | `ID_FRONT` | N/A |
 | ID (Back) | ❌ | ✅ | ❌ | `ID_BACK` | N/A |
 | Bank Statement | ❌ | ✅ | ❌ | `BACK_STATEMENT` | N/A |
@@ -99,10 +99,10 @@ The Analysis object will return extracted data based on the file type of the upl
 | netAmount | float | `PAYSLIP` | Net salary payment amount. Null if not available. |
 | employerName | string | `PAYSLIP`, `TAX_DOCUMENT` | Employer name from the payslip. Null if not available. |
 | employeeName | string | `PAYSLIP`, `TAX_DOCUMENT` | Employee name from the payslip. Null if not available. |
-| ssNumber | string | `PAYSLIP` | Social Security Number from the payslip. Null if not available. |
-| philHealthNumber | string | `PAYSLIP` | PhilHealth Identification Number from the payslip. Null if not available. |
-| taxNumber | string | `PAYSLIP`, `TAX_DOCUMENT` | Tax Identification Number from the payslip. Null if not available. |
-| pagIbigNumber | string | `PAYSLIP` | Pag-IBIG Member ID Number from the payslip. Null if not available. |
+| ssNumber | string | `PAYSLIP` | Social security number from the payslip. Null if not available. |
+| philHealthNumber | string | `PAYSLIP` | National health insurance agency identification number from the payslip. Null if not available. |
+| taxNumber | string | `PAYSLIP`, `TAX_DOCUMENT` | Tax identification number from the payslip. Null if not available. |
+| pagIbigNumber | string | `PAYSLIP` | National housing provident fund member ID Number from the payslip. Null if not available. |
 | expireDate | date | `CLEARANCE_NBI` | Expiry date of the clearance document, in YYYY-MM-DD format. Null if not available. |
 | dateOfBirth | date | `CLEARANCE_NBI` | Date of birth, in YYYY-MM-DD format. Null if not available. |
 | firstName | string | `CLEARANCE_NBI` | First name from the document. Null if not available. |

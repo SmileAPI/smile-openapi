@@ -4888,6 +4888,7 @@ paths:
                         mobileNumber: null
                         countryCode: PH
                         templateId: tpl-ftp005001
+                        footprintItemsTimeout: 5
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -4919,6 +4920,7 @@ paths:
                         emailAddress: null
                         templateId: tpl-ftp005002
                         mobileNumber: '639559991234'
+                        footprintItemsTimeout: 10
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -4954,6 +4956,7 @@ paths:
                   emailAddress: gpalomero1234@smileapi.io
                   mobileNumber: null
                   countryCode: null
+                  footprintItemsTimeout: 5
               Example2:
                 value:
                   consent:
@@ -4966,6 +4969,7 @@ paths:
                   emailAddress: null
                   mobileNumber: '639559991234'
                   countryCode: PH
+                  footprintItemsTimeout: 10
     get:
       summary: List Footprints
       operationId: list-alpha-footprints
@@ -4997,6 +5001,7 @@ paths:
                             templateId: footprintTpl-xxxxxxxxxxxxxxx
                             mobileNumber: null
                             countryCode: null
+                            footprintItemsTimeout: 15
                             consent:
                               type: Terms And Conditions
                               version: 1
@@ -5029,6 +5034,12 @@ paths:
           schema:
             type: string
           description: Filter footprints by a specific email address.
+        - name: mobileNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter footprints by a specific mobile number.
         - schema:
             type: string
             format: date
@@ -5076,6 +5087,7 @@ paths:
                         templateId: footprintTpl-xxxxxxxxxxxxxxx
                         mobileNumber: null
                         countryCode: null
+                        footprintItemsTimeout: 20
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -12209,7 +12221,7 @@ components:
           description: Employee's Tax Identification Number
         pagIbigNumber:
           type: string
-          description: Employee's Pag-IBIG MID Number
+          description: Employee's National housing provident fund MID Number
     ArchiveTaxDocumentAnalysis:
       title: Tax Document Analysis
       type: object
@@ -12794,7 +12806,7 @@ components:
           description: Employee's Tax Identification Number
         pagIbigNumber:
           type: string
-          description: Employee's Pag-IBIG MID Number
+          description: Employee's National housing provident fund MID Number
         matchResult:
           type: object
           properties:
@@ -12820,9 +12832,9 @@ components:
               maximum: 100
               minimum: 0
               description: >-
-                The match score of the employee name and Pag-IBIG number. If
-                Smile can not verify it or you disabled verify feature, this
-                value will be null.
+                The match score of the employee name and National housing
+                provident fund number. If Smile can not verify it or you
+                disabled verify feature, this value will be null.
             employeeNameAndPhilHealthNumberMatchScore:
               type: integer
               maximum: 100
@@ -12938,7 +12950,7 @@ components:
               description: Employee' Tax Identification Number
             pagIbigNumber:
               type: string
-              description: Employee' Pag-IBIG MID Number
+              description: Employee' National housing provident fund MID Number
     Upload:
       title: Upload
       type: object
@@ -14600,6 +14612,40 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/BetaSignal'
+    AlphaFootprintPostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+      properties:
+        emailAddress:
+          type: string
+          description: The email address of the subject. It must be a valid email address.
+          example: some@email.com
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            639178912345, and no leading zeros
+          example: '639178902345'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: >-
+            Generated internally by Smile. Customers should request the specific
+            templateId from Smile.
+          example: footprintTpl-xxxxxxxxxxxxxxx
+        footprintItemsTimeout:
+          type: integer
+          minimum: 1
+          maximum: 30
+          description: >-
+            Timeout in seconds for footprint items. If exceeded, returns
+            completed footprint items, others items' values will be null.
+          example: 5
+        consent:
+          $ref: '#/components/schemas/Consent'
     AlphaFootprintItem:
       type: object
       required:
@@ -14651,28 +14697,7 @@ components:
           type: string
           description: A detailed description of the final result of the Footprint.
         requestMeta:
-          type: object
-          properties:
-            emailAddress:
-              type: string
-              description: The email address of the subject provided in the request.
-              example: some@email.com
-            mobileNumber:
-              type: string
-              description: >-
-                Subject's mobile number. Must start with country code i.e.
-                639178912345, and no leading zeros
-              example: '639178902345'
-            countryCode:
-              $ref: '#/components/schemas/RefCountry'
-            templateId:
-              type: string
-              description: >-
-                Generated internally by Smile. Customers should request the
-                specific templateId from Smile.
-              example: footprintTpl-xxxxxxxxxxxxxxx
-            consent:
-              $ref: '#/components/schemas/Consent'
+          $ref: '#/components/schemas/AlphaFootprintPostRequest'
         items:
           type: array
           items:
@@ -14696,32 +14721,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/AlphaFootprint'
-    AlphaFootprintPostRequest:
-      type: object
-      required:
-        - consent
-        - templateId
-      properties:
-        emailAddress:
-          type: string
-          description: The email address of the subject. It must be a valid email address.
-          example: some@email.com
-        mobileNumber:
-          type: string
-          description: >-
-            Subject's mobile number. Must start with country code i.e.
-            639178912345, and no leading zeros
-          example: '639178902345'
-        countryCode:
-          $ref: '#/components/schemas/RefCountry'
-        templateId:
-          type: string
-          description: >-
-            Generated internally by Smile. Customers should request the specific
-            templateId from Smile.
-          example: footprintTpl-xxxxxxxxxxxxxxx
-        consent:
-          $ref: '#/components/schemas/Consent'
     AlphaFootprintPostResponse:
       title: Alpha Footprint Post Response
       type: object

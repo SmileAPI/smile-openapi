@@ -12,7 +12,7 @@ The Contributions data point allows you to identify the user's social security c
 
 While not an exact source of income information, the raw contributions data from government services can be used as a factor in assessing a person's credit worthiness.
 
-In the Philippines, Contributions data is available for SSS, PhilHealth, and Pag-IBIG/HDMF platforms.
+In the Philippines, Contributions data is available for social security services, the national health insurance agency, and the national housing provident fund platforms.
 
 After the user connects an [Account](/reference/accounts) via Smile, Smile retrieves the user's Contributions data from the [Provider](/reference/providers) and makes it available for retrieval. You may listen for the appropiate events and webhooks (outlined below) in order to determine when their Contributions data is ready.
 

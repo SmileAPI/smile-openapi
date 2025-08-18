@@ -90,32 +90,32 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 Analysis 对象将根据上传文件的文件类型返回提取的数据。文件中找不到的其他字段将返回空值。
 
-| 属性               | 类型     | 支持文件类型                    | 详情                                                    |
-|:-----------------|:-------|:--------------------------|:------------------------------------------------------|
-| startDate        | date   | `PAYSLIP`, `TAX_DOCUMENT` | 工资单的开始日期，格式为 YYYY-MM-DD。如果没有，则为空。                     |
-| endDate          | date   | `PAYSLIP`, `TAX_DOCUMENT` | 工资单的结束日期，格式为 YYYY-MM-DD。如果没有，则为空。                     |
-| payDate          | date   | `PAYSLIP`                 | 工资单的支付日期，格式为 YYYY-MM-DD。如果没有，则为空。                     |
-| currency         | date   | `PAYSLIP`                 | 以 3 个字符的 alpha ISO 4217  格式表示的工资单货币。如果没有，则为空。         |
-| baseAmount       | float  | `PAYSLIP`, `TAX_DOCUMENT` | 基薪金额。如果没有，则为空。                                        |
-| grossAmount      | float  | `PAYSLIP`, `TAX_DOCUMENT` | 工资支付毛额。如果没有，则为空。                                      |
-| netAmount        | float  | `PAYSLIP`                 | 净工资支付额。如果没有，则为空。                                      |
-| employerName     | string | `PAYSLIP`, `TAX_DOCUMENT` | 工资单上的雇主姓名。如果没有，则为空。                                   |
-| employeeName     | string | `PAYSLIP`, `TAX_DOCUMENT` | 工资单上的员工姓名。如果没有，则为空。                                   |
-| ssNumber         | string | `PAYSLIP`                 | 工资单上的社保号。如果没有，则为空。                                    |
-| philHealthNumber | string | `PAYSLIP`                 | 工资单上的 PhilHealth 身份号码。如果没有，则为空。                       |
-| taxNumber        | string | `PAYSLIP`, `TAX_DOCUMENT` | 工资单上的纳税识别号。如果没有，则为空。                                  |
-| pagIbigNumber    | string | `PAYSLIP`                 | 工资单上的 Pag-IBIG  ID 号码。如果没有，则为空。                       |
-| expireDate       | date   | `CLEARANCE_NBI`           | 文件的有效期，格式为 YYYY-MM-DD。如果没有，则为空。                       |
-| dateOfBirth      | date   | `CLEARANCE_NBI`           | 出生日期，格式为 YYYY-MM-DD。如果没有，则为空。                         |
-| firstName        | string | `CLEARANCE_NBI`           | 文件中的名字。如果没有，则为空。                                      |
-| lastName         | string | `CLEARANCE_NBI`           | 文件中的姓氏。如果没有，则为空。                                      |
-| middleName       | string | `CLEARANCE_NBI`           | 文件中的中间名。如果没有，则为空。                                     |
-| nbiIdNumber      | string | `CLEARANCE_NBI`           | 文件中的 NBI 审核文件编号。如果没有，则为空。                             |
-| address          | string | `CLEARANCE_NBI`           | 文件中的地址。如果没有，则为空。                                      |
-| maritalStatus    | string | `CLEARANCE_NBI`           | 文件中的婚姻状况。如果没有，则为空。                                                      |
-| gender           | string | `CLEARANCE_NBI`           | 文件中的性别。如果没有，则为空。      |
-| citizenship      | string | `CLEARANCE_NBI`           | 文件中的公民身份。如果没有，则为空。 |
-| remark           | string | `CLEARANCE_NBI`           | 文件中的备注。如果没有，则为空。     |
+| 属性               | 类型     | 支持文件类型                    | 详情                                                                          |
+|:-----------------|:-------|:--------------------------|:----------------------------------------------------------------------------|
+| startDate        | date   | `PAYSLIP`, `TAX_DOCUMENT` | 工资单的开始日期，格式为 YYYY-MM-DD。如果没有，则为空。                                           |
+| endDate          | date   | `PAYSLIP`, `TAX_DOCUMENT` | 工资单的结束日期，格式为 YYYY-MM-DD。如果没有，则为空。                                           |
+| payDate          | date   | `PAYSLIP`                 | 工资单的支付日期，格式为 YYYY-MM-DD。如果没有，则为空。                                           |
+| currency         | date   | `PAYSLIP`                 | 以 3 个字符的 alpha ISO 4217  格式表示的工资单货币。如果没有，则为空。                               |
+| baseAmount       | float  | `PAYSLIP`, `TAX_DOCUMENT` | 基薪金额。如果没有，则为空。                                                              |
+| grossAmount      | float  | `PAYSLIP`, `TAX_DOCUMENT` | 工资支付毛额。如果没有，则为空。                                                            |
+| netAmount        | float  | `PAYSLIP`                 | 净工资支付额。如果没有，则为空。                                                            |
+| employerName     | string | `PAYSLIP`, `TAX_DOCUMENT` | 工资单上的雇主姓名。如果没有，则为空。                                                         |
+| employeeName     | string | `PAYSLIP`, `TAX_DOCUMENT` | 工资单上的员工姓名。如果没有，则为空。                                                         |
+| ssNumber         | string | `PAYSLIP`                 | 工资单上的社保号。如果没有，则为空。                                                          |
+| philHealthNumber | string | `PAYSLIP`                 | 工资单上的 PhilHealth 身份号码。如果没有，则为空。                                             |
+| taxNumber        | string | `PAYSLIP`, `TAX_DOCUMENT` | 工资单上的纳税识别号。如果没有，则为空。                                                        |
+| pagIbigNumber    | string | `PAYSLIP`                 | 工资单上的 National housing provident fund ID 号码。如果没有，则为空。                       |
+| expireDate       | date   | `CLEARANCE_NBI`           | 文件的有效期，格式为 YYYY-MM-DD。如果没有，则为空。                                             |
+| dateOfBirth      | date   | `CLEARANCE_NBI`           | 出生日期，格式为 YYYY-MM-DD。如果没有，则为空。                                               |
+| firstName        | string | `CLEARANCE_NBI`           | 文件中的名字。如果没有，则为空。                                                            |
+| lastName         | string | `CLEARANCE_NBI`           | 文件中的姓氏。如果没有，则为空。                                                            |
+| middleName       | string | `CLEARANCE_NBI`           | 文件中的中间名。如果没有，则为空。                                                           |
+| nbiIdNumber      | string | `CLEARANCE_NBI`           | 文件中的 NBI 审核文件编号。如果没有，则为空。                                                   |
+| address          | string | `CLEARANCE_NBI`           | 文件中的地址。如果没有，则为空。                                                            |
+| maritalStatus    | string | `CLEARANCE_NBI`           | 文件中的婚姻状况。如果没有，则为空。                                                          |
+| gender           | string | `CLEARANCE_NBI`           | 文件中的性别。如果没有，则为空。                                                            |
+| citizenship      | string | `CLEARANCE_NBI`           | 文件中的公民身份。如果没有，则为空。                                                          |
+| remark           | string | `CLEARANCE_NBI`           | 文件中的备注。如果没有，则为空。                                                            |
 
 ## Archive 数据样本
 
