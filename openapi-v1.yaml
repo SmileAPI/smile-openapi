@@ -4644,10 +4644,11 @@ paths:
                       status: COMPLETED
                       resultCode: ''
                       resultMessage: ''
+                      signalType: Signal1
                       requestMeta:
                         phone: '+639178902345'
                         countryCode: PH
-                        templateId: signalTpl-xxxxxxxxxxxxxxx
+                        templateId: tpl-sgn002001
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -4683,7 +4684,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/BetaSignalListResponse'
               examples:
-                Example:
+                Signal1:
                   value:
                     code: OK
                     message: Success
@@ -4697,10 +4698,46 @@ paths:
                             status: COMPLETED
                             resultCode: ''
                             resultMessage: ''
+                            signalType: Signal1
                             requestMeta:
                               phone: '+639178902345'
                               countryCode: PH
-                              templateId: signalTpl-xxxxxxxxxxxxxxx
+                              templateId: tpl-sgn002001
+                              consent:
+                                type: Terms And Conditions
+                                version: 1
+                                consentedWith: I agree to the terms and conditions.
+                                consentedAt: '2021-04-14T09:30:24Z'
+                                consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                            items:
+                              - name: events_arbitrary_day30
+                                value: 0
+                                valueType: NUMBER
+                              - name: events_preloan_day30
+                                value: 0
+                                valueType: NUMBER
+                              - name: events_debt_day90_amount
+                                value: A0
+                                valueType: STRING
+                Signal2:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - signal:
+                            id: signal-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                            createdAt: '2021-04-14T09:30:24Z'
+                            status: COMPLETED
+                            resultCode: ''
+                            resultMessage: ''
+                            signalType: Signal2
+                            requestMeta:
+                              phone: '639178902345'
+                              countryCode: PH
+                              templateId: tpl-sgn003001
                               consent:
                                 type: Terms And Conditions
                                 version: 1
@@ -4766,7 +4803,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/BetaSignalGetResponse'
               examples:
-                Example:
+                Signal1:
                   value:
                     code: OK
                     message: Success
@@ -4777,10 +4814,11 @@ paths:
                       status: COMPLETED
                       resultCode: ''
                       resultMessage: ''
+                      signalType: Signal1
                       requestMeta:
                         phone: '+639178902345'
                         countryCode: PH
-                        templateId: signalTpl-xxxxxxxxxxxxxxx
+                        templateId: tpl-sgn002001
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -4797,6 +4835,148 @@ paths:
                         - name: events_debt_day90_amount
                           value: A0
                           valueType: STRING
+                Signal2:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      signalType: Signal2
+                      requestMeta:
+                        phone: '639178902345'
+                        countryCode: PH
+                        templateId: tpl-sgn003001
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - name: events_arbitrary_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_preloan_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_debt_day90_amount
+                          value: A0
+                          valueType: STRING
+  /beta/signals/createSignal2:
+    post:
+      summary: Create Signal2
+      description: >+
+        ## Create a **Signal2** object.  
+
+        This endpoint requires the following mandatory parameters:  
+
+        `consent`, `phone`, `countryCode`, and `templateId`.
+
+
+        ### Supported Template
+
+
+        | Template ID     |
+        Region                                                                 |
+        Required Parameters                             |
+
+        |-----------------|------------------------------------------------------------------------|-------------------------------------------------|
+
+        | `tpl-sgn002001` | IN (India), MX (Mexico), PH (Philippines), ID
+        (Indonesia), CO (Colombia), TH (Thailand) | `consent`, `templateId`,
+        `countryCode`, `phone` |
+
+
+        ### Field Guidelines
+
+
+        - `phone` must include the country code without leading '+' (e.g.,
+        `639559991234`)
+
+        - MD5 encryption is supported using the format: `MD5(countryCode +
+        phone)`,  
+
+        e.g., `MD5(639559991234)`
+
+
+        ### Sandbox Test Values
+
+
+        | Parameter     | Value           | Expected Response      |
+
+        |---------------|-----------------|------------------------|
+
+        | `templateId`  | `tpl-sgn002001` |                        |
+
+        | `countryCode` | e.g., `PH`      |                        |
+
+        | `phone`       | `639559991234`  | `resultCode = SUCCESS` |
+
+
+        For all other valid `phone` and `countryCode` combinations, the response
+        will return:  
+
+        `resultCode = NO_DATA`, and no items will be included.
+
+
+        You may also contact **Smile** to request additional specialized
+        `templateId`s for other regions or business cases.
+
+
+      operationId: create-beta-signal2
+      tags:
+        - Signals (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaSignalPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      signalType: Signal2
+                      requestMeta:
+                        phone: '639559991234'
+                        countryCode: PH
+                        templateId: tpl-sgn003001
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - name: events_arbitrary_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_preloan_day30
+                          value: 0
+                          valueType: NUMBER
+                        - name: events_debt_day90_amount
+                          value: A0
+                          valueType: STRING
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaSignal2PostRequest'
   /alpha/footprints:
     post:
       summary: Create Footprint
@@ -14473,6 +14653,12 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/Signal'
+    SignalType:
+      type: string
+      description: Indicates which API variant handled the request.
+      enum:
+        - Signal1
+        - Signal2
     BetaSignalItem:
       type: object
       required:
@@ -14523,6 +14709,8 @@ components:
         resultMessage:
           type: string
           description: Longer description of the final result of the Signal Request
+        signalType:
+          $ref: '#/components/schemas/SignalType'
         requestMeta:
           type: object
           properties:
@@ -14612,6 +14800,32 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/BetaSignal'
+    BetaSignal2PostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - phone
+      properties:
+        phone:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            639178912345, and no leading zeros. MD5-encrypted input is accepted
+            with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
+          example: '639559991234'
+        templateId:
+          type: string
+          description: >-
+            Generate by smile internal. Customer should ask smile to provide the
+            special templateId. If templateId is null, Smile will request the
+            default signals set, same as the alpha result.
+          example: tpl-sgn002001
+        consent:
+          $ref: '#/components/schemas/Consent'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
     AlphaFootprintPostRequest:
       type: object
       required:
