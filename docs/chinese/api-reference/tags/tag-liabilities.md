@@ -8,7 +8,7 @@ slug: liabilities
 
 Liabilities 数据端点允许您在几秒内检索到特定提供商的贷款数据，该项数据可以帮助您决策以及核保。目前，这些数据都来自于为公民提供贷款服务的政府机构。
  
-在菲律宾，贷款支持由 SSS 提供。即将加入的 National housing provident fund 及其他来源也是我们规划中的一部分。
+在菲律宾，贷款支持由 社保平台 提供。即将加入的 公积金平台 及其他来源也是我们规划中的一部分。
 
 当用户通过 Smile 连接一个 [Account](/reference/accounts)  后，Smile 从  [Provider](/reference/providers) 检索用户的贷款数据并使其可被检索。您可以监听部分事件和 webhooks（概述如下），以确定何时准备好他们的贷款数据。
 

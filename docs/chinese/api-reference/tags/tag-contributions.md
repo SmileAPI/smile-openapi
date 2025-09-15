@@ -12,7 +12,7 @@ Contributions 数据端点允许您识别用户的社会保险缴费行为。根
 
 虽然不是收入信息的确切来源，但来自政府服务部门的原始社保缴费数据可以作为评估一个人信用价值的因素。
 
-在菲律宾，SSS、PhilHealth 和 National housing provident fund 平台都有社保缴费数据。
+在菲律宾，社保、医保 和 公积金 平台都有社保缴费数据。
 
 在用户通过 Smile 连接一个 [Account](/v1.0-Chinese/reference/accounts) 后，Smile 从 [Provider](/reference/providers) 检索用户的社保缴费数据并使其可被检索。您可以监听部分事件和 webhooks（概述如下），以确定他们的社保缴费数据何时准备好。
 
@@ -63,7 +63,7 @@ Contributions 数据端点允许您识别用户的社会保险缴费行为。根
         "sourceId": "a-123abc456def789abc123def456abc78",
         "sourceType": "ACCOUNT",
         "userId": "tenantId-123abc456def789abc123def456abc78",
-        "providerId": "sss_ph",
+        "providerId": "provider_id",
         "accountId": "a-123abc456def789abc123def456abc78"
     }
 }

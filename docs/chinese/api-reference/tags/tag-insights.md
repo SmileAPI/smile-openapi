@@ -11,12 +11,12 @@ Smile Insights API 根据 [Users](/reference/users) 的可用数据（如收入�
 
 Insights 可从以下数据源获得：
 
-| 数据源 | Insight 类型                                  |
-|---|---------------------------------------------|
-| My.SSS | Identity, Employments, Incomes, Liabilities |
-| eGSIS MO | Identity, Employments, Incomes              |
-| My PhilHealth Portal | Identity, Incomes                           |
-| National housing provident fund | Identity, Employments, Incomes, Liabilities |
+| 数据源                                  | Insight 类型                                  |
+|--------------------------------------|---------------------------------------------|
+| Social Security Services	            | Identity, Employments, Incomes, Liabilities |
+| Government Service Insurance System	 | Identity, Employments, Incomes              |
+| National Health Insurance Agency	    | Identity, Incomes                           |
+| National housing provident fund      | Identity, Employments, Incomes, Liabilities |
 
 > 📘 注意
 >
@@ -43,24 +43,24 @@ Insights 可从以下数据源获得：
 
 > 📘 注意
 >
-> 对于 **My.SSS**，数据源发布收入相关数据的时间可能会延迟 1-2 个月。Smile 会考虑到这一点，但重要的是您需要注意这种可能的数据差异，并将其添加到计算公式中。
+> 对于 **社保平台**，数据源发布收入相关数据的时间可能会延迟 1-2 个月。Smile 会考虑到这一点，但重要的是您需要注意这种可能的数据差异，并将其添加到计算公式中。
 
-| Insight 变量名                  | 详情                      |
-|---|-------------------------|
-| `incomes_count` | 收入记录的数量                 |
-| `incomes_current_amount` | 当月收入                    |
-| `incomes_starting_amount` | 用户第一个月的工作收入（起始收入）       |
-| `incomes_first_income_month_range` | 第一条收入记录以来的月数，即用户工作了多少个月 |
-| `incomes_latest_growth` | 与去年同期相比的收入增长            |
-| `incomes_last18_months_max_amount_count`| 用户获得最高收入的月份数            |
-| `incomes_missing_month_count` | 无收入的月数                  |
-| `incomes_missing_month_max` | 无收入的最长持续时间（月）           |
-| `incomes_amount_sum` `incomes_last3_months_amount_sum` `incomes_last6_months_amount_sum` `incomes_last9_months_amount_sum` `incomes_last12_months_amount_sum` `incomes_last18_months_amount_sum` | 所得收入的总额（终生和每月期限）        |
-| `incomes_amount_avg` `incomes_last3_months_amount_avg` `incomes_last6_months_amount_avg` `incomes_last9_months_amount_avg` `incomes_last12_months_amount_avg` `incomes_last18_months_amount_avg` | 所得收入的平均值（终生和每月期限）       |
-| `incomes_amount_min` `incomes_last3_months_amount_min` `incomes_last6_months_amount_min` `incomes_last9_months_amount_min` `incomes_last12_months_amount_min` `incomes_last18_months_amount_min` | 所得收入的最小值（终生和每月期限）       |
-| `incomes_amount_max` `incomes_last3_months_amount_max` `incomes_last6_months_amount_max` `incomes_last9_months_amount_max` `incomes_last12_months_amount_max` `incomes_last18_months_amount_max` | 所得收入的最大值（终生和每月期限）       |
+| Insight 变量名                                                                                                                                                                                                        | 详情                      |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
+| `incomes_count`                                                                                                                                                                                                    | 收入记录的数量                 |
+| `incomes_current_amount`                                                                                                                                                                                           | 当月收入                    |
+| `incomes_starting_amount`                                                                                                                                                                                          | 用户第一个月的工作收入（起始收入）       |
+| `incomes_first_income_month_range`                                                                                                                                                                                 | 第一条收入记录以来的月数，即用户工作了多少个月 |
+| `incomes_latest_growth`                                                                                                                                                                                            | 与去年同期相比的收入增长            |
+| `incomes_last18_months_max_amount_count`                                                                                                                                                                           | 用户获得最高收入的月份数            |
+| `incomes_missing_month_count`                                                                                                                                                                                      | 无收入的月数                  |
+| `incomes_missing_month_max`                                                                                                                                                                                        | 无收入的最长持续时间（月）           |
+| `incomes_amount_sum` `incomes_last3_months_amount_sum` `incomes_last6_months_amount_sum` `incomes_last9_months_amount_sum` `incomes_last12_months_amount_sum` `incomes_last18_months_amount_sum`                   | 所得收入的总额（终生和每月期限）        |
+| `incomes_amount_avg` `incomes_last3_months_amount_avg` `incomes_last6_months_amount_avg` `incomes_last9_months_amount_avg` `incomes_last12_months_amount_avg` `incomes_last18_months_amount_avg`                   | 所得收入的平均值（终生和每月期限）       |
+| `incomes_amount_min` `incomes_last3_months_amount_min` `incomes_last6_months_amount_min` `incomes_last9_months_amount_min` `incomes_last12_months_amount_min` `incomes_last18_months_amount_min`                   | 所得收入的最小值（终生和每月期限）       |
+| `incomes_amount_max` `incomes_last3_months_amount_max` `incomes_last6_months_amount_max` `incomes_last9_months_amount_max` `incomes_last12_months_amount_max` `incomes_last18_months_amount_max`                   | 所得收入的最大值（终生和每月期限）       |
 | `incomes_amount_median` `incomes_last3_months_amount_median` `incomes_last6_months_amount_median` `incomes_last9_months_amount_median` `incomes_last12_months_amount_median` `incomes_last18_months_amount_median` | 所得收入的中位数（终生和每月期限）       |
-| `incomes_amount_std` `incomes_last3_months_amount_std` `incomes_last6_months_amount_std` `incomes_last9_months_amount_std` `incomes_last12_months_amount_std` `incomes_last18_months_amount_std` | 所得收入的标准差（终生和每月期限）       |
+| `incomes_amount_std` `incomes_last3_months_amount_std` `incomes_last6_months_amount_std` `incomes_last9_months_amount_std` `incomes_last12_months_amount_std` `incomes_last18_months_amount_std`                   | 所得收入的标准差（终生和每月期限）       |
 
 ## 负债数据因子( Insights )
 

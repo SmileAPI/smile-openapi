@@ -26,7 +26,7 @@ Documents 数据端点包含有价值的官方文件相关信息，这些信息�
 | 属性           | 类型     | 详情                                                                                  |
 |:-------------|:-------|:------------------------------------------------------------------------------------|
 | id           | string | Smile Network 上的文件信息的唯一 ID                                                          |
-| name         | string | 文件的名称，如 *NBI Clearance document*，*SSS Number* 等。                                    |
+| name         | string | 文件的名称，如 *NBI Clearance document*，*Social Security Number* 等。                        |
 | docId        | string | 文件的唯一标识符                                                                            |
 | status       | string | 如果可以从提供商得到的话，代表文件状态，目前只有 NBI Clearance 在使用，如果不可用，则为空。可能的值：`VALID`, `HIT`, `EXPIRED` |
 | documentType | string | 文件的类型。可能的值: `IDENTIFICATION`, `PAYSLIP`, `CLEARANCE`, `CERTIFICATE`                 |

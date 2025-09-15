@@ -27,12 +27,12 @@ Smile Network 中的账户数据是客户与终端用户共享数据的基本信
 
 ### 支持的提供商和数据端点
 
-| 提供商                  | 可用数据端点| 更新频率                                |
-|:---------------------| :----- |:------------------------------------|
-| My.SSS               | Identities, Employments, Documents, Contributions, Liabilities, Estimated Incomes* | 每月一次，在首次连接当日                        |
-| eGSIS MO             | Identities, Employments, Documents, Incomes, Estimated Incomes* | 每月一次，在首次连接当日 |
-| My PhilHealth Portal | Identities, Employments, Documents, Contributions, Estimated Incomes* | 每月一次，在首次连接当日 |
-| National housing provident fund  | Identities, Employments, Documents, Contributions, Liabilities, Estimated Incomes* | 每月一次，在首次连接当日 |
+| 提供商                                 | 可用数据端点                                                                             | 更新频率         |
+|:------------------------------------|:-----------------------------------------------------------------------------------|:-------------|
+| Social Security Services	           | Identities, Employments, Documents, Contributions, Liabilities, Estimated Incomes* | 每月一次，在首次连接当日 |
+| Government Service Insurance System | Identities, Employments, Documents, Incomes, Estimated Incomes*                    | 每月一次，在首次连接当日 |
+| National Health Insurance Agency    | Identities, Employments, Documents, Contributions, Estimated Incomes*              | 每月一次，在首次连接当日 |
+| National housing provident fund     | Identities, Employments, Documents, Contributions, Liabilities, Estimated Incomes* | 每月一次，在首次连接当日 |
 
 ## 帐户对象
 

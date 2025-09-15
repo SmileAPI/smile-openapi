@@ -100,9 +100,7 @@ The Analysis object will return extracted data based on the file type of the upl
 | employerName | string | `PAYSLIP`, `TAX_DOCUMENT` | Employer name from the payslip. Null if not available. |
 | employeeName | string | `PAYSLIP`, `TAX_DOCUMENT` | Employee name from the payslip. Null if not available. |
 | ssNumber | string | `PAYSLIP` | Social security number from the payslip. Null if not available. |
-| philHealthNumber | string | `PAYSLIP` | National health insurance agency identification number from the payslip. Null if not available. |
 | taxNumber | string | `PAYSLIP`, `TAX_DOCUMENT` | Tax identification number from the payslip. Null if not available. |
-| pagIbigNumber | string | `PAYSLIP` | National housing provident fund member ID Number from the payslip. Null if not available. |
 | expireDate | date | `CLEARANCE_NBI` | Expiry date of the clearance document, in YYYY-MM-DD format. Null if not available. |
 | dateOfBirth | date | `CLEARANCE_NBI` | Date of birth, in YYYY-MM-DD format. Null if not available. |
 | firstName | string | `CLEARANCE_NBI` | First name from the document. Null if not available. |
@@ -154,9 +152,7 @@ The Analysis object will return extracted data based on the file type of the upl
         "employerName": "ABC Corporation",
         "employeeName": "George Palomero",
         "ssNumber": "1234567890",
-        "philHealthNumber": "123456789012",
         "taxNumber": null,
-        "pagIbigNumber": "123456789012",
         "baseAmount": null,
         "expireDate": null,
         "dateOfBirth": null,

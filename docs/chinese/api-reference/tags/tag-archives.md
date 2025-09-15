@@ -9,24 +9,23 @@ Smile API 还可以存储和处理照片及其他文件，以帮助验证用户�
 
 它们可以是以下任何一种：
 
-| Archive 类型 | Wink Widget 上传 | API 上传 | 数据提取 | API 文件类型 | 文件子类型 | 
-| :----------- | :----------------- | :--------- | :-------------- | :------------ | :------------ |
-| Income Tax Document | ✅ | ✅ | ✅ | `TAX_DOCUMENT` | `TAX_PAYMENT` |
-| Payslip | ✅ | ✅ | ✅ | `PAYSLIP` | `PAYSLIP` |
-| SSS Record Screenshot (Deprecated) | ❌ | ❌ | ❌ | `SOCIAL_SECURITY` | `PERSONAL_INFORMATION`, `EMPLOYMENT_INFORMATION` |
-| Company ID | ✅ | ✅ | ❌ | `COMPANY_ID` | `COMPANY_ID_FRONT`, `COMPANY_ID_BACK` |
-| NBI Clearance Document | ❌ | ✅ | ✅ | `CLEARANCE_NBI` | N/A |
-| ID (Front) | ❌ | ✅ | ❌ | `ID_FRONT` | N/A |
-| ID (Back) | ❌ | ✅ | ❌ | `ID_BACK` | N/A |
-| Bank Statement | ❌ | ✅ | ❌ | `BACK_STATEMENT` | N/A |
-| Utility Bills | ❌ | ✅ | ❌ | `UTILITY_BILLS` | N/A |
-| Police Clearance | ❌ | ✅ | ❌ | `CLEARANCE_POLICE` | N/A |
-| Barangay Clearance | ❌ | ✅ | ❌ | `CLEARANCE_BARANGAY` | N/A |
-| Others | ❌ | ✅ | ❌ | `OTHERS` | N/A |
+| Archive 类型                                     | Wink Widget 上传 | API 上传 | 数据提取 | API 文件类型 | 文件子类型 | 
+|:-----------------------------------------------| :----------------- | :--------- | :-------------- | :------------ | :------------ |
+| Income Tax Document                            | ✅ | ✅ | ✅ | `TAX_DOCUMENT` | `TAX_PAYMENT` |
+| Payslip                                        | ✅ | ✅ | ✅ | `PAYSLIP` | `PAYSLIP` |
+| Company ID                                     | ✅ | ✅ | ❌ | `COMPANY_ID` | `COMPANY_ID_FRONT`, `COMPANY_ID_BACK` |
+| NBI Clearance Document                         | ❌ | ✅ | ✅ | `CLEARANCE_NBI` | N/A |
+| ID (Front)                                     | ❌ | ✅ | ❌ | `ID_FRONT` | N/A |
+| ID (Back)                                      | ❌ | ✅ | ❌ | `ID_BACK` | N/A |
+| Bank Statement                                 | ❌ | ✅ | ❌ | `BACK_STATEMENT` | N/A |
+| Utility Bills                                  | ❌ | ✅ | ❌ | `UTILITY_BILLS` | N/A |
+| Police Clearance                               | ❌ | ✅ | ❌ | `CLEARANCE_POLICE` | N/A |
+| Barangay Clearance                             | ❌ | ✅ | ❌ | `CLEARANCE_BARANGAY` | N/A |
+| Others                                         | ❌ | ✅ | ❌ | `OTHERS` | N/A |
 
 对支持的文件类型进行额外分析，从上传的文件中检索就业和收入等基本信息。这样，您可以迅速地从文件中获取信息，而无需手动转录数据。
 
-对 SSS 记录、所得税文件和工资单进行额外分析，以便从上传的文件中检索基本信息，如就业和收入信息。这样，您就可以直接从文件中获取信息，而无需手动转录数据。
+对 社保记录、所得税文件和工资单进行额外分析，以便从上传的文件中检索基本信息，如就业和收入信息。这样，您就可以直接从文件中获取信息，而无需手动转录数据。
 
 这些用户上传的文件可以通过 Archives 端点进行检索，以便在您需要时下载或进行人工验证。
 
@@ -102,9 +101,7 @@ Analysis 对象将根据上传文件的文件类型返回提取的数据。文�
 | employerName     | string | `PAYSLIP`, `TAX_DOCUMENT` | 工资单上的雇主姓名。如果没有，则为空。                                                         |
 | employeeName     | string | `PAYSLIP`, `TAX_DOCUMENT` | 工资单上的员工姓名。如果没有，则为空。                                                         |
 | ssNumber         | string | `PAYSLIP`                 | 工资单上的社保号。如果没有，则为空。                                                          |
-| philHealthNumber | string | `PAYSLIP`                 | 工资单上的 PhilHealth 身份号码。如果没有，则为空。                                             |
 | taxNumber        | string | `PAYSLIP`, `TAX_DOCUMENT` | 工资单上的纳税识别号。如果没有，则为空。                                                        |
-| pagIbigNumber    | string | `PAYSLIP`                 | 工资单上的 National housing provident fund ID 号码。如果没有，则为空。                       |
 | expireDate       | date   | `CLEARANCE_NBI`           | 文件的有效期，格式为 YYYY-MM-DD。如果没有，则为空。                                             |
 | dateOfBirth      | date   | `CLEARANCE_NBI`           | 出生日期，格式为 YYYY-MM-DD。如果没有，则为空。                                               |
 | firstName        | string | `CLEARANCE_NBI`           | 文件中的名字。如果没有，则为空。                                                            |
@@ -157,9 +154,7 @@ Analysis 对象将根据上传文件的文件类型返回提取的数据。文�
         "employerName": "ABC Corporation",
         "employeeName": "George Palomero",
         "ssNumber": "1234567890",
-        "philHealthNumber": "123456789012",
         "taxNumber": null,
-        "pagIbigNumber": "123456789012",
         "baseAmount": null,
         "expireDate": null,
         "dateOfBirth": null,

@@ -7,7 +7,7 @@ slug: user-data-verification
 
 The Smile Snap Data Verification API allows developers to verify a person's provided data against authoritative sources without the need for a user login. There is also a Query mode for this service, see [Profile Data](https://docs.getsmileapi.com/reference/query-identity).
 
-This API can be used to verify the person's provided data to check for accuracy and minimize fraud. Smile currently supports verifying via the SSS ID number. Other data sources will be onboarded soon.
+This API can be used to verify the person's provided data to check for accuracy and minimize fraud. Smile currently supports verifying via the Social Security ID number. Other data sources will be onboarded soon.
 
 The following data are required for the query:
 

@@ -64,7 +64,7 @@ Also check out [Estimated Income](/reference/estimated-incomes) from Smile's Use
         "sourceId": "a-123abc456def789abc123def456abc78",
         "sourceType": "ACCOUNT",
         "userId": "tenantId-123abc456def789abc123def456abc78",
-        "providerId": "sss_ph",
+        "providerId": "provider_id",
         "accountId": "a-123abc456def789abc123def456abc78"
     }
 }

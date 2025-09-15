@@ -2544,9 +2544,9 @@ paths:
                       nextCursor: '1259723474'
                       items:
                         - logoUrl: >-
-                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/sss.png
+                            https://cdn.smileapi.io/image/provider-logo/v20210813064500/SOCIAL_SECURITY.png
                           type: SOCIAL_SECURITY
-                          typeLabel: SSS Records
+                          typeLabel: SOCIAL SECURITY Records
                           active: true
                           enabled: true
                           ocr: true
@@ -3459,7 +3459,7 @@ paths:
                             sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                             sourceType: ACCOUNT
                             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-                            providerId: sss-ph
+                            providerId: nbi_ph
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -3533,7 +3533,7 @@ paths:
                         sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
                         sourceType: ACCOUNT
                         userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-                        providerId: sss-ph
+                        providerId: example_id
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -4214,7 +4214,7 @@ paths:
                             fullName: George Smith
                             additionalData:
                               ids:
-                                - idType: sss_ph
+                                - idType: tin_ph
                                   idSubType: null
                                   idNumber: 1234567890
                             consent:
@@ -4236,7 +4236,7 @@ paths:
                             fullName: George2 Smith
                             additionalData:
                               ids:
-                                - idType: sss_ph
+                                - idType: tin_ph
                                   idSubType: null
                                   idNumber: 1234567890
                               dob: '1990-01-01'
@@ -4261,7 +4261,7 @@ paths:
                               fullNameMatches: true
                             additionalData:
                               ids:
-                                - idType: sss_ph
+                                - idType: tin_ph
                                   idSubType: null
                                   idNumber: 1234567890
                                   matches: true
@@ -4364,7 +4364,7 @@ paths:
                         fullName: George2 Smith
                         additionalData:
                           ids:
-                            - idType: sss_ph
+                            - idType: tin_ph
                               idSubType: null
                               idNumber: 1234567890
                           dob: '1990-01-01'
@@ -4389,7 +4389,7 @@ paths:
                           fullNameMatches: true
                         additionalData:
                           ids:
-                            - idType: sss_ph
+                            - idType: tin_ph
                               idSubType: null
                               idNumber: 1234567890
                               matches: true
@@ -6676,130 +6676,6 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
         '504':
           $ref: '#/components/responses/Standard-Errors'
-  /profiles/-/identities/verify:
-    post:
-      tags:
-        - User Data Verification
-      operationId: verify-profile-identity
-      summary: Verify identity
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProfileIdentityVerifyRequest'
-        description: request parameters
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProfileIdentityVerifyResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      hit: true
-                      message: matched
-                      result:
-                        nameMatchScore: 99
-                        mobileMatched: true
-                        emailMatched: false
-                        genderMatched: true
-                        maritalStatusMatched: true
-                        dobMatched: true
-  /profiles/-/identities/query:
-    post:
-      tags:
-        - Profile Data
-      operationId: query-profile-identity
-      summary: Query Identity
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ProfileIdentityQueryRequest'
-        description: request parameters
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProfileIdentityQueryResponse'
-              examples:
-                Example:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      hit: true
-                      message: matched
-                      result:
-                        nameMatchScore: 99
-                        firstName: First Name
-                        middleName: Middle Name
-                        lastName: Last Name
-                        suffix: Jr.
-                        mobile: '+639561388888'
-                        email: george@smilerandom.com
-                        gender: Male
-                        maritalStatus: Married
-                        dob: '2000-01-21'
-                        homeTelephone: '09474004836'
-                        socialSecurityCoverageType: EMPLOYEE
-                        socialSecurityCoverageDate: '2020-12-21'
-                        totalEmploymentReportCount: 10
-                        firstEmploymentReportDate: '2021-01-01'
-                        latestEmploymentReportDate: '2021-10-01'
-                        address:
-                          line1: 12 Maybunga St
-                          line2: Barangay Paraiso
-                          city: Pasig City
-                          region: NCR
-                          zip: '1600'
-                          country: PH
-                Example2:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      hit: true
-                      message: not match
-                      result:
-                        nameMatchScore: 20
-                        firstName: null
-                        middleName: null
-                        lastName: null
-                        suffix: null
-                        mobile: null
-                        email: null
-                        gender: null
-                        maritalStatus: null
-                        dob: null
-                        homeTelephone: null
-                        socialSecurityCoverageType: null
-                        socialSecurityCoverageDate: null
-                        totalEmploymentReportCount: null
-                        firstEmploymentReportDate: null
-                        latestEmploymentReportDate: null
-                        address: null
-                Example3:
-                  value:
-                    code: OK
-                    message: Success
-                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
-                    data:
-                      hit: false
-                      message: invaild identification number
-                      result: null
   /alpha/employerBasics/query:
     get:
       summary: Fuzzy search employers and return employers' basic information
@@ -7197,7 +7073,7 @@ components:
             userId: l17f7340df7fla-243275f71a5d4030bc2ceeaa1ecd5163
             accountId: a-5329a7fcc4f746ed9281196203f79927
             providers:
-              - sss_ph
+              - tin_ph
             count: 10
             updatedFrom: '2021-04-14T09:30:24Z'
             updatedTo: '2023-04-14T09:30:24Z'
@@ -7265,7 +7141,7 @@ components:
             userId: l17f7340df7fla-243275f71a5d4030bc2ceeaa1ecd5163
             accountId: a-5329a7fcc4f746ed9281196203f79927
             providers:
-              - sss_ph
+              - tin_ph
             updatedIds:
               - d-b16d5acefbda46eab37ba441d6a2943b
             count: 1
@@ -7333,7 +7209,7 @@ components:
             userId: l17f7340df7fla-243275f71a5d4030bc2ceeaa1ecd5163
             accountId: a-5329a7fcc4f746ed9281196203f79927
             providers:
-              - sss_ph
+              - nbi_ph
             updatedIds:
               - e-460f98489960421eac1c65d14b219a60
             count: 1
@@ -7401,7 +7277,7 @@ components:
             userId: l17f7340df7fla-243275f71a5d4030bc2ceeaa1ecd5163
             accountId: a-5329a7fcc4f746ed9281196203f79927
             providers:
-              - sss_ph
+              - nbi_ph
             updatedIds:
               - lia-3ba4346eb48445609fc676bee06f2c64
             count: 1
@@ -7588,7 +7464,7 @@ components:
             status: SUCCEEDED
             errorCode: null
             providers:
-              - sss_ph
+              - nbi_ph
       description: Event indicates data sync of an account is finished.
     AccountSyncTaskFinishedEvent:
       title: 'Webhook: Account Sync Task Finished Event'
@@ -8758,7 +8634,7 @@ components:
                 fullNameMatches: true
               additionalData:
                 ids:
-                  - idType: sss_ph
+                  - idType: tin_ph
                     idSubType: null
                     idNumber: 1234567890
                     matches: true
@@ -12395,7 +12271,7 @@ components:
           description: Employee's Social Security (SS) Number
         philHealthNumber:
           type: string
-          description: Employee's PhilHealth Identification Number
+          description: Employee's National Health Identification Number
         taxNumber:
           type: string
           description: Employee's Tax Identification Number
@@ -12980,7 +12856,7 @@ components:
           description: Employee's Social Security (SS) Number
         philHealthNumber:
           type: string
-          description: Employee's PhilHealth Identification Number
+          description: Employee's National Health Identification Number
         taxNumber:
           type: string
           description: Employee's Tax Identification Number
@@ -13020,8 +12896,8 @@ components:
               maximum: 100
               minimum: 0
               description: >-
-                The match score of the employee name and PhilHealth number. If
-                Smile can not verify it or you disabled verify feature, this
+                The match score of the employee name and National Health number.
+                If Smile can not verify it or you disabled verify feature, this
                 value will be null.
             employeeNameAndTaxNumberMatchScore:
               type: integer
@@ -13124,7 +13000,7 @@ components:
               description: Employee' Social Security (SS) Number
             philHealthNumber:
               type: string
-              description: Employee' PhilHealth Identification Number
+              description: Employee' National Health Identification Number
             taxNumber:
               type: string
               description: Employee' Tax Identification Number
@@ -13259,9 +13135,10 @@ components:
       description: File types that are available for upload.
       x-examples:
         Example:
-          logoUrl: https://cdn.smileapi.io/image/provider-logo/v20210813064500/sss.png
+          logoUrl: >-
+            https://cdn.smileapi.io/image/provider-logo/v20210813064500/SOCIAL_SECURITY.png
           type: SOCIAL_SECURITY
-          typeLabel: SSS Records
+          typeLabel: SOCIAL SECURITY Records
           active: true
           enabled: true
           ocr: true
@@ -13275,13 +13152,14 @@ components:
         logoUrl:
           type: string
           description: URL to the file type image
-          example: https://cdn.smileapi.io/image/provider-logo/v20210813064500/sss.png
+          example: >-
+            https://cdn.smileapi.io/image/provider-logo/v20210813064500/SOCIAL_SECURITY.png
         type:
           $ref: '#/components/schemas/FileTypeId'
         typeLabel:
           type: string
           description: Upload file type label
-          example: SSS Records
+          example: SOCIAL SECURITY Records
         active:
           type: boolean
           description: Indicates whether upload for file type is working
@@ -13729,7 +13607,7 @@ components:
             sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: sss-ph
+            providerId: example_id
       x-tags:
         - Contributions
       allOf:
@@ -14022,7 +13900,7 @@ components:
             sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f
             sourceType: ACCOUNT
             userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-            providerId: sss_ph
+            providerId: example_id
       x-internal: false
       x-tags:
         - Estimated Incomes
@@ -14105,7 +13983,6 @@ components:
     VerificationIdType:
       type: string
       enum:
-        - sss_ph
         - pagibig_ph
         - prclicense_ph
         - tin_ph
@@ -15670,241 +15547,6 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/SocialSecurity'
-    ProfileIdentityVerifyRequest:
-      title: object
-      required:
-        - idType
-        - idNumber
-        - firstName
-      properties:
-        idType:
-          type: string
-          description: The identification type, currently only support SSS
-          enum:
-            - SSS
-        idNumber:
-          type: string
-          description: Identification number
-        firstName:
-          type: string
-          description: User first name
-        lastName:
-          type: string
-          description: User last name
-        dob:
-          type: string
-          format: date
-          description: The day of birth, yyyy-MM-dd
-          example: '2000-01-21'
-        middleName:
-          type: string
-          description: User middle name
-        suffix:
-          type: string
-          description: User suffix
-        mobile:
-          type: string
-          description: User mobile number
-        email:
-          type: string
-          description: User email address
-        gender:
-          $ref: '#/components/schemas/RefGender'
-        maritalStatus:
-          $ref: '#/components/schemas/RefMaritalStatus'
-    ProfileIdentityVerifyData:
-      type: object
-      required:
-        - hit
-      properties:
-        hit:
-          type: boolean
-          description: >-
-            if the identification number is invalid or it can not be found then
-            the value is false
-        message:
-          type: string
-          description: Some descriptions for this result
-        result:
-          type: object
-          required:
-            - nameMatchScore
-          properties:
-            nameMatchScore:
-              type: integer
-              maximum: 100
-              minimum: 0
-              description: The idNumber firstName, lastName match score
-            dobMatched:
-              type: boolean
-              description: >-
-                The dob matched or not, if the dob in request parameters is
-                null, then return null
-            mobileMatched:
-              type: boolean
-              description: >-
-                The mobile matched or not, if the mobile in request parameters
-                is null, then return null
-            emailMatched:
-              type: boolean
-              description: >-
-                The email matched or not, if the email in request parameters is
-                null, then return null
-            genderMatched:
-              type: boolean
-              description: >-
-                The gender matched or not, if the gender in request parameters
-                is null, then return null
-            maritalStatusMatched:
-              type: boolean
-              description: >-
-                The maritalStatus matched or not, if the maritalStatus in
-                request parametere is null, then return null
-    ProfileIdentityVerifyResponse:
-      title: Profile Identity Verify Response
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/CommonResponse'
-        - properties:
-            data:
-              $ref: '#/components/schemas/ProfileIdentityVerifyData'
-    ProfileIdentityQueryRequest:
-      title: object
-      required:
-        - idType
-        - idNumber
-        - firstName
-      properties:
-        idType:
-          type: string
-          description: The identification type, currently only support SSS
-          enum:
-            - SSS
-        idNumber:
-          type: string
-          description: Identification number
-        firstName:
-          type: string
-          description: User first name
-        lastName:
-          type: string
-          description: User last name
-        dob:
-          type: string
-          format: date
-          description: The day of birthday, yyyy-MM-dd
-          example: '2000-01-21'
-    ProfileIdentityAddress:
-      type: object
-      properties:
-        line1:
-          type: string
-          nullable: true
-          description: Line 1 of street address
-        line2:
-          type: string
-          nullable: true
-          description: Line 2 of street address
-        city:
-          type: string
-          nullable: true
-          description: City
-        region:
-          type: string
-          nullable: true
-          description: Geographic region such as state or province
-        zip:
-          type: string
-          nullable: true
-          description: Post code
-        country:
-          $ref: '#/components/schemas/RefCountry'
-    ProfileIdentity:
-      type: object
-      required:
-        - hit
-      properties:
-        hit:
-          type: boolean
-          description: >-
-            if the identification number is invalid or it can not be found then
-            the value is false
-        message:
-          type: string
-        result:
-          type: object
-          required:
-            - nameMatchScore
-          properties:
-            nameMatchScore:
-              type: integer
-              description: >-
-                The score if matched the name(first name, last name). If
-                matched(score >= 80), then Smile will return the matched
-                information. If not matched, all other fields will return null
-            firstName:
-              type: string
-              description: The firstName from Smile side
-            lastName:
-              type: string
-              description: The lastName from Smile side
-            middleName:
-              type: string
-              description: The middleName from Smile side
-            suffix:
-              type: string
-              description: The suffix from Smile side
-            dob:
-              type: string
-              format: date
-              description: The day of birthday, yyyy-MM-dd
-              example: '2000-01-21'
-            mobile:
-              type: string
-              description: Mobile number
-            email:
-              type: string
-              description: Email address
-            gender:
-              $ref: '#/components/schemas/RefGender'
-            maritalStatus:
-              $ref: '#/components/schemas/RefMaritalStatus'
-            homeTelephone:
-              type: string
-              description: home telephone number
-            address:
-              $ref: '#/components/schemas/ProfileIdentityAddress'
-            socialSecurityCoverageType:
-              type: string
-              description: >-
-                Social security coverage type, Possible values: EMPLOYEE,
-                VOLUNTARY, SELF EMPLOYED, FOR EMPLOYMENT
-            socialSecurityCoverageDate:
-              type: string
-              format: date
-              description: Social security start time
-              example: '2000-01-21'
-            totalEmploymentReportCount:
-              type: integer
-              description: the total of employment report records
-            firstEmploymentReportDate:
-              type: string
-              format: date
-              description: First employment record reported date
-              example: '2000-01-21'
-            latestEmploymentReportDate:
-              type: string
-              format: date
-              description: Latest employment record reported date
-              example: '2022-09-21'
-    ProfileIdentityQueryResponse:
-      title: Profile Identity Query Response
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/CommonResponse'
-        - properties:
-            data:
-              $ref: '#/components/schemas/ProfileIdentity'
     EmployerRegistration:
       title: Employer Registration
       type: object

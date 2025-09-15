@@ -42,7 +42,7 @@ _Smile Snap Verification API is currently in alpha._
 | ID or Identifier | Verifiable Data Attributes |
 | :--------- | :----- |
 | Tax identification number `tin_ph` | Full Name*, First Name*, Middle Name*, Last Name*, Suffix*, Date of Birth*, Gender*, Email, Phone |
-| Social security number `sss_ph` | Full Name*, First Name, Middle Name, Last Name, Suffix, Date of Birth, Gender, Email, Phone |
+| Social security number | Full Name*, First Name, Middle Name, Last Name, Suffix, Date of Birth, Gender, Email, Phone |
 | Professional license `prclicense_ph` | Full Name*, First Name*, Middle Name, Last Name*, License Type, Email |
 | National housing provident fund member ID Number | Full Name*, First Name, Middle Name, Last Name, Email |
 | Email address | Full name* |

@@ -7,7 +7,7 @@ slug: user-data-verification
 
 无需用户登录，Smile Snap Data Verification API 允许开发人员根据官方数据源检索个人数据。这项服务还有一个查询模式，请参阅 [概况数据](https://docs.getsmileapi.com/reference/query-identity) 。
 
-该 API 可用于验证个人提供的数据，以核对准确性并最大限度地减少欺诈行为。Smile 目前支持通过 SSS ID 编号进行验证。其他数据源也将很快加入。
+该 API 可用于验证个人提供的数据，以核对准确性并最大限度地减少欺诈行为。Smile 目前支持通过 Social Security ID 编号进行验证。其他数据源也将很快加入。
 
 查询所需的数据如下：
 

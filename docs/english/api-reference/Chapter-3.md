@@ -205,17 +205,17 @@ onUIEvent: ({ eventName, eventTime, mode, userId, account, archive }) => {
 
 For the list of event names, see the table below:
 
-| Event Name | Description | Event-specific Properties |
-| :------- | :---- | :---- |
-| ConsentPageOpened | The user opened the consent screen | |
-| ProviderListPageOpened | The user opened the provider list screen | |
-| LoginPageOpened | The user opened the login screen | providerId |
-| MfaPageOpened | The user opened the Multi-Factor Authentication screen | providerId |
-| ConnectSuccessPageOpened | The user opened the account connected success screen | providerId, accountId |
-| AccountRevokePageOpened | The user opened the account connection status screen / revoke screen | providerId, accountId |
-| LoginOptionsPageOpened | The user opened the alternative login options screen | |
-| EmployerSurveyPageOpened | The user opened the employer survey screen | |
-| FileTypeListPageOpened | The user opened the document type selection screen (i.e. to select what type of document they wish to upload, such as SSS records, Income Tax Records, etc.) | |
-| FileTypePageOpened | The user opened the document upload screen | |
-| ArchiveSuccessPageOpened | The user has successfully uploaded a file and has opened the success screen | |
-| RevokeArchivePageOpened | The user opened the archive status screen / delete screen | |
+| Event Name               | Description                                                                                                                                                              | Event-specific Properties |
+|:-------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------|
+| ConsentPageOpened        | The user opened the consent screen                                                                                                                                       |                           |
+| ProviderListPageOpened   | The user opened the provider list screen                                                                                                                                 |                           |
+| LoginPageOpened          | The user opened the login screen                                                                                                                                         | providerId                |
+| MfaPageOpened            | The user opened the Multi-Factor Authentication screen                                                                                                                   | providerId                |
+| ConnectSuccessPageOpened | The user opened the account connected success screen                                                                                                                     | providerId, accountId     |
+| AccountRevokePageOpened  | The user opened the account connection status screen / revoke screen                                                                                                     | providerId, accountId     |
+| LoginOptionsPageOpened   | The user opened the alternative login options screen                                                                                                                     |                           |
+| EmployerSurveyPageOpened | The user opened the employer survey screen                                                                                                                               |                           |
+| FileTypeListPageOpened   | The user opened the document type selection screen (i.e. to select what type of document they wish to upload, such as Social Security records, Income Tax Records, etc.) |                           |
+| FileTypePageOpened       | The user opened the document upload screen                                                                                                                               |                           |
+| ArchiveSuccessPageOpened | The user has successfully uploaded a file and has opened the success screen                                                                                              |                           |
+| RevokeArchivePageOpened  | The user opened the archive status screen / delete screen                                                                                                                |                           |

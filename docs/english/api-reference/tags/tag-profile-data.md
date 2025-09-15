@@ -13,7 +13,7 @@ The Smile Snap Profile Data API allows developers to retrieve a snapshot of a pe
 
 By providing the person's ID type, ID number, and name, additional basic information can be retrieved for the user if the name has at least an 80% match with the person identified via the ID number (see below). Otherwise, no information is returned.
 
-Smile currently supports querying via the SSS ID number. Other data sources will be onboarded soon.
+Smile currently supports querying via the Social Security ID number. Other data sources will be onboarded soon.
 
 If you require more detailed user information than the ones available through Smile Snap, this can be obtained in a user-authenticated manner using the Wink Widget SDK.
 

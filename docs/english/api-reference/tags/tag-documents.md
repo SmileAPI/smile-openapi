@@ -23,17 +23,17 @@ If the sources your user provided are not enough you can also make use of Smile'
 
 ## The Document object
 
-| Attribute  | Type   | Description |
-| :--------- | :----- | :------- |
-| id | string | Unique ID of the document information on the Smile Network |
-| name | string | Name of the document, such as *NBI Clearance document*, *SSS Number*, etc. |
-| docId | string | Unique identifier of the document |
+| Attribute  | Type   | Description                                                                                                                                          |
+| :--------- | :----- |:-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| id | string | Unique ID of the document information on the Smile Network                                                                                           |
+| name | string | Name of the document, such as *NBI Clearance document*, *Social Security Number*, etc.                                                               |
+| docId | string | Unique identifier of the document                                                                                                                    |
 | status | string | Document status if available, currently only in use by the NBI Clearance document. Null if not available. Possible values: `VALID`, `HIT`, `EXPIRED` |
-| documentType | string | Type of document. Possible values: `IDENTIFICATION`, `PAYSLIP`, `CLEARANCE`, `CERTIFICATE` |
-| issueDate | date | Date of document issuance. Null if not available. |
-| expiryDate | date | Date of document expiry. Null if not available. |
-| fileUrl | string | Fully-formed URL reference file for the document. Null if not available. |
-| metadata | object | Contains data about this documents data point. See object below |
+| documentType | string | Type of document. Possible values: `IDENTIFICATION`, `PAYSLIP`, `CLEARANCE`, `CERTIFICATE`                                                           |
+| issueDate | date | Date of document issuance. Null if not available.                                                                                                    |
+| expiryDate | date | Date of document expiry. Null if not available.                                                                                                      |
+| fileUrl | string | Fully-formed URL reference file for the document. Null if not available.                                                                             |
+| metadata | object | Contains data about this documents data point. See object below                                                                                      |
 
 ### The Meta Data object
 

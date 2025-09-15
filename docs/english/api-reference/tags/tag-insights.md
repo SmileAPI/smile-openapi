@@ -43,7 +43,7 @@ Income insights give you a range of common calculations using the user's income 
 
 > 📘 Note
 > 
-> For **My.SSS**, there may be a 1-2 month delay from when income-related data is posted from the data source. Smile takes this into account, but it is important to note this possible data discrepancy and add it to your own calculations.
+> For **Social Security Services**, there may be a 1-2 month delay from when income-related data is posted from the data source. Smile takes this into account, but it is important to note this possible data discrepancy and add it to your own calculations.
 
 | Insight variable name | Description |
 |---|---|

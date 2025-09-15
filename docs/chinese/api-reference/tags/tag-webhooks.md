@@ -327,17 +327,6 @@ Webhook 对于获取有关异步事件的通知非常有用，当这些事件发
         "nextCursor": null,
         "items": [
         {
-            "id": "d-f671e0ed7ed143b9880dce6a0b283693",
-            "name": "SSS",
-            "docId": "04-0751449-0",
-            "status": null,
-            "documentType": "IDENTIFICATION",
-            "issueDate": null,
-            "expiryDate": null,
-            "fileUrl": null,
-            "remarks": null
-        },
-        {
             "id": "d-7d5527088bfb4c278acbad934c1099ed",
             "name": "UMID",
             "docId": "0026-1215160-9",
