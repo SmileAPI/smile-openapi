@@ -30,5 +30,5 @@ For more information, you can visit [our website](https://www.getsmileapi.com), 
 ```shell
 npm i -g @redocly/openapi-cli@latest
 mkdir openapi-definitions
-openapi bundle src/main/resources/api.yaml --output openapi-definitions/openapi.yaml
+openapi bundle openapi/api.yaml --output openapi-definitions/openapi.yaml
 ```

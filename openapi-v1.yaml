@@ -4647,6 +4647,10 @@ paths:
                       signalType: Signal1
                       requestMeta:
                         phone: '+639178902345'
+                        emailAddress: null
+                        fullName: null
+                        curp: null
+                        nss: null
                         countryCode: PH
                         templateId: tpl-sgn002001
                         consent:
@@ -4657,10 +4661,10 @@ paths:
                           consentTemplateId: ct-5b79399a68524234bb0ead472648282d
                       items:
                         - name: events_arbitrary_day30
-                          value: 0
+                          value: '0'
                           valueType: NUMBER
                         - name: events_preloan_day30
-                          value: 0
+                          value: '0'
                           valueType: NUMBER
                         - name: events_debt_day90_amount
                           value: A0
@@ -4701,6 +4705,10 @@ paths:
                             signalType: Signal1
                             requestMeta:
                               phone: '+639178902345'
+                              emailAddress: null
+                              fullName: null
+                              curp: null
+                              nss: null
                               countryCode: PH
                               templateId: tpl-sgn002001
                               consent:
@@ -4711,10 +4719,10 @@ paths:
                                 consentTemplateId: ct-5b79399a68524234bb0ead472648282d
                             items:
                               - name: events_arbitrary_day30
-                                value: 0
+                                value: '0'
                                 valueType: NUMBER
                               - name: events_preloan_day30
-                                value: 0
+                                value: '0'
                                 valueType: NUMBER
                               - name: events_debt_day90_amount
                                 value: A0
@@ -4736,6 +4744,10 @@ paths:
                             signalType: Signal2
                             requestMeta:
                               phone: '639178902345'
+                              emailAddress: null
+                              fullName: null
+                              curp: null
+                              nss: null
                               countryCode: PH
                               templateId: tpl-sgn003001
                               consent:
@@ -4817,6 +4829,10 @@ paths:
                       signalType: Signal1
                       requestMeta:
                         phone: '+639178902345'
+                        emailAddress: null
+                        fullName: null
+                        curp: null
+                        nss: null
                         countryCode: PH
                         templateId: tpl-sgn002001
                         consent:
@@ -4827,10 +4843,10 @@ paths:
                           consentTemplateId: ct-5b79399a68524234bb0ead472648282d
                       items:
                         - name: events_arbitrary_day30
-                          value: 0
+                          value: '0'
                           valueType: NUMBER
                         - name: events_preloan_day30
-                          value: 0
+                          value: '0'
                           valueType: NUMBER
                         - name: events_debt_day90_amount
                           value: A0
@@ -4849,6 +4865,10 @@ paths:
                       signalType: Signal2
                       requestMeta:
                         phone: '639178902345'
+                        emailAddress: null
+                        fullName: null
+                        curp: null
+                        nss: null
                         countryCode: PH
                         templateId: tpl-sgn003001
                         consent:
@@ -4859,10 +4879,10 @@ paths:
                           consentTemplateId: ct-5b79399a68524234bb0ead472648282d
                       items:
                         - name: events_arbitrary_day30
-                          value: 0
+                          value: '0'
                           valueType: NUMBER
                         - name: events_preloan_day30
-                          value: 0
+                          value: '0'
                           valueType: NUMBER
                         - name: events_debt_day90_amount
                           value: A0
@@ -4953,6 +4973,10 @@ paths:
                       signalType: Signal2
                       requestMeta:
                         phone: '639559991234'
+                        emailAddress: null
+                        fullName: null
+                        curp: null
+                        nss: null
                         countryCode: PH
                         templateId: tpl-sgn003001
                         consent:
@@ -4977,6 +5001,125 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BetaSignal2PostRequest'
+  /beta/signals/createSignal3:
+    post:
+      summary: Create Signal3
+      description: >+
+        ## Create a Signal3 object.  
+
+        This endpoint requires **mandatory parameters**:  
+
+        `consent`, `phone`, `fullName`, `curp`, and `templateId`.
+
+
+        ### Supported Template
+
+
+        | Template ID     | Region(s)   | Required Parameters                |
+
+        |-----------------|-------------|------------------------------------|
+
+        | `tpl-sgn003002` | MX (Mexico) | `phone`, `fullName`, `curp` |
+
+
+        ### Sandbox Test Values
+
+
+        | Parameter    | Value                   | Expected Response      |
+
+        |--------------|-------------------------|------------------------|
+
+        | templateId   | `tpl-sgn003002`         |                        |
+
+        | emailAddress | Any valid email address |                        |
+
+        | curp         | Any valid curp          |                        |
+
+        | fullName     | Any string              |                        |
+
+        | phone | `529559991234`          | `resultCode = SUCCESS` |
+
+
+        For **all other valid input combinations**, if no mock data match is
+        found, the system returns  
+
+        `resultCode = NO_DATA` and the response contains no items.
+
+
+        ### Remarks
+
+        In production mode, if the API request is successful, a Signal3 object
+        will be created with the status of `PROCESSING`. When the Status becomes
+        `COMPLETED` or `ERROR`.
+
+      operationId: create-beta-signal3
+      tags:
+        - Signals (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaSignalPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      signalType: Signal3
+                      requestMeta:
+                        emailAddress: john.doe@example.com
+                        fullName: John Doe
+                        phone: '529559991234'
+                        curp: DOEJ800101HDFXXX01
+                        nss: '12345678901'
+                        countryCode: MX
+                        templateId: tpl-sgn003002
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                      items:
+                        - name: events_arbitrary_day30
+                          value: '0'
+                          valueType: NUMBER
+                        - name: events_preloan_day30
+                          value: '0'
+                          valueType: NUMBER
+                        - name: events_debt_day90_amount
+                          value: A0
+                          valueType: STRING
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaSignal3PostRequest'
+            examples:
+              Example:
+                value:
+                  emailAddress: john.doe@example.com
+                  fullName: John Doe
+                  phone: '529559991234'
+                  curp: DOEJ800101HDFXXX01
+                  nss: '12345678901'
+                  templateId: tpl-sgn003002
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
   /alpha/footprints:
     post:
       summary: Create Footprint
@@ -6409,7 +6552,7 @@ paths:
 
 
       tags:
-        - Social Securities
+        - Social Security (Alpha)
       requestBody:
         required: true
         content:
@@ -6487,7 +6630,7 @@ paths:
       operationId: list-social-securities
       description: List all social security records for users
       tags:
-        - Social Securities
+        - Social Security (Alpha)
       parameters:
         - $ref: '#/components/parameters/size'
         - $ref: '#/components/parameters/cursor'
@@ -6613,7 +6756,7 @@ paths:
       operationId: get-social-security
       description: Get a social security record by ID
       tags:
-        - Social Securities
+        - Social Security (Alpha)
       responses:
         '200':
           description: OK
@@ -6650,6 +6793,335 @@ paths:
                         mobileNumber: '529559991234'
                         curp: DOEJ800101HDFXXX01
                         templateId: tpl-sss003001
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+  /beta/socialSecurities:
+    post:
+      summary: Create Social Security
+      operationId: create-beta-social-security
+      description: >+
+        ## Create a Social Security object.  
+
+        This endpoint requires **mandatory parameters**:  
+
+        `consent`, `mobileNumber`, `fullName`, `curp`, `emailAddress`, and
+        `templateId`.
+
+
+        ### Supported Template
+
+
+        | Template ID     | Region(s)   | Required
+        Parameters                                |
+
+        |-----------------|-------------|----------------------------------------------------|
+
+        | `tpl-sss003002` | MX (Mexico) | `mobileNumber`, `fullName`, `curp`,
+        `emailAddress`|
+
+
+        ### Sandbox Test Values
+
+
+        | Parameter    | Value                   | Expected Response      |
+
+        |--------------|-------------------------|------------------------|
+
+        | templateId   | `tpl-sss003002`         |                        |
+
+        | emailAddress | Any valid email address |                        |
+
+        | curp         | Any valid curp          |                        |
+
+        | fullName     | Any string              |                        |
+
+        | mobileNumber | `529559991234`          | `resultCode = SUCCESS` |
+
+
+        For **all other valid input combinations**, if no mock data match is
+        found, the system returns  
+
+        `resultCode = NO_DATA` and the response contains no items.
+
+
+        ### Remarks
+
+        In production mode, if the API request is successful, a SocialSecurity
+        object will be created with the status of `PROCESSING`. When the Status
+        becomes `COMPLETED` or `ERROR`. 
+
+
+
+      tags:
+        - Social Securities (Beta)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/schemas-SocialSecurityPostRequest'
+            examples:
+              Example:
+                value:
+                  emailAddress: john.doe@example.com
+                  fullName: John Doe
+                  mobileNumber: '529559991234'
+                  curp: DOEJ800101HDFXXX01
+                  nss: '12345678901'
+                  templateId: tpl-sss003002
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schemas-SocialSecurityPostResponse'
+              examples:
+                Example:
+                  value:
+                    code: CREATED
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: ss-17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: PROCESSING
+                      resultCode: null
+                      resultMessage: null
+                      result: null
+                      requestMeta:
+                        emailAddress: john.doe@example.com
+                        fullName: John Doe
+                        mobileNumber: '529559991234'
+                        curp: DOEJ800101HDFXXX01
+                        templateId: tpl-sss003002
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+    get:
+      summary: List Social Securities
+      operationId: list-beta-social-securities
+      description: List all social security records for users
+      tags:
+        - Social Securities (Beta)
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: socialSecurityId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter social securities by social security id
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: startDate
+          description: >-
+            Filter social securities by report date, start of date range
+            (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+          in: query
+          name: endDate
+          description: >-
+            Filter social securities by report date, end of date range
+            (YYYY-MM-DD)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schemas-SocialSecurityListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: '1259723474'
+                      items:
+                        - id: ss-17bbf36498de4d68a0d4f86c7b62f69f
+                          createdAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: SUCCESS
+                          resultMessage: Success!
+                          result:
+                            fullName: John Doe
+                            curp: DOEJ800101HDFXXX01
+                            nss: '12345678901'
+                            payMark: true
+                            reportDate: '2024-01-15'
+                            employerName: ABC Corporation
+                            employerRegistration: ABC123456
+                            state: SINALOA
+                            contributionDays: 365
+                            contributionBaseAmount: 50000
+                            currency: MXN
+                          requestMeta:
+                            emailAddress: john.doe@example.com
+                            fullName: John Doe
+                            mobileNumber: '529559991234'
+                            curp: DOEJ800101HDFXXX01
+                            templateId: tpl-sss003002
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                        - id: ss-28ccf47509ef5e79b1e5g97d8c73g80g
+                          createdAt: '2021-04-10T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: SUCCESS
+                          resultMessage: Success!
+                          result:
+                            fullName: Jane Smith
+                            curp: SMIT850215MDFXXX02
+                            nss: '98765432109'
+                            payMark: null
+                            reportDate: '2024-01-10'
+                            employerName: XYZ Company
+                            employerRegistration: XYZ789012
+                            state: SINALOA
+                            contributionDays: 300
+                            contributionBaseAmount: 45000
+                            currency: MXN
+                          requestMeta:
+                            emailAddress: jane.smith@example.com
+                            fullName: Jane Smith
+                            mobileNumber: '+1987654321'
+                            curp: SMIT850215MDFXXX02
+                            templateId: tpl-sss003002
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-10T09:30:24Z'
+                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+  /beta/socialSecurities/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Social Security
+      operationId: get-beta-social-security
+      description: Get a social security record by ID
+      tags:
+        - Social Securities (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/schemas-SocialSecurityGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: ss-17bbf36498de4d68a0d4f86c7b62f69f
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      result:
+                        fullName: John Doe
+                        curp: DOEJ800101HDFXXX01
+                        nss: '12345678901'
+                        payMark: false
+                        reportDate: '2024-01-15'
+                        employerName: ABC Corporation
+                        employerRegistration: ABC123456
+                        state: SINALOA
+                        contributionDays: 365
+                        contributionBaseAmount: 50000
+                        currency: MXN
+                      requestMeta:
+                        emailAddress: john.doe@example.com
+                        fullName: John Doe
+                        mobileNumber: '529559991234'
+                        curp: DOEJ800101HDFXXX01
+                        templateId: tpl-sss003002
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -14536,6 +15008,7 @@ components:
       enum:
         - Signal1
         - Signal2
+        - Signal3
     BetaSignalItem:
       type: object
       required:
@@ -14595,6 +15068,21 @@ components:
               type: string
               description: Subject's mobile number provided in the request
               example: '+639178912345'
+            emailAddress:
+              type: string
+              format: email
+              description: Subject's email address provided in the request
+            fullName:
+              type: string
+              description: Subject's full name provided in the request
+            curp:
+              type: string
+              description: Subject's CURP provided in the request
+            nss:
+              type: string
+              description: >-
+                Subject's NSS (Número de Seguridad Social) provided in the
+                request
             templateId:
               type: string
               description: >-
@@ -14703,6 +15191,39 @@ components:
           $ref: '#/components/schemas/Consent'
         countryCode:
           $ref: '#/components/schemas/RefCountry'
+    BetaSignal3PostRequest:
+      type: object
+      required:
+        - fullName
+        - phone
+        - curp
+        - templateId
+        - consent
+      properties:
+        emailAddress:
+          type: string
+          format: email
+        fullName:
+          type: string
+        phone:
+          type: string
+          description: >-
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 529178912345, and no leading zeros. MD5‑encrypted input is
+            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
+          example: '529559991234'
+        curp:
+          type: string
+        nss:
+          type: string
+          description: Mexico's social security number (NSS). Required for MX template.
+        templateId:
+          type: string
+          description: Fixed template ID for Signal3. Must be 'tpl-sgn003002'.
+          example: tpl-sgn003002
+        consent:
+          $ref: '#/components/schemas/Consent'
     AlphaFootprintPostRequest:
       type: object
       required:
@@ -15547,6 +16068,203 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/SocialSecurity'
+    schemas-SocialSecurityResult:
+      type: object
+      required:
+        - fullName
+        - curp
+        - nss
+        - reportDate
+        - employerName
+        - employerRegistration
+        - gender
+        - contributionDays
+        - contributionBaseAmount
+        - currency
+      properties:
+        fullName:
+          type: string
+          description: Full name of the person
+        curp:
+          type: string
+          description: CURP (Clave Única de Registro de Población)
+        nss:
+          type: string
+          description: NSS (Número de Seguridad Social)
+        payMark:
+          type: boolean
+          nullable: true
+          description: >-
+            Indicates the most recent contribution payment status. TRUE means
+            paid; null means unknown.
+        reportDate:
+          type: string
+          format: date
+          description: Date of the social security report
+        employerName:
+          type: string
+          description: Name of the employer
+        employerRegistration:
+          type: string
+          description: Employer registration number
+        state:
+          type: string
+          description: State where contributions are made
+        contributionDays:
+          type: integer
+          description: Number of contribution days
+        contributionBaseAmount:
+          type: number
+          description: Base amount for contributions
+        currency:
+          $ref: '#/components/schemas/RefCurrency'
+    schemas-SocialSecurityRequestMeta:
+      type: object
+      required:
+        - emailAddress
+        - fullName
+        - mobileNumber
+        - curp
+        - templateId
+        - consent
+      properties:
+        emailAddress:
+          type: string
+          format: email
+        fullName:
+          type: string
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 529178912345, and no leading zeros. MD5‑encrypted input is
+            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
+          example: '529559991234'
+        curp:
+          type: string
+        templateId:
+          type: string
+          description: The template ID to use for the request.
+          example: tpl-sss003002
+        consent:
+          $ref: '#/components/schemas/Consent'
+    schemas-SocialSecurity:
+      title: Social Security
+      type: object
+      description: >-
+        The stored social security information of the user from a social
+        security data provider.
+      required:
+        - id
+        - createdAt
+        - status
+        - requestMeta
+        - result
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        status:
+          type: string
+          description: The current status of the Social Security record.
+          enum:
+            - PROCESSING
+            - ERROR
+            - COMPLETED
+        resultCode:
+          type: string
+          description: The final result of the Social Security process.
+          enum:
+            - SUCCESS
+            - NO_DATA
+            - SYSTEM_ERROR
+            - INVALID_PARAMETERS
+            - SERVICE_UNAVAILABLE
+        resultMessage:
+          type: string
+          description: A detailed description of the final result.
+        result:
+          $ref: '#/components/schemas/schemas-SocialSecurityResult'
+        requestMeta:
+          $ref: '#/components/schemas/schemas-SocialSecurityRequestMeta'
+    schemas-SocialSecurityListData:
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/schemas-SocialSecurity'
+    schemas-SocialSecurityListResponse:
+      title: Social Security List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/schemas-SocialSecurityListData'
+    schemas-SocialSecurityPostRequest:
+      type: object
+      required:
+        - fullName
+        - mobileNumber
+        - curp
+        - templateId
+        - consent
+      properties:
+        emailAddress:
+          type: string
+          format: email
+        fullName:
+          type: string
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 529178912345, and no leading zeros. MD5‑encrypted input is
+            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
+          example: '529559991234'
+        curp:
+          type: string
+        nss:
+          type: string
+          description: Mexico's social security number (NSS). Required for MX template.
+        templateId:
+          type: string
+        consent:
+          $ref: '#/components/schemas/Consent'
+    schemas-SocialSecurityPostResponse:
+      title: Social Security Post Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/schemas-SocialSecurity'
+    schemas-SocialSecurityGetResponse:
+      title: Social Security Get Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/schemas-SocialSecurity'
     EmployerRegistration:
       title: Employer Registration
       type: object
