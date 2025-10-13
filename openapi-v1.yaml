@@ -5870,7 +5870,7 @@ paths:
         `gaid`                                                                     
         |
 
-        | `tpl-maw004003` | Mexico (MX)      | `mobileNumber`, `countryCode`,
+        | `tpl-maw004003` | Philippines (PH) | `mobileNumber`, `countryCode`,
         `fullName`, `idType=NATIONAL_ID`, `idNumber` |
 
 
