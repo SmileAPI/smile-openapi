@@ -4222,7 +4222,7 @@ paths:
                               version: 1
                               consentedWith: I aggree to the terms and conditions.
                               consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                              consentTemplateId: null
                           result: null
                         - id: 5b79399a-6853-4234-bb0e-ad472648282d
                           createdAt: '2021-04-14T09:30:24Z'
@@ -4251,7 +4251,7 @@ paths:
                               version: 1
                               consentedWith: I aggree to the terms and conditions.
                               consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                              consentTemplateId: null
                           result:
                             finalMatches: true
                             names:
@@ -4377,9 +4377,9 @@ paths:
                         consent:
                           type: Terms And Conditions
                           version: 1
-                          consentedWith: I aggree to the terms and conditions.
+                          consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       result:
                         finalMatches: true
                         names:
@@ -4840,7 +4840,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       items:
                         - name: events_arbitrary_day30
                           value: '0'
@@ -4876,7 +4876,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       items:
                         - name: events_arbitrary_day30
                           value: '0'
@@ -4984,7 +4984,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       items:
                         - name: events_arbitrary_day30
                           value: 0
@@ -5088,7 +5088,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       items:
                         - name: events_arbitrary_day30
                           value: '0'
@@ -5119,7 +5119,7 @@ paths:
                     version: 1
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                    consentTemplateId: null
   /alpha/footprints:
     post:
       summary: Create Footprint
@@ -5330,7 +5330,7 @@ paths:
                               version: 1
                               consentedWith: I agree to the terms and conditions.
                               consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                              consentTemplateId: null
                           items:
                             - name: registered
                               value: 'false'
@@ -5416,7 +5416,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       items:
                         - name: registered
                           value: 'false'
@@ -5581,7 +5581,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       items:
                         - date: '2021-04-14'
                           level: '2'
@@ -5607,7 +5607,7 @@ paths:
                     version: 1
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                    consentTemplateId: null
                   templateId: tpl-maw002001
                   mobileNumber: '6381789801234'
                   countryCode: PH
@@ -5646,7 +5646,7 @@ paths:
                               version: 1
                               consentedWith: I agree to the terms and conditions.
                               consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                              consentTemplateId: null
                           items:
                             - date: '2021-04-14'
                               level: '2'
@@ -5723,7 +5723,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       items:
                         - date: '2021-04-14'
                           level: '2'
@@ -5810,7 +5810,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       maw2Items:
                         - date: '2021-04-14'
                           level: '2'
@@ -5837,7 +5837,7 @@ paths:
                     version: 1
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                    consentTemplateId: null
                   templateId: tpl-maw002001
                   mobileNumber: '6381789801234'
                   countryCode: PH
@@ -5870,6 +5870,10 @@ paths:
         `gaid`                                                                     
         |
 
+        | `tpl-maw004003` | Mexico (MX)      | `mobileNumber`, `countryCode`,
+        `fullName`, `idType=NATIONAL_ID`, `idNumber` |
+
+
 
         ### Sandbox Test Values
 
@@ -5887,6 +5891,10 @@ paths:
         | `tpl-maw004002` | `gaid =
         '00000000-0000-0000-0000-000000000000'`                                                        
         | `resultCode = SUCCESS` |
+
+        | `tpl-maw004003` | `mobileNumber = 639559991234`, `countryCode = PH`,
+        `fullName = George`, `idNumber = 4561234567`         | `resultCode =
+        SUCCESS` |
 
 
         For **all other valid input combinations**, if no mock data match is
@@ -5928,7 +5936,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       maw2Items: []
                       maw3Items:
                         - name: events_i_daydiff_loan_g_30day_l1imbank_max
@@ -5960,7 +5968,44 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
+                      maw2Items: []
+                      maw3Items:
+                        - name: events_i_daydiff_loan_g_30day_l1imbank_max
+                          value: '5'
+                          valueType: NUMBER
+                        - name: events_m_ds_all_g_15day_d_count
+                          value: '2021-04-14T09:30:24Z'
+                          valueType: NUMBER
+                        - name: events_gaid_timediff_loan_g_60day
+                          value: '888'
+                          valueType: NUMBER
+                tpl-maw004003:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      type: MAW3
+                      requestMeta:
+                        templateId: tpl-maw004003
+                        mobileNumber: '639559991234'
+                        countryCode: PH
+                        fullName: George
+                        idNumber: '4561234567'
+                        idType: TIN
+                        gaid: ''
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: null
                       maw2Items: []
                       maw3Items:
                         - name: events_i_daydiff_loan_g_30day_l1imbank_max
@@ -5986,7 +6031,7 @@ paths:
                     version: 1
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                    consentTemplateId: null
                   templateId: tpl-maw004001
                   mobileNumber: '6381789801234'
                   countryCode: MX
@@ -6001,9 +6046,24 @@ paths:
                     version: 1
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                    consentTemplateId: null
                   templateId: tpl-maw004002
                   gaid: 00000000-0000-0000-0000-000000000000
+              tpl-maw004003:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: null
+                  templateId: tpl-maw004003
+                  mobileNumber: '639559991234'
+                  countryCode: PH
+                  fullName: George
+                  idNumber: '4561234567'
+                  idType: TIN
+                  gaid: ''
   /beta/maws:
     get:
       summary: List Maws
@@ -6041,7 +6101,7 @@ paths:
                               version: 1
                               consentedWith: I agree to the terms and conditions.
                               consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                              consentTemplateId: null
                           maw2Items:
                             - date: '2021-04-14'
                               level: '2'
@@ -6068,7 +6128,7 @@ paths:
                               version: 1
                               consentedWith: I agree to the terms and conditions.
                               consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                              consentTemplateId: null
                           maw2Items: []
                           maw3Items:
                             - name: events_i_daydiff_loan_g_30day_l1imbank_max
@@ -6099,7 +6159,7 @@ paths:
                               version: 1
                               consentedWith: I agree to the terms and conditions.
                               consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                              consentTemplateId: null
                           maw2Items: []
                           maw3Items:
                             - name: events_i_daydiff_loan_g_30day_l1imbank_max
@@ -6177,7 +6237,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       maw2Items:
                         - date: '2021-04-14'
                           level: '2'
@@ -6215,7 +6275,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       maw2Items: []
                       maw3Items:
                         - name: events_i_daydiff_loan_g_30day_l1imbank_max
@@ -6247,7 +6307,44 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
+                      maw2Items: []
+                      maw3Items:
+                        - name: events_i_daydiff_loan_g_30day_l1imbank_max
+                          value: '5'
+                          valueType: NUMBER
+                        - name: events_m_ds_all_g_15day_d_count
+                          value: '2021-04-14T09:30:24Z'
+                          valueType: NUMBER
+                        - name: events_gaid_timediff_loan_g_60day
+                          value: '888'
+                          valueType: NUMBER
+                tpl-maw004003:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: maw-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      type: MAW3
+                      requestMeta:
+                        templateId: tpl-maw004003
+                        mobileNumber: '639559991234'
+                        countryCode: PH
+                        fullName: George
+                        idNumber: '4561234567'
+                        idType: TIN
+                        gaid: ''
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: null
                       maw2Items: []
                       maw3Items:
                         - name: events_i_daydiff_loan_g_30day_l1imbank_max
@@ -6348,7 +6445,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       result:
                         hit: true
                         dates:
@@ -6369,7 +6466,7 @@ paths:
                     version: 1
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                    consentTemplateId: null
                   templateId: blacklistTpl-xxxxxxxxxxxxxxx
                   mobileNumber: '6381789801234'
                   applicationDate: '2021-04-14'
@@ -6410,7 +6507,7 @@ paths:
                               version: 1
                               consentedWith: I agree to the terms and conditions.
                               consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                              consentTemplateId: null
                           result:
                             hit: true
                             dates:
@@ -6485,7 +6582,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
                       result:
                         hit: true
                         dates:
@@ -6898,7 +6995,7 @@ paths:
                     version: 1
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
-                    consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                    consentTemplateId: null
       responses:
         '201':
           description: Created
@@ -6930,7 +7027,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -7026,7 +7123,7 @@ paths:
                               version: 1
                               consentedWith: I agree to the terms and conditions.
                               consentedAt: '2021-04-14T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                              consentTemplateId: null
                         - id: ss-28ccf47509ef5e79b1e5g97d8c73g80g
                           createdAt: '2021-04-10T09:30:24Z'
                           status: COMPLETED
@@ -7055,7 +7152,7 @@ paths:
                               version: 1
                               consentedWith: I agree to the terms and conditions.
                               consentedAt: '2021-04-10T09:30:24Z'
-                              consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                              consentTemplateId: null
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -7127,7 +7224,7 @@ paths:
                           version: 1
                           consentedWith: I agree to the terms and conditions.
                           consentedAt: '2021-04-14T09:30:24Z'
-                          consentTemplateId: ct-5b79399a68524234bb0ead472648282d
+                          consentTemplateId: null
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -14499,9 +14596,8 @@ components:
         consentTemplateId:
           type: string
           description: >-
-            The releated consent template id, you can get it from Smile
-            Developer Portal or /consentTemplates endpoint.
-          example: ct-4604588d9502491b4c72a67cdb0a2aea
+            The related consent template id, you can get it from Smile Developer
+            Portal or /consentTemplates endpoint.
     VerificationCreateRequest:
       type: object
       required:
@@ -15534,7 +15630,7 @@ components:
             639178912345, and no leading zeros. MD5‑encrypted input is accepted
             with the format `MD5(countryCode + mobileNumber)` i.e.
             `MD5(529559991234)`.
-          example: '639178902345'
+          example: '639559991234'
         countryCode:
           $ref: '#/components/schemas/RefCountry'
         templateId:
@@ -15550,6 +15646,20 @@ components:
       enum:
         - MAW2
         - MAW3
+    MawIdType:
+      type: string
+      description: Subject's ID type.  `Required`.
+      example: NATIONAL_ID
+      enum:
+        - NATIONAL_ID
+        - SSS
+        - UMID
+        - TIN
+        - PRC
+        - PHILHEALTH
+        - PASSPORT
+        - DRIVER_LICENSE
+        - PHILSYS
     BetaMaw3Tpl1PostRequest:
       type: object
       required:
@@ -15568,7 +15678,7 @@ components:
             i.e. 529178912345, and no leading zeros. MD5‑encrypted input is
             accepted with the format `MD5(countryCode + mobileNumber)` i.e.
             `MD5(529559991234)`.
-          example: '639178902345'
+          example: '529178912345'
         fullName:
           type: string
           description: Subject's full name.  `Required`.
@@ -15578,11 +15688,7 @@ components:
           description: Subject's ID number.  `Required`. Must be a valid Mexico CURP.
           example: ZAZD801124MBSYQN13
         idType:
-          type: string
-          description: Subject's ID type.  `Required`.
-          example: NATIONAL_ID
-          enum:
-            - NATIONAL_ID
+          $ref: '#/components/schemas/MawIdType'
         gaid:
           type: string
           description: Subject's Google Ad ID. `Optional`.
@@ -15591,9 +15697,7 @@ components:
           $ref: '#/components/schemas/RefCountry'
         templateId:
           type: string
-          description: >-
-            Fixed to `tpl-maw004001`. You can request the specific templateId
-            from Smile if need.
+          description: Fixed to `tpl-maw004001`.
         consent:
           $ref: '#/components/schemas/Consent'
     BetaMaw3Tpl2PostRequest:
@@ -15609,9 +15713,50 @@ components:
           example: 00000000-0000-0000-0000-000000000000
         templateId:
           type: string
+          description: Fixed to `tpl-maw004002`.
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaMaw3Tpl3PostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - fullName
+        - idNumber
+        - idType
+        - mobileNumber
+        - countryCode
+      properties:
+        mobileNumber:
+          type: string
           description: >-
-            Fixed to `tpl-maw004002`. You can request the specific templateId
-            from Smile if need.
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 639178912345, and no leading zeros. MD5‑encrypted input is
+            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(639178912345)`.
+          example: '639178912345'
+        fullName:
+          type: string
+          description: Subject's full name.  `Required`.
+          example: George Smith
+        idNumber:
+          type: string
+          description: >-
+            Subject's ID number.  `Required`. Must be a valid Philippines ID
+            number, it supports
+            SSS，UMID，TIN，PRC，PHILHEALTH，PHILSYS，PASSPORT，DRIVER_LICENSE.
+          example: '456123789'
+        idType:
+          $ref: '#/components/schemas/MawIdType'
+        gaid:
+          type: string
+          description: Subject's Google Ad ID. `Optional`.
+          example: 00000000-0000-0000-0000-000000000000
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: Fixed to `tpl-maw004003`.
         consent:
           $ref: '#/components/schemas/Consent'
     BetaMawRequestMeta:
@@ -15619,12 +15764,14 @@ components:
         - $ref: '#/components/schemas/BetaMaw2PostRequest'
         - $ref: '#/components/schemas/BetaMaw3Tpl1PostRequest'
         - $ref: '#/components/schemas/BetaMaw3Tpl2PostRequest'
+        - $ref: '#/components/schemas/BetaMaw3Tpl3PostRequest'
       discriminator:
         propertyName: templateId
         mapping:
           tpl-maw002001: '#/components/schemas/BetaMaw2PostRequest'
           tpl-maw004001: '#/components/schemas/BetaMaw3Tpl1PostRequest'
           tpl-maw004002: '#/components/schemas/BetaMaw3Tpl2PostRequest'
+          tpl-maw004003: '#/components/schemas/BetaMaw3Tpl3PostRequest'
     BetaMaw2Item:
       type: object
       required:
@@ -15727,11 +15874,13 @@ components:
       oneOf:
         - $ref: '#/components/schemas/BetaMaw3Tpl1PostRequest'
         - $ref: '#/components/schemas/BetaMaw3Tpl2PostRequest'
+        - $ref: '#/components/schemas/BetaMaw3Tpl3PostRequest'
       discriminator:
         propertyName: templateId
         mapping:
           tpl-maw004001: '#/components/schemas/BetaMaw3Tpl1PostRequest'
           tpl-maw004002: '#/components/schemas/BetaMaw3Tpl2PostRequest'
+          tpl-maw004003: '#/components/schemas/BetaMaw3Tpl3PostRequest'
     BetaMawListResponse:
       title: Beta Maw List Response
       type: object
