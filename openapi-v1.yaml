@@ -223,31 +223,41 @@ paths:
                             property1: string
                             property2: string
                           createdAt: '2021-04-14T09:30:24Z'
-                          providers:
-                            - upwork
+                          session:
+                            channel: Default
+                            channelId: null
+                            userId: tenantId-123abc456def789abc123def456abc78
+                            status: IN_PROGRESS
                         - id: tenant-17bbf36498de4d68a0d4f86c7b62f69f
                           externalMetadata:
                             property1: string
                             property2: string
                           createdAt: '2021-04-14T09:30:24Z'
-                          providers:
-                            - freelancer
+                          session:
+                            channel: Default
+                            channelId: null
+                            userId: tenantId-123abc456def789abc123def456abc78
+                            status: IN_PROGRESS
                         - id: tenant-17bbf36498de4d68a0d4f86c7b62f69f
                           externalMetadata:
                             property1: string
                             property2: string
                           createdAt: '2021-04-14T09:30:24Z'
-                          providers:
-                            - grab
+                          session:
+                            channel: Default
+                            channelId: null
+                            userId: tenantId-123abc456def789abc123def456abc78
+                            status: IN_PROGRESS
                         - id: tenant-17bbf36498de4d68a0d4f86c7b62f69f
                           externalMetadata:
                             key1: value
                             key2: value
                           createdAt: '2021-04-14T09:30:24Z'
-                          providers:
-                            - upwork
-                            - freelancer
-                            - grab
+                          session:
+                            channel: WinkSite
+                            channelId: site-123abc456def789abc123def456abc78
+                            userId: tenantId-123abc456def789abc123def456abc78
+                            status: COMPLETED
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -354,8 +364,11 @@ paths:
                         property1: string
                         property2: string
                       createdAt: '2021-04-14T09:30:24Z'
-                      providers:
-                        - upwork
+                      session:
+                        channel: WinkSite
+                        channelId: site-123abc456def789abc123def456abc78
+                        userId: tenantId-123abc456def789abc123def456abc78
+                        status: COMPLETED
         '400':
           $ref: '#/components/responses/Standard-Errors'
         '401':
@@ -379,6 +392,38 @@ paths:
       operationId: get-user
       description: Get a particular user profile.
       parameters: []
+  /users/{id}/payload:
+    get:
+      tags:
+        - Users
+      summary: Get User Session Payload
+      description: Retrieve the payload data for a specific user session
+      operationId: get-user-session-payload
+      parameters:
+        - name: id
+          in: path
+          description: The user ID
+          required: true
+          schema:
+            type: string
+            example: tenant-123abc456def789abc123def456abc78
+      responses:
+        '200':
+          description: User session payload retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserPayloadGetResponse'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
   /tokens:
     post:
       summary: Refresh Token
@@ -7383,6 +7428,8 @@ components:
             userId:
               type: string
               description: The connected user ID.
+            session:
+              $ref: '#/components/schemas/UserSession'
       required:
         - id
         - version
@@ -9269,6 +9316,89 @@ components:
         - createdAt
         - data
       description: Event indicates data sync of an account is finished.
+    UserSessionCompletedEvent:
+      title: 'Webhook: User Session Completed Event'
+      x-tags:
+        - User Sessions
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/SmileCommonEvent'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              properties:
+                session:
+                  $ref: '#/components/schemas/UserSession'
+                payload:
+                  $ref: '#/components/schemas/UserPayload'
+              required:
+                - session
+                - payload
+          x-examples:
+            Example:
+              id: et-123abc456def789abc123def456abc78
+              version: 1
+              type: USER_SESSION_COMPLETED
+              createdAt: '2021-04-14T09:30:24Z'
+              data:
+                session:
+                  userId: tenantId-123abc456def789abc123def456abc78
+                  channel: WinkSite
+                  channelId: site-123abc456def789abc123def456abc78
+                  status: COMPLETED
+                payload:
+                  metadata:
+                    channel: WinkSite
+                    channelId: site-123abc456def789abc123def456abc78
+                    userId: tenantId-123abc456def789abc123def456abc78
+                    status: COMPLETED
+                  forms:
+                    - id: form-xxxxxxxxxxx
+                      name: Personal Information
+                      data: {}
+                  accounts:
+                    - id: a-xxxxxxxxxxx
+                      providerId: nbi_ph
+                      payload: {}
+                  archives:
+                    - id: archive-xxxxxxxxxxx
+                      fileType: payslip
+                      payload: {}
+      description: User session is completed.
+    UserSessionResetEvent:
+      title: 'Webhook: User Session Reset Event'
+      x-tags:
+        - User Sessions
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/SmileCommonEvent'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              properties:
+                session:
+                  $ref: '#/components/schemas/UserSession'
+              required:
+                - session
+      x-examples:
+        Example:
+          id: et-123abc456def789abc123def456abc78
+          version: 1
+          type: USER_SESSION_RESET
+          createdAt: '2021-04-14T09:30:24Z'
+          data:
+            session:
+              userId: tenantId-123abc456def789abc123def456abc78
+              channel: WinkSite
+              channelId: site-123abc456def789abc123def456abc78
+              status: IN_PROGRESS
+      description: User session is reset.
     RefPrcProfession:
       type: string
       description: PROFESSIONAL REGULATION COMMISSION license profession
@@ -9644,6 +9774,39 @@ components:
       format: date-time
       example: '2021-04-14T09:30:24Z'
       description: Date and time
+    SessionChannel:
+      type: string
+      description: The channel type
+      enum:
+        - WinkSite
+        - Default
+    UserSessionStatus:
+      description: The status of a user session
+      type: string
+      enum:
+        - IN_PROGRESS
+        - COMPLETED
+        - REVOKED
+      example: IN_PROGRESS
+    UserSession:
+      description: User session resource
+      type: object
+      properties:
+        userId:
+          type: string
+          description: The user ID associated with this session
+          example: tenantId-123abc456def789abc123def456abc78
+        channel:
+          $ref: '#/components/schemas/SessionChannel'
+        channelId:
+          type: string
+          description: The wink site ID
+          example: site-123abc456def789abc123def456abc78
+        status:
+          $ref: '#/components/schemas/UserSessionStatus'
+      required:
+        - userId
+        - status
     User:
       title: User
       type: object
@@ -9659,8 +9822,11 @@ components:
             property1: string
             property2: string
           createdAt: '2021-04-14T09:30:24Z'
-          providers:
-            - upwork
+          session:
+            channel: Default
+            channelId: null
+            userId: tenantId-123abc456def789abc123def456abc78
+            status: IN_PROGRESS
       properties:
         id:
           $ref: '#/components/schemas/RefObjectID'
@@ -9669,11 +9835,15 @@ components:
         createdAt:
           $ref: '#/components/schemas/RefDateTime'
         providers:
+          deprecated: true
           description: Array of providers connected to this user (listed by provider ID)
           type: array
+          default: []
           items:
             type: string
             example: upwork
+        session:
+          $ref: '#/components/schemas/UserSession'
       required:
         - id
         - externalMetadata
@@ -9717,10 +9887,14 @@ components:
         user.
       x-examples:
         Example:
+          id: tk-ac86a0f7d46545f89adee8607a727573
           expiresAt: '2021-04-14T09:30:24Z'
           mode: SANDBOX
           accessToken: string
       properties:
+        id:
+          type: string
+          description: Unique identifier for the Token
         expiresAt:
           $ref: '#/components/schemas/RefDateTime'
         mode:
@@ -9770,620 +9944,6 @@ components:
         data:
           $ref: '#/components/schemas/User'
       x-examples: {}
-    TokenPostResponse:
-      title: Token Post Response
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Token'
-      x-examples: {}
-    ConsentTemplate:
-      properties:
-        id:
-          description: Unique id for this consent template
-          type: string
-        createdAt:
-          format: date-time
-          type: string
-          example: '2021-04-14T09:30:24Z'
-        consentType:
-          type: string
-          maxLength: 200
-          minLength: 1
-          example: Terms and Conditions
-        title:
-          type: string
-          maxLength: 200
-          minLength: 1
-          example: Terms and Conditions
-        version:
-          type: string
-          maxLength: 64
-          minLength: 1
-          example: 1.0.0
-        consentMethod:
-          type: string
-          maxLength: 200
-          minLength: 0
-          example: I agree to the terms and conditions
-        consentText:
-          type: string
-          maxLength: 65535
-          minLength: 1
-          example: <consent content>
-    ConsentTemplateListResponseData:
-      properties:
-        nextCursor:
-          $ref: '#/components/schemas/ObjectNextCursor'
-        items:
-          items:
-            $ref: '#/components/schemas/ConsentTemplate'
-          type: array
-      type: object
-    ConsentTemplateListResponse:
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/ConsentTemplateListResponseData'
-      title: ConsentTemplatesListResponse
-      type: object
-      x-examples: {}
-    ConsentTemplateCreateRequest:
-      properties:
-        consentType:
-          type: string
-          description: The type of consent template, e.g. Terms and Conditions
-          maxLength: 200
-          minLength: 1
-          example: Terms and Conditions
-        title:
-          type: string
-          description: >-
-            The name of the consent document that will be visible to end users
-            if you choose to make it visible.
-          maxLength: 200
-          minLength: 1
-          example: Terms and Conditions
-        version:
-          type: string
-          description: The version of the consent template
-          maxLength: 64
-          minLength: 1
-          example: 1.0.0
-        consentMethod:
-          type: string
-          description: The method of consent
-          maxLength: 200
-          minLength: 0
-          example: I agree to the terms and conditions
-        consentText:
-          type: string
-          description: The content of the consent template
-          maxLength: 65535
-          minLength: 1
-          example: <consent content>
-      required:
-        - consentType
-        - version
-        - consentText
-    ConsentTemplateCreateResponse:
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/ConsentTemplate'
-    CommonResponse:
-      title: CommonResponse
-      type: object
-      required:
-        - code
-        - requestId
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-      description: ''
-    RefWebhookEventType:
-      title: RefWebhookEventType
-      description: Event Type which will be sent as a notification via webhook
-      type: string
-      enum:
-        - USER_CREATED
-        - ACCOUNT_CREATED
-        - ACCOUNT_CONNECTED
-        - ACCOUNT_DISCONNECTED
-        - ACCOUNT_FAILED
-        - TASK_STARTED
-        - TASK_FINISHED
-        - ACCOUNT_SYNC_TASK_FINISHED
-        - ARCHIVE_STARTED
-        - ARCHIVE_ANALYZED
-        - ARCHIVE_REVOKED
-        - ARCHIVE_FAILED
-        - INVITE_INVITED
-        - INVITE_LINKED
-        - IDENTITY_ADDED
-        - RATING_ADDED
-        - TRANSACTIONS_ADDED
-        - DOCUMENTS_ADDED
-        - DOCUMENTS_UPDATED
-        - EMPLOYMENTS_ADDED
-        - EMPLOYMENTS_UPDATED
-        - INCOMES_ADDED
-        - INCOMES_UPDATED
-        - CONTRIBUTIONS_ADDED
-        - CONTRIBUTIONS_UPDATED
-        - EINCOMES_ADDED
-        - EINCOMES_UPDATED
-        - LIABILITIES_ADDED
-        - LIABILITIES_UPDATED
-        - INSIGHT_ADDED
-        - LINK_ADDED
-        - VERIFICATION_STARTED
-        - VERIFICATION_COMPLETED
-        - RECORD_CREATED
-        - RECORD_COMPLETED
-        - ALL_EVENTS
-      example: ACCOUNT_CONNECTED
-    Webhook:
-      title: Webhook
-      type: object
-      description: Receive event notifications via Webhooks.
-      x-examples:
-        Example:
-          id: 17bbf36498de4d68a0d4f86c7b62f69f
-          createdAt: '2021-04-14T09:30:24Z'
-          name: Event Notification Postback
-          url: https://webhook.clienturl.xyz
-          eventTypes:
-            - USER_CREATED
-          active: true
-          secret: a little secret
-          updatedAt: '2021-04-14T09:30:24Z'
-      x-tags:
-        - Webhooks
-      properties:
-        id:
-          $ref: '#/components/schemas/RefObjectID'
-        createdAt:
-          $ref: '#/components/schemas/RefDateTime'
-        name:
-          type: string
-          description: Name of the webhook endpoint
-          example: Event Notification Postback
-        url:
-          type: string
-          description: URL of webhook, must begin with https://
-          example: https://webhook.clienturl.xyz
-        secret:
-          type: string
-          description: >-
-            The key that will be used to generate HMAC-SHA512 hex digest value
-            in the Smile-Signature header.
-          example: a little secret
-        eventTypes:
-          type: array
-          description: Special events that you want to subscribe to
-          items:
-            $ref: '#/components/schemas/RefWebhookEventType'
-        active:
-          type: boolean
-          default: true
-          description: >-
-            Set to true or false depending on if you would like to enable this
-            webhook or not
-        includePayload:
-          type: boolean
-          default: false
-          description: >-
-            Whether to put all datapoints' payload into the
-            events(TASK_FINISHED_EVENT, ACCOUNT_SNYC_TASK_FINISHED_EVENT)
-        updatedAt:
-          $ref: '#/components/schemas/RefDateTime'
-      required:
-        - id
-        - createdAt
-        - name
-        - url
-        - eventTypes
-        - active
-        - updatedAt
-    WebhookListResponse:
-      title: WebhookListResponse
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Webhook'
-    WebhookPostRequest:
-      title: WebhookPostRequest
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 200
-          description: Name of the webhook endpoint
-          example: Event Notification Postback
-        url:
-          type: string
-          minLength: 1
-          maxLength: 500
-          description: URL of webhook, must begin with https://
-          example: https://webhook.clienturl.xyz
-        eventTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/RefWebhookEventType'
-        active:
-          type: boolean
-          description: Whether to set this webhook active to received events
-        includePayload:
-          type: boolean
-          default: false
-          description: >-
-            Whether to put all datapoints' payload into the
-            events(TASK_FINISHED, ACCOUNT_SNYC_TASK_FINISHED)
-        secret:
-          type: string
-          description: >-
-            The key that will be used to generate HMAC-SHA512 hex digest value
-            in the Smile-Signature header.
-          example: a little secret
-          minLength: 1
-          maxLength: 64
-      required:
-        - name
-        - url
-        - eventTypes
-        - active
-        - secret
-    WebhookPostResponse:
-      title: WebhookPostResponse
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Webhook'
-    WebhookGetResponse:
-      title: WebhookGetResponse
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Webhook'
-    WebhookDeleteResponse:
-      title: WebhookDeleteResponse
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-      x-examples: {}
-    TaskType:
-      type: string
-      description: Task type
-      enum:
-        - LINK_ACCOUNT
-        - ANALYZE_ARCHIVE
-        - CLASSIFY_ARCHIVE
-        - UPDATE_ACCOUNT
-    RefSourceType:
-      type: string
-      nullable: true
-      title: Ref-Source-Type
-      example: Account
-      enum:
-        - ACCOUNT
-        - UPLOAD
-        - ARCHIVE
-        - SOCIAL_SECURITY
-      description: Source Type
-    ObjectReferenceMetadata:
-      title: Reference Metadata
-      type: object
-      description: Metadata related to account-specific data
-      properties:
-        itemCreatedAt:
-          $ref: '#/components/schemas/RefDateTime'
-        createdAt:
-          $ref: '#/components/schemas/RefDateTime'
-        accountId:
-          type: string
-          deprecated: true
-          description: The accountId of this object
-        sourceId:
-          type: string
-          description: The ACCOUNT or ARCHIVE ID associated with this object
-        sourceType:
-          $ref: '#/components/schemas/RefSourceType'
-        userId:
-          type: string
-          description: The user ID associated with this object
-        providerId:
-          type: string
-          description: The provider ID associated with this object
-      required:
-        - createdAt
-        - itemCreatedAt
-        - sourceId
-        - sourceType
-        - userId
-        - providerId
-    Task:
-      type: object
-      required:
-        - id
-        - type
-        - startedAt
-        - status
-        - metadata
-      properties:
-        id:
-          type: string
-          description: Task id
-        type:
-          $ref: '#/components/schemas/TaskType'
-        startedAt:
-          $ref: '#/components/schemas/RefDateTime'
-        finishedAt:
-          $ref: '#/components/schemas/RefDateTime'
-        status:
-          type: string
-          description: Task status
-          enum:
-            - Started
-            - Finished
-        datapoints:
-          type: array
-          description: The datapoints saved when the task finished
-          items:
-            $ref: '#/components/schemas/RefDatapoint'
-        metadata:
-          $ref: '#/components/schemas/ObjectReferenceMetadata'
-    TaskListResponse:
-      title: Task List Response
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Task'
-    TaskGetResponse:
-      title: Task Get Response
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Task'
-    AccountConnectionStatus:
-      type: string
-      enum:
-        - PENDING
-        - AWAITING_MFA
-        - ERROR
-        - CONNECTED
-        - DISCONNECTED
-      description: Account connection status
-      example: CONNECTED
-    AccountMonitorStatus:
-      type: string
-      enum:
-        - ACTIVE
-        - USER_ACTION_REQUIRED
-        - UNSUPPORTED
-        - CUSTOMER_DISABLED
-      description: Account CDS status
-      example: ACTIVE
-    AccountErrorCode:
-      type: string
-      enum:
-        - ACCOUNT_DISABLED
-        - ACCOUNT_INACCESSIBLE
-        - ACCOUNT_INCOMPLETE
-        - ACCOUNT_LOCKED
-        - AUTH_REQUIRED
-        - EXPIRED_CREDENTIALS
-        - INVALID_ACCOUNT_TYPE
-        - INVALID_AUTH
-        - INVALID_CREDENTIALS
-        - INVALID_MFA
-        - MFA_TIMEOUT
-        - SERVICE_UNAVAILABLE
-        - SYSTEM_ERROR
-        - TOS_REQUIRED
-        - UNSUPPORTED_AUTH_TYPE
-        - UNSUPPORTED_MFA_METHOD
-        - null
-      description: Error code
-      example: ACCOUNT_DISABLED
-      nullable: true
-    Account:
-      title: Account
-      type: object
-      description: Account of end-user from a particular employment data provider.
-      x-tags:
-        - Accounts
-      x-examples:
-        Example:
-          id: 17bbf36498de4d68a0d4f86c7b62f69f
-          createdAt: '2021-04-14T09:30:24Z'
-          providerId: grab
-          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-          connectionStatus: ERROR
-          connection:
-            status: ERROR
-            errorCode: ACCOUNT_DISABLED
-            errorMessage: Account is disabled
-            updatedAt: '2021-04-14T09:30:24Z'
-          monitorStatus: ACTIVE
-          monitor:
-            stust: ACTIVE
-            updatedAt: '2021-04-14T09:30:24Z'
-      properties:
-        id:
-          $ref: '#/components/schemas/RefObjectID'
-        createdAt:
-          $ref: '#/components/schemas/RefDateTime'
-        providerId:
-          type: string
-          example: grab
-          description: ID of the data provider
-        userId:
-          type: string
-          description: User ID associated with this account
-          example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
-        connectionStatus:
-          $ref: '#/components/schemas/AccountConnectionStatus'
-        monitorStatus:
-          $ref: '#/components/schemas/AccountMonitorStatus'
-        monitor:
-          type: object
-          required:
-            - status
-          properties:
-            status:
-              $ref: '#/components/schemas/AccountMonitorStatus'
-            updatedAt:
-              $ref: '#/components/schemas/RefDateTime'
-        connection:
-          type: object
-          required:
-            - status
-            - updatedAt
-          properties:
-            status:
-              $ref: '#/components/schemas/AccountConnectionStatus'
-            errorCode:
-              $ref: '#/components/schemas/AccountErrorCode'
-            errorMessage:
-              type: string
-              description: Error message
-              example: Account is disabled
-              nullable: true
-            updatedAt:
-              $ref: '#/components/schemas/RefDateTime'
-      required:
-        - id
-        - createdAt
-        - providerId
-        - userId
-        - connectionStatus
-        - connection
-        - monitorStatus
-        - monitor
-    AccountListResponse:
-      title: Account List Response
-      type: object
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/Account'
-      x-examples: {}
-    AccountGetResponse:
-      title: Account Get Response
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-        data:
-          $ref: '#/components/schemas/Account'
-      x-examples: {}
-    ObjectReferenceMetadata2:
-      title: Reference Metadata2
-      type: object
-      description: Metadata related to account-payload data
-      properties:
-        sourceId:
-          type: string
-          description: The ACCOUNT or ARCHIVE ID associated with this object
-        sourceType:
-          $ref: '#/components/schemas/RefSourceType'
-        userId:
-          type: string
-          description: The user ID associated with this object
-        providerId:
-          type: string
-          description: The provider ID associated with this object
-      required:
-        - sourceId
-        - sourceType
-        - userId
-        - providerId
     RefGender:
       type: string
       title: GenderEnum
@@ -11897,6 +11457,768 @@ components:
           description: Date and time
         features:
           $ref: '#/components/schemas/ObjectFeature'
+    AllDatapointPayload:
+      type: object
+      properties:
+        identity:
+          $ref: '#/components/schemas/IdentityPayload'
+        rating:
+          $ref: '#/components/schemas/RatingPayload'
+        documents:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/DocumentPayload'
+        incomes:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/IncomePayload'
+        transactions:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/TransactionPayload'
+        employments:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/EmploymentPayload'
+        contributions:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ContributionPayload'
+        liabilities:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/LiabilityPayload'
+        eincomes:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/EincomePayload'
+        links:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/LinkPayload'
+        insight:
+          $ref: '#/components/schemas/InsightPayload'
+    UserPayload:
+      description: The payload data for user
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/UserSession'
+        forms:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The form ID
+                example: form-xxxxxxxxxxx
+              name:
+                type: string
+                description: The form name
+                example: Personal Information
+              data:
+                type: object
+                description: The form data
+        accounts:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The account ID
+                example: a-xxxxxxxxxxx
+              providerId:
+                type: string
+                description: The provider ID
+                example: nbi_ph
+              payload:
+                $ref: '#/components/schemas/AllDatapointPayload'
+        archives:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: The archive ID
+                example: archive-xxxxxxxxxxx
+              fileType:
+                type: string
+                description: The file type
+                example: payslip
+              payload:
+                $ref: '#/components/schemas/AllDatapointPayload'
+    UserPayloadGetResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+          description: The response code
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+          description: The response message
+        data:
+          $ref: '#/components/schemas/UserPayload'
+    TokenPostResponse:
+      title: Token Post Response
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Token'
+      x-examples: {}
+    ConsentTemplate:
+      properties:
+        id:
+          description: Unique id for this consent template
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+          example: '2021-04-14T09:30:24Z'
+        consentType:
+          type: string
+          maxLength: 200
+          minLength: 1
+          example: Terms and Conditions
+        title:
+          type: string
+          maxLength: 200
+          minLength: 1
+          example: Terms and Conditions
+        version:
+          type: string
+          maxLength: 64
+          minLength: 1
+          example: 1.0.0
+        consentMethod:
+          type: string
+          maxLength: 200
+          minLength: 0
+          example: I agree to the terms and conditions
+        consentText:
+          type: string
+          maxLength: 65535
+          minLength: 1
+          example: <consent content>
+    ConsentTemplateListResponseData:
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          items:
+            $ref: '#/components/schemas/ConsentTemplate'
+          type: array
+      type: object
+    ConsentTemplateListResponse:
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/ConsentTemplateListResponseData'
+      title: ConsentTemplatesListResponse
+      type: object
+      x-examples: {}
+    ConsentTemplateCreateRequest:
+      properties:
+        consentType:
+          type: string
+          description: The type of consent template, e.g. Terms and Conditions
+          maxLength: 200
+          minLength: 1
+          example: Terms and Conditions
+        title:
+          type: string
+          description: >-
+            The name of the consent document that will be visible to end users
+            if you choose to make it visible.
+          maxLength: 200
+          minLength: 1
+          example: Terms and Conditions
+        version:
+          type: string
+          description: The version of the consent template
+          maxLength: 64
+          minLength: 1
+          example: 1.0.0
+        consentMethod:
+          type: string
+          description: The method of consent
+          maxLength: 200
+          minLength: 0
+          example: I agree to the terms and conditions
+        consentText:
+          type: string
+          description: The content of the consent template
+          maxLength: 65535
+          minLength: 1
+          example: <consent content>
+      required:
+        - consentType
+        - version
+        - consentText
+    ConsentTemplateCreateResponse:
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/ConsentTemplate'
+    CommonResponse:
+      title: CommonResponse
+      type: object
+      required:
+        - code
+        - requestId
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+      description: ''
+    RefWebhookEventType:
+      title: RefWebhookEventType
+      description: Event Type which will be sent as a notification via webhook
+      type: string
+      enum:
+        - USER_CREATED
+        - ACCOUNT_CREATED
+        - ACCOUNT_CONNECTED
+        - ACCOUNT_DISCONNECTED
+        - ACCOUNT_FAILED
+        - TASK_STARTED
+        - TASK_FINISHED
+        - ACCOUNT_SYNC_TASK_FINISHED
+        - ARCHIVE_STARTED
+        - ARCHIVE_ANALYZED
+        - ARCHIVE_REVOKED
+        - ARCHIVE_FAILED
+        - INVITE_INVITED
+        - INVITE_LINKED
+        - IDENTITY_ADDED
+        - RATING_ADDED
+        - TRANSACTIONS_ADDED
+        - DOCUMENTS_ADDED
+        - DOCUMENTS_UPDATED
+        - EMPLOYMENTS_ADDED
+        - EMPLOYMENTS_UPDATED
+        - INCOMES_ADDED
+        - INCOMES_UPDATED
+        - CONTRIBUTIONS_ADDED
+        - CONTRIBUTIONS_UPDATED
+        - EINCOMES_ADDED
+        - EINCOMES_UPDATED
+        - LIABILITIES_ADDED
+        - LIABILITIES_UPDATED
+        - INSIGHT_ADDED
+        - LINK_ADDED
+        - VERIFICATION_STARTED
+        - VERIFICATION_COMPLETED
+        - RECORD_CREATED
+        - RECORD_COMPLETED
+        - USER_SESSION_COMPLETED
+        - USER_SESSION_RESET
+        - ALL_EVENTS
+      example: ACCOUNT_CONNECTED
+    Webhook:
+      title: Webhook
+      type: object
+      description: Receive event notifications via Webhooks.
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          createdAt: '2021-04-14T09:30:24Z'
+          name: Event Notification Postback
+          url: https://webhook.clienturl.xyz
+          eventTypes:
+            - USER_CREATED
+          active: true
+          secret: a little secret
+          updatedAt: '2021-04-14T09:30:24Z'
+      x-tags:
+        - Webhooks
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        name:
+          type: string
+          description: Name of the webhook endpoint
+          example: Event Notification Postback
+        url:
+          type: string
+          description: URL of webhook, must begin with https://
+          example: https://webhook.clienturl.xyz
+        secret:
+          type: string
+          description: >-
+            The key that will be used to generate HMAC-SHA512 hex digest value
+            in the Smile-Signature header.
+          example: a little secret
+        eventTypes:
+          type: array
+          description: Special events that you want to subscribe to
+          items:
+            $ref: '#/components/schemas/RefWebhookEventType'
+        active:
+          type: boolean
+          default: true
+          description: >-
+            Set to true or false depending on if you would like to enable this
+            webhook or not
+        includePayload:
+          type: boolean
+          default: false
+          description: >-
+            Whether to put all datapoints' payload into the
+            events(TASK_FINISHED_EVENT, ACCOUNT_SNYC_TASK_FINISHED_EVENT)
+        updatedAt:
+          $ref: '#/components/schemas/RefDateTime'
+      required:
+        - id
+        - createdAt
+        - name
+        - url
+        - eventTypes
+        - active
+        - updatedAt
+    WebhookListResponse:
+      title: WebhookListResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Webhook'
+    WebhookPostRequest:
+      title: WebhookPostRequest
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 200
+          description: Name of the webhook endpoint
+          example: Event Notification Postback
+        url:
+          type: string
+          minLength: 1
+          maxLength: 500
+          description: URL of webhook, must begin with https://
+          example: https://webhook.clienturl.xyz
+        eventTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/RefWebhookEventType'
+        active:
+          type: boolean
+          description: Whether to set this webhook active to received events
+        includePayload:
+          type: boolean
+          default: false
+          description: >-
+            Whether to put all datapoints' payload into the
+            events(TASK_FINISHED, ACCOUNT_SNYC_TASK_FINISHED)
+        secret:
+          type: string
+          description: >-
+            The key that will be used to generate HMAC-SHA512 hex digest value
+            in the Smile-Signature header.
+          example: a little secret
+          minLength: 1
+          maxLength: 64
+      required:
+        - name
+        - url
+        - eventTypes
+        - active
+        - secret
+    WebhookPostResponse:
+      title: WebhookPostResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Webhook'
+    WebhookGetResponse:
+      title: WebhookGetResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Webhook'
+    WebhookDeleteResponse:
+      title: WebhookDeleteResponse
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+      x-examples: {}
+    TaskType:
+      type: string
+      description: Task type
+      enum:
+        - LINK_ACCOUNT
+        - ANALYZE_ARCHIVE
+        - CLASSIFY_ARCHIVE
+        - UPDATE_ACCOUNT
+    RefSourceType:
+      type: string
+      nullable: true
+      title: Ref-Source-Type
+      example: Account
+      enum:
+        - ACCOUNT
+        - UPLOAD
+        - ARCHIVE
+        - SOCIAL_SECURITY
+      description: Source Type
+    ObjectReferenceMetadata:
+      title: Reference Metadata
+      type: object
+      description: Metadata related to account-specific data
+      properties:
+        itemCreatedAt:
+          $ref: '#/components/schemas/RefDateTime'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        accountId:
+          type: string
+          deprecated: true
+          description: The accountId of this object
+        sourceId:
+          type: string
+          description: The ACCOUNT or ARCHIVE ID associated with this object
+        sourceType:
+          $ref: '#/components/schemas/RefSourceType'
+        userId:
+          type: string
+          description: The user ID associated with this object
+        providerId:
+          type: string
+          description: The provider ID associated with this object
+      required:
+        - createdAt
+        - itemCreatedAt
+        - sourceId
+        - sourceType
+        - userId
+        - providerId
+    Task:
+      type: object
+      required:
+        - id
+        - type
+        - startedAt
+        - status
+        - metadata
+      properties:
+        id:
+          type: string
+          description: Task id
+        type:
+          $ref: '#/components/schemas/TaskType'
+        startedAt:
+          $ref: '#/components/schemas/RefDateTime'
+        finishedAt:
+          $ref: '#/components/schemas/RefDateTime'
+        status:
+          type: string
+          description: Task status
+          enum:
+            - Started
+            - Finished
+        datapoints:
+          type: array
+          description: The datapoints saved when the task finished
+          items:
+            $ref: '#/components/schemas/RefDatapoint'
+        metadata:
+          $ref: '#/components/schemas/ObjectReferenceMetadata'
+    TaskListResponse:
+      title: Task List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Task'
+    TaskGetResponse:
+      title: Task Get Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Task'
+    AccountConnectionStatus:
+      type: string
+      enum:
+        - PENDING
+        - AWAITING_MFA
+        - ERROR
+        - CONNECTED
+        - DISCONNECTED
+      description: Account connection status
+      example: CONNECTED
+    AccountMonitorStatus:
+      type: string
+      enum:
+        - ACTIVE
+        - USER_ACTION_REQUIRED
+        - UNSUPPORTED
+        - CUSTOMER_DISABLED
+      description: Account CDS status
+      example: ACTIVE
+    AccountErrorCode:
+      type: string
+      enum:
+        - ACCOUNT_DISABLED
+        - ACCOUNT_INACCESSIBLE
+        - ACCOUNT_INCOMPLETE
+        - ACCOUNT_LOCKED
+        - AUTH_REQUIRED
+        - EXPIRED_CREDENTIALS
+        - INVALID_ACCOUNT_TYPE
+        - INVALID_AUTH
+        - INVALID_CREDENTIALS
+        - INVALID_MFA
+        - MFA_TIMEOUT
+        - SERVICE_UNAVAILABLE
+        - SYSTEM_ERROR
+        - TOS_REQUIRED
+        - UNSUPPORTED_AUTH_TYPE
+        - UNSUPPORTED_MFA_METHOD
+        - null
+      description: Error code
+      example: ACCOUNT_DISABLED
+      nullable: true
+    Account:
+      title: Account
+      type: object
+      description: Account of end-user from a particular employment data provider.
+      x-tags:
+        - Accounts
+      x-examples:
+        Example:
+          id: 17bbf36498de4d68a0d4f86c7b62f69f
+          createdAt: '2021-04-14T09:30:24Z'
+          providerId: grab
+          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+          connectionStatus: ERROR
+          connection:
+            status: ERROR
+            errorCode: ACCOUNT_DISABLED
+            errorMessage: Account is disabled
+            updatedAt: '2021-04-14T09:30:24Z'
+          monitorStatus: ACTIVE
+          monitor:
+            stust: ACTIVE
+            updatedAt: '2021-04-14T09:30:24Z'
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        providerId:
+          type: string
+          example: grab
+          description: ID of the data provider
+        userId:
+          type: string
+          description: User ID associated with this account
+          example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+        connectionStatus:
+          $ref: '#/components/schemas/AccountConnectionStatus'
+        monitorStatus:
+          $ref: '#/components/schemas/AccountMonitorStatus'
+        monitor:
+          type: object
+          required:
+            - status
+          properties:
+            status:
+              $ref: '#/components/schemas/AccountMonitorStatus'
+            updatedAt:
+              $ref: '#/components/schemas/RefDateTime'
+        connection:
+          type: object
+          required:
+            - status
+            - updatedAt
+          properties:
+            status:
+              $ref: '#/components/schemas/AccountConnectionStatus'
+            errorCode:
+              $ref: '#/components/schemas/AccountErrorCode'
+            errorMessage:
+              type: string
+              description: Error message
+              example: Account is disabled
+              nullable: true
+            updatedAt:
+              $ref: '#/components/schemas/RefDateTime'
+      required:
+        - id
+        - createdAt
+        - providerId
+        - userId
+        - connectionStatus
+        - connection
+        - monitorStatus
+        - monitor
+    AccountListResponse:
+      title: Account List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Account'
+      x-examples: {}
+    AccountGetResponse:
+      title: Account Get Response
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/Account'
+      x-examples: {}
+    ObjectReferenceMetadata2:
+      title: Reference Metadata2
+      type: object
+      description: Metadata related to account-payload data
+      properties:
+        sourceId:
+          type: string
+          description: The ACCOUNT or ARCHIVE ID associated with this object
+        sourceType:
+          $ref: '#/components/schemas/RefSourceType'
+        userId:
+          type: string
+          description: The user ID associated with this object
+        providerId:
+          type: string
+          description: The provider ID associated with this object
+      required:
+        - sourceId
+        - sourceType
+        - userId
+        - providerId
     AccountPayload:
       required:
         - metadata
@@ -16607,87 +16929,6 @@ components:
         - sourceType
         - taskType
         - providers
-    AllDatapointPayload:
-      type: object
-      properties:
-        identity:
-          $ref: '#/components/schemas/IdentityPayload'
-        rating:
-          $ref: '#/components/schemas/RatingPayload'
-        documents:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/DocumentPayload'
-        incomes:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/IncomePayload'
-        transactions:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/TransactionPayload'
-        employments:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/EmploymentPayload'
-        contributions:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/ContributionPayload'
-        liabilities:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/LiabilityPayload'
-        eincomes:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/EincomePayload'
-        links:
-          type: object
-          properties:
-            nextCursor:
-              $ref: '#/components/schemas/ObjectNextCursor'
-            items:
-              type: array
-              items:
-                $ref: '#/components/schemas/LinkPayload'
-        insight:
-          $ref: '#/components/schemas/InsightPayload'
     TaskFinishedEventData:
       type: object
       properties:
