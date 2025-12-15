@@ -1,8 +1,10 @@
 ---
 title: Employments
-excerpt: ""
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: employments
+content:
+  excerpt: ''
 ---
 
 The Employments data point can contain valuable information about your users' employment status. Employment data is most often retrieved from government services and institutions as well as payroll platforms connected by your user to Smile.

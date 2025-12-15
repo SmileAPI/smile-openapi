@@ -1,8 +1,10 @@
 ---
 title: Ratings
-excerpt: ""
-category: 62ce2a159aafea009af30dab  
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: ratings
+content:
+  excerpt: ''
 ---
 
 Ratings 数据端点提供用户在[ Provider ](/reference/providers)平台上的评级信息。如果所选平台有这个用户的该项数据，Smile 就会为您检索该数据，并会根据用户的当前评分和平台上允许的最大评分来计算一个百分比的评分。

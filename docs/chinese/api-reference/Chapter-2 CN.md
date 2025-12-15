@@ -1,8 +1,10 @@
 ---
 title: 了解 API
-excerpt: ""  
-category: 62ce2a159aafea009af30da7
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/API 引导'
 slug: chapter-2-cn
+content:
+  excerpt: ''
 ---
 
 

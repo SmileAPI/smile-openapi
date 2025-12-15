@@ -1,8 +1,10 @@
 ---
 title: Signals(Alpha)
-excerpt: ''
-category: 62ce2a159aafea009af30dab
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: signals-alpha
+content:
+  excerpt: ''
 ---
 
 在当今快节奏的金融环境中，准确及时的风险评估对于做出明智的决策至关重要。Smile API 的 Signals API 通过使用个人的手机号码或电子邮件地址，从各种活动和事件中提供实时风险信号，从而提供了一个强大的解决方案。

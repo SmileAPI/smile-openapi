@@ -1,8 +1,10 @@
 ---
 title: Transactions
-excerpt: ""
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: transactions
+content:
+  excerpt: ''
 ---
 
 The Transactions data point is available for many gig platform providers, and may contain both income and expense transactions as well as e-wallet deposits or withdrawals.

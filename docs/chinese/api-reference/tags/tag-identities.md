@@ -1,8 +1,10 @@
 ---
 title: Identities
-excerpt: ""
-category: 62ce2a159aafea009af30dab
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: identities
+content:
+  excerpt: ''
 ---
 
 在大多数情况下，Identities 数据端点包含来自提供商的主要用户数据。将来自不同提供商的各种身份数据放在一起，可以让您更全面地了解用户信息，并有机会跨多个提供者验证他们的数据。

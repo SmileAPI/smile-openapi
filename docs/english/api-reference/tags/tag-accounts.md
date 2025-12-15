@@ -1,8 +1,10 @@
 ---
 title: Accounts
-excerpt: ""
-category: 6294c0fd9494580032b22740
+category:
+  uri: '/branches/1.0/categories/reference/NETWORK RESOURCES'
 slug: accounts
+content:
+  excerpt: ''
 ---
 
 Accounts in the Smile Network form the basis of the data shared by the user to our clients. Each user may connect multiple accounts among the data [Providers](/reference/providers) that Smile supports, which provides a clearer picture of their history and information.

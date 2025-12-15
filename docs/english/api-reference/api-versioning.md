@@ -1,8 +1,10 @@
 ---
 title: Version Management
-excerpt: ""  
-category: 62159fe61eda1d0047f76c9a
+category:
+  uri: '/branches/1.0/categories/reference/API Guide'
 slug: api-versioning
+content:
+  excerpt: ''
 ---
 
 # Smile API Version Management Guide

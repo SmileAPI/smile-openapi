@@ -1,8 +1,10 @@
 ---
-title: Users  
-excerpt: ""  
-category: 62ce2a159aafea009af30daa  
+title: Users
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/Smile Network'
 slug: users
+content:
+  excerpt: ''
 ---
 
 所有的用户都与一个特定的租户关联，由创建用户时使用的 API key 和 secret 来识别。

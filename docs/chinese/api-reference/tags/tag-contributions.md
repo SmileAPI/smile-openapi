@@ -1,8 +1,10 @@
 ---
 title: Contributions
-excerpt: ""
-category: 62ce2a159aafea009af30dab
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: contributions
+content:
+  excerpt: ''
 ---
 
 Contributions 数据端点允许您识别用户的社会保险缴费行为。根据数据来源，这个数据可以让您：

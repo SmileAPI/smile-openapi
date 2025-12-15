@@ -1,8 +1,10 @@
 ---
 title: Insights
-excerpt: ''
-category: 62ce2a159aafea009af30dab
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: insights
+content:
+  excerpt: ''
 ---
 
 Smile Insights API 根据 [Users](/reference/users) 的可用数据（如收入和就业数据）提供常用计算方法计算出的风险因子。

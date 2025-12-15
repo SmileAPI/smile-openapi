@@ -1,8 +1,10 @@
 ---
 title: Account Linking
-excerpt: ""  
-category: 6215975992e4610014e7b757
+category:
+  uri: '/branches/1.0/categories/reference/API Guide'
 slug: chapter-4
+content:
+  excerpt: ''
 ---
 
 **Smile Wink**, Smile API's Account Linking service, enables secure, user-permissioned sharing of identity, income, and employment data between individuals and third-party organizations.

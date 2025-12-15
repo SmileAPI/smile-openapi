@@ -1,8 +1,10 @@
 ---
 title: Verifications
-excerpt: ""  
-category: 62ce2a159aafea009af30dab
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: verification
+content:
+  excerpt: ''
 ---
 
 Snap Verifications 帮助企业改进身份验证流程。客户只需输入用户的身份详细信息（如姓名、联系信息和 ID 号码），Snap Verification 就会将这些信息与可靠的数据源进行匹配和验证，并输出每个属性的验证状态。

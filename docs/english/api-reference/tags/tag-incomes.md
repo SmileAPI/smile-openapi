@@ -1,8 +1,10 @@
 ---
 title: Incomes
-excerpt: ""
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: incomes
+content:
+  excerpt: ''
 ---
 
 The Incomes data point allows you to retrieve users' available income records depending on the available data from the provider. Income data can primarily be obtained from:

@@ -1,8 +1,10 @@
 ---
 title: Identities
-excerpt: ""
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: identities
+content:
+  excerpt: ''
 ---
 
 The Identities data point, in most cases, contain the meat of the data about the user as made available from the provider. Putting together various identity data from different providers can give you a fuller view of the user's information as well as opportunities to verify their data across multiple providers.

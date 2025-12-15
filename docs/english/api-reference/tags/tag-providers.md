@@ -1,8 +1,10 @@
 ---
-title: Providers  
-excerpt: ""  
-category: 6294c0fd9494580032b22740  
+title: Providers
+category:
+  uri: '/branches/1.0/categories/reference/NETWORK RESOURCES'
 slug: providers
+content:
+  excerpt: ''
 ---
 Smile maintains a long list of providers that can be retrieved if you require this information in your implementation. These providers are a combination of:
 

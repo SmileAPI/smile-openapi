@@ -1,8 +1,10 @@
 ---
 title: Understanding the API
-excerpt: ""  
-category: 6215975992e4610014e7b757
+category:
+  uri: '/branches/1.0/categories/reference/API Guide'
 slug: chapter-2
+content:
+  excerpt: ''
 ---
 
 <!-- focus: false -->
@@ -12,10 +14,10 @@ slug: chapter-2
 
 The available resources in the Smile Open API are made up of two types:
 
-- Smile Network Resources
+- Smile '/branches/1.0/categories/reference/NETWORK RESOURCES'
 - User Data
 
-### Smile Network Resources
+### Smile '/branches/1.0/categories/reference/NETWORK RESOURCES'
 
 These are data resources for integrating and getting data from the Smile Open API.
 

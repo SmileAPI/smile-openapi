@@ -1,8 +1,10 @@
 ---
 title: Archives
-excerpt: ""
-category: 6294c0fd9494580032b22740
+category:
+  uri: '/branches/1.0/categories/reference/NETWORK RESOURCES'
 slug: archives
+content:
+  excerpt: ''
 ---
 
 Smile API can also store and process photos and other files to aid in verifying users' records. If enabled, users may upload photos, scans, or PDF files as a fallback method or as an additional data point for your records and verification use.

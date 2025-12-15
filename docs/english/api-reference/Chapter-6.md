@@ -1,8 +1,10 @@
 ---
 title: Risk Screening
-excerpt: ''
-category: 6215975992e4610014e7b757
+category:
+  uri: '/branches/1.0/categories/reference/API Guide'
 slug: chapter-6
+content:
+  excerpt: ''
 ---
 
 **Smile Signals** provides a powerful Risk Screening solution by delivering real-time risk signals using a person's mobile number or email address, from a wide variety of activities and events, to keep up to date in today's fast-paced financial landscape where accurate and timely risk assessment is crucial for making informed decisions.

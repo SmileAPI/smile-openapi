@@ -1,8 +1,10 @@
 ---
 title: Uploads
-excerpt: ""
-category: 64c78531461848004b92b92f
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/Smile Network'
 slug: uploads
+content:
+  excerpt: ''
 ---
 
 Smile API 还可以存储和处理照片及其他文件，以帮助验证用户的记录。启用后用户可以上传照片、扫描件或 PDF 文件作为备份，或作为额外的数据点供您记录和验证使用。

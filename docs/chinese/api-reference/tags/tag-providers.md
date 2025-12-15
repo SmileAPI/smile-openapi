@@ -1,8 +1,10 @@
 ---
-title: Providers  
-excerpt: ""  
-category: 62ce2a159aafea009af30daa  
+title: Providers
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/Smile Network'
 slug: providers
+content:
+  excerpt: ''
 ---
 如果您需要就业数据提供商的信息，您可以从 Smile 维护着的一个长名单中检索到。这些提供商包含以下分类：
 

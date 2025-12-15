@@ -1,8 +1,10 @@
 ---
-title: 连接账户 
-excerpt: ""  
-category: 62ce2a159aafea009af30da7
+title: 连接账户
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/API 引导'
 slug: chapter-4-cn
+content:
+  excerpt: ''
 ---
 
 

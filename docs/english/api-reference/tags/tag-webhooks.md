@@ -1,8 +1,10 @@
 ---
 title: Webhooks
-excerpt: ""
-category: 6294c0fd9494580032b22740
+category:
+  uri: '/branches/1.0/categories/reference/NETWORK RESOURCES'
 slug: webhooks
+content:
+  excerpt: ''
 ---
 
 ## Webhooks

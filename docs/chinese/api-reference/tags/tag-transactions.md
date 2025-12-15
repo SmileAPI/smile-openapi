@@ -1,8 +1,10 @@
 ---
 title: Transactions
-excerpt: ""
-category: 62ce2a159aafea009af30dab
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: transactions
+content:
+  excerpt: ''
 ---
 
 Transactions 数据端点可用于许多 gig 平台，可能包含收入、支出交易以及电子钱包存款或提款的信息。

@@ -1,8 +1,10 @@
 ---
 title: Intelligent Document Processing
-excerpt: ""  
-category: 6294c0fd9494580032b22740
+category:
+  uri: '/branches/1.0/categories/reference/NETWORK RESOURCES'
 slug: intelligent-document-processing
+content:
+  excerpt: ''
 ---
 
 Smile Snap's Intelligent Document Processing (IDP) service combines the efficiency of optical character recognition (OCR) and the benefits of Artificial Intelligence. IDP captures, comprehends, and contextualizes the content of documents with remarkable accuracy.

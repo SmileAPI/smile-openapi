@@ -1,8 +1,10 @@
 ---
 title: Contributions
-excerpt: ""
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: contributions
+content:
+  excerpt: ''
 ---
 
 The Contributions data point allows you to identify the user's social security contributions activity. This data, depending on the source, can allow you to:

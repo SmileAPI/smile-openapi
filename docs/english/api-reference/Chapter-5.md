@@ -1,8 +1,10 @@
 ---
 title: Document Processing
-excerpt: ''
-category: 6215975992e4610014e7b757
+category:
+  uri: '/branches/1.0/categories/reference/API Guide'
 slug: chapter-5
+content:
+  excerpt: ''
 ---
 
 **Smile Snap**, Smile API's powerful Document Processing product, is designed as both a seamless integration with Wink Widget but is also available as a standalone, API-only service. Smile Snap's automated analysis feature extracts crucial information from Income Tax Documents and Payslips, such as employment details and income data, and then analyzes the document for signs of tampering, computational inconsistencies, and other issues.

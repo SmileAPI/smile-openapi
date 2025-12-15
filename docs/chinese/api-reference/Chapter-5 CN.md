@@ -1,8 +1,10 @@
 ---
 title: 文档处理
-excerpt: ''
-category: 62ce2a159aafea009af30da7
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/API 引导'
 slug: chapter-5-cn
+content:
+  excerpt: ''
 ---
 
 **Smile Snap** 是 Smile API 强大的文档处理产品，它既可以与 Wink Widget无缝集成，也可以作为独立 API 服务使用。Smile Snap 的自动分析功能可以从所得税文件和工资单中提取关键信息，如就业详情和收入数据，然后分析文档是否存在篡改迹象、计算不一致等问题。

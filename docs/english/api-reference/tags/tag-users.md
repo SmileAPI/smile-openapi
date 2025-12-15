@@ -1,8 +1,10 @@
 ---
-title: Users  
-excerpt: ""  
-category: 6294c0fd9494580032b22740  
+title: Users
+category:
+  uri: '/branches/1.0/categories/reference/NETWORK RESOURCES'
 slug: users
+content:
+  excerpt: ''
 ---
 
 All users who have initiated the account linking process with at least one data provider account is related to a specific tenant, identified by the API key and secret used while creating their Smile record.

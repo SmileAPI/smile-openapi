@@ -1,8 +1,10 @@
 ---
 title: Smile Network Links
-excerpt: ""
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: links
+content:
+  excerpt: ''
 ---
 
 Multiple Application Warning (MAW) offers lenders notifications when a potential borrower has applied for loans with multiple financial institutions. With MAW, lenders can make better and informed decisions when assessing risk with the information of their customer's behavior across the network.

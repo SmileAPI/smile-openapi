@@ -1,8 +1,10 @@
 ---
 title: 表单处理
-excerpt: ''  
-category: 62ce2a159aafea009af30da7  
+category:
+   uri: '/branches/1.0-Chinese/categories/reference/API 引导'
 slug: chapter-7-cn
+content:
+  excerpt: ''
 ---
 
 **Smile Flip** 是一款强大且灵活的无代码用户旅程构建工具，旨在帮助您快速将旧有的纸质表单转换为用户可在任何地方访问的数字表单，从而安全地与您的组织共享数据。

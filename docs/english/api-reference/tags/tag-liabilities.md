@@ -1,8 +1,10 @@
 ---
 title: Liabilities
-excerpt: ""
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: liabilities
+content:
+  excerpt: ''
 ---
 
 

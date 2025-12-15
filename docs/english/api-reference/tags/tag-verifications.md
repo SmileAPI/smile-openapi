@@ -1,8 +1,10 @@
 ---
 title: Verifications
-excerpt: ""  
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: verification
+content:
+  excerpt: ''
 ---
 
 Snap Verifications helps improve the identity verification process for businesses. By simply providing user-provided identity details as input (such as names, contact information, and ID numbers), Snap Verification matches and validates this information against reliable data sources, yielding output indicating the verification status of each attribute.

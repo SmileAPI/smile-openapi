@@ -1,8 +1,10 @@
 ---
-title: 快速入门  
-excerpt: ""  
-category: 62ce2a159aafea009af30da7 
+title: 快速入门
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/API 引导'
 slug: chapter-1-cn
+content:
+  excerpt: ''
 ---
 
 <!-- focus: false -->

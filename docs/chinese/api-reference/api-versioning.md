@@ -1,8 +1,10 @@
 ---
 title: 版本管理
-excerpt: ""  
-category: 62ce2a159aafea009af30da8
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/API 引导'
 slug: api-versioning
+content:
+  excerpt: ''
 ---
 
 # Smile API 版本管理指南

@@ -1,8 +1,10 @@
 ---
 title: Data Verification
-excerpt: ''
-category: 66611ec162e8c700572c4be3
+category:
+  uri: '/branches/1.0/categories/reference/Smile Snap'
 slug: user-data-verification
+content:
+  excerpt: ''
 ---
 
 The Smile Snap Data Verification API allows developers to verify a person's provided data against authoritative sources without the need for a user login. There is also a Query mode for this service, see [Profile Data](https://docs.getsmileapi.com/reference/query-identity).

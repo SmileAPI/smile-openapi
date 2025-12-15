@@ -1,8 +1,10 @@
 ---
 title: 事件通知
-excerpt: ""  
-category: 62ce2a159aafea009af30da7
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/API 引导'
 slug: chapter-3-cn
+content:
+  excerpt: ''
 ---
 
 <!-- focus: false -->

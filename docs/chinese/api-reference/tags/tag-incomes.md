@@ -1,8 +1,10 @@
 ---
 title: Incomes
-excerpt: ""
-category: 62ce2a159aafea009af30dab
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: incomes
+content:
+  excerpt: ''
 ---
 
 Incomes 数据端点允许您检索用户可用收入记录，该记录根据提供商的可用数据得到。收入数据主要可以从以下方面获得：

@@ -1,8 +1,10 @@
 ---
 title: Data Verification
-excerpt: ''
-category: 64c78531461848004b92b92f
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/Smile Snap'
 slug: user-data-verification
+content:
+  excerpt: ''
 ---
 
 无需用户登录，Smile Snap Data Verification API 允许开发人员根据官方数据源检索个人数据。这项服务还有一个查询模式，请参阅 [概况数据](https://docs.getsmileapi.com/reference/query-identity) 。

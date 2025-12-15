@@ -1,8 +1,10 @@
 ---
 title: Ratings
-excerpt: ""
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: ratings
+content:
+  excerpt: ''
 ---
 
 The Ratings data point provides information on the user's ratings as available in the [Provider](/reference/providers) platform. If the platform selected has this data on the user, Smile retrieves this data for your records and also calculates a percentage rating based on the user's current rating and the maximum rating allowed on the platform.

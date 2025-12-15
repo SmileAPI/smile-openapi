@@ -1,8 +1,10 @@
 ---
 title: 风险筛查
-excerpt: ""
-category: 62ce2a159aafea009af30da7
+category:
+   uri: '/branches/1.0-Chinese/categories/reference/API 引导'
 slug: chapter-6-cn
+content:
+  excerpt: ''
 ---
 
 **Smile Signals** 提供强大的风险筛查解决方案，通过一个人的手机号码或电子邮件地址，从各种活动和事件中获取实时风险信号，帮助您在当今快节奏的金融环境中保持最新动态——在这样的环境中，准确及时的风险评估对于做出明智决策至关重要。

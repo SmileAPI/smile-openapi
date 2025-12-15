@@ -1,8 +1,10 @@
 ---
 title: Insights
-excerpt: ''
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: insights
+content:
+  excerpt: ''
 ---
 
 The Smile Insights API provides common calculations for risk factors based on available data from [Users](/reference/users), such as income and employment data.

@@ -1,8 +1,10 @@
 ---
 title: Tokens
-excerpt: ""
-category: 62ce2a159aafea009af30daa
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/Smile Network'
 slug: tokens
+content:
+  excerpt: ''
 ---
 
 为了给用户提供授权访问，您的应用程序应该从 /users 端点获得一个用户 token（ **链接 token** ）。这是一个一次性的、短暂的 token ，用于初始化我们的 **Wink Widget** 。

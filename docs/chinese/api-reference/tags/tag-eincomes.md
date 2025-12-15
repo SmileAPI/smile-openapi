@@ -1,8 +1,10 @@
 ---
 title: Estimated Incomes
-excerpt: ""  
-category: 62ce2a159aafea009af30dab
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: estimated-incomes
+content:
+  excerpt: ''
 ---
 
 在收入信息有限的情况下，Smile 还可以从二级数据类型中提供额外的衍生收入信息，比如:

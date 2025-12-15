@@ -1,8 +1,10 @@
 ---
 title: Employments
-excerpt: ""
-category: 62ce2a159aafea009af30dab
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: employments
+content:
+  excerpt: ''
 ---
 
 Employments 数据端点包含用户就业状况的信息。就业数据最常从政府服务和机构以及由您的用户连接到 Smile 的薪资平台获取。

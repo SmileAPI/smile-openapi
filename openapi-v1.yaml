@@ -424,6 +424,28 @@ paths:
           $ref: '#/components/responses/Standard-Errors'
         '500':
           $ref: '#/components/responses/Standard-Errors'
+  /users/{id}/resetSession:
+    post:
+      tags:
+        - Users
+      summary: Reset User Session
+      description: Clean the payload data for a specific user session
+      operationId: reset-user-session
+      parameters:
+        - name: id
+          in: path
+          description: The user ID
+          required: true
+          schema:
+            type: string
+            example: tenant-123abc456def789abc123def456abc78
+      responses:
+        '200':
+          description: User session payload reset successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
   /tokens:
     post:
       summary: Refresh Token
@@ -2210,6 +2232,48 @@ paths:
       description: Get a user's archive by ID.
       tags:
         - Archives
+    delete:
+      summary: Revoke Archive
+      tags:
+        - Archives
+      operationId: delete-archive
+      description: >-
+        Delete a user's particular archive information including the related
+        data.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '415':
+          $ref: '#/components/responses/Standard-Errors'
+        '429':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+        '501':
+          $ref: '#/components/responses/Standard-Errors'
+        '503':
+          $ref: '#/components/responses/Standard-Errors'
+        '504':
+          $ref: '#/components/responses/Standard-Errors'
+      parameters: []
   /archives/classify:
     post:
       summary: Classify Archive
@@ -6401,6 +6465,180 @@ paths:
                         - name: events_gaid_timediff_loan_g_60day
                           value: '888'
                           valueType: NUMBER
+  /alpha/validations:
+    get:
+      summary: List Validations
+      description: List previously submitted validations.
+      operationId: list-alpha-validations
+      tags:
+        - Validations (Alpha)
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by validation type (e.g. BankAccount).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaValidationListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: null
+                      items:
+                        - id: vld-00d49fe7b5834ba79474cb1373998ff3
+                          createdAt: '2025-01-21T02:22:24Z'
+                          status: COMPLETED
+                          resultCode: PASSED
+                          resultMessage: null
+                          result:
+                            type: BankAccount
+                            matchScore: 100
+                            matchScoreDescription: Strong Match
+                          requestMeta:
+                            name: George
+                            idType: national_id
+                            idNumber: ''
+                            countryCode: PH
+                            bic: ''
+                            iban: AT610904300234573201
+                            accountNumber: ''
+                            templateId: tpl-vld006001
+                            consent:
+                              type: Terms
+                              version: '1.0'
+                              consentedAt: '2025-01-20T12:00:00Z'
+                              consentedWith: I aggree to ...
+                              consentTemplateId: null
+  /alpha/validations/validateBankAccount:
+    post:
+      summary: Validate Bank Account
+      description: Submit bank account details for validation.
+      operationId: alpha-validate-bank-account
+      tags:
+        - Validations (Alpha)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlphaValidationValidateBankAccountRequest'
+            examples:
+              Example:
+                value:
+                  name: George
+                  idType: national_id
+                  idNumber: ''
+                  countryCode: PH
+                  bic: ''
+                  iban: AT610904300234573201
+                  accountNumber: ''
+                  templateId: tpl-vld006001
+                  consent:
+                    type: Terms
+                    version: '1.0'
+                    consentedAt: '2025-01-20T12:00:00Z'
+                    consentedWith: I agree to ...
+                    consentTemplateId: null
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaValidationCreateResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: vld-00d49fe7b5834ba79474cb1373998ff3
+                      createdAt: '2025-01-21T02:22:24Z'
+                      status: COMPLETED
+                      resultCode: PASSED
+                      resultMessage: null
+                      result:
+                        type: BankAccount
+                        matchScore: 100
+                        matchScoreDescription: Strong Match
+                      requestMeta:
+                        name: George
+                        idType: national_id
+                        idNumber: ''
+                        countryCode: PH
+                        bic: ''
+                        iban: AT610904300234573201
+                        accountNumber: ''
+                        templateId: tpl-vld006001
+                        consent:
+                          type: Terms
+                          version: '1.0'
+                          consentedAt: '2025-01-20T12:00:00Z'
+                          consentedWith: I aggree to ...
+                          consentTemplateId: null
+  /alpha/validations/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: Get Validation
+      description: Retrieve a validation by ID.
+      operationId: get-alpha-validation
+      tags:
+        - Validations (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaValidationGetResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: vld-00d49fe7b5834ba79474cb1373998ff3
+                      createdAt: '2025-01-21T02:22:24Z'
+                      status: COMPLETED
+                      resultCode: PASSED
+                      resultMessage: null
+                      result:
+                        type: BankAccount
+                        matchScore: 100
+                        matchScoreDescription: Strong Match
+                      requestMeta:
+                        name: George
+                        idType: national_id
+                        idNumber: ''
+                        countryCode: PH
+                        bic: ''
+                        iban: AT610904300234573201
+                        accountNumber: ''
+                        templateId: tpl-vld006001
+                        consent:
+                          type: Terms
+                          version: '1.0'
+                          consentedAt: '2025-01-20T12:00:00Z'
+                          consentedWith: I aggree to ...
+                          consentTemplateId: null
   /alpha/blacklists:
     post:
       summary: Create Blacklist
@@ -11603,6 +11841,20 @@ components:
           description: The response message
         data:
           $ref: '#/components/schemas/UserPayload'
+    CommonResponse:
+      title: CommonResponse
+      type: object
+      required:
+        - code
+        - requestId
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+      description: ''
     TokenPostResponse:
       title: Token Post Response
       properties:
@@ -11720,20 +11972,6 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/ConsentTemplate'
-    CommonResponse:
-      title: CommonResponse
-      type: object
-      required:
-        - code
-        - requestId
-      properties:
-        code:
-          $ref: '#/components/schemas/ObjectMetadataRefCode'
-        message:
-          $ref: '#/components/schemas/ObjectMetadataRefMessage'
-        requestId:
-          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
-      description: ''
     RefWebhookEventType:
       title: RefWebhookEventType
       description: Event Type which will be sent as a notification via webhook
@@ -13456,6 +13694,7 @@ components:
           type: string
           description: Supplier name
     ArchiveAnalysis:
+      deprecated: true
       allOf:
         - $ref: '#/components/schemas/ArchivePayslipAnalysis'
         - $ref: '#/components/schemas/ArchiveTaxDocumentAnalysis'
@@ -13463,6 +13702,98 @@ components:
         - $ref: '#/components/schemas/ArchiveTelcoBillAnalysis'
         - $ref: '#/components/schemas/ArchiveElectricityBillAnalysis'
         - $ref: '#/components/schemas/ArchiveWaterBillAnalysis'
+    ArchivePayslipExtraction:
+      type: object
+      properties:
+        fileType:
+          type: string
+        analysis:
+          $ref: '#/components/schemas/ArchivePayslipAnalysis'
+    ArchiveTaxDocumentExtraction:
+      type: object
+      properties:
+        fileType:
+          type: string
+        analysis:
+          $ref: '#/components/schemas/ArchiveTaxDocumentAnalysis'
+    ArchiveNbiClearanceDocumentExtraction:
+      type: object
+      properties:
+        fileType:
+          type: string
+        analysis:
+          $ref: '#/components/schemas/ArchiveNbiClearanceDocumentAnalysis'
+    ArchiveTelcoBillExtraction:
+      type: object
+      properties:
+        fileType:
+          type: string
+        analysis:
+          $ref: '#/components/schemas/ArchiveTelcoBillAnalysis'
+    ArchiveElectricityBillExtraction:
+      type: object
+      properties:
+        fileType:
+          type: string
+        analysis:
+          $ref: '#/components/schemas/ArchiveElectricityBillAnalysis'
+    ArchiveWaterBillExtraction:
+      type: object
+      properties:
+        fileType:
+          type: string
+        analysis:
+          $ref: '#/components/schemas/ArchiveWaterBillAnalysis'
+    ArchiveExtraction:
+      oneOf:
+        - $ref: '#/components/schemas/ArchivePayslipExtraction'
+        - $ref: '#/components/schemas/ArchiveTaxDocumentExtraction'
+        - $ref: '#/components/schemas/ArchiveNbiClearanceDocumentExtraction'
+        - $ref: '#/components/schemas/ArchiveTelcoBillExtraction'
+        - $ref: '#/components/schemas/ArchiveElectricityBillExtraction'
+        - $ref: '#/components/schemas/ArchiveWaterBillExtraction'
+      discriminator:
+        propertyName: fileType
+        mapping:
+          PAYSLIP: '#/components/schemas/ArchivePayslipExtraction'
+          TAX_DOCUMENT: '#/components/schemas/ArchiveTaxDocumentExtraction'
+          CLEARANCE_NBI: '#/components/schemas/ArchiveNbiClearanceDocumentExtraction'
+          TELCO_BILL: '#/components/schemas/ArchiveTelcoBillExtraction'
+          ELECTRICITY_BILL: '#/components/schemas/ArchiveElectricityBillExtraction'
+          WATER_BILL: '#/components/schemas/ArchiveWaterBillExtraction'
+    ArchiveValidationResult:
+      type: object
+      required:
+        - resultCode
+      properties:
+        resultCode:
+          type: string
+          enum:
+            - PASSED
+            - FAILED
+            - NO_DATA
+        score:
+          type: number
+          description: Validation score. 0-100.
+        resultMessage:
+          type: string
+          description: Validation result message.
+    ArchiveValidation:
+      type: object
+      required:
+        - fileType
+      properties:
+        fileType:
+          type: string
+          description: Archive file type
+        metadata:
+          $ref: '#/components/schemas/ArchiveValidationResult'
+        computation:
+          $ref: '#/components/schemas/ArchiveValidationResult'
+        identity:
+          $ref: '#/components/schemas/ArchiveValidationResult'
+        location:
+          $ref: '#/components/schemas/ArchiveValidationResult'
     Archive:
       title: Archive
       type: object
@@ -13550,6 +13881,10 @@ components:
           $ref: '#/components/schemas/ArchiveClassification'
         analysis:
           $ref: '#/components/schemas/ArchiveAnalysis'
+        extraction:
+          $ref: '#/components/schemas/ArchiveExtraction'
+        validation:
+          $ref: '#/components/schemas/ArchiveValidation'
       required:
         - id
         - createdAt
@@ -14873,11 +15208,6 @@ components:
               $ref: '#/components/schemas/Insight'
     VerificationIdType:
       type: string
-      enum:
-        - pagibig_ph
-        - prclicense_ph
-        - tin_ph
-        - nbi_ph
     VerificationId:
       type: object
       required:
@@ -16234,6 +16564,164 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/BetaMaw'
+    AlphaValidationResult:
+      type: object
+      required:
+        - type
+        - matchScore
+      properties:
+        type:
+          type: string
+          enum:
+            - BankAccount
+        matchScore:
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 100
+          description: >-
+            Match score describing how closely the supplied data matches the
+            record.
+          example: 100
+        matchScoreDescription:
+          type: string
+          description: >-
+            Qualitative description of the match score (Strong Match, Partial
+            Match, Weak Match).
+    ValidationIdType:
+      type: string
+      description: The identification type associated with the account holder.
+      example: NATIONAL_ID
+      enum:
+        - NATIONAL_ID
+        - REGISTRATION_ID
+    AlphaValidationValidateBankAccountRequest:
+      type: object
+      required:
+        - name
+        - consent
+      properties:
+        name:
+          type: string
+          description: Personal name of the account holder.
+          example: George
+        idType:
+          $ref: '#/components/schemas/ValidationIdType'
+        idNumber:
+          type: string
+          description: >-
+            The identification number associated with the account holder. Some
+            countries require an identification number.
+          example: '1234567890'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        bic:
+          type: string
+          description: >-
+            Swift BIC, either 8 or 11 characters. Must have either countryCode
+            or bic
+          example: DEUTDEFF
+        iban:
+          type: string
+          description: >-
+            International Bank Account Number. Must have either iban or
+            accountNumber.
+          example: AT610904300234573201
+        accountNumber:
+          type: string
+          description: Local bank account number. Must have either iban or accountNumber.
+          example: '0123456789'
+        templateId:
+          type: string
+          description: >-
+            Generated internally by Smile. Customers should request the specific
+            templateId from Smile. If this value is null, Smile will use the
+            default value `tpl-vld006001`.
+          example: tpl-vld006001
+          default: tpl-vld006001
+        consent:
+          $ref: '#/components/schemas/Consent'
+    AlphaValidation:
+      type: object
+      required:
+        - id
+        - createdAt
+        - status
+        - resultCode
+        - requestMeta
+      properties:
+        id:
+          type: string
+          description: Unique identifier assigned to the validation.
+          example: maw-00d49fe7b5834ba79474cb1373998ff3
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        status:
+          type: string
+          description: The current status of the Maw.
+          enum:
+            - PROCESSING
+            - ERROR
+            - COMPLETED
+        resultCode:
+          type: string
+          description: The final result of the Maw.
+          enum:
+            - SUCCESS
+            - NO_DATA
+            - SYSTEM_ERROR
+            - SERVICE_UNAVAILABLE
+        resultMessage:
+          type: string
+          description: Detailed message describing resultCode.
+          nullable: true
+        result:
+          $ref: '#/components/schemas/AlphaValidationResult'
+        requestMeta:
+          $ref: '#/components/schemas/AlphaValidationValidateBankAccountRequest'
+    AlphaValidationListResponse:
+      title: Alpha Validation List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/AlphaValidation'
+    AlphaValidationCreateResponse:
+      title: Alpha Validation Create Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/AlphaValidation'
+    AlphaValidationGetResponse:
+      title: Alpha Validation Get Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/AlphaValidation'
     AlphaBlacklistPostRequest:
       type: object
       required:

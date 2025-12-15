@@ -1,8 +1,10 @@
 ---
-title: Tokens 
-excerpt: ""
-category: 6294c0fd9494580032b22740
+title: Tokens
+category:
+  uri: '/branches/1.0/categories/reference/NETWORK RESOURCES'
 slug: tokens
+content:
+  excerpt: ''
 ---
 
 To provide authorized access for your user, your application should obtain a user token (the **Link token**) from the /users endpoint. This is a single use, short-lived token which is used to initialize our **Wink Widget**.

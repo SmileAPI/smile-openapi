@@ -1,8 +1,10 @@
 ---
 title: 智能文档处理 (IDP)
-excerpt: ""  
-category: 62ce2a159aafea009af30daa
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/Smile Network'
 slug: intelligent-document-processing
+content:
+  excerpt: ''
 ---
 
 Smile Snap 的智能文档处理 (IDP) 服务结合了光学字符识别 (OCR) 的效率和人工智能的优势。IDP 能准确捕捉、理解文档内容并将其与上下文联系起来。

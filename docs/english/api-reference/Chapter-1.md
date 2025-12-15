@@ -1,8 +1,10 @@
 ---
 title: Getting Started
-excerpt: ""  
-category: 6215975992e4610014e7b757  
+category:
+  uri: '/branches/1.0/categories/reference/API Guide'
 slug: chapter-1
+content:
+  excerpt: ''
 ---
 
 

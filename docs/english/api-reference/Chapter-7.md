@@ -1,8 +1,10 @@
 ---
 title: Form Processing
-excerpt: ''
-category: 6215975992e4610014e7b757
+category:
+  uri: '/branches/1.0/categories/reference/API Guide'
 slug: chapter-7
+content:
+  excerpt: ''
 ---
 
 **Smile Flip** is a powerful, flexible, no-code user journey builder designed to help you quickly transform your old manual paper-based forms into a digital form your users can access anywhere to share their data securely with your organization.

@@ -1,8 +1,10 @@
 ---
 title: Profile Data
-excerpt: ''
-category: 64c78531461848004b92b92f
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/Smile Snap'
 slug: profile-data
+content:
+  excerpt: ''
 ---
 
 无需用户登录，Smile Snap Profile Data API 即可允许开发人员根据官方数据源检索个人数据。该个人资料数据可用于以下情况：

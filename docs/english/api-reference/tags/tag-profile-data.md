@@ -1,8 +1,10 @@
 ---
 title: Profile Data
-excerpt: ''
-category: 66611ec162e8c700572c4be3
+category:
+  uri: '/branches/1.0/categories/reference/Smile Snap'
 slug: profile-data
+content:
+  excerpt: ''
 ---
 
 The Smile Snap Profile Data API allows developers to retrieve a snapshot of a person's data from authoritative sources without the need for a user login. This Profile Data can be used in the following scenarios:

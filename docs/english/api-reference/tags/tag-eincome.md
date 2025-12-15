@@ -1,8 +1,10 @@
 ---
 title: Estimated Incomes
-excerpt: ""  
-category: 6294c158bef44e0098ed88a1
+category:
+  uri: '/branches/1.0/categories/reference/User Data'
 slug: estimated-incomes
+content:
+  excerpt: ''
 ---
 
 Where there is limited income information available, Smile can also provide additional derived income information from secondary data types such as:

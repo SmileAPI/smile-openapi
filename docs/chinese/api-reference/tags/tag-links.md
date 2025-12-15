@@ -1,8 +1,10 @@
 ---
 title: Smile Network Links
-excerpt: ""
-category: 62ce2a159aafea009af30dab
+category:
+  uri: '/branches/1.0-Chinese/categories/reference/用户数据'
 slug: links
+content:
+  excerpt: ''
 ---
 
 当潜在借款人向多家金融机构申请贷款时，贷款机构会收到多头申请警告（MAW）通知。有了 MAW，贷款机构在评估风险时就能利用借款人在整个网络中的行为信息做出更明智的决策。
