@@ -13704,6 +13704,8 @@ components:
         - $ref: '#/components/schemas/ArchiveWaterBillAnalysis'
     ArchivePayslipExtraction:
       type: object
+      required:
+        - fileType
       properties:
         fileType:
           type: string
@@ -13711,6 +13713,8 @@ components:
           $ref: '#/components/schemas/ArchivePayslipAnalysis'
     ArchiveTaxDocumentExtraction:
       type: object
+      required:
+        - fileType
       properties:
         fileType:
           type: string
@@ -13718,6 +13722,8 @@ components:
           $ref: '#/components/schemas/ArchiveTaxDocumentAnalysis'
     ArchiveNbiClearanceDocumentExtraction:
       type: object
+      required:
+        - fileType
       properties:
         fileType:
           type: string
@@ -13725,6 +13731,8 @@ components:
           $ref: '#/components/schemas/ArchiveNbiClearanceDocumentAnalysis'
     ArchiveTelcoBillExtraction:
       type: object
+      required:
+        - fileType
       properties:
         fileType:
           type: string
@@ -13732,6 +13740,8 @@ components:
           $ref: '#/components/schemas/ArchiveTelcoBillAnalysis'
     ArchiveElectricityBillExtraction:
       type: object
+      required:
+        - fileType
       properties:
         fileType:
           type: string
@@ -13739,6 +13749,8 @@ components:
           $ref: '#/components/schemas/ArchiveElectricityBillAnalysis'
     ArchiveWaterBillExtraction:
       type: object
+      required:
+        - fileType
       properties:
         fileType:
           type: string
