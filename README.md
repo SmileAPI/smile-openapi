@@ -28,7 +28,7 @@ For more information, you can visit [our website](https://www.getsmileapi.com), 
 ### 2. If you want to use maven to build the code on your local environment. Please follow shell scripts. 
 - Ensure you have installed `npm` on your local environment.
 ```shell
-npm i -g @redocly/openapi-cli@latest
+npm i -g @redocly/openapi-cli@latest[target](target)
 mkdir openapi-definitions
 openapi bundle openapi/api.yaml --output openapi-definitions/openapi.yaml
 ```

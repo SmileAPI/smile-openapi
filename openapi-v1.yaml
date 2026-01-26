@@ -5116,37 +5116,43 @@ paths:
       description: >+
         ## Create a Signal3 object.  
 
-        This endpoint requires **mandatory parameters**:  
+        This endpoint supports different templates depending on region and use
+        case.  
 
-        `consent`, `phone`, `fullName`, `curp`, and `templateId`.
+        Required parameters: `consent`, `templateId`, plus additional fields
+        depending on the selected template.
 
 
-        ### Supported Template
+        ### Supported Templates
 
 
         | Template ID     | Region(s)   | Required Parameters                |
 
         |-----------------|-------------|------------------------------------|
 
-        | `tpl-sgn003002` | MX (Mexico) | `phone`, `fullName`, `curp` |
+        | `tpl-sgn003002` | MX (Mexico) | `phone`, `fullName`, `curp`, `idType`,
+        `idNumber` |
+
+        | `tpl-social-securities-sgn003003` | TH (Thailand) | `fullName`,
+        `mobileNumber`, `idType`, `idNumber` |
 
 
         ### Sandbox Test Values
 
 
-        | Parameter    | Value                   | Expected Response      |
+        | Template ID     |
+        Parameters                                                                                             
+        | Expected Response      |
 
-        |--------------|-------------------------|------------------------|
+        |-----------------|---------------------------------------------------------------------------------------------------------|------------------------|
 
-        | templateId   | `tpl-sgn003002`         |                        |
+        | `tpl-sgn003002` | `phone = 529559991234`, `fullName = John Doe`, `curp
+        = DOEJ800101HDFXXX01`, `idType = PID`, `idNumber =
+        1234567890123`                              | `resultCode = SUCCESS` |
 
-        | emailAddress | Any valid email address |                        |
-
-        | curp         | Any valid curp          |                        |
-
-        | fullName     | Any string              |                        |
-
-        | phone | `529559991234`          | `resultCode = SUCCESS` |
+        | `tpl-social-securities-sgn003003` | `mobileNumber = 669178912345`,
+        `fullName = John Doe`, `idType = PID`, `idNumber =
+        1234567890123`                            | `resultCode = SUCCESS` |
 
 
         For **all other valid input combinations**, if no mock data match is
@@ -5172,7 +5178,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/BetaSignalPostResponse'
               examples:
-                Example:
+                Example_MX:
                   value:
                     code: OK
                     message: Success
@@ -5189,9 +5195,45 @@ paths:
                         fullName: John Doe
                         phone: '529559991234'
                         curp: DOEJ800101HDFXXX01
+                        idType: PID
+                        idNumber: '1234567890123'
                         nss: '12345678901'
                         countryCode: MX
                         templateId: tpl-sgn003002
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: null
+                      items:
+                        - name: events_arbitrary_day30
+                          value: '0'
+                          valueType: NUMBER
+                        - name: events_preloan_day30
+                          value: '0'
+                          valueType: NUMBER
+                        - name: events_debt_day90_amount
+                          value: A0
+                          valueType: STRING
+                Example_TH:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: signal-f46e632fg9g258d5bb12c8d2bg96bbg8
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      signalType: Signal3
+                      requestMeta:
+                        fullName: John Doe
+                        mobileNumber: '669178912345'
+                        idType: PID
+                        idNumber: '1234567890123'
+                        templateId: tpl-social-securities-sgn003003
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -5215,14 +5257,29 @@ paths:
             schema:
               $ref: '#/components/schemas/BetaSignal3PostRequest'
             examples:
-              Example:
+              Example_MX:
                 value:
                   emailAddress: john.doe@example.com
                   fullName: John Doe
                   phone: '529559991234'
                   curp: DOEJ800101HDFXXX01
+                  idType: PID
+                  idNumber: '1234567890123'
                   nss: '12345678901'
                   templateId: tpl-sgn003002
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: null
+              Example_TH:
+                value:
+                  fullName: John Doe
+                  mobileNumber: '669178912345'
+                  idType: PID
+                  idNumber: '1234567890123'
+                  templateId: tpl-social-securities-sgn003003
                   consent:
                     type: Terms And Conditions
                     version: 1
@@ -13359,6 +13416,7 @@ components:
             - PAYSLIP
             - TAX_DOCUMENT
             - EMPLOYMENT_CERTIFICATE
+            - BANK_STATEMENT
             - COMPANY_ID
             - CLEARANCE_NBI
             - GOVERNMENT_ID
@@ -13693,6 +13751,80 @@ components:
         supplier:
           type: string
           description: Supplier name
+    ArchiveEmploymentCertificateAnalysis:
+      type: object
+      properties:
+        employerName:
+          type: string
+          description: Name of the company or business employing the individual
+        fullName:
+          type: string
+          description: Name of the employee the CoE is for
+        firstName:
+          type: string
+          description: First name
+        middleName:
+          type: string
+          description: Middle name
+        lastName:
+          type: string
+          description: Last name
+        employeeIdNumber:
+          type: string
+          description: >-
+            Any ID number of the employee found in the document (optional) - may
+            be employee ID, may be any government ID
+        employeeIdType:
+          type: string
+          description: Type of ID if found; required if employeeIdNumber is found
+        position:
+          type: string
+          description: Position of the employee if found
+        department:
+          type: string
+          description: Department of the employee if found
+        employmentStatus:
+          type: string
+          description: Employment status of the employee if found
+        startDate:
+          type: string
+          format: date
+          description: >-
+            Start date of the employee's employment with the company, in
+            YYYY-MM-DD format
+        endDate:
+          type: string
+          format: date
+          description: >-
+            End date of the employee's employment with the company, if found, in
+            YYYY-MM-DD format
+        salaryAmount:
+          type: number
+          description: Salary amount
+        salaryTerm:
+          type: string
+          description: Salary term
+        currency:
+          $ref: '#/components/schemas/RefCurrency'
+          description: ISO 4217 currency code
+        purpose:
+          type: string
+          description: Purpose of the certificate of employment
+        remarks:
+          type: string
+          description: Any additional remarks that may be provided
+        issueDate:
+          type: string
+          format: date
+          description: >-
+            Date when the certificate of employment was issued, in YYYY-MM-DD
+            format
+        signatoryName:
+          type: string
+          description: Full name of the signatory
+        signatoryPosition:
+          type: string
+          description: Position of the signatory
     ArchiveAnalysis:
       deprecated: true
       allOf:
@@ -13702,6 +13834,7 @@ components:
         - $ref: '#/components/schemas/ArchiveTelcoBillAnalysis'
         - $ref: '#/components/schemas/ArchiveElectricityBillAnalysis'
         - $ref: '#/components/schemas/ArchiveWaterBillAnalysis'
+        - $ref: '#/components/schemas/ArchiveEmploymentCertificateAnalysis'
     ArchivePayslipExtraction:
       type: object
       required:
@@ -13756,6 +13889,15 @@ components:
           type: string
         analysis:
           $ref: '#/components/schemas/ArchiveWaterBillAnalysis'
+    ArchiveEmploymentCertificateExtraction:
+      type: object
+      required:
+        - fileType
+      properties:
+        fileType:
+          type: string
+        analysis:
+          $ref: '#/components/schemas/ArchiveEmploymentCertificateAnalysis'
     ArchiveExtraction:
       oneOf:
         - $ref: '#/components/schemas/ArchivePayslipExtraction'
@@ -13764,6 +13906,7 @@ components:
         - $ref: '#/components/schemas/ArchiveTelcoBillExtraction'
         - $ref: '#/components/schemas/ArchiveElectricityBillExtraction'
         - $ref: '#/components/schemas/ArchiveWaterBillExtraction'
+        - $ref: '#/components/schemas/ArchiveEmploymentCertificateExtraction'
       discriminator:
         propertyName: fileType
         mapping:
@@ -13773,6 +13916,7 @@ components:
           TELCO_BILL: '#/components/schemas/ArchiveTelcoBillExtraction'
           ELECTRICITY_BILL: '#/components/schemas/ArchiveElectricityBillExtraction'
           WATER_BILL: '#/components/schemas/ArchiveWaterBillExtraction'
+          EMPLOYMENT_CERTIFICATE: '#/components/schemas/ArchiveEmploymentCertificateExtraction'
     ArchiveValidationResult:
       type: object
       required:
@@ -15769,6 +15913,12 @@ components:
         - Signal1
         - Signal2
         - Signal3
+    SignalIdType:
+      type: string
+      description: Subject's ID type. `Required`.
+      example: PID
+      enum:
+        - PID
     BetaSignalItem:
       type: object
       required:
@@ -15828,6 +15978,12 @@ components:
               type: string
               description: Subject's mobile number provided in the request
               example: '+639178912345'
+            mobileNumber:
+              type: string
+              description: >-
+                Subject's mobile number provided in the request (for TH
+                template)
+              example: '669178912345'
             emailAddress:
               type: string
               format: email
@@ -15838,6 +15994,13 @@ components:
             curp:
               type: string
               description: Subject's CURP provided in the request
+            idType:
+              $ref: '#/components/schemas/SignalIdType'
+              description: Subject's ID type provided in the request
+            idNumber:
+              type: string
+              description: Subject's ID number provided in the request
+              example: '1234567890123'
             nss:
               type: string
               description: >-
@@ -15951,12 +16114,14 @@ components:
           $ref: '#/components/schemas/Consent'
         countryCode:
           $ref: '#/components/schemas/RefCountry'
-    BetaSignal3PostRequest:
+    BetaSignal3Tpl1PostRequest:
       type: object
       required:
         - fullName
         - phone
         - curp
+        - idType
+        - idNumber
         - templateId
         - consent
       properties:
@@ -15965,6 +16130,8 @@ components:
           format: email
         fullName:
           type: string
+          description: Subject's full name. `Required`.
+          example: John Doe
         phone:
           type: string
           description: >-
@@ -15975,15 +16142,74 @@ components:
           example: '529559991234'
         curp:
           type: string
+          description: >-
+            Subject's CURP (Clave Única de Registro de Población). `Required`.
+            Must be a valid Mexico CURP.
+          example: DOEJ800101HDFXXX01
+        idType:
+          $ref: '#/components/schemas/SignalIdType'
+          description: Subject's ID type. `Required`. For this template, must be `PID`.
+        idNumber:
+          type: string
+          description: >-
+            Subject's ID number. `Required`. Must be a valid ID number
+            corresponding to the idType.
+          example: '1234567890123'
         nss:
           type: string
-          description: Mexico's social security number (NSS). Required for MX template.
+          description: Mexico's social security number (NSS). `Optional`.
         templateId:
           type: string
-          description: Fixed template ID for Signal3. Must be 'tpl-sgn003002'.
+          description: Fixed to `tpl-sgn003002`.
           example: tpl-sgn003002
         consent:
           $ref: '#/components/schemas/Consent'
+    BetaSignal3Tpl2PostRequest:
+      type: object
+      required:
+        - fullName
+        - mobileNumber
+        - idType
+        - idNumber
+        - templateId
+        - consent
+      properties:
+        fullName:
+          type: string
+          description: Subject's full name. `Required`.
+          example: John Doe
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 669178912345, and no leading zeros. MD5‑encrypted input is
+            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(669178912345)`.
+          example: '669178912345'
+        idType:
+          $ref: '#/components/schemas/SignalIdType'
+          description: Subject's ID type. `Required`.
+        idNumber:
+          type: string
+          description: >-
+            Subject's ID number. `Required`. Must be a valid ID number
+            corresponding to the idType.
+          example: '1234567890123'
+        templateId:
+          type: string
+          description: Fixed to `tpl-social-securities-sgn003003`.
+          example: tpl-social-securities-sgn003003
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaSignal3PostRequest:
+      oneOf:
+        - $ref: '#/components/schemas/BetaSignal3Tpl1PostRequest'
+        - $ref: '#/components/schemas/BetaSignal3Tpl2PostRequest'
+      discriminator:
+        propertyName: templateId
+        mapping:
+          tpl-sgn003002: '#/components/schemas/BetaSignal3Tpl1PostRequest'
+          tpl-social-securities-sgn003003: '#/components/schemas/BetaSignal3Tpl2PostRequest'
     AlphaFootprintPostRequest:
       type: object
       required:
@@ -16355,7 +16581,9 @@ components:
           $ref: '#/components/schemas/MawIdType'
         gaid:
           type: string
-          description: Subject's Google Ad ID. `Optional`.
+          description: >-
+            Subject's Google Ad ID. `Optional`. If provided will returned the
+            items that are related to the Google Ad ID.
           example: 00000000-0000-0000-0000-000000000000
         countryCode:
           $ref: '#/components/schemas/RefCountry'
