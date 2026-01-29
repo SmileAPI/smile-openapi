@@ -5126,14 +5126,13 @@ paths:
         ### Supported Templates
 
 
-        | Template ID     | Region(s)   | Required Parameters                |
+        | Template ID     | Region(s)   | Required Parameters               |
 
-        |-----------------|-------------|------------------------------------|
+        |-----------------|-------------|-----------------------------------|
 
-        | `tpl-sgn003002` | MX (Mexico) | `phone`, `fullName`, `curp`, `idType`,
-        `idNumber` |
+        | `tpl-sgn003002` | MX (Mexico) | `phone`, `fullName`, `curp`|
 
-        | `tpl-social-securities-sgn003003` | TH (Thailand) | `fullName`,
+        | `tpl-social-securities-signal-th` | TH (Thailand) | `fullName`,
         `mobileNumber`, `idType`, `idNumber` |
 
 
@@ -5147,10 +5146,10 @@ paths:
         |-----------------|---------------------------------------------------------------------------------------------------------|------------------------|
 
         | `tpl-sgn003002` | `phone = 529559991234`, `fullName = John Doe`, `curp
-        = DOEJ800101HDFXXX01`, `idType = PID`, `idNumber =
-        1234567890123`                              | `resultCode = SUCCESS` |
+        = DOEJ800101HDFXXX01`                              | `resultCode =
+        SUCCESS` |
 
-        | `tpl-social-securities-sgn003003` | `mobileNumber = 669178912345`,
+        | `tpl-social-securities-signal-th` | `mobileNumber = 669178912345`,
         `fullName = John Doe`, `idType = PID`, `idNumber =
         1234567890123`                            | `resultCode = SUCCESS` |
 
@@ -5195,10 +5194,7 @@ paths:
                         fullName: John Doe
                         phone: '529559991234'
                         curp: DOEJ800101HDFXXX01
-                        idType: PID
-                        idNumber: '1234567890123'
                         nss: '12345678901'
-                        countryCode: MX
                         templateId: tpl-sgn003002
                         consent:
                           type: Terms And Conditions
@@ -5233,7 +5229,7 @@ paths:
                         mobileNumber: '669178912345'
                         idType: PID
                         idNumber: '1234567890123'
-                        templateId: tpl-social-securities-sgn003003
+                        templateId: tpl-social-securities-signal-th
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -5263,8 +5259,6 @@ paths:
                   fullName: John Doe
                   phone: '529559991234'
                   curp: DOEJ800101HDFXXX01
-                  idType: PID
-                  idNumber: '1234567890123'
                   nss: '12345678901'
                   templateId: tpl-sgn003002
                   consent:
@@ -5279,7 +5273,7 @@ paths:
                   mobileNumber: '669178912345'
                   idType: PID
                   idNumber: '1234567890123'
-                  templateId: tpl-social-securities-sgn003003
+                  templateId: tpl-social-securities-signal-th
                   consent:
                     type: Terms And Conditions
                     version: 1
@@ -5300,51 +5294,69 @@ paths:
         - `templateId`  
 
 
-        In addition, you must provide **either** `emailAddress` **or**
-        `mobileNumber` — these two are **mutually exclusive**.
+        Additional required fields depend on the selected `templateId`.
 
 
         ### Supported Templates
 
 
-        | Template ID     | Input Type    | Required
-        Parameters                     |
+        | Template ID             | Input Type             | Required
+        Parameters                                         |
 
-        |-----------------|---------------|-----------------------------------------|
+        |-------------------------|------------------------|-------------------------------------------------------------|
 
-        | `tpl-ftp005001` | Email address | `consent`, `templateId`,
-        `emailAddress` |
+        | `tpl-email-footprint`   | Email address only     | `consent`,
+        `templateId`, `emailAddress`, `countryCode`     |
 
-        | `tpl-ftp005002` | Mobile number | `consent`, `templateId`,
-        `mobileNumber` |
+        | `tpl-mobile-footprint`   | Mobile number only     | `consent`,
+        `templateId`, `mobileNumber`, `countryCode`     |
+
+        | `tpl-score-footprint`         | Email + mobile number  | `consent`,
+        `templateId`, `emailAddress`, `mobileNumber`, `countryCode` |
+
+        | `tpl-ftp005001` (deprecated) | Email address only     | `consent`,
+        `templateId`, `emailAddress`, `countryCode`     |
+
+        | `tpl-ftp005002` (deprecated) | Mobile number only     | `consent`,
+        `templateId`, `mobileNumber`, `countryCode`     |
 
 
         ### Field Rules
 
 
-        - For `tpl-ftp005001`, `emailAddress` must be provided and
-        `mobileNumber` must be omitted.  
+        - For `tpl-ftp005001`, `emailAddress` **must** be provided and
+        `mobileNumber` should be omitted or `null`.  
 
-        - For `tpl-ftp005002`, `mobileNumber` must be provided and
-        `emailAddress` must be omitted.  
+        - For `tpl-ftp005002`, `mobileNumber` **must** be provided and
+        `emailAddress` should be omitted or `null`.  
 
-        - `emailAddress` and `mobileNumber` **cannot** be used together in the
-        same request.
+        - For `tpl-score-footprint`, `emailAddress` **and** `mobileNumber`
+        **must** both be provided.  
+
+        - For all templates, `countryCode` is required and must be a valid ISO
+        country code.
 
 
         ### Sandbox Test Values
 
 
-        | Template ID     | Test Input                                 |
-        Expected Response      |
+        | Template ID             | Test
+        Input                                                                                 
+        | Expected Response      |
 
-        |-----------------|--------------------------------------------|------------------------|
+        |-------------------------|---------------------------------------------------------------------------------------------|------------------------|
 
-        | `tpl-ftp005001` | `emailAddress = gpalomero1234@smileapi.io` |
-        `resultCode = SUCCESS` |
+        | `tpl-email-footprint`   | `emailAddress = gpalomero1234@smileapi.io`,
+        `countryCode = PH`                              | `resultCode = SUCCESS`
+        |
 
-        | `tpl-ftp005002` | `mobileNumber = 639559991234`              |
-        `resultCode = SUCCESS` |
+        | `tpl-mobile-footprint`   | `mobileNumber = 639559991234`, `countryCode
+        = PH`                                           | `resultCode = SUCCESS`
+        |
+
+        | `tpl-score-footprint`         | `emailAddress =
+        gpalomero1234@smileapi.io`, `mobileNumber = 639559991234`, `countryCode
+        = PH` | `resultCode = SUCCESS` |
 
 
         For all other valid input combinations, if no mock data is matched, the
@@ -5361,7 +5373,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AlphaFootprintPostResponse'
               examples:
-                Example:
+                Example_Email:
                   value:
                     code: OK
                     message: Success
@@ -5376,7 +5388,7 @@ paths:
                         emailAddress: gpalomero1234@smileapi.io
                         mobileNumber: null
                         countryCode: PH
-                        templateId: tpl-ftp005001
+                        templateId: tpl-email-footprint
                         footprintItemsTimeout: 5
                         consent:
                           type: Terms And Conditions
@@ -5385,16 +5397,16 @@ paths:
                           consentedAt: '2021-04-14T09:30:24Z'
                           consentTemplateId: null
                       items:
-                        - name: registered
+                        - name: email.registered
                           value: 'false'
                           valueType: BOOLEAN
-                        - name: creationTime
+                        - name: email.creationTime
                           value: '2021-04-14T09:30:24Z'
                           valueType: STRING
-                        - name: companyName
+                        - name: email.companyName
                           value: Google
                           valueType: STRING
-                Example2:
+                Example_Mobile:
                   value:
                     code: OK
                     message: Success
@@ -5407,8 +5419,9 @@ paths:
                       resultMessage: ''
                       requestMeta:
                         emailAddress: null
-                        templateId: tpl-ftp005002
+                        templateId: tpl-mobile-footprint
                         mobileNumber: '639559991234'
+                        countryCode: PH
                         footprintItemsTimeout: 10
                         consent:
                           type: Terms And Conditions
@@ -5417,15 +5430,60 @@ paths:
                           consentedAt: '2021-04-14T09:30:24Z'
                           consentTemplateId: null
                       items:
-                        - name: valid
+                        - name: mobile.valid
                           value: 'false'
                           valueType: BOOLEAN
-                        - name: creationTime
+                        - name: mobile.creationTime
                           value: '2021-04-14T09:30:24Z'
                           valueType: STRING
-                        - name: companyName
+                        - name: mobile.companyName
                           value: Globe
                           valueType: STRING
+                Example_Score:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: footprint-e35d5af85aaf721ef8f147c4aa01b7c2
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: ''
+                      resultMessage: ''
+                      requestMeta:
+                        emailAddress: gpalomero1234@smileapi.io
+                        templateId: tpl-score-footprint
+                        mobileNumber: '639559991234'
+                        countryCode: PH
+                        footprintItemsTimeout: 5
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: null
+                      items:
+                        - name: email.registered
+                          value: 'true'
+                          valueType: BOOLEAN
+                        - name: email.creationTime
+                          value: '2021-04-14T09:30:24Z'
+                          valueType: STRING
+                        - name: email.companyName
+                          value: Google
+                          valueType: STRING
+                        - name: mobile.valid
+                          value: 'true'
+                          valueType: BOOLEAN
+                        - name: mobile.creationTime
+                          value: '2021-04-14T09:30:24Z'
+                          valueType: STRING
+                        - name: mobile.companyName
+                          value: Globe
+                          valueType: STRING
+                        - name: riskScore
+                          value: '50'
+                          valueType: NUMBER
       requestBody:
         required: true
         content:
@@ -5433,7 +5491,7 @@ paths:
             schema:
               $ref: '#/components/schemas/AlphaFootprintPostRequest'
             examples:
-              Example:
+              Example_Email:
                 value:
                   consent:
                     type: Terms And Conditions
@@ -5441,12 +5499,12 @@ paths:
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
                     consentTemplateId: null
-                  templateId: tpl-ftp005001
+                  templateId: tpl-email-footprint
                   emailAddress: gpalomero1234@smileapi.io
                   mobileNumber: null
-                  countryCode: null
+                  countryCode: PH
                   footprintItemsTimeout: 5
-              Example2:
+              Example_Mobile:
                 value:
                   consent:
                     type: Terms And Conditions
@@ -5454,11 +5512,24 @@ paths:
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
                     consentTemplateId: null
-                  templateId: tpl-ftp005002
+                  templateId: tpl-mobile-footprint
                   emailAddress: null
                   mobileNumber: '639559991234'
                   countryCode: PH
                   footprintItemsTimeout: 10
+              Example_Score:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: null
+                  templateId: tpl-score-footprint
+                  emailAddress: gpalomero1234@smileapi.io
+                  mobileNumber: '639559991234'
+                  countryCode: PH
+                  footprintItemsTimeout: 5
     get:
       summary: List Footprints
       operationId: list-alpha-footprints
@@ -5487,7 +5558,7 @@ paths:
                           resultMessage: ''
                           requestMeta:
                             emailAddress: someone@email.com
-                            templateId: footprintTpl-xxxxxxxxxxxxxxx
+                            templateId: tpl-email-footprint
                             mobileNumber: null
                             countryCode: null
                             footprintItemsTimeout: 15
@@ -5498,13 +5569,13 @@ paths:
                               consentedAt: '2021-04-14T09:30:24Z'
                               consentTemplateId: null
                           items:
-                            - name: registered
+                            - name: email.registered
                               value: 'false'
                               valueType: BOOLEAN
-                            - name: creationTime
+                            - name: email.creationTime
                               value: '2021-04-14T09:30:24Z'
                               valueType: STRING
-                            - name: companyName
+                            - name: email.companyName
                               value: Google
                               valueType: STRING
       description: List all Footprints.
@@ -5573,7 +5644,7 @@ paths:
                       resultMessage: ''
                       requestMeta:
                         emailAddress: someone@email.com
-                        templateId: footprintTpl-xxxxxxxxxxxxxxx
+                        templateId: tpl-email-footprint
                         mobileNumber: null
                         countryCode: null
                         footprintItemsTimeout: 20
@@ -5584,13 +5655,13 @@ paths:
                           consentedAt: '2021-04-14T09:30:24Z'
                           consentTemplateId: null
                       items:
-                        - name: registered
+                        - name: email.registered
                           value: 'false'
                           valueType: BOOLEAN
-                        - name: creationTime
+                        - name: email.creationTime
                           value: '2021-04-14T09:30:24Z'
                           valueType: STRING
-                        - name: companyName
+                        - name: email.companyName
                           value: Google
                           valueType: STRING
   /links:
@@ -15913,12 +15984,178 @@ components:
         - Signal1
         - Signal2
         - Signal3
+    BetaSignal3Tpl1PostRequest:
+      type: object
+      required:
+        - fullName
+        - phone
+        - curp
+        - idType
+        - idNumber
+        - templateId
+        - consent
+      properties:
+        emailAddress:
+          type: string
+          format: email
+        fullName:
+          type: string
+          description: Subject's full name. `Required`.
+          example: John Doe
+        phone:
+          type: string
+          description: >-
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 529178912345, and no leading zeros. MD5‑encrypted input is
+            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
+          example: '529559991234'
+        curp:
+          type: string
+          description: >-
+            Subject's CURP (Clave Única de Registro de Población). `Required`.
+            Must be a valid Mexico CURP.
+          example: DOEJ800101HDFXXX01
+        nss:
+          type: string
+          description: Mexico's social security number (NSS). `Optional`.
+        templateId:
+          type: string
+          description: Fixed to `tpl-sgn003002`.
+          example: tpl-sgn003002
+        consent:
+          $ref: '#/components/schemas/Consent'
     SignalIdType:
       type: string
       description: Subject's ID type. `Required`.
       example: PID
       enum:
         - PID
+    BetaSignal3Tpl2PostRequest:
+      type: object
+      required:
+        - fullName
+        - mobileNumber
+        - idType
+        - idNumber
+        - templateId
+        - consent
+      properties:
+        fullName:
+          type: string
+          description: Subject's full name. `Required`.
+          example: John Doe
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 669178912345, and no leading zeros. MD5‑encrypted input is
+            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(669178912345)`.
+          example: '669178912345'
+        idType:
+          $ref: '#/components/schemas/SignalIdType'
+          description: Subject's ID type. `Required`.
+        idNumber:
+          type: string
+          description: >-
+            Subject's ID number. `Required`. Must be a valid ID number
+            corresponding to the idType.
+          example: '1234567890123'
+        templateId:
+          type: string
+          description: Fixed to `tpl-social-securities-signal-th`.
+          example: tpl-social-securities-signal-th
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaSignal2PostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - phone
+      properties:
+        phone:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            639178912345, and no leading zeros. MD5-encrypted input is accepted
+            with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
+          example: '639559991234'
+        templateId:
+          type: string
+          description: >-
+            Generate by smile internal. Customer should ask smile to provide the
+            special templateId. If templateId is null, Smile will request the
+            default signals set, same as the alpha result.
+          example: tpl-sgn002001
+        consent:
+          $ref: '#/components/schemas/Consent'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+    BetaSignalPostRequest1:
+      type: object
+      required:
+        - consent
+        - templateId
+        - phone
+      properties:
+        phone:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            +639178912345, and no leading zeros
+          example: '+639178902345'
+        templateId:
+          type: string
+          description: >-
+            Generate by smile internal. Customer should ask smile to provide the
+            special templateId. If templateId is null, Smile will request the
+            default signals set, same as the alpha result.
+          example: signalTpl-cb19dbc4d13b985674bd5f20bfeee7e8
+        consent:
+          $ref: '#/components/schemas/Consent'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+    BetaSignalPostRequest2:
+      allOf:
+        - $ref: '#/components/schemas/BetaSignalPostRequest1'
+    BetaSignalPostRequest3:
+      allOf:
+        - $ref: '#/components/schemas/BetaSignalPostRequest1'
+    BetaSignalPostRequest4:
+      allOf:
+        - $ref: '#/components/schemas/BetaSignalPostRequest1'
+    BetaSignalPostRequest5:
+      allOf:
+        - $ref: '#/components/schemas/BetaSignalPostRequest1'
+    BetaSignalPostRequest6:
+      allOf:
+        - $ref: '#/components/schemas/BetaSignalPostRequest1'
+    BetaSignalRequestMeta:
+      oneOf:
+        - $ref: '#/components/schemas/BetaSignal3Tpl1PostRequest'
+        - $ref: '#/components/schemas/BetaSignal3Tpl2PostRequest'
+        - $ref: '#/components/schemas/BetaSignal2PostRequest'
+        - $ref: '#/components/schemas/BetaSignalPostRequest1'
+        - $ref: '#/components/schemas/BetaSignalPostRequest2'
+        - $ref: '#/components/schemas/BetaSignalPostRequest3'
+        - $ref: '#/components/schemas/BetaSignalPostRequest4'
+        - $ref: '#/components/schemas/BetaSignalPostRequest5'
+        - $ref: '#/components/schemas/BetaSignalPostRequest6'
+      discriminator:
+        propertyName: templateId
+        mapping:
+          tpl-sgn003002: '#/components/schemas/BetaSignal3Tpl1PostRequest'
+          tpl-social-securities-signal-th: '#/components/schemas/BetaSignal3Tpl2PostRequest'
+          tpl-sgn002001: '#/components/schemas/BetaSignal2PostRequest'
+          tpl-sgn003001: '#/components/schemas/BetaSignalPostRequest1'
+          signalTpl-cb19dbc4d13b985674bd5f20bfeee7e8: '#/components/schemas/BetaSignalPostRequest2'
+          signalTpl-f250f305c3bf0aa690cca93ef0f0fb03: '#/components/schemas/BetaSignalPostRequest3'
+          signalTpl-f6b74d81a4807f4c01e6a920920775ad: '#/components/schemas/BetaSignalPostRequest4'
+          signalTpl-7a01659636c119ca4566308effd05d06: '#/components/schemas/BetaSignalPostRequest5'
+          signalTpl-e5ba74fe8089fe44eeeafb68991b1e70: '#/components/schemas/BetaSignalPostRequest6'
     BetaSignalItem:
       type: object
       required:
@@ -15972,51 +16209,7 @@ components:
         signalType:
           $ref: '#/components/schemas/SignalType'
         requestMeta:
-          type: object
-          properties:
-            phone:
-              type: string
-              description: Subject's mobile number provided in the request
-              example: '+639178912345'
-            mobileNumber:
-              type: string
-              description: >-
-                Subject's mobile number provided in the request (for TH
-                template)
-              example: '669178912345'
-            emailAddress:
-              type: string
-              format: email
-              description: Subject's email address provided in the request
-            fullName:
-              type: string
-              description: Subject's full name provided in the request
-            curp:
-              type: string
-              description: Subject's CURP provided in the request
-            idType:
-              $ref: '#/components/schemas/SignalIdType'
-              description: Subject's ID type provided in the request
-            idNumber:
-              type: string
-              description: Subject's ID number provided in the request
-              example: '1234567890123'
-            nss:
-              type: string
-              description: >-
-                Subject's NSS (Número de Seguridad Social) provided in the
-                request
-            templateId:
-              type: string
-              description: >-
-                Generate by smile internal. Customer should ask smile to provide
-                the special templateId. If templateId is null, Smile will
-                request the default signals set, same as the alpha result.
-              example: signalTpl-xxxxxxxxxxxxxxx
-            consent:
-              $ref: '#/components/schemas/Consent'
-            countryCode:
-              $ref: '#/components/schemas/RefCountry'
+          $ref: '#/components/schemas/BetaSignalRequestMeta'
         items:
           type: array
           items:
@@ -16041,29 +16234,22 @@ components:
               items:
                 $ref: '#/components/schemas/BetaSignal'
     BetaSignalPostRequest:
-      type: object
-      required:
-        - consent
-        - templateId
-        - phone
-      properties:
-        phone:
-          type: string
-          description: >-
-            Subject's mobile number. Must start with country code i.e.
-            +639178912345, and no leading zeros
-          example: '+639178902345'
-        templateId:
-          type: string
-          description: >-
-            Generate by smile internal. Customer should ask smile to provide the
-            special templateId. If templateId is null, Smile will request the
-            default signals set, same as the alpha result.
-          example: signalTpl-xxxxxxxxxxxxxxx
-        consent:
-          $ref: '#/components/schemas/Consent'
-        countryCode:
-          $ref: '#/components/schemas/RefCountry'
+      oneOf:
+        - $ref: '#/components/schemas/BetaSignalPostRequest1'
+        - $ref: '#/components/schemas/BetaSignalPostRequest2'
+        - $ref: '#/components/schemas/BetaSignalPostRequest3'
+        - $ref: '#/components/schemas/BetaSignalPostRequest4'
+        - $ref: '#/components/schemas/BetaSignalPostRequest5'
+        - $ref: '#/components/schemas/BetaSignalPostRequest6'
+      discriminator:
+        propertyName: templateId
+        mapping:
+          tpl-sgn003001: '#/components/schemas/BetaSignalPostRequest1'
+          signalTpl-cb19dbc4d13b985674bd5f20bfeee7e8: '#/components/schemas/BetaSignalPostRequest2'
+          signalTpl-f250f305c3bf0aa690cca93ef0f0fb03: '#/components/schemas/BetaSignalPostRequest3'
+          signalTpl-f6b74d81a4807f4c01e6a920920775ad: '#/components/schemas/BetaSignalPostRequest4'
+          signalTpl-7a01659636c119ca4566308effd05d06: '#/components/schemas/BetaSignalPostRequest5'
+          signalTpl-e5ba74fe8089fe44eeeafb68991b1e70: '#/components/schemas/BetaSignalPostRequest6'
     BetaSignalPostResponse:
       title: BetaSignal Post Response
       type: object
@@ -16088,119 +16274,6 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/BetaSignal'
-    BetaSignal2PostRequest:
-      type: object
-      required:
-        - consent
-        - templateId
-        - phone
-      properties:
-        phone:
-          type: string
-          description: >-
-            Subject's mobile number. Must start with country code i.e.
-            639178912345, and no leading zeros. MD5-encrypted input is accepted
-            with the format `MD5(countryCode + mobileNumber)` i.e.
-            `MD5(529559991234)`.
-          example: '639559991234'
-        templateId:
-          type: string
-          description: >-
-            Generate by smile internal. Customer should ask smile to provide the
-            special templateId. If templateId is null, Smile will request the
-            default signals set, same as the alpha result.
-          example: tpl-sgn002001
-        consent:
-          $ref: '#/components/schemas/Consent'
-        countryCode:
-          $ref: '#/components/schemas/RefCountry'
-    BetaSignal3Tpl1PostRequest:
-      type: object
-      required:
-        - fullName
-        - phone
-        - curp
-        - idType
-        - idNumber
-        - templateId
-        - consent
-      properties:
-        emailAddress:
-          type: string
-          format: email
-        fullName:
-          type: string
-          description: Subject's full name. `Required`.
-          example: John Doe
-        phone:
-          type: string
-          description: >-
-            Subject's mobile number. `Required`. Must start with country code
-            i.e. 529178912345, and no leading zeros. MD5‑encrypted input is
-            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
-            `MD5(529559991234)`.
-          example: '529559991234'
-        curp:
-          type: string
-          description: >-
-            Subject's CURP (Clave Única de Registro de Población). `Required`.
-            Must be a valid Mexico CURP.
-          example: DOEJ800101HDFXXX01
-        idType:
-          $ref: '#/components/schemas/SignalIdType'
-          description: Subject's ID type. `Required`. For this template, must be `PID`.
-        idNumber:
-          type: string
-          description: >-
-            Subject's ID number. `Required`. Must be a valid ID number
-            corresponding to the idType.
-          example: '1234567890123'
-        nss:
-          type: string
-          description: Mexico's social security number (NSS). `Optional`.
-        templateId:
-          type: string
-          description: Fixed to `tpl-sgn003002`.
-          example: tpl-sgn003002
-        consent:
-          $ref: '#/components/schemas/Consent'
-    BetaSignal3Tpl2PostRequest:
-      type: object
-      required:
-        - fullName
-        - mobileNumber
-        - idType
-        - idNumber
-        - templateId
-        - consent
-      properties:
-        fullName:
-          type: string
-          description: Subject's full name. `Required`.
-          example: John Doe
-        mobileNumber:
-          type: string
-          description: >-
-            Subject's mobile number. `Required`. Must start with country code
-            i.e. 669178912345, and no leading zeros. MD5‑encrypted input is
-            accepted with the format `MD5(countryCode + mobileNumber)` i.e.
-            `MD5(669178912345)`.
-          example: '669178912345'
-        idType:
-          $ref: '#/components/schemas/SignalIdType'
-          description: Subject's ID type. `Required`.
-        idNumber:
-          type: string
-          description: >-
-            Subject's ID number. `Required`. Must be a valid ID number
-            corresponding to the idType.
-          example: '1234567890123'
-        templateId:
-          type: string
-          description: Fixed to `tpl-social-securities-sgn003003`.
-          example: tpl-social-securities-sgn003003
-        consent:
-          $ref: '#/components/schemas/Consent'
     BetaSignal3PostRequest:
       oneOf:
         - $ref: '#/components/schemas/BetaSignal3Tpl1PostRequest'
@@ -16209,31 +16282,29 @@ components:
         propertyName: templateId
         mapping:
           tpl-sgn003002: '#/components/schemas/BetaSignal3Tpl1PostRequest'
-          tpl-social-securities-sgn003003: '#/components/schemas/BetaSignal3Tpl2PostRequest'
-    AlphaFootprintPostRequest:
+          tpl-social-securities-signal-th: '#/components/schemas/BetaSignal3Tpl2PostRequest'
+    AlphaFootprintTplEmailPostRequest1:
       type: object
       required:
         - consent
         - templateId
+        - emailAddress
+        - countryCode
       properties:
         emailAddress:
           type: string
-          description: The email address of the subject. It must be a valid email address.
-          example: some@email.com
-        mobileNumber:
-          type: string
           description: >-
-            Subject's mobile number. Must start with country code i.e.
-            639178912345, and no leading zeros
-          example: '639178902345'
+            The email address of the subject. It must be a valid email address.
+            `Required` for tpl-ftp005001.
+          example: some@email.com
         countryCode:
           $ref: '#/components/schemas/RefCountry'
         templateId:
           type: string
           description: >-
-            Generated internally by Smile. Customers should request the specific
-            templateId from Smile.
-          example: footprintTpl-xxxxxxxxxxxxxxx
+            Fixed to `tpl-email-footprint` (or legacy `tpl-ftp005001`,
+            deprecated).
+          example: tpl-email-footprint
         footprintItemsTimeout:
           type: integer
           minimum: 1
@@ -16244,6 +16315,101 @@ components:
           example: 5
         consent:
           $ref: '#/components/schemas/Consent'
+    AlphaFootprintTplMobilePostRequest1:
+      type: object
+      required:
+        - consent
+        - templateId
+        - mobileNumber
+        - countryCode
+      properties:
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 639178912345, and no leading zeros.
+          example: '639178902345'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: >-
+            Fixed to `tpl-mobile-footprint` (or legacy `tpl-ftp005002`,
+            deprecated).
+          example: tpl-mobile-footprint
+        footprintItemsTimeout:
+          type: integer
+          minimum: 1
+          maximum: 30
+          description: >-
+            Timeout in seconds for footprint items. If exceeded, returns
+            completed footprint items, others items' values will be null.
+          example: 10
+        consent:
+          $ref: '#/components/schemas/Consent'
+    AlphaFootprintTplScorePostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - emailAddress
+        - mobileNumber
+        - countryCode
+      properties:
+        emailAddress:
+          type: string
+          description: >-
+            The email address of the subject. It must be a valid email address.
+            `Required` for tpl-score-footprint.
+          example: some@email.com
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. `Required`. Must start with country code
+            i.e. 639178912345, and no leading zeros.
+          example: '639178902345'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: Fixed to `tpl-score-footprint`.
+          example: tpl-score-footprint
+        footprintItemsTimeout:
+          type: integer
+          minimum: 1
+          maximum: 30
+          description: >-
+            Timeout in seconds for footprint items. If exceeded, returns
+            completed footprint items, others items' values will be null.
+          example: 5
+        consent:
+          $ref: '#/components/schemas/Consent'
+    AlphaFootprintTplEmailPostRequest2:
+      allOf:
+        - $ref: '#/components/schemas/AlphaFootprintTplEmailPostRequest1'
+    AlphaFootprintTplMobilePostRequest2:
+      allOf:
+        - $ref: '#/components/schemas/AlphaFootprintTplMobilePostRequest1'
+    AlphaFootprintTplEmailPostRequest3:
+      allOf:
+        - $ref: '#/components/schemas/AlphaFootprintTplEmailPostRequest1'
+    AlphaFootprintPostRequest:
+      oneOf:
+        - $ref: '#/components/schemas/AlphaFootprintTplEmailPostRequest1'
+        - $ref: '#/components/schemas/AlphaFootprintTplEmailPostRequest2'
+        - $ref: '#/components/schemas/AlphaFootprintTplEmailPostRequest3'
+        - $ref: '#/components/schemas/AlphaFootprintTplMobilePostRequest1'
+        - $ref: '#/components/schemas/AlphaFootprintTplMobilePostRequest2'
+        - $ref: '#/components/schemas/AlphaFootprintTplScorePostRequest'
+      discriminator:
+        propertyName: templateId
+        mapping:
+          tpl-email-footprint: '#/components/schemas/AlphaFootprintTplEmailPostRequest1'
+          tpl-mobile-footprint: '#/components/schemas/AlphaFootprintTplMobilePostRequest1'
+          tpl-score-footprint: '#/components/schemas/AlphaFootprintTplScorePostRequest'
+          tpl-ftp005001: '#/components/schemas/AlphaFootprintTplEmailPostRequest2'
+          tpl-ftp005002: '#/components/schemas/AlphaFootprintTplMobilePostRequest2'
+          footprintTpl-61e10d070e07a4ea96e9430668d4bb9f: '#/components/schemas/AlphaFootprintTplEmailPostRequest3'
     AlphaFootprintItem:
       type: object
       required:
@@ -16505,7 +16671,7 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/AlphaMaw'
-    BetaMaw2PostRequest:
+    BetaMaw2PostRequest1:
       type: object
       required:
         - consent
@@ -16530,6 +16696,40 @@ components:
             from Smile if need.
         consent:
           $ref: '#/components/schemas/Consent'
+    BetaMaw2PostRequest2:
+      type: object
+      required:
+        - consent
+        - templateId
+        - mobileNumber
+        - countryCode
+      properties:
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            639178912345, and no leading zeros. MD5‑encrypted input is accepted
+            with the format `MD5(countryCode + mobileNumber)` i.e.
+            `MD5(529559991234)`.
+          example: '639559991234'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: >-
+            Fixed to `mawTpl-bfc93eb72d24860bf62429a1dd06708d`. You can request
+            the specific templateId from Smile if need.
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaMaw2PostRequest:
+      oneOf:
+        - $ref: '#/components/schemas/BetaMaw2PostRequest1'
+        - $ref: '#/components/schemas/BetaMaw2PostRequest2'
+      discriminator:
+        propertyName: templateId
+        mapping:
+          tpl-maw002001: '#/components/schemas/BetaMaw2PostRequest1'
+          mawTpl-bfc93eb72d24860bf62429a1dd06708d: '#/components/schemas/BetaMaw2PostRequest2'
     MawType:
       type: string
       description: The type of the Maw.
@@ -16654,16 +16854,18 @@ components:
     BetaMawRequestMeta:
       oneOf:
         - $ref: '#/components/schemas/BetaMaw2PostRequest'
+        - $ref: '#/components/schemas/BetaMaw2PostRequest2'
         - $ref: '#/components/schemas/BetaMaw3Tpl1PostRequest'
         - $ref: '#/components/schemas/BetaMaw3Tpl2PostRequest'
         - $ref: '#/components/schemas/BetaMaw3Tpl3PostRequest'
       discriminator:
         propertyName: templateId
         mapping:
-          tpl-maw002001: '#/components/schemas/BetaMaw2PostRequest'
+          tpl-maw002001: '#/components/schemas/BetaMaw2PostRequest1'
           tpl-maw004001: '#/components/schemas/BetaMaw3Tpl1PostRequest'
           tpl-maw004002: '#/components/schemas/BetaMaw3Tpl2PostRequest'
           tpl-maw004003: '#/components/schemas/BetaMaw3Tpl3PostRequest'
+          mawTpl-bfc93eb72d24860bf62429a1dd06708d: '#/components/schemas/BetaMaw2PostRequest2'
     BetaMaw2Item:
       type: object
       required:
