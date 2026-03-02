@@ -4688,13 +4688,28 @@ paths:
         ### Supported Template
 
 
-        | Template ID     | Region       | Required
-        Parameters                             |
+        | Template ID                                               |
+        Region       | Required Parameters                             |
 
-        |-----------------|--------------|-------------------------------------------------|
+        |-----------------------------------------------------------|--------------|-------------------------------------------------|
 
-        | `tpl-sgn003001` | PH (default) | `consent`, `templateId`,
-        `countryCode`, `phone` |
+        | `tpl-sgn003001`                                           | PH
+        (default) | `consent`, `templateId`, `countryCode`, `phone` |
+
+        | `signalTpl-cb19dbc4d13b985674bd5f20bfeee7e8` (deprecated) | PH
+        (default) | `consent`, `templateId`, `countryCode`, `phone` |
+
+        | `signalTpl-f250f305c3bf0aa690cca93ef0f0fb03` (deprecated) | PH
+        (default) | `consent`, `templateId`, `countryCode`, `phone` |
+
+        | `signalTpl-f6b74d81a4807f4c01e6a920920775ad` (deprecated) | PH
+        (default) | `consent`, `templateId`, `countryCode`, `phone` |
+
+        | `signalTpl-7a01659636c119ca4566308effd05d06` (deprecated) | PH
+        (default) | `consent`, `templateId`, `countryCode`, `phone` |
+
+        | `signalTpl-e5ba74fe8089fe44eeeafb68991b1e70` (deprecated) | PH
+        (default) | `consent`, `templateId`, `countryCode`, `phone` |
 
 
         ### Field Guidelines
@@ -4885,6 +4900,12 @@ paths:
           schema:
             type: string
           description: Filter Signal Requests by a specific Signal Request ID.
+        - name: signalType
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/SignalType'
+          description: Filter Signal Requests by a specific Signal Type.
         - name: phone
           in: query
           required: false
@@ -5759,15 +5780,19 @@ paths:
         ### Supported Template
 
 
-        | Template ID     |
+        | Template ID                                            |
         Region(s)                                                                           
         | Required Parameters           |
 
-        |-----------------|--------------------------------------------------------------------------------------|-------------------------------|
+        |--------------------------------------------------------|--------------------------------------------------------------------------------------|-------------------------------|
 
-        | `tpl-maw002001` | IN (India), MX (Mexico), PH (Philippines),ID
-        (Indonesia),CO (Colombia),TH (Thailand) | `mobileNumber`, `countryCode`
-        |
+        | `tpl-maw002001`                                        | IN (India),
+        MX (Mexico), PH (Philippines),ID (Indonesia),CO (Colombia),TH (Thailand)
+        | `mobileNumber`, `countryCode` |
+
+        | `mawTpl-bfc93eb72d24860bf62429a1dd06708d` (deprecated) | IN (India),
+        MX (Mexico), PH (Philippines),ID (Indonesia),CO (Colombia),TH (Thailand)
+        | `mobileNumber`, `countryCode` |
 
 
         ### Sandbox Test Values
@@ -5987,15 +6012,19 @@ paths:
         ### Supported Template
 
 
-        | Template ID     |
+        | Template ID                                            |
         Region(s)                                                                           
         | Required Parameters           |
 
-        |-----------------|--------------------------------------------------------------------------------------|-------------------------------|
+        |--------------------------------------------------------|--------------------------------------------------------------------------------------|-------------------------------|
 
-        | `tpl-maw002001` | IN (India), MX (Mexico), PH (Philippines),ID
-        (Indonesia),CO (Colombia),TH (Thailand) | `mobileNumber`, `countryCode`
-        |
+        | `tpl-maw002001`                                        | IN (India),
+        MX (Mexico), PH (Philippines),ID (Indonesia),CO (Colombia),TH (Thailand)
+        | `mobileNumber`, `countryCode` |
+
+        | `mawTpl-bfc93eb72d24860bf62429a1dd06708d` (deprecated) | IN (India),
+        MX (Mexico), PH (Philippines),ID (Indonesia),CO (Colombia),TH (Thailand)
+        | `mobileNumber`, `countryCode` |
 
 
         ### Sandbox Test Values
@@ -6418,6 +6447,12 @@ paths:
           schema:
             type: string
           description: Filter Maws by a specific Maw ID.
+        - name: mawType
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/MawType'
+          description: Filter maws by a specific Maw Type.
         - name: mobileNumber
           in: query
           required: false
@@ -16289,7 +16324,6 @@ components:
         - consent
         - templateId
         - emailAddress
-        - countryCode
       properties:
         emailAddress:
           type: string
@@ -16321,7 +16355,6 @@ components:
         - consent
         - templateId
         - mobileNumber
-        - countryCode
       properties:
         mobileNumber:
           type: string
