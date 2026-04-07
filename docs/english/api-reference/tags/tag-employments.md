@@ -33,10 +33,12 @@ If the sources provided by your user are not enough, you can also make use of Sm
 | jobTitle | string | Job title or position with the employer, if available from the provider. Null if not available               |
 | department | string | Department of the user with the employer, if available from the provider. Null if not available              |
 | employeeNumber | string | Employee number of the user with the employer, if available from the provider. Null if not available         |
+| employerNumber | string | Employer number of the employer, if available from the provider. Null if not available                   |
 | employer | string | Company or business name of the employer, if available from the provider. Null if not available.             |
 | status | string | Status of the user's employment, if available from the provider. Null if not available                       |
 | startDate | date | Start date of the user's employment with the employer, if available from the provider. Null if not available |
 | endDate | date | End date of the user's employment with the employer, if available from the provider. Null if not available   |
+| reportedDate | date | Date when the employment information was reported, in YYYY-MM-DD format. Null if not available              |
 | metadata | object | Contains data about this employment data point. See object below                                             |
 
 
@@ -64,9 +66,11 @@ If the sources provided by your user are not enough, you can also make use of Sm
     "jobTitle": "Security Guard",
     "department": null,
     "employeeNumber": "EMP-123456",
+    "employerNumber": "ER-654321",
     "employer": "ABC Corporation",
     "status": "Permanent",
     "endDate": "2022-07-31",
+    "reportedDate": "2022-08-01",
     "metadata": {
         "createdAt": "2022-09-01T01:44:18Z",
         "itemCreatedAt": "2022-08-24T05:24:37Z",

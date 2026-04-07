@@ -10710,6 +10710,26 @@ components:
             - Secondary
             - null
           description: Whether address is primary or secondary
+        tags:
+          type: array
+          default: []
+          example:
+            - Primary
+            - Home
+          items:
+            type: string
+            enum:
+              - Primary
+              - Secondary
+              - Home
+              - Work
+              - Mailing
+              - Foreign
+              - Billing
+              - Permanent
+              - Shipping
+              - null
+          description: Address tags, such as primary or secondary, home or work, etc.
       required:
         - type
     IdentityPayload:
@@ -11242,6 +11262,11 @@ components:
           description: Employee number in the employment data provider
           example: EMP-123456
           nullable: true
+        employerNumber:
+          type: string
+          description: Employer number in the employment data provider
+          example: ER-654321
+          nullable: true
         employer:
           $ref: '#/components/schemas/RefEmployer'
         status:
@@ -11259,6 +11284,12 @@ components:
           description: End date
           format: date
           example: '2019-08-24'
+          nullable: true
+        reportedDate:
+          type: string
+          description: Reported date
+          format: date
+          example: '2019-08-25'
           nullable: true
     ContributionPayload:
       type: object
@@ -14951,10 +14982,12 @@ components:
           jobTitle: Digital Marketing Assistant
           department: Marketing
           employeeNumber: EMP-123456
+          employerNumber: ER-654321
           employer: ABC Corporation
           status: Permanent
           startDate: '2016-02-24'
           endDate: '2019-08-24'
+          reportedDate: '2019-08-25'
           metadata:
             createdAt: '2021-04-14T09:30:24Z'
             sourceId: a-17bbf36498de4d68a0d4f86c7b62f69f

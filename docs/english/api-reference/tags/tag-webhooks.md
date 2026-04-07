@@ -353,10 +353,12 @@ The `payload` item will be empty if `includePayload` is set to `FALSE`.
             "jobTitle": "Security Guard",
             "department": null,
             "employeeNumber": "EMP-123456",
+            "employerNumber": "ER-654321",
             "employer": "ABC Corporation",
             "status": "Permanent",
             "startDate": "2023-10-01",
-            "endDate": "2023-10-31"
+            "endDate": "2023-10-31",
+            "reportedDate": "2023-11-01"
         },
         {
             "id": "e-6371af9f7e284497996cebf09ff250a2",
@@ -365,10 +367,12 @@ The `payload` item will be empty if `includePayload` is set to `FALSE`.
             "jobTitle": "Security Guard",
             "department": null,
             "employeeNumber": "CDE-98765",
+            "employerNumber": "ER-98765",
             "employer": "CDE Corporation",
             "status": "Permanent",
             "startDate": "2023-09-01",
-            "endDate": "2023-09-30"
+            "endDate": "2023-09-30",
+            "reportedDate": "2023-10-01"
         }]
       },
       "contributions":
