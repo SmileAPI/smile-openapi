@@ -5502,7 +5502,7 @@ paths:
                         - name: mobile.companyName
                           value: Globe
                           valueType: STRING
-                        - name: riskScore
+                        - name: analysis.fraudScore
                           value: '50'
                           valueType: NUMBER
       requestBody:
@@ -16956,6 +16956,14 @@ components:
         source:
           type: string
           description: 'The source of the item. Possible values are: seat, voice, sms.'
+        platformTags:
+          type: array
+          default: []
+          items:
+            type: string
+            description: >-
+              A tag associated with the item. Possible values are: finance,
+              other, etc.
     BetaMaw3Item:
       type: object
       required:
