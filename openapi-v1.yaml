@@ -16657,6 +16657,14 @@ components:
         source:
           type: string
           description: 'The source of the item. Possible values are: seat, voice, sms.'
+        platformTags:
+          type: array
+          default: []
+          items:
+            type: string
+            description: >-
+              A tag associated with the item. Possible values are: finance,
+              other, etc.
     AlphaMaw:
       type: object
       required:
