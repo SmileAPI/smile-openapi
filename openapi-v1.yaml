@@ -4079,7 +4079,7 @@ paths:
 
 
         *Estimated Incomes is currently in alpha.*
-      summary: List Estimated Incomes (early access)
+      summary: List Estimated Incomes
       tags:
         - Estimated Incomes
       responses:
@@ -6804,7 +6804,7 @@ paths:
                           consentTemplateId: null
   /alpha/blacklists:
     post:
-      summary: Create Blacklist
+      summary: Create Blacklist1
       operationId: create-alpha-blacklist
       description: >-
         ## Create a **Blacklist** object.  
@@ -6870,7 +6870,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AlphaBlacklistPostResponse'
               examples:
-                Example:
+                tpl-blk002001:
                   value:
                     code: OK
                     message: Success
@@ -6881,11 +6881,12 @@ paths:
                       status: COMPLETED
                       resultCode: SUCCESS
                       resultMessage: Success!
+                      type: BLACKLIST1
                       requestMeta:
-                        mobileNumber: '6381789801234'
+                        mobileNumber: '639559991234'
                         countryCode: PH
-                        applicationDate: '2021-04-14'
-                        templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                        applicationDate: '2023-01-21'
+                        templateId: tpl-blk002001
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -6903,9 +6904,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AlphaBlacklistPostRequest'
+              $ref: '#/components/schemas/AlphaBlacklistPostRequest1'
             examples:
-              Example:
+              tpl-blk002001:
                 value:
                   consent:
                     type: Terms And Conditions
@@ -6913,9 +6914,9 @@ paths:
                     consentedWith: I agree to the terms and conditions.
                     consentedAt: '2021-04-14T09:30:24Z'
                     consentTemplateId: null
-                  templateId: blacklistTpl-xxxxxxxxxxxxxxx
-                  mobileNumber: '6381789801234'
-                  applicationDate: '2021-04-14'
+                  templateId: tpl-blk002001
+                  mobileNumber: '639559991234'
+                  applicationDate: '2023-01-21'
                   countryCode: PH
     get:
       summary: List Blacklists
@@ -6941,13 +6942,14 @@ paths:
                         - id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
                           createdAt: '2021-04-14T09:30:24Z'
                           status: COMPLETED
-                          resultCode: ''
-                          resultMessage: ''
+                          resultCode: SUCCESS
+                          resultMessage: Success!
+                          type: BLACKLIST1
                           requestMeta:
-                            mobileNumber: '6381789801234'
+                            mobileNumber: '639559991234'
                             countryCode: PH
-                            applicationDate: '2021-04-14'
-                            templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                            applicationDate: '2023-01-21'
+                            templateId: tpl-blk002001
                             consent:
                               type: Terms And Conditions
                               version: 1
@@ -6960,6 +6962,29 @@ paths:
                               - '2021-04-14'
                               - '2021-03-14'
                               - '2021-02-14'
+                        - id: blacklist-f45d521ef8f147c4aa01b7c1af85aaf8
+                          createdAt: '2021-04-14T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: SUCCESS
+                          resultMessage: Success!
+                          type: BLACKLIST2
+                          requestMeta:
+                            mobileNumber: '639559991234'
+                            idType: TIN
+                            idNumber: '4561234567'
+                            countryCode: PH
+                            applicationDate: null
+                            templateId: tpl-blacklist-007001
+                            consent:
+                              type: Terms And Conditions
+                              version: 1
+                              consentedWith: I agree to the terms and conditions.
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentTemplateId: null
+                          result:
+                            hit: true
+                            dates:
+                              - '2021-04-14'
       description: List all Blacklists.
       parameters:
         - $ref: '#/components/parameters/size'
@@ -6969,18 +6994,31 @@ paths:
           required: false
           schema:
             type: string
+          example: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
           description: Filter blacklists by a specific Blacklist ID.
         - name: mobileNumber
           in: query
           required: false
           schema:
             type: string
+          example: '639559991234'
           description: Filter blacklists by a specific mobile number.
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - BLACKLIST1
+              - BLACKLIST2
+          example: BLACKLIST1
+          description: Filter blacklists by Blacklist type.
         - schema:
             type: string
             format: date
           in: query
           name: startDate
+          example: '2021-04-01'
           description: >-
             Filter blacklists by the start date of the request range
             (YYYY-MM-DD).
@@ -6989,7 +7027,136 @@ paths:
             format: date
           in: query
           name: endDate
+          example: '2021-04-30'
           description: Filter blacklists by the end date of the request range (YYYY-MM-DD).
+  /alpha/blacklists/requestBlacklist2:
+    post:
+      summary: Create Blacklist2
+      operationId: create-alpha-blacklist2
+      description: >
+        ## Create a **Blacklist2** object.
+
+        This endpoint requires the following input parameters:
+
+        `consent`, `mobileNumber`, `templateId`, and `countryCode`.
+
+
+        `idType` and `idNumber` are supported identity fields for the Blacklist2
+        template and should be provided when available.
+
+
+        ### Supported Template
+
+
+        | Template ID            | Region       | Required
+        Parameters                                    |
+
+        |------------------------|--------------|--------------------------------------------------------|
+
+        | `tpl-blacklist-007001` | PH (default) | `consent`, `mobileNumber`,
+        `countryCode`, `templateId` |
+
+
+        ### Field Rules
+
+
+        - `templateId` must be `tpl-blacklist-007001`.
+
+        - `countryCode` is required.
+
+        - For `countryCode = PH`, `idType` must be one of: `NATIONAL_ID`, `SSS`,
+        `UMID`, `TIN`, `PRC`, `PHILHEALTH`, `PASSPORT`, `DRIVER_LICENSE`,
+        `VOTER_ID`, or `POSTAL_ID`.
+
+
+        ### Sandbox Test Values
+
+
+        | Parameter      | Value                  | Expected
+        Response                    |
+
+        |----------------|------------------------|--------------------------------------|
+
+        | `templateId`   | `tpl-blacklist-007001`
+        |                                      |
+
+        | `mobileNumber` | `639559991234`        
+        |                                      |
+
+        | `countryCode`  | `PH`                  
+        |                                      |
+
+        | `idType`       | `TIN`                 
+        |                                      |
+
+        | `idNumber`     | `4561234567`           | `resultCode = SUCCESS`, `hit
+        = true` |
+
+
+        For all other valid input combinations, the response will return:
+
+        `resultCode = SUCCESS`, but `hit = false`.
+      tags:
+        - Blacklists (Alpha)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlphaBlacklistPostResponse'
+              examples:
+                tpl-blacklist-007001:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      type: BLACKLIST2
+                      requestMeta:
+                        mobileNumber: '639559991234'
+                        idType: TIN
+                        idNumber: '4561234567'
+                        countryCode: PH
+                        applicationDate: null
+                        templateId: tpl-blacklist-007001
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: null
+                      result:
+                        hit: true
+                        dates:
+                          - '2021-04-14'
+                          - '2021-03-14'
+                          - '2021-02-14'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlphaBlacklistPostRequest2'
+            examples:
+              tpl-blacklist-007001:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: 1
+                    consentedWith: I agree to the terms and conditions.
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentTemplateId: null
+                  templateId: tpl-blacklist-007001
+                  mobileNumber: '639559991234'
+                  idType: TIN
+                  idNumber: '4561234567'
+                  countryCode: PH
   /alpha/blacklists/{id}:
     parameters:
       - $ref: '#/components/parameters/id'
@@ -7007,7 +7174,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AlphaBlacklistGetResponse'
               examples:
-                Example:
+                BLACKLIST1:
                   value:
                     code: OK
                     message: Success
@@ -7016,13 +7183,14 @@ paths:
                       id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
                       createdAt: '2021-04-14T09:30:24Z'
                       status: COMPLETED
-                      resultCode: ''
-                      resultMessage: ''
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      type: BLACKLIST1
                       requestMeta:
-                        mobileNumber: '6381789801234'
+                        mobileNumber: '639559991234'
                         countryCode: PH
-                        applicationDate: '2021-04-14'
-                        templateId: blacklistTpl-xxxxxxxxxxxxxxx
+                        applicationDate: '2023-01-21'
+                        templateId: tpl-blacklist-007001
                         consent:
                           type: Terms And Conditions
                           version: 1
@@ -7035,6 +7203,34 @@ paths:
                           - '2021-04-14'
                           - '2021-03-14'
                           - '2021-02-14'
+                BLACKLIST2:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b72199a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: blacklist-e35d521ef8f147c4aa01b7c1af85aaf7
+                      createdAt: '2021-04-14T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: Success!
+                      type: BLACKLIST2
+                      requestMeta:
+                        mobileNumber: '639559991234'
+                        idType: TIN
+                        idNumber: '4561234567'
+                        countryCode: PH
+                        applicationDate: null
+                        templateId: tpl-blacklist-007001
+                        consent:
+                          type: Terms And Conditions
+                          version: 1
+                          consentedWith: I agree to the terms and conditions.
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentTemplateId: null
+                      result:
+                        hit: true
+                        dates: []
   /alpha/socialSecurities:
     post:
       summary: Create Social Security
@@ -7042,7 +7238,7 @@ paths:
       description: >+
         ## Create a Social Security object.  
 
-        This endpoint requires **four mandatory parameters**:  
+        This endpoint requires **mandatory parameters**:  
 
         `consent`, `mobileNumber`, `fullName`, `curp`, `emailAddress`, and
         `templateId`.
@@ -17246,7 +17442,7 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/AlphaValidation'
-    AlphaBlacklistPostRequest:
+    AlphaBlacklistPostRequest1:
       type: object
       required:
         - consent
@@ -17256,18 +17452,15 @@ components:
           type: string
           description: >-
             Subject's mobile number. Must start with country code i.e.
-            639178912345, and no leading zeros
-          example: '639178902345'
+            639559991234, and no leading zeros
+          example: '639559991234'
         countryCode:
           $ref: '#/components/schemas/RefCountry'
         templateId:
           type: string
-          description: >-
-            Generated internally by Smile. Customers should request the specific
-            templateId from Smile. If this value is null, Smile will use the
-            default value `blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e`.
-          example: blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e
-          default: blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e
+          description: Fixed templateId for this request. Value must be `tpl-blk002001`.
+          example: tpl-blk002001
+          default: tpl-blk002001
         applicationDate:
           type: string
           format: date
@@ -17277,6 +17470,65 @@ components:
           example: '2023-01-21'
         consent:
           $ref: '#/components/schemas/Consent'
+    AlphaBlacklistPostRequest2:
+      type: object
+      description: Alpha Blacklist Post Request2.
+      required:
+        - consent
+        - mobileNumber
+        - countryCode
+        - idType
+        - idNumber
+        - templateId
+      properties:
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            639559991234, and no leading zeros
+          example: '639559991234'
+        idType:
+          type: string
+          description: >-
+            The type of ID. If countryCode is PH, this value must be one of the
+            following: NATIONAL_ID, SSS, UMID, TIN, PRC, PHILHEALTH, PASSPORT,
+            DRIVER_LICENSE, VOTER_ID, POSTAL_ID.
+          default: NATIONAL_ID
+          enum:
+            - NATIONAL_ID
+            - SSS
+            - UMID
+            - TIN
+            - PRC
+            - PHILHEALTH
+            - PASSPORT
+            - DRIVER_LICENSE
+            - VOTER_ID
+            - POSTAL_ID
+        idNumber:
+          type: string
+          description: Subject's ID number.
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+          description: The country code of the ID. Only supported for PH, ID, MX.
+        templateId:
+          type: string
+          description: >-
+            Fixed templateId for this request. Value must be
+            `tpl-blacklist-007001`
+          example: tpl-blacklist-007001
+          default: tpl-blacklist-007001
+        consent:
+          $ref: '#/components/schemas/Consent'
+    AlphaBlacklistPostRequest:
+      oneOf:
+        - $ref: '#/components/schemas/AlphaBlacklistPostRequest1'
+        - $ref: '#/components/schemas/AlphaBlacklistPostRequest2'
+      discriminator:
+        propertyName: templateId
+        mapping:
+          tpl-blk002001: '#/components/schemas/AlphaBlacklistPostRequest1'
+          tpl-blacklist-007001: '#/components/schemas/AlphaBlacklistPostRequest2'
     AlphaBlacklist:
       type: object
       required:
@@ -17307,6 +17559,12 @@ components:
         resultMessage:
           type: string
           description: A detailed description of the final result of the Blacklist.
+        type:
+          type: string
+          description: The type of Blacklist.
+          enum:
+            - BLACKLIST1
+            - BLACKLIST2
         requestMeta:
           $ref: '#/components/schemas/AlphaBlacklistPostRequest'
         result:
