@@ -5974,13 +5974,16 @@ paths:
         ### Supported Template
 
 
-        | Template ID     | Region       | Required
-        Parameters                                    |
+        | Template ID                                                  |
+        Region       | Required Parameters                                    |
 
-        |-----------------|--------------|--------------------------------------------------------|
+        |--------------------------------------------------------------|--------------|--------------------------------------------------------|
 
-        | `tpl-blk002001` | PH (default) | `consent`, `mobileNumber`,
-        `countryCode`, `templateId` |
+        | `tpl-blk002001`                                              | PH
+        (default) | `consent`, `mobileNumber`, `countryCode`, `templateId` |
+
+        | `blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e` (deprecated) | PH
+        (default) | `consent`, `mobileNumber`, `countryCode`, `templateId` |
 
 
         ### Field Rules
@@ -6054,7 +6057,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AlphaBlacklistPostRequest1'
+              $ref: '#/components/schemas/AlphaBlacklist1PostRequest'
             examples:
               tpl-blk002001:
                 value:
@@ -6292,7 +6295,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AlphaBlacklistPostRequest2'
+              $ref: '#/components/schemas/AlphaBlacklist2PostRequest1'
             examples:
               tpl-blacklist-007001:
                 value:
@@ -16645,7 +16648,37 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/AlphaValidation'
-    AlphaBlacklistPostRequest1:
+    AlphaBlacklist1PostRequest2:
+      type: object
+      required:
+        - consent
+        - mobileNumber
+      properties:
+        mobileNumber:
+          type: string
+          description: >-
+            Subject's mobile number. Must start with country code i.e.
+            639559991234, and no leading zeros
+          example: '639559991234'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: >-
+            Fixed templateId for this request. Value must be
+            `blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e`.
+          example: blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e
+          default: blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e
+        applicationDate:
+          type: string
+          format: date
+          description: >-
+            Smile will query the data that before this date. The format is
+            yyyy-MM-dd.
+          example: '2023-01-21'
+        consent:
+          $ref: '#/components/schemas/Consent'
+    AlphaBlacklist1PostRequest1:
       type: object
       required:
         - consent
@@ -16673,7 +16706,7 @@ components:
           example: '2023-01-21'
         consent:
           $ref: '#/components/schemas/Consent'
-    AlphaBlacklistPostRequest2:
+    AlphaBlacklist2PostRequest1:
       type: object
       description: Alpha Blacklist Post Request2.
       required:
@@ -16726,13 +16759,15 @@ components:
           $ref: '#/components/schemas/Consent'
     AlphaBlacklistPostRequest:
       oneOf:
-        - $ref: '#/components/schemas/AlphaBlacklistPostRequest1'
-        - $ref: '#/components/schemas/AlphaBlacklistPostRequest2'
+        - $ref: '#/components/schemas/AlphaBlacklist1PostRequest1'
+        - $ref: '#/components/schemas/AlphaBlacklist1PostRequest2'
+        - $ref: '#/components/schemas/AlphaBlacklist2PostRequest1'
       discriminator:
         propertyName: templateId
         mapping:
-          tpl-blk002001: '#/components/schemas/AlphaBlacklistPostRequest1'
-          tpl-blacklist-007001: '#/components/schemas/AlphaBlacklistPostRequest2'
+          blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e: '#/components/schemas/AlphaBlacklist1PostRequest2'
+          tpl-blk002001: '#/components/schemas/AlphaBlacklist1PostRequest1'
+          tpl-blacklist-007001: '#/components/schemas/AlphaBlacklist2PostRequest1'
     AlphaBlacklist:
       type: object
       required:
@@ -16802,6 +16837,15 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/AlphaBlacklist'
+    AlphaBlacklist1PostRequest:
+      oneOf:
+        - $ref: '#/components/schemas/AlphaBlacklist1PostRequest1'
+        - $ref: '#/components/schemas/AlphaBlacklist1PostRequest2'
+      discriminator:
+        propertyName: templateId
+        mapping:
+          blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e: '#/components/schemas/AlphaBlacklist1PostRequest2'
+          tpl-blk002001: '#/components/schemas/AlphaBlacklist1PostRequest1'
     AlphaBlacklistPostResponse:
       title: Alpha Blacklist Post Response
       type: object
