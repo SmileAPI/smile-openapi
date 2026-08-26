@@ -1,0 +1,40 @@
+{
+  "code": "OK",
+  "message": "Success!",
+  "requestId": "cc528375-f115-4af0-a697-43f51e084cb3",
+  "data": {
+    "id": "ss-e47c89890660439d861e08b05b27a7fb",
+    "createdAt": "2026-08-18T06:32:43Z",
+    "status": "PROCESSING",
+    "resultCode": "SUCCESS",
+    "resultMessage": "query success",
+    "result": {
+      "fullName": "George Cimafranca Palomero, Jr",
+      "curp": "DOEJ800102HDFXXX02",
+      "nss": "12345678901",
+      "payMark": null,
+      "reportDate": "2024-01-15",
+      "employerName": "ABC Corporation",
+      "employerRegistration": "ABC123456",
+      "state": "SINALOA",
+      "contributionDays": 365,
+      "contributionBaseAmount": 50000,
+      "currency": "MXN"
+    },
+    "requestMeta": {
+      "emailAddress": "john.doe@example.com",
+      "fullName": "JOHN DOE",
+      "mobileNumber": "529559991234",
+      "curp": "DOEJ800101HDFXXX01",
+      "nss": "12345678901",
+      "templateId": "tpl-sss003002",
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": "1",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentTemplateId": null
+      }
+    }
+  }
+}

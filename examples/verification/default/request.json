@@ -1,0 +1,25 @@
+{
+  "firstName": "George",
+  "middleName": "Cimafranca",
+  "lastName": "Palomero",
+  "suffix": "Jr.",
+  "fullName": "George Cimafranca Palomero Jr.",
+  "additionalData": {
+    "dob": "1970-08-24",
+    "gender": "Male",
+    "ids": [
+      {
+        "idType": "tin_ph",
+        "idSubType": null,
+        "idNumber": "123456789"
+      }
+    ]
+  },
+  "consent": {
+    "type": "Terms And Conditions",
+    "version": 1.0,
+    "consentedWith": "I agree to the terms and conditions.",
+    "consentedAt": "2021-04-14T09:30:24Z",
+    "consentTemplateId": null
+  }
+}

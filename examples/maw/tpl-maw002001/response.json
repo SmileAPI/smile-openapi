@@ -1,0 +1,112 @@
+{
+  "code": "OK",
+  "message": "Success",
+  "requestId": "5b72199a-6852-4234-bb0e-ad472648282d",
+  "data": {
+    "id": "maw-e35d521ef8f147c4aa01b7c1af85aaf7",
+    "createdAt": "2021-04-14T09:30:24Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": "Success!",
+    "type": "MAW2",
+    "requestMeta": {
+      "mobileNumber": "6381789801234",
+      "countryCode": "PH",
+      "templateId": "tpl-maw002001",
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": 1.0,
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentTemplateId": null
+      }
+    },
+    "maw2Items": [
+      {
+        "date": "2024-05-13",
+        "level": "3",
+        "platformId": "222",
+        "duration": null,
+        "source": "sms",
+        "platformTags": []
+      },
+      {
+        "date": "2024-12-11",
+        "level": "3",
+        "platformId": "18711",
+        "duration": null,
+        "source": "sms",
+        "platformTags": [
+          "other"
+        ]
+      },
+      {
+        "date": "2024-12-11",
+        "level": "3",
+        "platformId": "1020646",
+        "duration": null,
+        "source": "sms",
+        "platformTags": [
+          "finance"
+        ]
+      },
+      {
+        "date": "2024-12-13",
+        "level": "3",
+        "platformId": "1020646",
+        "duration": null,
+        "source": "sms",
+        "platformTags": [
+          "finance"
+        ]
+      },
+      {
+        "date": "2024-12-17",
+        "level": "3",
+        "platformId": "1020646",
+        "duration": null,
+        "source": "sms",
+        "platformTags": [
+          "finance"
+        ]
+      },
+      {
+        "date": "2024-12-18",
+        "level": "3",
+        "platformId": "1020646",
+        "duration": null,
+        "source": "sms",
+        "platformTags": [
+          "finance"
+        ]
+      },
+      {
+        "date": "2024-12-27",
+        "level": "3",
+        "platformId": "1020646",
+        "duration": null,
+        "source": "sms",
+        "platformTags": [
+          "finance"
+        ]
+      },
+      {
+        "date": "2024-05-13",
+        "level": null,
+        "platformId": "223",
+        "duration": null,
+        "source": "query",
+        "platformTags": []
+      },
+      {
+        "date": "2024-12-27",
+        "level": null,
+        "platformId": "18712",
+        "duration": null,
+        "source": "query",
+        "platformTags": []
+      }
+    ],
+    "maw3Items": []
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "code": "OK",
+  "message": "Success!",
+  "requestId": "ac9f2bc9-cab5-47c6-8105-85af7285dc21",
+  "data": {
+    "id": "iest-9ae6f7f14b0640e69c5199c2453d2f92",
+    "createdAt": "2026-08-18T06:32:14Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": null,
+    "requestMeta": {
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": "1",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentTemplateId": null
+      },
+      "templateId": "tpl-incomeestimator-001",
+      "emailAddress": "gpalomero1234@smileapi.io",
+      "countryCode": "PH"
+    },
+    "result": {
+      "income": {
+        "monthlyMin": 17251,
+        "monthlyMax": 29250,
+        "currency": "PHP",
+        "tier": "HIGH"
+      },
+      "probability": 0.7388,
+      "certainty": "MEDIUM",
+      "modelVersion": "1.0.0"
+    }
+  }
+}

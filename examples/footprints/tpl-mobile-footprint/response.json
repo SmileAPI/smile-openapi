@@ -1,0 +1,297 @@
+{
+  "code": "OK",
+  "message": "Success!",
+  "requestId": "af8cf07d-6b42-4d5a-be7f-ad8180cb0ad5",
+  "data": {
+    "id": "fp-8e823cff78844ca58273f8d7644ecda5",
+    "createdAt": "2026-08-18T06:25:05Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": null,
+    "requestMeta": {
+      "templateId": "tpl-mobile-footprint",
+      "mobileNumber": "639559991234",
+      "countryCode": "PH",
+      "footprintItemsTimeout": 10,
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": "1.0",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentTemplateId": null
+      }
+    },
+    "items": [
+      {
+        "name": "mobile.valid",
+        "value": "true",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.phoneType",
+        "value": "MOBILE",
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.disposable",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.active",
+        "value": "true",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.originalCarrier",
+        "value": "Globe Telecom",
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.carrier",
+        "value": "Globe Telecom",
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.tenure",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.minTenure",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.maxTenure",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.phoneNumberAge",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.ported",
+        "value": "false",
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.portedCount",
+        "value": "0",
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.portedDaysSinceLast",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.registeredProfilesCount",
+        "value": "5",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.registeredEmailProviderProfilesCount",
+        "value": "1",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.registeredEcommerceProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.registeredSocialMediaProfilesCount",
+        "value": "1",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.registeredProfessionalProfilesCount",
+        "value": "1",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.registeredMessagingProfilesCount",
+        "value": "2",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.lastActivity",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.numberOfNamesReturned",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.numberOfPhotosReturned",
+        "value": "1",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "mobile.emailProviderGoogleRegistered",
+        "value": "true",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.emailProviderGoogleName",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.emailProviderGoogleAccountId",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.ecommerceAmazonRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.ecommerceBukalapakRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.ecommerceCarrefourRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.socialMediaFacebookRegistered",
+        "value": "true",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.socialMediaTwitterRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.socialMediaInstagramRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.professionalLinkedInRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.professionalMicrosoftRegistered",
+        "value": "true",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.messagingWhatsappRegistered",
+        "value": "true",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.messagingWhatsappPhoto",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingWhatsappPrivacyStatus",
+        "value": "PRIVATE",
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingWhatsappLastSeen",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingWhatsappAbout",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingTelegramRegistered",
+        "value": "true",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.messagingTelegramPhoto",
+        "value": "https://eu-west-1-807149116723-telegram-production.s3.eu-west-1.amazonaws.com/2c415919/a729/461a/b12f/db767f688961.jpg",
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingTelegramPrivacyStatus",
+        "value": "PUBLIC",
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingTelegramLastSeen",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypeRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "mobile.messagingSkypeLanguage",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypeGender",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypeName",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypeId",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypeHandle",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypeBio",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypeAge",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypeCity",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypeState",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypeCountry",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "mobile.messagingSkypePhoto",
+        "value": null,
+        "valueType": "STRING"
+      }
+    ]
+  }
+}

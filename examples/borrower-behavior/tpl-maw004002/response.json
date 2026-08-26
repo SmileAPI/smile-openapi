@@ -1,0 +1,42 @@
+{
+  "code": "OK",
+  "message": "Success",
+  "requestId": "5b72199a-6852-4234-bb0e-ad472648282d",
+  "data": {
+    "id": "maw-e35d521ef8f147c4aa01b7c1af85aaf7",
+    "createdAt": "2021-04-14T09:30:24Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": "Success!",
+    "type": "MAW3",
+    "requestMeta": {
+      "templateId": "tpl-maw004002",
+      "gaid": "00000000-0000-0000-0000-000000000000",
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": 1.0,
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentTemplateId": null
+      }
+    },
+    "maw2Items": [],
+    "maw3Items": [
+      {
+        "name": "events_i_daydiff_loan_g_30day_l1imbank_max",
+        "value": "5",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_m_ds_all_g_15day_d_count",
+        "value": "2021-04-14T09:30:24Z",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_gaid_timediff_loan_g_60day",
+        "value": "888",
+        "valueType": "NUMBER"
+      }
+    ]
+  }
+}

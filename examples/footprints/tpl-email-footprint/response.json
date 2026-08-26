@@ -1,0 +1,707 @@
+{
+  "code": "OK",
+  "message": "Success!",
+  "requestId": "7527ad43-d07c-4bbe-9df0-b2b6a1a55f16",
+  "data": {
+    "id": "fp-6fb806fb2945487081cbc5a853b1193d",
+    "createdAt": "2026-08-18T06:24:51Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": null,
+    "requestMeta": {
+      "templateId": "tpl-email-footprint",
+      "emailAddress": "gpalomero1234@smileapi.io",
+      "countryCode": "PH",
+      "footprintItemsTimeout": 5,
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": "1.0",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentTemplateId": null
+      }
+    },
+    "items": [
+      {
+        "name": "email.registered",
+        "value": "true",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.creationTime",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.registrarName",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.companyName",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.isFreeWebmail",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.deliverable",
+        "value": "true",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.disposable",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.tenure",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.breached",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.breachCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.firstBreachDate",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.lastBreachDate",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.registeredProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.registeredConsumerElectronicsProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.registeredEmailProviderProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.registeredEcommerceProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.registeredSocialMediaProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.registeredMessagingProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.registeredProfessionalProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.registeredEntertainmentProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.registeredTravelProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.registeredFinancialProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.registeredEducationProfilesCount",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.ageOnSocial",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.numberOfNamesReturned",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.numberOfPhotosReturned",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "email.consumerElectronicsAppleRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.consumerElectronicsSamsungRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.emailProviderGoogleRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.emailProviderGoogleName",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.emailProviderGooglePhoto",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.emailProviderYahooRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.emailProviderMailruRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.emailProviderRamblerRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceAmazonRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceEbayRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceFlipkartRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceJdidRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceBukalapakRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceLazadaRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceTokopediaRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceDeliverooRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceRappiRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceCarrefourRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.ecommerceSnapdealRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaFacebookRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaFacebookName",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaFacebookPhoto",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaFacebookUrl",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaInstagramRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaFlickrRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaFlickrUsername",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaPinterestRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaTwitterRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaTumblrRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaWeiboRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaOkRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaFlickrAge",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaFlickrCity",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaFlickrJoinDate",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaImgurRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaQuoraRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaQzoneRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaGravatarRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaGravatarLocation",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaGravatarName",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaGravatarProfileUrl",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaGravatarUsername",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaFoursquareRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaFoursquareBio",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaFoursquarePhoto",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaFoursquareProfileUrl",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.socialMediaMyspaceRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.socialMediaPlurkRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.messagingSkypeRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.messagingSkypeLanguage",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingSkypeGender",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingSkypeName",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingSkypeId",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingSkypeHandle",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingSkypeBio",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingSkypeAge",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingSkypeCity",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingSkypeState",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingSkypeCountry",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingSkypePhoto",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.messagingDiscordRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.messagingKakaoRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.messagingKommoRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalGithubRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalWordpressRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalAtlassianRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalLinkedInRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalLinkedInUrl",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.professionalLinkedInName",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.professionalLinkedInCompany",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.professionalLinkedInTitle",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.professionalLinkedInLocation",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.professionalLinkedInWebsite",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.professionalLinkedInTwitter",
+        "value": "",
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.professionalLinkedInPhoto",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.professionalLinkedInConnectionCount",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.professionalEvernoteRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalMicrosoftRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalZohoRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalAdobeRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalHubspotRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalCodecademyRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalDropboxRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalReplitRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.professionalFirefoxRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.entertainmentSpotifyRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.entertainmentAsanaRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.entertainmentLastfmRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.entertainmentTrelloRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.entertainmentVimeoRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.entertainmentEnvatoRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.entertainmentPatreonRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.entertainmentDisneyplusRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.entertainmentNetflixRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.entertainmentArchiveorgRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.travelBookingRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.travelAirbnbRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.travelAirbnbAbout",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.travelAirbnbCreatedAt",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.travelAirbnbName",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.travelAirbnbIdentityVerified",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.travelAirbnbLocation",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.travelAirbnbRevieweeCount",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.travelAirbnbPhoto",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.travelAirbnbTrips",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.travelAirbnbWork",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "email.travelTrivagoRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.financialPaypalRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.educationDuolingoRegistered",
+        "value": "false",
+        "valueType": "BOOLEAN"
+      },
+      {
+        "name": "email.educationTedRegistered",
+        "value": null,
+        "valueType": "BOOLEAN"
+      }
+    ]
+  }
+}

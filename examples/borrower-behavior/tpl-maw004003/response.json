@@ -1,0 +1,77 @@
+{
+  "code": "OK",
+  "message": "Success!",
+  "requestId": "53bf8880-c9b8-4272-a7d3-3844a112595d",
+  "data": {
+    "id": "maw-df818e6f8c0243f4a19b6b641207c5c8",
+    "createdAt": "2026-08-18T06:20:04Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": null,
+    "type": "MAW3",
+    "requestMeta": {
+      "templateId": "tpl-maw004003",
+      "mobileNumber": "639559991234",
+      "fullName": "GEORGE",
+      "idNumber": "4561234567",
+      "idType": "TIN",
+      "gaid": "",
+      "countryCode": "PH",
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": "1.0",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentTemplateId": null
+      }
+    },
+    "maw2Items": [],
+    "maw3Items": [
+      {
+        "name": "events_i_login_g_365day_l1imbank_count",
+        "value": "2",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_i_cv_30day_partner_all_g_60day_d_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_i_d_count_10day_partner_login_g_365day_l1imbank_avg",
+        "value": "1",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_m_loan_g_365day_daytime_ratio",
+        "value": "0.3846",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_m_disburse_g_15day_daytime_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_m_timediff_login_g_365day_avg",
+        "value": "598260464.3",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_m_partner_loan_g_15day_l1imbank_d_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_m_login_g_365day_workday_ratio",
+        "value": "0.5517",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_m_disburse_g_30day_daytime_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "consent": {
+    "type": "Terms And Conditions",
+    "version": 1.0,
+    "consentedWith": "I agree to the terms and conditions.",
+    "consentedAt": "2021-04-14T09:30:24Z",
+    "consentTemplateId": null
+  },
+  "templateId": "tpl-maw004002",
+  "countryCode": "AD",
+  "gaid": "00000000-0000-0000-0000-000000000000"
+}

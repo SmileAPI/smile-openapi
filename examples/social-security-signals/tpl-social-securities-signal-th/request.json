@@ -1,0 +1,14 @@
+{
+  "fullName": "John Doe",
+  "mobileNumber": "669178912345",
+  "idType": "PID",
+  "idNumber": "1234567890123",
+  "templateId": "tpl-social-securities-signal-th",
+  "consent": {
+    "type": "Terms And Conditions",
+    "version": 1,
+    "consentedWith": "I agree to the terms and conditions.",
+    "consentedAt": "2021-04-14T09:30:24Z",
+    "consentTemplateId": null
+  }
+}

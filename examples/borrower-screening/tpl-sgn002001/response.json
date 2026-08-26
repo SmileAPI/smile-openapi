@@ -1,0 +1,147 @@
+{
+  "code": "OK",
+  "message": "Success!",
+  "requestId": "09d4217d-a225-4a9b-9c68-dae6a8b76a6a",
+  "data": {
+    "id": "signal-5a5e072ae21c46ada7ad498fee4f8281",
+    "createdAt": "2026-08-18T06:20:47Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": null,
+    "signalType": "Signal2",
+    "requestMeta": {
+      "templateId": "tpl-sgn002001",
+      "phone": "639559991234",
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": "1.0",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentTemplateId": null
+      },
+      "countryCode": "PH"
+    },
+    "items": [
+      {
+        "name": "events_f16",
+        "value": "-9999.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f17",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f14",
+        "value": "-9999.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f15",
+        "value": "-9999.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f18",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f19",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f8",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f7",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f6",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f5",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f9",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f20",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f12",
+        "value": "-9999.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f23",
+        "value": "1.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f4",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f13",
+        "value": "-9999.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f24",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f3",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f10",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f2",
+        "value": "0.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f21",
+        "value": "-9999.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f1",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f11",
+        "value": "-9999.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_f22",
+        "value": "-9999.0",
+        "valueType": "NUMBER"
+      }
+    ]
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "code": "OK",
+  "message": "Success!",
+  "requestId": "bf218f72-441a-4d68-93da-eec76991bd4f",
+  "data": {
+    "id": "signal-5ae0c3de714241debb30c9f7b0ec92c9",
+    "createdAt": "2026-08-18T06:22:14Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": "query success",
+    "signalType": "Signal1",
+    "requestMeta": {
+      "templateId": "tpl-sgn003001",
+      "phone": "+639559991234",
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": "1.0",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentTemplateId": null
+      },
+      "countryCode": "PH"
+    },
+    "items": [
+      {
+        "name": "events_overdue_day180_days",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_successful_repayment_days_since_last",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day30_amount",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_debt_day90_amount",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day180_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_application_approval_day30",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_marketing_day180_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_loan_disbursement_day180_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_loan_disbursement_day30",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_repayment_reminder_day30_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_successful_repayment_day30_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day30",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day30_days",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_application_reception_day30",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_loan_disbursement_day90_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day90",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_application_reception_day90",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_application_reception_day180",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_loan_disbursement_days_since_last",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day90_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_debt_day30_amount",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_marketing_day90_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day90_days",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_loan_disbursement_day90",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_loan_disbursement_day180",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day180",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_successful_repayment_day30",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day30_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_repayment_reminder_day30",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_application_reception_day30_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day90_amount",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_days_since_last",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_loan_disbursement_day30_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_marketing_day30_institution_count",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "events_overdue_day180_amount",
+        "value": null,
+        "valueType": "NUMBER"
+      }
+    ]
+  }
+}

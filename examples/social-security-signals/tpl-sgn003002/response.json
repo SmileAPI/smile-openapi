@@ -1,0 +1,300 @@
+{
+  "code": "OK",
+  "message": "Success!",
+  "requestId": "eebde117-0f63-46ca-8760-55940bcbac39",
+  "data": {
+    "id": "signal-bd5bc68fd9bf4e3ba07fe37d5e40143d",
+    "createdAt": "2026-08-18T06:33:04Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": "query success",
+    "signalType": "Signal3",
+    "requestMeta": {
+      "templateId": "tpl-sgn003002",
+      "emailAddress": "john.doe@example.com",
+      "fullName": "JOHN DOE",
+      "phone": "529559991234",
+      "curp": "DOEJ800101HDFXXX01",
+      "nss": "12345678901",
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": "1",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentTemplateId": null
+      }
+    },
+    "items": [
+      {
+        "name": "event_employer_year1_count",
+        "value": "3",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_change_rate_year3",
+        "value": "0.018379",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_latest_employer_salary_month_stdev",
+        "value": "NaN",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_user_qualification_score",
+        "value": "43",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_gt0_months_count",
+        "value": "270",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month3_max",
+        "value": "555.956",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_change_rate_year1",
+        "value": "0.039192",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_latest_employer_salary_avg",
+        "value": "374.75",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_latest_employer",
+        "value": "GRUPO MATLUI SA DE CV",
+        "valueType": "STRING"
+      },
+      {
+        "name": "event_employer_months_avg",
+        "value": "11",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_change_rate_month3",
+        "value": "-0.18013",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_work_months_year3_rate",
+        "value": "1.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_employer_year3_count",
+        "value": "7",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_missing_months_month6_max",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month_year1_stdev",
+        "value": "107.154272",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_work_months_since_first_rate",
+        "value": "0.954064",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month3_stdev",
+        "value": "124.273648",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month_diff_month6_avg",
+        "value": "-17.6782",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month_year5_stdev",
+        "value": "91.219067",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month6_avg",
+        "value": "464.946833",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_latest_employer_salary_month_diff",
+        "value": "NaN",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month_year3_stdev",
+        "value": "96.190116",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_change_rate_year5",
+        "value": "0.014296",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month_diff_month3_avg",
+        "value": "-76.208",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_latest_salary_rank",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_current_status_flag",
+        "value": "1",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_employer_year5_count",
+        "value": "8",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_year5_max",
+        "value": "588.75",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month6_max",
+        "value": "588.75",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_year3_max",
+        "value": "588.75",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_work_months_month6_rate",
+        "value": "1.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_latest_base_salary",
+        "value": "374.75",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_work_months_year5_rate",
+        "value": "1.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_missing_months_year1_max",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_year3_avg",
+        "value": "312.597028",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month_diff_year4_avg",
+        "value": "3.887067",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month_diff_year3_avg",
+        "value": "5.745153",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_work_months_year1_rate",
+        "value": "1.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_employer_months_max",
+        "value": "85",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month_diff_year1_avg",
+        "value": "15.809584",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_year1_max",
+        "value": "588.75",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_year1_avg",
+        "value": "403.38325",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_work_months_month3_rate",
+        "value": "1.0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_missing_months_year5_max",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_latest_employer_months_count",
+        "value": "1",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_work_months_since_first_count",
+        "value": "283",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month6_stdev",
+        "value": "118.577771",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_month3_avg",
+        "value": "423.072667",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_employer_month3_count",
+        "value": "2",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_year5_avg",
+        "value": "271.89065",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_missing_months_month3_max",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_change_rate_month6",
+        "value": "-0.038022",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_salary_missing_months_year3_max",
+        "value": "0",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_employer_month6_count",
+        "value": "2",
+        "valueType": "NUMBER"
+      }
+    ]
+  }
+}

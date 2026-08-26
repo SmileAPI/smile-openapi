@@ -1,0 +1,13 @@
+{
+  "consent": {
+    "type": "Terms And Conditions",
+    "version": 1.0,
+    "consentedWith": "I agree to the terms and conditions.",
+    "consentedAt": "2021-04-14T09:30:24Z",
+    "consentTemplateId": null
+  },
+  "templateId": "tpl-blk002001",
+  "mobileNumber": "639559991234",
+  "applicationDate": "2023-01-21",
+  "countryCode": "PH"
+}

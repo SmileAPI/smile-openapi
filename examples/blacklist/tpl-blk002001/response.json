@@ -1,0 +1,37 @@
+{
+  "code": "OK",
+  "message": "Success",
+  "requestId": "5b72199a-6852-4234-bb0e-ad472648282d",
+  "data": {
+    "id": "blacklist-e35d521ef8f147c4aa01b7c1af85aaf7",
+    "createdAt": "2021-04-14T09:30:24Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": "Success!",
+    "type": "BLACKLIST1",
+    "requestMeta": {
+      "mobileNumber": "639559991234",
+      "countryCode": "PH",
+      "applicationDate": "2023-01-21",
+      "templateId": "tpl-blk002001",
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": 1.0,
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentTemplateId": null
+      }
+    },
+    "result": {
+      "hit": true,
+      "dates": [
+        "2022-03-24",
+        "2022-06-01",
+        "2023-06-03",
+        "2024-06-04",
+        "2024-06-05",
+        "2024-06-06"
+      ]
+    }
+  }
+}

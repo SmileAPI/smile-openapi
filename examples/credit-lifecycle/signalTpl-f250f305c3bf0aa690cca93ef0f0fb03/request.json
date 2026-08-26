@@ -1,0 +1,12 @@
+{
+  "phone": "+639559991234",
+  "templateId": "signalTpl-f250f305c3bf0aa690cca93ef0f0fb03",
+  "countryCode": "PH",
+  "consent": {
+    "type": "Terms And Conditions",
+    "version": 1.0,
+    "consentedWith": "I agree to the terms and conditions.",
+    "consentedAt": "2021-04-14T09:30:24Z",
+    "consentTemplateId": null
+  }
+}

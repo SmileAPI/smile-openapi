@@ -1,0 +1,12 @@
+{
+  "consent": {
+    "type": "Terms And Conditions",
+    "version": 1,
+    "consentedWith": "I agree to the terms and conditions.",
+    "consentedAt": "2021-04-14T09:30:24Z",
+    "consentTemplateId": null
+  },
+  "templateId": "tpl-incomeestimator-001",
+  "emailAddress": "gpalomero1234@smileapi.io",
+  "countryCode": "PH"
+}

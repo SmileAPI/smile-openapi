@@ -1,0 +1,15 @@
+{
+  "emailAddress": "john.doe@example.com",
+  "fullName": "John Doe",
+  "mobileNumber": "529559991234",
+  "curp": "DOEJ800101HDFXXX01",
+  "nss": "12345678901",
+  "templateId": "tpl-sss003002",
+  "consent": {
+    "type": "Terms And Conditions",
+    "version": 1,
+    "consentedWith": "I agree to the terms and conditions.",
+    "consentedAt": "2021-04-14T09:30:24Z",
+    "consentTemplateId": null
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "code": "OK",
+  "message": "Success!",
+  "requestId": "3f676b38-2472-41ad-8d26-153d6d86e8f0",
+  "data": {
+    "id": "signal-9209c75d8bb2487f9bfec238c3110a84",
+    "createdAt": "2026-08-18T06:33:27Z",
+    "status": "COMPLETED",
+    "resultCode": "SUCCESS",
+    "resultMessage": "query success",
+    "signalType": "Signal3",
+    "requestMeta": {
+      "templateId": "tpl-social-securities-signal-th",
+      "fullName": "JOHN DOE",
+      "mobileNumber": "669178912345",
+      "idType": "PID",
+      "idNumber": "1234567890123",
+      "consent": {
+        "type": "Terms And Conditions",
+        "version": "1",
+        "consentedAt": "2021-04-14T09:30:24Z",
+        "consentedWith": "I agree to the terms and conditions.",
+        "consentTemplateId": null
+      }
+    },
+    "items": [
+      {
+        "name": "event_income_month_diff_month24_avg",
+        "value": "-976.525000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_month_diff_month12_avg",
+        "value": "-976.525000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_job_months_max",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_employer_scale_population_max",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_month_diff_month36_avg",
+        "value": "-976.525000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_missing_months_max",
+        "value": "1",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_month_diff_month60_avg",
+        "value": "-976.525000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_employer_type_latest",
+        "value": null,
+        "valueType": "STRING"
+      },
+      {
+        "name": "event_work_months_since_first_count",
+        "value": "91",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_month_diff_month6_avg",
+        "value": "-976.525000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_month6_avg",
+        "value": "5166.544000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_avg",
+        "value": "5166.544000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_month60_avg",
+        "value": "5166.544000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_month12_avg",
+        "value": "5166.544000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_job_change_count",
+        "value": "1",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_count",
+        "value": "5",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_max",
+        "value": "7686.19",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_job_months_avg",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_employer_scale_asset_max",
+        "value": null,
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_month36_avg",
+        "value": "5166.544000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_month24_avg",
+        "value": "5166.544000",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_latest",
+        "value": "3977.00",
+        "valueType": "NUMBER"
+      },
+      {
+        "name": "event_income_missing_months_avg",
+        "value": "1",
+        "valueType": "NUMBER"
+      }
+    ]
+  }
+}
