@@ -19911,24 +19911,34 @@ components:
         type:
           type: string
           description: >-
-            The consent flag key, the consent content should be sent to Smile
-            previously
+            The internal name of your consent document (e.g. "Terms and
+            Conditions" or "Privacy Policy"); your own reference label
           example: Terms and Conditions
         version:
           type: string
-          description: The version of this consent
+          description: >-
+            Your internal version identifier for this consent document (e.g.
+            "1.0.0")
           example: 1.0.0
         consentedAt:
-          $ref: '#/components/schemas/RefDateTime'
+          allOf:
+            - $ref: '#/components/schemas/RefDateTime'
+          description: >-
+            The date and time the subject accepted your consent document,
+            typically when they tapped "I agree" in your app. Not the time of
+            this API call. Use ISO 8601 format, e.g. "2024-04-14T09:30:24Z"
         consentedWith:
           type: string
-          description: The short sentences display on the consent page.
+          description: >-
+            The exact text of the button or checkbox the user clicked to give
+            consent, e.g. "I agree to the Terms and Conditions"
           example: I agree to the terms and conditions
         consentTemplateId:
           type: string
           description: >-
-            The related consent template id, you can get it from Smile Developer
-            Portal or /consentTemplates endpoint.
+            ID of a stored Consent Template. Retrieve from the Developer Portal
+            or GET /consentTemplates. Overrides any inline fields above when
+            provided.
     IncomeEstimatorPostRequest:
       type: object
       required:
@@ -21925,7 +21935,6 @@ components:
         - platformId
         - source
         - date
-        - level
       properties:
         date:
           $ref: '#/components/schemas/RefDate'
