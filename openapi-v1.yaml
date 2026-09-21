@@ -21624,7 +21624,6 @@ components:
         - platformId
         - source
         - date
-        - level
       properties:
         date:
           $ref: '#/components/schemas/RefDate'
