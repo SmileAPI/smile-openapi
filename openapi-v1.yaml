@@ -10027,6 +10027,990 @@ paths:
                         - name: analysis.fraudScore
                           value: '144'
                           valueType: NUMBER
+  /beta/footprints/requestEmailProfile:
+    post:
+      summary: Create an Email Profile Footprint object
+      operationId: create-beta-footprint-email-profile
+      description: >
+        ## Create an **Email Profile Footprint** object.
+
+
+        This endpoint requires the following mandatory parameters:  
+
+        - `consent`  
+
+        - `templateId`  
+
+
+        Additional required fields depend on the selected `templateId`.
+
+
+        ### Supported Templates
+
+
+        | Template ID | Input Type | Required Parameters |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-emailprofile` | Email address only | `consent`,
+        `templateId`, `emailAddress`, `countryCode` |
+
+
+        ### Field Rules
+
+
+        - `emailAddress` **must** be provided and must be a valid email address.
+
+        - `countryCode` is required and must be a valid ISO country code.
+
+        - `footprintItemsTimeout` is optional, in seconds, between 1 and 30.
+
+
+        ### Sandbox Test Values
+
+
+        | Template ID | Test Input | Expected Response |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-emailprofile` | `emailAddress =
+        gpalomero1234@smileapi.io`, `countryCode = PH` | `resultCode = SUCCESS`
+        |
+
+
+        For all other valid input combinations, if no mock data is matched, the
+        response will return:  
+
+        `resultCode = NO_DATA`, and no items will be included.
+      tags:
+        - Footprints (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaFootprintPostResponse'
+              examples:
+                tpl-footprint-emailprofile:
+                  value:
+                    code: OK
+                    message: Success!
+                    requestId: req-beta-emailprofile
+                    data:
+                      id: fp-beta-emailprofile
+                      createdAt: '2026-10-23T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: null
+                      requestMeta:
+                        consent:
+                          type: Terms And Conditions
+                          version: '1.0'
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentedWith: I agree to the terms and conditions.
+                          consentTemplateId: null
+                        templateId: tpl-footprint-emailprofile
+                        emailAddress: gpalomero1234@smileapi.io
+                        countryCode: PH
+                        footprintItemsTimeout: 10
+                      items:
+                        - name: email.registered
+                          value: 'true'
+                          valueType: BOOLEAN
+                        - name: email.deliverable
+                          value: 'true'
+                          valueType: BOOLEAN
+                        - name: email.domainProviderType
+                          value: free_webmail
+                          valueType: STRING
+                        - name: email.domainAgeDays
+                          value: '6800'
+                          valueType: NUMBER
+                        - name: email.tenure
+                          value: '6800'
+                          valueType: NUMBER
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaFootprintTplEmailProfilePostRequest'
+            examples:
+              tpl-footprint-emailprofile:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: '1.0'
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentedWith: I agree to the terms and conditions.
+                    consentTemplateId: null
+                  templateId: tpl-footprint-emailprofile
+                  emailAddress: gpalomero1234@smileapi.io
+                  countryCode: PH
+                  footprintItemsTimeout: 10
+  /beta/footprints/requestEmailSocial:
+    post:
+      summary: Create an Email Social Footprint object
+      operationId: create-beta-footprint-email-social
+      description: >
+        ## Create an **Email Social Footprint** object.
+
+
+        This endpoint requires the following mandatory parameters:  
+
+        - `consent`  
+
+        - `templateId`  
+
+
+        Additional required fields depend on the selected `templateId`.
+
+
+        ### Supported Templates
+
+
+        | Template ID | Input Type | Required Parameters |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-emailsocial` | Email address only | `consent`,
+        `templateId`, `emailAddress`, `countryCode` |
+
+
+        ### Field Rules
+
+
+        - `emailAddress` **must** be provided and must be a valid email address.
+
+        - `countryCode` is required and must be a valid ISO country code.
+
+        - `footprintItemsTimeout` is optional, in seconds, between 1 and 30.
+
+
+        ### Sandbox Test Values
+
+
+        | Template ID | Test Input | Expected Response |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-emailsocial` | `emailAddress =
+        gpalomero1234@smileapi.io`, `countryCode = PH` | `resultCode = SUCCESS`
+        |
+
+
+        For all other valid input combinations, if no mock data is matched, the
+        response will return:  
+
+        `resultCode = NO_DATA`, and no items will be included.
+      tags:
+        - Footprints (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaFootprintPostResponse'
+              examples:
+                tpl-footprint-emailsocial:
+                  value:
+                    code: OK
+                    message: Success!
+                    requestId: req-beta-emailsocial
+                    data:
+                      id: fp-beta-emailsocial
+                      createdAt: '2026-10-23T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: null
+                      requestMeta:
+                        consent:
+                          type: Terms And Conditions
+                          version: '1.0'
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentedWith: I agree to the terms and conditions.
+                          consentTemplateId: null
+                        templateId: tpl-footprint-emailsocial
+                        emailAddress: gpalomero1234@smileapi.io
+                        countryCode: PH
+                        footprintItemsTimeout: 10
+                      items:
+                        - name: email.registeredProfilesCount
+                          value: '5'
+                          valueType: NUMBER
+                        - name: email.profileRichnessIndex
+                          value: '3'
+                          valueType: NUMBER
+                        - name: email.registeredGlobalProfilesRatio
+                          value: '0.25'
+                          valueType: NUMBER
+                        - name: email.ecommerceAmazonRegistered
+                          value: 'true'
+                          valueType: BOOLEAN
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaFootprintTplEmailSocialPostRequest'
+            examples:
+              tpl-footprint-emailsocial:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: '1.0'
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentedWith: I agree to the terms and conditions.
+                    consentTemplateId: null
+                  templateId: tpl-footprint-emailsocial
+                  emailAddress: gpalomero1234@smileapi.io
+                  countryCode: PH
+                  footprintItemsTimeout: 10
+  /beta/footprints/requestEmail:
+    post:
+      summary: Create an Email Footprint object
+      operationId: create-beta-footprint-email
+      description: >
+        ## Create an **Email Footprint** object.
+
+
+        This endpoint requires the following mandatory parameters:  
+
+        - `consent`  
+
+        - `templateId`  
+
+
+        Additional required fields depend on the selected `templateId`.
+
+
+        ### Supported Templates
+
+
+        | Template ID | Input Type | Required Parameters |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-email` | Email address only | `consent`, `templateId`,
+        `emailAddress`, `countryCode` |
+
+
+        ### Field Rules
+
+
+        - `emailAddress` **must** be provided and must be a valid email address.
+
+        - `countryCode` is required and must be a valid ISO country code.
+
+        - `footprintItemsTimeout` is optional, in seconds, between 1 and 30.
+
+
+        ### Sandbox Test Values
+
+
+        | Template ID | Test Input | Expected Response |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-email` | `emailAddress = gpalomero1234@smileapi.io`,
+        `countryCode = PH` | `resultCode = SUCCESS` |
+
+
+        For all other valid input combinations, if no mock data is matched, the
+        response will return:  
+
+        `resultCode = NO_DATA`, and no items will be included.
+      tags:
+        - Footprints (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaFootprintPostResponse'
+              examples:
+                tpl-footprint-email:
+                  value:
+                    code: OK
+                    message: Success!
+                    requestId: req-beta-email
+                    data:
+                      id: fp-beta-email
+                      createdAt: '2026-10-23T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: null
+                      requestMeta:
+                        consent:
+                          type: Terms And Conditions
+                          version: '1.0'
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentedWith: I agree to the terms and conditions.
+                          consentTemplateId: null
+                        templateId: tpl-footprint-email
+                        emailAddress: gpalomero1234@smileapi.io
+                        countryCode: PH
+                        footprintItemsTimeout: 10
+                      items:
+                        - name: email.deliverable
+                          value: 'true'
+                          valueType: BOOLEAN
+                        - name: email.registeredProfilesCount
+                          value: '5'
+                          valueType: NUMBER
+                        - name: email.profileRichnessIndex
+                          value: '3'
+                          valueType: NUMBER
+                        - name: email.ecommerceAmazonRegistered
+                          value: 'true'
+                          valueType: BOOLEAN
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaFootprintTplEmailPostRequest'
+            examples:
+              tpl-footprint-email:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: '1.0'
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentedWith: I agree to the terms and conditions.
+                    consentTemplateId: null
+                  templateId: tpl-footprint-email
+                  emailAddress: gpalomero1234@smileapi.io
+                  countryCode: PH
+                  footprintItemsTimeout: 10
+  /beta/footprints/requestPhoneProfile:
+    post:
+      summary: Create a Phone Profile Footprint object
+      operationId: create-beta-footprint-phone-profile
+      description: >
+        ## Create a **Phone Profile Footprint** object.
+
+
+        This endpoint requires the following mandatory parameters:  
+
+        - `consent`  
+
+        - `templateId`  
+
+
+        Additional required fields depend on the selected `templateId`.
+
+
+        ### Supported Templates
+
+
+        | Template ID | Input Type | Required Parameters |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-phoneprofile` | Mobile number only | `consent`,
+        `templateId`, `mobileNumber`, `countryCode` |
+
+
+        ### Field Rules
+
+
+        - `mobileNumber` **must** be provided, must start with the country code,
+        and must not contain a leading `0` or a `+`.
+
+        - `countryCode` is required and must be a valid ISO country code.
+
+        - `footprintItemsTimeout` is optional, in seconds, between 1 and 30.
+
+
+        ### Sandbox Test Values
+
+
+        | Template ID | Test Input | Expected Response |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-phoneprofile` | `mobileNumber = 639559991234`,
+        `countryCode = PH` | `resultCode = SUCCESS` |
+
+
+        For all other valid input combinations, if no mock data is matched, the
+        response will return:  
+
+        `resultCode = NO_DATA`, and no items will be included.
+      tags:
+        - Footprints (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaFootprintPostResponse'
+              examples:
+                tpl-footprint-phoneprofile:
+                  value:
+                    code: OK
+                    message: Success!
+                    requestId: req-beta-phoneprofile
+                    data:
+                      id: fp-beta-phoneprofile
+                      createdAt: '2026-10-23T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: null
+                      requestMeta:
+                        consent:
+                          type: Terms And Conditions
+                          version: '1.0'
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentedWith: I agree to the terms and conditions.
+                          consentTemplateId: null
+                        templateId: tpl-footprint-phoneprofile
+                        mobileNumber: '639559991234'
+                        countryCode: PH
+                        footprintItemsTimeout: 10
+                      items:
+                        - name: mobile.phoneType
+                          value: MOBILE
+                          valueType: STRING
+                        - name: mobile.carrierType
+                          value: MNO_MAJOR
+                          valueType: STRING
+                        - name: mobile.networkStabilityIndex
+                          value: '5'
+                          valueType: NUMBER
+                        - name: mobile.portedRecently
+                          value: 'false'
+                          valueType: BOOLEAN
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaFootprintTplPhoneProfilePostRequest'
+            examples:
+              tpl-footprint-phoneprofile:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: '1.0'
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentedWith: I agree to the terms and conditions.
+                    consentTemplateId: null
+                  templateId: tpl-footprint-phoneprofile
+                  mobileNumber: '639559991234'
+                  countryCode: PH
+                  footprintItemsTimeout: 10
+  /beta/footprints/requestPhoneSocial:
+    post:
+      summary: Create a Phone Social Footprint object
+      operationId: create-beta-footprint-phone-social
+      description: >
+        ## Create a **Phone Social Footprint** object.
+
+
+        This endpoint requires the following mandatory parameters:  
+
+        - `consent`  
+
+        - `templateId`  
+
+
+        Additional required fields depend on the selected `templateId`.
+
+
+        ### Supported Templates
+
+
+        | Template ID | Input Type | Required Parameters |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-phonesocial` | Mobile number only | `consent`,
+        `templateId`, `mobileNumber`, `countryCode` |
+
+
+        ### Field Rules
+
+
+        - `mobileNumber` **must** be provided, must start with the country code,
+        and must not contain a leading `0` or a `+`.
+
+        - `countryCode` is required and must be a valid ISO country code.
+
+        - `footprintItemsTimeout` is optional, in seconds, between 1 and 30.
+
+
+        ### Sandbox Test Values
+
+
+        | Template ID | Test Input | Expected Response |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-phonesocial` | `mobileNumber = 639559991234`,
+        `countryCode = PH` | `resultCode = SUCCESS` |
+
+
+        For all other valid input combinations, if no mock data is matched, the
+        response will return:  
+
+        `resultCode = NO_DATA`, and no items will be included.
+      tags:
+        - Footprints (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaFootprintPostResponse'
+              examples:
+                tpl-footprint-phonesocial:
+                  value:
+                    code: OK
+                    message: Success!
+                    requestId: req-beta-phonesocial
+                    data:
+                      id: fp-beta-phonesocial
+                      createdAt: '2026-10-23T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: null
+                      requestMeta:
+                        consent:
+                          type: Terms And Conditions
+                          version: '1.0'
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentedWith: I agree to the terms and conditions.
+                          consentTemplateId: null
+                        templateId: tpl-footprint-phonesocial
+                        mobileNumber: '639559991234'
+                        countryCode: PH
+                        footprintItemsTimeout: 10
+                      items:
+                        - name: mobile.registeredProfilesCount
+                          value: '5'
+                          valueType: NUMBER
+                        - name: mobile.profileRichnessIndex
+                          value: '3'
+                          valueType: NUMBER
+                        - name: mobile.messagingWhatsappRegistered
+                          value: 'true'
+                          valueType: BOOLEAN
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaFootprintTplPhoneSocialPostRequest'
+            examples:
+              tpl-footprint-phonesocial:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: '1.0'
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentedWith: I agree to the terms and conditions.
+                    consentTemplateId: null
+                  templateId: tpl-footprint-phonesocial
+                  mobileNumber: '639559991234'
+                  countryCode: PH
+                  footprintItemsTimeout: 10
+  /beta/footprints/requestPhone:
+    post:
+      summary: Create a Phone Footprint object
+      operationId: create-beta-footprint-phone
+      description: >
+        ## Create a **Phone Footprint** object.
+
+
+        This endpoint requires the following mandatory parameters:  
+
+        - `consent`  
+
+        - `templateId`  
+
+
+        Additional required fields depend on the selected `templateId`.
+
+
+        ### Supported Templates
+
+
+        | Template ID | Input Type | Required Parameters |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-phone` | Mobile number only | `consent`, `templateId`,
+        `mobileNumber`, `countryCode` |
+
+
+        ### Field Rules
+
+
+        - `mobileNumber` **must** be provided, must start with the country code,
+        and must not contain a leading `0` or a `+`.
+
+        - `countryCode` is required and must be a valid ISO country code.
+
+        - `footprintItemsTimeout` is optional, in seconds, between 1 and 30.
+
+
+        ### Sandbox Test Values
+
+
+        | Template ID | Test Input | Expected Response |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-phone` | `mobileNumber = 639559991234`, `countryCode =
+        PH` | `resultCode = SUCCESS` |
+
+
+        For all other valid input combinations, if no mock data is matched, the
+        response will return:  
+
+        `resultCode = NO_DATA`, and no items will be included.
+      tags:
+        - Footprints (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaFootprintPostResponse'
+              examples:
+                tpl-footprint-phone:
+                  value:
+                    code: OK
+                    message: Success!
+                    requestId: req-beta-phone
+                    data:
+                      id: fp-beta-phone
+                      createdAt: '2026-10-23T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: null
+                      requestMeta:
+                        consent:
+                          type: Terms And Conditions
+                          version: '1.0'
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentedWith: I agree to the terms and conditions.
+                          consentTemplateId: null
+                        templateId: tpl-footprint-phone
+                        mobileNumber: '639559991234'
+                        countryCode: PH
+                        footprintItemsTimeout: 10
+                      items:
+                        - name: mobile.phoneType
+                          value: MOBILE
+                          valueType: STRING
+                        - name: mobile.registeredProfilesCount
+                          value: '5'
+                          valueType: NUMBER
+                        - name: mobile.profileRichnessIndex
+                          value: '3'
+                          valueType: NUMBER
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaFootprintTplPhonePostRequest'
+            examples:
+              tpl-footprint-phone:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: '1.0'
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentedWith: I agree to the terms and conditions.
+                    consentTemplateId: null
+                  templateId: tpl-footprint-phone
+                  mobileNumber: '639559991234'
+                  countryCode: PH
+                  footprintItemsTimeout: 10
+  /beta/footprints/requestScore:
+    post:
+      summary: Create a Score Footprint object
+      operationId: create-beta-footprint-score
+      description: >
+        ## Create a **Score Footprint** object.
+
+
+        This endpoint requires the following mandatory parameters:  
+
+        - `consent`  
+
+        - `templateId`  
+
+
+        Additional required fields depend on the selected `templateId`.
+
+
+        ### Supported Templates
+
+
+        | Template ID | Input Type | Required Parameters |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-score` | Email + mobile number | `consent`,
+        `templateId`, `emailAddress`, `mobileNumber`, `countryCode` |
+
+
+        ### Field Rules
+
+
+        - `emailAddress` **must** be provided and must be a valid email address.
+
+        - For `tpl-footprint-score`, `emailAddress` **and** `mobileNumber`
+        **must** both be provided.
+
+        - `countryCode` is required and must be a valid ISO country code.
+
+        - `footprintItemsTimeout` is optional, in seconds, between 1 and 30.
+
+
+        ### Sandbox Test Values
+
+
+        | Template ID | Test Input | Expected Response |
+
+        | --- | --- | --- |
+
+        | `tpl-footprint-score` | `emailAddress = gpalomero1234@smileapi.io`,
+        `mobileNumber = 639559991234`, `countryCode = PH` | `resultCode =
+        SUCCESS` |
+
+
+        For all other valid input combinations, if no mock data is matched, the
+        response will return:  
+
+        `resultCode = NO_DATA`, and no items will be included.
+      tags:
+        - Footprints (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaFootprintPostResponse'
+              examples:
+                tpl-footprint-score:
+                  value:
+                    code: OK
+                    message: Success!
+                    requestId: req-beta-score
+                    data:
+                      id: fp-beta-score
+                      createdAt: '2026-10-23T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: null
+                      requestMeta:
+                        consent:
+                          type: Terms And Conditions
+                          version: '1.0'
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentedWith: I agree to the terms and conditions.
+                          consentTemplateId: null
+                        templateId: tpl-footprint-score
+                        emailAddress: gpalomero1234@smileapi.io
+                        mobileNumber: '639559991234'
+                        countryCode: PH
+                        footprintItemsTimeout: 10
+                      items:
+                        - name: analysis.fraudScore
+                          value: '144'
+                          valueType: NUMBER
+                        - name: analysis.fraudRiskReasonCodes
+                          value: '[]'
+                          valueType: ARRAY
+                        - name: mobile.networkActivityLifetimeDays
+                          value: '2'
+                          valueType: NUMBER
+                        - name: mobile.networkActivityCount
+                          value: '12'
+                          valueType: NUMBER
+                        - name: email.networkFirstSeenDays
+                          value: '800'
+                          valueType: NUMBER
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BetaFootprintTplScorePostRequest'
+            examples:
+              tpl-footprint-score:
+                value:
+                  consent:
+                    type: Terms And Conditions
+                    version: '1.0'
+                    consentedAt: '2021-04-14T09:30:24Z'
+                    consentedWith: I agree to the terms and conditions.
+                    consentTemplateId: null
+                  templateId: tpl-footprint-score
+                  emailAddress: gpalomero1234@smileapi.io
+                  mobileNumber: '639559991234'
+                  countryCode: PH
+                  footprintItemsTimeout: 10
+  /beta/footprints:
+    get:
+      summary: List Footprints
+      operationId: list-beta-footprints
+      tags:
+        - Footprints (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaFootprintListResponse'
+              examples:
+                tpl-footprint-emailprofile:
+                  value:
+                    code: OK
+                    message: Success!
+                    requestId: req-beta-list
+                    data:
+                      nextCursor: null
+                      items:
+                        - id: fp-beta-emailprofile
+                          createdAt: '2026-10-23T09:30:24Z'
+                          status: COMPLETED
+                          resultCode: SUCCESS
+                          resultMessage: null
+                          requestMeta:
+                            consent:
+                              type: Terms And Conditions
+                              version: '1.0'
+                              consentedAt: '2021-04-14T09:30:24Z'
+                              consentedWith: I agree to the terms and conditions.
+                              consentTemplateId: null
+                            templateId: tpl-footprint-emailprofile
+                            emailAddress: gpalomero1234@smileapi.io
+                            countryCode: PH
+                            footprintItemsTimeout: 10
+                          items:
+                            - name: email.registered
+                              value: 'true'
+                              valueType: BOOLEAN
+                            - name: email.deliverable
+                              value: 'true'
+                              valueType: BOOLEAN
+                            - name: email.domainProviderType
+                              value: free_webmail
+                              valueType: STRING
+                            - name: email.domainAgeDays
+                              value: '6800'
+                              valueType: NUMBER
+                            - name: email.tenure
+                              value: '6800'
+                              valueType: NUMBER
+      description: List all Footprints.
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - name: footprintId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter footprints by a specific Footprint ID.
+        - name: emailAddress
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter footprints by a specific email address.
+        - name: mobileNumber
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter footprints by a specific mobile number.
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: >-
+            Filter footprints by the start date of the request range
+            (YYYY-MM-DD).
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter footprints by the end date of the request range (YYYY-MM-DD).
+  /beta/footprints/{id}:
+    parameters:
+      - $ref: '#/components/parameters/id'
+    get:
+      summary: View Footprint
+      description: View Footprint by unique ID.
+      operationId: get-beta-footprint
+      tags:
+        - Footprints (Beta)
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BetaFootprintGetResponse'
+              examples:
+                tpl-footprint-emailprofile:
+                  value:
+                    code: OK
+                    message: Success!
+                    requestId: req-beta-get
+                    data:
+                      id: fp-beta-emailprofile
+                      createdAt: '2026-10-23T09:30:24Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      resultMessage: null
+                      requestMeta:
+                        consent:
+                          type: Terms And Conditions
+                          version: '1.0'
+                          consentedAt: '2021-04-14T09:30:24Z'
+                          consentedWith: I agree to the terms and conditions.
+                          consentTemplateId: null
+                        templateId: tpl-footprint-emailprofile
+                        emailAddress: gpalomero1234@smileapi.io
+                        countryCode: PH
+                        footprintItemsTimeout: 10
+                      items:
+                        - name: email.registered
+                          value: 'true'
+                          valueType: BOOLEAN
+                        - name: email.deliverable
+                          value: 'true'
+                          valueType: BOOLEAN
+                        - name: email.domainProviderType
+                          value: free_webmail
+                          valueType: STRING
+                        - name: email.domainAgeDays
+                          value: '6800'
+                          valueType: NUMBER
+                        - name: email.tenure
+                          value: '6800'
+                          valueType: NUMBER
   /links:
     parameters: []
     get:
@@ -11505,6 +12489,10 @@ paths:
 
         - `countryCode` is also optional; if omitted, it defaults to `PH`.
 
+        - `hitThreshold` is optional; it sets the minimum number of matching
+        records required to consider the subject a hit. It must be at least `1`
+        and defaults to `3`.
+
 
         ### Sandbox Test Values
 
@@ -11551,6 +12539,7 @@ paths:
                         mobileNumber: '639559991234'
                         countryCode: PH
                         applicationDate: '2023-01-21'
+                        hitThreshold: 3
                         templateId: blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e
                         consent:
                           type: Terms And Conditions
@@ -11583,6 +12572,7 @@ paths:
                         mobileNumber: '639559991234'
                         countryCode: PH
                         applicationDate: '2023-01-21'
+                        hitThreshold: 3
                         templateId: tpl-blk002001
                         consent:
                           type: Terms And Conditions
@@ -11617,6 +12607,7 @@ paths:
                   templateId: blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e
                   mobileNumber: '639559991234'
                   applicationDate: '2023-01-21'
+                  hitThreshold: 3
                   countryCode: PH
               tpl-blk002001:
                 value:
@@ -11629,6 +12620,7 @@ paths:
                   templateId: tpl-blk002001
                   mobileNumber: '639559991234'
                   applicationDate: '2023-01-21'
+                  hitThreshold: 3
                   countryCode: PH
     get:
       summary: List Blacklists
@@ -11661,6 +12653,7 @@ paths:
                             mobileNumber: '639559991234'
                             countryCode: PH
                             applicationDate: '2023-01-21'
+                            hitThreshold: 3
                             templateId: blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e
                             consent:
                               type: Terms And Conditions
@@ -11695,6 +12688,7 @@ paths:
                             mobileNumber: '639559991234'
                             countryCode: PH
                             applicationDate: '2023-01-21'
+                            hitThreshold: 3
                             templateId: tpl-blk002001
                             consent:
                               type: Terms And Conditions
@@ -11916,6 +12910,7 @@ paths:
                         mobileNumber: '639559991234'
                         countryCode: PH
                         applicationDate: '2023-01-21'
+                        hitThreshold: 3
                         templateId: blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e
                         consent:
                           type: Terms And Conditions
@@ -11948,6 +12943,7 @@ paths:
                         mobileNumber: '639559991234'
                         countryCode: PH
                         applicationDate: '2023-01-21'
+                        hitThreshold: 3
                         templateId: tpl-blk002001
                         consent:
                           type: Terms And Conditions
@@ -21560,6 +22556,355 @@ components:
           $ref: '#/components/schemas/ObjectMetadataRefRequestID'
         data:
           $ref: '#/components/schemas/AlphaFootprint'
+    BetaFootprintTplEmailProfilePostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - emailAddress
+        - countryCode
+      properties:
+        emailAddress:
+          type: string
+          description: >-
+            Email address of the data subject. Required. Must be a valid email
+            address.
+          example: gpalomero1234@smileapi.io
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: Fixed to `tpl-footprint-emailprofile`.
+          example: tpl-footprint-emailprofile
+        footprintItemsTimeout:
+          type: integer
+          minimum: 1
+          maximum: 30
+          description: >-
+            Timeout in seconds for waiting for Footprint items. Items completed
+            before the timeout are returned; the remaining items have a null
+            value.
+          example: 10
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaFootprintTplEmailSocialPostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - emailAddress
+        - countryCode
+      properties:
+        emailAddress:
+          type: string
+          description: >-
+            Email address of the data subject. Required. Must be a valid email
+            address.
+          example: gpalomero1234@smileapi.io
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: Fixed to `tpl-footprint-emailsocial`.
+          example: tpl-footprint-emailsocial
+        footprintItemsTimeout:
+          type: integer
+          minimum: 1
+          maximum: 30
+          description: >-
+            Timeout in seconds for waiting for Footprint items. Items completed
+            before the timeout are returned; the remaining items have a null
+            value.
+          example: 10
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaFootprintTplEmailPostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - emailAddress
+        - countryCode
+      properties:
+        emailAddress:
+          type: string
+          description: >-
+            Email address of the data subject. Required. Must be a valid email
+            address.
+          example: gpalomero1234@smileapi.io
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: Fixed to `tpl-footprint-email`.
+          example: tpl-footprint-email
+        footprintItemsTimeout:
+          type: integer
+          minimum: 1
+          maximum: 30
+          description: >-
+            Timeout in seconds for waiting for Footprint items. Items completed
+            before the timeout are returned; the remaining items have a null
+            value.
+          example: 10
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaFootprintTplPhoneProfilePostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - mobileNumber
+        - countryCode
+      properties:
+        mobileNumber:
+          type: string
+          description: >-
+            Mobile number of the data subject. Required. Must start with the
+            country code, for example 639559991234, and must not contain a
+            leading `0` or a `+`.
+          example: '639559991234'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: Fixed to `tpl-footprint-phoneprofile`.
+          example: tpl-footprint-phoneprofile
+        footprintItemsTimeout:
+          type: integer
+          minimum: 1
+          maximum: 30
+          description: >-
+            Timeout in seconds for waiting for Footprint items. Items completed
+            before the timeout are returned; the remaining items have a null
+            value.
+          example: 10
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaFootprintTplPhoneSocialPostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - mobileNumber
+        - countryCode
+      properties:
+        mobileNumber:
+          type: string
+          description: >-
+            Mobile number of the data subject. Required. Must start with the
+            country code, for example 639559991234, and must not contain a
+            leading 0 or a + sign.
+          example: '639559991234'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: Fixed to `tpl-footprint-phonesocial`.
+          example: tpl-footprint-phonesocial
+        footprintItemsTimeout:
+          type: integer
+          minimum: 1
+          maximum: 30
+          description: >-
+            Timeout in seconds for waiting for Footprint items. Items completed
+            before the timeout are returned; the remaining items have a null
+            value.
+          example: 10
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaFootprintTplPhonePostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - mobileNumber
+        - countryCode
+      properties:
+        mobileNumber:
+          type: string
+          description: >-
+            Mobile number of the data subject. Required. Must start with the
+            country code, for example 639559991234, and must not contain a
+            leading 0 or a + sign.
+          example: '639559991234'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: Fixed to `tpl-footprint-phone`.
+          example: tpl-footprint-phone
+        footprintItemsTimeout:
+          type: integer
+          minimum: 1
+          maximum: 30
+          description: >-
+            Timeout in seconds for waiting for Footprint items. Items completed
+            before the timeout are returned; the remaining items have a null
+            value.
+          example: 10
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaFootprintTplScorePostRequest:
+      type: object
+      required:
+        - consent
+        - templateId
+        - emailAddress
+        - mobileNumber
+        - countryCode
+      properties:
+        emailAddress:
+          type: string
+          description: >-
+            Email address of the data subject. Required. Must be a valid email
+            address.
+          example: gpalomero1234@smileapi.io
+        mobileNumber:
+          type: string
+          description: >-
+            Mobile number of the data subject. Required. Must start with the
+            country code, for example 639559991234, and must not contain a
+            leading 0 or a + sign.
+          example: '639559991234'
+        countryCode:
+          $ref: '#/components/schemas/RefCountry'
+        templateId:
+          type: string
+          description: Fixed to `tpl-footprint-score`.
+          example: tpl-footprint-score
+        footprintItemsTimeout:
+          type: integer
+          minimum: 1
+          maximum: 30
+          description: >-
+            Timeout in seconds for waiting for Footprint items. Items completed
+            before the timeout are returned; the remaining items have a null
+            value.
+          example: 10
+        consent:
+          $ref: '#/components/schemas/Consent'
+    BetaFootprintPostRequest:
+      oneOf:
+        - $ref: '#/components/schemas/BetaFootprintTplEmailProfilePostRequest'
+        - $ref: '#/components/schemas/BetaFootprintTplEmailSocialPostRequest'
+        - $ref: '#/components/schemas/BetaFootprintTplEmailPostRequest'
+        - $ref: '#/components/schemas/BetaFootprintTplPhoneProfilePostRequest'
+        - $ref: '#/components/schemas/BetaFootprintTplPhoneSocialPostRequest'
+        - $ref: '#/components/schemas/BetaFootprintTplPhonePostRequest'
+        - $ref: '#/components/schemas/BetaFootprintTplScorePostRequest'
+      discriminator:
+        propertyName: templateId
+        mapping:
+          tpl-footprint-emailprofile: '#/components/schemas/BetaFootprintTplEmailProfilePostRequest'
+          tpl-footprint-emailsocial: '#/components/schemas/BetaFootprintTplEmailSocialPostRequest'
+          tpl-footprint-email: '#/components/schemas/BetaFootprintTplEmailPostRequest'
+          tpl-footprint-phoneprofile: '#/components/schemas/BetaFootprintTplPhoneProfilePostRequest'
+          tpl-footprint-phonesocial: '#/components/schemas/BetaFootprintTplPhoneSocialPostRequest'
+          tpl-footprint-phone: '#/components/schemas/BetaFootprintTplPhonePostRequest'
+          tpl-footprint-score: '#/components/schemas/BetaFootprintTplScorePostRequest'
+    BetaFootprintItem:
+      type: object
+      required:
+        - name
+        - value
+        - valueType
+      properties:
+        name:
+          type: string
+          description: Unique name of the item.
+        value:
+          type: string
+          description: >-
+            Value associated with the item. For ARRAY items, this is a JSON
+            array serialized as a string.
+        valueType:
+          type: string
+          enum:
+            - STRING
+            - NUMBER
+            - BOOLEAN
+            - ARRAY
+    BetaFootprint:
+      type: object
+      required:
+        - id
+        - createdAt
+        - status
+        - requestMeta
+      properties:
+        id:
+          type: string
+          description: Unique ID of the Beta Footprint object.
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        status:
+          type: string
+          description: Current status of the Footprint object.
+          enum:
+            - PROCESSING
+            - ERROR
+            - COMPLETED
+        resultCode:
+          type: string
+          description: Final result of the Footprint object.
+          enum:
+            - SUCCESS
+            - NO_DATA
+            - SYSTEM_ERROR
+            - SERVICE_UNAVAILABLE
+        resultMessage:
+          type: string
+          description: Detailed description of the final result.
+        requestMeta:
+          $ref: '#/components/schemas/BetaFootprintPostRequest'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BetaFootprintItem'
+    BetaFootprintPostResponse:
+      title: Beta Footprint Post Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/BetaFootprint'
+    BetaFootprintListResponse:
+      title: Beta Footprint List Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          type: object
+          properties:
+            nextCursor:
+              $ref: '#/components/schemas/ObjectNextCursor'
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/BetaFootprint'
+    BetaFootprintGetResponse:
+      title: Beta Footprint Get Response
+      type: object
+      properties:
+        code:
+          $ref: '#/components/schemas/ObjectMetadataRefCode'
+        message:
+          $ref: '#/components/schemas/ObjectMetadataRefMessage'
+        requestId:
+          $ref: '#/components/schemas/ObjectMetadataRefRequestID'
+        data:
+          $ref: '#/components/schemas/BetaFootprint'
     Link:
       type: object
       required:
@@ -22261,6 +23606,14 @@ components:
             Smile will query the data that before this date. The format is
             yyyy-MM-dd.
           example: '2023-01-21'
+        hitThreshold:
+          type: integer
+          minimum: 1
+          default: 3
+          description: >-
+            The minimum number of matching records required for the subject to
+            be considered a hit. Defaults to 3.
+          example: 3
         consent:
           $ref: '#/components/schemas/Consent'
     AlphaBlacklist1PostRequest1:
@@ -22289,6 +23642,14 @@ components:
             Smile will query the data that before this date. The format is
             yyyy-MM-dd.
           example: '2023-01-21'
+        hitThreshold:
+          type: integer
+          minimum: 1
+          default: 3
+          description: >-
+            The minimum number of matching records required for the subject to
+            be considered a hit. Defaults to 3.
+          example: 3
         consent:
           $ref: '#/components/schemas/Consent'
     AlphaBlacklist2PostRequest1:

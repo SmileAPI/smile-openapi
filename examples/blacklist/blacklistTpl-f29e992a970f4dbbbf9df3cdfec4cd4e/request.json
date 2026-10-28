@@ -9,5 +9,6 @@
   "templateId": "blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e",
   "mobileNumber": "639559991234",
   "applicationDate": "2023-01-21",
+  "hitThreshold": 3,
   "countryCode": "PH"
 }

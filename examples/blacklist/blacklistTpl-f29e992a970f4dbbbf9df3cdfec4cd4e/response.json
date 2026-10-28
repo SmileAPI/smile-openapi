@@ -13,6 +13,7 @@
       "mobileNumber": "639559991234",
       "countryCode": "PH",
       "applicationDate": "2023-01-21",
+      "hitThreshold": 3,
       "templateId": "blacklistTpl-f29e992a970f4dbbbf9df3cdfec4cd4e",
       "consent": {
         "type": "Terms And Conditions",

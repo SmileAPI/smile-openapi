@@ -9,5 +9,6 @@
   "templateId": "tpl-blk002001",
   "mobileNumber": "639559991234",
   "applicationDate": "2023-01-21",
+  "hitThreshold": 3,
   "countryCode": "PH"
 }
