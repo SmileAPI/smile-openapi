@@ -13593,9 +13593,8 @@ paths:
       summary: List Shield sessions
       description: >
         Returns the tenant's Shield sessions, newest first. Sessions are created
-        by the Shield SDK through the Link API (`POST /shield/sessions`) and
-        carry the device-profiling lifecycle. Listing sessions is **not
-        billed**; only creating an assessment is.
+        by the Shield SDK and carry the device-profiling lifecycle. Listing
+        sessions is **not billed**; only creating an assessment is.
       tags:
         - Shield
       parameters:
@@ -13668,18 +13667,14 @@ paths:
         Smile Shield result.
 
 
-        **This call queries the data supplier and is billed per query.** To read
-        the same result
+        **This endpoint is billed per query.** To read the same result
 
         again without being billed, use `GET
         /shield/sessions/{sessionId}/assessments/{assessmentId}`.
 
 
-        At least one of `emailAddress`, `ipAddress`, or the pair `firstName` +
-        `lastName` must be
-
-        provided. Supplying more attributes produces a richer result: several
-        output fields (for
+        Supplying more attributes produces a richer result: several output
+        fields (for
 
         example the digital identity pair scores and `phoneIntelligence`) are
         only populated when
@@ -13710,7 +13705,7 @@ paths:
 
 
         `resultCode` is `SUCCESS` for every valid Sandbox request. `NO_DATA`
-        means the supplier
+        means the Smile
 
         returned no usable data for the session; `SYSTEM_ERROR` /
         `SERVICE_UNAVAILABLE` are
@@ -13835,8 +13830,7 @@ paths:
       summary: List Shield assessments
       description: >
         Returns the assessments recorded for one Shield session, newest first.
-        Reads stored results only and never queries the data supplier, so it is
-        **not billed**.
+        Reads stored results only, so it is **not billed**.
       tags:
         - Shield
       parameters:
@@ -13893,8 +13887,7 @@ paths:
       summary: Get Shield assessment
       description: >
         Returns an assessment that was created earlier. This call reads the
-        stored result and does **not** query the data supplier, so it is **not
-        billed**.
+        stored result, so it is **not billed**.
       tags:
         - Shield
       responses:
@@ -24794,8 +24787,8 @@ components:
             - ERROR
           description: >
             Device-profiling lifecycle of the session. `STARTED` when the
-            session is created, `COMPLETED` when profiling finished with the
-            supplier's confirmation, `ERROR` when it finished without it (see
+            session is created, `COMPLETED` when profiling finished with Smile's
+            confirmation, `ERROR` when it finished without it (see
             `profilingResultCode`). Requiring an assessment does not change this
             value.
           example: COMPLETED
@@ -24806,9 +24799,9 @@ components:
             - TIMEOUT
           nullable: true
           description: >
-            How profiling ended. `SUCCESS` means the supplier confirmed enough
-            data was collected; `TIMEOUT` means the SDK stopped waiting, which
-            sets `profilingStatus` to `ERROR`. Absent while profiling is still
+            How profiling ended. `SUCCESS` means Smile confirmed enough data was
+            collected; `TIMEOUT` means the SDK stopped waiting, which sets
+            `profilingStatus` to `ERROR`. Absent while profiling is still
             running.
           example: SUCCESS
         createdAt:
@@ -24892,17 +24885,11 @@ components:
     ShieldAssessmentRequestMeta:
       title: Shield Assessment Request Meta
       type: object
-      description: >
-        Applicant attributes submitted for a Shield assessment. This is the
-        request body of `POST /shield/sessions/{sessionId}/assessments` and is
-        echoed back verbatim as `requestMeta` in every assessment response, so
-        request and response share one schema.
-
-        At least one of `emailAddress`, `ipAddress`, or the pair `firstName` +
-        `lastName` must be provided. Every attribute is optional on its own, but
-        the more you supply the richer the result: fields such as the digital
-        identity pair scores and `phoneIntelligence` are only populated when the
-        corresponding input is present.
+      description: >-
+        Every attribute is optional on its own, but the more you supply the
+        richer the result. Fields such as the digital identity pair scores and
+        `phoneIntelligence` are only populated when the corresponding input is
+        present.
       properties:
         transactionId:
           type: string
@@ -25034,9 +25021,9 @@ components:
           maximum: 999
           description: >
             The fraud risk score. **This is the only field that should drive an
-            approval decision.** A higher value means higher risk. The supplier
-            policy score, review status and risk rating stay at their defaults
-            and do not reflect the applicant's risk.
+            approval decision.** A higher value means higher risk. Smile policy
+            score, review status and risk rating stay at their defaults and do
+            not reflect the applicant's risk.
           example: 968
         range:
           $ref: '#/components/schemas/ShieldScoreRange'
