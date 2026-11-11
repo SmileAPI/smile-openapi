@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Smile API
-  version: 1.14.0
+  version: 1.17.0
   description: 'The Smile API provides employment and income data from a single API. '
   contact:
     name: Smile Technology Pte Ltd
@@ -13587,6 +13587,333 @@ paths:
                             licenseType: Transfer Agent
                             licenseIssuedDate: '2020-02-10'
                             licenseStatus: Active
+  /shield/sessions:
+    get:
+      operationId: list-shield-sessions
+      summary: List Shield sessions
+      description: >
+        Returns the tenant's Shield sessions, newest first. Sessions are created
+        by the Shield SDK through the Link API (`POST /shield/sessions`) and
+        carry the device-profiling lifecycle. Listing sessions is **not
+        billed**; only creating an assessment is.
+      tags:
+        - Shield
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/userId'
+        - schema:
+            type: string
+            format: date
+            example: '2026-11-01'
+          in: query
+          name: startDate
+          description: >-
+            Filter by session creation date, start of the date range
+            (YYYY-MM-DD)
+        - schema:
+            type: string
+            format: date
+            example: '2026-11-30'
+          in: query
+          name: endDate
+          description: Filter by session creation date, end of the date range (YYYY-MM-DD)
+      responses:
+        '200':
+          description: Shield sessions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShieldSessionListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: ''
+                      items:
+                        - id: shs-123abc456def789abc123def456abc78
+                          userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+                          profilingStatus: COMPLETED
+                          profilingResultCode: SUCCESS
+                          createdAt: '2026-11-02T03:50:22Z'
+                          profilingFinishedAt: '2026-11-02T03:51:44Z'
+                          assessmentCount: 1
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+  /shield/sessions/{sessionId}/assessments:
+    parameters:
+      - name: sessionId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: shs-123abc456def789abc123def456abc78
+        description: Shield session ID returned by the Shield SDK when the session starts.
+    post:
+      operationId: create-shield-assessment
+      summary: Create Shield assessment
+      description: >
+        Runs a device-risk assessment for the given Shield session and returns
+        the standardized
+
+        Smile Shield result.
+
+
+        **This call queries the data supplier and is billed per query.** To read
+        the same result
+
+        again without being billed, use `GET
+        /shield/sessions/{sessionId}/assessments/{assessmentId}`.
+
+
+        At least one of `emailAddress`, `ipAddress`, or the pair `firstName` +
+        `lastName` must be
+
+        provided. Supplying more attributes produces a richer result: several
+        output fields (for
+
+        example the digital identity pair scores and `phoneIntelligence`) are
+        only populated when
+
+        the corresponding input is present.
+
+
+        ### Sandbox test values
+
+
+        In Sandbox, **any request that passes validation returns the same mock
+        result**. The values
+
+        used in the examples are only there to keep the sample self-explanatory:
+
+
+        | Field | Test value |
+
+        | --- | --- |
+
+        | `emailAddress` | `gpalomero1234@smileapi.io` |
+
+        | `firstName` / `lastName` | `George` / `Palomero` |
+
+        | `phoneNumber` | `63955991234` |
+
+        | `addressCountry` | `PH` |
+
+
+        `resultCode` is `SUCCESS` for every valid Sandbox request. `NO_DATA`
+        means the supplier
+
+        returned no usable data for the session; `SYSTEM_ERROR` /
+        `SERVICE_UNAVAILABLE` are
+
+        infrastructure failures that can be retried.
+      tags:
+        - Shield
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShieldAssessmentRequestMeta'
+            examples:
+              minimal:
+                summary: Minimal request (email only)
+                value:
+                  emailAddress: gpalomero1234@smileapi.io
+              full:
+                summary: Full request with every supported attribute
+                value:
+                  transactionId: null
+                  emailAddress: gpalomero1234@smileapi.io
+                  ipAddress: null
+                  firstName: George
+                  lastName: Palomero
+                  phoneNumber: '63955991234'
+                  address:
+                    line1: 12 Maybunga St
+                    line2: Barangay Paraiso
+                    city: Pasig City
+                    region: NCR
+                    zip: '1600'
+                    country: PH
+                  consent: null
+      responses:
+        '200':
+          description: Shield assessment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShieldAssessmentResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      id: sha-488c31d4-37b5-4e6f-b872-9d417020c701
+                      createdAt: '2026-11-02T03:50:22Z'
+                      status: COMPLETED
+                      resultCode: SUCCESS
+                      requestMeta:
+                        transactionId: null
+                        firstName: George
+                        lastName: Palomero
+                        emailAddress: gpalomero1234@smileapi.io
+                        ipAddress: null
+                        phoneNumber: '63955991234'
+                        address:
+                          line1: 12 Maybunga St
+                          line2: Barangay Paraiso
+                          city: Pasig City
+                          region: NCR
+                          zip: '1600'
+                          country: PH
+                      result:
+                        riskScore:
+                          value: 968
+                          range:
+                            min: 1
+                            max: 999
+                          interpretation: higher_is_riskier
+                          reasonCodes:
+                            - rank: 1
+                              code: '00001'
+                              description: Email Tenure
+                              effect: increased_risk
+                        digitalIdentity:
+                          overallScore: 40
+                          confidenceLevel: Moderate Confidence
+                        phoneIntelligence:
+                          countryCode: '63'
+                          geo: PH
+                          type: MOBILE
+                          isPossible: true
+                          isValid: true
+                        deviceIntelligence:
+                          deviceId: 781bb39c94f349db9984a9cee5c444ff
+                          deviceIdConfidence: 100
+                          matchResult: success
+                          result: success
+                          riskScore: 0
+                          worstRiskScore: 0
+                          proxyDetected: true
+                        networkIntelligence:
+                          trueIp:
+                            address: 58.34.228.58
+                            country: CN
+                            riskScore: 0
+                          geoDiscrepancy: false
+                        sessionBehavior:
+                          timeOnPageMs: 487258
+                          unknownSession: false
+                        policyEngine:
+                          score: 0
+                          reviewStatus: pass
+                          riskRating: neutral
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+    get:
+      operationId: list-shield-assessments
+      summary: List Shield assessments
+      description: >
+        Returns the assessments recorded for one Shield session, newest first.
+        Reads stored results only and never queries the data supplier, so it is
+        **not billed**.
+      tags:
+        - Shield
+      parameters:
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/cursor'
+      responses:
+        '200':
+          description: Shield assessments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShieldAssessmentListResponse'
+              examples:
+                Example:
+                  value:
+                    code: OK
+                    message: Success
+                    requestId: 5b79399a-6852-4234-bb0e-ad472648282d
+                    data:
+                      nextCursor: ''
+                      items:
+                        - id: sha-488c31d4-37b5-4e6f-b872-9d417020c701
+                          createdAt: '2026-11-02T03:50:22Z'
+                          status: COMPLETED
+                          resultCode: SUCCESS
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
+  /shield/sessions/{sessionId}/assessments/{assessmentId}:
+    parameters:
+      - name: sessionId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: shs-123abc456def789abc123def456abc78
+        description: Shield session ID returned by the Shield SDK when the session starts.
+      - name: assessmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          example: sha-123abc456def789abc123def456abc78
+        description: Shield assessment ID returned when the assessment was created.
+    get:
+      operationId: get-shield-assessment
+      summary: Get Shield assessment
+      description: >
+        Returns an assessment that was created earlier. This call reads the
+        stored result and does **not** query the data supplier, so it is **not
+        billed**.
+      tags:
+        - Shield
+      responses:
+        '200':
+          description: Shield assessment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShieldAssessmentResponse'
+        '400':
+          $ref: '#/components/responses/Standard-Errors'
+        '401':
+          $ref: '#/components/responses/Standard-Errors'
+        '403':
+          $ref: '#/components/responses/Standard-Errors'
+        '404':
+          $ref: '#/components/responses/Standard-Errors'
+        '500':
+          $ref: '#/components/responses/Standard-Errors'
 components:
   schemas:
     UserCreatedEvent:
@@ -14345,6 +14672,92 @@ components:
             providers:
               - string
       description: Event indicates data sync of an account is finished.
+    ShieldSessionProfilingStartedEvent:
+      title: 'Webhook: Shield Session Started Event'
+      x-tags:
+        - Shield
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        version:
+          $ref: '#/components/schemas/RefWebhookEventVersion'
+        type:
+          $ref: '#/components/schemas/RefWebhookEventType'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        data:
+          $ref: '#/components/schemas/ShieldSessionProfilingStartedEventData'
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        Example:
+          id: et-123abc456def789abc123def456abc78
+          version: 1
+          type: SHIELD_SESSION_PROFILING_STARTED
+          createdAt: '2026-11-06T02:10:11Z'
+          data:
+            sessionId: shs-123abc456def789abc123def456abc78
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            profilingStatus: STARTED
+            startedAt: '2026-11-06T02:10:11Z'
+      description: >
+        Device profiling started for a Shield session. Sent when the Shield SDK
+        creates the session, before any profiling data is collected.
+    ShieldSessionProfilingFinishedEvent:
+      title: 'Webhook: Shield Session Finished Event'
+      x-tags:
+        - Shield
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/RefObjectID'
+        version:
+          $ref: '#/components/schemas/RefWebhookEventVersion'
+        type:
+          $ref: '#/components/schemas/RefWebhookEventType'
+        createdAt:
+          $ref: '#/components/schemas/RefDateTime'
+        data:
+          $ref: '#/components/schemas/ShieldSessionProfilingFinishedEventData'
+      required:
+        - id
+        - version
+        - type
+        - createdAt
+        - data
+      x-examples:
+        example-success:
+          id: et-123abc456def789abc123def456abc78
+          version: 1
+          type: SHIELD_SESSION_PROFILING_FINISHED
+          createdAt: '2026-11-06T02:10:41Z'
+          data:
+            sessionId: shs-123abc456def789abc123def456abc78
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            profilingStatus: COMPLETED
+            profilingResultCode: SUCCESS
+            finishedAt: '2026-11-06T02:10:41Z'
+        example-timeout:
+          id: et-223abc456def789abc123def456abc78
+          version: 1
+          type: SHIELD_SESSION_PROFILING_FINISHED
+          createdAt: '2026-11-06T02:10:31Z'
+          data:
+            sessionId: shs-223abc456def789abc123def456abc78
+            userId: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+            profilingStatus: ERROR
+            profilingResultCode: TIMEOUT
+            finishedAt: '2026-11-06T02:10:31Z'
+      description: >
+        Device profiling finished for a Shield session. `profilingStatus` is
+        `COMPLETED` when the supplier confirmed that enough data was collected,
+        and `ERROR` when the SDK stopped waiting (`profilingResultCode:
+        TIMEOUT`) — the collected data may be too thin to score.
     AccountFailedEvent:
       title: 'Webhook: Account Failed Event'
       x-tags:
@@ -17998,6 +18411,8 @@ components:
         - RECORD_COMPLETED
         - USER_SESSION_COMPLETED
         - USER_SESSION_RESET
+        - SHIELD_SESSION_PROFILING_STARTED
+        - SHIELD_SESSION_PROFILING_FINISHED
         - ALL_EVENTS
       example: ACCOUNT_CONNECTED
     Webhook:
@@ -24353,6 +24768,998 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Employer'
+    ShieldSession:
+      title: Shield Session
+      type: object
+      required:
+        - id
+        - profilingStatus
+        - createdAt
+      properties:
+        id:
+          type: string
+          description: >-
+            Shield session identifier, also used as `{sessionId}` by the
+            assessment endpoints.
+          example: shs-123abc456def789abc123def456abc78
+        userId:
+          type: string
+          description: User the session belongs to.
+          example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+        profilingStatus:
+          type: string
+          enum:
+            - STARTED
+            - COMPLETED
+            - ERROR
+          description: >
+            Device-profiling lifecycle of the session. `STARTED` when the
+            session is created, `COMPLETED` when profiling finished with the
+            supplier's confirmation, `ERROR` when it finished without it (see
+            `profilingResultCode`). Requiring an assessment does not change this
+            value.
+          example: COMPLETED
+        profilingResultCode:
+          type: string
+          enum:
+            - SUCCESS
+            - TIMEOUT
+          nullable: true
+          description: >
+            How profiling ended. `SUCCESS` means the supplier confirmed enough
+            data was collected; `TIMEOUT` means the SDK stopped waiting, which
+            sets `profilingStatus` to `ERROR`. Absent while profiling is still
+            running.
+          example: SUCCESS
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the session was created, in ISO 8601 UTC.
+          example: '2026-11-02T03:50:22Z'
+        profilingFinishedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: >
+            Timestamp when profiling finished, in ISO 8601 UTC. Absent while
+            profiling is still running.
+          example: '2026-11-02T03:51:44Z'
+        assessmentCount:
+          type: integer
+          description: >-
+            Number of assessments recorded for this session. Each one was
+            billed.
+          example: 1
+    ShieldSessionListData:
+      title: Shield Session List Data
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShieldSession'
+    ShieldSessionListResponse:
+      title: Shield Session List Response
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/ShieldSessionListData'
+    ShieldAddress:
+      title: Shield Address
+      type: object
+      description: Applicant's billing address. All fields are optional.
+      properties:
+        line1:
+          type: string
+          nullable: true
+          maxLength: 255
+          description: First line of the street address.
+          example: 12 Maybunga St
+        line2:
+          type: string
+          nullable: true
+          maxLength: 255
+          description: Second line of the street address.
+          example: Barangay Paraiso
+        city:
+          type: string
+          nullable: true
+          maxLength: 50
+          description: City.
+          example: Pasig City
+        region:
+          type: string
+          nullable: true
+          maxLength: 64
+          description: State or region, in ISO 3166-2 format.
+          example: NCR
+        zip:
+          type: string
+          nullable: true
+          maxLength: 32
+          description: Postal code.
+          example: '1600'
+        country:
+          type: string
+          nullable: true
+          maxLength: 36
+          description: Country, in ISO 3166-1 alpha-2 format.
+          example: PH
+    ShieldAssessmentRequestMeta:
+      title: Shield Assessment Request Meta
+      type: object
+      description: >
+        Applicant attributes submitted for a Shield assessment. This is the
+        request body of `POST /shield/sessions/{sessionId}/assessments` and is
+        echoed back verbatim as `requestMeta` in every assessment response, so
+        request and response share one schema.
+
+        At least one of `emailAddress`, `ipAddress`, or the pair `firstName` +
+        `lastName` must be provided. Every attribute is optional on its own, but
+        the more you supply the richer the result: fields such as the digital
+        identity pair scores and `phoneIntelligence` are only populated when the
+        corresponding input is present.
+      properties:
+        transactionId:
+          type: string
+          maxLength: 64
+          description: >-
+            Your local identifier for this transaction, for example the loan
+            application ID.
+          example: null
+        firstName:
+          type: string
+          maxLength: 128
+          description: >-
+            The first name associated with this event. Used together with
+            `lastName` as an alternative to `emailAddress` and `ipAddress`.
+          example: George
+        lastName:
+          type: string
+          maxLength: 128
+          description: >-
+            The last name associated with this event. Used together with
+            `firstName` as an alternative to `emailAddress` and `ipAddress`.
+          example: Palomero
+        emailAddress:
+          type: string
+          format: email
+          maxLength: 255
+          description: The email address associated with this event.
+          example: gpalomero1234@smileapi.io
+        ipAddress:
+          type: string
+          maxLength: 45
+          description: The applicant's IP address, IPv4 or IPv6.
+          example: null
+        phoneNumber:
+          type: string
+          maxLength: 32
+          description: >
+            The applicant's mobile number. Must start with the country code, for
+            example 63955991234, and must not contain a leading `0` or a `+`.
+          example: '63955991234'
+        address:
+          $ref: '#/components/schemas/ShieldAddress'
+        consent:
+          $ref: '#/components/schemas/Consent'
+    ShieldShippingAddress:
+      title: Shield Shipping Address
+      type: object
+      properties:
+        line1:
+          type: string
+          nullable: true
+        line2:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        region:
+          type: string
+          nullable: true
+        zip:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        isForwardingAddress:
+          type: boolean
+          nullable: true
+          description: Whether the shipping address is a mail-forwarding address.
+    ShieldApplicantSummary:
+      title: Shield Applicant Summary
+      type: object
+      description: >-
+        Output fields derived from the applicant, as opposed to the raw
+        submitted inputs.
+      properties:
+        fullName:
+          type: string
+          description: Full name derived from the submitted first and last name.
+          example: owen_smile
+        emailDomain:
+          type: string
+          description: Domain part of the submitted email address.
+          example: getsmileapi.com
+        shippingAddress:
+          $ref: '#/components/schemas/ShieldShippingAddress'
+    ShieldScoreRange:
+      title: Shield Score Range
+      type: object
+      properties:
+        min:
+          type: integer
+          example: 1
+        max:
+          type: integer
+          example: 999
+    ShieldReasonCode:
+      title: Shield Reason Code
+      type: object
+      properties:
+        rank:
+          type: integer
+          description: Position of this reason code in the list.
+          example: 1
+        code:
+          type: string
+          example: '00001'
+        description:
+          type: string
+          example: Email Tenure
+        effect:
+          type: string
+          enum:
+            - increased_risk
+            - reduced_risk
+          description: Whether this reason code increased or reduced the risk score.
+          example: increased_risk
+    ShieldRiskScore:
+      title: Shield Risk Score
+      type: object
+      required:
+        - value
+        - interpretation
+      properties:
+        value:
+          type: integer
+          minimum: 1
+          maximum: 999
+          description: >
+            The fraud risk score. **This is the only field that should drive an
+            approval decision.** A higher value means higher risk. The supplier
+            policy score, review status and risk rating stay at their defaults
+            and do not reflect the applicant's risk.
+          example: 968
+        range:
+          $ref: '#/components/schemas/ShieldScoreRange'
+        interpretation:
+          type: string
+          enum:
+            - higher_is_riskier
+          description: Indicates the scoring direction.
+          example: higher_is_riskier
+        reasonCodes:
+          type: array
+          description: Reason codes contributing to the score, ordered by rank.
+          items:
+            $ref: '#/components/schemas/ShieldReasonCode'
+    ShieldDigitalIdentityPairScores:
+      title: Shield Digital Identity Pair Scores
+      type: object
+      description: >
+        Confidence that two attributes belong to the same identity, each on a
+        0-100 scale. A score is only populated when **both** attributes of the
+        pair were submitted, so most entries are `null` for sparse requests.
+      properties:
+        emailToFullName:
+          type: integer
+          nullable: true
+          example: 61
+        emailToLastName:
+          type: integer
+          nullable: true
+          example: 61
+        emailToPhone:
+          type: integer
+          nullable: true
+          example: 50
+        emailToBillingAddress:
+          type: integer
+          nullable: true
+          example: 41
+        emailToIp:
+          type: integer
+          nullable: true
+          example: 50
+        emailToShippingAddress:
+          type: integer
+          nullable: true
+        ipToFullName:
+          type: integer
+          nullable: true
+          example: 30
+        ipToLastName:
+          type: integer
+          nullable: true
+          example: 30
+        ipToPhone:
+          type: integer
+          nullable: true
+          example: 50
+        ipToBillingAddress:
+          type: integer
+          nullable: true
+          example: 42
+        ipToShippingAddress:
+          type: integer
+          nullable: true
+        phoneToFullName:
+          type: integer
+          nullable: true
+          example: 41
+        phoneToLastName:
+          type: integer
+          nullable: true
+          example: 30
+        phoneToBillingAddress:
+          type: integer
+          nullable: true
+          example: 36
+        phoneToShippingAddress:
+          type: integer
+          nullable: true
+        billingAddressToFullName:
+          type: integer
+          nullable: true
+          example: 18
+        billingAddressToLastName:
+          type: integer
+          nullable: true
+          example: 14
+        shippingAddressToBillingAddress:
+          type: integer
+          nullable: true
+        shippingAddressToFullName:
+          type: integer
+          nullable: true
+        shippingAddressToLastName:
+          type: integer
+          nullable: true
+    ShieldDigitalIdentity:
+      title: Shield Digital Identity
+      type: object
+      properties:
+        overallScore:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 100
+          description: Overall confidence score across all attribute pair scores.
+          example: 40
+        confidenceLevel:
+          type: string
+          nullable: true
+          description: >-
+            Textual confidence band, for example `Very High Confidence`, `High
+            Confidence`, `Moderate Confidence` or `Low Confidence`.
+          example: Moderate Confidence
+        pairScores:
+          $ref: '#/components/schemas/ShieldDigitalIdentityPairScores'
+    ShieldPhoneIntelligence:
+      title: Shield Phone Intelligence
+      type: object
+      description: >
+        Derived from `phoneNumber`. Every field in this object is absent when
+        the request does not include a phone number.
+      properties:
+        carrierName:
+          type: string
+          nullable: true
+          description: >-
+            Mobile network operator the phone number is registered to (for
+            example Smart, Globe, DITO).
+          example: Smart Communications
+        carrierType:
+          type: string
+          nullable: true
+          description: >-
+            Line type reported by the carrier lookup (for example mobile,
+            landline, voip).
+          example: mobile
+        registrationCity:
+          type: string
+          nullable: true
+          description: >-
+            City where the phone number is registered. Nationwide mobile numbers
+            return "Countrywide".
+          example: Countrywide
+        countryCode:
+          type: string
+          nullable: true
+          description: International dialling country code, without the leading plus sign.
+          example: '63'
+        geo:
+          type: string
+          nullable: true
+          description: ISO 3166-1 alpha-2 country code of the phone number.
+          example: PH
+        type:
+          type: string
+          nullable: true
+          enum:
+            - MOBILE
+            - FIXED_LINE
+            - FIXED_LINE_OR_MOBILE
+            - VOIP
+            - TOLL_FREE
+            - PAGER
+            - PERSONAL_NUMBER
+            - VOICE_MAIL
+            - UNKNOWN
+          example: MOBILE
+        isPossible:
+          type: boolean
+          nullable: true
+          description: Whether the phone number is structurally possible.
+          example: true
+        isValid:
+          type: boolean
+          nullable: true
+          description: Whether the phone number is valid and dialable.
+          example: true
+    ShieldEmailIntelligence:
+      title: Shield Email Intelligence
+      type: object
+      properties:
+        lastSeenDate:
+          type: string
+          format: date-time
+          nullable: true
+          description: >-
+            Most recent date this email address was seen in the intelligence
+            network.
+          example: '2026-11-01T00:00:00Z'
+        velocity7DaysOrgCount:
+          type: integer
+          nullable: true
+          description: >-
+            Number of distinct organisations that saw this email address in the
+            last 7 days.
+          example: 3
+        lastFlaggedDate:
+          type: string
+          format: date-time
+          nullable: true
+          description: >-
+            Date this email address was last flagged for fraud. Null if never
+            flagged.
+          example: null
+        fraudFlagSourceIndustry:
+          type: string
+          nullable: true
+          description: >-
+            Industry of the network member that flagged this email address. Null
+            if never flagged.
+          example: null
+        exists:
+          type: integer
+          nullable: true
+          description: >-
+            Whether the queried email address exists. `1` yes, `2` no, `3` not
+            anymore, `4` not sure.
+          example: 4
+        firstSeenDate:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date and time the email address was first seen, in ISO 8601 UTC.
+          example: '2026-10-14T03:54:26Z'
+        firstSeenDays:
+          type: integer
+          nullable: true
+          description: Number of days since the email address was first seen.
+          example: 18
+        ownerName:
+          type: string
+          nullable: true
+          example: null
+        ownerNameMatch:
+          type: integer
+          nullable: true
+          description: Whether the email owner name matches the submitted name.
+          example: 4
+        velocity7Days:
+          type: integer
+          nullable: true
+          description: Number of times the email address was seen in the last seven days.
+          example: 0
+        previouslySeenWithIp:
+          type: boolean
+          nullable: true
+          example: false
+        previouslySeenWithName:
+          type: boolean
+          nullable: true
+          example: true
+        previouslySeenWithPhone:
+          type: boolean
+          nullable: true
+          example: false
+        multipleDevicesForEmail:
+          type: boolean
+          nullable: true
+          example: true
+        multipleNamesForEmail:
+          type: boolean
+          nullable: true
+          example: true
+        multiplePhonesForEmail:
+          type: boolean
+          nullable: true
+          example: false
+        fraudType:
+          type: string
+          nullable: true
+          description: Fraud category reported for the email address, when any.
+          example: ''
+        nonEarlyPaymentDefaultFraudFlag:
+          type: boolean
+          nullable: true
+          example: false
+    ShieldDomainIntelligence:
+      title: Shield Domain Intelligence
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+          example: getsmileapi.com
+        exists:
+          type: integer
+          nullable: true
+          description: >-
+            Whether the email domain exists. `1` yes, `2` no, `3` not anymore,
+            `4` not sure.
+          example: 1
+        company:
+          type: string
+          nullable: true
+          example: ''
+        country:
+          type: string
+          nullable: true
+          description: ISO 3166-1 alpha-2 country code of the domain registration.
+          example: US
+        createdDate:
+          type: string
+          format: date-time
+          nullable: true
+          description: Date and time the domain was created, in ISO 8601 UTC.
+          example: '2021-03-22T08:35:38Z'
+        ageDays:
+          type: integer
+          nullable: true
+          description: Age of the domain in days.
+          example: 2044
+        categoryCode:
+          type: string
+          nullable: true
+          example: '30432'
+    ShieldFuzzyDevice:
+      title: Shield Fuzzy Device
+      type: object
+      description: Fuzzy device matching result, a looser match than the exact device ID.
+      properties:
+        deviceId:
+          type: string
+          nullable: true
+        deviceIdConfidence:
+          type: number
+          format: double
+          nullable: true
+        firstSeenDate:
+          type: string
+          format: date
+          nullable: true
+        lastEventDate:
+          type: string
+          format: date
+          nullable: true
+        lastUpdatedDate:
+          type: string
+          format: date
+          nullable: true
+        matchResult:
+          type: string
+          nullable: true
+        result:
+          type: string
+          nullable: true
+        riskScore:
+          type: integer
+          nullable: true
+        worstRiskScore:
+          type: integer
+          nullable: true
+    ShieldDeviceIntelligence:
+      title: Shield Device Intelligence
+      type: object
+      description: >
+        Derived from the device profiling session identified by the Shield
+        session. Fields are empty or `null` when the session was never profiled.
+      properties:
+        browserVersion:
+          type: string
+          nullable: true
+          description: Full browser version string detected on the device.
+          example: 156.0.8078.48
+        cpuArchitecture:
+          type: string
+          nullable: true
+          description: CPU architecture reported by the browser (for example arm, x86).
+          example: arm
+        cpuBitness:
+          type: integer
+          nullable: true
+          description: CPU bitness reported by the browser (32 or 64).
+          example: 64
+        isWow64:
+          type: boolean
+          nullable: true
+          description: Whether a 32-bit browser is running on 64-bit Windows.
+          example: false
+        deviceId:
+          type: string
+          nullable: true
+          example: 781bb39c94f349db9984a9cee5c444ff
+        deviceIdConfidence:
+          type: integer
+          nullable: true
+          example: 100
+        firstSeenDate:
+          type: string
+          format: date
+          nullable: true
+          example: '2026-10-23'
+        firstSeenDays:
+          type: integer
+          nullable: true
+          example: 10
+        lastEventDate:
+          type: string
+          format: date
+          nullable: true
+          example: '2026-11-02'
+        lastUpdatedDate:
+          type: string
+          format: date
+          nullable: true
+          example: '2026-11-02'
+        matchResult:
+          type: string
+          nullable: true
+          description: >-
+            Device match result. Values: `success`, `new_device`,
+            `not_enough_attribs`.
+          example: success
+        result:
+          type: string
+          nullable: true
+          description: 'Result of the device ID search. Values: `success`, `not found`.'
+          example: success
+        riskScore:
+          type: integer
+          nullable: true
+          example: 0
+        worstRiskScore:
+          type: integer
+          nullable: true
+          example: 0
+        newLocation:
+          type: boolean
+          nullable: true
+          example: false
+        velocity30Days:
+          type: integer
+          nullable: true
+          example: 5
+        proxyDetected:
+          type: boolean
+          nullable: true
+          example: true
+        seenWithBlocklistedIp:
+          type: boolean
+          nullable: true
+          example: false
+        multipleEmailsForDevice:
+          type: boolean
+          nullable: true
+          example: false
+        fuzzy:
+          $ref: '#/components/schemas/ShieldFuzzyDevice'
+    ShieldIpIntelligence:
+      title: Shield IP Intelligence
+      type: object
+      properties:
+        sourcePort:
+          type: integer
+          nullable: true
+          description: Source port of the connection. Only populated on `trueIp`.
+          example: 51234
+        regionCode:
+          type: string
+          nullable: true
+          description: ISO region code (the `region` field holds the name).
+          example: NCR
+        asn:
+          type: integer
+          nullable: true
+          description: Autonomous System Number of the IP.
+          example: 9299
+        organizationType:
+          type: string
+          nullable: true
+          description: >-
+            Type of organization owning the IP (for example Internet Service
+            Provider, Hosting).
+          example: Internet Service Provider
+        isHostingFacility:
+          type: boolean
+          nullable: true
+          description: Whether the IP belongs to a hosting / data-centre facility.
+          example: false
+        address:
+          type: string
+          nullable: true
+          example: 58.34.228.58
+        city:
+          type: string
+          nullable: true
+          example: shanghai
+        region:
+          type: string
+          nullable: true
+          example: shanghai shi
+        postalCode:
+          type: string
+          nullable: true
+          example: '200000'
+        country:
+          type: string
+          nullable: true
+          description: ISO 3166-1 alpha-2 country code.
+          example: CN
+        latitude:
+          type: number
+          format: double
+          nullable: true
+          example: 31.22847
+        longitude:
+          type: number
+          format: double
+          nullable: true
+          example: 121.47021
+        isp:
+          type: string
+          nullable: true
+          example: china telecom (group)
+        organization:
+          type: string
+          nullable: true
+          example: chinanet shanghai province network
+        connectionType:
+          type: string
+          nullable: true
+          example: dsl
+        lineSpeed:
+          type: string
+          nullable: true
+          example: medium
+        routingType:
+          type: string
+          nullable: true
+          example: fixed
+        isHome:
+          type: boolean
+          nullable: true
+          example: true
+        firstSeenDate:
+          type: string
+          format: date
+          nullable: true
+          example: '2026-02-09'
+        lastEventDate:
+          type: string
+          format: date
+          nullable: true
+          example: '2026-11-02'
+        lastUpdatedDate:
+          type: string
+          format: date
+          nullable: true
+          example: '2026-11-02'
+        riskScore:
+          type: integer
+          nullable: true
+          example: 0
+        worstRiskScore:
+          type: integer
+          nullable: true
+          example: 0
+        result:
+          type: string
+          nullable: true
+          description: 'Result of the IP lookup. Values: `success`, `not found`.'
+          example: success
+    ShieldNetworkIntelligence:
+      title: Shield Network Intelligence
+      type: object
+      properties:
+        proxyIp:
+          $ref: '#/components/schemas/ShieldIpIntelligence'
+        dnsIp:
+          $ref: '#/components/schemas/ShieldIpIntelligence'
+        deviceConnectionType:
+          type: string
+          nullable: true
+          description: >
+            Physical connection type measured from the browser session (for
+            example Ethernet or modem, Wi-Fi, cellular). Compare with the IP
+            `connectionType` to spot proxies.
+          example: Wi-Fi
+        trueIp:
+          $ref: '#/components/schemas/ShieldIpIntelligence'
+        inputIp:
+          $ref: '#/components/schemas/ShieldIpIntelligence'
+        geoDiscrepancy:
+          type: boolean
+          nullable: true
+          description: >-
+            Whether the true IP and the input IP resolve to different
+            geographies.
+          example: false
+        multipleEmailsForIp:
+          type: boolean
+          nullable: true
+          example: false
+        multipleEmailsForPhone:
+          type: boolean
+          nullable: true
+          example: false
+    ShieldSessionBehavior:
+      title: Shield Session Behavior
+      type: object
+      properties:
+        timeOnPageMs:
+          type: integer
+          nullable: true
+          description: Time the applicant spent on the page, in milliseconds.
+          example: 487258
+        unknownSession:
+          type: boolean
+          nullable: true
+          description: >-
+            Whether the device used to make the application could not be
+            profiled.
+          example: false
+    ShieldPolicyEngine:
+      title: Shield Policy Engine
+      type: object
+      properties:
+        score:
+          type: integer
+          nullable: true
+          example: 0
+        reviewStatus:
+          type: string
+          nullable: true
+          description: Review status mapped from the policy score. Defaults to `pass`.
+          example: pass
+        riskRating:
+          type: string
+          nullable: true
+          description: Risk rating mapped from the policy score. Defaults to `neutral`.
+          example: neutral
+    ShieldAssessmentResult:
+      title: Shield Assessment Result
+      type: object
+      properties:
+        applicantSummary:
+          $ref: '#/components/schemas/ShieldApplicantSummary'
+        riskScore:
+          $ref: '#/components/schemas/ShieldRiskScore'
+        digitalIdentity:
+          $ref: '#/components/schemas/ShieldDigitalIdentity'
+        phoneIntelligence:
+          $ref: '#/components/schemas/ShieldPhoneIntelligence'
+        emailIntelligence:
+          $ref: '#/components/schemas/ShieldEmailIntelligence'
+        domainIntelligence:
+          $ref: '#/components/schemas/ShieldDomainIntelligence'
+        deviceIntelligence:
+          $ref: '#/components/schemas/ShieldDeviceIntelligence'
+        networkIntelligence:
+          $ref: '#/components/schemas/ShieldNetworkIntelligence'
+        sessionBehavior:
+          $ref: '#/components/schemas/ShieldSessionBehavior'
+        policyEngine:
+          $ref: '#/components/schemas/ShieldPolicyEngine'
+    ShieldAssessment:
+      title: Shield Assessment
+      type: object
+      required:
+        - id
+        - createdAt
+        - status
+        - resultCode
+        - result
+      properties:
+        id:
+          type: string
+          description: Unique Shield assessment identifier.
+          example: sha-488c31d4-37b5-4e6f-b872-9d417020c701
+        createdAt:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp when the Shield assessment record was created, in ISO 8601
+            UTC.
+          example: '2026-11-02T03:50:22Z'
+        status:
+          type: string
+          enum:
+            - COMPLETED
+            - IN_PROGRESS
+            - FAILED
+          description: Processing status of the assessment.
+          example: COMPLETED
+        resultCode:
+          type: string
+          enum:
+            - SUCCESS
+            - NO_DATA
+            - SYSTEM_ERROR
+            - SERVICE_UNAVAILABLE
+          description: High-level outcome of the assessment.
+          example: SUCCESS
+        requestMeta:
+          $ref: '#/components/schemas/ShieldAssessmentRequestMeta'
+        result:
+          $ref: '#/components/schemas/ShieldAssessmentResult'
+    ShieldAssessmentListData:
+      title: Shield Assessment List Data
+      type: object
+      properties:
+        nextCursor:
+          $ref: '#/components/schemas/ObjectNextCursor'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShieldAssessment'
+    ShieldAssessmentListResponse:
+      title: Shield Assessment List Response
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/ShieldAssessmentListData'
+    ShieldAssessmentResponse:
+      title: Shield Assessment Response
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CommonResponse'
+        - properties:
+            data:
+              $ref: '#/components/schemas/ShieldAssessment'
     RefWebhookEventVersion:
       title: RefWebhookEventVersion
       description: Event schema's major version
@@ -24426,6 +25833,76 @@ components:
         - providers
         - datapoints
         - data
+    ShieldSessionProfilingStartedEventData:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: >-
+            Shield session identifier, also used as `{sessionId}` by the
+            assessment endpoints.
+          example: shs-123abc456def789abc123def456abc78
+        userId:
+          type: string
+          description: User the session belongs to.
+          example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+        profilingStatus:
+          type: string
+          enum:
+            - STARTED
+          description: Always `STARTED` for this event.
+          example: STARTED
+        startedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the session was created, in ISO 8601 UTC.
+          example: '2026-11-06T02:10:11Z'
+      required:
+        - sessionId
+        - userId
+        - profilingStatus
+        - startedAt
+    ShieldSessionProfilingFinishedEventData:
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: >-
+            Shield session identifier, also used as `{sessionId}` by the
+            assessment endpoints.
+          example: shs-123abc456def789abc123def456abc78
+        userId:
+          type: string
+          description: User the session belongs to.
+          example: tenant-5c1a2e8678e3494eba303ad1afa54ee8
+        profilingStatus:
+          type: string
+          enum:
+            - COMPLETED
+            - ERROR
+          description: >
+            `COMPLETED` when the supplier confirmed enough data was collected;
+            `ERROR` when profiling ended without that confirmation.
+          example: COMPLETED
+        profilingResultCode:
+          type: string
+          enum:
+            - SUCCESS
+            - TIMEOUT
+          description: |
+            How profiling ended. `TIMEOUT` sets `profilingStatus` to `ERROR`.
+          example: SUCCESS
+        finishedAt:
+          type: string
+          format: date-time
+          description: Timestamp when profiling finished, in ISO 8601 UTC.
+          example: '2026-11-06T02:10:41Z'
+      required:
+        - sessionId
+        - userId
+        - profilingStatus
+        - profilingResultCode
+        - finishedAt
     SmileCommonEvent:
       type: object
       required:
